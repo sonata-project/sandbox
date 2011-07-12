@@ -1,0 +1,7 @@
+fos_user:
+    db_driver:      orm # can be orm or odm
+    firewall_name:  main
+    user_class:     Application\Sonata\UserBundle\Entity\User
+
+    group:
+        group_class: Application\Sonata\UserBundle\Entity\Group
