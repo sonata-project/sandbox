@@ -18,6 +18,13 @@ sonata_page:
         classes:
             - [Application\Sonata\PageBundle\Entity\Block, getId]
 
+    sonata_page:
+        templates:
+            - { default: true, path: 'SonataPageBundle::layout.html.twig', name: default }
+
+    page_defaults:
+        homepage: {decorate: false}
+
     services:
         sonata.page.block.text:
         sonata.page.block.action:
@@ -25,22 +32,23 @@ sonata_page:
         sonata.page.block.children_pages:
         sonata.page.block.rss:
 
-    caches:
-        sonata.page.cache.esi:
-            servers:
-                - varnishadm -T 127.0.0.1:2000 {{ COMMAND }} "{{ EXPRESSION }}"
 
-        sonata.page.cache.mongo:
-            database:   cache
-            collection: cache
-            servers:
-                - '127.0.0.1:27017'
+    caches:
+#        sonata.page.cache.esi:
+#            servers:
+#                - varnishadm -T 127.0.0.1:2000 {{ COMMAND }} "{{ EXPRESSION }}"
+
+#        sonata.page.cache.mongo:
+#            database:   cache
+#            collection: cache
+#            servers:
+#                - '127.0.0.1:27017'
 #                - 'username:password@localhost:27017'
 
-        sonata.page.cache.memcached:
-            prefix: test     # prefix to ensure there is no clash between instances
-            servers:
-                - [127.0.0.1, 11211, 0]
+#        sonata.page.cache.memcached:
+#            prefix: test     # prefix to ensure there is no clash between instances
+#            servers:
+#                - [127.0.0.1, 11211, 0]
 
         sonata.page.cache.apc:
             token:  s3cur3   # token used to clear the related cache

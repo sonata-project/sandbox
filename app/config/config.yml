@@ -1,13 +1,14 @@
 imports:
     - { resource: parameters.ini }
     - { resource: security.yml }
+    - { resource: fos_user.yml }
     - { resource: sonata_page.yml }
     - { resource: sonata_media.yml }
-    - { resource: fos_user.yml }
 
 
 framework:
     #esi:             ~
+    translator: { fallback: en }
     secret:          %secret%
     charset:         UTF-8
     router:          { resource: "%kernel.root_dir%/config/routing.yml" }
