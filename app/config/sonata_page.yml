@@ -19,8 +19,9 @@ sonata_page:
             - [Application\Sonata\PageBundle\Entity\Block, getId]
 
     sonata_page:
+        default_template: default
         templates:
-            - { default: true, path: 'SonataPageBundle::layout.html.twig', name: default }
+            default: { path: 'SonataPageBundle::layout.html.twig', name: 'default' }
 
     page_defaults:
         homepage: {decorate: false}
