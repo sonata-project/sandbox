@@ -60,26 +60,6 @@
 
         </one-to-many>
 
-
-        <many-to-one
-            field="template"
-            target-entity="Application\Sonata\PageBundle\Entity\Template"
-            inverted-by="page"
-            >
-
-            <cascade>
-                <cascade-all />
-            </cascade>
-
-            <join-columns>
-                <join-column
-                    name="template_id"
-                    referenced-column-name="id"
-                    on-delete="SET NULL"
-                />
-            </join-columns>
-        </many-to-one>
-
         <one-to-many
             field="blocks"
             target-entity="Application\Sonata\PageBundle\Entity\Block"
