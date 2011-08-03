@@ -79,35 +79,35 @@
     target=/bundles/FOS/UserBundle
 
 [SonatajQueryBundle]
-    git=git@github.com:sonata-project/SonatajQueryBundle.git
+    git=https://github.com/sonata-project/SonatajQueryBundle.git
     target=/bundles/Sonata/jQueryBundle
 
 [SonataAdminBundle]
-    git=git@github.com:sonata-project/SonataAdminBundle.git
+    git=https://github.com/sonata-project/SonataAdminBundle.git
     target=/bundles/Sonata/AdminBundle
 
 [SonataBluePrintBundle]
-    git=git@github.com:sonata-project/SonataBluePrintBundle.git
+    git=https://github.com/sonata-project/SonataBluePrintBundle.git
     target=/bundles/Sonata/BluePrintBundle
 
 [SonataEasyExtendsBundle]
-    git=git@github.com:sonata-project/SonataEasyExtendsBundle.git
+    git=https://github.com/sonata-project/SonataEasyExtendsBundle.git
     target=/bundles/Sonata/EasyExtendsBundle
 
 [SonataMediaBundle]
-    git=git@github.com:sonata-project/SonataMediaBundle.git
+    git=https://github.com/sonata-project/SonataMediaBundle.git
     target=/bundles/Sonata/MediaBundle
 
 [SonataPageBundle]
-    git=git@github.com:sonata-project/SonataPageBundle.git
+    git=https://github.com/sonata-project/SonataPageBundle.git
     target=/bundles/Sonata/PageBundle
 
 [SonataIntlBundle]
-    git=git@github.com:sonata-project/SonataIntlBundle.git
+    git=https://github.com/sonata-project/SonataIntlBundle.git
     target=/bundles/Sonata/IntlBundle
 
 [SonataNewsBundle]
-    git=git@github.com:sonata-project/SonataNewsBundle.git
+    git=https://github.com/sonata-project/SonataNewsBundle.git
     target=/bundles/Sonata/NewsBundle
 
 [SonataUserBundle]
