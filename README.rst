@@ -1,10 +1,13 @@
-Symfony Standard Edition
-========================
+Sonata Standard Edition
+=======================
 
 What's inside?
 --------------
 
-Symfony Standard Edition comes pre-configured with the following bundles:
+Sonata Standard Edition comes pre-configured with the following bundles:
+
+Symfony Standard Edition
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 * FrameworkBundle
 * SensioFrameworkExtraBundle
@@ -19,34 +22,43 @@ Symfony Standard Edition comes pre-configured with the following bundles:
 * SensioGeneratorBundle (in dev/test env)
 * AcmeDemoBundle (in dev/test env)
 
-Installation from an Archive
-----------------------------
+Sonata Bundles
+~~~~~~~~~~~~~~
 
-The easiest way to get started is to download an archive with vendors included
-(http://symfony.com/download). Unpack it somewhere under your web server root
-directory and you're done.
+* SonataAdminBundle - The missing Symfony2 Admin Generator
+* SonataMediaBundle
+* SonataPageBundle
+* SonataUserBundle
+* SonataEasyExtendsBundle
+* SonataIntlBundle
+* SonataNewsBundle
+* SonataBluePrintBundle
+* SonatajQueryBundle
 
-If you have downloaded an archive without the vendors, you must have ``git``
-available to install the vendors:
+FOS Bundles
+~~~~~~~~~~~
 
-    php bin/vendors install
+* FOSUserBundle
+
+Behat Bundles
+~~~~~~~~~~~
+
+* MinkBundle
+* BehatBundle
 
 Installation from Git
 ---------------------
 
-We highly recommend you that you download the packaged version of this
-distribution. If you still want to use Git, you are on your own.
-
 Run the following commands:
 
-    git clone http://github.com/symfony/symfony-standard.git
-    cd symfony-standard
+    git clone http://github.com/sonata-project/sandbox.git sonata-sandbox
+    cd sonata-sandbox
     rm -rf .git
     php bin/vendors install
 
 .. note::
 
-    Symfony SE does/can not use git submodules as you should not keep the
+    Sonata Distributio does/can not use git submodules as you should not keep the
     `.git` directory.
 
 Configuration
