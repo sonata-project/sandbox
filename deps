@@ -140,11 +140,11 @@
 
 [Gherkin]
     git=https://github.com/Behat/Gherkin.git
-    target=/behat/Gherkin
+    target=/behat/gherkin
 
 [Behat]
     git=https://github.com/Behat/Behat.git
-    target=/behat/Behat
+    target=/behat/behat
 
 [Zend]
     git=https://github.com/zendframework/zf2.git
@@ -152,4 +152,4 @@
 
 [Goutte]
     git=https://github.com/fabpot/Goutte.git
-    target=/behat/Behat
+    target=/goutte

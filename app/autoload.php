@@ -25,8 +25,8 @@ $loader->registerNamespaces(array(
     'Behat\MinkBundle'  => __DIR__.'/../vendor/bundles',
     'Behat\SahiClient'  => __DIR__.'/../vendor/behat/sahi/src',
     'Behat\BehatBundle' => __DIR__.'/../vendor/bundles',
-    'Behat\Behat'       => __DIR__.'/../vendor/behat/Behat/src',
-    'Behat\Gherkin'     => __DIR__.'/../vendor/behat/Gherkin/src',
+    'Behat\Behat'       => __DIR__.'/../vendor/behat/behat/src',
+    'Behat\Gherkin'     => __DIR__.'/../vendor/behat/gherkin/src',
 ));
 
 $loader->registerPrefixes(array(
