@@ -91,4 +91,16 @@ If you want to use the CLI, a console application is available at
 ``app/console``. Check first that your PHP is correctly configured for the CLI
 by running ``app/check.php``.
 
+Unit Testing
+------------
+
+Automatic Unit Testing with ``watchr``
+
+```
+gem install watchr
+cd /path/to/symfony-project
+watchr phpunit.watchr
+```
+reference : https://gist.github.com/1151531
+
 Enjoy!
