@@ -96,11 +96,12 @@ Unit Testing
 
 Automatic Unit Testing with ``watchr``
 
-```
+```bash
 gem install watchr
 cd /path/to/symfony-project
 watchr phpunit.watchr
 ```
+
 reference : https://gist.github.com/1151531
 
 Enjoy!
