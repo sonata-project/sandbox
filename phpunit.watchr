@@ -19,7 +19,14 @@
 # THE SOFTWARE.
 
 watch '^src/.*.php' do |match|
-    test = match[0].sub(/^((.*)Bundle(\/))/, "\\1Tests/").sub(/\.php$/, "Test.php")
+    # If match[0] ends in Test.php lets assume it is a test file and done do the 
+    # replacement magic
+
+    test = match[0]
+
+    unless test.end_with?('Test.php')
+        test = test.sub(/^((.*)Bundle(\/))/, "\\1Tests/").sub(/\.php$/, "Test.php")
+    end
 
     if File.exists?(test)
         system "phpunit -c app #{test}"
