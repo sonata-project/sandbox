@@ -20,7 +20,7 @@ $loader->registerNamespaces(array(
     'FOS'               => __DIR__.'/../vendor/bundles',
     'Knp'               => array(
         __DIR__.'/../vendor/bundles',
-        __DIR__.'/../knp/menu/src'
+        __DIR__.'/../vendor/knp/menu/src'
     ),
     'Sonata'            => __DIR__.'/../vendor/bundles',
     'Imagine'           => __DIR__.'/../vendor/imagine/lib',
