@@ -2,12 +2,16 @@
 <?php
 
 /*
- * This file is part of the Symfony Standard Edition.
+ * This file is an altered version of the original symfony2 vendor script.
+ *   reference : https://github.com/symfony/symfony-standard/blob/master/bin/vendors
  *
- * (c) Fabien Potencier <fabien@symfony.com>
+ *  Main differences :
+ *    - use git submodule : https://git.wiki.kernel.org/index.php/GitSubmoduleTutorial
+ *    - remove symfony2 tasks call
  *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
+ * authors :
+ *   Fabien Potencier <fabien@symfony.com>
+ *   Thomas Rabaix <thomas.rabaix@sonata-project.org>
  */
 
 $rootDir = dirname(__DIR__);
@@ -16,13 +20,12 @@ $vendorDir = $rootDir.'/vendor';
 array_shift($argv);
 if (!isset($argv[0])) {
     exit(<<<EOF
-Symfony2 vendors script management.
+Symfony2 vendors script management (using git submodule version).
 
 Specify a command to run:
 
  install: install vendors as specified in deps or deps.lock (recommended)
  update:  update vendors to their latest versions (as specified in deps)
-
 
 EOF
     );
@@ -30,21 +33,6 @@ EOF
 
 if (!in_array($command = array_shift($argv), array('install', 'update'))) {
     exit(sprintf("Command \"%s\" does not exist.\n", $command));
-}
-
-/*
- * Check wether this project is based on the Standard Edition that was
- * shipped with vendors or not.
- */
-if (!is_dir($vendorDir.'/symfony/.git') && !in_array('--reinstall', $argv)) {
-    exit(<<<EOF
-Your project seems to be based on a Standard Edition that includes vendors.
-
-Try to run ./bin/vendors install --reinstall
-
-
-EOF
-    );
 }
 
 if (!is_dir($vendorDir)) {
@@ -63,6 +51,28 @@ if ('install' === $command && file_exists($rootDir.'/deps.lock')) {
     }
 }
 
+chdir($rootDir);
+
+/**
+ * @param $cmd
+ * @return void
+ */
+function exec_command($cmd)
+{
+    echo sprintf("executing : `%s`\n", $cmd);
+    $return = null;
+    passthru($cmd, $return);
+
+    if ($return !== 0) {
+        throw new \RuntimeException(sprintf('The command failed %s', $cmd));
+    }
+}
+
+function echo_message($message)
+{
+    echo sprintf("%s\n", $message);
+}
+
 $newversions = array();
 $deps = parse_ini_file($rootDir.'/deps', true, INI_SCANNER_RAW);
 foreach ($deps as $name => $dep) {
@@ -75,37 +85,34 @@ foreach ($deps as $name => $dep) {
 
     // install dir
     $installDir = isset($dep['target']) ? $vendorDir.'/'.$dep['target'] : $vendorDir.'/'.$name;
-    if (in_array('--reinstall', $argv)) {
-        if (PHP_OS == 'WINNT') {
-            system(sprintf('rmdir /S /Q %s', escapeshellarg(realpath($installDir))));
-        } else {
-            system(sprintf('rm -rf %s', escapeshellarg($installDir)));
-        }
-    }
+    $relativeInstallDir = str_replace($rootDir.'/', '', $installDir);
 
-    echo "> Installing/Updating $name\n";
+    echo_message("\n> Installing/Updating $name");
 
     // url
     if (!isset($dep['git'])) {
         exit(sprintf('The "git" value for the "%s" dependency must be set.', $name));
     }
+
     $url = $dep['git'];
 
     if (!is_dir($installDir)) {
-        system(sprintf('git clone %s %s', escapeshellarg($url), escapeshellarg($installDir)));
+        exec_command(sprintf('git submodule add %s %s', escapeshellarg($url), escapeshellarg($relativeInstallDir)));
     }
 
-    system(sprintf('cd %s && git fetch origin && git reset --hard %s', escapeshellarg($installDir), escapeshellarg($rev)));
+    exec_command(sprintf('git submodule update --init %s', escapeshellarg($relativeInstallDir)));
+    exec_command(sprintf('cd %s && git fetch origin && git reset --hard %s', escapeshellarg($relativeInstallDir), escapeshellarg($rev)));
 
     if ('update' === $command) {
         ob_start();
-        system(sprintf('cd %s && git log -n 1 --format=%%H', escapeshellarg($installDir)));
+        exec_command(sprintf('cd %s && git log -n 1 --format=%%H', escapeshellarg($installDir)));
         $newversions[] = trim($name.' '.ob_get_clean());
     }
 }
 
 // update?
 if ('update' === $command) {
+    echo_message('Update deps.lock file');
     file_put_contents($rootDir.'/deps.lock', implode("\n", $newversions));
 }
 
@@ -115,12 +122,4 @@ $interpreter = PHP_OS == 'WINNT' ? 'php.exe' : '';
 // Update the bootstrap files
 system(sprintf('%s %s', $interpreter, escapeshellarg($rootDir.'/vendor/bundles/Sensio/Bundle/DistributionBundle/Resources/bin/build_bootstrap.php')));
 
-// Update assets
-if (PHP_OS == 'WINNT') {
-    system(sprintf('%s %s assets:install %s', $interpreter, escapeshellarg($rootDir.'/app/console'), escapeshellarg($rootDir.'/web/')));
-} else {
-    system(sprintf('%s %s assets:install --symlink %s', $interpreter, escapeshellarg($rootDir.'/app/console'), escapeshellarg($rootDir.'/web/')));
-}
-
-// Remove the cache
-system(sprintf('%s %s cache:clear --no-warmup', $interpreter, escapeshellarg($rootDir.'/app/console')));
+echo_message("\ndone!");
