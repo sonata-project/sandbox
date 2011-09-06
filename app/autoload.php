@@ -22,7 +22,11 @@ $loader->registerNamespaces(array(
         __DIR__.'/../vendor/bundles',
         __DIR__.'/../vendor/knp/menu/src'
     ),
-    'Sonata'            => __DIR__.'/../vendor/bundles',
+    'Sonata'            => array(
+        __DIR__.'/../vendor/sonata/src',
+        __DIR__.'/../vendor/bundles',
+        __DIR__.'/../vendor/sonata-doctrine-extensions/src'
+    ),
     'Imagine'           => __DIR__.'/../vendor/imagine/lib',
     'Gaufrette'         => __DIR__.'/../vendor/gaufrette/src',
     'Buzz'              => __DIR__.'/../vendor/buzz/lib',

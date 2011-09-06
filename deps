@@ -153,3 +153,11 @@
 [Goutte]
     git=https://github.com/fabpot/Goutte.git
     target=/goutte
+    
+[SonataDoctrineExtensions]
+    git=https://github.com/sonata-project/sonata-doctrine-extensions.git
+    target=/sonata-doctrine-extensions
+
+[SonataCapistrano]
+    git=https://github.com/sonata-project/sonata-capistrano.git
+    target=/sonata-capistrano
