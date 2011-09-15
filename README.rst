@@ -49,9 +49,8 @@ Behat Bundles
 Installation
 ------------
 
-Run the following commands:
+Run the following commands::
 
-```
     git clone http://github.com/sonata-project/sandbox.git sonata-sandbox
     cd sonata-sandbox
     rm -rf .git
@@ -59,7 +58,6 @@ Run the following commands:
     git add .gitignore * 
     git commit -m "Initial commit (from the Sonata Sandbox)"
     php bin/vendors install
-```
 
 .. note::
 
@@ -67,18 +65,14 @@ Run the following commands:
   The script install vendors as git submodules. 
 
 
-Once the ``vendors`` script is completed, the new submodules need to be committed :
+Once the ``vendors`` script is completed, the new submodules need to be committed::
 
-```
     git add *
     git commit -m "add submodules"
-```
 
-The last step is to configure the database access through the ``parameters.ini`` file.
+The last step is to configure the database access through the ``parameters.ini`` file::
 
-```
     cp app/config/parameters.ini.sample app/config/parameters.ini
-```
 
 
 Configuration
@@ -114,7 +108,7 @@ by running ``app/check.php``.
 Unit Testing
 ------------
 
-Automatic Unit Testing with ``watchr`` :
+Automatic Unit Testing with ``watchr``::
 
     gem install watchr
     cd /path/to/symfony-project
