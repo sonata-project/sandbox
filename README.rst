@@ -46,20 +46,40 @@ Behat Bundles
 * MinkBundle
 * BehatBundle
 
-Installation from Git
----------------------
+Installation
+------------
 
 Run the following commands:
 
+```
     git clone http://github.com/sonata-project/sandbox.git sonata-sandbox
     cd sonata-sandbox
     rm -rf .git
+    git init
+    git add .gitignore * 
+    git commit -m "Initial commit (from the Sonata Sandbox)"
     php bin/vendors install
+```
 
 .. note::
 
-    Sonata Distributio does/can not use git submodules as you should not keep the
-    `.git` directory.
+  The ``bin/vendor`` script does not behave like the one provided by the Symfony2 Standard Edition. 
+  The script install vendors as git submodules. 
+
+
+Once the ``vendors`` script is completed, the new submodules need to be committed :
+
+```
+    git add *
+    git commit -m "add submodules"
+```
+
+The last step is to configure the database access through the ``parameters.ini`` file.
+
+```
+    cp app/config/parameters.ini.sample app/config/parameters.ini
+```
+
 
 Configuration
 -------------
