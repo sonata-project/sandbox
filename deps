@@ -78,7 +78,6 @@
 [imagine]
     git=https://github.com/avalanche123/Imagine.git
     target=/imagine
-    version=v0.1.5
 
 [KnpMenu]
     git=https://github.com/knplabs/KnpMenu.git
