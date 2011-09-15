@@ -8,27 +8,36 @@
  *  Main differences :
  *    - use git submodule : https://git.wiki.kernel.org/index.php/GitSubmoduleTutorial
  *    - remove symfony2 tasks call
+ *    - user can provide a deps name to update/install
  *
  * authors :
  *   Fabien Potencier <fabien@symfony.com>
  *   Thomas Rabaix <thomas.rabaix@sonata-project.org>
  */
 
-$rootDir = dirname(__DIR__);
+$rootDir   = dirname(__DIR__);
 $vendorDir = $rootDir.'/vendor';
+$deps      = parse_ini_file($rootDir.'/deps', true, INI_SCANNER_RAW);
 
-array_shift($argv);
+$bin = array_shift($argv);
 if (!isset($argv[0])) {
-    exit(<<<EOF
+    echo_message(<<<EOF
 Symfony2 vendors script management (using git submodule version).
 
-Specify a command to run:
+Specify a command to run: $bin install|update [deps name]
 
  install: install vendors as specified in deps or deps.lock (recommended)
  update:  update vendors to their latest versions (as specified in deps)
 
 EOF
     );
+
+   echo_message("Deps available:");
+   foreach ($deps as $name => $options) {
+      echo_message(sprintf(" - %s", $name));
+   }
+
+   exit(1);
 }
 
 if (!in_array($command = array_shift($argv), array('install', 'update'))) {
@@ -37,6 +46,12 @@ if (!in_array($command = array_shift($argv), array('install', 'update'))) {
 
 if (!is_dir($vendorDir)) {
     mkdir($vendorDir, 0777, true);
+}
+
+if (count($argv) == 0) {
+    $bundle = 'all';
+} else {
+    $bundle = array_shift($argv);
 }
 
 // versions
@@ -74,8 +89,13 @@ function echo_message($message)
 }
 
 $newversions = array();
-$deps = parse_ini_file($rootDir.'/deps', true, INI_SCANNER_RAW);
 foreach ($deps as $name => $dep) {
+    if ($bundle != 'all' && $name != $bundle) {
+        $run = false;
+    } else {
+        $run = true;
+    }
+
     // revision
     if (isset($versions[$name])) {
         $rev = $versions[$name];
@@ -87,8 +107,6 @@ foreach ($deps as $name => $dep) {
     $installDir = isset($dep['target']) ? $vendorDir.'/'.$dep['target'] : $vendorDir.'/'.$name;
     $relativeInstallDir = str_replace($rootDir.'/', '', $installDir);
 
-    echo_message("\n> Installing/Updating $name");
-
     // url
     if (!isset($dep['git'])) {
         exit(sprintf('The "git" value for the "%s" dependency must be set.', $name));
@@ -96,12 +114,16 @@ foreach ($deps as $name => $dep) {
 
     $url = $dep['git'];
 
-    if (!is_dir($installDir)) {
-        exec_command(sprintf('git submodule add %s %s', escapeshellarg($url), escapeshellarg($relativeInstallDir)));
-    }
+    if ($run) {
+        echo_message("\n> Installing/Updating $name");
 
-    exec_command(sprintf('git submodule update --init %s', escapeshellarg($relativeInstallDir)));
-    exec_command(sprintf('cd %s && git fetch origin && git reset --hard %s', escapeshellarg($relativeInstallDir), escapeshellarg($rev)));
+        if (!is_dir($installDir)) {
+            exec_command(sprintf('git submodule add %s %s', escapeshellarg($url), escapeshellarg($relativeInstallDir)));
+        }
+
+        exec_command(sprintf('git submodule update --init %s', escapeshellarg($relativeInstallDir)));
+        exec_command(sprintf('cd %s && git fetch origin && git reset --hard %s', escapeshellarg($relativeInstallDir), escapeshellarg($rev)));
+    }
 
     if ('update' === $command) {
         ob_start();
