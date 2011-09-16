@@ -41,7 +41,7 @@ FOS Bundles
 * FOSUserBundle
 
 Behat Bundles
-~~~~~~~~~~~
+~~~~~~~~~~~~~
 
 * MinkBundle
 * BehatBundle
@@ -58,52 +58,43 @@ Run the following commands::
     git add .gitignore * 
     git commit -m "Initial commit (from the Sonata Sandbox)"
     php bin/vendors install
-
+    git add *
+    git commit -m "add submodules"
+    cp app/config/parameters.ini.sample app/config/parameters.ini
+    cp app/config/parameters.ini.sample app/config/validation_parameters.ini
+    cp app/config/parameters.ini.sample app/config/production_parameters.ini
+    
 .. note::
 
   The ``bin/vendor`` script does not behave like the one provided by the Symfony2 Standard Edition. 
   The script install vendors as git submodules. 
 
 
-Once the ``vendors`` script is completed, the new submodules need to be committed::
+Database initialization
+~~~~~~~~~~~~~~~~~~~~~~~
 
-    git add *
-    git commit -m "add submodules"
+At this point, the ``app/console`` command should start with no issues. However some you need the complete some others step:
 
-The last step is to configure the database access through the ``parameters.ini`` file::
+  - database configuration (edit the config/parameters.ini file)
+  
+then runs the commands::
 
-    cp app/config/parameters.ini.sample app/config/parameters.ini
+    app/console doctrine:database:create
+    app/console doctrine:schema:create
+  
 
+Sonata Page Bundle
+~~~~~~~~~~~~~~~~~~
 
-Configuration
--------------
+By default the Sonata Page bundle is activated, so you need to starts 2 commands before going further::
 
-Check that everything is working fine by going to the ``web/config.php`` page
-in a browser and follow the instructions.
+    app/console sonata:page:update-core-routes
+    app/console sonata:page:create-snapshots
+    
+    .. note::
 
-The distribution is configured with the following defaults:
-
-* Twig is the only configured template engine;
-* Doctrine ORM/DBAL is configured;
-* Swiftmailer is configured;
-* Annotations for everything are enabled.
-
-A default bundle, ``AcmeDemoBundle``, shows you Symfony2 in action. After
-playing with it, you can remove it by following these steps:
-
-* delete the ``src/Acme`` directory;
-* remove the routing entries referencing AcmeBundle in ``app/config/routing_dev.yml``;
-* remove the AcmeBundle from the registered bundles in ``app/AppKernel.php``;
-
-Configure the distribution by editing ``app/config/parameters.ini`` or by
-accessing ``web/config.php`` in a browser.
-
-A simple controller is configured at ``/hello/{name}``. Access it via
-``web/app_dev.php/demo/hello/Fabien``.
-
-If you want to use the CLI, a console application is available at
-``app/console``. Check first that your PHP is correctly configured for the CLI
-by running ``app/check.php``.
+        The ``update-core-routes`` populates the database with ``page`` from the routing information.
+        The ``create-snapshots`` create a snapshot (a public page version) from the created pages.
 
 Unit Testing
 ------------
