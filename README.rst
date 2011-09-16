@@ -75,7 +75,7 @@ Database initialization
 
 At this point, the ``app/console`` command should start with no issues. However some you need the complete some others step:
 
-  - database configuration (edit the config/parameters.ini file)
+* database configuration (edit the config/parameters.ini file)
   
 then runs the commands::
 
@@ -91,10 +91,10 @@ By default the Sonata Page bundle is activated, so you need to starts 2 commands
     app/console sonata:page:update-core-routes
     app/console sonata:page:create-snapshots
     
-    .. note::
+.. note::
 
-        The ``update-core-routes`` populates the database with ``page`` from the routing information.
-        The ``create-snapshots`` create a snapshot (a public page version) from the created pages.
+    The ``update-core-routes`` populates the database with ``page`` from the routing information.
+    The ``create-snapshots`` create a snapshot (a public page version) from the created pages.
 
 Unit Testing
 ------------
