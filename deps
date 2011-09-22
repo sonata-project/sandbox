@@ -9,7 +9,7 @@
 [monolog]
     git=git://github.com/Seldaek/monolog.git
     version=1.0.1
-    
+
 [doctrine-common]
     git=git://github.com/doctrine/common.git
     version=2.1.1
@@ -86,7 +86,7 @@
 [KnpMenuBundle]
     git=git://github.com/knplabs/KnpMenuBundle.git
     target=/bundles/Knp/Bundle/MenuBundle
-    
+
 [FOSUserBundle]
     git=git://github.com/FriendsOfSymfony/FOSUserBundle.git
     target=/bundles/FOS/UserBundle
@@ -127,6 +127,10 @@
     git=https://github.com/sonata-project/SonataUserBundle.git
     target=/bundles/Sonata/UserBundle
 
+[SonataFormatterBundle]
+    git=https://github.com/sonata-project/SonataFormatterBundle.git
+    target=/bundles/Sonata/FormatterBundle
+
 [gaufrette]
     git=https://github.com/sonata-project/Gaufrette.git
     target=/gaufrette
@@ -162,7 +166,7 @@
 [Goutte]
     git=https://github.com/fabpot/Goutte.git
     target=/goutte
-    
+
 [SonataDoctrineExtensions]
     git=https://github.com/sonata-project/sonata-doctrine-extensions.git
     target=/sonata-doctrine-extensions

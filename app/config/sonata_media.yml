@@ -25,3 +25,12 @@ sonata_media:
     providers:
         sonata.media.provider.file:
             resizer:    false
+
+
+doctrine:
+    orm:
+        entity_managers:
+            default:
+                mappings:
+                    ApplicationSonataMediaBundle: ~
+                    SonataMediaBundle: ~

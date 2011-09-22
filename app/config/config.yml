@@ -4,7 +4,8 @@ imports:
     - { resource: fos_user.yml }
     - { resource: sonata_page.yml }
     - { resource: sonata_media.yml }
-
+    - { resource: sonata_formatter.yml }
+    - { resource: sonata_news.yml }
 
 framework:
     #esi:             ~
@@ -57,20 +58,7 @@ doctrine:
                 #metadata_cache_driver: apc
                 #query_cache_driver: apc
                 #result_cache_driver: apc
-                mappings:
-                    FOSUserBundle: ~
-
-                    # extendable sonata bundle
-                    ApplicationSonataUserBundle: ~
-                    ApplicationSonataPageBundle: ~
-                    ApplicationSonataMediaBundle: ~
-                    ApplicationSonataNewsBundle: ~
-
-                    # Core sonata bundle
-                    SonataPageBundle: ~
-                    SonataUserBundle: ~
-                    SonataMediaBundle: ~
-                    SonataNewsBundle: ~
+                mappings: ~
 
 # Swiftmailer Configuration
 swiftmailer:

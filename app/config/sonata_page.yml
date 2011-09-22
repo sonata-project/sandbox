@@ -56,3 +56,10 @@ sonata_page:
             servers:
                 - { domain: kooqit.local, ip: 127.0.0.1, port: 80}
 
+doctrine:
+    orm:
+        entity_managers:
+            default:
+                mappings:
+                    ApplicationSonataPageBundle: ~
+                    SonataPageBundle: ~

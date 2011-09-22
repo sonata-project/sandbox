@@ -16,28 +16,36 @@ class AppKernel extends Kernel
             new Symfony\Bundle\DoctrineBundle\DoctrineBundle(),
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
-            
-            new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
-
-            new FOS\UserBundle\FOSUserBundle(),
 
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
-            
-            new Application\Sonata\PageBundle\ApplicationSonataPageBundle(),
-            new Application\Sonata\NewsBundle\ApplicationSonataNewsBundle(),
-            new Application\Sonata\MediaBundle\ApplicationSonataMediaBundle(),
+
+            new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
+
+            // USER
+            new FOS\UserBundle\FOSUserBundle(),
+            new Sonata\UserBundle\SonataUserBundle('FOSUserBundle'),
             new Application\Sonata\UserBundle\ApplicationSonataUserBundle(),
 
-            // Sonata core bundle
-            new Sonata\MediaBundle\SonataMediaBundle(),
-            new Sonata\EasyExtendsBundle\SonataEasyExtendsBundle(),
+            // PAGE
             new Sonata\PageBundle\SonataPageBundle(),
+            new Application\Sonata\PageBundle\ApplicationSonataPageBundle(),
+
+            // NEWS
+            new Sonata\NewsBundle\SonataNewsBundle(),
+            new Application\Sonata\NewsBundle\ApplicationSonataNewsBundle(),
+
+            // MEDIA
+            new Sonata\MediaBundle\SonataMediaBundle(),
+            new Application\Sonata\MediaBundle\ApplicationSonataMediaBundle(),
+
+            // SONATA CORE & HELPER BUNDLES
+            new Sonata\EasyExtendsBundle\SonataEasyExtendsBundle(),
             new Sonata\jQueryBundle\SonatajQueryBundle(),
             new Sonata\BluePrintBundle\SonataBluePrintBundle(),
-            new Sonata\NewsBundle\SonataNewsBundle(),
             new Sonata\AdminBundle\SonataAdminBundle(),
             new Sonata\IntlBundle\SonataIntlBundle(),
-            new Sonata\UserBundle\SonataUserBundle('FOSUserBundle'),
+            new Sonata\FormatterBundle\SonataFormatterBundle(),
+
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
