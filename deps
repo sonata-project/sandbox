@@ -1,6 +1,6 @@
 [symfony]
     git=git://github.com/symfony/symfony.git
-    version=v2.0.1
+    version=v2.0.2
 
 [twig]
     git=git://github.com/fabpot/Twig.git
