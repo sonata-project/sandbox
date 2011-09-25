@@ -24,7 +24,7 @@
 
 [swiftmailer]
     git=git://github.com/swiftmailer/swiftmailer.git
-    version=v4.1.0
+    version=v4.1.2
 
 [assetic]
     git=git://github.com/kriswallsmith/assetic.git
@@ -57,7 +57,7 @@
 [AsseticBundle]
     git=git://github.com/symfony/AsseticBundle.git
     target=/bundles/Symfony/Bundle/AsseticBundle
-    version=master
+    version=v1.0.1
 
 [doctrine-data-fixtures]
     git=git://github.com/doctrine/data-fixtures.git
