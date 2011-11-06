@@ -103,10 +103,10 @@
     git=https://github.com/sonata-project/SonataAdminBundle.git
     target=/bundles/Sonata/AdminBundle
 
-[SonataBluePrintBundle]
-    git=https://github.com/sonata-project/SonataBluePrintBundle.git
-    target=/bundles/Sonata/BluePrintBundle
-
+[SonataDoctrineORMAdminBundle]
+    git=http://github.com/sonata-project/SonataDoctrineORMAdminBundle.git
+    target=/bundles/Sonata/DoctrineORMAdminBundle
+    
 [SonataEasyExtendsBundle]
     git=https://github.com/sonata-project/SonataEasyExtendsBundle.git
     target=/bundles/Sonata/EasyExtendsBundle
