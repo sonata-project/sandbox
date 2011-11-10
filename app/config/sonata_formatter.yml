@@ -1,3 +1,6 @@
+# 
+# more information can be found here http://sonata-project.org/bundles/formatter
+#
 sonata_formatter:
     formatters:
         markdown:

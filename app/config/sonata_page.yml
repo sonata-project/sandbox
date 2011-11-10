@@ -1,3 +1,6 @@
+# 
+# more information can be found here http://sonata-project.org/bundles/page
+#
 sonata_page:
     ignore_route_patterns:
         - /(.*)admin(.*)/   # ignore admin route, ie route containing 'admin'
@@ -56,6 +59,7 @@ sonata_page:
             servers:
                 - { domain: kooqit.local, ip: 127.0.0.1, port: 80}
 
+# Enable Doctrine to map the provided entities
 doctrine:
     orm:
         entity_managers:

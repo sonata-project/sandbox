@@ -54,6 +54,10 @@ _sonata_admin:
     type: sonata_admin
     prefix: /admin
 
+soanata_user:
+    resource: '@SonataUserBundle/Resources/config/routing/admin_security.xml'
+    prefix: /admin
+        
 catchAll:
     pattern:  /{path}
     defaults: { _controller: SonataPageBundle:Page:catchAll }

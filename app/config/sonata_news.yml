@@ -1,16 +1,17 @@
+# 
+# more information can be found here http://sonata-project.org/bundles/news
+#
 sonata_news:
     title:        Sonata Project
     link:         http://sonata-project.org
     description:  Rich Symfony2 bundle's
 
 
+# Enable Doctrine to map the provided entities
 doctrine:
     orm:
         entity_managers:
             default:
-                #metadata_cache_driver: apc
-                #query_cache_driver: apc
-                #result_cache_driver: apc
                 mappings:
                     ApplicationSonataNewsBundle: ~
                     SonataNewsBundle: ~

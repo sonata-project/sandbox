@@ -1,3 +1,6 @@
+# 
+# more information can be found here http://sonata-project.org/bundles/user
+#
 fos_user:
     db_driver:      orm # can be orm or odm
     firewall_name:  main
@@ -6,7 +9,7 @@ fos_user:
     group:
         group_class: Application\Sonata\UserBundle\Entity\Group
 
-
+# Enable Doctrine to map the provided entities
 doctrine:
     orm:
         entity_managers:

@@ -1,5 +1,8 @@
+# 
+# more information can be found here http://sonata-project.org/bundles/media
+#
 sonata_media:
-    db_driver:  doctrine_orm
+    db_driver:  doctrine_orm # | doctrine_mongodb
     contexts:
         default:  # the default context is mandatory
             providers:
@@ -14,10 +17,12 @@ sonata_media:
                 big:   { width: 500 , quality: 70}
 
     cdn:
+        # define the public base url for the uploaded media
         sonata.media.cdn.server:
-            path: /uploads/media # http://media.sonata-project.org/
+            path: /uploads/media 
 
     filesystem:
+        # define where the uploaded file will be stored
         sonata.media.adapter.filesystem.local:
             directory:  %kernel.root_dir%/../web/uploads/media
             create:     true
@@ -26,7 +31,7 @@ sonata_media:
         sonata.media.provider.file:
             resizer:    false
 
-
+# Enable Doctrine to map the provided entities
 doctrine:
     orm:
         entity_managers:
