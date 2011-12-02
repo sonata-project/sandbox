@@ -40,6 +40,7 @@
 [SensioFrameworkExtraBundle]
     git=git://github.com/sensio/SensioFrameworkExtraBundle.git
     target=/bundles/Sensio/Bundle/FrameworkExtraBundle
+    version=origin/2.0
 
 [JMSSecurityExtraBundle]
     git=git://github.com/schmittjoh/JMSSecurityExtraBundle.git
