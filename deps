@@ -81,15 +81,15 @@
     target=/imagine
 
 [KnpMenu]
-    git=https://github.com/knplabs/KnpMenu.git
+    git=https://github.com/KnpLabs/KnpMenu.git
     target=/knp/menu
 
 [KnpMenuBundle]
-    git=git://github.com/knplabs/KnpMenuBundle.git
+    git=git://github.com/KnpLabs/KnpMenuBundle.git
     target=/bundles/Knp/Bundle/MenuBundle
     
 [KnpMarkdownBundle]
-    git=git://github.com/knplabs/KnpMarkdownBundle.git
+    git=git://github.com/KnpLabs/KnpMarkdownBundle.git
     target=/bundles/Knp/Bundle/MarkdownBundle
     
 [FOSUserBundle]
