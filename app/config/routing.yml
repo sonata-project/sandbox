@@ -41,6 +41,10 @@ media:
     resource: '@SonataMediaBundle/Resources/config/routing/media.xml'
     prefix: /media
 
+#_imagine:
+#    resource: .
+#    type:     imagine
+    
 blog:
     resource: '@SonataNewsBundle/Resources/config/routing/news.xml'
     prefix: /blog

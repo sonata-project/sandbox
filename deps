@@ -83,6 +83,10 @@
 [imagine]
     git=https://github.com/avalanche123/Imagine.git
     target=/imagine
+    
+[LiipImagineBundle]
+    git=http://github.com/liip/LiipImagineBundle.git
+    target=bundles/Liip/ImagineBundle
 
 [KnpMenu]
     git=https://github.com/KnpLabs/KnpMenu.git

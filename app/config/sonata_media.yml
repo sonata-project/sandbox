@@ -31,6 +31,26 @@ sonata_media:
         sonata.media.provider.file:
             resizer:    false
 
+#
+# The LiipImagineBundle can be used if you want to convert on the demand an image
+# to a specific format. (ie a controller render the file)
+#    more information can be found here : https://github.com/liip/LiipImagineBundle
+#
+#liip_imagine:
+#    filter_sets:
+#        default_small:
+#            quality: 75
+#            controller_action: 'SonataMediaBundle:Media:liipImagineFilter'
+#            filters:
+#                thumbnail: { size: [100, 70], mode: outbound }
+#
+#
+#        default_big:
+#            quality: 75
+#            controller_action: 'SonataMediaBundle:Media:liipImagineFilter'
+#            filters:
+#                thumbnail: { size: [500, 70], mode: outbound }
+            
 # Enable Doctrine to map the provided entities
 doctrine:
     orm:
