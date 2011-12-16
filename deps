@@ -1,10 +1,10 @@
 [symfony]
     git=git://github.com/symfony/symfony.git
-    version=v2.0.5
+    version=v2.0.7
 
 [twig]
     git=git://github.com/fabpot/Twig.git
-    version=v1.3.0
+    version=v1.4.0
 
 [monolog]
     git=git://github.com/Seldaek/monolog.git
@@ -12,7 +12,7 @@
 
 [doctrine-common]
     git=git://github.com/doctrine/common.git
-    version=2.1.2
+    version=2.1.4
 
 [doctrine-dbal]
     git=git://github.com/doctrine/dbal.git
@@ -20,7 +20,7 @@
 
 [doctrine]
     git=git://github.com/doctrine/doctrine2.git
-    version=2.1.2
+    version=2.1.5
 
 [swiftmailer]
     git=git://github.com/swiftmailer/swiftmailer.git
@@ -175,10 +175,6 @@
 [Behat]
     git=https://github.com/Behat/Behat.git
     target=/behat/behat
-
-[Goutte]
-    git=https://github.com/fabpot/Goutte.git
-    target=/goutte
 
 [SonataDoctrineExtensions]
     git=https://github.com/sonata-project/sonata-doctrine-extensions.git
