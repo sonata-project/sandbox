@@ -64,18 +64,22 @@
     git=git://github.com/doctrine/data-fixtures.git
     target=/doctrine-data-fixtures
 
-[DoctrineFixturesBundle]
-    git=git://github.com/symfony/DoctrineFixturesBundle.git
-    target=/bundles/Symfony/Bundle/DoctrineFixturesBundle
-
 [doctrine-migrations]
     git=git://github.com/doctrine/migrations.git
     target=/doctrine-migrations
 
-[DoctrineMigrationsBundle]
-    git=git://github.com/symfony/DoctrineMigrationsBundle.git
-    target=/bundles/Symfony/Bundle/DoctrineMigrationsBundle
+[DoctrineBundle]
+    git=http://github.com/doctrine/DoctrineBundle.git
+    target=/bundles/Doctrine/Bundle/DoctrineBundle
 
+[DoctrineMigrationsBundle]
+    git=http://github.com/doctrine/DoctrineMigrationsBundle.git
+    target=/bundles/Doctrine/Bundle/MigrationsBundle
+
+[DoctrineFixturesBundle]
+    git=http://github.com/doctrine/DoctrineFixturesBundle.git
+    target=/bundles/Doctrine/Bundle/FixturesBundle
+    
 [imagine]
     git=https://github.com/avalanche123/Imagine.git
     target=/imagine
