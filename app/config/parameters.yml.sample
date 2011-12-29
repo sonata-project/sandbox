@@ -23,3 +23,6 @@ parameters:
     sonata_news.blog_link:          http://awesome-blog.ltd
     sonata_news.blog_description:   My Awesome blog description
     sonata_news.salt:               ThisTokenIsNotSoSecretChangeIt
+    sonata_news.comment.emails:     [mail@example.org]
+    sonata_news.comment.email_from: no-reply@example.org
+    
