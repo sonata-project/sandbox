@@ -60,9 +60,9 @@ Run the following commands::
     php bin/vendors install
     git add *
     git commit -m "add submodules"
-    cp app/config/parameters.ini.sample app/config/parameters.ini
-    cp app/config/parameters.ini.sample app/config/validation_parameters.ini
-    cp app/config/parameters.ini.sample app/config/production_parameters.ini
+    cp app/config/parameters.yml.sample app/config/parameters.yml
+    cp app/config/parameters.yml.sample app/config/validation_parameters.yml
+    cp app/config/parameters.yml.sample app/config/production_parameters.yml
     
 .. note::
 
