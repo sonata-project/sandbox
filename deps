@@ -1,6 +1,6 @@
 [symfony]
     git=git://github.com/symfony/symfony.git
-    version=v2.0.7
+    version=v2.0.8
 
 [twig]
     git=git://github.com/fabpot/Twig.git
@@ -24,7 +24,7 @@
 
 [swiftmailer]
     git=git://github.com/swiftmailer/swiftmailer.git
-    version=v4.1.3
+    version=v4.1.4
 
 [assetic]
     git=git://github.com/kriswallsmith/assetic.git
@@ -45,7 +45,7 @@
 [JMSSecurityExtraBundle]
     git=git://github.com/schmittjoh/JMSSecurityExtraBundle.git
     target=/bundles/JMS/SecurityExtraBundle
-    version=1.0.0
+    version=origin/1.0.x
 
 [SensioDistributionBundle]
     git=git://github.com/sensio/SensioDistributionBundle.git

@@ -32,7 +32,7 @@ sonata_media:
             resizer:    false
 
 #
-# The LiipImagineBundle can be used if you want to convert on the demand an image
+# The LiipImagineBundle can be used if you want to convert on demand an image
 # to a specific format. (ie a controller render the file)
 #    more information can be found here : https://github.com/liip/LiipImagineBundle
 #

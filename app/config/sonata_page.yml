@@ -34,7 +34,9 @@ sonata_page:
         sonata.page.block.container:
         sonata.page.block.children_pages:
         sonata.page.block.rss:
-
+        sonata.media.block.media:
+        sonata.media.block.gallery:
+        sonata.media.block.feature_media:
 
     caches:
 #        sonata.page.cache.esi:
@@ -53,11 +55,11 @@ sonata_page:
 #            servers:
 #                - [127.0.0.1, 11211, 0]
 
-        sonata.page.cache.apc:
-            token:  s3cur3   # token used to clear the related cache
-            prefix: test     # prefix to ensure there is no clash between instances
-            servers:
-                - { domain: kooqit.local, ip: 127.0.0.1, port: 80}
+#        sonata.page.cache.apc:
+#            token:  s3cur3   # token used to clear the related cache
+#            prefix: test     # prefix to ensure there is no clash between instances
+#            servers:
+#                - { domain: kooqit.local, ip: 127.0.0.1, port: 80}
 
 # Enable Doctrine to map the provided entities
 doctrine:

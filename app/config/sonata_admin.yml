@@ -5,8 +5,8 @@ sonata_admin:
     # default value, change it to sonata.admin.security.handler.acl to use ACL
     security_handler: sonata.admin.security.handler.noop
 
-    title:      Sonata Project
-    title_logo: /bundles/sonataadmin/logo_title.png
+    title:      %sonata_admin.title%
+    title_logo: %sonata_admin.logo_title%
     templates:
         # default global templates
         layout:  SonataAdminBundle::standard_layout.html.twig
