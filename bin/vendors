@@ -107,6 +107,11 @@ foreach ($deps as $name => $dep) {
     $installDir = isset($dep['target']) ? $vendorDir.'/'.$dep['target'] : $vendorDir.'/'.$name;
     $relativeInstallDir = str_replace($rootDir.'/', '', $installDir);
 
+    $status = system(sprintf('cd %s && git status --porcelain', escapeshellarg($installDir)));
+    if (!empty($status)) {
+        exit(sprintf('"%s" has local modifications. Please revert or commit/push them before running this command again.', $name));
+    }
+    
     // url
     if (!isset($dep['git'])) {
         exit(sprintf('The "git" value for the "%s" dependency must be set.', $name));

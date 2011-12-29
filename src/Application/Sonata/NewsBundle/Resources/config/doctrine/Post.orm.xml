@@ -39,11 +39,22 @@
             </cascade>
         </many-to-one>
 
+        <many-to-one
+            field="category"
+            target-entity="Application\Sonata\NewsBundle\Entity\Category"
+           >
+            <cascade>
+                <cascade-persist />
+                <!--<cascade-merge />-->
+                <!--<cascade-remove />-->
+                <!--<cascade-refresh />-->
+            </cascade>
+        </many-to-one>
+
         <many-to-many
             field="tags"
             target-entity="Application\Sonata\NewsBundle\Entity\Tag"
             inversed-by="posts"
-            fetch="EAGER"
             >
 
             <cascade>
@@ -82,7 +93,7 @@
             </join-columns>
 
             <order-by>
-                <order-by-field name="created_at" direction="DESC" />
+                <order-by-field name="createdAt" direction="DESC" />
             </order-by>
         </one-to-many>
 

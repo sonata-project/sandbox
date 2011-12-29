@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mongo-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mongo-mapping"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mongo-mapping
+                    http://doctrine-project.org/schemas/orm/doctrine-mongo-mapping.xsd">
+
+    <document name="Application\Sonata\NewsBundle\Document\Tag" collection="newsTag">
+        <id fieldName="id" id="true" />
+
+        <reference-many target-document="Application\Sonata\NewsBundle\Document\Post" field="posts" mapped-by="tags" />
+    </document>
+</doctrine-mongo-mapping>
