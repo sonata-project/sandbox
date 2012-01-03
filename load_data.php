@@ -54,6 +54,7 @@ $fs->copy(__DIR__.'/src/Sonata/Bundle/DemoBundle/DataFixtures/data/robots.txt', 
 execute_commands(array(
     'bin/vendors update',
     'app/console cache:warmup --env=dev',
+    'app/console cache:create-cache-class --env=dev'
 //    'app/console doctrine:database:drop --force',
 //    'app/console doctrine:database:create',
     'app/console doctrine:schema:update --force',
@@ -62,6 +63,7 @@ execute_commands(array(
     'app/console sonata:page:create-snapshots',
     'app/console assets:install --symlink web',
     'app/console cache:warmup --env=prod',
+    'app/console cache:create-cache-class --env=prod'
 ), $output);
 
 $output->writeln('<info>Done!</info>');
