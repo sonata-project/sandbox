@@ -69,27 +69,27 @@
     target=/doctrine-migrations
 
 [DoctrineBundle]
-    git=http://github.com/doctrine/DoctrineBundle.git
+    git=git://github.com/doctrine/DoctrineBundle.git
     target=/bundles/Doctrine/Bundle/DoctrineBundle
 
 [DoctrineMigrationsBundle]
-    git=http://github.com/doctrine/DoctrineMigrationsBundle.git
+    git=git://github.com/doctrine/DoctrineMigrationsBundle.git
     target=/bundles/Doctrine/Bundle/MigrationsBundle
 
 [DoctrineFixturesBundle]
-    git=http://github.com/doctrine/DoctrineFixturesBundle.git
+    git=git://github.com/doctrine/DoctrineFixturesBundle.git
     target=/bundles/Doctrine/Bundle/FixturesBundle
 
 [imagine]
-    git=https://github.com/avalanche123/Imagine.git
+    git=git://github.com/avalanche123/Imagine.git
     target=/imagine
 
 [LiipImagineBundle]
-    git=http://github.com/liip/LiipImagineBundle.git
+    git=git://github.com/liip/LiipImagineBundle.git
     target=bundles/Liip/ImagineBundle
 
 [KnpMenu]
-    git=https://github.com/KnpLabs/KnpMenu.git
+    git=git://github.com/KnpLabs/KnpMenu.git
     target=/knp/menu
 
 [KnpMenuBundle]
@@ -105,83 +105,83 @@
     target=/bundles/FOS/UserBundle
 
 [SonatajQueryBundle]
-    git=https://github.com/sonata-project/SonatajQueryBundle.git
+    git=git://github.com/sonata-project/SonatajQueryBundle.git
     target=/bundles/Sonata/jQueryBundle
 
 [SonataAdminBundle]
-    git=https://github.com/sonata-project/SonataAdminBundle.git
+    git=git://github.com/sonata-project/SonataAdminBundle.git
     target=/bundles/Sonata/AdminBundle
 
 [SonataDoctrineORMAdminBundle]
-    git=http://github.com/sonata-project/SonataDoctrineORMAdminBundle.git
+    git=git://github.com/sonata-project/SonataDoctrineORMAdminBundle.git
     target=/bundles/Sonata/DoctrineORMAdminBundle
 
 [SonataEasyExtendsBundle]
-    git=https://github.com/sonata-project/SonataEasyExtendsBundle.git
+    git=git://github.com/sonata-project/SonataEasyExtendsBundle.git
     target=/bundles/Sonata/EasyExtendsBundle
 
 [SonataMediaBundle]
-    git=https://github.com/sonata-project/SonataMediaBundle.git
+    git=git://github.com/sonata-project/SonataMediaBundle.git
     target=/bundles/Sonata/MediaBundle
 
 [SonataPageBundle]
-    git=https://github.com/sonata-project/SonataPageBundle.git
+    git=git://github.com/sonata-project/SonataPageBundle.git
     target=/bundles/Sonata/PageBundle
 
 [SonataIntlBundle]
-    git=https://github.com/sonata-project/SonataIntlBundle.git
+    git=git://github.com/sonata-project/SonataIntlBundle.git
     target=/bundles/Sonata/IntlBundle
 
 [SonataNewsBundle]
-    git=https://github.com/sonata-project/SonataNewsBundle.git
+    git=git://github.com/sonata-project/SonataNewsBundle.git
     target=/bundles/Sonata/NewsBundle
 
 [SonataUserBundle]
-    git=https://github.com/sonata-project/SonataUserBundle.git
+    git=git://github.com/sonata-project/SonataUserBundle.git
     target=/bundles/Sonata/UserBundle
 
 [SonataFormatterBundle]
-    git=https://github.com/sonata-project/SonataFormatterBundle.git
+    git=git://github.com/sonata-project/SonataFormatterBundle.git
     target=/bundles/Sonata/FormatterBundle
 
 [gaufrette]
-    git=https://github.com/sonata-project/Gaufrette.git
+    git=git://github.com/sonata-project/Gaufrette.git
     target=/gaufrette
 
 [buzz]
-    git=https://github.com/kriswallsmith/Buzz.git
+    git=git://github.com/kriswallsmith/Buzz.git
     target=/buzz
 
 [SahiClient]
-    git=https://github.com/Behat/SahiClient
+    git=git://github.com/Behat/SahiClient
     target=/behat/sahi
 
 [MinkBundle]
-    git=https://github.com/Behat/MinkBundle.git
+    git=git://github.com/Behat/MinkBundle.git
     target=/bundles/Behat/MinkBundle
 
 [Mink]
-    git=https://github.com/Behat/Mink.git
+    git=git://github.com/Behat/Mink.git
     target=/behat/mink
 
 [BehatBundle]
-    git=https://github.com/Behat/BehatBundle.git
+    git=git://github.com/Behat/BehatBundle.git
     target=/bundles/Behat/BehatBundle
 
 [Gherkin]
-    git=https://github.com/Behat/Gherkin.git
+    git=git://github.com/Behat/Gherkin.git
     target=/behat/gherkin
 
 [Behat]
-    git=https://github.com/Behat/Behat.git
+    git=git://github.com/Behat/Behat.git
     target=/behat/behat
 
 [SonataDoctrineExtensions]
-    git=https://github.com/sonata-project/sonata-doctrine-extensions.git
+    git=git://github.com/sonata-project/sonata-doctrine-extensions.git
     target=/sonata-doctrine-extensions
 
 [SonataCapistrano]
-    git=https://github.com/sonata-project/sonata-capistrano.git
+    git=git://github.com/sonata-project/sonata-capistrano.git
     target=/sonata-capistrano
 
 [faker]
