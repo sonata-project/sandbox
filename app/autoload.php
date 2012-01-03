@@ -1,12 +1,19 @@
 <?php
 
+if (!class_exists('Symfony\Component\ClassLoader\ApcUniversalClassLoader', false)) {
+    require_once __DIR__.'/../vendor/symfony/src/Symfony/Component/ClassLoader/ApcUniversalClassLoader.php';
+}
+
+use Symfony\Component\ClassLoader\ApcUniversalClassLoader;
 use Symfony\Component\ClassLoader\UniversalClassLoader;
 use Doctrine\Common\Annotations\AnnotationRegistry;
 
+//$loader = new \Symfony\Component\ClassLoader\ApcUniversalClassLoader('project_'.filemtime(__DIR__));
 $loader = new UniversalClassLoader();
+
 $loader->registerNamespaces(array(
     'Symfony'           => array(
-        __DIR__.'/../vendor/symfony/src', 
+        __DIR__.'/../vendor/symfony/src',
         __DIR__.'/../vendor/bundles'
     ),
     'Sensio'            => __DIR__.'/../vendor/bundles',
@@ -40,6 +47,8 @@ $loader->registerNamespaces(array(
     'Behat\BehatBundle' => __DIR__.'/../vendor/bundles',
     'Behat\Behat'       => __DIR__.'/../vendor/behat/behat/src',
     'Behat\Gherkin'     => __DIR__.'/../vendor/behat/gherkin/src',
+    'Bazinga'           => __DIR__.'/../vendor/bundles',
+    'Faker'             => __DIR__.'/../vendor/faker/src',
 ));
 
 $loader->registerPrefixes(array(

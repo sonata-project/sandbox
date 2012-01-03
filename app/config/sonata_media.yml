@@ -1,4 +1,4 @@
-# 
+#
 # more information can be found here http://sonata-project.org/bundles/media
 #
 sonata_media:
@@ -13,13 +13,13 @@ sonata_media:
                 - sonata.media.provider.vimeo
 
             formats:
-                small: { width: 100 , quality: 70}
-                big:   { width: 500 , quality: 70}
+                small: { width: 100 , quality: 90}
+                big:   { width: 820 , quality: 100}
 
     cdn:
         # define the public base url for the uploaded media
         sonata.media.cdn.server:
-            path: /uploads/media 
+            path: /uploads/media
 
     filesystem:
         # define where the uploaded file will be stored
@@ -50,7 +50,7 @@ sonata_media:
 #            controller_action: 'SonataMediaBundle:Media:liipImagineFilter'
 #            filters:
 #                thumbnail: { size: [500, 70], mode: outbound }
-            
+
 # Enable Doctrine to map the provided entities
 doctrine:
     orm:

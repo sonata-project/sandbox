@@ -79,11 +79,11 @@
 [DoctrineFixturesBundle]
     git=http://github.com/doctrine/DoctrineFixturesBundle.git
     target=/bundles/Doctrine/Bundle/FixturesBundle
-    
+
 [imagine]
     git=https://github.com/avalanche123/Imagine.git
     target=/imagine
-    
+
 [LiipImagineBundle]
     git=http://github.com/liip/LiipImagineBundle.git
     target=bundles/Liip/ImagineBundle
@@ -95,11 +95,11 @@
 [KnpMenuBundle]
     git=git://github.com/KnpLabs/KnpMenuBundle.git
     target=/bundles/Knp/Bundle/MenuBundle
-    
+
 [KnpMarkdownBundle]
     git=git://github.com/KnpLabs/KnpMarkdownBundle.git
     target=/bundles/Knp/Bundle/MarkdownBundle
-    
+
 [FOSUserBundle]
     git=git://github.com/FriendsOfSymfony/FOSUserBundle.git
     target=/bundles/FOS/UserBundle
@@ -115,7 +115,7 @@
 [SonataDoctrineORMAdminBundle]
     git=http://github.com/sonata-project/SonataDoctrineORMAdminBundle.git
     target=/bundles/Sonata/DoctrineORMAdminBundle
-    
+
 [SonataEasyExtendsBundle]
     git=https://github.com/sonata-project/SonataEasyExtendsBundle.git
     target=/bundles/Sonata/EasyExtendsBundle
@@ -183,3 +183,12 @@
 [SonataCapistrano]
     git=https://github.com/sonata-project/sonata-capistrano.git
     target=/sonata-capistrano
+
+[faker]
+    git=git://github.com/fzaninotto/Faker.git
+    target/faker
+
+[BazingaFakerBundle]
+    git=git://github.com/willdurand/BazingaFakerBundle.git
+    target=/bundles/Bazinga/Bundle/FakerBundle
+
