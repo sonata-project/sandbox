@@ -182,7 +182,7 @@ CONTENT
     a lot to show :
 
     <ul>
-        <li><a href="/admin">Admin (SonataAdminBundle)</a></li>
+        <li><a href="/admin/dashboard">Admin (SonataAdminBundle)</a></li>
         <li><a href="/blog">Blog (SonataNewsBundle)</a></li>
     </ul>
 </p>
