@@ -18,8 +18,8 @@ $fs = new \Symfony\Component\Filesystem\Filesystem;
 $output = new \Symfony\Component\Console\Output\ConsoleOutput();
 
 // does the parent directory have a parameters.yml file
-if (is_file(__DIR__.'/parameters.demo.yml')) {
-    $fs->copy(__DIR__.'/parameters.demo.yml', __DIR__.'/app/config/parameters.yml', true);
+if (is_file(__DIR__.'/../parameters.demo.yml')) {
+    $fs->copy(__DIR__.'/../parameters.demo.yml', __DIR__.'/app/config/parameters.yml', true);
 }
 
 if (!is_file(__DIR__.'/app/config/parameters.yml')) {
@@ -52,7 +52,7 @@ $fs->mkdir(sprintf('%s/web/uploads/media', $rootDir));
 $fs->copy(__DIR__.'/src/Sonata/Bundle/DemoBundle/DataFixtures/data/robots.txt', __DIR__.'/web/robots.txt', true);
 
 execute_commands(array(
-//    'bin/vendors update',
+    'bin/vendors update',
 //    'app/console doctrine:database:drop --force',
 //    'app/console doctrine:database:create',
     'app/console doctrine:schema:update --force',
