@@ -49,6 +49,7 @@ $loader->registerNamespaces(array(
     'Behat\Gherkin'     => __DIR__.'/../vendor/behat/gherkin/src',
     'Bazinga'           => __DIR__.'/../vendor/bundles',
     'Faker'             => __DIR__.'/../vendor/faker/src',
+    'SimpleThings'      => __DIR__.'/../vendor/bundles',
 ));
 
 $loader->registerPrefixes(array(

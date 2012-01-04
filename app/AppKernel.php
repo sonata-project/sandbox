@@ -63,6 +63,9 @@ class AppKernel extends Kernel
 
             // DEMO
             new Sonata\Bundle\DemoBundle\SonataDemoBundle(),
+
+            // Enable this if you want to audit backend action
+            new SimpleThings\EntityAudit\SimpleThingsEntityAuditBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

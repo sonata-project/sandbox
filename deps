@@ -192,3 +192,6 @@
     git=git://github.com/willdurand/BazingaFakerBundle.git
     target=/bundles/Bazinga/Bundle/FakerBundle
 
+[EntityAudit]
+    git=git://github.com/simplethings/EntityAudit.git
+    target=/bundles/SimpleThings/EntityAudit
