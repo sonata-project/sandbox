@@ -186,7 +186,7 @@
 
 [faker]
     git=git://github.com/fzaninotto/Faker.git
-    target/faker
+    target=/faker
 
 [BazingaFakerBundle]
     git=git://github.com/willdurand/BazingaFakerBundle.git
