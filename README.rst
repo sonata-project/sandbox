@@ -61,6 +61,8 @@ Run the following commands::
     git add *
     git commit -m "add submodules"
     cp app/config/parameters.yml.sample app/config/parameters.yml
+    cp app/config/parameters.yml.sample app/config/validation_parameters.yml
+    cp app/config/parameters.yml.sample app/config/production_parameters.yml
     
 .. note::
 
@@ -72,7 +74,7 @@ Database initialization
 
 At this point, the ``app/console`` command should start with no issues. However some you need the complete some others step:
 
-* database configuration (edit the app/config/parameters.ini file)
+* database configuration (edit the app/config/parameters.yml file)
   
 then runs the commands::
 
