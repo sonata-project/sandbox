@@ -9,3 +9,8 @@ Scenario: Check user admin pages when not connected
 Scenario: Check user admin pages when connected
   When I am connected with "admin" and "admin" on "admin/sonata/user/user/list"
   Then I should see "Filters"
+
+Scenario: Add a new User with some errors
+  When I am connected with "admin" and "admin" on "admin/sonata/user/user/create"
+  And I press "Create"
+  Then I should see "An error has occurred during item creation."
