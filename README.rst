@@ -69,19 +69,24 @@ Run the following commands::
   The ``bin/vendor`` script does not behave like the one provided by the Symfony2 Standard Edition. 
   The script install vendors as git submodules. 
 
-
 Database initialization
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 At this point, the ``app/console`` command should start with no issues. However some you need the complete some others step:
 
-* database configuration (edit the config/parameters.ini file)
+* database configuration (edit the app/config/parameters.yml file)
   
 then runs the commands::
 
     app/console doctrine:database:create
     app/console doctrine:schema:create
-  
+ 
+Assets Installation
+~~~~~~~~~~~~~~~~~~~
+Your frontend still looking weird because bundle assets are not installed. Run the following command to install assets for all active bundles under public directory::
+
+    app/console assets:install web
+
 
 Sonata Page Bundle
 ~~~~~~~~~~~~~~~~~~
