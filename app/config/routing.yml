@@ -25,10 +25,6 @@ fos_user_change_password:
     resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
     prefix: /change-password
 
-sonata_page_block:
-    resource: '@SonataPageBundle/Resources/config/routing/block.xml'
-    prefix: /page/block
-
 sonata_page_cache:
     resource: '@SonataPageBundle/Resources/config/routing/cache.xml'
     prefix: /
@@ -44,7 +40,7 @@ media:
 #_imagine:
 #    resource: .
 #    type:     imagine
-    
+
 blog:
     resource: '@SonataNewsBundle/Resources/config/routing/news.xml'
     prefix: /blog
@@ -61,7 +57,7 @@ _sonata_admin:
 soanata_user:
     resource: '@SonataUserBundle/Resources/config/routing/admin_security.xml'
     prefix: /admin
-        
+
 catchAll:
     pattern:  /{path}
     defaults: { _controller: SonataPageBundle:Page:catchAll }

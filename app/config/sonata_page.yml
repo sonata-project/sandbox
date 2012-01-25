@@ -2,6 +2,7 @@
 # more information can be found here http://sonata-project.org/bundles/page
 #
 sonata_page:
+    multisite: host
     ignore_route_patterns:
         - /(.*)admin(.*)/   # ignore admin route, ie route containing 'admin'
         - /^_(.*)/          # ignore symfony routes
@@ -19,7 +20,7 @@ sonata_page:
         service:  sonata.page.cache.invalidation.simple
         recorder: sonata.page.cache.recorder
         classes:
-            - [Application\Sonata\PageBundle\Entity\Block, getId]
+            "Application\Sonata\PageBundle\Entity\Block": getId
 
     default_template: default
     templates:
@@ -39,27 +40,27 @@ sonata_page:
         sonata.media.block.feature_media:
 
     caches:
-#        sonata.page.cache.esi:
-#            servers:
-#                - varnishadm -T 127.0.0.1:2000 {{ COMMAND }} "{{ EXPRESSION }}"
+        #esi:
+        #    servers:
+        #        - varnishadm -T 127.0.0.1:2000 {{ COMMAND }} "{{ EXPRESSION }}"
 
-#        sonata.page.cache.mongo:
-#            database:   cache
-#            collection: cache
-#            servers:
-#                - '127.0.0.1:27017'
-#                - 'username:password@localhost:27017'
+        #mongo:
+        #    database:   cache
+        #    collection: cache
+        #    servers:
+        #        - {host: 127.0.0.1, port: 27017, user: username, password: pASS'}
+        #        - {host: 127.0.0.2}
 
-#        sonata.page.cache.memcached:
-#            prefix: test     # prefix to ensure there is no clash between instances
-#            servers:
-#                - [127.0.0.1, 11211, 0]
+        #memcached:
+        #    prefix: test     # prefix to ensure there is no clash between instances
+        #    servers:
+        #        - {host: 127.0.0.1, port: 11211, weight: 0}
 
-#        sonata.page.cache.apc:
-#            token:  s3cur3   # token used to clear the related cache
-#            prefix: test     # prefix to ensure there is no clash between instances
-#            servers:
-#                - { domain: kooqit.local, ip: 127.0.0.1, port: 80}
+        #apc:
+        #    token:  s3cur3   # token used to clear the related cache
+        #    prefix: test     # prefix to ensure there is no clash between instances
+        #    servers:
+        #        - { domain: kooqit.local, ip: 127.0.0.1, port: 80}
 
 # Enable Doctrine to map the provided entities
 doctrine:

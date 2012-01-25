@@ -2,7 +2,8 @@
 # more information can be found here http://sonata-project.org/bundles/media
 #
 sonata_media:
-    db_driver:  doctrine_orm # | doctrine_mongodb
+    db_driver:       doctrine_orm # | doctrine_mongodb
+    default_context: default
     contexts:
         default:  # the default context is mandatory
             providers:
@@ -18,17 +19,17 @@ sonata_media:
 
     cdn:
         # define the public base url for the uploaded media
-        sonata.media.cdn.server:
+        server:
             path: /uploads/media
 
     filesystem:
         # define where the uploaded file will be stored
-        sonata.media.adapter.filesystem.local:
+        local:
             directory:  %kernel.root_dir%/../web/uploads/media
             create:     true
 
     providers:
-        sonata.media.provider.file:
+        file:
             resizer:    false
 
 #

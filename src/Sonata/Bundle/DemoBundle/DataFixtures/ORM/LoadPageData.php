@@ -15,7 +15,7 @@ use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 
-use Sonata\NewsBundle\Model\CommentInterface;
+use Sonata\PageBundle\Model\SiteInterface;
 
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -36,13 +36,31 @@ class LoadPageData extends AbstractFixture implements ContainerAwareInterface, O
 
     public function load($manager)
     {
-        $this->createGlobalPage();
-        $this->createHomePage();
-        $this->createBlogIndex();
-        $this->createGalleryIndex();
+        $site = $this->createSite();
+        $this->createGlobalPage($site);
+        $this->createHomePage($site);
+        $this->createBlogIndex($site);
+        $this->createGalleryIndex($site);
     }
 
-    public function createBlogIndex()
+    public function createSite()
+    {
+        $site = $this->getSiteManager()->create();
+
+        $site->setHost('localhost');
+        $site->setEnabled(true);
+        $site->setName('localhost');
+        $site->setEnabledFrom(new \DateTime('now'));
+        $site->setEnabledTo(new \DateTime('+10 years'));
+        $site->setRelativePath("");
+        $site->setIsDefault(true);
+
+        $this->getSiteManager()->save($site);
+
+        return $site;
+    }
+
+    public function createBlogIndex(SiteInterface $site)
     {
         $pageManager = $this->getPageManager();
 
@@ -56,11 +74,12 @@ class LoadPageData extends AbstractFixture implements ContainerAwareInterface, O
         $blogIndex->setTemplateCode('default');
         $blogIndex->setRouteName('sonata_news_home');
         $blogIndex->setParent($this->getReference('page-homepage'));
+        $blogIndex->setSite($site);
 
         $pageManager->save($blogIndex);
     }
 
-    public function createGalleryIndex()
+    public function createGalleryIndex(SiteInterface $site)
     {
         $pageManager = $this->getPageManager();
         $blockManager = $this->getBlockManager();
@@ -75,6 +94,7 @@ class LoadPageData extends AbstractFixture implements ContainerAwareInterface, O
         $galleryIndex->setTemplateCode('default');
         $galleryIndex->setRouteName('sonata_media_gallery_index');
         $galleryIndex->setParent($this->getReference('page-homepage'));
+        $galleryIndex->setSite($site);
 
         // CREATE A HEADER BLOCK
         $galleryIndex->addBlocks($content = $blockManager->createNewContainer(array(
@@ -107,7 +127,7 @@ CONTENT
         $pageManager->save($galleryIndex);
     }
 
-    public function createHomePage()
+    public function createHomePage(SiteInterface $site)
     {
         $pageManager = $this->getPageManager();
         $blockManager = $this->getBlockManager();
@@ -123,6 +143,7 @@ CONTENT
         $homepage->setRequestMethod('GET|POST|HEAD|DELETE|PUT');
         $homepage->setTemplateCode('default');
         $homepage->setRouteName('homepage');
+        $homepage->setSite($site);
 
         $pageManager->save($homepage);
 
@@ -194,7 +215,7 @@ CONTENT
         $pageManager->save($homepage);
     }
 
-    public function createGlobalPage()
+    public function createGlobalPage(SiteInterface $site)
     {
         $pageManager = $this->getPageManager();
         $blockManager = $this->getBlockManager();
@@ -204,6 +225,7 @@ CONTENT
         $global = $pageManager->createNewPage();
         $global->setName('global');
         $global->setRouteName('global');
+        $global->setSite($site);
 
         $pageManager->save($global);
 
@@ -270,6 +292,14 @@ FOOTER
         $text->setPage($global);
 
         $pageManager->save($global);
+    }
+
+    /**
+     * @return \Sonata\PageBundle\Model\SiteManagerInterface
+     */
+    public function getSiteManager()
+    {
+        return $this->container->get('sonata.page.manager.site');
     }
 
     /**

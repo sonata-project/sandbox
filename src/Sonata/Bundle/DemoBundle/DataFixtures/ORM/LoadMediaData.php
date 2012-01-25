@@ -63,7 +63,7 @@ class LoadMediaData extends AbstractFixture implements ContainerAwareInterface, 
 
         $videos = array(
             'ocAyDZC2aiU' => 'sonata.media.provider.youtube',
-            'xgt7xh'      => 'sonata.media.provider.dailymotion',
+            'xdw0tz'      => 'sonata.media.provider.dailymotion',
             '9636197'     => 'sonata.media.provider.vimeo'
         );
 

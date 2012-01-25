@@ -1,9 +1,10 @@
-# 
+#
 # more information can be found here http://sonata-project.org/bundles/admin
 #
 sonata_admin:
     # default value, change it to sonata.admin.security.handler.acl to use ACL
-    security_handler: sonata.admin.security.handler.noop
+    security:
+        handler: sonata.admin.security.handler.role
 
     title:      %sonata_admin.title%
     title_logo: %sonata_admin.logo_title%
