@@ -52,7 +52,7 @@ $fs->mkdir(sprintf('%s/web/uploads/media', $rootDir));
 $fs->copy(__DIR__.'/src/Sonata/Bundle/DemoBundle/DataFixtures/data/robots.txt', __DIR__.'/web/robots.txt', true);
 
 execute_commands(array(
-    'bin/vendors update',
+    'bin/vendors install',
     'app/console cache:warmup --env=dev',
     'app/console cache:create-cache-class --env=dev',
 //    'app/console doctrine:database:drop --force',
