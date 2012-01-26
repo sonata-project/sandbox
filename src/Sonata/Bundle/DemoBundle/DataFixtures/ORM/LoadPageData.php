@@ -14,6 +14,7 @@ namespace Sonata\Bundle\DemoBunle\DataFixtures\ORM;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\DataFixtures\AbstractFixture;
+use Doctrine\Common\Persistence\ObjectManager;
 
 use Sonata\PageBundle\Model\SiteInterface;
 
@@ -34,7 +35,7 @@ class LoadPageData extends AbstractFixture implements ContainerAwareInterface, O
         $this->container = $container;
     }
 
-    public function load($manager)
+    public function load(ObjectManager $manager)
     {
         $site = $this->createSite();
         $this->createGlobalPage($site);

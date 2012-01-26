@@ -18,6 +18,8 @@ use Doctrine\Common\DataFixtures\AbstractFixture;
 use Sonata\MediaBundle\Model\GalleryInterface;
 use Sonata\MediaBundle\Model\MediaInterface;
 
+use Doctrine\Common\Persistence\ObjectManager;
+
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Finder\Finder;
@@ -36,7 +38,7 @@ class LoadMediaData extends AbstractFixture implements ContainerAwareInterface, 
         $this->container = $container;
     }
 
-    public function load($manager)
+    public function load(ObjectManager $manager)
     {
         $gallery = $this->getGalleryManager()->create();
 

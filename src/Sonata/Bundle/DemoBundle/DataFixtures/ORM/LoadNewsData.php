@@ -14,6 +14,7 @@ namespace Sonata\Bundle\DemoBunle\DataFixtures\ORM;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\DataFixtures\AbstractFixture;
+use Doctrine\Common\Persistence\ObjectManager;
 
 use Sonata\NewsBundle\Model\CommentInterface;
 
@@ -34,7 +35,7 @@ class LoadNewsData extends AbstractFixture implements ContainerAwareInterface, O
         $this->container = $container;
     }
 
-    public function load($manager)
+    public function load(ObjectManager $manager)
     {
 //        $userManager = $this->getUserManager();
         $postManager = $this->getPostManager();
