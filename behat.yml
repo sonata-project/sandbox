@@ -1,0 +1,4 @@
+default:
+  context:
+    parameters:
+      base_url: http://sonata-sandbox.local.f6.fr/
