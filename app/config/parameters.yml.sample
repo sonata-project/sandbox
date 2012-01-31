@@ -1,23 +1,23 @@
 parameters:
     database_driver:   pdo_mysql
-    database_host:     
-    database_name:     
-    database_user:     
-    database_password: 
-                       
+    database_host:
+    database_name:
+    database_user:
+    database_password:
+
     mailer_transport:   smtp
     mailer_host:        localhost
-    mailer_user:       
-    mailer_password:   
-                       
+    mailer_user:
+    mailer_password:
+
     locale:             en
-                       
+
     secret:             ThisTokenIsNotSoSecretChangeIt
 
     # Sonata Admin Options
     sonata_admin.title:             Sonata Project
     sonata_admin.logo_title:        /bundles/sonataadmin/logo_title.png
-    
+
     # Sonata News Options
     sonata_news.blog_title:         My Awesome Blog
     sonata_news.blog_link:          http://awesome-blog.ltd
@@ -25,4 +25,6 @@ parameters:
     sonata_news.salt:               ThisTokenIsNotSoSecretChangeIt
     sonata_news.comment.emails:     [mail@example.org]
     sonata_news.comment.email_from: no-reply@example.org
-    
+
+    # Sonata Media options
+    sonata_media.cdn.host:          /uploads/media
