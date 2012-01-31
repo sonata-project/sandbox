@@ -32,6 +32,11 @@ sonata_media:
         file:
             resizer:    false
 
+    pixlr:
+        enabled:  true
+        referrer: Demo - Sonata Project
+
+
 #
 # The LiipImagineBundle can be used if you want to convert on demand an image
 # to a specific format. (ie a controller render the file)
