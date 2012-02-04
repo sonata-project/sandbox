@@ -1,5 +1,9 @@
 <?php
 
+if (!class_exists('Symfony\Component\ClassLoader\UniversalClassLoader', false)) {
+    require_once __DIR__.'/../vendor/symfony/src/Symfony/Component/ClassLoader/UniversalClassLoader.php';
+}
+
 if (!class_exists('Symfony\Component\ClassLoader\ApcUniversalClassLoader', false)) {
     require_once __DIR__.'/../vendor/symfony/src/Symfony/Component/ClassLoader/ApcUniversalClassLoader.php';
 }
