@@ -1,10 +1,10 @@
 [symfony]
     git=git://github.com/symfony/symfony.git
-    version=v2.0.9
+    version=v2.0.10
 
 [twig]
     git=git://github.com/fabpot/Twig.git
-    version=v1.5.1
+    version=v1.6.0
 
 [monolog]
     git=git://github.com/Seldaek/monolog.git
@@ -16,11 +16,11 @@
 
 [doctrine-dbal]
     git=git://github.com/doctrine/dbal.git
-    version=2.1.5
+    version=2.1.6
 
 [doctrine]
     git=git://github.com/doctrine/doctrine2.git
-    version=2.1.5
+    version=2.1.6
 
 [swiftmailer]
     git=git://github.com/swiftmailer/swiftmailer.git
