@@ -101,6 +101,15 @@ By default the Sonata Page bundle is activated, so you need to starts 2 commands
     The ``update-core-routes`` populates the database with ``page`` from the routing information.
     The ``create-snapshots`` create a snapshot (a public page version) from the created pages.
 
+
+Fixtures
+~~~~~~~~~~~~~~~~~~
+
+To have some actual data in your DB, you should load the fixtures by running::
+
+    app/console doctrine:fixtures:load
+
+
 Unit Testing
 ------------
 
