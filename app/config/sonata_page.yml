@@ -62,6 +62,11 @@ sonata_page:
         #    servers:
         #        - { domain: kooqit.local, ip: 127.0.0.1, port: 80}
 
+    catch_exceptions:
+        not_found: [404]    # render 404 page with "not_found" key (name generated: _page_internal_error_{key})
+        fatal:     [500]    # so you can use the same page for different http errors or specify specific page for each error
+
+
 # Enable Doctrine to map the provided entities
 doctrine:
     orm:
