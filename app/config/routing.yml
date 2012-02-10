@@ -35,7 +35,7 @@ sonata_page_cache:
 
 sonata_page_exceptions:
     resource: '@SonataPageBundle/Resources/config/routing/exceptions.xml'
-    prefix: /
+    prefix: /page
 
 sonata_media_gallery:
     resource: '@SonataMediaBundle/Resources/config/routing/gallery.xml'
