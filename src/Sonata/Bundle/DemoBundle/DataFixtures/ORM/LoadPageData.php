@@ -65,7 +65,7 @@ class LoadPageData extends AbstractFixture implements ContainerAwareInterface, O
     {
         $pageManager = $this->getPageManager();
 
-        $blogIndex = $pageManager->createNewPage();
+        $blogIndex = $pageManager->create();
         $blogIndex->setSlug('blog');
         $blogIndex->setUrl('/blog');
         $blogIndex->setName('News');
@@ -84,8 +84,9 @@ class LoadPageData extends AbstractFixture implements ContainerAwareInterface, O
     {
         $pageManager = $this->getPageManager();
         $blockManager = $this->getBlockManager();
+        $blockInteractor = $this->getBlockInteractor();
 
-        $galleryIndex = $pageManager->createNewPage();
+        $galleryIndex = $pageManager->create();
         $galleryIndex->setSlug('gallery');
         $galleryIndex->setUrl('/media/gallery');
         $galleryIndex->setName('Gallery');
@@ -98,7 +99,7 @@ class LoadPageData extends AbstractFixture implements ContainerAwareInterface, O
         $galleryIndex->setSite($site);
 
         // CREATE A HEADER BLOCK
-        $galleryIndex->addBlocks($content = $blockManager->createNewContainer(array(
+        $galleryIndex->addBlocks($content = $blockInteractor->createNewContainer(array(
             'enabled' => true,
             'page' => $galleryIndex,
             'name' => 'content_top',
@@ -132,10 +133,11 @@ CONTENT
     {
         $pageManager = $this->getPageManager();
         $blockManager = $this->getBlockManager();
+        $blockInteractor = $this->getBlockInteractor();
 
         $faker = $this->getFaker();
 
-        $this->addReference('page-homepage', $homepage = $pageManager->createNewPage());
+        $this->addReference('page-homepage', $homepage = $pageManager->create());
         $homepage->setSlug('/');
         $homepage->setUrl('/');
         $homepage->setName('homepage');
@@ -149,7 +151,7 @@ CONTENT
         $pageManager->save($homepage);
 
         // CREATE A HEADER BLOCK
-        $homepage->addBlocks($content = $blockManager->createNewContainer(array(
+        $homepage->addBlocks($content = $blockInteractor->createNewContainer(array(
             'enabled' => true,
             'page' => $homepage,
             'name' => 'content',
@@ -220,10 +222,9 @@ CONTENT
     {
         $pageManager = $this->getPageManager();
         $blockManager = $this->getBlockManager();
+        $blockInteractor = $this->getBlockInteractor();
 
-        $faker = $this->getFaker();
-
-        $global = $pageManager->createNewPage();
+        $global = $pageManager->create();
         $global->setName('global');
         $global->setRouteName('global');
         $global->setSite($site);
@@ -231,7 +232,7 @@ CONTENT
         $pageManager->save($global);
 
         // CREATE A HEADER BLOCK
-        $global->addBlocks($title = $blockManager->createNewContainer(array(
+        $global->addBlocks($title = $blockInteractor->createNewContainer(array(
             'enabled' => true,
             'page' => $global,
             'name' => 'title',
@@ -245,7 +246,7 @@ CONTENT
         $text->setEnabled(true);
         $text->setPage($global);
 
-        $global->addBlocks($header = $blockManager->createNewContainer(array(
+        $global->addBlocks($header = $blockInteractor->createNewContainer(array(
             'enabled' => true,
             'page' => $global,
             'name' => 'header',
@@ -260,7 +261,7 @@ CONTENT
         $menu->setEnabled(true);
         $menu->setPage($global);
 
-        $global->addBlocks($footer = $blockManager->createNewContainer(array(
+        $global->addBlocks($footer = $blockInteractor->createNewContainer(array(
             'enabled' => true,
             'page' => $global,
             'name' => 'footer',
@@ -325,5 +326,13 @@ FOOTER
     public function getFaker()
     {
         return $this->container->get('faker.generator');
+    }
+
+    /**
+     * @return \Sonata\PageBundle\Entity\BlockInteractor
+     */
+    public function getBlockInteractor()
+    {
+        return $this->container->get('sonata.page.block_interactor');
     }
 }
