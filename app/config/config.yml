@@ -6,6 +6,7 @@ imports:
     - { resource: sonata_media.yml }
     - { resource: sonata_formatter.yml }
     - { resource: sonata_news.yml }
+    - { resource: sonata_cache.yml }
 
 framework:
     #esi:             ~

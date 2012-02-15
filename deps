@@ -128,6 +128,14 @@
     git=git://github.com/sonata-project/SonataPageBundle.git
     target=/bundles/Sonata/PageBundle
 
+[SonataCacheBundle]
+    git=http://github.com/sonata-project/SonataCacheBundle.git
+    target=/bundles/Sonata/CacheBundle
+
+[SonataBlockBundle]
+    git=http://github.com/sonata-project/SonataBlockBundle.git
+    target=/bundles/Sonata/BlockBundle
+
 [SonataIntlBundle]
     git=git://github.com/sonata-project/SonataIntlBundle.git
     target=/bundles/Sonata/IntlBundle
