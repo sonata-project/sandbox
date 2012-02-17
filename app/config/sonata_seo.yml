@@ -1,0 +1,10 @@
+#
+# more information can be found here http://sonata-project.org/bundles/page
+#
+sonata_seo:
+    default:          sonata.seo.page.default
+    title:            Sonata Project
+    metadatas:
+        keywords:     foo bar
+        description:  The description
+        robots:       index, follow

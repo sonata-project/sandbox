@@ -140,6 +140,10 @@
     git=git://github.com/sonata-project/SonataIntlBundle.git
     target=/bundles/Sonata/IntlBundle
 
+[SonataSeoBundle]
+    git=git://github.com/sonata-project/SonataSeoBundle.git
+    target=/bundles/Sonata/SeoBundle
+
 [SonataNewsBundle]
     git=git://github.com/sonata-project/SonataNewsBundle.git
     target=/bundles/Sonata/NewsBundle
