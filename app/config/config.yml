@@ -2,12 +2,12 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: fos_user.yml }
-    - { resource: sonata_page.yml }
-    - { resource: sonata_media.yml }
-    - { resource: sonata_formatter.yml }
-    - { resource: sonata_news.yml }
-    - { resource: sonata_cache.yml }
-    - { resource: sonata_seo.yml }
+    - { resource: sonata/sonata_page.yml }
+    - { resource: sonata/sonata_media.yml }
+    - { resource: sonata/sonata_formatter.yml }
+    - { resource: sonata/sonata_news.yml }
+    - { resource: sonata/sonata_cache.yml }
+    - { resource: sonata/sonata_seo.yml }
 
 framework:
     #esi:             ~
