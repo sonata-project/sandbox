@@ -1,0 +1,48 @@
+<h2>Form Media Type & SEO</h2>
+
+<div>
+
+    <p>
+        The <code>form_media_type</code> allows to add a Media to an entity. The Media information will be stored in a dedicated media table. <br />
+
+        <br />
+        <strong>Exemple</strong> :
+        Please enter a youtube url and press the "Preview Video" button. <br />
+
+    </p>
+    <form method="POST">
+        {{ form_widget(form.media.binaryContent, {'attr': {'class': 'span8'}}) }}
+
+        {{ form_rest(form) }}
+
+        <input type="submit" class="btn" value="Preview Video"/>
+    </form>
+</div>
+
+{% if media and media.providerReference %}
+    <h2>Preview : {{ media.name }}</h2>
+
+    {% media media, 'reference' %}
+
+    <p>
+        The <code>media</code> helper is used to render the video.
+    </p>
+{% endif %}
+
+<h2>One more thing</h2>
+<p>
+    This page also uses the <code>SonataSeoBundle</code> to inject specific headers information. This is done by reading
+    the Media information
+
+    <script src="https://gist.github.com/1900366.js?file=gistfile1.aw"></script>
+</p>
+
+<h2>Usage</h2>
+
+<h3>Controller</h3>
+
+<script src="https://gist.github.com/1896425.js?file=gistfile1.aw"></script>
+
+<h3>Template</h3>
+
+<script src="https://gist.github.com/1896431.js?file=gistfile1.twig"></script>

@@ -42,6 +42,7 @@ class LoadPageData extends AbstractFixture implements ContainerAwareInterface, O
         $this->createHomePage($site);
         $this->createBlogIndex($site);
         $this->createGalleryIndex($site);
+        $this->createMediaPage($site);
     }
 
     public function createSite()
@@ -213,9 +214,26 @@ CONTENT
 CONTENT
 );
 
-
-
         $pageManager->save($homepage);
+    }
+
+    public function createMediaPage(SiteInterface $site)
+    {
+        $pageManager = $this->getPageManager();
+
+        $this->addReference('page-media', $media = $pageManager->create());
+        $media->setSlug('/media');
+        $media->setUrl('/media');
+        $media->setName('Media & Seo');
+        $media->setEnabled(true);
+        $media->setDecorate(1);
+        $media->setRequestMethod('GET|POST|HEAD|DELETE|PUT');
+        $media->setTemplateCode('default');
+        $media->setRouteName('sonata_demo_media');
+        $media->setSite($site);
+        $media->setParent($this->getReference('page-homepage'));
+
+        $pageManager->save($media);
     }
 
     public function createGlobalPage(SiteInterface $site)
