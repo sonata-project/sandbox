@@ -1,6 +1,6 @@
 [symfony]
     git=git://github.com/symfony/symfony.git
-    version=v2.0.10
+    version=v2.0.11
 
 [twig]
     git=git://github.com/fabpot/Twig.git
@@ -164,30 +164,6 @@
     git=git://github.com/kriswallsmith/Buzz.git
     target=/buzz
 
-[SahiClient]
-    git=git://github.com/Behat/SahiClient
-    target=/behat/sahi
-
-[MinkBundle]
-    git=git://github.com/Behat/MinkBundle.git
-    target=/bundles/Behat/MinkBundle
-
-[Mink]
-    git=git://github.com/Behat/Mink.git
-    target=/behat/mink
-
-[BehatBundle]
-    git=git://github.com/Behat/BehatBundle.git
-    target=/bundles/Behat/BehatBundle
-
-[Gherkin]
-    git=git://github.com/Behat/Gherkin.git
-    target=/behat/gherkin
-
-[Behat]
-    git=git://github.com/Behat/Behat.git
-    target=/behat/behat
-
 [SonataDoctrineExtensions]
     git=git://github.com/sonata-project/sonata-doctrine-extensions.git
     target=/sonata-doctrine-extensions
@@ -207,3 +183,7 @@
 [EntityAudit]
     git=git://github.com/simplethings/EntityAudit.git
     target=/bundles/SimpleThings/EntityAudit
+
+[Exporter]
+    git=http://github.com/sonata-project/exporter.git
+    target=/exporter

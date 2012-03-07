@@ -22,7 +22,6 @@ use Sonata\PageBundle\Entity\BaseBlock as BaseBlock;
  */
 class Block extends BaseBlock
 {
-
     /**
      * @var integer $id
      */

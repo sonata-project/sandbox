@@ -108,7 +108,7 @@ class LoadPageData extends AbstractFixture implements ContainerAwareInterface, O
 
         // add a block text
         $content->addChildren($text = $blockManager->create());
-        $text->setType('sonata.page.block.text');
+        $text->setType('sonata.block.service.text');
         $text->setSetting('content', <<<CONTENT
 
 <p>
@@ -162,7 +162,7 @@ CONTENT
 
         // add a block text
         $content->addChildren($text = $blockManager->create());
-        $text->setType('sonata.page.block.text');
+        $text->setType('sonata.block.service.text');
         $text->setSetting('content', <<<CONTENT
 <h1>Welcome</h1>
 
@@ -258,7 +258,7 @@ CONTENT
 
         $title->addChildren($text = $blockManager->create());
 
-        $text->setType('sonata.page.block.text');
+        $text->setType('sonata.block.service.text');
         $text->setSetting('content', '<h2><a href="/">Sonata Sandbox</a></h2>');
         $text->setPosition(1);
         $text->setEnabled(true);
@@ -287,7 +287,7 @@ CONTENT
 
         $footer->addChildren($text = $blockManager->create());
 
-        $text->setType('sonata.page.block.text');
+        $text->setType('sonata.block.service.text');
         $text->setSetting('content', <<<FOOTER
         <a href="/admin/dashboard">Access to the backend</a> (user: admin, password: admin) <br />
         <a href="http://www.sonata-project.org">Sonata Project</a> sandbox demonstration.

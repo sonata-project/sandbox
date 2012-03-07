@@ -29,16 +29,6 @@ sonata_page:
     page_defaults:
         homepage: {decorate: false}
 
-    services:
-        sonata.page.block.text:
-        sonata.page.block.action:
-        sonata.page.block.container:
-        sonata.page.block.children_pages:
-        sonata.page.block.rss:
-        sonata.media.block.media:
-        sonata.media.block.gallery:
-        sonata.media.block.feature_media:
-
     caches:
         esi:
             servers:

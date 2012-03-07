@@ -14,8 +14,16 @@ sonata_media:
                 - sonata.media.provider.vimeo
 
             formats:
-                small: { width: 100 , quality: 100}
+                small: { width: 100, quality: 100}
                 big:   { width: 820 , quality: 100}
+
+        news:
+            providers:
+                - sonata.media.provider.image
+
+            formats:
+                abtract: { width: 100, quality: 100}
+                wide:    { width: 820 , quality: 100}
 
     cdn:
         # define the public base url for the uploaded media
@@ -36,6 +44,10 @@ sonata_media:
         enabled:  true
         referrer: Demo - Sonata Project
 
+    resizer:
+        simple:
+#            mode:  outbound
+            mode:  inset
 
 #
 # The LiipImagineBundle can be used if you want to convert on demand an image

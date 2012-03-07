@@ -44,6 +44,7 @@ $loader->registerNamespaces(array(
     'Imagine'           => __DIR__.'/../vendor/imagine/lib',
     'Gaufrette'         => __DIR__.'/../vendor/gaufrette/src',
     'Buzz'              => __DIR__.'/../vendor/buzz/lib',
+    'Exporter'          => __DIR__.'/../vendor/exporter/lib',
     'Application'       => __DIR__.'/../src',
     'Behat\Mink'        => __DIR__.'/../vendor/behat/mink/src',
     'Behat\MinkBundle'  => __DIR__.'/../vendor/bundles',

@@ -2,7 +2,11 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: fos_user.yml }
+
+    # Sonata Bundles
+    - { resource: sonata/sonata_admin.yml }
     - { resource: sonata/sonata_page.yml }
+    - { resource: sonata/sonata_block.yml }
     - { resource: sonata/sonata_media.yml }
     - { resource: sonata/sonata_formatter.yml }
     - { resource: sonata/sonata_news.yml }
