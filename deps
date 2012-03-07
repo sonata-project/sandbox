@@ -185,5 +185,5 @@
     target=/bundles/SimpleThings/EntityAudit
 
 [Exporter]
-    git=http://github.com/sonata-project/exporter.git
+    git=git://github.com/sonata-project/exporter.git
     target=/exporter
