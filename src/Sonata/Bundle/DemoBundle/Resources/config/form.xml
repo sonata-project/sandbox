@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="sonata.demo.form.type.car" class="Sonata\Bundle\DemoBundle\Form\Type\CarType">
+            <tag name="form.type" alias="sonata_demo_form_type_car" />
+
+        </service>
+
+        <service id="sonata.demo.form.type.engine" class="Sonata\Bundle\DemoBundle\Form\Type\EngineType">
+            <tag name="form.type" alias="sonata_demo_form_type_engine" />
+        </service>
+
+        <service id="sonata.demo.form.type.advanced_rescue_engine" class="Sonata\Bundle\DemoBundle\Form\Extension\RescueEngineTypeExtension">
+             <tag name="form.type_extension" alias="sonata_demo_car" />
+        </service>
+    </services>
+
+</container>

@@ -1,0 +1,27 @@
+{% extends '::empty.html.twig' %}
+
+{% form_theme form _self %}
+
+
+{% block content %}
+    <h2>Car Type</h2>
+    <h3>Object</h3>
+    <div>
+        {{ dump|raw }}
+    </div>
+
+    <h3>Form Version</h3>
+
+    <div>
+        <form method="POST">
+            {{ form_rest(form) }}
+            <input type="submit" />
+        </form>
+    </div>
+{% endblock %}
+
+
+{% block _sonata_demo_form_type_car_rescueEngine_label %}
+    {{ block('field_label') }}
+    sfsdfsd
+{% endblock %}

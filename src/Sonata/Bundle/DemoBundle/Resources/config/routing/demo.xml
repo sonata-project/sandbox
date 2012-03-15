@@ -8,4 +8,12 @@
         <default key="_controller">SonataDemoBundle:Demo:media</default>
     </route>
 
+    <route id="sonata_demo_car" pattern="/car">
+        <default key="_controller">SonataDemoBundle:Demo:car</default>
+    </route>
+
+    <route id="sonata_demo_car_rescue" pattern="/car-rescue-engine">
+        <default key="_controller">SonataDemoBundle:Demo:carRescueEngine</default>
+    </route>
+
 </routes>

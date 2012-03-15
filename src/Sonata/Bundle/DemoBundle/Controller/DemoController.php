@@ -14,9 +14,61 @@ namespace Sonata\Bundle\DemoBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sonata\Bundle\DemoBundle\Model\MediaPreview;
 use Symfony\Component\HttpFoundation\Request;
+use Sonata\Bundle\DemoBundle\Form\Type\CarType;
 
 class DemoController extends Controller
 {
+    public function carAction(Request $request)
+    {
+        $form = $this->createForm(new CarType());
+
+        if ($request->getMethod() == 'POST') {
+            $form->bindRequest($request);
+        }
+
+        ob_start();
+        var_dump($form->getData());
+        $dump = ob_get_contents();
+        ob_clean();
+
+        return $this->render('SonataDemoBundle:Demo:car.html.twig', array(
+            'form' => $form->createView(),
+            'dump' => $dump
+        ));
+    }
+
+    public function carRescueEngineAction(Request $request)
+    {
+        $car = new \Sonata\Bundle\DemoBundle\Model\Car();
+        $car->setName('Poney Car');
+        $car->setCreatedAt(new \DateTime);
+
+        $rescueEngines = array(
+            1 => new \Sonata\Bundle\DemoBundle\Model\Engine('Rescue 1', 100),
+            2 => new \Sonata\Bundle\DemoBundle\Model\Engine('Rescue 2', 125),
+            3 => new \Sonata\Bundle\DemoBundle\Model\Engine('Rescue 3', 150),
+        );
+
+        $form = $this->createForm('sonata_demo_form_type_car', $car, array(
+            'rescue_engines' => $rescueEngines
+        ));
+
+        if ($request->getMethod() == 'POST') {
+            $form->bindRequest($request);
+        }
+
+        ob_start();
+        var_dump($car);
+        $dump = ob_get_contents();
+        ob_clean();
+
+
+        return $this->render('SonataDemoBundle:Demo:car.html.twig', array(
+            'form' => $form->createView(),
+            'dump' => $dump
+        ));
+    }
+
     public function mediaAction(Request $request)
     {
         // preset a default value
