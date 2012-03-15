@@ -39,6 +39,7 @@ $loader->registerNamespaces(array(
     'Sonata'            => array(
         __DIR__.'/../vendor/sonata/src',
         __DIR__.'/../vendor/bundles',
+        __DIR__.'/../src',
         __DIR__.'/../vendor/sonata-doctrine-extensions/src'
     ),
     'Imagine'           => __DIR__.'/../vendor/imagine/lib',
@@ -79,4 +80,3 @@ AnnotationRegistry::registerFile(__DIR__.'/../vendor/doctrine/lib/Doctrine/ORM/M
 // the lazy loading of the init file (which is expensive)
 require_once __DIR__.'/../vendor/swiftmailer/lib/classes/Swift.php';
 Swift::registerAutoload(__DIR__.'/../vendor/swiftmailer/lib/swift_init.php');
-

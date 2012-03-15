@@ -111,10 +111,12 @@
 [SonataAdminBundle]
     git=git://github.com/sonata-project/SonataAdminBundle.git
     target=/bundles/Sonata/AdminBundle
+    version=origin/2.0
 
 [SonataDoctrineORMAdminBundle]
     git=git://github.com/sonata-project/SonataDoctrineORMAdminBundle.git
     target=/bundles/Sonata/DoctrineORMAdminBundle
+    version=origin/2.0
 
 [SonataEasyExtendsBundle]
     git=git://github.com/sonata-project/SonataEasyExtendsBundle.git
@@ -123,6 +125,7 @@
 [SonataMediaBundle]
     git=git://github.com/sonata-project/SonataMediaBundle.git
     target=/bundles/Sonata/MediaBundle
+    version=origin/2.0
 
 [SonataPageBundle]
     git=git://github.com/sonata-project/SonataPageBundle.git
