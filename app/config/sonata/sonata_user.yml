@@ -1,0 +1,9 @@
+#
+# more information can be found here http://sonata-project.org/bundles/user
+#
+sonata_user:
+    security_acl: false
+    google_authenticator:
+        enabled: false
+        server: sonata-project.org
+

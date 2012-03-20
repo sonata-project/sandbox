@@ -12,6 +12,7 @@ imports:
     - { resource: sonata/sonata_news.yml }
     - { resource: sonata/sonata_cache.yml }
     - { resource: sonata/sonata_seo.yml }
+    - { resource: sonata/sonata_user.yml }
 
 framework:
     #esi:             ~

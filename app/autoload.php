@@ -56,6 +56,7 @@ $loader->registerNamespaces(array(
     'Bazinga'           => __DIR__.'/../vendor/bundles',
     'Faker'             => __DIR__.'/../vendor/faker/src',
     'SimpleThings'      => __DIR__.'/../vendor/bundles',
+    'Google'            => __DIR__.'/../vendor/google-authenticator/lib'
 ));
 
 $loader->registerPrefixes(array(
