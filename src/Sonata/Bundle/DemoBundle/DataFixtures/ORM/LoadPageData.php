@@ -195,7 +195,7 @@ CONTENT
         $gallery->setPage($homepage);
 
         $content->addChildren($text = $blockManager->create());
-        $text->setType('sonata.page.block.text');
+        $text->setType('sonata.block.service.text');
 
         $text->setPosition(3);
         $text->setEnabled(true);
