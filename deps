@@ -156,6 +156,10 @@
     git=git://github.com/sonata-project/SonataFormatterBundle.git
     target=/bundles/Sonata/FormatterBundle
 
+[SonataNotificationBundle]
+    git=git://github.com/sonata-project/SonataNotificationBundle.git
+    target=/bundles/Sonata/NotificationBundle
+
 [gaufrette]
     git=git://github.com/sonata-project/Gaufrette.git
     target=/gaufrette
