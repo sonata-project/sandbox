@@ -1,0 +1,35 @@
+language: php
+
+php:
+  - 5.3
+
+env:
+  - SYMFONY_VERSION=origin/2.0 DB=mysql
+#  - SYMFONY_VERSION=origin/master  DB=mysql
+
+before_script:
+
+  - echo "Starting install" > install.log
+
+  # Setup nginx
+  - sudo apt-get -qq install nginx >> install.log
+  - php-cgi -b 127.0.0.1:9000 &
+  - sudo nginx -c tests/travis/nginx.conf -p "$PWD/" >> install.log
+
+  # Setup Database
+  - sh -c "if [ '$DB' = 'mysql' ]; then mysql -e 'CREATE DATABASE IF NOT EXISTS sonata_demo;'; fi" >> install.log
+
+  # Setup code
+  - rm -rf .git && git init && git add --all && git commit --quiet -m "Initial commit (from the Sonata Sandbox)" >> install.log
+  - php bin/vendors install >> install.log
+  - git add --all && git commit --quiet -m "add submodules" >> install.log
+  - php tests/travis/build_bootstrap.php >> install.log
+
+  # Setup fixtures
+  - cp tests/travis/parameters.yml app/config/parameters.yml >> install.log
+  - php load_data.php >> install.log
+
+  # Setup composer
+  - wget -nc http://getcomposer.org/composer.phar && php composer.phar install >> install.log
+
+script: bin/behat -c tests/travis/behat.yml

@@ -111,7 +111,7 @@ foreach ($deps as $name => $dep) {
     if (!empty($status)) {
         exit(sprintf('"%s" has local modifications. Please revert or commit/push them before running this command again.', $name));
     }
-    
+
     // url
     if (!isset($dep['git'])) {
         exit(sprintf('The "git" value for the "%s" dependency must be set.', $name));
@@ -123,11 +123,11 @@ foreach ($deps as $name => $dep) {
         echo_message("\n> Installing/Updating $name");
 
         if (!is_dir($installDir)) {
-            exec_command(sprintf('git submodule add %s %s', escapeshellarg($url), escapeshellarg($relativeInstallDir)));
+            exec_command(sprintf('git submodule -q add %s %s', escapeshellarg($url), escapeshellarg($relativeInstallDir)));
         }
 
-        exec_command(sprintf('git submodule update --init %s', escapeshellarg($relativeInstallDir)));
-        exec_command(sprintf('cd %s && git fetch origin && git reset --hard %s', escapeshellarg($relativeInstallDir), escapeshellarg($rev)));
+        exec_command(sprintf('git submodule -q update --init %s', escapeshellarg($relativeInstallDir)));
+        exec_command(sprintf('cd %s && git fetch -q origin && git reset --hard %s', escapeshellarg($relativeInstallDir), escapeshellarg($rev)));
     }
 
     if ('update' === $command) {
@@ -147,6 +147,6 @@ if ('update' === $command) {
 $interpreter = PHP_OS == 'WINNT' ? 'php.exe' : '';
 
 // Update the bootstrap files
-system(sprintf('%s %s', $interpreter, escapeshellarg($rootDir.'/vendor/bundles/Sensio/Bundle/DistributionBundle/Resources/bin/build_bootstrap.php')));
+system(sprintf('%s %s', $interpreter, escapeshellarg($rootDir.'/bin/build_bootstrap.php')));
 
 echo_message("\ndone!");

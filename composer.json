@@ -1,0 +1,18 @@
+{
+    "require": {
+        "behat/behat": ">=2.2.2",
+        "behat/mink": ">=1.3.2",
+        "fabpot/goutte": "*"
+    },
+
+    "repositories": {
+        "behat/mink-deps": {
+            "type": "composer",
+            "url": "behat.org"
+        }
+    },
+
+    "config": {
+        "bin-dir": "bin/"
+    }
+}
