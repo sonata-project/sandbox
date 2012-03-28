@@ -50,10 +50,12 @@
 [SensioDistributionBundle]
     git=git://github.com/sensio/SensioDistributionBundle.git
     target=/bundles/Sensio/Bundle/DistributionBundle
+    version=origin/2.0
 
 [SensioGeneratorBundle]
     git=git://github.com/sensio/SensioGeneratorBundle.git
     target=/bundles/Sensio/Bundle/GeneratorBundle
+    version=origin/2.0
 
 [AsseticBundle]
     git=git://github.com/symfony/AsseticBundle.git
@@ -70,11 +72,13 @@
 
 [DoctrineMigrationsBundle]
     git=git://github.com/doctrine/DoctrineMigrationsBundle.git
-    target=/bundles/Doctrine/Bundle/MigrationsBundle
+    target=/bundles/Symfony/Bundle/DoctrineMigrationsBundle
+    version=origin/2.0
 
 [DoctrineFixturesBundle]
     git=git://github.com/doctrine/DoctrineFixturesBundle.git
-    target=/bundles/Doctrine/Bundle/FixturesBundle
+    target=/bundles/Symfony/Bundle/DoctrineFixturesBundle
+    version=origin/2.0
 
 [imagine]
     git=git://github.com/avalanche123/Imagine.git
@@ -129,11 +133,11 @@
     version=origin/2.0
 
 [SonataCacheBundle]
-    git=http://github.com/sonata-project/SonataCacheBundle.git
+    git=git://github.com/sonata-project/SonataCacheBundle.git
     target=/bundles/Sonata/CacheBundle
 
 [SonataBlockBundle]
-    git=http://github.com/sonata-project/SonataBlockBundle.git
+    git=git://github.com/sonata-project/SonataBlockBundle.git
     target=/bundles/Sonata/BlockBundle
 
 [SonataIntlBundle]
