@@ -16,7 +16,7 @@ Scenario: Add a new page with some errors
   Then I should see "An error has occurred during item creation."
 
 Scenario: Add a new page
-  When I am connected with "admin" and "admin" on "admin/sonata/page/page/create?uniqid=4f155592a220e"
+  When I am connected with "admin" and "admin" on "admin/sonata/page/page/create?uniqid=4f155592a220e&siteId=1"
   And I fill in "4f155592a220e_name" with "toto"
   And I fill in "4f155592a220e_position" with "1"
   And I select "default" from "4f155592a220e_templateCode"
