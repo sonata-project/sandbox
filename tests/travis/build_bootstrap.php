@@ -10,7 +10,7 @@
  * file that was distributed with this source code.
  */
 
-$baseDir = '/home/vagrant/builds/sonata-project/sandbox';
+$baseDir = __DIR__ . '/../..';
 
 require_once $baseDir.'/vendor/symfony/src/Symfony/Component/ClassLoader/UniversalClassLoader.php';
 
