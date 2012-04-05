@@ -30,3 +30,23 @@ Scenario: Add a new dailymotion video
   And I fill in "4f155592a220e_binaryContent" with "xnn4ge_l-oiseau-rebelle_shortfilms"
   And I press "Create"
   Then I should see "Item has been successfully created."
+
+Scenario: Export JSON data
+  When I am connected with "admin" and "admin" on "admin/sonata/media/media/list"
+  And I follow "json"
+  Then the response status code should be 200
+
+Scenario: Export CSV data
+  When I am connected with "admin" and "admin" on "admin/sonata/media/media/list"
+  And I follow "csv"
+  Then the response status code should be 200
+
+Scenario: Export XML data
+  When I am connected with "admin" and "admin" on "admin/sonata/media/media/list"
+  And I follow "xml"
+  Then the response status code should be 200
+
+Scenario: Export XLS data
+  When I am connected with "admin" and "admin" on "admin/sonata/media/media/list"
+  And I follow "xls"
+  Then the response status code should be 200
