@@ -27,6 +27,26 @@ Scenario: Edit a gallery
   And I press "Update"
   Then I should see "Item has been successfully updated."
 
+Scenario: Export JSON data
+  When I am connected with "admin" and "admin" on "admin/sonata/media/gallery/list"
+  And I follow "json"
+  Then the response status code should be 200
+
+Scenario: Export CSV data
+  When I am connected with "admin" and "admin" on "admin/sonata/media/gallery/list"
+  And I follow "csv"
+  Then the response status code should be 200
+
+Scenario: Export XML data
+  When I am connected with "admin" and "admin" on "admin/sonata/media/gallery/list"
+  And I follow "xml"
+  Then the response status code should be 200
+
+Scenario: Export XLS data
+  When I am connected with "admin" and "admin" on "admin/sonata/media/gallery/list"
+  And I follow "xls"
+  Then the response status code should be 200
+
 Scenario: Delete a gallery
   When I am connected with "admin" and "admin" on "admin/sonata/media/gallery/list"
   And I fill in "filter_name_value" with "toto"
