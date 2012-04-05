@@ -14,4 +14,4 @@ Scenario: Check user login page when connected
 Scenario: Check user logout action
   When I am connected with "admin" and "admin" on "admin/dashboard"
   Then I follow "Logout"
-  And I should see "Logout"
+  And I should see "Welcome"
