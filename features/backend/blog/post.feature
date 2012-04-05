@@ -53,7 +53,7 @@ Scenario: Export XLS data
 
 Scenario: Delete a post
   When I am connected with "admin" and "admin" on "admin/sonata/news/post/list"
-  And I fill in "filter_title_value" with "toto"
+  And I fill in "filter_title_value" with "title"
   And I press "Filter"
   And I follow "title"
   And I follow "Delete"
