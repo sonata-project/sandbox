@@ -10,12 +10,12 @@ Scenario: Check media admin pages when connected
   When I am connected with "admin" and "admin" on "admin/sonata/media/media/list"
   Then I should see "Filters"
 
-#Scenario: Add a new media with errors
-#  When I am connected with "admin" and "admin" on "admin/sonata/media/media/list"
-#  And I go to "admin/sonata/media/media/create?provider=sonata.media.provider.youtube&context=default&uniqid=4f155592a220e"
-#  And I fill in "4f155592a220e_binaryContent" with "6jlTfnfmbqMdzdzd"
-#  And I press "Create"
-#  Then I should see "Item has been successfully created."
+Scenario: Add a new media with errors
+  When I am connected with "admin" and "admin" on "admin/sonata/media/media/list"
+  And I go to "admin/sonata/media/media/create?provider=sonata.media.provider.youtube&context=default&uniqid=4f155592a220e"
+  And I fill in "4f155592a220e_binaryContent" with "6jlTfnfmbqMdzdzd"
+  And I press "Create"
+  Then I should see "Item has been successfully created."
 
 Scenario: Add a new youtube video
   When I am connected with "admin" and "admin" on "admin/sonata/media/media/list"
