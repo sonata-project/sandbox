@@ -42,3 +42,21 @@ Scenario: Export XLS data
   When I am connected with "admin" and "admin" on "admin/sonata/news/comment/list"
   And I follow "xls"
   Then the response status code should be 200
+
+Scenario: Edit a comment
+  When I am connected with "admin" and "admin" on "admin/sonata/news/comment/list"
+  And I fill in "filter_name_value" with "toto"
+  And I press "Filter"
+  And I follow "toto"
+  And I follow "Delete"
+  And I press "Yes, delete"
+  Then I should see "Item has been deleted successfully."
+
+Scenario: Delete a comment
+  When I am connected with "admin" and "admin" on "admin/sonata/news/comment/list"
+  And I fill in "filter_name_value" with "toto"
+  And I press "Filter"
+  And I follow "toto"
+  And I follow "Delete"
+  And I press "Yes, delete"
+  Then I should see "Item has been deleted successfully."
