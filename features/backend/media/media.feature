@@ -50,3 +50,20 @@ Scenario: Export XLS data
   When I am connected with "admin" and "admin" on "admin/sonata/media/media/list"
   And I follow "xls"
   Then the response status code should be 200
+
+Scenario: Edit a media
+  When I am connected with "admin" and "admin" on "admin/sonata/media/media/list"
+  And I fill in "filter_name_value" with "Symfony 2 by Fabien Potencier"
+  And I press "Filter"
+  And I follow "Edit"
+  And I press "Update"
+  Then I should see "Item has been successfully updated."
+
+Scenario: Delete a media
+  When I am connected with "admin" and "admin" on "admin/sonata/media/media/list"
+  And I fill in "filter_name_value" with "Best of Our Wokrs from June to December 2011"
+  And I press "Filter"
+  And I follow "Edit"
+  And I follow "Delete"
+  And I press "Yes, delete"
+  Then I should see "Item has been deleted successfully."
