@@ -48,9 +48,8 @@ Scenario: Edit a comment
   And I fill in "filter_name_value" with "toto"
   And I press "Filter"
   And I follow "toto"
-  And I follow "Delete"
-  And I press "Yes, delete"
-  Then I should see "Item has been deleted successfully."
+  And I press "Update"
+  Then I should see "Item has been successfully updated."
 
 Scenario: Delete a comment
   When I am connected with "admin" and "admin" on "admin/sonata/news/comment/list"
