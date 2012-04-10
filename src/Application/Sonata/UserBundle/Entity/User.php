@@ -37,4 +37,14 @@ class User extends BaseUser
     {
         return $this->id;
     }
+    
+    /**
+     * Get Expire date
+     * 
+     * @return  \DateTime|null
+     */
+    public function getExpiresAt()
+    {
+        return $this->expiresAt;
+    }
 }
