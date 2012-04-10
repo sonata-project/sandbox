@@ -39,3 +39,23 @@ Scenario: Delete a page
   And I follow "Delete"
   And I press "Yes, delete"
   Then I should see "Item has been deleted successfully."
+
+Scenario: Export JSON data
+  When I am connected with "admin" and "admin" on "admin/sonata/page/page/list"
+  And I follow "json"
+  Then the response status code should be 200
+
+Scenario: Export CSV data
+  When I am connected with "admin" and "admin" on "admin/sonata/page/page/list"
+  And I follow "csv"
+  Then the response status code should be 200
+
+Scenario: Export XML data
+  When I am connected with "admin" and "admin" on "admin/sonata/page/page/list"
+  And I follow "xml"
+  Then the response status code should be 200
+
+Scenario: Export XLS data
+  When I am connected with "admin" and "admin" on "admin/sonata/page/page/list"
+  And I follow "xls"
+  Then the response status code should be 200
