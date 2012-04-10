@@ -11,6 +11,8 @@ use Behat\Mink\Element\DocumentElement;
 use PHPUnit_Framework_ExpectationFailedException as AssertException;
 use Behat\Mink\Session;
 
+require __DIR__ . '/../../mink.phar';
+
 /**
  * This context is intended for Browser interractions
  */

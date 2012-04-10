@@ -29,7 +29,8 @@ before_script:
   - cp tests/travis/parameters.yml app/config/parameters.yml >> install.log
   - php load_data.php >> install.log
 
-  # Setup composer
-  - wget -nc http://getcomposer.org/composer.phar && php composer.phar install >> install.log
+  # Setup Behat & Mink
+  - wget -nc https://github.com/downloads/Behat/Behat/behat.phar >> install.log
+  - wget -nc https://github.com/downloads/Behat/Mink/mink.phar >> install.log
 
-script: bin/behat -c tests/travis/behat.yml
+script: php behat.phar -c tests/travis/behat.yml
