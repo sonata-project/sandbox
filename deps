@@ -139,6 +139,7 @@
 [SonataBlockBundle]
     git=git://github.com/sonata-project/SonataBlockBundle.git
     target=/bundles/Sonata/BlockBundle
+    version=origin/2.0
 
 [SonataIntlBundle]
     git=git://github.com/sonata-project/SonataIntlBundle.git
