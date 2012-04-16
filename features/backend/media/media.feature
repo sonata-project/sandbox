@@ -47,6 +47,12 @@ Scenario: Export XLS data
   And I follow "xls"
   Then the response status code should be 200
 
+Scenario: Filter medias
+  When I am connected with "admin" and "admin" on "admin/sonata/media/gallery/list"
+  And I fill in "filter_name_value" with "toto"
+  And I press "Filter"
+  Then I should see "toto" 
+
 Scenario: Edit a media
   When I am connected with "admin" and "admin" on "admin/sonata/media/media/list"
   And I fill in "filter_name_value" with "Symfony 2 by Fabien Potencier"
@@ -54,6 +60,12 @@ Scenario: Edit a media
   And I follow "Edit"
   And I press "Update"
   Then I should see "Item has been successfully updated."
+
+Scenario: View revisions of a media
+  When I am connected with "admin" and "admin" on "admin/sonata/media/gallery/list"
+  And I follow "toto"
+  And I follow "Revisions"
+  Then the response status code should be 200
 
 Scenario: Delete a media
   When I am connected with "admin" and "admin" on "admin/sonata/media/media/list"
