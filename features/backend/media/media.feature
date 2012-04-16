@@ -48,10 +48,10 @@ Scenario: Export XLS data
   Then the response status code should be 200
 
 Scenario: Filter medias
-  When I am connected with "admin" and "admin" on "admin/sonata/media/gallery/list"
-  And I fill in "filter_name_value" with "toto"
+  When I am connected with "admin" and "admin" on "admin/sonata/media/media/list"
+  And I fill in "filter_name_value" with "Best of Our Wokrs from June to December 2011"
   And I press "Filter"
-  Then I should see "toto" 
+  Then I should see "Best of Our Wokrs from June to December 2011" 
 
 Scenario: Edit a media
   When I am connected with "admin" and "admin" on "admin/sonata/media/media/list"
@@ -62,8 +62,8 @@ Scenario: Edit a media
   Then I should see "Item has been successfully updated."
 
 Scenario: View revisions of a media
-  When I am connected with "admin" and "admin" on "admin/sonata/media/gallery/list"
-  And I follow "toto"
+  When I am connected with "admin" and "admin" on "admin/sonata/media/media/list"
+  And I follow "Edit"
   And I follow "Revisions"
   Then the response status code should be 200
 
