@@ -23,6 +23,20 @@ Scenario: Add a new user
   And I press "Create"
   Then I should see "Item has been successfully created."
 
+Scenario: Filter users
+  When I am connected with "admin" and "admin" on "admin/sonata/user/user/list"
+  And I fill in "filter_username_value" with "toto"
+  And I press "Filter"
+  Then I should see "toto"
+
+Scenario: View revisions of a user
+  When I am connected with "admin" and "admin" on "admin/sonata/user/user/list"
+  And I fill in "filter_username_value" with "toto"
+  And I press "Filter"
+  And I follow "toto"
+  And I follow "Revisions"
+  Then the response status code should be 200
+
 Scenario: Edit a user
   When I am connected with "admin" and "admin" on "admin/sonata/user/user/list"
   And I follow "toto"
