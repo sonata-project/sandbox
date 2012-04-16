@@ -27,6 +27,12 @@ Scenario: Filter groups
   And I press "Filter"
   Then I should see "toto"
 
+Scenario: View revisions of a group
+  When I am connected with "admin" and "admin" on "admin/sonata/user/group/list"
+  And I follow "toto"
+  And I follow "Revisions"
+  Then the response status code should be 200
+
 Scenario: Edit a group
   When I am connected with "admin" and "admin" on "admin/sonata/user/group/list"
   And I follow "toto"
