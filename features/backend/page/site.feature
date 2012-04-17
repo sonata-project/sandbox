@@ -44,6 +44,22 @@ Scenario: View revisions of a site
   And I follow "Revisions"
   Then the response status code should be 200
 
+Scenario: Create site snapshots
+  When I am connected with "admin" and "admin" on "admin/sonata/page/site/list"
+  And I fill in "filter_name_value" with "toto"
+  And I press "Filter"
+  And I follow "Create snapshots"
+  And I press "Create"
+  Then I should see "Snapshots were successfully created."
+
+Scenario: Show site
+  When I am connected with "admin" and "admin" on "admin/sonata/page/site/list"
+  And I fill in "filter_name_value" with "toto"
+  And I press "Filter"
+  And I follow "toto"
+  And I follow "Show"
+  Then the response status code should be 200
+
 Scenario: Export JSON data
   When I am connected with "admin" and "admin" on "admin/sonata/page/site/list"
   And I follow "json"
