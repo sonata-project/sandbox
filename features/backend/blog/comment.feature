@@ -43,6 +43,12 @@ Scenario: Export XLS data
   And I follow "xls"
   Then the response status code should be 200
 
+Scenario: Filter comments
+  When I am connected with "admin" and "admin" on "admin/sonata/news/comment/list"
+  And I fill in "filter_name_value" with "toto"
+  And I press "Filter"
+  Then I should see "toto"
+
 Scenario: Edit a comment
   When I am connected with "admin" and "admin" on "admin/sonata/news/comment/list"
   And I fill in "filter_name_value" with "toto"
@@ -50,6 +56,14 @@ Scenario: Edit a comment
   And I follow "toto"
   And I press "Update"
   Then I should see "Item has been successfully updated."
+
+Scenario: View history of a comment
+  When I am connected with "admin" and "admin" on "admin/sonata/news/comment/list"
+  And I fill in "filter_name_value" with "toto"
+  And I press "Filter"
+  And I follow "toto"
+  And I follow "Revisions"
+  Then the response status code should be 200
 
 Scenario: Delete a comment
   When I am connected with "admin" and "admin" on "admin/sonata/news/comment/list"

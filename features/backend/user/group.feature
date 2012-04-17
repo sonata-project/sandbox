@@ -21,6 +21,18 @@ Scenario: Add a new group
   And I press "Create"
   Then I should see "Item has been successfully created."
 
+Scenario: Filter groups
+  When I am connected with "admin" and "admin" on "admin/sonata/user/group/list"
+  And I fill in "filter_name_value" with "toto"
+  And I press "Filter"
+  Then I should see "toto"
+
+Scenario: View revisions of a group
+  When I am connected with "admin" and "admin" on "admin/sonata/user/group/list"
+  And I follow "toto"
+  And I follow "Revisions"
+  Then the response status code should be 200
+
 Scenario: Edit a group
   When I am connected with "admin" and "admin" on "admin/sonata/user/group/list"
   And I follow "toto"
