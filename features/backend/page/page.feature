@@ -45,6 +45,14 @@ Scenario: View revisions of a page
   And I follow "Revisions"
   Then the response status code should be 200
 
+Scenario: View content of a page
+  When I am connected with "admin" and "admin" on "admin/sonata/page/page/list"
+  And I fill in "filter_name_value" with "toto"
+  And I press "Filter"
+  And I follow "toto"
+  And I follow "Show"
+  Then the response status code should be 200
+
 Scenario: Delete a page
   When I am connected with "admin" and "admin" on "admin/sonata/page/page/list"
   And I fill in "filter_name_value" with "toto"
