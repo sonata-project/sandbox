@@ -23,20 +23,25 @@ Scenario: Add a new user
   And I press "Create"
   Then I should see "Item has been successfully created."
 
-Scenario: Edit an user
+Scenario: Filter users
   When I am connected with "admin" and "admin" on "admin/sonata/user/user/list"
-  And I follow "toto"
-  And I press "Update"
-  Then I should see "Item has been successfully updated."
+  And I fill in "filter_username_value" with "toto"
+  And I press "Filter"
+  Then I should see "toto"
 
-Scenario: Delete an user
+Scenario: View revisions of a user
   When I am connected with "admin" and "admin" on "admin/sonata/user/user/list"
   And I fill in "filter_username_value" with "toto"
   And I press "Filter"
   And I follow "toto"
-  And I follow "Delete"
-  And I press "Yes, delete"
-  Then I should see "Item has been deleted successfully."
+  And I follow "Revisions"
+  Then the response status code should be 200
+
+Scenario: Edit a user
+  When I am connected with "admin" and "admin" on "admin/sonata/user/user/list"
+  And I follow "toto"
+  And I press "Update"
+  Then I should see "Item has been successfully updated."
 
 Scenario: Export JSON data
   When I am connected with "admin" and "admin" on "admin/sonata/user/user/list"
@@ -57,3 +62,12 @@ Scenario: Export XLS data
   When I am connected with "admin" and "admin" on "admin/sonata/user/user/list"
   And I follow "xls"
   Then the response status code should be 200
+
+Scenario: Delete a user
+  When I am connected with "admin" and "admin" on "admin/sonata/user/user/list"
+  And I fill in "filter_username_value" with "toto"
+  And I press "Filter"
+  And I follow "toto"
+  And I follow "Delete"
+  And I press "Yes, delete"
+  Then I should see "Item has been deleted successfully."
