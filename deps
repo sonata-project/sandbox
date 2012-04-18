@@ -135,6 +135,7 @@
 [SonataCacheBundle]
     git=git://github.com/sonata-project/SonataCacheBundle.git
     target=/bundles/Sonata/CacheBundle
+    version=origin/2.0
 
 [SonataBlockBundle]
     git=git://github.com/sonata-project/SonataBlockBundle.git
@@ -144,6 +145,7 @@
 [SonataIntlBundle]
     git=git://github.com/sonata-project/SonataIntlBundle.git
     target=/bundles/Sonata/IntlBundle
+    version=origin/symfony2.0
 
 [SonataSeoBundle]
     git=git://github.com/sonata-project/SonataSeoBundle.git
@@ -152,14 +154,17 @@
 [SonataNewsBundle]
     git=git://github.com/sonata-project/SonataNewsBundle.git
     target=/bundles/Sonata/NewsBundle
+    version=origin/2.0
 
 [SonataUserBundle]
     git=git://github.com/sonata-project/SonataUserBundle.git
     target=/bundles/Sonata/UserBundle
+    version=origin/2.0
 
 [SonataFormatterBundle]
     git=git://github.com/sonata-project/SonataFormatterBundle.git
     target=/bundles/Sonata/FormatterBundle
+    version=origin/2.0
 
 [SonataNotificationBundle]
     git=git://github.com/sonata-project/SonataNotificationBundle.git
