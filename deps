@@ -4,7 +4,7 @@
 
 [twig]
     git=git://github.com/fabpot/Twig.git
-    version=v1.6.2
+    version=v1.6.5
 
 [monolog]
     git=git://github.com/Seldaek/monolog.git
@@ -50,7 +50,7 @@
 [SensioDistributionBundle]
     git=git://github.com/sensio/SensioDistributionBundle.git
     target=/bundles/Sensio/Bundle/DistributionBundle
-    version=origin/2.0
+    version=origin/master
 
 [SensioGeneratorBundle]
     git=git://github.com/sensio/SensioGeneratorBundle.git
@@ -145,7 +145,7 @@
 [SonataIntlBundle]
     git=git://github.com/sonata-project/SonataIntlBundle.git
     target=/bundles/Sonata/IntlBundle
-    version=origin/symfony2.0
+    version=origin/master
 
 [SonataSeoBundle]
     git=git://github.com/sonata-project/SonataSeoBundle.git
