@@ -13,7 +13,8 @@ before_script:
 
   # Setup nginx
   - sudo apt-get -qq install nginx >> install.log
-  - php-cgi -b 127.0.0.1:9000 &
+  - gem install god
+  - god -c tests/travis/travis.god -D
   - sudo nginx -c tests/travis/nginx.conf -p "$PWD/" >> install.log
 
   # Setup Database
