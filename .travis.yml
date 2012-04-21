@@ -14,7 +14,7 @@ before_script:
   # Setup nginx
   - sudo apt-get -qq install nginx >> install.log
   - gem install god
-  - god -c tests/travis/travis.god -D
+  - god -c tests/travis/travis.god
   - sudo nginx -c tests/travis/nginx.conf -p "$PWD/" >> install.log
 
   # Setup Database
