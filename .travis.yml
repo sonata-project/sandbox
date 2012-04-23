@@ -8,30 +8,34 @@ env:
 #  - SYMFONY_VERSION=origin/master  DB=mysql
 
 before_script:
-
   - echo "Starting install" > install.log
 
   # Setup nginx
-  - sudo apt-get -qq install nginx spawn-fcgi >> install.log
-  - gem install god
-  - god -c tests/travis/travis.god
-  - sudo nginx -c tests/travis/nginx.conf -p "$PWD/" >> install.log
+  - sudo apt-get -qq install nginx spawn-fcgi supervisor
+  - sudo /etc/init.d/supervisor stop
+  - sudo ls -ls /etc
+  - sudo ls -ls /etc/supervisor
+  - sudo mv -f tests/travis/supervisor.conf /etc/supervisor/supervisor.conf
+  - sudo /etc/init.d/supervisor start
+  - sudo supervisorctl -u root -p root status
+  - sudo nginx -c tests/travis/nginx.conf -p "$PWD/"
 
   # Setup Database
   - sh -c "if [ '$DB' = 'mysql' ]; then mysql -e 'CREATE DATABASE IF NOT EXISTS sonata_demo;'; fi" >> install.log
 
   # Setup code
-  - rm -rf .git && git init && git add --all && git commit --quiet -m "Initial commit (from the Sonata Sandbox)" >> install.log
-  - php bin/vendors install >> install.log
-  - git add --all && git commit --quiet -m "add submodules" >> install.log
-  - php tests/travis/build_bootstrap.php >> install.log
+#  - rm -rf .git && git init && git add --all && git commit --quiet -m "Initial commit (from the Sonata Sandbox)" >> install.log
+#  - php bin/vendors install >> install.log
+#  - git add --all && git commit --quiet -m "add submodules" >> install.log
+#  - php tests/travis/build_bootstrap.php >> install.log
 
   # Setup fixtures
-  - cp tests/travis/parameters.yml app/config/parameters.yml >> install.log
-  - php load_data.php >> install.log
+#  - cp tests/travis/parameters.yml app/config/parameters.yml >> install.log
+#  - php load_data.php >> install.log
 
   # Setup Behat & Mink
-  - wget -nc https://github.com/downloads/Behat/Behat/behat.phar >> install.log
-  - wget -nc https://github.com/downloads/Behat/Mink/mink.phar >> install.log
+#  - wget -nc https://github.com/downloads/Behat/Behat/behat.phar >> install.log
+#  - wget -nc https://github.com/downloads/Behat/Mink/mink.phar >> install.log
 
-script: php behat.phar -c tests/travis/behat.yml
+#script: php behat.phar -c tests/travis/behat.yml
+script:  netstat -na &&  ps aux && curl -I http://127.0.0.1/app_test.php
