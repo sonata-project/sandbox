@@ -13,6 +13,7 @@ before_script:
   # Setup nginx
   - sudo apt-get -qq install nginx spawn-fcgi supervisor >> install.log
   - sudo /etc/init.d/supervisor stop
+  - which php-cgi
   - sudo mv -f tests/travis/supervisord.conf /etc/supervisor/supervisord.conf
   - sudo /etc/init.d/supervisor start
   - sudo supervisorctl -u root -p root status
