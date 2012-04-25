@@ -11,9 +11,7 @@ before_script:
   - echo "Starting install" > install.log
 
   # Setup nginx
-  - sudo apt-get -qq install php5-cgi php5-mysql php5-gd php5-memcached php5-intl nginx spawn-fcgi supervisor >> install.log
-#  - cp -v /etc/php5/cli/conf.d/* /etc/php5/cgi/conf.d/
-  - php -i
+  - sudo apt-get -qq install nginx spawn-fcgi supervisor >> install.log
   - sudo /etc/init.d/supervisor stop
   - sudo mv -f tests/travis/supervisord.conf /etc/supervisor/supervisord.conf
   - sudo /etc/init.d/supervisor start
