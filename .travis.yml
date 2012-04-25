@@ -16,6 +16,7 @@ before_script:
   - sudo mv -f tests/travis/supervisord.conf /etc/supervisor/supervisord.conf
   - sudo /etc/init.d/supervisor start
   - sudo supervisorctl -u root -p root status
+  - cat /var/log/php53-cgi-01.log
   - sudo nginx -c tests/travis/nginx.conf -p "$PWD/"
 
   # Setup Database
