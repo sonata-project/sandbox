@@ -14,10 +14,11 @@ before_script:
   - sudo apt-get -qq install nginx spawn-fcgi supervisor >> install.log
   - sudo /etc/init.d/supervisor stop
   - sudo mv -f tests/travis/supervisord.conf /etc/supervisor/supervisord.conf
-  - sudo /etc/init.d/supervisor start
-  - sudo supervisorctl -u root -p root status
-  - cat /var/log/php53-cgi-01.log
-  - cat /home/vagrant/.phpenv/shims/php-cgi
+#  - sudo /etc/init.d/supervisor start
+#  - sudo supervisorctl -u root -p root status
+#  - cat /var/log/php53-cgi-01.log
+#  - cat /home/vagrant/.phpenv/shims/php-cgi
+  - php-cgi -b 127.0.0.1:9350 &
   - sudo nginx -c tests/travis/nginx.conf -p "$PWD/"
 
   # Setup Database
