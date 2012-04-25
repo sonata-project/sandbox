@@ -35,5 +35,5 @@ before_script:
 #  - wget -nc https://github.com/downloads/Behat/Behat/behat.phar >> install.log
 #  - wget -nc https://github.com/downloads/Behat/Mink/mink.phar >> install.log
 
-script: php -i; curl http://127.0.0.1/config.php
+script: curl http://127.0.0.1/app_test.php
 #script: php behat.phar -c tests/travis/behat.yml
