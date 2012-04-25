@@ -17,6 +17,7 @@ before_script:
   - sudo /etc/init.d/supervisor start
   - sudo supervisorctl -u root -p root status
   - cat /var/log/php53-cgi-01.log
+  - cat /home/vagrant/.phpenv/shims/php-cgi
   - sudo nginx -c tests/travis/nginx.conf -p "$PWD/"
 
   # Setup Database
