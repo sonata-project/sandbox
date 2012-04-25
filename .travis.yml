@@ -11,7 +11,7 @@ before_script:
   - echo "Starting install" > install.log
 
   # Setup nginx
-  - sudo apt-get -qq install php5-cgi php5-gd php5-memcached php5-intl nginx spawn-fcgi supervisor >> install.log
+  - sudo apt-get -qq install php5-cgi php5-mysql php5-gd php5-memcached php5-intl nginx spawn-fcgi supervisor >> install.log
   - sudo /etc/init.d/supervisor stop
   - sudo mv -f tests/travis/supervisord.conf /etc/supervisor/supervisord.conf
   - sudo /etc/init.d/supervisor start
@@ -22,18 +22,18 @@ before_script:
   - sh -c "if [ '$DB' = 'mysql' ]; then mysql -e 'CREATE DATABASE IF NOT EXISTS sonata_demo;'; fi" >> install.log
 
   # Setup code
-  - rm -rf .git && git init && git add --all && git commit --quiet -m "Initial commit (from the Sonata Sandbox)" >> install.log
-  - php bin/vendors install >> install.log
-  - git add --all && git commit --quiet -m "add submodules" >> install.log
-  - php tests/travis/build_bootstrap.php >> install.log
+#  - rm -rf .git && git init && git add --all && git commit --quiet -m "Initial commit (from the Sonata Sandbox)" >> install.log
+#  - php bin/vendors install >> install.log
+#  - git add --all && git commit --quiet -m "add submodules" >> install.log
+#  - php tests/travis/build_bootstrap.php >> install.log
 
   # Setup fixtures
-  - cp tests/travis/parameters.yml app/config/parameters.yml >> install.log
-  - php load_data.php >> install.log
+#  - cp tests/travis/parameters.yml app/config/parameters.yml >> install.log
+#  - php load_data.php >> install.log
 
   # Setup Behat & Mink
-  - wget -nc https://github.com/downloads/Behat/Behat/behat.phar >> install.log
-  - wget -nc https://github.com/downloads/Behat/Mink/mink.phar >> install.log
+#  - wget -nc https://github.com/downloads/Behat/Behat/behat.phar >> install.log
+#  - wget -nc https://github.com/downloads/Behat/Mink/mink.phar >> install.log
 
-script: curl http://127.0.0.1/app.php; curl http://127.0.0.1/app_dev.php;
+script: php -i; curl http://127.0.0.1/config.php
 #script: php behat.phar -c tests/travis/behat.yml
