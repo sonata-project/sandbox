@@ -169,6 +169,7 @@
 [SonataNotificationBundle]
     git=git://github.com/sonata-project/SonataNotificationBundle.git
     target=/bundles/Sonata/NotificationBundle
+    version=origin/2.0
 
 [gaufrette]
     git=git://github.com/sonata-project/Gaufrette.git
