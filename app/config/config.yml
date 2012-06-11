@@ -12,6 +12,7 @@ imports:
     - { resource: sonata/sonata_news.yml }
     - { resource: sonata/sonata_cache.yml }
     - { resource: sonata/sonata_seo.yml }
+    - { resource: sonata/sonata_notification.yml }
 
 framework:
     #esi:             ~
@@ -23,8 +24,8 @@ framework:
     csrf_protection: true
     validation:      { enable_annotations: true }
     templating:      { engines: ['twig'] } #assets_version: SomeVersionScheme
+    default_locale: %locale%
     session:
-        default_locale: %locale%
         auto_start:     true
 
 # Twig Configuration
@@ -78,5 +79,4 @@ swiftmailer:
     password:  %mailer_password%
 
 jms_security_extra:
-    secure_controllers:  true
     secure_all_services: false
