@@ -12,11 +12,11 @@
 namespace Sonata\Bundle\DemoBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilder;
+use Symfony\Component\Form\FormBuilderInterface;
 
 class EngineType extends AbstractType
 {
-    public function buildForm(FormBuilder $formBuilder, array $options)
+    public function buildForm(FormBuilderInterface $formBuilder, array $options)
     {
         $formBuilder
             ->add('name', 'text')
