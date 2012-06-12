@@ -11,13 +11,16 @@
 
 namespace Sonata\Bundle\DemoBundle\Form\Extension;
 
-use Symfony\Component\Form\FormBuilder;
+use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\AbstractTypeExtension;
+
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+
 use Sonata\Bundle\DemoBundle\Form\DataTransformer\EngineChoiceTransformer;
 
 class RescueEngineTypeExtension extends AbstractTypeExtension
 {
-    public function buildForm(FormBuilder $formBuilder, array $options)
+    public function buildForm(FormBuilderInterface $formBuilder, array $options)
     {
         if (count($options['rescue_engines']) == 0) {
             return;
@@ -39,11 +42,11 @@ class RescueEngineTypeExtension extends AbstractTypeExtension
         return 'sonata_demo_form_type_car';
     }
 
-    public function getDefaultOptions(array $options)
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        return array(
+        $resolver->setDefaults(array(
             'rescue_engines' => array()
-        );
+        ));
     }
 
     private function getRescueEngines(array $rescueEngines)
