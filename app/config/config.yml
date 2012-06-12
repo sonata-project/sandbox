@@ -13,7 +13,6 @@ imports:
     - { resource: sonata/sonata_cache.yml }
     - { resource: sonata/sonata_seo.yml }
     - { resource: sonata/sonata_notification.yml }
-    - { resource: sonata/sonata_user.yml }
 
 framework:
     #esi:             ~
@@ -53,6 +52,7 @@ assetic:
 doctrine:
     dbal:
         default_connection: default
+
         connections:
             default:
                 driver:   %database_driver%
@@ -60,6 +60,9 @@ doctrine:
                 user:     %database_user%
                 host:     %database_host%
                 password: %database_password%
+
+        types:
+            json: Sonata\Doctrine\Types\JsonType
 
     orm:
         auto_generate_proxy_classes: %kernel.debug%
