@@ -31,10 +31,46 @@ Scenario: Edit a post
   And I press "Update"
   Then I should see "Item has been successfully updated."
 
+Scenario: View revision of a post
+  When I am connected with "admin" and "admin" on "admin/sonata/news/post/list"
+  And I follow "title"
+  And I follow "Revisions"
+  Then the response status code should be 200
+
+Scenario: View the last revision of a post
+  When I am connected with "admin" and "admin" on "admin/sonata/news/post/list"
+  And I follow "title"
+  And I follow "Show"
+  Then the response status code should be 200
+
+Scenario: Filter posts
+  When I am connected with "admin" and "admin" on "admin/sonata/news/post/list"
+  And I fill in "filter_title_value" with "title"
+  And I press "Filter"
+  Then I should see "title"
+
+Scenario: Export JSON data
+  When I am connected with "admin" and "admin" on "admin/sonata/news/post/list"
+  And I follow "json"
+  Then the response status code should be 200
+
+Scenario: Export CSV data
+  When I am connected with "admin" and "admin" on "admin/sonata/news/post/list"
+  And I follow "csv"
+  Then the response status code should be 200
+
+Scenario: Export XML data
+  When I am connected with "admin" and "admin" on "admin/sonata/news/post/list"
+  And I follow "xml"
+  Then the response status code should be 200
+
+Scenario: Export XLS data
+  When I am connected with "admin" and "admin" on "admin/sonata/news/post/list"
+  And I follow "xls"
+  Then the response status code should be 200
+
 Scenario: Delete a post
   When I am connected with "admin" and "admin" on "admin/sonata/news/post/list"
-  And I fill in "filter_title_value" with "toto"
-  And I press "Filter"
   And I follow "title"
   And I follow "Delete"
   And I press "Yes, delete"

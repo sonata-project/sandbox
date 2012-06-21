@@ -5,14 +5,13 @@ use Behat\Mink\Behat\Context\MinkContext;
 use Behat\Behat\Context\Step;
 use Behat\Behat\Exception\PendingException;
 use Behat\Gherkin\Node\TableNode;
-use Behat\MinkBundle\Driver\SymfonyDriver;
 use Behat\Mink\Driver\GoutteDriver;
 use Behat\Mink\Driver\SahiDriver;
 use Behat\Mink\Element\DocumentElement;
 use PHPUnit_Framework_ExpectationFailedException as AssertException;
 use Behat\Mink\Session;
 
-require_once 'mink/autoload.php';
+require __DIR__ . '/../../mink.phar';
 
 /**
  * This context is intended for Browser interractions
