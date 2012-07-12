@@ -1,18 +1,14 @@
 <?php
 
 
-use Behat\Mink\Behat\Context\MinkContext;
-use Behat\Behat\Context\Step;
-use Behat\Behat\Exception\PendingException;
-use Behat\Gherkin\Node\TableNode;
-use Behat\MinkBundle\Driver\SymfonyDriver;
-use Behat\Mink\Driver\GoutteDriver;
-use Behat\Mink\Driver\SahiDriver;
-use Behat\Mink\Element\DocumentElement;
-use PHPUnit_Framework_ExpectationFailedException as AssertException;
-use Behat\Mink\Session;
+use Behat\Behat\Context\ClosuredContextInterface,
+    Behat\Behat\Context\TranslatedContextInterface,
+    Behat\Behat\Context\BehatContext,
+    Behat\Behat\Exception\PendingException;
+use Behat\Gherkin\Node\PyStringNode,
+    Behat\Gherkin\Node\TableNode;
 
-require_once 'mink/autoload.php';
+use Behat\MinkExtension\Context\MinkContext;
 
 /**
  * This context is intended for Browser interractions
