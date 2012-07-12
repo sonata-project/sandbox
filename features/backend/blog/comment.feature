@@ -22,3 +22,54 @@ Scenario: Add a new comment
   And I fill in "4f155592a220e_message" with "comment"
   And I press "Create"
   Then I should see "Item has been successfully created."
+
+Scenario: Export JSON data
+  When I am connected with "admin" and "admin" on "admin/sonata/news/comment/list"
+  And I follow "json"
+  Then the response status code should be 200
+
+Scenario: Export CSV data
+  When I am connected with "admin" and "admin" on "admin/sonata/news/comment/list"
+  And I follow "csv"
+  Then the response status code should be 200
+
+Scenario: Export XML data
+  When I am connected with "admin" and "admin" on "admin/sonata/news/comment/list"
+  And I follow "xml"
+  Then the response status code should be 200
+
+Scenario: Export XLS data
+  When I am connected with "admin" and "admin" on "admin/sonata/news/comment/list"
+  And I follow "xls"
+  Then the response status code should be 200
+
+Scenario: Filter comments
+  When I am connected with "admin" and "admin" on "admin/sonata/news/comment/list"
+  And I fill in "filter_name_value" with "toto"
+  And I press "Filter"
+  Then I should see "toto"
+
+Scenario: Edit a comment
+  When I am connected with "admin" and "admin" on "admin/sonata/news/comment/list"
+  And I fill in "filter_name_value" with "toto"
+  And I press "Filter"
+  And I follow "toto"
+  And I press "Update"
+  Then I should see "Item has been successfully updated."
+
+Scenario: View history of a comment
+  When I am connected with "admin" and "admin" on "admin/sonata/news/comment/list"
+  And I fill in "filter_name_value" with "toto"
+  And I press "Filter"
+  And I follow "toto"
+  And I follow "Revisions"
+  Then the response status code should be 200
+
+Scenario: Delete a comment
+  When I am connected with "admin" and "admin" on "admin/sonata/news/comment/list"
+  And I fill in "filter_name_value" with "toto"
+  And I press "Filter"
+  And I follow "toto"
+  And I follow "Delete"
+  And I press "Yes, delete"
+  Then I should see "Item has been deleted successfully."
