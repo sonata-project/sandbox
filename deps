@@ -103,6 +103,7 @@
 [FOSUserBundle]
     git=git://github.com/FriendsOfSymfony/FOSUserBundle.git
     target=/bundles/FOS/UserBundle
+    version=1.2.0
 
 [SonatajQueryBundle]
     git=git://github.com/sonata-project/SonatajQueryBundle.git
