@@ -1,10 +1,10 @@
 [symfony]
     git=git://github.com/symfony/symfony.git
-    version=v2.0.12
+    version=v2.0.16
 
 [twig]
     git=git://github.com/fabpot/Twig.git
-    version=v1.6.5
+    version=v1.9.0
 
 [monolog]
     git=git://github.com/Seldaek/monolog.git
@@ -47,11 +47,6 @@
     target=/bundles/JMS/SecurityExtraBundle
     version=origin/1.0.x
 
-[SensioDistributionBundle]
-    git=git://github.com/sensio/SensioDistributionBundle.git
-    target=/bundles/Sensio/Bundle/DistributionBundle
-    version=origin/master
-
 [SensioGeneratorBundle]
     git=git://github.com/sensio/SensioGeneratorBundle.git
     target=/bundles/Sensio/Bundle/GeneratorBundle
@@ -91,10 +86,12 @@
 [KnpMenu]
     git=git://github.com/KnpLabs/KnpMenu.git
     target=/knp/menu
+    version=v1.0.0
 
 [KnpMenuBundle]
     git=git://github.com/KnpLabs/KnpMenuBundle.git
     target=/bundles/Knp/Bundle/MenuBundle
+    version=v1.0.0
 
 [KnpMarkdownBundle]
     git=git://github.com/KnpLabs/KnpMarkdownBundle.git

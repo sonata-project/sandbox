@@ -18,9 +18,7 @@ Symfony Standard Edition
 * AsseticBundle
 * JMSSecurityExtraBundle
 * WebProfilerBundle (in dev/test env)
-* SensioDistributionBundle (in dev/test env)
 * SensioGeneratorBundle (in dev/test env)
-* AcmeDemoBundle (in dev/test env)
 
 Sonata Bundles
 ~~~~~~~~~~~~~~
@@ -88,27 +86,33 @@ Your frontend still looking weird because bundle assets are not installed. Run t
     app/console assets:install web
 
 
-Sonata Page Bundle
-~~~~~~~~~~~~~~~~~~
-
-By default the Sonata Page bundle is activated, so you need to starts 2 commands before going further::
-
-    app/console sonata:page:create-site --enabled=true --name=localhost --host=localhost --relativePath=/ --enabledFrom=now --enabledTo="+10 years" --default=true
-    app/console sonata:page:update-core-routes --site=all
-    app/console sonata:page:create-snapshots --site=all
-
-.. note::
-
-    The ``update-core-routes`` populates the database with ``page`` from the routing information.
-    The ``create-snapshots`` create a snapshot (a public page version) from the created pages.
-
-
 Fixtures
 ~~~~~~~~~~~~~~~~~~
 
 To have some actual data in your DB, you should load the fixtures by running::
 
     app/console doctrine:fixtures:load
+
+Sonata Page Bundle
+~~~~~~~~~~~~~~~~~~
+
+By default the Sonata Page bundle is activated, so you need to starts 3 commands before going further::
+
+    app/console sonata:page:update-core-routes --site=all
+    app/console sonata:page:create-snapshots --site=all
+
+
+.. note::
+
+   If you didn't load fixture you need to create a default website :
+
+       app/console sonata:page:create-site --enabled=true --locale=en --name=localhost --host=localhost --relativePath=/ --enabledFrom=now --enabledTo="+10 years" --default=true
+
+
+.. note::
+
+    The ``update-core-routes`` populates the database with ``page`` from the routing information.
+    The ``create-snapshots`` create a snapshot (a public page version) from the created pages.
 
 
 Unit Testing
