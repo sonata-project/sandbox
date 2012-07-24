@@ -244,7 +244,7 @@ CONTENT
 
         $global = $pageManager->create();
         $global->setName('global');
-        $global->setRouteName('global');
+        $global->setRouteName('_page_internal_global');
         $global->setSite($site);
 
         $pageManager->save($global);
