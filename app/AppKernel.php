@@ -81,11 +81,6 @@ class AppKernel extends Kernel
             $bundles[] = new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle();
         }
 
-        if ($this->getEnvironment() == 'test') {
-            $bundles[] = new Behat\MinkBundle\MinkBundle();
-            $bundles[] = new Behat\BehatBundle\BehatBundle();
-        }
-
         return $bundles;
     }
 
