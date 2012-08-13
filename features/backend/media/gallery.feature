@@ -11,13 +11,13 @@ Scenario: Check gallery admin pages when connected
   Then I should see "Filters"
 
 Scenario: Add a new gallery with some errors
-  When I am connected with "admin" and "admin" on "admin/sonata/media/gallery/create?context=default&uniqid=4f155592a220e"
+  When I am connected with "admin" and "admin" on "admin/sonata/media/gallery/create?context=default&uniqid=f155592a220e"
   And I press "Create"
   Then I should see "An error has occurred during item creation."
 
 Scenario: Add a new gallery
-  When I am connected with "admin" and "admin" on "admin/sonata/media/gallery/create?context=default&uniqid=4f155592a220e"
-  And I fill in "4f155592a220e_name" with "toto"
+  When I am connected with "admin" and "admin" on "admin/sonata/media/gallery/create?context=default&uniqid=f155592a220e"
+  And I fill in "f155592a220e_name" with "toto"
   And I press "Create"
   Then I should see "Item has been successfully created."
 
