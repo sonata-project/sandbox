@@ -11,15 +11,15 @@ Scenario: Check page admin pages when connected
   Then I should see "Filters"
 
 Scenario: Add a new page with some errors
-  When I am connected with "admin" and "admin" on "admin/sonata/page/page/create?uniqid=4f155592a220e&siteId=1"
+  When I am connected with "admin" and "admin" on "admin/sonata/page/page/create?uniqid=f155592a220e&siteId=1"
   And I press "Create"
   Then I should see "An error has occurred during item creation."
 
 Scenario: Add a new page
-  When I am connected with "admin" and "admin" on "admin/sonata/page/page/create?uniqid=4f155592a220e&siteId=1"
-  And I fill in "4f155592a220e_name" with "toto"
-  And I fill in "4f155592a220e_position" with "1"
-  And I select "default" from "4f155592a220e_templateCode"
+  When I am connected with "admin" and "admin" on "admin/sonata/page/page/create?uniqid=f155592a220e&siteId=1"
+  And I fill in "f155592a220e_name" with "toto"
+  And I fill in "f155592a220e_position" with "1"
+  And I select "default" from "f155592a220e_templateCode"
   And I press "Create"
   Then I should see "Item has been successfully created."
 

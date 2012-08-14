@@ -11,17 +11,17 @@ Scenario: Check post admin pages when connected
   Then I should see "Filters"
 
 Scenario: Add a new post with some errors
-  When I am connected with "admin" and "admin" on "admin/sonata/news/post/create?uniqid=4f155592a220e"
+  When I am connected with "admin" and "admin" on "admin/sonata/news/post/create?uniqid=f155592a220e"
   And I press "Create"
   Then I should see "An error has occurred during item creation."
 
 Scenario: Add a new post
-  When I am connected with "admin" and "admin" on "admin/sonata/news/post/create?uniqid=4f155592a220e"
-  And I fill in "4f155592a220e_title" with "toto"
-  And I fill in "4f155592a220e_abstract" with "abstract"
-  And I select "markdown" from "4f155592a220e_contentFormatter"
-  And I fill in "4f155592a220e_rawContent" with "raw content"
-  And I select "2" from "4f155592a220e_commentsDefaultStatus_2"
+  When I am connected with "admin" and "admin" on "admin/sonata/news/post/create?uniqid=f155592a220e"
+  And I fill in "f155592a220e_title" with "toto"
+  And I fill in "f155592a220e_abstract" with "abstract"
+  And I select "markdown" from "f155592a220e_contentFormatter"
+  And I fill in "f155592a220e_rawContent" with "raw content"
+  And I select "2" from "f155592a220e_commentsDefaultStatus_2"
   And I press "Create"
   Then I should see "Item has been successfully created."
 
