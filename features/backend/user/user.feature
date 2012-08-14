@@ -11,15 +11,15 @@ Scenario: Check user admin pages when connected
   Then I should see "Filters"
 
 Scenario: Add a new user with some errors
-  When I am connected with "admin" and "admin" on "admin/sonata/user/user/create?uniqid=4f155592a220e"
+  When I am connected with "admin" and "admin" on "admin/sonata/user/user/create?uniqid=f155592a220e"
   And I press "Create"
   Then I should see "An error has occurred during item creation."
 
 Scenario: Add a new user
-  When I am connected with "admin" and "admin" on "admin/sonata/user/user/create?uniqid=4f155592a220e"
-  And I fill in "4f155592a220e_username" with "toto"
-  And I fill in "4f155592a220e_email" with "toto@local.host"
-  And I fill in "4f155592a220e_plainPassword" with "tata"
+  When I am connected with "admin" and "admin" on "admin/sonata/user/user/create?uniqid=f155592a220e"
+  And I fill in "f155592a220e_username" with "toto"
+  And I fill in "f155592a220e_email" with "toto@local.host"
+  And I fill in "f155592a220e_plainPassword" with "tata"
   And I press "Create"
   Then I should see "Item has been successfully created."
 
