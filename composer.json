@@ -52,6 +52,12 @@
         
         "kriswallsmith/buzz": "dev-master"
     },
+
+    "require-dev": {
+        "behat/mink-extension": "*",
+        "behat/mink-selenium2-driver": "*",
+        "behat/mink-goutte-driver": "*"
+    },
     
     "scripts": {
         "post-install-cmd": [
