@@ -200,3 +200,15 @@
 [Exporter]
     git=git://github.com/sonata-project/exporter.git
     target=/exporter
+
+[JMSSerializerBundle]
+    git=git://github.com/schmittjoh/JMSSerializerBundle.git
+    target=bundles/JMS/SerializerBundle
+
+[Sonata]
+    git=git://github.com/sonata-project/sonata.git
+    target=/sonata
+
+[SonataCapistrano]
+    git=git://github.com/sonata-project/sonata-capistrano.git
+    target=/sonata-capistrano
