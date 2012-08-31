@@ -1,0 +1,20 @@
+sonata_product:
+    products:
+        sonata.demo.product.hardware:
+            provider: sonata.demo.product.type.hardware
+            manager:  sonata.demo.product.manager.hardware
+        sonata.demo.product.software:
+            provider: sonata.demo.product.type.software
+            manager:  sonata.demo.product.manager.software
+
+    class:
+        user: Application\Sonata\Userbundle\Entity\User # you must define your own user class
+
+# Enable Doctrine to map the provided entities
+doctrine:
+    orm:
+        entity_managers:
+            default:
+                mappings:
+                    ApplicationSonataProductBundle: ~
+                    SonataProductBundle: ~

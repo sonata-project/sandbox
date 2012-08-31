@@ -7,3 +7,4 @@ web/uploads
 app/config/*parameters.yml
 behat.phar
 mink.phar
+.idea
