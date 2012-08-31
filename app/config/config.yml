@@ -15,6 +15,15 @@ imports:
     - { resource: sonata/sonata_user.yml }
     - { resource: sonata/sonata_notification.yml }
 
+    # Sonata e-commerce bundles
+    - { resource: sonata/sonata_order.yml }
+    - { resource: sonata/sonata_payment.yml }
+    - { resource: sonata/sonata_product.yml }
+    - { resource: sonata/sonata_invoice.yml }
+    - { resource: sonata/sonata_delivery.yml }
+    - { resource: sonata/sonata_customer.yml }
+    - { resource: sonata/sonata_basket.yml }
+
 framework:
     #esi:             ~
     translator: { fallback: en }
@@ -74,7 +83,8 @@ doctrine:
                 #metadata_cache_driver: apc
                 #query_cache_driver: apc
                 #result_cache_driver: apc
-                mappings: ~
+                mappings:
+                    SonataEcommerceDemoBundle: ~
 
 # Swiftmailer Configuration
 swiftmailer:

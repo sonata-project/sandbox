@@ -48,6 +48,34 @@ sonata_media_pixlr:
     resource: '@SonataMediaBundle/Resources/config/routing/pixlr.xml'
     prefix: /admin/media
 
+#sonata_user:
+#    resource: @SonataUserBundle/Resources/config/routing/user.xml
+#    prefix: /shop/user
+
+sonata_basket:
+    resource: @SonataBasketBundle/Resources/config/routing/basket.xml
+    prefix: /shop/basket
+
+sonata_order:
+    resource: @SonataOrderBundle/Resources/config/routing/order.xml
+    prefix: /shop/user/invoice
+
+sonata_product:
+    resource: @SonataProductBundle/Resources/config/routing/product.xml
+    prefix: /shop/product
+
+sonata_category:
+    resource: @SonataProductBundle/Resources/config/routing/category.xml
+    prefix: /shop/category
+
+sonata_payment:
+    resource: @SonataPaymentBundle/Resources/config/routing/payment.xml
+    prefix: /shop/payment
+
+sonata_invoice:
+    resource: @SonataInvoiceBundle/Resources/config/routing/invoice.xml
+    prefix: /shop/user/invoice
+
 #_imagine:
 #    resource: .
 #    type:     imagine

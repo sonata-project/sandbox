@@ -52,6 +52,23 @@ class AppKernel extends Kernel
             new Application\Sonata\MediaBundle\ApplicationSonataMediaBundle(),
             // new Liip\ImagineBundle\LiipImagineBundle(),
 
+            // E-COMMERCE
+            new Sonata\BasketBundle\SonataBasketBundle(),
+            new Application\Sonata\BasketBundle\ApplicationSonataBasketBundle(),
+            new Sonata\CustomerBundle\SonataCustomerBundle(),
+            new Application\Sonata\CustomerBundle\ApplicationSonataCustomerBundle(),
+            new Sonata\DeliveryBundle\SonataDeliveryBundle(),
+            new Application\Sonata\DeliveryBundle\ApplicationSonataDeliveryBundle(),
+            new Sonata\InvoiceBundle\SonataInvoiceBundle(),
+            new Application\Sonata\InvoiceBundle\ApplicationSonataInvoiceBundle(),
+            new Sonata\OrderBundle\SonataOrderBundle(),
+            new Application\Sonata\OrderBundle\ApplicationSonataOrderBundle(),
+            new Sonata\PaymentBundle\SonataPaymentBundle(),
+            new Application\Sonata\PaymentBundle\ApplicationSonataPaymentBundle(),
+            new Sonata\ProductBundle\SonataProductBundle(),
+            new Application\Sonata\ProductBundle\ApplicationSonataProductBundle(),
+            new JMS\SerializerBundle\JMSSerializerBundle($this),
+
             // SONATA CORE & HELPER BUNDLES
             new Sonata\EasyExtendsBundle\SonataEasyExtendsBundle(),
             new Sonata\jQueryBundle\SonatajQueryBundle(),
@@ -66,6 +83,7 @@ class AppKernel extends Kernel
 
             // DEMO
             new Sonata\Bundle\DemoBundle\SonataDemoBundle(),
+            new Sonata\Bundle\EcommerceDemoBundle\SonataEcommerceDemoBundle(),
 
             // Enable this if you want to audit backend action
             new SimpleThings\EntityAudit\SimpleThingsEntityAuditBundle(),
