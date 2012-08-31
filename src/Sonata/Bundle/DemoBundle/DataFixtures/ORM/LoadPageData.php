@@ -43,6 +43,8 @@ class LoadPageData extends AbstractFixture implements ContainerAwareInterface, O
         $this->createBlogIndex($site);
         $this->createGalleryIndex($site);
         $this->createMediaPage($site);
+        $this->createProductPage($site);
+        $this->createBasketPage($site);
     }
 
     public function createSite()
@@ -215,6 +217,46 @@ CONTENT
 );
 
         $pageManager->save($homepage);
+    }
+
+    public function createProductPage(SiteInterface $site)
+    {
+        $pageManager = $this->getPageManager();
+
+        $category = $pageManager->create();
+
+        $category->setSlug('shop-category');
+        $category->setUrl('/shop/category');
+        $category->setName('Product & Category');
+        $category->setEnabled(true);
+        $category->setDecorate(1);
+        $category->setRequestMethod('GET|POST|HEAD|DELETE|PUT');
+        $category->setTemplateCode('default');
+        $category->setRouteName('sonata_category_index');
+        $category->setSite($site);
+        $category->setParent($this->getReference('page-homepage'));
+
+        $pageManager->save($category);
+    }
+
+    public function createBasketPage(SiteInterface $site)
+    {
+        $pageManager = $this->getPageManager();
+
+        $basket = $pageManager->create();
+
+        $basket->setSlug('shop-basket');
+        $basket->setUrl('/shop/basket');
+        $basket->setName('Basket');
+        $basket->setEnabled(true);
+        $basket->setDecorate(1);
+        $basket->setRequestMethod('GET|POST|HEAD|DELETE|PUT');
+        $basket->setTemplateCode('default');
+        $basket->setRouteName('sonata_basket_index');
+        $basket->setSite($site);
+        $basket->setParent($this->getReference('page-homepage'));
+
+        $pageManager->save($basket);
     }
 
     public function createMediaPage(SiteInterface $site)
