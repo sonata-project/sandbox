@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="sonata.demo.product.hardware.class">Sonata\Bundle\EcommerceDemoBundle\Entity\Hardware</parameter>
+        <parameter key="sonata.demo.product.software.class">Sonata\Bundle\EcommerceDemoBundle\Entity\Software</parameter>
+    </parameters>
+
+    <services>
+        <service id="sonata.demo.product.manager.hardware" class="Sonata\ProductBundle\Entity\ProductManager">
+            <argument>%sonata.demo.product.hardware.class%</argument>
+            <argument type="service" id="sonata.product.entity_manager" />
+        </service>
+
+        <service id="sonata.demo.product.manager.software" class="Sonata\ProductBundle\Entity\ProductManager">
+            <argument>%sonata.demo.product.software.class%</argument>
+            <argument type="service" id="sonata.product.entity_manager" />
+        </service>
+
+        <service id="sonata.demo.product.type.hardware" class="Sonata\Bundle\EcommerceDemoBundle\Provider\HardwareProvider">
+            <argument type="service" id="serializer" />
+        </service>
+
+        <service id="sonata.demo.product.type.software" class="Sonata\Bundle\EcommerceDemoBundle\Provider\SoftwareProvider">
+            <argument type="service" id="serializer" />
+        </service>
+    </services>
+
+</container>
