@@ -1,144 +1,144 @@
 [submodule "vendor/symfony"]
 	path = vendor/symfony
-	url = git://github.com/symfony/symfony.git
+	url = git@git.fullsix.com:/php/mirrors/symfony/symfony.git
 [submodule "vendor/twig"]
 	path = vendor/twig
-	url = git://github.com/fabpot/Twig.git
+	url = git@git.fullsix.com:/php/mirrors/fabpot/Twig.git
 [submodule "vendor/monolog"]
 	path = vendor/monolog
-	url = git://github.com/Seldaek/monolog.git
+	url = git@git.fullsix.com:/php/mirrors/Seldaek/monolog.git
 [submodule "vendor/doctrine-common"]
 	path = vendor/doctrine-common
-	url = git://github.com/doctrine/common.git
+	url = git@git.fullsix.com:/php/mirrors/doctrine/common.git
 [submodule "vendor/doctrine-dbal"]
 	path = vendor/doctrine-dbal
-	url = git://github.com/doctrine/dbal.git
+	url = git@git.fullsix.com:/php/mirrors/doctrine/dbal.git
 [submodule "vendor/doctrine"]
 	path = vendor/doctrine
-	url = git://github.com/doctrine/doctrine2.git
+	url = git@git.fullsix.com:/php/mirrors/doctrine/doctrine2.git
 [submodule "vendor/swiftmailer"]
 	path = vendor/swiftmailer
-	url = git://github.com/swiftmailer/swiftmailer.git
+	url = git@git.fullsix.com:/php/mirrors/swiftmailer/swiftmailer.git
 [submodule "vendor/assetic"]
 	path = vendor/assetic
-	url = git://github.com/kriswallsmith/assetic.git
+	url = git@git.fullsix.com:/php/mirrors/kriswallsmith/assetic.git
 [submodule "vendor/twig-extensions"]
 	path = vendor/twig-extensions
-	url = git://github.com/fabpot/Twig-extensions.git
+	url = git@git.fullsix.com:/php/mirrors/fabpot/Twig-extensions.git
 [submodule "vendor/metadata"]
 	path = vendor/metadata
-	url = git://github.com/schmittjoh/metadata.git
+	url = git@git.fullsix.com:/php/mirrors/schmittjoh/metadata.git
 [submodule "vendor/bundles/Sensio/Bundle/FrameworkExtraBundle"]
 	path = vendor/bundles/Sensio/Bundle/FrameworkExtraBundle
-	url = git://github.com/sensio/SensioFrameworkExtraBundle.git
+	url = git@git.fullsix.com:/php/mirrors/sensio/SensioFrameworkExtraBundle.git
 [submodule "vendor/bundles/JMS/SecurityExtraBundle"]
 	path = vendor/bundles/JMS/SecurityExtraBundle
-	url = git://github.com/schmittjoh/JMSSecurityExtraBundle.git
+	url = git@git.fullsix.com:/php/mirrors/schmittjoh/JMSSecurityExtraBundle.git
 [submodule "vendor/bundles/Sensio/Bundle/GeneratorBundle"]
 	path = vendor/bundles/Sensio/Bundle/GeneratorBundle
-	url = git://github.com/sensio/SensioGeneratorBundle.git
+	url = git@git.fullsix.com:/php/mirrors/sensio/SensioGeneratorBundle.git
 [submodule "vendor/bundles/Symfony/Bundle/AsseticBundle"]
 	path = vendor/bundles/Symfony/Bundle/AsseticBundle
-	url = git://github.com/symfony/AsseticBundle.git
+	url = git@git.fullsix.com:/php/mirrors/symfony/AsseticBundle.git
 [submodule "vendor/doctrine-data-fixtures"]
 	path = vendor/doctrine-data-fixtures
-	url = git://github.com/doctrine/data-fixtures.git
+	url = git@git.fullsix.com:/php/mirrors/doctrine/data-fixtures.git
 [submodule "vendor/doctrine-migrations"]
 	path = vendor/doctrine-migrations
-	url = git://github.com/doctrine/migrations.git
+	url = git@git.fullsix.com:/php/mirrors/doctrine/migrations.git
 [submodule "vendor/bundles/Symfony/Bundle/DoctrineMigrationsBundle"]
 	path = vendor/bundles/Symfony/Bundle/DoctrineMigrationsBundle
-	url = git://github.com/doctrine/DoctrineMigrationsBundle.git
+	url = git@git.fullsix.com:/php/mirrors/doctrine/DoctrineMigrationsBundle.git
 [submodule "vendor/bundles/Symfony/Bundle/DoctrineFixturesBundle"]
 	path = vendor/bundles/Symfony/Bundle/DoctrineFixturesBundle
-	url = git://github.com/doctrine/DoctrineFixturesBundle.git
+	url = git@git.fullsix.com:/php/mirrors/doctrine/DoctrineFixturesBundle.git
 [submodule "vendor/imagine"]
 	path = vendor/imagine
-	url = git://github.com/avalanche123/Imagine.git
+	url = git@git.fullsix.com:/php/mirrors/avalanche123/Imagine.git
 [submodule "vendor/bundles/Liip/ImagineBundle"]
 	path = vendor/bundles/Liip/ImagineBundle
-	url = git://github.com/liip/LiipImagineBundle.git
+	url = git@git.fullsix.com:/php/mirrors/liip/LiipImagineBundle.git
 [submodule "vendor/knp/menu"]
 	path = vendor/knp/menu
-	url = git://github.com/KnpLabs/KnpMenu.git
+	url = git@git.fullsix.com:/php/mirrors/KnpLabs/KnpMenu.git
 [submodule "vendor/bundles/Knp/Bundle/MenuBundle"]
 	path = vendor/bundles/Knp/Bundle/MenuBundle
-	url = git://github.com/KnpLabs/KnpMenuBundle.git
+	url = git@git.fullsix.com:/php/mirrors/KnpLabs/KnpMenuBundle.git
 [submodule "vendor/bundles/Knp/Bundle/MarkdownBundle"]
 	path = vendor/bundles/Knp/Bundle/MarkdownBundle
-	url = git://github.com/KnpLabs/KnpMarkdownBundle.git
+	url = git@git.fullsix.com:/php/mirrors/KnpLabs/KnpMarkdownBundle.git
 [submodule "vendor/bundles/FOS/UserBundle"]
 	path = vendor/bundles/FOS/UserBundle
-	url = git://github.com/FriendsOfSymfony/FOSUserBundle.git
+	url = git@git.fullsix.com:/php/mirrors/FriendsOfSymfony/FOSUserBundle.git
 [submodule "vendor/bundles/Sonata/jQueryBundle"]
 	path = vendor/bundles/Sonata/jQueryBundle
-	url = git://github.com/sonata-project/SonatajQueryBundle.git
+	url = git@git.fullsix.com:/php/mirrors/sonata-project/SonatajQueryBundle.git
 [submodule "vendor/bundles/Sonata/AdminBundle"]
 	path = vendor/bundles/Sonata/AdminBundle
-	url = git://github.com/sonata-project/SonataAdminBundle.git
+	url = git@git.fullsix.com:/php/mirrors/sonata-project/SonataAdminBundle.git
 [submodule "vendor/bundles/Sonata/DoctrineORMAdminBundle"]
 	path = vendor/bundles/Sonata/DoctrineORMAdminBundle
-	url = git://github.com/sonata-project/SonataDoctrineORMAdminBundle.git
+	url = git@git.fullsix.com:/php/mirrors/sonata-project/SonataDoctrineORMAdminBundle.git
 [submodule "vendor/bundles/Sonata/EasyExtendsBundle"]
 	path = vendor/bundles/Sonata/EasyExtendsBundle
-	url = git://github.com/sonata-project/SonataEasyExtendsBundle.git
+	url = git@git.fullsix.com:/php/mirrors/sonata-project/SonataEasyExtendsBundle.git
 [submodule "vendor/bundles/Sonata/MediaBundle"]
 	path = vendor/bundles/Sonata/MediaBundle
-	url = git://github.com/sonata-project/SonataMediaBundle.git
+	url = git@git.fullsix.com:/php/mirrors/sonata-project/SonataMediaBundle.git
 [submodule "vendor/bundles/Sonata/PageBundle"]
 	path = vendor/bundles/Sonata/PageBundle
-	url = git://github.com/sonata-project/SonataPageBundle.git
+	url = git@git.fullsix.com:/php/mirrors/sonata-project/SonataPageBundle.git
 [submodule "vendor/bundles/Sonata/CacheBundle"]
 	path = vendor/bundles/Sonata/CacheBundle
-	url = git://github.com/sonata-project/SonataCacheBundle.git
+	url = git@git.fullsix.com:/php/mirrors/sonata-project/SonataCacheBundle.git
 [submodule "vendor/bundles/Sonata/BlockBundle"]
 	path = vendor/bundles/Sonata/BlockBundle
-	url = git://github.com/sonata-project/SonataBlockBundle.git
+	url = git@git.fullsix.com:/php/mirrors/sonata-project/SonataBlockBundle.git
 [submodule "vendor/bundles/Sonata/IntlBundle"]
 	path = vendor/bundles/Sonata/IntlBundle
-	url = git://github.com/sonata-project/SonataIntlBundle.git
+	url = git@git.fullsix.com:/php/mirrors/sonata-project/SonataIntlBundle.git
 [submodule "vendor/bundles/Sonata/SeoBundle"]
 	path = vendor/bundles/Sonata/SeoBundle
-	url = git://github.com/sonata-project/SonataSeoBundle.git
+	url = git@git.fullsix.com:/php/mirrors/sonata-project/SonataSeoBundle.git
 [submodule "vendor/bundles/Sonata/NewsBundle"]
 	path = vendor/bundles/Sonata/NewsBundle
-	url = git://github.com/sonata-project/SonataNewsBundle.git
+	url = git@git.fullsix.com:/php/mirrors/sonata-project/SonataNewsBundle.git
 [submodule "vendor/bundles/Sonata/UserBundle"]
 	path = vendor/bundles/Sonata/UserBundle
-	url = git://github.com/sonata-project/SonataUserBundle.git
+	url = git@git.fullsix.com:/php/mirrors/sonata-project/SonataUserBundle.git
 [submodule "vendor/bundles/Sonata/FormatterBundle"]
 	path = vendor/bundles/Sonata/FormatterBundle
-	url = git://github.com/sonata-project/SonataFormatterBundle.git
+	url = git@git.fullsix.com:/php/mirrors/sonata-project/SonataFormatterBundle.git
 [submodule "vendor/bundles/Sonata/NotificationBundle"]
 	path = vendor/bundles/Sonata/NotificationBundle
-	url = git://github.com/sonata-project/SonataNotificationBundle.git
+	url = git@git.fullsix.com:/php/mirrors/sonata-project/SonataNotificationBundle.git
 [submodule "vendor/gaufrette"]
 	path = vendor/gaufrette
-	url = git://github.com/sonata-project/Gaufrette.git
+	url = git@git.fullsix.com:/php/mirrors/sonata-project/Gaufrette.git
 [submodule "vendor/buzz"]
 	path = vendor/buzz
-	url = git://github.com/kriswallsmith/Buzz.git
+	url = git@git.fullsix.com:/php/mirrors/kriswallsmith/Buzz.git
 [submodule "vendor/sonata-doctrine-extensions"]
 	path = vendor/sonata-doctrine-extensions
-	url = git://github.com/sonata-project/sonata-doctrine-extensions.git
+	url = git@git.fullsix.com:/php/mirrors/sonata-project/sonata-doctrine-extensions.git
 [submodule "vendor/sonata-capistrano"]
 	path = vendor/sonata-capistrano
-	url = git://github.com/sonata-project/sonata-capistrano.git
+	url = git@git.fullsix.com:/php/mirrors/sonata-project/sonata-capistrano.git
 [submodule "vendor/faker"]
 	path = vendor/faker
-	url = git://github.com/fzaninotto/Faker.git
+	url = git@git.fullsix.com:/php/mirrors/fzaninotto/Faker.git
 [submodule "vendor/bundles/Bazinga/Bundle/FakerBundle"]
 	path = vendor/bundles/Bazinga/Bundle/FakerBundle
-	url = git://github.com/willdurand/BazingaFakerBundle.git
+	url = git@git.fullsix.com:/php/mirrors/willdurand/BazingaFakerBundle.git
 [submodule "vendor/bundles/SimpleThings/EntityAudit"]
 	path = vendor/bundles/SimpleThings/EntityAudit
-	url = git://github.com/simplethings/EntityAudit.git
+	url = git@git.fullsix.com:/php/mirrors/simplethings/EntityAudit.git
 [submodule "vendor/exporter"]
 	path = vendor/exporter
-	url = git://github.com/sonata-project/exporter.git
+	url = git@git.fullsix.com:/php/mirrors/sonata-project/exporter.git
 [submodule "vendor/bundles/JMS/SerializerBundle"]
 	path = vendor/bundles/JMS/SerializerBundle
-	url = git://github.com/schmittjoh/JMSSerializerBundle.git
+	url = git@git.fullsix.com:/php/mirrors/schmittjoh/JMSSerializerBundle.git
 [submodule "vendor/sonata"]
 	path = vendor/sonata
 	url = git@github.com:sonata-project/sonata.git
