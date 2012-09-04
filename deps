@@ -1,208 +1,208 @@
 [symfony]
-    git=git://github.com/symfony/symfony.git
+    git=git@git.fullsix.com:/php/mirrors/symfony/symfony.git
     version=v2.0.16
 
 [twig]
-    git=git://github.com/fabpot/Twig.git
+    git=git@git.fullsix.com:/php/mirrors/fabpot/Twig.git
     version=v1.9.0
 
 [monolog]
-    git=git://github.com/Seldaek/monolog.git
+    git=git@git.fullsix.com:/php/mirrors/Seldaek/monolog.git
     version=1.0.2
 
 [doctrine-common]
-    git=git://github.com/doctrine/common.git
+    git=git@git.fullsix.com:/php/mirrors/doctrine/common.git
     version=2.1.4
 
 [doctrine-dbal]
-    git=git://github.com/doctrine/dbal.git
+    git=git@git.fullsix.com:/php/mirrors/doctrine/dbal.git
     version=2.1.6
 
 [doctrine]
-    git=git://github.com/doctrine/doctrine2.git
+    git=git@git.fullsix.com:/php/mirrors/doctrine/doctrine2.git
     version=2.1.6
 
 [swiftmailer]
-    git=git://github.com/swiftmailer/swiftmailer.git
+    git=git@git.fullsix.com:/php/mirrors/swiftmailer/swiftmailer.git
     version=v4.1.5
 
 [assetic]
-    git=git://github.com/kriswallsmith/assetic.git
+    git=git@git.fullsix.com:/php/mirrors/kriswallsmith/assetic.git
     version=v1.0.2
 
 [twig-extensions]
-    git=git://github.com/fabpot/Twig-extensions.git
+    git=git@git.fullsix.com:/php/mirrors/fabpot/Twig-extensions.git
 
 [metadata]
-    git=git://github.com/schmittjoh/metadata.git
+    git=git@git.fullsix.com:/php/mirrors/schmittjoh/metadata.git
     version=1.1.1
 
 [SensioFrameworkExtraBundle]
-    git=git://github.com/sensio/SensioFrameworkExtraBundle.git
+    git=git@git.fullsix.com:/php/mirrors/sensio/SensioFrameworkExtraBundle.git
     target=/bundles/Sensio/Bundle/FrameworkExtraBundle
     version=origin/2.0
 
 [JMSSecurityExtraBundle]
-    git=git://github.com/schmittjoh/JMSSecurityExtraBundle.git
+    git=git@git.fullsix.com:/php/mirrors/schmittjoh/JMSSecurityExtraBundle.git
     target=/bundles/JMS/SecurityExtraBundle
     version=origin/1.0.x
 
 [SensioGeneratorBundle]
-    git=git://github.com/sensio/SensioGeneratorBundle.git
+    git=git@git.fullsix.com:/php/mirrors/sensio/SensioGeneratorBundle.git
     target=/bundles/Sensio/Bundle/GeneratorBundle
     version=origin/2.0
 
 [AsseticBundle]
-    git=git://github.com/symfony/AsseticBundle.git
+    git=git@git.fullsix.com:/php/mirrors/symfony/AsseticBundle.git
     target=/bundles/Symfony/Bundle/AsseticBundle
     version=v1.0.1
 
 [doctrine-data-fixtures]
-    git=git://github.com/doctrine/data-fixtures.git
+    git=git@git.fullsix.com:/php/mirrors/doctrine/data-fixtures.git
     target=/doctrine-data-fixtures
 
 [doctrine-migrations]
-    git=git://github.com/doctrine/migrations.git
+    git=git@git.fullsix.com:/php/mirrors/doctrine/migrations.git
     target=/doctrine-migrations
 
 [DoctrineMigrationsBundle]
-    git=git://github.com/doctrine/DoctrineMigrationsBundle.git
+    git=git@git.fullsix.com:/php/mirrors/doctrine/DoctrineMigrationsBundle.git
     target=/bundles/Symfony/Bundle/DoctrineMigrationsBundle
     version=origin/2.0
 
 [DoctrineFixturesBundle]
-    git=git://github.com/doctrine/DoctrineFixturesBundle.git
+    git=git@git.fullsix.com:/php/mirrors/doctrine/DoctrineFixturesBundle.git
     target=/bundles/Symfony/Bundle/DoctrineFixturesBundle
     version=origin/2.0
 
 [imagine]
-    git=git://github.com/avalanche123/Imagine.git
+    git=git@git.fullsix.com:/php/mirrors/avalanche123/Imagine.git
     target=/imagine
 
 [LiipImagineBundle]
-    git=git://github.com/liip/LiipImagineBundle.git
+    git=git@git.fullsix.com:/php/mirrors/liip/LiipImagineBundle.git
     target=bundles/Liip/ImagineBundle
 
 [KnpMenu]
-    git=git://github.com/KnpLabs/KnpMenu.git
+    git=git@git.fullsix.com:/php/mirrors/KnpLabs/KnpMenu.git
     target=/knp/menu
     version=v1.0.0
 
 [KnpMenuBundle]
-    git=git://github.com/KnpLabs/KnpMenuBundle.git
+    git=git@git.fullsix.com:/php/mirrors/KnpLabs/KnpMenuBundle.git
     target=/bundles/Knp/Bundle/MenuBundle
     version=v1.0.0
 
 [KnpMarkdownBundle]
-    git=git://github.com/KnpLabs/KnpMarkdownBundle.git
+    git=git@git.fullsix.com:/php/mirrors/KnpLabs/KnpMarkdownBundle.git
     target=/bundles/Knp/Bundle/MarkdownBundle
 
 [FOSUserBundle]
-    git=git://github.com/FriendsOfSymfony/FOSUserBundle.git
+    git=git@git.fullsix.com:/php/mirrors/FriendsOfSymfony/FOSUserBundle.git
     target=/bundles/FOS/UserBundle
     version=1.2.0
 
 [SonatajQueryBundle]
-    git=git://github.com/sonata-project/SonatajQueryBundle.git
+    git=git@git.fullsix.com:/php/mirrors/sonata-project/SonatajQueryBundle.git
     target=/bundles/Sonata/jQueryBundle
 
 [SonataAdminBundle]
-    git=git://github.com/sonata-project/SonataAdminBundle.git
+    git=git@git.fullsix.com:/php/mirrors/sonata-project/SonataAdminBundle.git
     target=/bundles/Sonata/AdminBundle
     version=origin/2.0
 
 [SonataDoctrineORMAdminBundle]
-    git=git://github.com/sonata-project/SonataDoctrineORMAdminBundle.git
+    git=git@git.fullsix.com:/php/mirrors/sonata-project/SonataDoctrineORMAdminBundle.git
     target=/bundles/Sonata/DoctrineORMAdminBundle
     version=origin/2.0
 
 [SonataEasyExtendsBundle]
-    git=git://github.com/sonata-project/SonataEasyExtendsBundle.git
+    git=git@git.fullsix.com:/php/mirrors/sonata-project/SonataEasyExtendsBundle.git
     target=/bundles/Sonata/EasyExtendsBundle
 
 [SonataMediaBundle]
-    git=git://github.com/sonata-project/SonataMediaBundle.git
+    git=git@git.fullsix.com:/php/mirrors/sonata-project/SonataMediaBundle.git
     target=/bundles/Sonata/MediaBundle
     version=origin/2.0
 
 [SonataPageBundle]
-    git=git://github.com/sonata-project/SonataPageBundle.git
+    git=git@git.fullsix.com:/php/mirrors/sonata-project/SonataPageBundle.git
     target=/bundles/Sonata/PageBundle
     version=origin/2.0
 
 [SonataCacheBundle]
-    git=git://github.com/sonata-project/SonataCacheBundle.git
+    git=git@git.fullsix.com:/php/mirrors/sonata-project/SonataCacheBundle.git
     target=/bundles/Sonata/CacheBundle
     version=origin/2.0
 
 [SonataBlockBundle]
-    git=git://github.com/sonata-project/SonataBlockBundle.git
+    git=git@git.fullsix.com:/php/mirrors/sonata-project/SonataBlockBundle.git
     target=/bundles/Sonata/BlockBundle
     version=origin/2.0
 
 [SonataIntlBundle]
-    git=git://github.com/sonata-project/SonataIntlBundle.git
+    git=git@git.fullsix.com:/php/mirrors/sonata-project/SonataIntlBundle.git
     target=/bundles/Sonata/IntlBundle
     version=origin/master
 
 [SonataSeoBundle]
-    git=git://github.com/sonata-project/SonataSeoBundle.git
+    git=git@git.fullsix.com:/php/mirrors/sonata-project/SonataSeoBundle.git
     target=/bundles/Sonata/SeoBundle
 
 [SonataNewsBundle]
-    git=git://github.com/sonata-project/SonataNewsBundle.git
+    git=git@git.fullsix.com:/php/mirrors/sonata-project/SonataNewsBundle.git
     target=/bundles/Sonata/NewsBundle
     version=origin/2.0
 
 [SonataUserBundle]
-    git=git://github.com/sonata-project/SonataUserBundle.git
+    git=git@git.fullsix.com:/php/mirrors/sonata-project/SonataUserBundle.git
     target=/bundles/Sonata/UserBundle
     version=origin/2.0
 
 [SonataFormatterBundle]
-    git=git://github.com/sonata-project/SonataFormatterBundle.git
+    git=git@git.fullsix.com:/php/mirrors/sonata-project/SonataFormatterBundle.git
     target=/bundles/Sonata/FormatterBundle
     version=origin/2.0
 
 [SonataNotificationBundle]
-    git=git://github.com/sonata-project/SonataNotificationBundle.git
+    git=git@git.fullsix.com:/php/mirrors/sonata-project/SonataNotificationBundle.git
     target=/bundles/Sonata/NotificationBundle
     version=origin/2.0
 
 [gaufrette]
-    git=git://github.com/sonata-project/Gaufrette.git
+    git=git@git.fullsix.com:/php/mirrors/sonata-project/Gaufrette.git
     target=/gaufrette
 
 [buzz]
-    git=git://github.com/kriswallsmith/Buzz.git
+    git=git@git.fullsix.com:/php/mirrors/kriswallsmith/Buzz.git
     target=/buzz
 
 [SonataDoctrineExtensions]
-    git=git://github.com/sonata-project/sonata-doctrine-extensions.git
+    git=git@git.fullsix.com:/php/mirrors/sonata-project/sonata-doctrine-extensions.git
     target=/sonata-doctrine-extensions
 
 [SonataCapistrano]
-    git=git://github.com/sonata-project/sonata-capistrano.git
+    git=git@git.fullsix.com:/php/mirrors/sonata-project/sonata-capistrano.git
     target=/sonata-capistrano
 
 [faker]
-    git=git://github.com/fzaninotto/Faker.git
+    git=git@git.fullsix.com:/php/mirrors/fzaninotto/Faker.git
     target=/faker
 
 [BazingaFakerBundle]
-    git=git://github.com/willdurand/BazingaFakerBundle.git
+    git=git@git.fullsix.com:/php/mirrors/willdurand/BazingaFakerBundle.git
     target=/bundles/Bazinga/Bundle/FakerBundle
 
 [EntityAudit]
-    git=git://github.com/simplethings/EntityAudit.git
+    git=git@git.fullsix.com:/php/mirrors/simplethings/EntityAudit.git
     target=/bundles/SimpleThings/EntityAudit
 
 [Exporter]
-    git=git://github.com/sonata-project/exporter.git
+    git=git@git.fullsix.com:/php/mirrors/sonata-project/exporter.git
     target=/exporter
 
 [JMSSerializerBundle]
-    git=git://github.com/schmittjoh/JMSSerializerBundle.git
+    git=git@git.fullsix.com:/php/mirrors/schmittjoh/JMSSerializerBundle.git
     target=bundles/JMS/SerializerBundle
 
 [Sonata]
@@ -210,5 +210,5 @@
     target=/sonata
 
 [SonataCapistrano]
-    git=git://github.com/sonata-project/sonata-capistrano.git
+    git=git@git.fullsix.com:/php/mirrors/sonata-project/sonata-capistrano.git
     target=/sonata-capistrano
