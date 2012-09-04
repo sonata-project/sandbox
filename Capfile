@@ -12,10 +12,10 @@ plugins = [
 plugins.each{|plugin| load File.dirname(__FILE__) + plugin}
 
 # configure global settings
-set :application,       'Your project name'
+set :application,       'Sonata Ecommerce demo'
 set :scm,               :git
 set :repository,        "your git repository"
-# set :gateway,           "gateway.mycompany.com"  
+# set :gateway,         "gateway.mycompany.com"
 set :domain,            "project.mycompany.org"
 set :use_sudo,          false
 set :keep_releases,     3
@@ -29,7 +29,7 @@ set :configuration_init, false
 
 
 # Please note, the git_submodules_recursive settings only works if
-# the lib/capistrano/recipes/deploy/scm/base.rb capistrano file is 
+# the lib/capistrano/recipes/deploy/scm/base.rb capistrano file is
 # patched dues to a bug : https://github.com/capistrano/capistrano/pull/103
 set :deploy_via,                :remote_cache
 set :git_shallow_clone,         1
@@ -53,17 +53,13 @@ task :production do
 end
 
 # configure validation settings
-task :validation do
-    set :stage,     "validation"
-    set :deploy_to, "/usr/local/web/htdocs/org.sonata-project.validation"
+task :dev do
+    set :stage,     "dev"
+    set :deploy_to, "/usr/local/web/htdocs/ekino/sonata/ecommerce-demo"
 
-    role :app,      'wwww-data@validation.sonata-project.org', :master => true, :primary => true
-    # role :app,      'wwww-data@sonata-project.org'
-
-    role :web,      'wwww-data@validation.sonata-project.org', :master => true, :primary => true
-    # role :web,      'wwww-data@sonata-project.org'
-
-    role :db,       "wwww-data@db.validation.sonata-project.org", :primary => true, :no_release => true
+    role :app,      'webadmin@orion'
+    role :web,      'webadmin@orion'
+    role :db,       "webadmin@orion", :primary => true, :no_release => true
 
     set :sonata_page_managers, ['page', 'snapshot']
 end
@@ -76,10 +72,10 @@ end
 #   ie, production_parameters.yml => parameters.yml on the production server
 #   ie, validation_parameters.yml => parameters.yml on the validation server
 #
-# after "deploy:setup" do
-#   run "if [ ! -d %s/shared/app/config ]; then mkdir -p %s/shared/app/config; fi" % [ fetch(:deploy_to),  fetch(:deploy_to)]
-#   upload(
-#     '%s/app/config/%s_parameters.yml' % [File.dirname(__FILE__), fetch(:stage)],
-#     '%s/shared/app/config/parameters.yml' % fetch(:deploy_to)
-#   )
-# end
+after "deploy:setup" do
+  run "if [ ! -d %s/shared/app/config ]; then mkdir -p %s/shared/app/config; fi" % [ fetch(:deploy_to),  fetch(:deploy_to)]
+  upload(
+    '%s/app/config/%s_parameters.yml' % [File.dirname(__FILE__), fetch(:stage)],
+    '%s/shared/app/config/parameters.yml' % fetch(:deploy_to)
+  )
+end
