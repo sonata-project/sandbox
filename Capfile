@@ -15,8 +15,6 @@ plugins.each{|plugin| load File.dirname(__FILE__) + plugin}
 set :application,       'Sonata Ecommerce demo'
 set :scm,               :git
 set :repository,        "git@git.fullsix.com:/php/sonata/sandbox.git"
-# set :gateway,         "gateway.mycompany.com"
-set :domain,            "project.mycompany.org"
 set :use_sudo,          false
 set :keep_releases,     3
 set :current_dir,       "/current"  # this must be the web server document root directory
@@ -25,7 +23,7 @@ set :shared_files,      ["app/config/parameters.yml"]
 set :asset_children,    [web_path + "/css", web_path + "/js"]
 set :branch,            'ecommerce'
 
-set :update_vendors,    true
+set :update_vendors,     false
 set :configuration_init, false
 
 
@@ -39,24 +37,12 @@ set :git_submodules_recursive,  false
 
 ssh_options[:forward_agent]    = true
 
-# configure production settings
-task :production do
-    set :stage,     "production"
-    set :deploy_to, "/usr/local/web/htdocs/org.sonata-project"
-
-    role :app,      'wwww-data@sonata-project.org', :master => true, :primary => true
-    # role :app,      'wwww-data@sonata-project.org'
-
-    role :web,      'wwww-data@sonata-project.org', :master => true, :primary => true
-    # role :web,      'wwww-data@sonata-project.org'
-
-    role :db,       "wwww-data@db.sonata-project.org", :primary => true, :no_release => true
-end
-
 # configure validation settings
 task :dev do
     set :stage,     "dev"
     set :deploy_to, "/usr/local/web/htdocs/ekino/sonata/ecommerce-demo"
+    set :gateway,   "rebond.fullsix.com"
+    set :domain,    "sonata-ecommerce-demo.dev.fullsix.com"
 
     role :app,      'webadmin@orion'
     role :web,      'webadmin@orion'
