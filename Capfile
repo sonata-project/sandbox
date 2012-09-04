@@ -14,7 +14,7 @@ plugins.each{|plugin| load File.dirname(__FILE__) + plugin}
 # configure global settings
 set :application,       'Sonata Ecommerce demo'
 set :scm,               :git
-set :repository,        "your git repository"
+set :repository,        "git@git.fullsix.com:/php/sonata/sandbox.git"
 # set :gateway,         "gateway.mycompany.com"
 set :domain,            "project.mycompany.org"
 set :use_sudo,          false
@@ -23,6 +23,7 @@ set :current_dir,       "/current"  # this must be the web server document root 
 set :shared_children,   [app_path + "/logs", web_path + "/uploads"]
 set :shared_files,      ["app/config/parameters.yml"]
 set :asset_children,    [web_path + "/css", web_path + "/js"]
+set :branch,            'ecommerce'
 
 set :update_vendors,    true
 set :configuration_init, false
