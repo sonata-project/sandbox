@@ -29,9 +29,9 @@ file that was distributed with this source code.
 {% block product_basket %}
 
     <form action="{{ url('sonata_basket_add_product') }}" method="POST" >
-        {% trans from 'Productbundle' %}sonata.product.label_quantity{% endtrans %} {{ form_widget(form.quantity) }}
+        {% trans from 'SonataProductbundle' %}sonata.product.label_quantity{% endtrans %} {{ form_widget(form.quantity) }}
 
-        <input type="submit" value="{% trans from 'ProductBundle' %}sonata.product.btn_add_to_basket{% endtrans %}"/>
+        <input type="submit" value="{% trans from 'SonataProductbundle' %}sonata.product.btn_add_to_basket{% endtrans %}"/>
 
         {{ form_rest(form) }}
     </form>
