@@ -1,3 +1,7 @@
+jms_security_extra:
+    secure_all_services: false
+    expressions:         true
+
 security:
     encoders:
         "Application\Sonata\UserBundle\Entity\User":
