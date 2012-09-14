@@ -1,42 +1,46 @@
 {
     "name": "sonata-project/sandbox",
-    
+
     "description": "The Sandbox for the Sonata environment",
-    
+
     "autoload": {
         "psr-0": { "": "src/" }
     },
 
     "minimum-stability": "dev",
-    
+
     "require": {
         "php": ">=5.3.3",
-        
-        "doctrine/doctrine-bundle": "dev-master",
-        
-        "twig/extensions": "dev-master",
-        
-        "symfony/assetic-bundle": "dev-master",
-        "symfony/swiftmailer-bundle": "dev-master",
-        "symfony/monolog-bundle": "dev-master",
-        
-        "sensio/distribution-bundle": "dev-master",
-        "sensio/framework-extra-bundle": "dev-master",
-        "sensio/generator-bundle": "dev-master",
-        
-        "jms/security-extra-bundle": "1.1.*",
-        "jms/di-extra-bundle": "1.0.*",
-        
+
+        "doctrine/doctrine-bundle": "1.0.*",
+
+        "twig/extensions": "1.0.*",
+
+        "symfony/symfony": "2.1.*",
+
+        "symfony/assetic-bundle": "2.1.*",
+        "symfony/swiftmailer-bundle": "2.1.*",
+        "symfony/monolog-bundle": "2.1.*",
+
+        "doctrine/orm": ">=2.2.3,<2.4-dev",
         "doctrine/doctrine-migrations-bundle": "dev-master",
         "doctrine/doctrine-fixtures-bundle": "dev-master",
-        
-        "liip/imagine-bundle": "dev-master",
-        
+
+        "sensio/distribution-bundle": "2.1.*",
+        "sensio/framework-extra-bundle": "2.1.*",
+        "sensio/generator-bundle": "2.1.*",
+
+        "jms/security-extra-bundle": "1.2.*",
+        "jms/di-extra-bundle": "1.1.*",
+        "jms/serializer-bundle": "dev-master",
+
         "knplabs/knp-markdown-bundle": "dev-master",
-        "knplabs/gaufrette": "dev-master",
-        
+
         "sonata-project/doctrine-orm-admin-bundle": "dev-master",
+        "sonata-project/user-bundle": "dev-master",
+        "sonata-project/easy-extends-bundle": "dev-master",
         "sonata-project/page-bundle": "dev-master",
+        "sonata-project/media-bundle": "dev-master",
         "sonata-project/block-bundle": "dev-master",
         "sonata-project/intl-bundle": "dev-master",
         "sonata-project/seo-bundle": "dev-master",
@@ -45,33 +49,34 @@
         "sonata-project/notification-bundle": "dev-master",
         "sonata-project/doctrine-extensions": "dev-master",
         "sonata-project/exporter": "dev-master",
-        
+
         "simplethings/entity-audit-bundle": "dev-master",
-        
-        "willdurand/faker-bundle": "dev-master",
-        
-        "kriswallsmith/buzz": "dev-master"
+
+        "willdurand/faker-bundle": "dev-master"
     },
-    
+
     "scripts": {
         "post-install-cmd": [
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets"
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
         ],
         "post-update-cmd": [
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets"
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
         ]
     },
-    
+
     "config": {
         "bin-dir": "bin"
     },
-    
+
     "extra": {
         "symfony-app-dir": "app",
-        "symfony-web-dir": "web"
+        "symfony-web-dir": "web",
+        "symfony-assets-install": "symlink"
     }
 }
