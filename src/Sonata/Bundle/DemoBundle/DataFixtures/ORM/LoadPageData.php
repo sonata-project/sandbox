@@ -125,7 +125,7 @@ CONTENT
         $text->setPosition(1);
         $text->setEnabled(true);
         $text->setPage($galleryIndex);
-
+        $text->setName('Gallery index');
 
         $pageManager->save($galleryIndex);
     }
@@ -182,6 +182,7 @@ CONTENT
         $text->setPosition(1);
         $text->setEnabled(true);
         $text->setPage($homepage);
+        $text->setName('Welcome text');
 
         // add a gallery
         $content->addChildren($gallery = $blockManager->create());
@@ -192,6 +193,7 @@ CONTENT
         $gallery->setSetting('format', 'big');
         $gallery->setPosition(2);
         $gallery->setEnabled(true);
+        $gallery->setName('Gallery');
         $gallery->setPage($homepage);
 
         $content->addChildren($text = $blockManager->create());
@@ -199,6 +201,7 @@ CONTENT
 
         $text->setPosition(3);
         $text->setEnabled(true);
+        $text->setName('Sonata bundles');
         $text->setSetting('content', <<<CONTENT
 <h3>Sonata's bundles</h3>
 
@@ -263,6 +266,7 @@ CONTENT
         $text->setPosition(1);
         $text->setEnabled(true);
         $text->setPage($global);
+        $text->setName('Title');
 
         $global->addBlocks($header = $blockInteractor->createNewContainer(array(
             'enabled' => true,
@@ -278,6 +282,7 @@ CONTENT
         $menu->setPosition(1);
         $menu->setEnabled(true);
         $menu->setPage($global);
+        $menu->setName('Menu');
 
         $global->addBlocks($footer = $blockInteractor->createNewContainer(array(
             'enabled' => true,
@@ -310,6 +315,7 @@ FOOTER
         $text->setPosition(1);
         $text->setEnabled(true);
         $text->setPage($global);
+        $text->setName('Footer');
 
         $pageManager->save($global);
     }
