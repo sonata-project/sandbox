@@ -8,7 +8,6 @@ sonata_block:
 #            contexts:   [admin]
 
         sonata.block.service.text:
-        sonata.block.service.action:
         sonata.page.block.container:
         sonata.page.block.children_pages:
         sonata.block.service.rss:
