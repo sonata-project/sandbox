@@ -52,7 +52,17 @@
 
         "simplethings/entity-audit-bundle": "dev-master",
 
-        "willdurand/faker-bundle": "dev-master"
+        "willdurand/faker-bundle": "dev-master", 
+
+        
+        "behat/behat": "2.4.*@stable",
+        "behat/mink": "1.4@stable",
+        "behat/mink-extension": "*",
+        "behat/mink-goutte-driver": "*",
+        "behat/mink-selenium2-driver": "*",
+        "behat/symfony2-extension":"v1.0.0",
+        "behat/mink-sahi-driver" : "*",
+        "behat/mink-zombie-driver" :"*",
     },
 
     "scripts": {

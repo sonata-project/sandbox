@@ -1,85 +1,107 @@
-load 'deploy' if respond_to?(:namespace) # cap2 differentiator
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- two parameters are send throug phing: projectName and profile  -->
+<project name="${projectName}" basedir="." default="build:main">
 
-# load the default plugin
-# uncomment lines to load new capistrano task
-plugins = [
-  '/vendor/sonata-capistrano/capifony.rb',
-  '/vendor/sonata-capistrano/capifony-symfony2.rb',
-  '/vendor/sonata-capistrano/sonata-symfony2.rb',
-  # '/vendor/sonata-capistrano/sonata-page-bundle.rb',
-]
+    <!-- Config files -->
+    <property name="dir.config"                   value="${project.basedir}/" />
+    <property name="config.behat"                 value="${dir.config}/config/behat.yml" />
 
-plugins.each{|plugin| load File.dirname(__FILE__) + plugin}
+    <!-- Build paths -->
+    <property name="dir.build"                    value="${project.basedir}/build" />
+    <property name="dir.reports"                  value="${dir.build}/reports" />
+    <property name="dir.reports.test"             value="${dir.reports}/test" />
+    <property name="dir.logs"                     value="${dir.build}/logs" />
+    <property name="dir.logs.jira"                value="${dir.logs}/behat-jira" />
 
-# configure global settings
-set :application,       'Your project name'
-set :scm,               :git
-set :repository,        "your git repository"
-# set :gateway,           "gateway.mycompany.com"  
-set :domain,            "project.mycompany.org"
-set :use_sudo,          false
-set :keep_releases,     3
-set :current_dir,       "/current"  # this must be the web server document root directory
-set :shared_children,   [app_path + "/logs", web_path + "/uploads"]
-set :shared_files,      ["app/config/parameters.yml"]
-set :asset_children,    [web_path + "/css", web_path + "/js"]
+    <!-- Build settings -->
+    <property name="option.composer.mode"         value="install" />
+    <property name="option.feature.jira"          value="http://jira.fullsix.com/" />
+    <property name="option.feature.local"         value="features" />
+    <property name="profile"                      value="" override="no"/>
 
-set :update_vendors,    true
-set :configuration_init, false
+    <!-- BUILD TASKS -->
 
+    <!-- Main (default task) -->
+    <target name="build:main"
+            depends="build:clean, build:prepare, build:test"
+            description="Run all test and build everything"/>
 
-# Please note, the git_submodules_recursive settings only works if
-# the lib/capistrano/recipes/deploy/scm/base.rb capistrano file is 
-# patched dues to a bug : https://github.com/capistrano/capistrano/pull/103
-set :deploy_via,                :remote_cache
-set :git_shallow_clone,         1
-set :git_enable_submodules,     true
-set :git_submodules_recursive,  false
+    <!-- Clean previous build files -->
+    <target name="build:clean"
+            description="Clean previous build files">
 
-ssh_options[:forward_agent]    = true
+        <delete dir="${dir.build}" verbose="true" />
 
-# configure production settings
-task :production do
-    set :stage,     "production"
-    set :deploy_to, "/usr/local/web/htdocs/org.sonata-project"
+    </target>
 
-    role :app,      'wwww-data@sonata-project.org', :master => true, :primary => true
-    # role :app,      'wwww-data@sonata-project.org'
+    <!-- Prepare build (performed by each build:* task when called as standalone) -->
+    <target name="build:prepare"
+            depends="build:clean"
+            description="Prepare build">
 
-    role :web,      'wwww-data@sonata-project.org', :master => true, :primary => true
-    # role :web,      'wwww-data@sonata-project.org'
+        <mkdir dir="${dir.build}" />
 
-    role :db,       "wwww-data@db.sonata-project.org", :primary => true, :no_release => true
-end
+    </target>
 
-# configure validation settings
-task :validation do
-    set :stage,     "validation"
-    set :deploy_to, "/usr/local/web/htdocs/org.sonata-project.validation"
+    <!-- Test Project -->
+    <target name="build:test"
+            description="Perform all tests"
+            depends="build:prepare, test:prepare, test:behat:local, test:behat:jira"/>
 
-    role :app,      'wwww-data@validation.sonata-project.org', :master => true, :primary => true
-    # role :app,      'wwww-data@sonata-project.org'
+    <!-- TEST SECTION -->
 
-    role :web,      'wwww-data@validation.sonata-project.org', :master => true, :primary => true
-    # role :web,      'wwww-data@sonata-project.org'
+    <!-- Prepare test environment (performed by each test:* task when called as standalone) -->
+    <target name="test:prepare"
+            description="Prepare the test environment">
 
-    role :db,       "wwww-data@db.validation.sonata-project.org", :primary => true, :no_release => true
+        <echo msg="Prepare test reports and logs directory" />
+        <mkdir dir="${dir.reports.test}" />
+        <mkdir dir="${dir.logs.jira}" />
 
-    set :sonata_page_managers, ['page', 'snapshot']
-end
+        <echo msg="Installing/Updating vendors" />
+        <exec command="composer ${option.composer.mode}" passthru="true"/>
 
-before "deploy:finalize_update" do
-  run "cd %s && php bin/build_bootstrap.php" % [ fetch(:latest_release)]
-end
+        <property name="option.profile.argument"      value="--profile "/>
+        <if>
+            <equals arg1="${profile}" arg2="" />
+            <then>
+                <echo msg="Using no profile" />
+                <property name="option.profile.argument"      value="" override="true"/>
+            </then>
+            <else>
+                <echo msg="Using profile: ${profile}" />
+            </else>
+        </if>
+    </target>
 
-# uncomment these lines if you have specific staging parameters.ini file
-#   ie, production_parameters.yml => parameters.yml on the production server
-#   ie, validation_parameters.yml => parameters.yml on the validation server
-#
-# after "deploy:setup" do
-#   run "if [ ! -d %s/shared/app/config ]; then mkdir -p %s/shared/app/config; fi" % [ fetch(:deploy_to),  fetch(:deploy_to)]
-#   upload(
-#     '%s/app/config/%s_parameters.yml' % [File.dirname(__FILE__), fetch(:stage)],
-#     '%s/shared/app/config/parameters.yml' % fetch(:deploy_to)
-#   )
-# end
+    <!-- Execute behat local features -->
+    <target name="test:behat:local"
+            description="Perform behat local features"
+            depends="test:prepare">
+
+        <echo msg="Running Behat local features" />
+        <exec executable="bin/behat" logoutput="true">
+            <arg line="--config ${config.behat}" />
+            <arg line="${option.profile.argument}${profile}" />
+            <arg line="-f junit" />
+            <arg line="--out ${dir.reports.test}" />
+            <arg line="${option.feature.local}" />
+        </exec>
+    </target>
+
+    <!-- Execute behat jira features -->
+    <target name="test:behat:jira"
+            description="Perform behat jira features"
+            depends="test:prepare">
+
+        <echo msg="Running Behat jira features" />
+        <exec executable="bin/behat" logoutput="true">
+            <arg line="--config ${config.behat}" />
+            <arg line="${option.profile.argument}${profile}" />
+            <arg line="-f junit" />
+            <arg line="--out ${dir.reports.test}" />
+            <arg line="${option.feature.jira}" />
+        </exec>
+    </target>
+
+</project>
