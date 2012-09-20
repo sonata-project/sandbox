@@ -14,7 +14,9 @@
     <property name="dir.logs.jira"                value="${dir.logs}/behat-jira" />
 
     <!-- Build settings -->
-    <property name="option.composer.mode"         value="install" />
+    <property name="url.behat"                    value="https://github.com/downloads/Behat/Behat/behat.phar" />
+    <property name="url.mink"                     value="https://github.com/downloads/Behat/Mink/mink.phar" />
+    <property name="url.minkextension"            value="https://github.com/downloads/Behat/MinkExtension/mink_extension.phar" />
     <property name="option.feature.jira"          value="http://jira.fullsix.com/" />
     <property name="option.feature.local"         value="features" />
     <property name="profile"                      value="" override="no"/>
@@ -59,7 +61,12 @@
         <mkdir dir="${dir.logs.jira}" />
 
         <echo msg="Installing/Updating vendors" />
-        <exec command="composer ${option.composer.mode}" passthru="true"/>
+
+
+        <exec command="wget ${url.behat}" passthru="true"/>
+        <exec command="wget ${url.mink}" passthru="true"/>
+        <exec command="wget ${url.minkextension}" passthru="true"/>
+
 
         <property name="option.profile.argument"      value="--profile "/>
         <if>
