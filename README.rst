@@ -6,25 +6,7 @@ What's inside?
 
 Sonata Standard Edition comes pre-configured with the following bundles:
 
-Symfony Standard Edition
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* FrameworkBundle
-* SensioFrameworkExtraBundle
-* DoctrineBundle
-* TwigBundle
-* SwiftmailerBundle
-* MonologBundle
-* AsseticBundle
-* JMSSecurityExtraBundle
-* WebProfilerBundle (in dev/test env)
-* SensioDistributionBundle (in dev/test env)
-* SensioGeneratorBundle (in dev/test env)
-* AcmeDemoBundle (in dev/test env)
-
-Sonata Bundles
-~~~~~~~~~~~~~~
-
+* Bundles from Symfony Standard distribution
 * SonataAdminBundle - The missing Symfony2 Admin Generator
 * SonataMediaBundle
 * SonataPageBundle
@@ -33,17 +15,7 @@ Sonata Bundles
 * SonataIntlBundle
 * SonataNewsBundle
 * SonatajQueryBundle
-
-FOS Bundles
-~~~~~~~~~~~
-
 * FOSUserBundle
-
-Behat Bundles
-~~~~~~~~~~~~~
-
-* MinkBundle
-* BehatBundle
 
 Installation
 ------------
