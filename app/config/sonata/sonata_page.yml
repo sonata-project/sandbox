@@ -13,8 +13,8 @@ symfony_cmf_routing_extra:
 sonata_page:
     multisite: host
     ignore_route_patterns:
-        - /(.*)admin(.*)/   # ignore admin route, ie route containing 'admin'
-        - /^_(.*)/          # ignore symfony routes
+        - (.*)admin(.*)     # ignore admin route, ie route containing 'admin'
+        - ^_(.*)            # ignore symfony routes
 
     ignore_routes:
         - sonata_page_cache_esi
@@ -23,7 +23,7 @@ sonata_page:
         - sonata_cache_apc
 
     ignore_uri_patterns:
-        - /admin(.*)/   # ignore admin route, ie route containing 'admin'
+        - admin(.*)         # ignore admin route, ie route containing 'admin'
 
     cache_invalidation:
         service:  sonata.page.cache.invalidation.simple
