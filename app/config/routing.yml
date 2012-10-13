@@ -2,17 +2,9 @@
 #_internal:
 #   resource: "@FrameworkBundle/Resources/config/routing/internal.xml"
 #   prefix:   /_internal
-homepage:
-    pattern:  /
-    defaults: { _controller: SonataPageBundle:Page:catchAll }
-
-sonata_user_impersonating:
-    pattern:  /
-    defaults: { _controller: SonataPageBundle:Page:catchAll }
 
 sonata_demo:
     resource: "@SonataDemoBundle/Resources/config/routing/demo.xml"
-
 
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
@@ -73,9 +65,3 @@ _sonata_admin:
 soanata_user:
     resource: '@SonataUserBundle/Resources/config/routing/admin_security.xml'
     prefix: /admin
-
-catchAll:
-    pattern:  /{path}
-    defaults: { _controller: SonataPageBundle:Page:catchAll }
-    requirements:
-        path: .*

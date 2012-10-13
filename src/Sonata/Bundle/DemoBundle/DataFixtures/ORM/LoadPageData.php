@@ -17,6 +17,7 @@ use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\Persistence\ObjectManager;
 
 use Sonata\PageBundle\Model\SiteInterface;
+use Sonata\PageBundle\Model\PageInterface;
 
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -103,8 +104,10 @@ class LoadPageData extends AbstractFixture implements ContainerAwareInterface, O
         $galleryIndex->addBlocks($content = $blockInteractor->createNewContainer(array(
             'enabled' => true,
             'page' => $galleryIndex,
-            'name' => 'content_top',
+            'code' => 'content_top',
         )));
+
+        $content->setName('The content_top container');
 
         // add a block text
         $content->addChildren($text = $blockManager->create());
@@ -146,7 +149,7 @@ CONTENT
         $homepage->setDecorate(0);
         $homepage->setRequestMethod('GET|POST|HEAD|DELETE|PUT');
         $homepage->setTemplateCode('default');
-        $homepage->setRouteName('homepage');
+        $homepage->setRouteName(PageInterface::PAGE_ROUTE_CMS_NAME);
         $homepage->setSite($site);
 
         $pageManager->save($homepage);
@@ -155,8 +158,10 @@ CONTENT
         $homepage->addBlocks($content = $blockInteractor->createNewContainer(array(
             'enabled' => true,
             'page' => $homepage,
-            'name' => 'content',
+            'code' => 'content',
         )));
+
+        $content->setName('The container container');
 
         $blockManager->save($content);
 
@@ -253,8 +258,10 @@ CONTENT
         $global->addBlocks($title = $blockInteractor->createNewContainer(array(
             'enabled' => true,
             'page' => $global,
-            'name' => 'title',
+            'code' => 'title',
         )));
+
+        $title->setName('The title container');
 
         $title->addChildren($text = $blockManager->create());
 
@@ -267,9 +274,10 @@ CONTENT
         $global->addBlocks($header = $blockInteractor->createNewContainer(array(
             'enabled' => true,
             'page' => $global,
-            'name' => 'header',
+            'code' => 'header',
         )));
 
+        $header->setName('The header container');
 
         $header->addChildren($menu = $blockManager->create());
 
@@ -282,8 +290,10 @@ CONTENT
         $global->addBlocks($footer = $blockInteractor->createNewContainer(array(
             'enabled' => true,
             'page' => $global,
-            'name' => 'footer',
+            'code' => 'footer',
         )));
+
+        $footer->setName('The footer container');
 
         $footer->addChildren($text = $blockManager->create());
 
@@ -331,7 +341,7 @@ FOOTER
     }
 
     /**
-     * @return \Sonata\PageBundle\Model\BlockManagerInterface
+     * @return \Sonata\BlockBundle\Model\BlockManagerInterface
      */
     public function getBlockManager()
     {
