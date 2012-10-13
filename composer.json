@@ -1,18 +1,15 @@
 {
     "name": "sonata-project/sandbox",
-    
+
     "description": "The Sandbox for the Sonata environment",
-    
+
     "autoload": {
         "psr-0": { "": "src/" }
     },
 
     "minimum-stability": "dev",
-    
-    "require": {
-   
 
-        "php": ">=5.3.3",
+    "require": {
         "symfony/symfony": "2.1.*",
         "doctrine/orm": ">=2.2.3,<2.4-dev",
         "doctrine/doctrine-bundle": "1.0.*",
@@ -22,20 +19,21 @@
         "symfony/monolog-bundle": "2.1.*",
         "sensio/distribution-bundle": "2.1.*",
         "sensio/framework-extra-bundle": "2.1.*",
-        
+
         "sensio/generator-bundle": "2.1.*",
         "jms/security-extra-bundle": "1.2.*",
         "jms/di-extra-bundle": "1.1.*",
-        
+
         "doctrine/doctrine-migrations-bundle": "dev-master",
         "doctrine/doctrine-fixtures-bundle": "dev-master",
-        
+
         "liip/imagine-bundle": "dev-master",
-        
+
         "knplabs/knp-markdown-bundle": "dev-master",
         "knplabs/gaufrette": "dev-master",
-        
+
         "sonata-project/doctrine-orm-admin-bundle": "dev-master",
+        "sonata-project/cache-bundle": "dev-master",
         "sonata-project/page-bundle": "dev-master",
         "sonata-project/block-bundle": "dev-master",
         "sonata-project/intl-bundle": "dev-master",
@@ -45,14 +43,14 @@
         "sonata-project/notification-bundle": "dev-master",
         "sonata-project/doctrine-extensions": "dev-master",
         "sonata-project/exporter": "dev-master",
-        
+
         "simplethings/entity-audit-bundle": "dev-master",
-        
+
         "willdurand/faker-bundle": "dev-master",
-        
+
         "kriswallsmith/buzz": "0.7.*"
     },
-    
+
     "scripts": {
         "post-install-cmd": [
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
@@ -65,11 +63,11 @@
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets"
         ]
     },
-    
+
     "config": {
         "bin-dir": "bin"
     },
-    
+
     "extra": {
         "symfony-app-dir": "app",
         "symfony-web-dir": "web"
