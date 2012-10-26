@@ -1,7 +1,7 @@
 {
     "name": "sonata-project/sandbox",
 
-    "description": "The Sandbox for the Sonata environment",
+    "description": "Sonata Project's sandbox",
 
     "autoload": {
         "psr-0": { "": "src/" }
@@ -29,20 +29,10 @@
 
         "liip/imagine-bundle": "dev-master",
 
-        "knplabs/knp-markdown-bundle": "dev-master",
-        "knplabs/gaufrette": "dev-master",
-
         "sonata-project/doctrine-orm-admin-bundle": "dev-master",
-        "sonata-project/cache-bundle": "dev-master",
         "sonata-project/page-bundle": "dev-master",
-        "sonata-project/block-bundle": "dev-master",
-        "sonata-project/intl-bundle": "dev-master",
-        "sonata-project/seo-bundle": "dev-master",
         "sonata-project/news-bundle": "dev-master",
-        "sonata-project/formatter-bundle": "dev-master",
-        "sonata-project/notification-bundle": "dev-master",
         "sonata-project/doctrine-extensions": "dev-master",
-        "sonata-project/exporter": "dev-master",
 
         "simplethings/entity-audit-bundle": "dev-master",
 
