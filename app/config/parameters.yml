@@ -28,3 +28,7 @@ parameters:
 
     # Sonata Media options
     sonata_media.cdn.host:          /uploads/media
+
+    # Sonata User Options
+    sonata_user.google_authenticator.server:  demo.sonata-project.org
+
