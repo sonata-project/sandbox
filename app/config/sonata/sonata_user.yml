@@ -3,7 +3,10 @@ sonata_user:
     table:
         user_group:           fos_user_user_group
 
-    impersonating_route:      homepage
+    impersonating:
+        route:                page_slug
+        parameters:           { path: / }
+
     google_authenticator:
         server:               %sonata_user.google_authenticator.server%
         enabled:              true
