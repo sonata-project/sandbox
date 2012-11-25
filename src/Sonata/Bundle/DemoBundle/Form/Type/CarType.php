@@ -18,26 +18,36 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class CarType extends AbstractType
 {
+    /**
+     * {@inheritdoc}
+     */
     public function buildForm(FormBuilderInterface $formBuilder, array $options)
     {
         $formBuilder
             ->add('createdAt', 'datetime')
             ->add('name')
             ->add('engine', 'sonata_demo_form_type_engine', array(
-                'data_class' => 'Sonata\Bundle\DemoBundle\Model\Engine'
+                'data_class' => 'Sonata\Bundle\DemoBundle\Entity\Engine'
             ))
         ;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getName()
     {
-        return 'sonata_demo_car';
+        return 'sonata_demo_form_type_car';
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Sonata\Bundle\DemoBundle\Model\Car'
+            'data_class' => 'Sonata\Bundle\DemoBundle\Entity\Car',
+            'rescue_engines' => array()
         ));
     }
 }

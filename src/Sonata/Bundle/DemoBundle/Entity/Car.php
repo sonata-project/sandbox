@@ -9,17 +9,50 @@
  * file that was distributed with this source code.
  */
 
-namespace Sonata\Bundle\DemoBundle\Model;
+namespace Sonata\Bundle\DemoBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\InheritanceType("SINGLE_TABLE")
+ * @ORM\Table(name="test_car")
+ * @ORM\DiscriminatorColumn(name="discr", type="string")
+ * @ORM\DiscriminatorMap({"renault" = "Renault", "citroen" = "Citroen", "peugeot" = "Peugeot"})
+ */
 class Car
 {
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
     protected $name;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
     protected $createdAt;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Engine", cascade={"persist"}, fetch="EAGER")
+     */
     protected $engine;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Engine", cascade={"persist"}, fetch="EAGER")
+     */
     protected $rescueEngine;
+
+    public function getId()
+    {
+        return $this->id;
+    }
 
     /**
      * @param \DateTime $createdAt

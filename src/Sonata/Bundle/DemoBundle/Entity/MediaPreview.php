@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Sonata\Bundle\DemoBundle\Model;
+namespace Sonata\Bundle\DemoBundle\Entity;
 
 use Sonata\MediaBundle\Model\MediaInterface;
 

@@ -24,7 +24,7 @@ framework:
     csrf_protection: true
     validation:      { enable_annotations: true }
     templating:      { engines: ['twig'] } #assets_version: SomeVersionScheme
-    default_locale: %locale%
+    default_locale:  %locale%
     session: ~
 
 # Twig Configuration
@@ -72,6 +72,7 @@ doctrine:
                 #metadata_cache_driver: apc
                 #query_cache_driver: apc
                 #result_cache_driver: apc
+                auto_mapping: true
                 mappings: ~
 
 # Swiftmailer Configuration

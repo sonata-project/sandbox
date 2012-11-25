@@ -9,18 +9,46 @@
  * file that was distributed with this source code.
  */
 
-namespace Sonata\Bundle\DemoBundle\Model;
+namespace Sonata\Bundle\DemoBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="test_car_engine")
+ */
 class Engine
 {
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
     protected $name;
 
+    /**
+     * @ORM\Column(type="integer", length=100)
+     */
     protected $power;
 
+    /**
+     * @param string $name
+     * @param string $power
+     */
     public function  __construct($name = null, $power = null)
     {
         $this->name = $name;
         $this->power = $power;
+    }
+
+    public function getId()
+    {
+        return $this->id;
     }
 
     /**
@@ -57,9 +85,12 @@ class Engine
         return $this->power;
     }
 
+    /**
+     * @return string
+     */
     public function __toString()
     {
-        return $this->getName();
+        return $this->getName() ?: 'n/a';
     }
 }
 
