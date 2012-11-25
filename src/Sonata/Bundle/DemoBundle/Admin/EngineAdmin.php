@@ -39,7 +39,7 @@ class EngineAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('name')
+            ->addIdentifier('name')
             ->add('power')
         ;
     }

@@ -41,7 +41,7 @@ class CarAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('name')
+            ->addIdentifier('name')
             ->add('engine')
             ->add('rescueEngine')
             ->add('createdAt')
@@ -68,7 +68,7 @@ class CarAdmin extends Admin
     {
         $formMapper
             ->add('name')
-            ->add('engine')
+            ->add('engine', 'sonata_type_model_list')
             ->add('rescueEngine')
             ->add('createdAt')
         ;
