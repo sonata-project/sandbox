@@ -10,17 +10,19 @@
     "minimum-stability": "dev",
 
     "require": {
-        "symfony/symfony": "2.1.*",
         "doctrine/orm": ">=2.2.3,<2.4-dev",
         "doctrine/doctrine-bundle": "1.0.*",
         "twig/extensions": "1.0.*",
+
+        "symfony/symfony": "2.1.*",
         "symfony/assetic-bundle": "2.1.*",
         "symfony/swiftmailer-bundle": "2.1.*",
         "symfony/monolog-bundle": "2.1.*",
+
         "sensio/distribution-bundle": "2.1.*",
         "sensio/framework-extra-bundle": "2.1.*",
-
         "sensio/generator-bundle": "2.1.*",
+
         "jms/security-extra-bundle": "1.2.*",
         "jms/di-extra-bundle": "1.1.*",
 
@@ -32,13 +34,16 @@
         "sonata-project/doctrine-orm-admin-bundle": "dev-master",
         "sonata-project/page-bundle": "dev-master",
         "sonata-project/news-bundle": "dev-master",
-        "sonata-project/doctrine-extensions": "dev-master",
+        "sonata-project/media-bundle": "dev-master",
 
         "simplethings/entity-audit-bundle": "dev-master",
 
-        "willdurand/faker-bundle": "dev-master",
+        "willdurand/faker-bundle": "dev-master"
+    },
 
-        "kriswallsmith/buzz": "0.7.*"
+    "require-dev": {
+        "phpunit/phpunit": "3.7.*",
+        "behat/behat": "2.4.*@stable"
     },
 
     "scripts": {
