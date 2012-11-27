@@ -28,6 +28,7 @@ Run the following commands::
     git init
     git add .gitignore *
     git commit -m "Initial commit (from the Sonata Sandbox)"
+    curl -s http://getcomposer.org/installer | php
     php composer.phar install
     cp app/config/parameters.yml.sample app/config/parameters.yml
     cp app/config/parameters.yml.sample app/config/validation_parameters.yml
