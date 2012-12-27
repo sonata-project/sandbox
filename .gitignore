@@ -3,6 +3,7 @@ app/logs
 app/*.cache
 web/bundles
 web/uploads
+web/sitemap*.xml
 
 app/config/parameters*.yml
 composer.lock
