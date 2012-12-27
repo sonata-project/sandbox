@@ -13,4 +13,6 @@ $debug = !$input->hasParameterOption(array('--no-debug', ''));
 
 $kernel = new AppKernel($env, $debug);
 $application = new Application($kernel);
-$application->run();
+$code = $application->run();
+
+exit($code);
