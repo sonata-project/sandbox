@@ -33,5 +33,9 @@ sonata_seo:
 
     sitemap:
         doctrine_orm:
+            # media
             - { connection: doctrine.dbal.default_connection, route: sonata_media_view, parameters: {id: null}, query: "SELECT id, updated_at as lastmod, 'weekly' as changefreq, '0.5' as prioriy FROM media__media WHERE enabled = true" }
+            # blog post
             - { connection: doctrine.dbal.default_connection, route: sonata_news_view, parameters: {permalink: null}, query: "SELECT CONCAT_WS('/', YEAR(created_at), MONTH(created_at), DAY(created_at), slug) as permalink , updated_at as lastmod, 'weekly' as changefreq, '0.5' as prioriy FROM news__post WHERE enabled = 1 AND (publication_date_start IS NULL OR publication_date_start <= NOW())" }
+            # page - works only for one site, please adapt the code if required
+            - { connection: doctrine.dbal.default_connection, route: page_slug, parameters: {path: null}, query: "SELECT url as path, updated_at as lastmod, 'weekly' as changefreq, '0.5' as prioriy FROM page__snapshot WHERE route_name = 'page_slug' AND enabled = 1 AND (publication_date_start IS NULL OR publication_date_start <= NOW())" }
