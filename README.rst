@@ -34,11 +34,6 @@ Run the following commands::
     cp app/config/parameters.yml.sample app/config/validation_parameters.yml
     cp app/config/parameters.yml.sample app/config/production_parameters.yml
 
-.. note::
-
-  The ``bin/vendor`` script does not behave like the one provided by the Symfony2 Standard Edition.
-  The script install vendors as git submodules.
-
 Database initialization
 ~~~~~~~~~~~~~~~~~~~~~~~
 
