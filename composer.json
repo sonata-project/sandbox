@@ -25,16 +25,16 @@
 
         "jms/security-extra-bundle": "1.2.*@stable",
         "jms/di-extra-bundle": "1.1.*@stable",
-        "twig/twig": "1.12.0",
+        "twig/twig": "1.12.*@stable",
         "doctrine/doctrine-migrations-bundle": "dev-master",
         "doctrine/doctrine-fixtures-bundle": "dev-master",
 
-        "liip/imagine-bundle": "dev-master",
+        "liip/imagine-bundle": "0.9.*@stable",
 
-        "sonata-project/doctrine-orm-admin-bundle": "dev-master",
-        "sonata-project/page-bundle": "dev-master",
-        "sonata-project/news-bundle": "dev-master",
-        "sonata-project/media-bundle": "dev-master",
+        "sonata-project/doctrine-orm-admin-bundle": "2.1.x-dev",
+        "sonata-project/page-bundle": "2.1.x-dev",
+        "sonata-project/news-bundle": "2.1.x-dev",
+        "sonata-project/media-bundle": "2.1.x-dev",
 
         "simplethings/entity-audit-bundle": "dev-master",
 
