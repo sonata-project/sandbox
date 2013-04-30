@@ -141,4 +141,4 @@
 	url = git@git.fullsix.com:/php/mirrors/schmittjoh/JMSSerializerBundle.git
 [submodule "vendor/sonata"]
 	path = vendor/sonata
-	url = git@git.fullsix.com:/php/mirrors/sonata-project/sonata.git
+	url = git@git.fullsix.com:/php/sonata-project/sonata.git

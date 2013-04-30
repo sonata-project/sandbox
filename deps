@@ -206,7 +206,7 @@
     target=bundles/JMS/SerializerBundle
 
 [Sonata]
-    git=git@git.fullsix.com:/php/mirrors/sonata-project/sonata.git
+    git=git@git.fullsix.com:/php/sonata-project/sonata.git
     target=/sonata
 
 [SonataCapistrano]
