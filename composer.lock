@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "bcb366fa0855757a62456ad2c43d33c9",
+    "hash": "4e4e0a06cc55e85f784fb6b594e4905e",
     "packages": [
         {
             "name": "dflydev/markdown",
@@ -113,7 +113,7 @@
                 {
                     "name": "Johannes Schmitt",
                     "email": "schmittjoh@gmail.com",
-                    "homepage": "http://jmsyst.com",
+                    "homepage": "https://github.com/schmittjoh",
                     "role": "Developer of wrapped JMSSerializerBundle"
                 }
             ],
@@ -248,17 +248,17 @@
         },
         {
             "name": "doctrine/doctrine-bundle",
-            "version": "dev-master",
+            "version": "v1.2.0",
             "target-dir": "Doctrine/Bundle/DoctrineBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/DoctrineBundle.git",
-                "reference": "9218b4116e86b1d278564b8550fb2f53eb400093"
+                "reference": "v1.2.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/DoctrineBundle/zipball/9218b4116e86b1d278564b8550fb2f53eb400093",
-                "reference": "9218b4116e86b1d278564b8550fb2f53eb400093",
+                "url": "https://api.github.com/repos/doctrine/DoctrineBundle/zipball/v1.2.0",
+                "reference": "v1.2.0",
                 "shasum": ""
             },
             "require": {
@@ -314,7 +314,7 @@
                 "orm",
                 "persistence"
             ],
-            "time": "2013-05-04 07:57:29"
+            "time": "2013-03-25 20:13:59"
         },
         {
             "name": "doctrine/doctrine-fixtures-bundle",
@@ -709,7 +709,7 @@
             "time": "2012-10-29 02:32:06"
         },
         {
-            "name": "imagine/Imagine",
+            "name": "imagine/imagine",
             "version": "v0.4.1",
             "source": {
                 "type": "git",
@@ -945,7 +945,7 @@
                 {
                     "name": "Johannes M. Schmitt",
                     "email": "schmittjoh@gmail.com",
-                    "homepage": "http://jmsyst.com",
+                    "homepage": "https://github.com/schmittjoh",
                     "role": "Developer of wrapped JMSSerializerBundle"
                 }
             ],
@@ -1100,7 +1100,7 @@
                 {
                     "name": "Johannes M. Schmitt",
                     "email": "schmittjoh@gmail.com",
-                    "homepage": "http://jmsyst.com",
+                    "homepage": "https://github.com/schmittjoh",
                     "role": "Developer of wrapped JMSSerializerBundle"
                 }
             ],
@@ -1807,17 +1807,17 @@
         },
         {
             "name": "sonata-project/admin-bundle",
-            "version": "dev-master",
+            "version": "2.2.2",
             "target-dir": "Sonata/AdminBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataAdminBundle.git",
-                "reference": "9250832526aaf8fb3966896c0a4c4417bb060c3a"
+                "reference": "2.2.2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataAdminBundle/zipball/9250832526aaf8fb3966896c0a4c4417bb060c3a",
-                "reference": "9250832526aaf8fb3966896c0a4c4417bb060c3a",
+                "url": "https://api.github.com/repos/sonata-project/SonataAdminBundle/zipball/2.2.2",
+                "reference": "2.2.2",
                 "shasum": ""
             },
             "require": {
@@ -1826,14 +1826,14 @@
                 "sonata-project/block-bundle": ">=2.2.1,<3.0",
                 "sonata-project/exporter": "1.*",
                 "sonata-project/jquery-bundle": "1.8.*",
-                "symfony/config": ">=2.2,<2.4-dev",
-                "symfony/console": ">=2.2,<2.4-dev",
-                "symfony/form": ">=2.2,<2.4-dev",
-                "symfony/http-foundation": ">=2.2,<2.4-dev",
-                "symfony/routing": ">=2.2,<2.4-dev",
-                "symfony/security-bundle": ">=2.2,<2.4-dev",
-                "symfony/twig-bridge": ">=2.2,<2.4-dev",
-                "symfony/validator": ">=2.2,<2.4-dev",
+                "symfony/config": ">=2.2,<2.3-dev",
+                "symfony/console": ">=2.2,<2.3-dev",
+                "symfony/form": ">=2.2,<2.3-dev",
+                "symfony/http-foundation": ">=2.2,<2.3-dev",
+                "symfony/routing": ">=2.2,<2.3-dev",
+                "symfony/security-bundle": ">=2.2,<2.3-dev",
+                "symfony/twig-bridge": ">=2.2,<2.3-dev",
+                "symfony/validator": ">=2.2,<2.3-dev",
                 "twig/twig": ">=1.12,<2.0-dev"
             },
             "require-dev": {
@@ -1878,26 +1878,26 @@
                 "bootstrap",
                 "sonata"
             ],
-            "time": "2013-05-19 09:54:29"
+            "time": "2013-05-07 12:19:20"
         },
         {
             "name": "sonata-project/block-bundle",
-            "version": "dev-master",
+            "version": "2.2.1",
             "target-dir": "Sonata/BlockBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataBlockBundle.git",
-                "reference": "c9e4a70f34eaa2cee2aa96fc8b4f00fd6b906b28"
+                "reference": "2.2.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataBlockBundle/zipball/c9e4a70f34eaa2cee2aa96fc8b4f00fd6b906b28",
-                "reference": "c9e4a70f34eaa2cee2aa96fc8b4f00fd6b906b28",
+                "url": "https://api.github.com/repos/sonata-project/SonataBlockBundle/zipball/2.2.1",
+                "reference": "2.2.1",
                 "shasum": ""
             },
             "require": {
-                "symfony/form": ">=2.2,<2.4-dev",
-                "symfony/http-foundation": ">=2.2,<2.4-dev"
+                "symfony/form": ">=2.2,<2.3-dev",
+                "symfony/http-foundation": ">=2.2,<2.3-dev"
             },
             "require-dev": {
                 "sonata-project/admin-bundle": "2.2.*@dev",
@@ -1941,7 +1941,7 @@
                 "block",
                 "sonata"
             ],
-            "time": "2013-05-19 09:53:41"
+            "time": "2013-05-07 12:03:58"
         },
         {
             "name": "sonata-project/cache-bundle",
@@ -2059,24 +2059,24 @@
         },
         {
             "name": "sonata-project/doctrine-orm-admin-bundle",
-            "version": "dev-master",
+            "version": "2.2.1",
             "target-dir": "Sonata/DoctrineORMAdminBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataDoctrineORMAdminBundle.git",
-                "reference": "1c68877f58d8150274f39fc02ddfd2fd7d3a2c01"
+                "reference": "2.2.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataDoctrineORMAdminBundle/zipball/1c68877f58d8150274f39fc02ddfd2fd7d3a2c01",
-                "reference": "1c68877f58d8150274f39fc02ddfd2fd7d3a2c01",
+                "url": "https://api.github.com/repos/sonata-project/SonataDoctrineORMAdminBundle/zipball/2.2.1",
+                "reference": "2.2.1",
                 "shasum": ""
             },
             "require": {
                 "doctrine/orm": ">=2.3,<3.0",
                 "knplabs/knp-menu-bundle": ">=1.1,<2.0",
                 "sonata-project/admin-bundle": ">=2.2.2",
-                "symfony/symfony": ">=2.2,<2.4"
+                "symfony/symfony": ">=2.2,<2.3"
             },
             "type": "symfony-bundle",
             "extra": {
@@ -2113,7 +2113,7 @@
                 "generator",
                 "sonata"
             ],
-            "time": "2013-05-19 09:56:25"
+            "time": "2013-05-07 13:33:02"
         },
         {
             "name": "sonata-project/easy-extends-bundle",
@@ -2226,17 +2226,17 @@
         },
         {
             "name": "sonata-project/formatter-bundle",
-            "version": "dev-master",
+            "version": "2.2.1",
             "target-dir": "Sonata/FormatterBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataFormatterBundle.git",
-                "reference": "89657f6ce0a3ff3a1c32a011c9b43ef787d59436"
+                "reference": "2.2.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataFormatterBundle/zipball/89657f6ce0a3ff3a1c32a011c9b43ef787d59436",
-                "reference": "89657f6ce0a3ff3a1c32a011c9b43ef787d59436",
+                "url": "https://api.github.com/repos/sonata-project/SonataFormatterBundle/zipball/2.2.1",
+                "reference": "2.2.1",
                 "shasum": ""
             },
             "require": {
@@ -2244,7 +2244,7 @@
                 "knplabs/knp-markdown-bundle": "1.1.*",
                 "sonata-project/block-bundle": ">=2.2.1",
                 "sonata-project/markitup-bundle": "2.1.*",
-                "symfony/symfony": ">=2.1,<2.4-dev",
+                "symfony/symfony": ">=2.1,<2.3-dev",
                 "twig/twig": "*"
             },
             "type": "symfony-bundle",
@@ -2284,7 +2284,7 @@
                 "markitup",
                 "sonata"
             ],
-            "time": "2013-05-19 09:55:32"
+            "time": "2013-05-07 14:32:47"
         },
         {
             "name": "sonata-project/google-authenticator",
@@ -2511,17 +2511,17 @@
         },
         {
             "name": "sonata-project/media-bundle",
-            "version": "dev-master",
+            "version": "2.2.1",
             "target-dir": "Sonata/MediaBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataMediaBundle.git",
-                "reference": "6d47c6e04c1b3ae3861d65c9bc0b8d63b9d32bc6"
+                "reference": "2.2.1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataMediaBundle/zipball/6d47c6e04c1b3ae3861d65c9bc0b8d63b9d32bc6",
-                "reference": "6d47c6e04c1b3ae3861d65c9bc0b8d63b9d32bc6",
+                "url": "https://api.github.com/repos/sonata-project/SonataMediaBundle/zipball/2.2.1",
+                "reference": "2.2.1",
                 "shasum": ""
             },
             "require": {
@@ -2531,7 +2531,7 @@
                 "sonata-project/doctrine-extensions": "1.*",
                 "sonata-project/easy-extends-bundle": "2.1.*",
                 "sonata-project/notification-bundle": "2.2.*@dev",
-                "symfony/symfony": ">=2.2,<2.4-dev"
+                "symfony/symfony": ">=2.2,<2.3-dev"
             },
             "require-dev": {
                 "amazonwebservices/aws-sdk-for-php": "1.5.*",
@@ -2583,7 +2583,7 @@
                 "vimeo",
                 "youtube"
             ],
-            "time": "2013-05-19 09:56:00"
+            "time": "2013-05-07 14:08:33"
         },
         {
             "name": "sonata-project/news-bundle",
@@ -2728,7 +2728,7 @@
         },
         {
             "name": "sonata-project/page-bundle",
-            "version": "dev-master",
+            "version": "2.2.1",
             "target-dir": "Sonata/PageBundle",
             "source": {
                 "type": "git",
@@ -2964,7 +2964,7 @@
         },
         {
             "name": "symfony-cmf/routing",
-            "version": "1.0.x-dev",
+            "version": "1.0.1",
             "target-dir": "Symfony/Cmf/Component/Routing",
             "source": {
                 "type": "git",
@@ -3016,17 +3016,17 @@
         },
         {
             "name": "symfony-cmf/routing-extra-bundle",
-            "version": "dev-master",
+            "version": "1.0.0",
             "target-dir": "Symfony/Cmf/Bundle/RoutingExtraBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony-cmf/RoutingExtraBundle.git",
-                "reference": "95afa5e184c6785c46760e8d139d34834514b528"
+                "reference": "1.0.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony-cmf/RoutingExtraBundle/zipball/95afa5e184c6785c46760e8d139d34834514b528",
-                "reference": "95afa5e184c6785c46760e8d139d34834514b528",
+                "url": "https://api.github.com/repos/symfony-cmf/RoutingExtraBundle/zipball/1.0.0",
+                "reference": "1.0.0",
                 "shasum": ""
             },
             "require": {
@@ -3078,7 +3078,7 @@
                 "database",
                 "routing"
             ],
-            "time": "2013-04-28 12:24:48"
+            "time": "2013-04-21 21:54:33"
         },
         {
             "name": "symfony/assetic-bundle",
@@ -3950,23 +3950,14 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "twig/extensions": 20,
-        "doctrine/doctrine-bundle": 20,
         "doctrine/doctrine-migrations-bundle": 20,
         "doctrine/migrations": 20,
         "doctrine/doctrine-fixtures-bundle": 20,
         "doctrine/data-fixtures": 20,
         "knplabs/knp-menu-bundle": 20,
-        "sonata-project/formatter-bundle": 20,
         "sonata-project/notification-bundle": 20,
-        "sonata-project/admin-bundle": 20,
-        "sonata-project/block-bundle": 20,
-        "sonata-project/page-bundle": 20,
-        "sonata-project/media-bundle": 20,
         "sonata-project/news-bundle": 20,
         "sonata-project/user-bundle": 20,
-        "sonata-project/doctrine-orm-admin-bundle": 20,
-        "symfony-cmf/routing-extra-bundle": 20,
-        "symfony-cmf/routing": 20,
         "simplethings/entity-audit-bundle": 20,
         "willdurand/faker-bundle": 20
     },
