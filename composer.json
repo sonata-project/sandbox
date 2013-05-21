@@ -58,7 +58,7 @@
         "simplethings/entity-audit-bundle": "dev-master",
         "willdurand/faker-bundle": "dev-master",
 
-        "kriswallsmith/assetic": "1.1.*@dev"
+        "kriswallsmith/assetic": "1.1.*"
     },
 
     "require-dev": {
