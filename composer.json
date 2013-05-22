@@ -12,7 +12,7 @@
     "require": {
         "php": ">=5.3.3",
 
-        "doctrine/doctrine-bundle": "1.0.*",
+        "doctrine/doctrine-bundle": "1.1.*",
 
         "twig/extensions": "1.0.*",
 
@@ -22,9 +22,9 @@
         "symfony/swiftmailer-bundle": "2.1.*",
         "symfony/monolog-bundle": "2.1.*",
 
-        "doctrine/orm": ">=2.2.3,<2.4-dev",
+        "doctrine/orm": ">=2.2.3,<2.5-dev",
         "doctrine/doctrine-migrations-bundle": "dev-master",
-        "doctrine/doctrine-fixtures-bundle": "dev-master",
+        "doctrine/doctrine-fixtures-bundle": "2.1.*",
 
         "sensio/distribution-bundle": "2.1.*",
         "sensio/framework-extra-bundle": "2.1.*",
@@ -32,29 +32,26 @@
 
         "jms/security-extra-bundle": "1.2.*",
         "jms/di-extra-bundle": "1.1.*",
-        "jms/serializer-bundle": "dev-master",
+        "jms/aop-bundle": "1.0.*",
 
-        "knplabs/knp-markdown-bundle": "dev-master",
+        "kriswallsmith/assetic": "1.1.*",
 
-        "sonata-project/doctrine-orm-admin-bundle": "dev-master",
-        "sonata-project/user-bundle": "dev-master",
-        "sonata-project/easy-extends-bundle": "dev-master",
-        "sonata-project/page-bundle": "dev-master",
-        "sonata-project/media-bundle": "dev-master",
-        "sonata-project/block-bundle": "dev-master",
-        "sonata-project/intl-bundle": "dev-master",
-        "sonata-project/seo-bundle": "dev-master",
-        "sonata-project/news-bundle": "dev-master",
-        "sonata-project/formatter-bundle": "dev-master",
-        "sonata-project/notification-bundle": "dev-master",
-        "sonata-project/doctrine-extensions": "dev-master",
-        "sonata-project/exporter": "dev-master",
+        "knplabs/knp-markdown-bundle": "1.1.*",
+
+        "sonata-project/doctrine-orm-admin-bundle": "2.1.*",
+        "sonata-project/admin-bundle": "2.1.*",
+        "sonata-project/easy-extends-bundle": "2.1.*",
+        "sonata-project/page-bundle": "2.1.*",
+        "sonata-project/media-bundle": "2.1.*",
+        "sonata-project/block-bundle": "2.1.*",
+        "sonata-project/intl-bundle": "2.1.*",
+        "sonata-project/news-bundle": "2.1.*",
+        "sonata-project/notification-bundle": "2.1.*",
 
         "simplethings/entity-audit-bundle": "dev-master",
 
         "willdurand/faker-bundle": "dev-master", 
 
-        
         "behat/behat": "2.4.*@stable",
         "behat/mink": "1.4@stable",
         "behat/mink-extension": "*",

@@ -11,3 +11,6 @@ vendor
 .idea
 nbproject
 composer.phar
+
+/bin/behat
+/bin/doctrine*
