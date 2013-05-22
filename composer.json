@@ -62,7 +62,7 @@
         "behat/mink-selenium2-driver": "*",
         "behat/symfony2-extension":"v1.0.0",
         "behat/mink-sahi-driver" : "*",
-        "behat/mink-zombie-driver" :"*",
+        "behat/mink-zombie-driver" :"*"
     },
 
     "scripts": {
