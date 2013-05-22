@@ -1,11 +1,10 @@
 imports:
     - { resource: config_dev.yml }
-    - { resource: knp_behat.yml }
 
 framework:
     test: ~
     session:
-        storage_id: session.storage.filesystem
+        storage_id: session.storage.mock_file
 
 web_profiler:
     toolbar: false

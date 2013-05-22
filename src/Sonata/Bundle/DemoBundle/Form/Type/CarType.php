@@ -12,11 +12,13 @@
 namespace Sonata\Bundle\DemoBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilder;
+use Symfony\Component\Form\FormBuilderInterface;
+
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 class CarType extends AbstractType
 {
-    public function buildForm(FormBuilder $formBuilder, array $options)
+    public function buildForm(FormBuilderInterface $formBuilder, array $options)
     {
         $formBuilder
             ->add('createdAt', 'datetime')
@@ -32,10 +34,10 @@ class CarType extends AbstractType
         return 'sonata_demo_car';
     }
 
-    public function getDefaultOptions(array $options)
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        $options['data_class'] = 'Sonata\Bundle\DemoBundle\Model\Car';
-
-        return $options;
+        $resolver->setDefaults(array(
+            'data_class' => 'Sonata\Bundle\DemoBundle\Model\Car'
+        ));
     }
 }

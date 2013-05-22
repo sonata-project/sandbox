@@ -25,18 +25,19 @@ imports:
     - { resource: sonata/sonata_basket.yml }
 
 framework:
-    #esi:             ~
-    translator: { fallback: en }
-    secret:          %secret%
-    charset:         UTF-8
-    router:          { resource: "%kernel.root_dir%/config/routing.yml" }
-    form:            true
-    csrf_protection: true
-    validation:      { enable_annotations: true }
-    templating:      { engines: ['twig'] } #assets_version: SomeVersionScheme
-    session:
-        default_locale: %locale%
-        auto_start:     true
+    #esi:                 ~
+    translator:          { fallback: en }
+    secret:              %secret%
+    form:                true
+    csrf_protection:     true
+    validation:          { enable_annotations: true }
+    templating:          { engines: ['twig'] } #assets_version: SomeVersionScheme
+    default_locale:      %locale%
+    trust_proxy_headers: false
+    session:             ~
+    router:
+        resource:            "%kernel.root_dir%/config/routing.yml"
+        strict_requirements: %kernel.debug%
 
 # Twig Configuration
 twig:
@@ -51,6 +52,7 @@ twig:
 assetic:
     debug:          %kernel.debug%
     use_controller: false
+    bundles:        []
     filters:
         cssrewrite: ~
         # closure:
@@ -62,6 +64,7 @@ assetic:
 doctrine:
     dbal:
         default_connection: default
+
         connections:
             default:
                 driver:   %database_driver%
@@ -69,7 +72,6 @@ doctrine:
                 user:     %database_user%
                 host:     %database_host%
                 password: %database_password%
-
 
         types:
             json: Sonata\Doctrine\Types\JsonType
@@ -88,11 +90,8 @@ doctrine:
 
 # Swiftmailer Configuration
 swiftmailer:
+    spool:     { type: memory }
     transport: %mailer_transport%
     host:      %mailer_host%
     username:  %mailer_user%
     password:  %mailer_password%
-
-jms_security_extra:
-    secure_controllers:  true
-    secure_all_services: false
