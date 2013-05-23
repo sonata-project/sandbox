@@ -6,6 +6,8 @@ sonata_media:
     default_context: default
     contexts:
         default:  # the default context is mandatory
+            download:
+                mode: http # X-Sendfile | http
             providers:
                 - sonata.media.provider.dailymotion
                 - sonata.media.provider.youtube

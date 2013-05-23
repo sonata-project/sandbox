@@ -1,0 +1,24 @@
+sonata_user:
+    security_acl:             false
+    table:
+        user_group:           fos_user_user_group
+
+    impersonating:
+        route:                page_slug
+        parameters:           { path: / }
+
+    google_authenticator:
+        server:               %sonata_user.google_authenticator.server%
+        enabled:              true
+
+    manager_type:             orm
+
+    profile:
+        form:
+            type:                 sonata_user_profile
+            handler:              sonata.user.profile.form.handler.default
+            name:                 sonata_user_profile_form
+            validation_groups:
+                # Defaults:
+                - Profile
+                - Default

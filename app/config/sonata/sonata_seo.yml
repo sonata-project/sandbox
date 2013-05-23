@@ -2,30 +2,40 @@
 # more information can be found here http://sonata-project.org/bundles/page
 #
 sonata_seo:
-    default:          sonata.seo.page.default
-    title:            Sonata Project
-    metas:
-        name:
-            keywords:             foo bar
-            description:          The description
-            robots:               index, follow
+    encoding:             UTF-8
+    page:
+        default:          sonata.seo.page.default
+        title:            Sonata Project
+        metas:
+            name:
+                keywords:             foo bar
+                description:          The description
+                robots:               index, follow
 
-        property:
-            # Facebook application settings
-            #'fb:app_id':          XXXXXX
-            #'fb:admins':          admin1, admin2
+            property:
+                # Facebook application settings
+                #'fb:app_id':          XXXXXX
+                #'fb:admins':          admin1, admin2
 
-            # Open Graph information
-            # see http://developers.facebook.com/docs/opengraphprotocol/#types or http://ogp.me/
-            'og:site_name':       Sonata Project Sandbox
-            'og:description':     A demo of the some rich bundles for your Symfony2 projects
+                # Open Graph information
+                # see http://developers.facebook.com/docs/opengraphprotocol/#types or http://ogp.me/
+                'og:site_name':       Sonata Project Sandbox
+                'og:description':     A demo of the some rich bundles for your Symfony2 projects
 
-        http-equiv:
-            'Content-Type':         text/html; charset=utf-8
-            #'X-Ua-Compatible':      IE=EmulateIE7
+            http-equiv:
+                'Content-Type':         text/html; charset=utf-8
+                #'X-Ua-Compatible':      IE=EmulateIE7
 
-    head:
-        'xmlns':              http://www.w3.org/1999/xhtml
-        'xmlns:og':           http://opengraphprotocol.org/schema/
-        #'xmlns:fb':           "http://www.facebook.com/2008/fbml"
+        head:
+            'xmlns':              http://www.w3.org/1999/xhtml
+            'xmlns:og':           http://opengraphprotocol.org/schema/
+            #'xmlns:fb':           "http://www.facebook.com/2008/fbml"
 
+    sitemap:
+        doctrine_orm:
+            # media
+            - { connection: doctrine.dbal.default_connection, route: sonata_media_view, parameters: {id: null}, query: "SELECT id, updated_at as lastmod, 'weekly' as changefreq, '0.5' as prioriy FROM media__media WHERE enabled = true" }
+            # blog post
+            - { connection: doctrine.dbal.default_connection, route: sonata_news_view, parameters: {permalink: null}, query: "SELECT CONCAT_WS('/', YEAR(created_at), MONTH(created_at), DAY(created_at), slug) as permalink , updated_at as lastmod, 'weekly' as changefreq, '0.5' as prioriy FROM news__post WHERE enabled = 1 AND (publication_date_start IS NULL OR publication_date_start <= NOW())" }
+            # page - works only for one site, please adapt the code if required
+            - { connection: doctrine.dbal.default_connection, route: page_slug, parameters: {path: null}, query: "SELECT url as path, updated_at as lastmod, 'weekly' as changefreq, '0.5' as prioriy FROM page__snapshot WHERE route_name = 'page_slug' AND enabled = 1 AND (publication_date_start IS NULL OR publication_date_start <= NOW())" }

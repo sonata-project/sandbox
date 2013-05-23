@@ -1,4 +1,4 @@
-# 
+#
 # more information can be found here http://sonata-project.org/bundles/formatter
 #
 sonata_formatter:
@@ -16,7 +16,13 @@ sonata_formatter:
                 - sonata.formatter.twig.control_flow
                 - sonata.formatter.twig.gist
                 - sonata.media.formatter.twig
-        raw:
+        rawhtml:
+            service: sonata.formatter.text.raw
+            extensions:
+                - sonata.formatter.twig.control_flow
+                - sonata.formatter.twig.gist
+                - sonata.media.formatter.twig
+        richhtml:
             service: sonata.formatter.text.raw
             extensions:
                 - sonata.formatter.twig.control_flow
