@@ -11,7 +11,7 @@ Scenario: Check site admin pages when connected
   Then I should see "Filters"
 
 Scenario: Add a new site with some errors
-  When I am connected with "admin" and "admin" on "admin/sonata/page/site/create?uniqid=4f155592a220e"
+  When I am connected with "admin" and "admin" on "admin/sonata/page/site/create?uniqid=f155592a220e"
   And I press "Create"
   Then I should see "An error has occurred during item creation."
 

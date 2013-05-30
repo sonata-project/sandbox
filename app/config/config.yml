@@ -14,6 +14,7 @@ imports:
     - { resource: sonata/sonata_seo.yml }
     - { resource: sonata/sonata_user.yml }
     - { resource: sonata/sonata_notification.yml }
+    - { resource: sonata/sonata_user.yml }
 
     # Sonata e-commerce bundles
     - { resource: sonata/sonata_order.yml }
@@ -25,19 +26,16 @@ imports:
     - { resource: sonata/sonata_basket.yml }
 
 framework:
-    #esi:                 ~
-    translator:          { fallback: en }
-    secret:              %secret%
-    form:                true
-    csrf_protection:     true
-    validation:          { enable_annotations: true }
-    templating:          { engines: ['twig'] } #assets_version: SomeVersionScheme
-    default_locale:      %locale%
-    trust_proxy_headers: false
-    session:             ~
-    router:
-        resource:            "%kernel.root_dir%/config/routing.yml"
-        strict_requirements: %kernel.debug%
+    #esi:             ~
+    translator: { fallback: en }
+    secret:          %secret%
+    router:          { resource: "%kernel.root_dir%/config/routing.yml" }
+    form:            true
+    csrf_protection: true
+    validation:      { enable_annotations: true }
+    templating:      { engines: ['twig'] } #assets_version: SomeVersionScheme
+    default_locale:  %locale%
+    session: ~
 
 # Twig Configuration
 twig:
@@ -47,12 +45,12 @@ twig:
     form:
         resources:
             - 'SonataAdminBundle:Form:silex_form_div_layout.html.twig'
+            - 'SonataFormatterBundle:Form:formatter.html.twig'
 
 # Assetic Configuration
 assetic:
     debug:          %kernel.debug%
     use_controller: false
-    bundles:        []
     filters:
         cssrewrite: ~
         # closure:
@@ -85,13 +83,15 @@ doctrine:
                 #metadata_cache_driver: apc
                 #query_cache_driver: apc
                 #result_cache_driver: apc
-                mappings:
-                    SonataEcommerceDemoBundle: ~
+                auto_mapping: true
+                mappings: ~
 
 # Swiftmailer Configuration
 swiftmailer:
-    spool:     { type: memory }
     transport: %mailer_transport%
     host:      %mailer_host%
     username:  %mailer_user%
     password:  %mailer_password%
+
+jms_security_extra:
+    secure_all_services: false

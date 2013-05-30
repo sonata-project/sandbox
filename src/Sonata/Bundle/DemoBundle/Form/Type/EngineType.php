@@ -16,6 +16,9 @@ use Symfony\Component\Form\FormBuilderInterface;
 
 class EngineType extends AbstractType
 {
+    /**
+     * {@inheritdoc}
+     */
     public function buildForm(FormBuilderInterface $formBuilder, array $options)
     {
         $formBuilder
@@ -25,12 +28,10 @@ class EngineType extends AbstractType
     }
 
     /**
-     * Returns the name of this type.
-     *
-     * @return string The name of this type
+     * {@inheritdoc}
      */
     public function getName()
     {
-        return 'sonata_demo_engine';
+        return 'sonata_demo_form_type_engine';
     }
 }

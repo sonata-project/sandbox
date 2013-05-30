@@ -2,9 +2,6 @@
 #_internal:
 #   resource: "@FrameworkBundle/Resources/config/routing/internal.xml"
 #   prefix:   /_internal
-homepage:
-    pattern:  /
-    defaults: { _controller: SonataPageBundle:Page:catchAll }
 
 sonata_demo:
     resource: "@SonataDemoBundle/Resources/config/routing/demo.xml"
@@ -27,6 +24,10 @@ fos_user_resetting:
 fos_user_change_password:
     resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
     prefix: /change-password
+
+sonata_cache_cache:
+    resource: '@SonataCacheBundle/Resources/config/routing/cache.xml'
+    prefix: /
 
 sonata_page_cache:
     resource: '@SonataPageBundle/Resources/config/routing/cache.xml'
@@ -96,9 +97,3 @@ _sonata_admin:
 soanata_user:
     resource: '@SonataUserBundle/Resources/config/routing/admin_security.xml'
     prefix: /admin
-
-catchAll:
-    pattern:  /{path}
-    defaults: { _controller: SonataPageBundle:Page:catchAll }
-    requirements:
-        path: .*
