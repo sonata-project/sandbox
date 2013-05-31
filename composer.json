@@ -58,7 +58,6 @@
         "doctrine/doctrine-fixtures-bundle": "2.1.*@dev",
         "doctrine/data-fixtures": "1.0.*@dev",
 
-        "knplabs/gaufrette": "0.1.*",
         "knplabs/knp-menu-bundle": "1.1.x-dev",
 
         "sonata-project/easy-extends-bundle": "2.1.*",
