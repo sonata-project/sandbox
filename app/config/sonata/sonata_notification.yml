@@ -33,3 +33,4 @@ doctrine:
             default:
                 mappings:
                     SonataNotificationBundle: ~
+                    ApplicationSonataNotificationBundle: ~
