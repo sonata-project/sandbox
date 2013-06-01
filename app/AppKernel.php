@@ -68,7 +68,7 @@ class AppKernel extends Kernel
             new Sonata\NotificationBundle\SonataNotificationBundle(),
 
             // CMF Integration
-            new Symfony\Cmf\Bundle\RoutingExtraBundle\SymfonyCmfRoutingExtraBundle(),
+            new Symfony\Cmf\Bundle\RoutingBundle\CmfRoutingBundle(),
 
             // DEMO
             new Sonata\Bundle\DemoBundle\SonataDemoBundle(),
