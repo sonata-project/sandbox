@@ -13,11 +13,11 @@
             "type": "package",
             "package": {
                 "name":    "sonata-project/ecommerce",
-                "version": "2.2",
+                "version": "2.3",
                 "source": {
                     "url":       "git@gitlab.fullsix.com:php-labs/sf2-sonata-ecommerce.git",
                     "type":      "git",
-                    "reference": "2.2"
+                    "reference": "2.3"
                 },
                 "autoload": {
                     "psr-0": {
@@ -77,12 +77,12 @@
         "sonata-project/page-bundle": "2.3.*@dev",
         "sonata-project/formatter-bundle": "2.3.*@dev",
         "sonata-project/news-bundle": "2.3.*@dev",
+        "sonata-project/ecommerce": "2.3",
 
         "dflydev/markdown": "1.0.2",
+
         "simplethings/entity-audit-bundle": "dev-master",
 
-
-        "sonata-project/ecommerce": "2.2",
         "willdurand/faker-bundle": "dev-master"
     },
 
