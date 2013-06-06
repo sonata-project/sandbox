@@ -88,7 +88,7 @@ class DemoController extends Controller
     {
         // preset a default value
         $media = $this->get('sonata.media.manager.media')->create();
-        $media->setBinaryContent('http://www.youtube.com/watch?v=qTVfFmENgPU');
+        $media->setBinaryContent('http://www.youtube.com/watch?v=oHg5SJYRHA0');
 
         // create the target object
         $mediaPreview = new MediaPreview();
