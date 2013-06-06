@@ -6,25 +6,7 @@ What's inside?
 
 Sonata Standard Edition comes pre-configured with the following bundles:
 
-Symfony Standard Edition
-~~~~~~~~~~~~~~~~~~~~~~~~
-
-* FrameworkBundle
-* SensioFrameworkExtraBundle
-* DoctrineBundle
-* TwigBundle
-* SwiftmailerBundle
-* MonologBundle
-* AsseticBundle
-* JMSSecurityExtraBundle
-* WebProfilerBundle (in dev/test env)
-* SensioDistributionBundle (in dev/test env)
-* SensioGeneratorBundle (in dev/test env)
-* AcmeDemoBundle (in dev/test env)
-
-Sonata Bundles
-~~~~~~~~~~~~~~
-
+* Bundles from Symfony Standard distribution
 * SonataAdminBundle - The missing Symfony2 Admin Generator
 * SonataMediaBundle
 * SonataPageBundle
@@ -33,17 +15,7 @@ Sonata Bundles
 * SonataIntlBundle
 * SonataNewsBundle
 * SonatajQueryBundle
-
-FOS Bundles
-~~~~~~~~~~~
-
 * FOSUserBundle
-
-Behat Bundles
-~~~~~~~~~~~~~
-
-* MinkBundle
-* BehatBundle
 
 Installation
 ------------
@@ -56,17 +28,11 @@ Run the following commands::
     git init
     git add .gitignore *
     git commit -m "Initial commit (from the Sonata Sandbox)"
-    php bin/vendors install
-    git add *
-    git commit -m "add submodules"
+    curl -s http://getcomposer.org/installer | php
+    php composer.phar install
     cp app/config/parameters.yml.sample app/config/parameters.yml
     cp app/config/parameters.yml.sample app/config/validation_parameters.yml
     cp app/config/parameters.yml.sample app/config/production_parameters.yml
-
-.. note::
-
-  The ``bin/vendor`` script does not behave like the one provided by the Symfony2 Standard Edition.
-  The script install vendors as git submodules.
 
 Database initialization
 ~~~~~~~~~~~~~~~~~~~~~~~
