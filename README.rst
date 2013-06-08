@@ -24,6 +24,7 @@ Run the following commands::
 
     git clone http://github.com/sonata-project/sandbox.git sonata-sandbox
     cd sonata-sandbox
+    git checkout 2.3
     rm -rf .git
     git init
     git add .gitignore *
