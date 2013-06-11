@@ -9,8 +9,8 @@ fos_user:
     group:
         group_class: Application\Sonata\UserBundle\Entity\Group
 
-    service:
-        user_manager: sonata.customer.manager
+#    service:
+#        user_manager: ~
 
 # Enable Doctrine to map the provided entities
 doctrine:
