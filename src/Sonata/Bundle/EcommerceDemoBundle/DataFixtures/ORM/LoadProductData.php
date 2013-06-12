@@ -37,23 +37,31 @@ class LoadProductData extends AbstractFixture implements ContainerAwareInterface
 
         $categoryManager = $this->getCategoryManager();
 
+        $description = sprintf('<p>Category description goes here&nbsp;: <em>%s</em></p>', $this->getFaker()->sentence(20));
+
         $this->addReference('category-mac', $category_mac = $categoryManager->createCategory());
         $category_mac->setName('Mac');
-        $category_mac->setDescription($faker->sentence(10));
+        $category_mac->setDescription($description);
+        $category_mac->setRawDescription($description);
+        $category_mac->setDescriptionFormatter('richhtml');
         $category_mac->setSubdescription($faker->sentence(20));
         $category_mac->setEnabled(true);
         $em->persist($category_mac);
 
         $this->addReference('category-pc', $category_pc = $categoryManager->createCategory());
         $category_pc->setName('PC');
-        $category_pc->setDescription($faker->sentence(10));
+        $category_pc->setDescription($description);
+        $category_pc->setRawDescription($description);
+        $category_pc->setDescriptionFormatter('richhtml');
         $category_pc->setSubdescription($faker->sentence(20));
         $category_pc->setEnabled(true);
         $em->persist($category_pc);
 
         $this->addReference('category-mac-mba', $category_mba = $categoryManager->createCategory());
         $category_mba->setName('MacBook Air');
-        $category_mba->setDescription($faker->sentence(10));
+        $category_mba->setDescription($description);
+        $category_mba->setRawDescription($description);
+        $category_mba->setDescriptionFormatter('richhtml');
         $category_mba->setSubdescription($faker->sentence(20));
         $category_mba->setEnabled(true);
         $category_mba->setParent($category_mac);
@@ -61,7 +69,9 @@ class LoadProductData extends AbstractFixture implements ContainerAwareInterface
 
         $this->addReference('category-mac-mbp', $category_mbp = $categoryManager->createCategory());
         $category_mbp->setName('MacBook Pro');
-        $category_mbp->setDescription($faker->sentence(10));
+        $category_mbp->setDescription($description);
+        $category_mbp->setRawDescription($description);
+        $category_mbp->setDescriptionFormatter('richhtml');
         $category_mbp->setSubdescription($faker->sentence(20));
         $category_mbp->setEnabled(true);
         $category_mbp->setParent($category_mac);
@@ -69,7 +79,9 @@ class LoadProductData extends AbstractFixture implements ContainerAwareInterface
 
         $this->addReference('category-mac-apps', $category_app = $categoryManager->createCategory());
         $category_app->setName('Applications');
-        $category_app->setDescription($faker->sentence(10));
+        $category_app->setDescription($description);
+        $category_app->setRawDescription($description);
+        $category_app->setDescriptionFormatter('richhtml');
         $category_app->setSubdescription($faker->sentence(20));
         $category_app->setEnabled(true);
         $category_app->setParent($category_mac);
@@ -77,7 +89,9 @@ class LoadProductData extends AbstractFixture implements ContainerAwareInterface
 
         $this->addReference('category-pc-laptop', $category_laptop = $categoryManager->createCategory());
         $category_laptop->setName('Laptops');
-        $category_laptop->setDescription($faker->sentence(10));
+        $category_laptop->setDescription($description);
+        $category_laptop->setRawDescription($description);
+        $category_laptop->setDescriptionFormatter('richhtml');
         $category_laptop->setSubdescription($faker->sentence(20));
         $category_laptop->setEnabled(true);
         $category_laptop->setParent($category_pc);
@@ -85,7 +99,9 @@ class LoadProductData extends AbstractFixture implements ContainerAwareInterface
 
         $this->addReference('category-pc-desktop', $category_desktop = $categoryManager->createCategory());
         $category_desktop->setName('Desktop');
-        $category_desktop->setDescription($faker->sentence(10));
+        $category_desktop->setDescription($description);
+        $category_desktop->setRawDescription($description);
+        $category_desktop->setDescriptionFormatter('richhtml');
         $category_desktop->setSubdescription($faker->sentence(20));
         $category_desktop->setEnabled(true);
         $category_desktop->setParent($category_pc);
@@ -93,7 +109,9 @@ class LoadProductData extends AbstractFixture implements ContainerAwareInterface
 
         $this->addReference('category-pc-software', $category_pc_software = $categoryManager->createCategory());
         $category_pc_software->setName('Software');
-        $category_pc_software->setDescription($faker->sentence(10));
+        $category_pc_software->setDescription($description);
+        $category_pc_software->setRawDescription($description);
+        $category_pc_software->setDescriptionFormatter('richhtml');
         $category_pc_software->setSubdescription($faker->sentence(20));
         $category_pc_software->setEnabled(true);
         $category_pc_software->setParent($category_pc);
@@ -135,11 +153,15 @@ class LoadProductData extends AbstractFixture implements ContainerAwareInterface
 
     protected function createProduct(ProductManagerInterface $manager, $key, Category $category)
     {
+        $description = sprintf('<p>Product description goes here&nbsp;: <em>%s</em></p>', $this->getFaker()->sentence(20));
+
         $product = $manager->create();
         $product->setName('Product '.$key);
         $product->setSku(sprintf('%06d', $key));
         $product->setSlug('product-'.$product->getSku());
-        $product->setDescription($this->getFaker()->sentence(20));
+        $product->setDescription($description);
+        $product->setRawDescription($description);
+        $product->setDescriptionFormatter('richhtml');
         $product->setPrice(rand(150, 2500));
         $product->setVat(19.60);
         $product->setStock(rand(0, 10000));

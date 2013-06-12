@@ -21,7 +21,7 @@ file that was distributed with this source code.
 {% block product_title %}{{ product.name }}{% endblock %}
 
 {% block product_description %}
-    {{ product.description }}
+    {{ product.description|raw }}
 {% endblock %}
 
 {% block product_gallery %}Product gallery{% endblock %}
