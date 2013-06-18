@@ -154,6 +154,7 @@ class LoadProductData extends AbstractFixture implements ContainerAwareInterface
     protected function createProduct(ProductManagerInterface $manager, $key, Category $category)
     {
         $description = sprintf('<p>Product description goes here&nbsp;: <em>%s</em></p>', $this->getFaker()->sentence(20));
+        $image = $this->getImage();
 
         $product = $manager->create();
         $product->setName('Product '.$key);
@@ -166,6 +167,7 @@ class LoadProductData extends AbstractFixture implements ContainerAwareInterface
         $product->setVat(19.60);
         $product->setStock(rand(0, 10000));
         $product->setEnabled(true);
+        $product->setImage($image);
         $this->getEntityManager()->persist($product);
 
         $productCategory = $this->getProductCategoryManager()->createProductCategory();
@@ -202,6 +204,14 @@ class LoadProductData extends AbstractFixture implements ContainerAwareInterface
         $delivery_us->setCreatedAt(new \DateTime());
         $delivery_us->setUpdatedAt(new \DateTime());
         $this->getEntityManager()->persist($delivery_us);
+    }
+
+    /**
+     * @return MediaInterface
+     */
+    public function getImage()
+    {
+        return $this->getReference('sonata-media-0');
     }
 
     /**
