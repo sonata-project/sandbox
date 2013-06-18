@@ -8,8 +8,6 @@
 
     "license": "MIT",
 
-    "minimum-stability": "dev",
-
     "require": {
         "php": ">=5.3.3",
 
@@ -25,17 +23,18 @@
         "sensio/framework-extra-bundle": "2.3.*",
         "sensio/generator-bundle": "2.3.*",
 
-        "doctrine/orm": ">=2.2.3,<2.4-dev@stable",
+        "doctrine/orm": ">=2.2.3,<2.4-dev",
         "doctrine/doctrine-bundle": "1.2.*",
         "doctrine/doctrine-migrations-bundle": "dev-master",
         "doctrine/migrations": "dev-master",
         "doctrine/doctrine-fixtures-bundle": "2.1.*@dev",
         "doctrine/data-fixtures": "1.0.*@dev",
 
-        "jms/security-extra-bundle": "1.4.*",
-        "jms/di-extra-bundle": "1.3.*",
+        "jms/security-extra-bundle": "1.5.*",
+        "jms/di-extra-bundle": "1.4.*",
 
         "symfony-cmf/routing-bundle": "1.1.*@dev",
+        "symfony-cmf/routing": "1.1.*@dev",
 
         "knplabs/gaufrette": "0.1.4",
         "knplabs/knp-menu-bundle": "1.1.x-dev",
@@ -54,6 +53,7 @@
         "sonata-project/page-bundle": "2.3.*@dev",
         "sonata-project/formatter-bundle": "2.3.*@dev",
         "sonata-project/news-bundle": "2.3.*@dev",
+        "sonata-project/admin-bundle": "2.2.*@dev",
 
         "dflydev/markdown": "1.0.2",
         "simplethings/entity-audit-bundle": "dev-master",
