@@ -12,7 +12,9 @@
         {
             "type": "vcs",
             "url": "git@gitlab.fullsix.com:php-labs/sf2-sonata-ecommerce.git"
-        }
+        },
+        {"packagist": false},
+        {"type": "composer", "url": "http://packagist.fullsix.com"}
     ],
 
     "minimum-stability": "dev",
@@ -69,7 +71,9 @@
 
         "simplethings/entity-audit-bundle": "dev-master",
 
-        "willdurand/faker-bundle": "dev-master"
+        "willdurand/faker-bundle": "dev-master",
+        
+        "jms/translation-bundle": "dev-master"
     },
 
     "require-dev": {
