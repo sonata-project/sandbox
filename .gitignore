@@ -6,7 +6,7 @@ web/uploads
 
 behat.phar
 mink.phar
-app/config/parameters*.yml
+app/config/*parameters.yml
 vendor
 .idea
 nbproject
