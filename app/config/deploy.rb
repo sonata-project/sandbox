@@ -78,3 +78,12 @@ namespace :sonata do
         end
     end
 end
+
+after "deploy:setup" do
+    run "if [ ! -d #{deploy_to}/shared/app/config ]; then mkdir -p #{deploy_to}/shared/app/config; fi"
+
+    upload(
+        '%s/parameters_%s.yml' % [File.dirname(__FILE__), fetch(:stage)],
+        '%s/shared/app/config/parameters.yml' % fetch(:deploy_to)
+    )
+end
