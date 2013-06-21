@@ -51,6 +51,15 @@ task :check_releases, :roles => :app do
     end
 end
 
+desc "Build or rebuild db with fixtures & sonata routes & snapshots"
+task :rebuildDb, :roles => :app do
+    run "cd #{latest_release} && php app/console doctrine:schema:drop --force"
+    run "cd #{latest_release} && php app/console doctrine:schema:update --force"
+    run "cd #{latest_release} && php app/console doctrine:fixtures:load --no-interaction"
+    run "cd #{latest_release} && php app/console sonata:page:update-core-routes --site=1"
+    run "cd #{latest_release} && php app/console sonata:page:create-snapshots --site=1"
+end
+
 # configure dev settings
 desc "Deploy to dev instance (http://sonata-ecommerce-demo.dev.fullsix.com/)"
 task :dev do
