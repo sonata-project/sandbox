@@ -17,5 +17,24 @@
             <generator strategy="AUTO"/>
         </id>
 
+        <one-to-many
+            field="productCategories"
+            target-entity="Application\Sonata\ProductBundle\Entity\ProductCategory"
+            mapped-by="category"
+            inverted-by="category">
+
+            <cascade-type>
+                <cascade-all />
+            </cascade-type>
+
+            <join-columns>
+                <join-column
+                    name="id"
+                    referenced-column-name="category_id"
+                    on-delete="CASCADE"
+                />
+            </join-columns>
+        </one-to-many>
+
     </entity>
 </doctrine-mapping>
