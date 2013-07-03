@@ -56,6 +56,7 @@ task :rebuildDb, :roles => :app do
     run "cd #{latest_release} && php app/console doctrine:schema:drop --force"
     run "cd #{latest_release} && php app/console doctrine:schema:update --force"
     run "cd #{latest_release} && php app/console doctrine:fixtures:load --no-interaction"
+    run "cd #{latest_release} && php app/console faker:populate"
     run "cd #{latest_release} && php app/console sonata:page:update-core-routes --site=1"
     run "cd #{latest_release} && php app/console sonata:page:create-snapshots --site=1"
 end
