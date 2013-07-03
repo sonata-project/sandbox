@@ -17,7 +17,7 @@ bazinga_faker:
                         - 5
                 paymentStatus:
                     method: randomElement
-                    parameters: [ [ 0, 1, 2, 3, 4, 9, 10, 11, 12 ] ]
+                    parameters: [ [ '0', '1', '2', '3', '4', '9', '10', '11', '12' ] ]
                 billingAddress1:
                     method: streetAddress
                 billingCity:
