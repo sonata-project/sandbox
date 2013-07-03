@@ -54,24 +54,5 @@
             </join-columns>
         </one-to-many>
 
-        <one-to-many
-            field="delivery"
-            target-entity="Application\Sonata\ProductBundle\Entity\Delivery"
-            mapped-by="product"
-            fetch="LAZY">
-
-            <cascade-type>
-                <cascade-all />
-            </cascade-type>
-
-            <join-columns>
-                <join-column
-                    name="id"
-                    referenced-column-name="product_id"
-                    on-delete="CASCADE"
-                />
-            </join-columns>
-        </one-to-many>
-
     </entity>
 </doctrine-mapping>
