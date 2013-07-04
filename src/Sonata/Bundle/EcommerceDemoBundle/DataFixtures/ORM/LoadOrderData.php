@@ -9,6 +9,7 @@ use Application\Sonata\OrderBundle\Entity\Order;
 use Application\Sonata\ProductBundle\Entity\Delivery;
 use Sonata\Component\Payment\TransactionInterface;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Persistence\ObjectManager;
 use Faker\Generator;
 
 /**
