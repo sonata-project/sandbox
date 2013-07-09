@@ -11,7 +11,7 @@
     "repositories": [
         {
             "type": "vcs",
-            "url": "git@gitlab.fullsix.com:php-labs/sf2-sonata-ecommerce.git"
+            "url": "git@github.com:sonata-project/ecommerce.git"
         },
         {"packagist": false},
         {"type": "composer", "url": "http://packagist.fullsix.com"}

@@ -14,3 +14,4 @@ composer.phar
 composer.lock
 /bin/behat
 /bin/doctrine*
+/bin/phpunit
