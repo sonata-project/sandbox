@@ -4,8 +4,12 @@ app/*.cache
 web/bundles
 web/uploads
 web/sitemap*.xml
-app/config/parameters*.yml
+app/config/parameters.yml
+app/config/production_parameters.yml
+app/config/validation_parameters.yml
 vendor
 .idea
 nbproject
 composer.phar
+bin/
+.DS_Store
