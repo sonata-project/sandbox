@@ -54,11 +54,12 @@ Your frontend still looking weird because bundle assets are not installed. Run t
 
 
 Fixtures
-~~~~~~~~~~~~~~~~~~
+~~~~~~~~
 
 To have some actual data in your DB, you should load the fixtures by running::
 
     app/console doctrine:fixtures:load
+    app/console faker:populate
 
 Sonata Page Bundle
 ~~~~~~~~~~~~~~~~~~
