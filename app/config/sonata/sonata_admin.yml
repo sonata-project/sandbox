@@ -8,6 +8,9 @@ sonata_admin:
 
     title:      %sonata_admin.title%
     title_logo: %sonata_admin.logo_title%
+    options:
+        html5_validate: false # does not use html5 validation
+
     templates:
         # default global templates
         # the layout template include javascript/stylesheet to the formatter bundle,
