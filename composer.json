@@ -12,7 +12,7 @@
         "php": ">=5.3.3",
 
         "twig/twig": "~1.12",
-        "twig/extensions": "1.0.*@dev",
+        "twig/extensions": "~1.0",
 
         "symfony/symfony": "~2.3",
         "symfony/assetic-bundle": "~2.3",
