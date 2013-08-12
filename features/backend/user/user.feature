@@ -39,6 +39,8 @@ Scenario: View revisions of a user
 
 Scenario: Edit a user
   When I am connected with "admin" and "admin" on "admin/sonata/user/user/list"
+  And I fill in "filter_username_value" with "toto"
+  And I press "Filter"
   And I follow "toto"
   And I press "Update"
   Then I should see "Item has been successfully updated."
