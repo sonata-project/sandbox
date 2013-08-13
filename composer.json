@@ -16,6 +16,7 @@
         {"packagist": false},
         {"type": "composer", "url": "http://packagist.fullsix.com"}
     ],
+    "license": "MIT",
 
     "require": {
         "php": "~5.3.3",
@@ -42,6 +43,9 @@
         "doctrine/migrations": "dev-master",
         "doctrine/doctrine-fixtures-bundle": "2.1.*@dev",
         "doctrine/data-fixtures": "1.0.*@dev",
+
+        "jms/security-extra-bundle": "~1.4",
+        "jms/di-extra-bundle": "~1.3",
 
         "symfony-cmf/routing-bundle": "1.1.*@dev",
         "symfony-cmf/routing": "1.1.*@dev",

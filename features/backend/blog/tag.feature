@@ -9,7 +9,7 @@ Scenario: Check tag admin pages when not connected
 Scenario: Check category admin pages when connected
   When I am connected with "admin" and "admin" on "admin/sonata/news/tag/list"
   Then I should see "Filters"
-  
+
 Scenario: Add a new tag with some errors
   When I am connected with "admin" and "admin" on "admin/sonata/news/tag/create?uniqid=f155592a220e"
   And I press "Create"
@@ -64,6 +64,6 @@ Scenario: Delete a tag
   And I fill in "filter_name_value" with "toto"
   And I press "Filter"
   And I follow "toto"
-  And I follow "Delete"
+  And I follow link "Delete" with class "btn btn-danger"
   And I press "Yes, delete"
   Then I should see "Item has been deleted successfully."
