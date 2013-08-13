@@ -3,14 +3,12 @@ app/logs
 app/*.cache
 web/bundles
 web/uploads
-
-behat.phar
-mink.phar
-app/config/*parameters.yml
+*.phar
+web/sitemap*.xml
+app/config/parameters*.yml
 vendor
 .idea
 nbproject
-composer.phar
 composer.lock
 /bin/behat
 /bin/doctrine*
