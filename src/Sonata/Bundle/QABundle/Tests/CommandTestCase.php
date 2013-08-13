@@ -116,4 +116,20 @@ abstract class CommandTestCase extends WebTestCase
             array('sonata.block.service.rss', ),
         );
     }
+
+    /**
+     * Returns declared Media
+     *
+     * @return array
+     */
+    static public function getMediaList()
+    {
+        return array(
+            array('sonata.media.provider.image'),
+            array('sonata.media.provider.file'),
+            array('sonata.media.provider.youtube'),
+            array('sonata.media.provider.dailymotion'),
+            array('sonata.media.provider.vimeo'),
+        );
+    }
 }
