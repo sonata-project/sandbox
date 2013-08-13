@@ -60,22 +60,22 @@ abstract class CommandTestCase extends WebTestCase
     static public function getAdminList()
     {
         return array(
-            array('sonata.user.admin.user',                   'Application\Sonata\UserBundle\Entity\User'),
-            array('sonata.user.admin.group',                  'Application\Sonata\UserBundle\Entity\Group'),
-            array('sonata.page.admin.page',                   'Application\Sonata\PageBundle\Entity\Page'),
-            array('sonata.page.admin.block',                  'Application\Sonata\PageBundle\Entity\Block'),
-            array('sonata.page.admin.snapshot',               'Application\Sonata\PageBundle\Entity\Snapshot'),
-            array('sonata.page.admin.site',                   'Application\Sonata\PageBundle\Entity\Site'),
-            array('sonata.news.admin.post',                   'Application\Sonata\NewsBundle\Entity\Post'),
-            array('sonata.news.admin.comment',                'Application\Sonata\NewsBundle\Entity\Comment'),
-            array('sonata.news.admin.category',               'Application\Sonata\NewsBundle\Entity\Category'),
-            array('sonata.news.admin.tag',                    'Application\Sonata\NewsBundle\Entity\Tag'),
-            array('sonata.media.admin.media',                 'Application\Sonata\MediaBundle\Entity\Media'),
-            array('sonata.media.admin.gallery',               'Application\Sonata\MediaBundle\Entity\Gallery'),
-            array('sonata.media.admin.gallery_has_media',     'Application\Sonata\MediaBundle\Entity\GalleryHasMedia'),
-            array('sonata.notification.admin.message',        'Application\Sonata\NotificationBundle\Entity\Message'),
-            array('sonata.demo.admin.car',                    'Sonata\Bundle\DemoBundle\Entity\Car'),
-            array('sonata.demo.admin.engine',                 'Sonata\Bundle\DemoBundle\Entity\Engine'),
+            array('sonata.user.admin.user',                   'Application\\Sonata\\UserBundle\\Entity\\User'),
+            array('sonata.user.admin.group',                  'Application\\Sonata\\UserBundle\\Entity\\Group'),
+            array('sonata.page.admin.page',                   'Application\\Sonata\\PageBundle\\Entity\\Page'),
+            array('sonata.page.admin.block',                  'Application\\Sonata\\PageBundle\\Entity\\Block'),
+            array('sonata.page.admin.snapshot',               'Application\\Sonata\\PageBundle\\Entity\\Snapshot'),
+            array('sonata.page.admin.site',                   'Application\\Sonata\\PageBundle\\Entity\\Site'),
+            array('sonata.news.admin.post',                   'Application\\Sonata\\NewsBundle\\Entity\\Post'),
+            array('sonata.news.admin.comment',                'Application\\Sonata\\NewsBundle\\Entity\\Comment'),
+            array('sonata.news.admin.category',               'Application\\Sonata\\NewsBundle\\Entity\\Category'),
+            array('sonata.news.admin.tag',                    'Application\\Sonata\\NewsBundle\\Entity\\Tag'),
+            array('sonata.media.admin.media',                 'Application\\Sonata\\MediaBundle\\Entity\\Media'),
+            array('sonata.media.admin.gallery',               'Application\\Sonata\\MediaBundle\\Entity\\Gallery'),
+            array('sonata.media.admin.gallery_has_media',     'Application\\Sonata\\MediaBundle\\Entity\\GalleryHasMedia'),
+            array('sonata.notification.admin.message',        'Application\\Sonata\\NotificationBundle\\Entity\\Message'),
+            array('sonata.demo.admin.car',                    'Sonata\\Bundle\\DemoBundle\\Entity\\Car'),
+            array('sonata.demo.admin.engine',                 'Sonata\\Bundle\\DemoBundle\\Entity\\Engine'),
         );
     }
 
