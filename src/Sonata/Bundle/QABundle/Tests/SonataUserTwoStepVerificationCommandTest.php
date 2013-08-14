@@ -11,7 +11,7 @@
 
 namespace Sonata\Bundle\QABundle\Tests;
 
-class SonataSeoSitemapCommandTest extends CommandTestCase
+class SonataUserTwoStepVerificationCommandTest extends CommandTestCase
 {
     /**
      * @expectedException \RuntimeException
@@ -47,7 +47,7 @@ class SonataSeoSitemapCommandTest extends CommandTestCase
         $code = $client->getContainer()->get('fos_user.user_manager')->findUserBy(array(
             'username' => 'secure'
         ))->getTwoStepVerificationCode();
-        
+
         $this->assertContains($code, $output);
     }
 }

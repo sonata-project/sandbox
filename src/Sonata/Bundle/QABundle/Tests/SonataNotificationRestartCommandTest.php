@@ -11,7 +11,7 @@
 
 namespace Sonata\Bundle\QABundle\Tests;
 
-class SonataNotificationStartCommandTest extends CommandTestCase
+class SonataNotificationRestartCommandTest extends CommandTestCase
 {
     public function testRefresh()
     {

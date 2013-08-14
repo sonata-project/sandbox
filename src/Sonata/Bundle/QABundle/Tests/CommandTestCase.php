@@ -132,4 +132,22 @@ abstract class CommandTestCase extends WebTestCase
             array('sonata.media.provider.vimeo'),
         );
     }
+
+    /**
+     * Returns declared consumer
+     *
+     * @return array
+     */
+    static public function getConsumerList()
+    {
+        return array(
+            array('sonata.page.create_snapshots', 'sonata.page.notification.create_snapshots'),
+            array('sonata.page.create_snapshot', 'sonata.page.notification.create_snapshot'),
+            array('sonata.page.cleanup_snapshots', 'sonata.page.notification.cleanup_snapshots'),
+            array('sonata.page.cleanup_snapshot', 'sonata.page.notification.cleanup_snapshot'),
+            array('sonata.media.create_thumbnail', 'sonata.media.notification.create_thumbnail'),
+            array('mailer', 'sonata.notification.consumer.swift_mailer'),
+            array('logger', 'sonata.notification.consumer.logger'),
+        );
+    }
 }
