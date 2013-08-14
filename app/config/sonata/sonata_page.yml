@@ -47,8 +47,9 @@ sonata_page:
     caches:
         esi:
             token:    add an unique token here # default is a random value
+            version:  3                        # version 3 is the default on debian wheezy ...
             servers:
-                - varnishadm -T 127.0.0.1:2000 {{ COMMAND }} "{{ EXPRESSION }}"
+                - sudo varnishadm -S /etc/varnish/secret -T 127.0.0.1:6082 {{ COMMAND }} "{{ EXPRESSION }}" # you need to adapt this line to work with your configuration
 
         ssi:
             token:    add an unique token here # default is a random value
