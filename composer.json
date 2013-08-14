@@ -45,6 +45,7 @@
         "sonata-project/seo-bundle": "~1@dev",
         "sonata-project/doctrine-extensions": "~1@dev",
         "sonata-project/intl-bundle": "~2.1@dev",
+        "sonata-project/admin-bundle": "2.2.*@dev",
         "sonata-project/doctrine-orm-admin-bundle": "2.2.*@dev",
         "sonata-project/notification-bundle": "~2.2@dev",
         "sonata-project/block-bundle": "~2.2@dev",
