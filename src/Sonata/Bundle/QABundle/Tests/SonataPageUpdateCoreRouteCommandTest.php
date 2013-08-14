@@ -11,7 +11,7 @@
 
 namespace Sonata\Bundle\QABundle\Tests;
 
-class SonataPageRenderBlockCommandTest extends CommandTestCase
+class SonataPageUpdateCoreRouteCommandTest extends CommandTestCase
 {
     public function testMissingArguments()
     {
