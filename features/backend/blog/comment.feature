@@ -70,6 +70,6 @@ Scenario: Delete a comment
   And I fill in "filter_name_value" with "toto"
   And I press "Filter"
   And I follow "toto"
-  And I follow "Delete"
+  And I follow link "Delete" with class "btn btn-danger"
   And I press "Yes, delete"
   Then I should see "Item has been deleted successfully."
