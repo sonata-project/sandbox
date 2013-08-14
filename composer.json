@@ -15,6 +15,8 @@
         }
     ],
 
+    "minimum-stability": "stable",
+
     "require": {
         "twig/twig": "~1.12",
         "twig/extensions": "~1.0",
@@ -53,17 +55,23 @@
         "sonata-project/admin-bundle" : "~2.2@dev",
         "sonata-project/doctrine-orm-admin-bundle": "~2.2@dev",
         "sonata-project/notification-bundle": "~2.2",
-        "sonata-project/block-bundle": "~2.2",
+        "sonata-project/block-bundle": "~2.2@dev",
         "sonata-project/media-bundle": "2.2.*@dev",
         "sonata-project/user-bundle": "2.2.*@dev",
         "sonata-project/cache-bundle": "~2.1",
         "sonata-project/page-bundle": "~2.3@dev",
         "sonata-project/formatter-bundle": "~2.3",
-        "sonata-project/news-bundle": "~2.3",
+        "sonata-project/news-bundle": "~2.3@dev",
         "sonata-project/ecommerce": "2.3.*@dev",
+        "sonata-project/timeline-bundle": "~2.2@dev",
 
         "dflydev/markdown": "~1.0",
-        "simplethings/entity-audit-bundle": "~0.5"
+        "simplethings/entity-audit-bundle": "~0.5",
+        "willdurand/faker-bundle": "~1.0",
+
+        "stof/doctrine-extensions-bundle": "~1.1",
+        "stephpy/TimelineBundle": "2.0.*@dev",
+        "stephpy/timeline": "~1.0@dev"
     },
 
     "require-dev": {
