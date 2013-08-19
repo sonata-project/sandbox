@@ -38,10 +38,6 @@ abstract class CommandTestCase extends WebTestCase
         $application->setCatchExceptions(false);
         $return = $application->run($input, $output);
 
-        if ($exceptionOnExitCode && $return !== 0) {
-            throw new \RuntimeException('Return code is not 0');
-        }
-
         fseek($fp, 0);
         $output = '';
         while (!feof($fp)) {
@@ -49,7 +45,21 @@ abstract class CommandTestCase extends WebTestCase
         }
         fclose($fp);
 
+        if ($exceptionOnExitCode && $return !== 0) {
+            throw new \RuntimeException(sprintf('Return code is not 0: %s', $output));
+        }
+
         return $output;
+    }
+
+    /**
+     * @param Client $client
+     *
+     * @return string
+     */
+    public function getConsoleLocation(Client $client)
+    {
+        return sprintf("%s/console", $client->getContainer()->getParameter('kernel.root_dir'));
     }
 
     /**

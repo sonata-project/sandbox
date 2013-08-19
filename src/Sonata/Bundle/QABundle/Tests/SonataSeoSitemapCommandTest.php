@@ -27,11 +27,11 @@ class SonataSeoSitemapCommandTest extends CommandTestCase
     {
         $client = self::createClient();
 
-        $output = $this->runCommand($client, "sonata:seo:sitemap --baseurl=/fr web sonata.local");
+        $output = $this->runCommand($client, sprintf("sonata:seo:sitemap --baseurl=/fr %s/../web sonata.local", $client->getContainer()->getParameter('kernel.root_dir')));
 
         $this->assertContains('done!', $output);
         $this->assertContains('Generating sitemap - this can take a while', $output);
-        $this->assertContains('Moving temporary file to web ...', $output);
+        $this->assertContains('Moving temporary file to', $output);
 
         $baseFolder = $client->getContainer()->getParameter('kernel.root_dir');
 
