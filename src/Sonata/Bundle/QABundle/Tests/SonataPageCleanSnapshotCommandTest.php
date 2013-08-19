@@ -18,7 +18,7 @@ class SonataPageCleanSnapshotCommandTest extends CommandTestCase
     {
         $client = self::createClient();
 
-        $output = $this->runCommand($client, "sonata:page:cleanup-snapshots --site=all");
+        $output = $this->runCommand($client, sprintf("sonata:page:cleanup-snapshots --site=all --base-console=%s", $this->getConsoleLocation($client)));
 
         $this->assertContains("done!", $output);
     }
