@@ -19,8 +19,6 @@
     "license": "MIT",
 
     "require": {
-        "php": "~5.3.3",
-
         "twig/twig": "~1.12",
         "twig/extensions": "~1.0",
 
@@ -67,7 +65,7 @@
         "sonata-project/page-bundle": "~2.3",
         "sonata-project/formatter-bundle": "~2.3",
         "sonata-project/news-bundle": "~2.3",
-        "sonata-project/ecommerce": "2.3.*",
+        "sonata-project/ecommerce": "2.3.*@dev",
 
         "dflydev/markdown": "~1.0",
         "simplethings/entity-audit-bundle": "~0.5",
