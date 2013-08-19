@@ -3,10 +3,10 @@ Feature: Cart
     In order to buy some products
     As a visitor
     I want to be able to add products to cart
-    
+
     @200
     Scenario: Check default empty cart
-    Given I am on "shop/category"
+        Given I am on "shop/category"
         When I go to "shop/basket"
         Then I should see "Your cart is empty"
         And the response status code should be 200
