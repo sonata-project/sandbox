@@ -1,6 +1,6 @@
 @frontend @products
 Feature: Products
-    In order toselect some products
+    In order to select some products
     As a visitor
     I want to be able to browse products
 
@@ -26,4 +26,4 @@ Feature: Products
         And I follow "MacBook Air"
         And I follow "Product 163"
         Then I should see "Product description goes here"
-        And I should see "Id corporis est qui placeat odit assumenda ut inventore aut voluptas tempore qui illum."
+        And I should see "Product gallery"

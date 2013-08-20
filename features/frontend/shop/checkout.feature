@@ -1,5 +1,5 @@
 @frontend @checkout
-Feature: Cart
+Feature: Checkout process
     In order to buy products
     As a visitor
     I want to be able to use checkout process

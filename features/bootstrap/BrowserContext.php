@@ -4,7 +4,7 @@ use Behat\Mink\Exception\ExpectationException;
 use Behat\MinkExtension\Context\MinkContext;
 
 /**
- * This context is intended for Browser interractions
+ * This context is intended for Browser interactions
  */
 class BrowserContext extends MinkContext
 {
@@ -37,11 +37,14 @@ class BrowserContext extends MinkContext
         $this->fillField('_username', $login);
         $this->fillField('_password', $pwd);
         $this->pressButton('_submit');
-        $this->visit($url);
+        // $this->visit($url);
     }
 
     /**
      * @Given /^I follow link "([^"]*)" with class "([^"]*)"$/
+     *
+     * @param string $text
+     * @param string $class
      */
     public function iFollowLinkWithClass($text, $class)
     {
@@ -57,7 +60,11 @@ class BrowserContext extends MinkContext
     }
 
     /**
+     * Follow the first link found nested in a section selected with "class"
+     *
      * @Given /^I follow the first link of section "([^"]*)"$/
+     *
+     * @param string $class
      */
     public function iFollowTheFirstLinkOfSection($class)
     {
@@ -67,6 +74,26 @@ class BrowserContext extends MinkContext
 
         if (!$link) {
             throw new ExpectationException(sprintf('Unable to follow the nested link with class: %s', $class), $this->getSession());
+        }
+
+        $link->click();
+    }
+
+    /**
+     * Follow the first link found in the first li element found nested in a section selected with "class"
+     *
+     * @Given /^I follow the first listed link of section "([^"]*)"$/
+     *
+     * @param string $class
+     */
+    public function iFollowTheFirstListedLinkOfSection($class)
+    {
+        $link = $this->getSession()->getPage()->find(
+            'xpath', sprintf("//*[@class='%s']/ul/li[1]/a", $class)
+        );
+
+        if (!$link) {
+            throw new ExpectationException(sprintf('Unable to follow the first listed link nested with class: %s', $class), $this->getSession());
         }
 
         $link->click();
