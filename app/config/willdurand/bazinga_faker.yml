@@ -20,6 +20,10 @@ bazinga_faker:
                     parameters: [ [ '0', '1', '2', '3', '4', '9', '10', '11', '12' ] ]
                 billingAddress1:
                     method: streetAddress
+                billingAddress2:
+                    method: streetAddress
+                billingAddress3:
+                    method: streetAddress
                 billingCity:
                     method: city
                 billingCountryCode:
@@ -30,9 +34,20 @@ bazinga_faker:
                     method: word
                 billingPhone:
                     method: phoneNumber
+                billingMobile:
+                    method: phoneNumber
+                billingFax:
+                    method: phoneNumber
                 billingPostcode:
                     method: postcode
+                billingEmail:
+                    method: email
+
                 shippingAddress1:
+                    method: streetAddress
+                shippingAddress2:
+                    method: streetAddress
+                shippingAddress3:
                     method: streetAddress
                 shippingCity:
                     method: city
@@ -44,8 +59,15 @@ bazinga_faker:
                     method: word
                 shippingPhone:
                     method: phoneNumber
+                shippingMobile:
+                    method: phoneNumber
+                shippingFax:
+                    method: phoneNumber
                 shippingPostcode:
                     method: postcode
+                shippingEmail:
+                    method: email
+
                 currency:
                     method: randomElement
                     parameters:
