@@ -14,13 +14,13 @@ Feature: Check login
 
     Scenario Outline: Check authentication with different couples of login / pwd
         Given I am connected with "<username>" and "<password>" on "admin/login"
-        When I go to "admin/dashboard"
+        # When I go to "admin/dashboard"
         Then the response should contain "<message>"
 
         Examples:
             | username |    password    | message |
-            |   admin  |    admin   | Sonata Admin   |
-            |   admin  |    test    | Remember me |
+            |   admin  |    admin   | Welcome   |
+            |   admin  |    test    | Bad credentials |
     
     Scenario: Check user logout action
         Given I am connected with "admin" and "admin" on "admin/login"
