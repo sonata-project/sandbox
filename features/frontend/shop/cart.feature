@@ -1,4 +1,4 @@
-@frontaend @cart
+@frontend @cart
 Feature: Cart
     In order to buy some products
     As a visitor
