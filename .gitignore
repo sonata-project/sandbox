@@ -1,6 +1,7 @@
 app/cache
 app/logs
 app/*.cache
+app/SymfonyRequirements.php
 web/bundles
 web/uploads
 *.phar
