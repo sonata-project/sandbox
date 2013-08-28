@@ -96,9 +96,7 @@
 
     "extra": {
         "symfony-app-dir": "app",
-        "symfony-web-dir": "web"
-    },
-    "extra": {
+        "symfony-web-dir": "web",
         "branch-alias": {
             "dev-master": "2.3.x-dev"
         }
