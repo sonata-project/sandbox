@@ -76,3 +76,48 @@ bazinga_faker:
                     method: randomNumber
                 locale:
                     method: languageCode
+                    
+                    
+        Application\Sonata\InvoiceBundle\Entity\Invoice:
+            number: 50
+            custom_formatters:
+                status:
+                    method: randomNumber
+                    parameters:
+                        - 0
+                        - 5
+                address1:
+                    method: streetAddress
+                address2:
+                    method: streetAddress
+                address3:
+                    method: streetAddress
+                city:
+                    method: city
+                country:
+                    method: randomElement
+                    parameters:
+                        - [ 'EN', 'FR' ]
+                name:
+                    method: word
+                phone:
+                    method: phoneNumber
+                mobile:
+                    method: phoneNumber
+                fax:
+                    method: phoneNumber
+                postcode:
+                    method: postcode
+                email:
+                    method: email
+
+                currency:
+                    method: randomElement
+                    parameters:
+                        - ['EUR']
+                reference:
+                    method: randomNumber
+                totalExcl:
+                    method: randomNumber
+                totalInc:
+                    method: randomNumber

@@ -59,7 +59,7 @@ sonata_basket:
 
 sonata_order:
     resource: @SonataOrderBundle/Resources/config/routing/order.xml
-    prefix: /shop/user/invoice
+    prefix: /shop/user/order
 
 sonata_product:
     resource: @SonataProductBundle/Resources/config/routing/product.xml

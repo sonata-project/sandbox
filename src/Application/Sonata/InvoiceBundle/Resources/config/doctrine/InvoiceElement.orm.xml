@@ -17,32 +17,5 @@
             <generator strategy="AUTO"/>
         </id>
 
-        <one-to-many
-            field="invoice"
-            target-entity="Application\Sonata\InvoiceBundle\Entity\Invoice"
-            mapped-by="invoice_elements"
-            orphan-removal="">
-
-            <join-columns>
-                <join-column
-                    name="invoice_id"
-                    referenced-column-name="id"
-                    on-delete="CASCADE"/>
-            </join-columns>
-        </one-to-many>
-
-        <one-to-many
-            field="orderElement"
-            target-entity="Application\Sonata\OrderBundle\Entity\OrderElement"
-            mapped-by="invoice_element"
-            orphan-removal="">
-            <join-columns>
-                <join-column
-                    name="order_element_id"
-                    referenced-column-name="id"
-                    on-delete="CASCADE"/>
-            </join-columns>
-        </one-to-many>
-
     </entity>
 </doctrine-mapping>
