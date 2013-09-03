@@ -15,6 +15,7 @@ imports:
     - { resource: sonata/sonata_user.yml }
     - { resource: sonata/sonata_notification.yml }
     - { resource: sonata/sonata_user.yml }
+    - { resource: sonata/sonata_price.yml }
 
     # Sonata e-commerce bundles
     - { resource: sonata/sonata_order.yml }

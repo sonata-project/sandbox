@@ -70,6 +70,7 @@ class AppKernel extends Kernel
             new Application\Sonata\PaymentBundle\ApplicationSonataPaymentBundle(),
             new Sonata\ProductBundle\SonataProductBundle(),
             new Application\Sonata\ProductBundle\ApplicationSonataProductBundle(),
+            new Sonata\PriceBundle\SonataPriceBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle($this),
 
             // SONATA CORE & HELPER BUNDLES
