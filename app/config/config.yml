@@ -73,7 +73,8 @@ doctrine:
                 password: %database_password%
 
         types:
-            json: Sonata\Doctrine\Types\JsonType
+            json:     Sonata\Doctrine\Types\JsonType
+            currency: Sonata\Component\Currency\CurrencyType
 
     orm:
         auto_generate_proxy_classes: %kernel.debug%
