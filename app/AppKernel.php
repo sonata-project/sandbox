@@ -71,8 +71,9 @@ class AppKernel extends Kernel
             // CMF Integration
             new Symfony\Cmf\Bundle\RoutingBundle\CmfRoutingBundle(),
 
-            // DEMO
+            // DEMO and QA - Can be deleted
             new Sonata\Bundle\DemoBundle\SonataDemoBundle(),
+            new Sonata\Bundle\QABundle\SonataQABundle(),
 
             // Enable this if you want to audit backend action
             new SimpleThings\EntityAudit\SimpleThingsEntityAuditBundle(),
