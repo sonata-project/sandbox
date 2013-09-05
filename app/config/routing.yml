@@ -3,8 +3,14 @@
 #   resource: "@FrameworkBundle/Resources/config/routing/internal.xml"
 #   prefix:   /_internal
 
+
+# these 2 references : sonata_demo and sonata_qa can be safely removed
 sonata_demo:
     resource: "@SonataDemoBundle/Resources/config/routing/demo.xml"
+
+sonata_qa:
+    resource: "@SonataQABundle/Resources/config/routing/qa.xml"
+
 
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
