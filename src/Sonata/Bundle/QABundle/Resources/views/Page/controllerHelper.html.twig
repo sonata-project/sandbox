@@ -1,0 +1,15 @@
+<h1>Page Bundle</h1>
+
+<h2>Solving</h2>
+<ul>
+    <li><a href="https://github.com/sonata-project/SonataPageBundle/pull/211">Make HostSiteSelector working again</a></li>
+</ul>
+
+<h2>Rendering</h2>
+<h3>render_hinclude</h3>
+<pre>
+    {{ render_hinclude(controller('SonataQABundle:Page:internalController'))|e }}
+</pre>
+
+<h3>render</h3>
+{{ render(controller('SonataQABundle:Page:internalController')) }}

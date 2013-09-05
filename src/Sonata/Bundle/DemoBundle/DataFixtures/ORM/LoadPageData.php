@@ -47,6 +47,8 @@ class LoadPageData extends AbstractFixture implements ContainerAwareInterface, O
         $this->createProductPage($site);
         $this->createBasketPage($site);
         $this->createUserPage($site);
+
+        $this->createSubSite();
     }
 
     /**
@@ -63,6 +65,23 @@ class LoadPageData extends AbstractFixture implements ContainerAwareInterface, O
         $site->setEnabledTo(new \DateTime('+10 years'));
         $site->setRelativePath("");
         $site->setIsDefault(true);
+
+        $this->getSiteManager()->save($site);
+
+        return $site;
+    }
+
+    public function createSubSite()
+    {
+        $site = $this->getSiteManager()->create();
+
+        $site->setHost('localhost');
+        $site->setEnabled(true);
+        $site->setName('sub site');
+        $site->setEnabledFrom(new \DateTime('now'));
+        $site->setEnabledTo(new \DateTime('+10 years'));
+        $site->setRelativePath("/sub-site");
+        $site->setIsDefault(false);
 
         $this->getSiteManager()->save($site);
 
