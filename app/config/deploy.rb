@@ -33,7 +33,6 @@ set :dump_assetic_assets,    true
 set :use_composer,            true
 
 set :composer_options,        "--prefer-source"
-set :update_vendors,          true
 
 ssh_options[:forward_agent] = true
 
