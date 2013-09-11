@@ -16,3 +16,6 @@ sonata_block:
         sonata.media.block.media:
         sonata.media.block.gallery:
         sonata.media.block.feature_media:
+        sonata.news.block.recent_comments:
+        sonata.news.block.recent_posts:
+
