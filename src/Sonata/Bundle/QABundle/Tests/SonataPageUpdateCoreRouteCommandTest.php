@@ -38,7 +38,7 @@ class SonataPageUpdateCoreRouteCommandTest extends CommandTestCase
     {
         $client = self::createClient();
 
-        $output = $this->runCommand($client, sprintf("sonata:page:update-core-routes --site=all"));
+        $output = $this->runCommand($client, sprintf("sonata:page:update-core-routes --site=all --base-command='php %s'", $this->getConsoleLocation($client)));
 
         $this->assertContains("Updating core routes for site", $output);
         $this->assertContains("done!", $output);
