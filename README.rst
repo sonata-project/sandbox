@@ -52,6 +52,14 @@ Your frontend still looking weird because bundle assets are not installed. Run t
 
     app/console assets:install web
 
+ACL initialization
+~~~~~~~~~~~~~~~~~~
+
+The sandbox use the ACL system as security handler. You must init it:
+
+    app/console init:acl
+    app/console sonata:admin:setup-acl
+    app/console sonata:admin:generate-object-acl
 
 Sonata Page Bundle
 ~~~~~~~~~~~~~~~~~~
