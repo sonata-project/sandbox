@@ -1,3 +1,6 @@
+parameters:
+    security.acl.permission.map.class: Sonata\AdminBundle\Security\Acl\Permission\AdminPermissionMap
+
 security:
     encoders:
         "Application\Sonata\UserBundle\Entity\User":
@@ -11,8 +14,8 @@ security:
 
         SONATA:
             # if you are not using acl then this line must be uncommented
-            - ROLE_SONATA_PAGE_ADMIN_PAGE_EDIT
-            - ROLE_SONATA_PAGE_ADMIN_BLOCK_EDIT
+            #- ROLE_SONATA_PAGE_ADMIN_PAGE_EDIT
+            #- ROLE_SONATA_PAGE_ADMIN_BLOCK_EDIT
 
     providers:
         fos_userbundle:
@@ -73,5 +76,5 @@ security:
         - { path: ^/shop/user/, role: IS_AUTHENTICATED_FULLY }
         - { path: ^/.*, role: IS_AUTHENTICATED_ANONYMOUSLY }
 
-#    acl:
-#        connection: default
+    acl:
+        connection: default
