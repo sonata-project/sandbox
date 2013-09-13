@@ -1,9 +1,9 @@
 parameters:
     database_driver:   pdo_mysql
-    database_host:
-    database_name:
-    database_user:
-    database_password:
+    database_host:     localhost
+    database_name:     sandbox
+    database_user:     root
+    database_password: ~
 
     mailer_transport:   smtp
     mailer_host:        localhost
