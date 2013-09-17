@@ -8,7 +8,6 @@ class AppKernel extends Kernel
     public function init()
     {
         // Please read http://symfony.com/doc/2.0/book/installation.html#configuration-and-setup
-        umask(0002);
 
         parent::init();
     }
@@ -89,20 +88,26 @@ class AppKernel extends Kernel
             // CMF Integration
             new Symfony\Cmf\Bundle\RoutingBundle\CmfRoutingBundle(),
 
-            // DEMO
+            // DEMO and QA - Can be deleted
             new Sonata\Bundle\DemoBundle\SonataDemoBundle(),
             new Sonata\Bundle\EcommerceDemoBundle\SonataEcommerceDemoBundle(),
+            new Sonata\Bundle\QABundle\SonataQABundle(),
 
-            // Enable this if you want to audit backend action
+            // Disable this if you don't want the audit on entities
             new SimpleThings\EntityAudit\SimpleThingsEntityAuditBundle(),
 
             // Translations
             new JMS\TranslationBundle\JMSTranslationBundle(),
+            // Disable this if you don't want the timeline in the admin
+            new Spy\TimelineBundle\SpyTimelineBundle(),
+            new Sonata\TimelineBundle\SonataTimelineBundle(),
+            new Application\Sonata\TimelineBundle\ApplicationSonataTimelineBundle() // easy extends integration
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
+            $bundles[] = new Bazinga\Bundle\FakerBundle\BazingaFakerBundle();
             $bundles[] = new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle();
         }
 
