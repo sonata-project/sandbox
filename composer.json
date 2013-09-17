@@ -59,7 +59,11 @@
 
         "dflydev/markdown": "~1.0",
         "simplethings/entity-audit-bundle": "~0.5",
-        "willdurand/faker-bundle": "~1.0"
+        "willdurand/faker-bundle": "~1.0",
+
+        "stof/doctrine-extensions-bundle": "~1.1",
+        "stephpy/TimelineBundle": "2.0.*@dev",
+        "stephpy/timeline": "~1.0@dev"
     },
 
     "require-dev": {

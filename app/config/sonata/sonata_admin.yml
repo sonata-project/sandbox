@@ -38,7 +38,8 @@ sonata_admin:
         blocks:
             - { position: left, type: sonata.admin.block.admin_list }
 #            - { position: right, type: sonata.admin_doctrine_orm.block.audit}
-            - { position: center, type: sonata.block.service.text, settings: { content: "<h2>Welcome to the Sonata Admin</h2> <p>This is a <code>sonata.block.service.text</code> from the Block Bundle, you can create and add new block in these area by configuring the <code>sonata_admin</code> section.<br /> <br /> For instance, here a RSS feed parser (<code>sonata.block.service.rss</code>):</p>"} }
-            - { position: center, type: sonata.block.service.rss, settings: { title: Sonata Project's Feeds, url: http://sonata-project.org/blog/archive.rss }}
-            - { position: right, type: sonata.news.block.recent_posts, settings: { title: Recent Posts, number: 10, mode: admin }}
-            - { position: right, type: sonata.news.block.recent_comments, settings: { title: Recent Comments, number: 10, mode: admin }}
+            - { position: center, type: sonata.block.service.text, settings: { content: "<h2>Welcome!</h2> You can customize this dashboard by editing the sonata_admin.yml file. The current dashboard presents the recent items from the NewsBundle and a timeline with the latest action"} }
+            - { position: center, type: sonata.timeline.block.timeline, settings: { context: SONATA_ADMIN, max_per_page: 25 }}
+            - { position: right, type: sonata.news.block.recent_posts, settings: { title: Recent Posts, number: 7, mode: admin }}
+            - { position: right, type: sonata.news.block.recent_comments, settings: { title: Recent Comments, number: 7, mode: admin }}
+            - { position: right, type: sonata.block.service.rss, settings: { title: Sonata Project's Feeds, url: http://sonata-project.org/blog/archive.rss }}
