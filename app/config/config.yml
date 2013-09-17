@@ -1,7 +1,6 @@
 imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
-    - { resource: fos_user.yml }
 
     # Sonata Bundles
     - { resource: sonata/sonata_admin.yml }
@@ -14,6 +13,7 @@ imports:
     - { resource: sonata/sonata_seo.yml }
     - { resource: sonata/sonata_notification.yml }
     - { resource: sonata/sonata_user.yml }
+    - { resource: sonata/sonata_timeline.yml }
 
 framework:
     #esi:             ~
