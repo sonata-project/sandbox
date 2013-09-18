@@ -56,6 +56,7 @@
         "sonata-project/formatter-bundle": "~2.3@dev",
         "sonata-project/news-bundle": "~2.3@dev",
         "sonata-project/exporter": "~1.3@dev",
+        "sonata-project/timeline-bundle": "~2.2@dev",
 
         "dflydev/markdown": "~1.0",
         "simplethings/entity-audit-bundle": "~0.5",
