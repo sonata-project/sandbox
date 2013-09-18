@@ -1,20 +1,42 @@
 <?php
+
+/*
+ * This file is part of the Sonata package.
+ *
+ * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace Sonata\Bundle\EcommerceDemoBundle\DataFixtures\ORM;
 
+use Application\Sonata\CustomerBundle\Entity\Address;
+use Application\Sonata\CustomerBundle\Entity\Customer;
+use Application\Sonata\OrderBundle\Entity\OrderElement;
+use Application\Sonata\PaymentBundle\Entity\Transaction;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\DataFixtures\AbstractFixture;
+use Sonata\Component\Currency\Currency;
+use Sonata\Component\Order\OrderInterface;
+use Sonata\CustomerBundle\Entity\BaseAddress;
+use Sonata\CustomerBundle\Entity\BaseCustomer;
+use Sonata\OrderBundle\Entity\BaseOrder;
+use Sonata\PaymentBundle\Entity\BaseTransaction;
+use Sonata\ProductBundle\Entity\BaseProduct;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Application\Sonata\OrderBundle\Entity\Order;
 use Application\Sonata\ProductBundle\Entity\Delivery;
-use Sonata\Component\Payment\TransactionInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Persistence\ObjectManager;
 use Faker\Generator;
 
 /**
- * @author Hugo Briand <briand@ekino.com>
+ * Category fixtures loader.
  *
+ * @author Hugo Briand <briand@ekino.com>
+ * @author Sylvain Deloux <sylvain.deloux@fullsix.com>
  */
 class LoadOrderData extends AbstractFixture implements ContainerAwareInterface, OrderedFixtureInterface
 {
@@ -33,9 +55,251 @@ class LoadOrderData extends AbstractFixture implements ContainerAwareInterface, 
      */
     public function load(ObjectManager $manager)
     {
-        // Unused for now, faker deals with populating the orders
-        // however we keep the file as it might get in handy later
-        //$this->createOrders();
+        $nbCustomers = 500;
+
+        $products = array(
+            $this->getReference('php_plush_goodie_product'),
+            $this->getReference('sonata_training_goodie_product'),
+            $this->getReference('php_mug_goodie_product'),
+            $this->getReference('php_teeshirt_goodie_product'),
+        );
+
+        for ($i = 1; $i <= $nbCustomers; $i++) {
+            $customer = $this->generateCustomer($manager);
+
+            $customerProducts = array();
+
+            $orderProductsKeys = array_rand($products, rand(1, count($products)));
+
+            if (is_array($orderProductsKeys)) {
+                foreach ($orderProductsKeys as $orderProductKey) {
+                    $customerProducts[] = $products[$orderProductKey];
+                }
+            } else {
+                $customerProducts = array($products[$orderProductsKeys]);
+            }
+
+            $order = $this->createOrder($customer, $customerProducts, $manager);
+
+            $this->createTransaction($order, $manager);
+
+            if (!($i % 10)) {
+                $manager->flush();
+            }
+        }
+    }
+
+    /**
+     * Creates a fake Order.
+     *
+     * @param Customer      $customer
+     * @param array         $products
+     * @param ObjectManager $manager
+     *
+     * @return OrderInterface
+     */
+    protected function createOrder(Customer $customer, array $products, ObjectManager $manager)
+    {
+        $orderElements = array();
+        $totalExcl     = 0;
+        $totalInc      = 0;
+
+        $order = new Order();
+
+        // customer
+        $order->setCustomer($customer);
+        $order->setLocale($customer->getLocale());
+        $order->setUsername($customer->getFullname());
+
+        // Billing
+        $customerBillingAddressAddresses = $customer->getAddressesByType(BaseAddress::TYPE_BILLING);
+        $order->setBillingAddress1($customerBillingAddressAddresses[0]->getAddress1());
+        $order->setBillingAddress2($customerBillingAddressAddresses[0]->getAddress2());
+        $order->setBillingAddress3($customerBillingAddressAddresses[0]->getAddress3());
+        $order->setBillingCity($customerBillingAddressAddresses[0]->getCity());
+        $order->setBillingCountryCode($customerBillingAddressAddresses[0]->getCountryCode());
+        $order->setBillingEmail($customer->getEmail());
+        $order->setBillingName($customer->getFullname());
+        $order->setBillingPhone($customerBillingAddressAddresses[0]->getPhone());
+        $order->setBillingFax($customer->getFaxNumber());
+        $order->setBillingMobile($customer->getMobileNumber());
+        $order->setBillingPostcode($customerBillingAddressAddresses[0]->getPostcode());
+
+        // Shipping
+        $customerDeliveryAddressAddresses = $customer->getAddressesByType(BaseAddress::TYPE_DELIVERY);
+        $order->setShippingAddress1($customerDeliveryAddressAddresses[0]->getAddress1());
+        $order->setShippingAddress2($customerDeliveryAddressAddresses[0]->getAddress2());
+        $order->setShippingAddress3($customerDeliveryAddressAddresses[0]->getAddress3());
+        $order->setShippingCity($customerDeliveryAddressAddresses[0]->getCity());
+        $order->setShippingCountryCode($customerDeliveryAddressAddresses[0]->getCountryCode());
+        $order->setShippingEmail($customer->getEmail());
+        $order->setShippingName($customer->getFullname());
+        $order->setShippingPhone($customerDeliveryAddressAddresses[0]->getPhone());
+        $order->setShippingFax($customer->getFaxNumber());
+        $order->setShippingMobile($customer->getMobileNumber());
+        $order->setShippingPostcode($customerDeliveryAddressAddresses[0]->getPostcode());
+
+        // Delivery
+        $order->setDeliveryMethod('free'); // @todo : change Delivery method integration
+        $order->setDeliveryCost(rand(5, 40));
+        $order->setDeliveryStatus(array_rand(Delivery::getStatusList()));
+
+        // Payment
+        $order->setCurrency(new Currency()); // @todo : change Currency integration
+        $order->setPaymentMethod('free');    // @todo : change Payment method integration
+        $order->setPaymentStatus(array_rand(BaseTransaction::getStatusList()));
+
+        // OrderElements
+        foreach ($products as $product) {
+            $orderElement = $this->createOrderElement($product);
+
+            $orderElement->setOrder($order);
+
+            $orderElements[] = $orderElement;
+
+            $totalExcl += $orderElement->getUnitPrice(false);
+            $totalInc  += $orderElement->getUnitPrice(true);
+        }
+
+        $order->setOrderElements($orderElements);
+
+        $order->setTotalExcl($totalExcl);
+        $order->setTotalInc($totalInc);
+
+        $order->setStatus(array_rand(BaseOrder::getStatusList()));
+
+        $manager->persist($order);
+
+        return $order;
+    }
+
+    /**
+     * Creates an OrderElement from a given Product.
+     *
+     * @param BaseProduct $product
+     *
+     * @return OrderElement
+     */
+    protected function createOrderElement(BaseProduct $product)
+    {
+        $productProvider = $this->getProductPool()->getProvider($product);
+
+        $basketElement = $productProvider->createBasketElement($product);
+
+        $orderElement = $productProvider->createOrderElement($basketElement);
+
+        return $orderElement;
+    }
+
+    /**
+     * Generates a Customer with his addresses.
+     *
+     * @param ObjectManager $manager
+     *
+     * @return Customer
+     */
+    protected function generateCustomer(ObjectManager $manager)
+    {
+        $faker = $this->getFaker();
+
+        // Customer
+        $customer = new Customer();
+        $customer->setTitle(array_rand(array(BaseCustomer::TITLE_MLLE, BaseCustomer::TITLE_MME, BaseCustomer::TITLE_MR)));
+        $customer->setFirstname($faker->firstName());
+        $customer->setLastname($faker->lastName());
+        $customer->setEmail($faker->email());
+        $customer->setBirthDate($faker->datetime());
+        $customer->getBirthPlace($faker->city());
+        $customer->setPhoneNumber($faker->phoneNumber());
+        $customer->setMobileNumber($faker->phoneNumber());
+        $customer->setFaxNumber($faker->phoneNumber());
+        $customer->setLocale('FR');
+        $customer->setIsFake(true);
+
+        // Customer billing address
+        $customerBillingAddress = new Address();
+        $customerBillingAddress->setType(BaseAddress::TYPE_BILLING);
+        $customerBillingAddress->setCustomer($customer);
+        $customerBillingAddress->setCurrent(true);
+        $customerBillingAddress->setName('My billing address');
+        $customerBillingAddress->setFirstname($customer->getFirstname());
+        $customerBillingAddress->setLastname($customer->getLastname());
+        $customerBillingAddress->setAddress1($faker->address());
+        $customerBillingAddress->setPostcode($faker->postcode());
+        $customerBillingAddress->setCity($faker->city());
+        $customerBillingAddress->setCountryCode($faker->country());
+        $customerBillingAddress->setPhone($faker->phoneNumber());
+
+        // Customer contact address
+        $customerContactAddress = new Address();
+        $customerContactAddress->setType(BaseAddress::TYPE_CONTACT);
+        $customerContactAddress->setCustomer($customer);
+        $customerContactAddress->setCurrent(true);
+        $customerContactAddress->setName('My contact address');
+        $customerContactAddress->setFirstname($customer->getFirstname());
+        $customerContactAddress->setLastname($customer->getLastname());
+        $customerContactAddress->setAddress1($faker->address());
+        $customerContactAddress->setPostcode($faker->postcode());
+        $customerContactAddress->setCity($faker->city());
+        $customerContactAddress->setCountryCode($faker->country());
+        $customerContactAddress->setPhone($customer->getPhoneNumber());
+
+        // Customer delivery address
+        $customerDeliveryAddress = new Address();
+        $customerDeliveryAddress->setType(BaseAddress::TYPE_DELIVERY);
+        $customerDeliveryAddress->setCustomer($customer);
+        $customerDeliveryAddress->setCurrent(true);
+        $customerDeliveryAddress->setName('My delivery address');
+        $customerDeliveryAddress->setFirstname($customer->getFirstname());
+        $customerDeliveryAddress->setLastname($customer->getLastname());
+        $customerDeliveryAddress->setAddress1($faker->address());
+        $customerDeliveryAddress->setPostcode($faker->postcode());
+        $customerDeliveryAddress->setCity($faker->city());
+        $customerDeliveryAddress->setCountryCode($faker->country());
+        $customerDeliveryAddress->setPhone($faker->phoneNumber());
+
+        $customer->addAddress($customerBillingAddress);
+        $customer->addAddress($customerContactAddress);
+        $customer->addAddress($customerDeliveryAddress);
+
+        $manager->persist($customerBillingAddress);
+        $manager->persist($customerContactAddress);
+        $manager->persist($customerDeliveryAddress);
+        $manager->persist($customer);
+
+        return $customer;
+    }
+
+    protected function createTransaction(OrderInterface $order, ObjectManager $manager)
+    {
+        $transaction = new Transaction();
+
+        $transaction->setState(1);
+        $transaction->setOrder($order);
+        $transaction->setStatusCode($order->getPaymentStatus());
+        $transaction->setPaymentCode($order->getPaymentMethod());
+
+        $manager->persist($transaction);
+    }
+
+    /**
+     * Get Product Pool.
+     *
+     * @return \Sonata\Component\Product\Pool
+     */
+    protected function getProductPool()
+    {
+        return $this->container->get('sonata.product.pool');
+    }
+
+    /**
+     * Get Faker.
+     *
+     * @return Generator
+     */
+    protected function getFaker()
+    {
+        return $this->container->get('faker.generator');
     }
 
     /**
@@ -51,85 +315,6 @@ class LoadOrderData extends AbstractFixture implements ContainerAwareInterface, 
      */
     public function getOrder()
     {
-        // Right after products
-        return 51;
-    }
-
-    /**
-     * Creates the order fixtures
-     */
-    public function createOrders()
-    {
-        $statuses = array_rand(Order::getStatusList(), 10);
-
-        foreach ($statuses as $key => $status) {
-            $this->createOrder($key, $status);
-        }
-    }
-
-    /**
-     * Creates an order
-     *
-     * @param int $key
-     * @param int $status
-     */
-    public function createOrder($key, $status)
-    {
-        $customer = $this->getReference('customer');
-
-        $order = new Order();
-        $order->setReference('order-'.$status.'-'.$key);
-
-        $order->setBillingAddress1('address1');
-        $order->setBillingCity('city');
-        $order->setBillingCountryCode('EN');
-        $order->setBillingEmail('email@email.com');
-        $order->setBillingName('name');
-        $order->setBillingPhone('0123456789');
-        $order->setBillingPostcode('12345');
-
-        $order->setCurrency('EUR');
-        $order->setCustomer($customer);
-
-        $order->setDeliveryCost(42.0);
-        $order->setDeliveryMethod('delivery');
-        $order->setDeliveryStatus(array_rand(Delivery::getStatusList()));
-
-        $order->setLocale('EN');
-        $order->setOrderElements($this->getOrderElements());
-        $order->setPaymentMethod('payment');
-        $order->setPaymentStatus(array_rand(TransactionInterface::getStatusList()));
-
-        $order->setShippingAddress1('address1');
-        $order->setShippingCity('city');
-        $order->setShippingCountryCode('EN');
-        $order->setShippingEmail('email@email.com');
-        $order->setShippingName('name');
-        $order->setShippingPhone('0123456789');
-        $order->setShippingPostcode('12345');
-
-        $order->setStatus($status);
-
-        $order->setTotalExcl(42.0);
-        $order->setTotalInc(42.0);
-    }
-
-    /**
-     * @return ArrayCollection
-     */
-    public function getOrderElements()
-    {
-        if (null !== $this->orderElements) {
-            return $this->orderElements;
-        }
-
-    }
-
-    /**
-     * @return Generator
-     */
-    public function getFaker()
-    {
-        return $this->container->get('faker.generator');
+        return 52;
     }
 }
