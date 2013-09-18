@@ -13,6 +13,7 @@ namespace Sonata\Bundle\EcommerceDemoBundle\DataFixtures\ORM;
 
 use Application\Sonata\ProductBundle\Entity\Delivery;
 use Application\Sonata\ProductBundle\Entity\Goodie;
+use Application\Sonata\ProductBundle\Entity\Package;
 use Application\Sonata\ProductBundle\Entity\ProductCategory;
 use Application\Sonata\ProductBundle\Entity\Training;
 use Doctrine\Common\DataFixtures\AbstractFixture;
@@ -40,15 +41,23 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
      */
     public function load(ObjectManager $manager)
     {
+        /*
+         * @todo
+         *  - add product variations
+         *  - check licences for used images
+         */
         $plushesCategory = $this->getPlushesCategory();
         $sonataCategory  = $this->getSonataTrainingCategory();
+        $mugCategory     = $this->getMugCategory();
+        $clothesCategory = $this->getClothesCategory();
 
         // Goodies products
         $phpPlush = new Goodie();
         $phpPlush->setSku('PHP_PLUSH');
         $phpPlush->setName('PHP plush');
         $phpPlush->setSlug('php-plush');
-        $phpPlush->setDescription('A PHP "elephpant" to enjoy your desk.');
+        $phpPlush->setDescription('The PHP plush toy is based on the PHP world-famous elephant from Vincent Pontier: Vince evolved the logo from the three letters into an animal.');
+        $phpPlush->setRawDescription('The PHP plush toy is based on the PHP world-famous elephant from Vincent Pontier: Vince evolved the logo from the three letters into an animal.');
         $phpPlush->setPrice(29.99);
         $phpPlush->setStock(2000);
         $phpPlush->setVat(0);
@@ -56,8 +65,43 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $manager->persist($phpPlush);
         $this->setReference('php_plush_goodie_product', $phpPlush);
 
+        $this->addMediaToProduct(__DIR__.'/../data/files/elephpant.png', 'PHP elePHPant', 'PHP elePHPant', $phpPlush);
         $this->addProductToCategory($phpPlush, $plushesCategory, $manager);
         $this->addProductDeliveries($phpPlush, $manager);
+
+        $phpMug = new Goodie();
+        $phpMug->setSku('PHP_MUG');
+        $phpMug->setName('PHP mug');
+        $phpMug->setSlug('php-mug');
+        $phpMug->setDescription('You love coffee and PHP ? This mug is for you.');
+        $phpMug->setRawDescription('You love coffee and PHP ? This mug is for you.');
+        $phpMug->setPrice(9.99);
+        $phpMug->setStock(10000);
+        $phpMug->setVat(0);
+        $phpMug->setEnabled(true);
+        $manager->persist($phpMug);
+        $this->setReference('php_mug_goodie_product', $phpMug);
+
+        $this->addMediaToProduct(__DIR__.'/../data/files/php_mug.jpg', 'PHP mug', 'PHP mug', $phpMug);
+        $this->addProductToCategory($phpMug, $mugCategory, $manager);
+        $this->addProductDeliveries($phpMug, $manager);
+
+        $phpTeeShirt = new Goodie();
+        $phpTeeShirt->setSku('PHP_TSHIRT');
+        $phpTeeShirt->setName('PHP tee-shirt');
+        $phpTeeShirt->setSlug('php-t-shirt');
+        $phpTeeShirt->setDescription('A nice PHP tee-shirt, best clothe ever to pick up girls.');
+        $phpTeeShirt->setRawDescription('A nice PHP tee-shirt, best clothe ever to pick up girls.');
+        $phpTeeShirt->setPrice(25);
+        $phpTeeShirt->setStock(10000);
+        $phpTeeShirt->setVat(0);
+        $phpTeeShirt->setEnabled(true);
+        $manager->persist($phpTeeShirt);
+        $this->setReference('php_teeshirt_goodie_product', $phpTeeShirt);
+
+        $this->addMediaToProduct(__DIR__.'/../data/files/php_tee_shirt.png', 'PHP tee-shirt', 'PHP tee-shirt', $phpTeeShirt);
+        $this->addProductToCategory($phpTeeShirt, $clothesCategory, $manager);
+        $this->addProductDeliveries($phpTeeShirt, $manager);
 
         // Training products
         $sonataTraining = new Training();
@@ -65,16 +109,25 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $sonataTraining->setName('Sonata training');
         $sonataTraining->setSlug('sonata-training');
         $sonataTraining->setDescription('A 2 days training to learn Sonata bundles.');
+        $sonataTraining->setRawDescription('A 2 days training to learn Sonata bundles.');
         $sonataTraining->setPrice(1450.00);
-        $sonataTraining->setStock(25);
+        $sonataTraining->setStock(1500);
         $sonataTraining->setVat(0);
         $sonataTraining->setEnabled(true);
         $manager->persist($sonataTraining);
         $this->setReference('sonata_training_goodie_product', $sonataTraining);
 
-        $this->addMediaToProduct(__DIR__.'/../data/files/sonata_logo.png', 'Sonata logo', 'Sonata logo', $sonataTraining, $manager);
+        $this->addMediaToProduct(__DIR__.'/../data/files/sonata_logo.png', 'Sonata logo', 'Sonata logo', $sonataTraining);
         $this->addProductToCategory($sonataTraining, $sonataCategory, $manager);
         $this->addProductDeliveries($sonataTraining, $manager);
+
+        $manager->flush();
+
+        // package needs ProductId, @todo: clean doctrine relation
+        $this->addPackageToProduct($sonataTraining, $manager);
+        $this->addPackageToProduct($phpPlush, $manager);
+        $this->addPackageToProduct($phpMug, $manager);
+        $this->addPackageToProduct($phpTeeShirt, $manager);
 
         $manager->flush();
     }
@@ -118,7 +171,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $delivery->setCountryCode('FR');
         $delivery->setCode('free');
         $delivery->setEnabled(true);
-        $delivery->setPerItem(2);
+        $delivery->setPerItem(0);
         $delivery->setProduct($product);
         $manager->persist($delivery);
 
@@ -126,12 +179,28 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $delivery->setCountryCode('GB');
         $delivery->setCode('free');
         $delivery->setEnabled(true);
-        $delivery->setPerItem(2);
+        $delivery->setPerItem(0);
+        $delivery->setProduct($product);
+        $manager->persist($delivery);
+
+        $delivery = new Delivery();
+        $delivery->setCountryCode('FR');
+        $delivery->setCode('chronopost');
+        $delivery->setEnabled(true);
+        $delivery->setPerItem(rand(15, 30));
+        $delivery->setProduct($product);
+        $manager->persist($delivery);
+
+        $delivery = new Delivery();
+        $delivery->setCountryCode('GB');
+        $delivery->setCode('ups');
+        $delivery->setEnabled(true);
+        $delivery->setPerItem(rand(15, 30));
         $delivery->setProduct($product);
         $manager->persist($delivery);
     }
 
-    protected function addMediaToProduct($mediaFilename, $name, $description, ProductInterface $product, ObjectManager $manager)
+    protected function addMediaToProduct($mediaFilename, $name, $description, ProductInterface $product)
     {
         $mediaManager = $this->getMediaManager();
 
@@ -146,6 +215,22 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $mediaManager->save($media, 'sonata_product', 'sonata.media.provider.image');
 
         $product->setImage($media);
+    }
+
+    protected function addPackageToProduct(ProductInterface $product, ObjectManager $manager)
+    {
+        $package = new Package();
+
+        $package->setProductId($product->getId());
+        $package->setWidth(rand(1, 50));
+        $package->setHeight(rand(1, 50));
+        $package->setLength(rand(1, 50));
+        $package->setWeight(rand(1, 50));
+        $package->setEnabled(true);
+        $package->setCreatedAt(new \DateTime());
+        $package->setUpdatedAt(new \DateTime());
+
+        $manager->persist($package);
     }
 
     /**
@@ -166,6 +251,26 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
     protected function getSonataTrainingCategory()
     {
         return $this->getReference('sonata_trainings_category');
+    }
+
+    /**
+     * Returns the mugs sub-Category.
+     *
+     * @return \Application\Sonata\ProductBundle\Entity\Category
+     */
+    protected function getMugCategory()
+    {
+        return $this->getReference('sonata_mugs_category');
+    }
+
+    /**
+     * Returns the clothes sub-Category.
+     *
+     * @return \Application\Sonata\ProductBundle\Entity\Category
+     */
+    protected function getClothesCategory()
+    {
+        return $this->getReference('sonata_clothes_category');
     }
 
     /**

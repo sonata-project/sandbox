@@ -56,6 +56,26 @@ class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterfac
         $manager->persist($plushes);
         $this->setReference('plushes_goodies_category', $plushes);
 
+        // Mugs sub-categories
+        $mugs = new Category();
+        $mugs->setParent($goodies);
+        $mugs->setName('Mugs');
+        $mugs->setSlug('mugs');
+        $mugs->setDescription('Some mugs.');
+        $mugs->setEnabled(true);
+        $manager->persist($mugs);
+        $this->setReference('sonata_mugs_category', $mugs);
+
+        // Clothing sub-categories
+        $clothes = new Category();
+        $clothes->setParent($goodies);
+        $clothes->setName('Clothes');
+        $clothes->setSlug('clothes');
+        $clothes->setDescription('Clothes for geeks.');
+        $clothes->setEnabled(true);
+        $manager->persist($clothes);
+        $this->setReference('sonata_clothes_category', $clothes);
+
         // Training sub-categories
         $symfony = new Category();
         $symfony->setParent($training);
