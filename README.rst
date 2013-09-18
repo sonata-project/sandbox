@@ -37,7 +37,7 @@ Run the following commands::
 Database initialization
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-At this point, the ``app/console`` command should start with no issues. However some you need the complete some others step:
+At this point, the ``app/console`` command should start with no issues. However some of you might need to complete some others step:
 
 * database configuration (edit the app/config/parameters.yml file)
 
@@ -48,7 +48,7 @@ then runs the commands::
 
 Assets Installation
 ~~~~~~~~~~~~~~~~~~~
-Your frontend still looking weird because bundle assets are not installed. Run the following command to install assets for all active bundles under public directory::
+Your frontend still looks weird because bundle assets are not installed. Run the following command to install assets for all active bundles under public directory::
 
     app/console assets:install web
 
@@ -72,7 +72,7 @@ By default the Sonata Page bundle is activated, so you need to starts 3 commands
 
 .. note::
 
-   If you didn't load fixture you need to create a default website :
+   If you didn't load fixture, you need to create a default website :
 
        app/console sonata:page:create-site --enabled=true --locale=en --name=localhost --host=localhost --relativePath=/ --enabledFrom=now --enabledTo="+10 years" --default=true
 
