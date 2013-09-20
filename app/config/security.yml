@@ -66,8 +66,11 @@ security:
 
         # Secured part of the site
         # This config requires being logged for the whole site and having the admin role for the admin part.
+        # It also secures the shop checkout process
         # Change these rules to adapt them to your needs
         - { path: ^/admin/, role: [ROLE_ADMIN, ROLE_SONATA_ADMIN] }
+        - { path: ^/shop/basket/step/, role: IS_AUTHENTICATED_FULLY }
+        - { path: ^/shop/user/, role: IS_AUTHENTICATED_FULLY }
         - { path: ^/.*, role: IS_AUTHENTICATED_ANONYMOUSLY }
 
 #    acl:
