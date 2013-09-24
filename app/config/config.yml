@@ -55,6 +55,7 @@ twig:
         resources:
             - 'SonataAdminBundle:Form:silex_form_div_layout.html.twig'
             - 'SonataFormatterBundle:Form:formatter.html.twig'
+            - 'SonataMediaBundle:Form:media_widgets.html.twig'
 
 # Assetic Configuration
 assetic:
