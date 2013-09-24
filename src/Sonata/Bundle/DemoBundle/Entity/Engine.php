@@ -12,6 +12,7 @@
 namespace Sonata\Bundle\DemoBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Sonata\MediaBundle\Model\MediaInterface;
 
 /**
  * @ORM\Entity
@@ -35,6 +36,12 @@ class Engine
      * @ORM\Column(type="integer", length=100)
      */
     protected $power;
+
+    /**
+     * @var \Application\Sonata\MediaBundle\Entity\Media
+     * @ORM\ManyToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media", cascade={"persist"}, fetch="LAZY")
+     */
+    protected $media;
 
     /**
      * @param string $name
@@ -91,6 +98,22 @@ class Engine
     public function __toString()
     {
         return $this->getName() ?: 'n/a';
+    }
+
+    /**
+     * @param MediaInterface $media
+     */
+    public function setMedia(MediaInterface $media)
+    {
+        $this->media = $media;
+    }
+
+    /**
+     * @return MediaInterface
+     */
+    public function getMedia()
+    {
+        return $this->media;
     }
 }
 
