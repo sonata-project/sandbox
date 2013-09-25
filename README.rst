@@ -59,7 +59,6 @@ Fixtures
 To have some actual data in your DB, you should load the fixtures by running::
 
     app/console doctrine:fixtures:load
-    app/console faker:populate
 
 Sonata Page Bundle
 ~~~~~~~~~~~~~~~~~~
@@ -81,16 +80,6 @@ By default the Sonata Page bundle is activated, so you need to starts 3 commands
 
     The ``update-core-routes`` populates the database with ``page`` from the routing information.
     The ``create-snapshots`` create a snapshot (a public page version) from the created pages.
-
-
-Unit Testing
-------------
-
-Automatic Unit Testing with ``watchr``::
-
-    gem install watchr
-    cd /path/to/symfony-project
-    watchr phpunit.watchr
 
 
 reference : https://gist.github.com/1151531

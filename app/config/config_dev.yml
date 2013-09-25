@@ -23,9 +23,6 @@ monolog:
 assetic:
     use_controller: true
 
-bazinga_faker:
-    orm: doctrine
-
 services:
     twig.extension.debug:
         class: Twig_Extension_Debug

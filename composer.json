@@ -63,8 +63,7 @@
         "sonata-project/ecommerce": "2.3.*@dev",
 
         "dflydev/markdown": "~1.0",
-        "simplethings/entity-audit-bundle": "~0.5",
-        "willdurand/faker-bundle": "~1.0"
+        "simplethings/entity-audit-bundle": "~0.5"
     },
 
     "require-dev": {
