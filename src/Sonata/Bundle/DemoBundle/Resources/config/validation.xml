@@ -16,6 +16,19 @@
             </constraint>
         </property>
 
+        <property name="media">
+            <constraint name="Valid"></constraint>
+        </property>
+
+    </class>
+
+    <class name="Sonata\Bundle\DemoBundle\Entity\Car">
+        <property name="name">
+            <constraint name="NotBlank" />
+        </property>
+        <property name="engine">
+            <constraint name="Valid" />
+        </property>
     </class>
 
 </constraint-mapping>
