@@ -74,7 +74,7 @@ doctrine:
 
         types:
             json:     Sonata\Doctrine\Types\JsonType
-            currency: Sonata\Component\Currency\CurrencyType
+            currency: Sonata\Component\Currency\CurrencyDoctrineType
 
     orm:
         auto_generate_proxy_classes: %kernel.debug%
