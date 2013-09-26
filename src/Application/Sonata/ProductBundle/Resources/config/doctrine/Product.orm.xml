@@ -17,42 +17,5 @@
             <generator strategy="AUTO"/>
         </id>
 
-        <many-to-one
-            field="image"
-            target-entity="Application\Sonata\MediaBundle\Entity\Media"
-             >
-
-            <cascade-type>
-                <cascade-all />
-            </cascade-type>
-
-            <join-columns>
-                <join-column
-                    name="image_id"
-                    on-delete="SET NULL"
-                />
-            </join-columns>
-
-        </many-to-one>
-
-        <one-to-many
-            field="package"
-            target-entity="Application\Sonata\ProductBundle\Entity\Package"
-            mapped-by="Product"
-            >
-
-            <cascade-type>
-                <cascade-all />
-            </cascade-type>
-
-            <join-columns>
-                <join-column
-                    name="id"
-                    referenced-column-name="product_id"
-                    on-delete="CASCADE"
-                />
-            </join-columns>
-        </one-to-many>
-
     </entity>
 </doctrine-mapping>
