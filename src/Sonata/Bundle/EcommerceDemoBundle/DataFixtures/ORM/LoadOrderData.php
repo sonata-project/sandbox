@@ -79,7 +79,7 @@ class LoadOrderData extends AbstractFixture implements ContainerAwareInterface, 
                 $customerProducts = array($products[$orderProductsKeys]);
             }
 
-            $order = $this->createOrder($customer, $customerProducts, $manager);
+            $order = $this->createOrder($customer, $customerProducts, $manager, $i);
 
             $this->createTransaction($order, $manager);
 
@@ -95,10 +95,11 @@ class LoadOrderData extends AbstractFixture implements ContainerAwareInterface, 
      * @param Customer      $customer
      * @param array         $products
      * @param ObjectManager $manager
+     * @param int           $pos
      *
      * @return OrderInterface
      */
-    protected function createOrder(Customer $customer, array $products, ObjectManager $manager)
+    protected function createOrder(Customer $customer, array $products, ObjectManager $manager, $pos)
     {
         $orderElements = array();
         $totalExcl     = 0;
@@ -110,6 +111,12 @@ class LoadOrderData extends AbstractFixture implements ContainerAwareInterface, 
         $order->setCustomer($customer);
         $order->setLocale($customer->getLocale());
         $order->setUsername($customer->getFullname());
+        $order->setReference(sprintf('%02d%02d%02d%06d',
+            2013, // @todo: need to improve the date generation
+            7,
+            1,
+            $pos
+        ));
 
         // Billing
         $customerBillingAddressAddresses = $customer->getAddressesByType(BaseAddress::TYPE_BILLING);
@@ -216,7 +223,7 @@ class LoadOrderData extends AbstractFixture implements ContainerAwareInterface, 
         $customer->setPhoneNumber($faker->phoneNumber());
         $customer->setMobileNumber($faker->phoneNumber());
         $customer->setFaxNumber($faker->phoneNumber());
-        $customer->setLocale('FR');
+        $customer->setLocale('fr');
         $customer->setIsFake(true);
 
         // Customer billing address
@@ -230,7 +237,7 @@ class LoadOrderData extends AbstractFixture implements ContainerAwareInterface, 
         $customerBillingAddress->setAddress1($faker->address());
         $customerBillingAddress->setPostcode($faker->postcode());
         $customerBillingAddress->setCity($faker->city());
-        $customerBillingAddress->setCountryCode($faker->country());
+        $customerBillingAddress->setCountryCode($faker->countryCode());
         $customerBillingAddress->setPhone($faker->phoneNumber());
 
         // Customer contact address
@@ -244,7 +251,7 @@ class LoadOrderData extends AbstractFixture implements ContainerAwareInterface, 
         $customerContactAddress->setAddress1($faker->address());
         $customerContactAddress->setPostcode($faker->postcode());
         $customerContactAddress->setCity($faker->city());
-        $customerContactAddress->setCountryCode($faker->country());
+        $customerContactAddress->setCountryCode($faker->countryCode());
         $customerContactAddress->setPhone($customer->getPhoneNumber());
 
         // Customer delivery address
@@ -258,7 +265,7 @@ class LoadOrderData extends AbstractFixture implements ContainerAwareInterface, 
         $customerDeliveryAddress->setAddress1($faker->address());
         $customerDeliveryAddress->setPostcode($faker->postcode());
         $customerDeliveryAddress->setCity($faker->city());
-        $customerDeliveryAddress->setCountryCode($faker->country());
+        $customerDeliveryAddress->setCountryCode($faker->countryCode());
         $customerDeliveryAddress->setPhone($faker->phoneNumber());
 
         $customer->addAddress($customerBillingAddress);
