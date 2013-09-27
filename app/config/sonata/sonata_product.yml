@@ -9,6 +9,8 @@ sonata_product:
         sonata.ecommerce_demo.product.training:
             provider: sonata.ecommerce_demo.product.training.type
             manager:  sonata.ecommerce_demo.product.training.manager
+            variations:
+                fields: [level, instructor_name, duration]
 
     class:
         user: Application\Sonata\Userbundle\Entity\User # you must define your own user class
