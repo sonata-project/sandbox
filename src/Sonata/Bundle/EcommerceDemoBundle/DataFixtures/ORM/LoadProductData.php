@@ -110,6 +110,9 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $sonataTraining->setSlug('sonata-training');
         $sonataTraining->setDescription('A 2 days training to learn Sonata bundles.');
         $sonataTraining->setRawDescription('A 2 days training to learn Sonata bundles.');
+        $sonataTraining->setLevel(Training::LEVEL_CONFIRMED);
+        $sonataTraining->setInstructorName('Thomas Rabaix');
+        $sonataTraining->setDuration('2 days');
         $sonataTraining->setPrice(1450.00);
         $sonataTraining->setStock(1500);
         $sonataTraining->setVat(0);

@@ -10,6 +10,8 @@
 
 namespace Application\Sonata\ProductBundle\Provider;
 
+use Application\Sonata\ProductBundle\Entity\Training;
+use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\ProductBundle\Model\BaseProductProvider;
 
 /**
@@ -27,5 +29,23 @@ class TrainingProductProvider extends BaseProductProvider
     public function getBaseControllerName()
     {
         return 'SonataProductBundle:Training';
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function buildEditForm(FormMapper $formMapper)
+    {
+        parent::buildEditForm($formMapper);
+
+        $formMapper
+            ->with('Product')
+                ->add('level', 'choice', array(
+                    'choices'            => Training::getLevelList(),
+                    'translation_domain' => 'SonataProductBundle',
+                ))
+                ->add('instructorName')
+                ->add('duration')
+            ->end();
     }
 }

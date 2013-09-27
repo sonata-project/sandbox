@@ -20,5 +20,9 @@
             ie : <field name="customField" column="prefix_custom_field" type="string" length="255" />
         -->
 
+        <field name="level"          column="level"           type="string" nullable="false" />
+        <field name="instructorName" column="instructor_name" type="string" nullable="false" />
+        <field name="duration"       column="duration"        type="string" nullable="false" />
+
     </entity>
 </doctrine-mapping>

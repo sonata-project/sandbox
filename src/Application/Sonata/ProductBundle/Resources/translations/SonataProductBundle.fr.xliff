@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" target-language="fr" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="training.level_title">
+                <source>training.level_title</source>
+                <target>Niveau de la formation</target>
+            </trans-unit>
+            <trans-unit id="training.instructor_title">
+                <source>training.instructor_title</source>
+                <target>Formateur</target>
+            </trans-unit>
+            <trans-unit id="training.duration_title">
+                <source>training.duration_title</source>
+                <target>Durée</target>
+            </trans-unit>
+            <trans-unit id="training.level.beginner">
+                <source>training.level.beginner</source>
+                <target>Débutant</target>
+            </trans-unit>
+            <trans-unit id="training.level.confirmed">
+                <source>training.level.confirmed</source>
+                <target>Confirmé</target>
+            </trans-unit>
+            <trans-unit id="training.level.expert">
+                <source>training.level.expert</source>
+                <target>Expert</target>
+            </trans-unit>
+            <trans-unit id="form.label_level">
+                <source>form.label_level</source>
+                <target>Niveau</target>
+            </trans-unit>
+            <trans-unit id="form.label_instructor_name">
+                <source>form.label_instructor_name</source>
+                <target>Formateur</target>
+            </trans-unit>
+            <trans-unit id="form.label_duration">
+                <source>form.label_duration</source>
+                <target>Durée</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
