@@ -15,6 +15,7 @@ use Application\Sonata\CustomerBundle\Entity\Address;
 use Application\Sonata\CustomerBundle\Entity\Customer;
 use Application\Sonata\OrderBundle\Entity\OrderElement;
 use Application\Sonata\PaymentBundle\Entity\Transaction;
+use Application\Sonata\UserBundle\Entity\User;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Sonata\Component\Currency\Currency;
@@ -212,12 +213,28 @@ class LoadOrderData extends AbstractFixture implements ContainerAwareInterface, 
     {
         $faker = $this->getFaker();
 
+        $firstName = $faker->firstName();
+        $lastName = $faker->lastName();
+        $email = $faker->email();
+        $username = $faker->userName();
+
+        // User
+        /** @var \Sonata\UserBundle\Model\User $user */
+        $user = new User();
+        $user->setUsername($username);
+        $user->setUsernameCanonical($username);
+        $user->setEmail($email);
+        $user->setEmailCanonical($email);
+        $user->setPlainPassword('customer');
+
+
         // Customer
         $customer = new Customer();
+        $customer->setUser($user);
         $customer->setTitle(array_rand(array(BaseCustomer::TITLE_MLLE, BaseCustomer::TITLE_MME, BaseCustomer::TITLE_MR)));
-        $customer->setFirstname($faker->firstName());
-        $customer->setLastname($faker->lastName());
-        $customer->setEmail($faker->email());
+        $customer->setFirstname($firstName);
+        $customer->setLastname($lastName);
+        $customer->setEmail($email);
         $customer->setBirthDate($faker->datetime());
         $customer->getBirthPlace($faker->city());
         $customer->setPhoneNumber($faker->phoneNumber());
@@ -275,6 +292,7 @@ class LoadOrderData extends AbstractFixture implements ContainerAwareInterface, 
         $manager->persist($customerBillingAddress);
         $manager->persist($customerContactAddress);
         $manager->persist($customerDeliveryAddress);
+        $manager->persist($user);
         $manager->persist($customer);
 
         return $customer;
