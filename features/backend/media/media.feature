@@ -69,7 +69,7 @@ Scenario: View a media
   And I follow "Show"
   Then print last response
   Then I should see "Symfony 2 by Fabien Potencier"
-  Then I shoud see "Preview ~ reference"
+  Then I should see "Preview ~ reference"
 
 Scenario: View revisions of a media
   When I am connected with "admin" and "admin" on "admin/sonata/media/media/list"
