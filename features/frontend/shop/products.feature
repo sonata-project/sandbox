@@ -15,15 +15,14 @@ Feature: Products
 
     Scenario: Browse products by categories
         When I go to "shop/category"
-        And I follow "Mac"
-        And I follow "MacBook Air"
-        Then I should see "Product 163"
+        And I follow "Goodies"
+        And I follow "Plushes"
+        Then I should see "PHP plush"
         And I should see "No subcategories available"
 
     Scenario: Select a product by browsing products
         When I go to "shop/category"
-        And I follow "Mac"
-        And I follow "MacBook Air"
-        And I follow "Product 163"
-        Then I should see "Product description goes here"
-        And I should see "Product gallery"
+        And I follow "Goodies"
+        And I follow "Plushes"
+        And I follow "PHP plush"
+        Then I should see "Vincent Pontier"

@@ -16,9 +16,9 @@ Scenario: Add a new site with some errors
   Then I should see "An error has occurred during item creation."
 
 Scenario: Add a new site
-  When I am connected with "admin" and "admin" on "admin/sonata/page/site/create?uniqid=4f155592a220e&siteId=1"
-  And I fill in "4f155592a220e_name" with "toto"
-  And I fill in "4f155592a220e_host" with "localhost"
+  When I am connected with "admin" and "admin" on "admin/sonata/page/site/create?uniqid=f155592a220e&siteId=1"
+  And I fill in "f155592a220e_name" with "toto"
+  And I fill in "f155592a220e_host" with "localhost"
   And I press "Create"
   Then I should see "Item has been successfully created."
 
