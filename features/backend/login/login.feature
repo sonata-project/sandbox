@@ -28,3 +28,16 @@ Feature: Check login
         And I follow "Logout"
         Then I should see "Welcome"
         And I should see "Sonata sandbox"
+
+    Scenario Outline: Check menu items present on the dashboard
+        Given I am connected with "admin" and "admin" on "admin/dashboard"
+        Then the response should contain "<message>"
+
+        Examples:
+            | message |
+            | Customer |
+            | Invoice |
+            | Order |
+            | Product |
+            | Category |
+
