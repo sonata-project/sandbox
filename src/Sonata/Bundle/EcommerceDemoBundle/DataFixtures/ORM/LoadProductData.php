@@ -19,6 +19,7 @@ use Application\Sonata\ProductBundle\Entity\Training;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
+use Sonata\Component\Currency\Currency;
 use Sonata\Component\Product\CategoryInterface;
 use Sonata\Component\Product\ProductInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
@@ -50,6 +51,8 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $sonataCategory  = $this->getSonataTrainingCategory();
         $mugCategory     = $this->getMugCategory();
         $clothesCategory = $this->getClothesCategory();
+        $currency        = new Currency();
+        $currency->setLabel('EUR');
 
         // Goodies products
         $phpPlush = new Goodie();
@@ -60,6 +63,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $phpPlush->setRawDescription('The PHP plush toy is based on the PHP world-famous elephant from Vincent Pontier: Vince evolved the logo from the three letters into an animal.');
         $phpPlush->setPrice(29.99);
         $phpPlush->setStock(2000);
+        $phpPlush->setCurrency($currency);
         $phpPlush->setVat(0);
         $phpPlush->setEnabled(true);
         $manager->persist($phpPlush);
@@ -77,6 +81,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $phpMug->setRawDescription('You love coffee and PHP ? This mug is for you.');
         $phpMug->setPrice(9.99);
         $phpMug->setStock(10000);
+        $phpMug->setCurrency($currency);
         $phpMug->setVat(0);
         $phpMug->setEnabled(true);
         $manager->persist($phpMug);
@@ -94,6 +99,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $phpTeeShirt->setRawDescription('A nice PHP tee-shirt, best clothe ever to pick up girls.');
         $phpTeeShirt->setPrice(25);
         $phpTeeShirt->setStock(10000);
+        $phpTeeShirt->setCurrency($currency);
         $phpTeeShirt->setVat(0);
         $phpTeeShirt->setEnabled(true);
         $manager->persist($phpTeeShirt);
@@ -112,6 +118,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $sonataTraining->setRawDescription('A 2 days training to learn Sonata bundles.');
         $sonataTraining->setPrice(1450.00);
         $sonataTraining->setStock(1500);
+        $sonataTraining->setCurrency($currency);
         $sonataTraining->setVat(0);
         $sonataTraining->setEnabled(true);
         $manager->persist($sonataTraining);
