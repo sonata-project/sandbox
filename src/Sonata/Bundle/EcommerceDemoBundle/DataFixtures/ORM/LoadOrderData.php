@@ -66,7 +66,7 @@ class LoadOrderData extends AbstractFixture implements ContainerAwareInterface, 
         );
 
         for ($i = 1; $i <= $nbCustomers; $i++) {
-            $customer = $this->generateCustomer($manager);
+            $customer = $this->generateCustomer($manager, $i);
 
             $customerProducts = array();
 
@@ -206,10 +206,11 @@ class LoadOrderData extends AbstractFixture implements ContainerAwareInterface, 
      * Generates a Customer with his addresses.
      *
      * @param ObjectManager $manager
+     * @param int $i Random number to avoid username collision
      *
      * @return Customer
      */
-    protected function generateCustomer(ObjectManager $manager)
+    protected function generateCustomer(ObjectManager $manager, $i)
     {
         $faker = $this->getFaker();
 
@@ -221,8 +222,8 @@ class LoadOrderData extends AbstractFixture implements ContainerAwareInterface, 
         // User
         /** @var \Sonata\UserBundle\Model\User $user */
         $user = new User();
-        $user->setUsername($username);
-        $user->setUsernameCanonical($username);
+        $user->setUsername($i . '-' . $username);
+        $user->setUsernameCanonical($i . '-' . $username);
         $user->setEmail($email);
         $user->setEmailCanonical($email);
         $user->setPlainPassword('customer');
