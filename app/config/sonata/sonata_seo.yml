@@ -32,6 +32,8 @@ sonata_seo:
             #'xmlns:fb':           "http://www.facebook.com/2008/fbml"
 
     sitemap:
+        services:
+            - sonata.product.seo_iterator
         doctrine_orm:
             # media
             - { connection: doctrine.dbal.default_connection, route: sonata_media_view, parameters: {id: null}, query: "SELECT id, updated_at as lastmod, 'weekly' as changefreq, '0.5' as prioriy FROM media__media WHERE enabled = true" }
