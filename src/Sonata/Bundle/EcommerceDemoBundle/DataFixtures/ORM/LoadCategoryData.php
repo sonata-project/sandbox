@@ -15,84 +15,111 @@ use Application\Sonata\ProductBundle\Entity\Category;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
+use Symfony\Component\DependencyInjection\ContainerAwareInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Category fixtures loader.
  *
  * @author Sylvain Deloux <sylvain.deloux@fullsix.com>
  */
-class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterface
+class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
 {
+    /**
+     * @var \Symfony\Component\DependencyInjection\ContainerInterface
+     */
+    protected $container;
+
+    /**
+     * @param \Symfony\Component\DependencyInjection\ContainerInterface $container
+     */
+    public function setContainer(ContainerInterface $container = null)
+    {
+        $this->container = $container;
+    }
+
+    /**
+     * Returns the Sonata MediaManager.
+     *
+     * @return \Sonata\ClassificationBundle\Model\CategoryManagerInterface
+     */
+    public function getCategoryManager()
+    {
+        return $this->container->get('sonata.classification.manager.category');
+    }
+
     /**
      * {@inheritDoc}
      */
     public function load(ObjectManager $manager)
     {
         // Goodies category
-        $goodies = new Category();
+
+        $goodies = $this->getCategoryManager()->create();
         $goodies->setName('Goodies');
         $goodies->setSlug('goodies');
         $goodies->setDescription('Some goodies related to Sonata and Symfony world.');
         $goodies->setEnabled(true);
-        $manager->persist($goodies);
+        $this->getCategoryManager()->save($goodies);
+
         $this->setReference('goodies_category', $goodies);
 
         // Training category
-        $training = new Category();
+        $training = $this->getCategoryManager()->create();
         $training->setName('Trainings');
         $training->setSlug('trainings');
         $training->setDescription('Want to learn Sonata? Check out our trainings.');
         $training->setEnabled(true);
-        $manager->persist($training);
+        $this->getCategoryManager()->save($training);
         $this->setReference('trainings_category', $training);
 
         // Goodies sub-categories
-        $plushes = new Category();
+        $plushes = $this->getCategoryManager()->create();
         $plushes->setParent($goodies);
         $plushes->setName('Plushes');
         $plushes->setSlug('plushes');
         $plushes->setDescription('Some plushes.');
         $plushes->setEnabled(true);
-        $manager->persist($plushes);
+        $this->getCategoryManager()->save($plushes);
         $this->setReference('plushes_goodies_category', $plushes);
 
         // Mugs sub-categories
-        $mugs = new Category();
+        $mugs = $this->getCategoryManager()->create();
         $mugs->setParent($goodies);
         $mugs->setName('Mugs');
         $mugs->setSlug('mugs');
         $mugs->setDescription('Some mugs.');
         $mugs->setEnabled(true);
-        $manager->persist($mugs);
+        $this->getCategoryManager()->save($mugs);
         $this->setReference('sonata_mugs_category', $mugs);
 
         // Clothing sub-categories
-        $clothes = new Category();
+        $clothes = $this->getCategoryManager()->create();
         $clothes->setParent($goodies);
         $clothes->setName('Clothes');
         $clothes->setSlug('clothes');
         $clothes->setDescription('Clothes for geeks.');
         $clothes->setEnabled(true);
-        $manager->persist($clothes);
+        $this->getCategoryManager()->save($clothes);
         $this->setReference('sonata_clothes_category', $clothes);
 
         // Training sub-categories
-        $symfony = new Category();
+        $symfony = $this->getCategoryManager()->create();
         $symfony->setParent($training);
         $symfony->setName('Symfony2');
         $symfony->setSlug('symfony2');
         $symfony->setDescription('Symfony2 trainings, with experts.');
         $symfony->setEnabled(true);
-        $manager->persist($symfony);
+        $this->getCategoryManager()->save($symfony);
         $this->setReference('symfony_trainings_category', $symfony);
 
-        $sonata = new Category();
+        $sonata = $this->getCategoryManager()->create();
         $sonata->setParent($training);
         $sonata->setName('Sonata');
         $sonata->setSlug('sonata');
         $sonata->setDescription('Learn how to use Sonata.');
         $sonata->setEnabled(true);
-        $manager->persist($sonata);
+        $this->getCategoryManager()->save($sonata);
         $this->setReference('sonata_trainings_category', $sonata);
 
         $manager->flush();

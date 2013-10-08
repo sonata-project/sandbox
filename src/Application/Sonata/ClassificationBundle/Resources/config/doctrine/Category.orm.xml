@@ -9,9 +9,9 @@
             association mapping  : http://www.doctrine-project.org/projects/orm/2.0/docs/reference/association-mapping/en
     -->
     <entity
-        name="Application\Sonata\ProductBundle\Entity\Category"
-        table="product__category"
-        >
+        name="Application\Sonata\ClassificationBundle\Entity\Category"
+        table="classification__category"
+        repository-class="Doctrine\ORM\EntityRepository">
 
         <id name="id" type="integer" column="id">
             <generator strategy="AUTO"/>

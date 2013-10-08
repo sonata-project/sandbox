@@ -123,11 +123,11 @@ RAW
     }
 
     /**
-     * @return \Sonata\NewsBundle\Model\TagManagerInterface
+     * @return \Sonata\ClassificationBundle\Model\TagManagerInterface
      */
     public function getTagManager()
     {
-        return $this->container->get('sonata.news.manager.tag');
+        return $this->container->get('sonata.classification.manager.tag');
     }
 
     /**

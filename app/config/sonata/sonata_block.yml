@@ -5,6 +5,10 @@ sonata_block:
     blocks:
         sonata.admin.block.admin_list:
             contexts:   [admin]
+        sonata.timeline.block.timeline:
+            contexts:   [admin]
+        sonata.admin.block.search_result:
+            contexts:   [admin]
 
 #        sonata.admin_doctrine_orm.block.audit:
 #            contexts:   [admin]
@@ -18,5 +22,4 @@ sonata_block:
         sonata.media.block.feature_media:
         sonata.news.block.recent_comments:
         sonata.news.block.recent_posts:
-        sonata.timeline.block.timeline:
 

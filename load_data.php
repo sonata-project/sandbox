@@ -37,6 +37,7 @@ function execute_commands($commands, $output)
     foreach($commands as $command) {
         $output->writeln(sprintf('<info>Executing : </info> %s', $command));
         $p = new \Symfony\Component\Process\Process($command);
+        $p->setTimeout(null);
         $exit = $p->run(function($type, $data) use ($output) {
             $output->write($data);
         });

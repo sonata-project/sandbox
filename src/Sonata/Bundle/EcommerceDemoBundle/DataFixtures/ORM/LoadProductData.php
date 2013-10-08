@@ -19,8 +19,7 @@ use Application\Sonata\ProductBundle\Entity\Training;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use Sonata\Component\Currency\Currency;
-use Sonata\Component\Product\CategoryInterface;
+use Sonata\ClassificationBundle\Model\CategoryInterface;
 use Sonata\Component\Product\ProductInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -201,6 +200,12 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $manager->persist($delivery);
     }
 
+    /**
+     * @param $mediaFilename
+     * @param $name
+     * @param $description
+     * @param ProductInterface $product
+     */
     protected function addMediaToProduct($mediaFilename, $name, $description, ProductInterface $product)
     {
         $mediaManager = $this->getMediaManager();
@@ -218,6 +223,10 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $product->setImage($media);
     }
 
+    /**
+     * @param ProductInterface $product
+     * @param ObjectManager    $manager
+     */
     protected function addPackageToProduct(ProductInterface $product, ObjectManager $manager)
     {
         $package = new Package();
