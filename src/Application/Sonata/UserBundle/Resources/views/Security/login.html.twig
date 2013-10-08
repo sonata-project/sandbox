@@ -5,19 +5,28 @@
     <div>{{ error|trans({}, 'FOSUserBundle') }}</div>
 {% endif %}
 
-<form action="{{ path("fos_user_security_check") }}" method="post">
-    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
-
-    <label for="username">{{ 'security.login.username'|trans({}, 'FOSUserBundle') }}</label>
-    <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
-
-    <label for="password">{{ 'security.login.password'|trans({}, 'FOSUserBundle') }}</label>
-    <input type="password" id="password" name="_password" required="required" />
-
-    <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
-    <label for="remember_me">{{ 'security.login.remember_me'|trans({}, 'FOSUserBundle') }}</label>
-
-    <input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}" />
+<form action="{{ path("fos_user_security_check") }}" method="post" class="form-horizontal">
+    <div class="control-group">
+        <label class="control-label" for="username">{{ 'security.login.username'|trans({}, 'FOSUserBundle') }}</label>
+        <div class="controls">
+            <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label" for="password">{{ 'security.login.password'|trans({}, 'FOSUserBundle') }}</label>
+        <div class="controls">
+            <input type="password" id="password" name="_password" required="required" />
+        </div>
+    </div>
+    <div class="control-group">
+        <div class="controls">
+            <label class="checkbox">
+                <input type="checkbox" id="remember_me" name="_remember_me" value="on" /> {{ 'security.login.remember_me'|trans({}, 'FOSUserBundle') }}
+            </label>
+            <button type="submit" class="btn btn-primary">Sign in</button>
+            <a href="{{ path('fos_user_registration_register') }}" class="btn">{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</a>
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+        </div>
+    </div>
 </form>
-<a href="{{ path('fos_user_registration_register') }}">{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</a>
 {% endblock fos_user_content %}
