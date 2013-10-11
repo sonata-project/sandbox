@@ -9,8 +9,8 @@
             association mapping  : http://www.doctrine-project.org/projects/orm/2.0/docs/reference/association-mapping/en
     -->
     <entity
-        name="Application\Sonata\NewsBundle\Entity\Category"
-        table="news__category"
+        name="Application\Sonata\ClassificationBundle\Entity\Collection"
+        table="classification__collection"
         repository-class="Doctrine\ORM\EntityRepository">
 
         <id name="id" type="integer" column="id">
