@@ -35,6 +35,10 @@ sonata_user:
     manager_type:             orm
 
     profile:
+        menu:
+            - { route: 'sonata_user_profile_edit', label: 'link_edit_profile', domain: 'SonataUserBundle'}
+            - { route: 'sonata_user_profile_edit_authentication', label: 'link_edit_authentication', domain: 'SonataUserBundle'}
+            - { route: 'sonata_order_index', label: 'order_list', domain: 'SonataOrderBundle'}
         form:
             type:                 sonata_user_profile
             handler:              sonata.user.profile.form.handler.default

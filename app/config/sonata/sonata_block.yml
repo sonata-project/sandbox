@@ -22,4 +22,7 @@ sonata_block:
         sonata.media.block.feature_media:
         sonata.news.block.recent_comments:
         sonata.news.block.recent_posts:
+        sonata.user.block.menu:
+
+
 
