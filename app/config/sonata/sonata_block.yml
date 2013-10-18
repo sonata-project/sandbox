@@ -21,4 +21,5 @@ sonata_block:
         sonata.timeline.block.timeline:
         sonata.user.block.menu:
             contexts: [user]
-
+        sonata.user.block.menu:
+            contexts: [user]

@@ -379,11 +379,18 @@ CONTENT
 
         $header->setName('The header container');
 
+        $header->addChildren($account = $blockManager->create());
+
+        $account->setType('sonata.user.block.account');
+        $account->setPosition(1);
+        $account->setEnabled(true);
+        $account->setPage($global);
+
         $header->addChildren($menu = $blockManager->create());
 
         $menu->setType('sonata.page.block.children_pages');
         $menu->setSetting('current', false);
-        $menu->setPosition(1);
+        $menu->setPosition(2);
         $menu->setEnabled(true);
         $menu->setPage($global);
 
