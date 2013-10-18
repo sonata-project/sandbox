@@ -19,4 +19,6 @@ sonata_block:
         sonata.news.block.recent_comments:
         sonata.news.block.recent_posts:
         sonata.timeline.block.timeline:
+        sonata.user.block.menu:
+            contexts: [user]
 
