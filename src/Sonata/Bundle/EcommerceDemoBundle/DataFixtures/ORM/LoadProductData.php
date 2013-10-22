@@ -15,11 +15,13 @@ use Application\Sonata\ProductBundle\Entity\Delivery;
 use Application\Sonata\ProductBundle\Entity\Goodie;
 use Application\Sonata\ProductBundle\Entity\Package;
 use Application\Sonata\ProductBundle\Entity\ProductCategory;
+use Application\Sonata\ProductBundle\Entity\ProductCollection;
 use Application\Sonata\ProductBundle\Entity\Training;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Sonata\ClassificationBundle\Model\CategoryInterface;
+use Sonata\ClassificationBundle\Model\CollectionInterface;
 use Sonata\Component\Product\ProductInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -51,6 +53,8 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $mugCategory     = $this->getMugCategory();
         $clothesCategory = $this->getClothesCategory();
 
+        $phpCollection = $this->getPhpCollection();
+
         // Goodies products
         $phpPlush = new Goodie();
         $phpPlush->setSku('PHP_PLUSH');
@@ -68,6 +72,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $this->addMediaToProduct(__DIR__.'/../data/files/elephpant.png', 'PHP elePHPant', 'PHP elePHPant', $phpPlush);
         $this->addProductToCategory($phpPlush, $plushesCategory, $manager);
         $this->addProductDeliveries($phpPlush, $manager);
+        $this->addProductToCollection($phpPlush, $phpCollection, $manager);
 
         $phpMug = new Goodie();
         $phpMug->setSku('PHP_MUG');
@@ -85,6 +90,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $this->addMediaToProduct(__DIR__.'/../data/files/php_mug.jpg', 'PHP mug', 'PHP mug', $phpMug);
         $this->addProductToCategory($phpMug, $mugCategory, $manager);
         $this->addProductDeliveries($phpMug, $manager);
+        $this->addProductToCollection($phpMug, $phpCollection, $manager);
 
         $phpTeeShirt = new Goodie();
         $phpTeeShirt->setSku('PHP_TSHIRT');
@@ -102,6 +108,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $this->addMediaToProduct(__DIR__.'/../data/files/php_tee_shirt.png', 'PHP tee-shirt', 'PHP tee-shirt', $phpTeeShirt);
         $this->addProductToCategory($phpTeeShirt, $clothesCategory, $manager);
         $this->addProductDeliveries($phpTeeShirt, $manager);
+        $this->addProductToCollection($phpTeeShirt, $phpCollection, $manager);
 
         // Training products
         $sonataTraining = new Training();
@@ -123,6 +130,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $this->addMediaToProduct(__DIR__.'/../data/files/sonata_logo.png', 'Sonata logo', 'Sonata logo', $sonataTraining);
         $this->addProductToCategory($sonataTraining, $sonataCategory, $manager);
         $this->addProductDeliveries($sonataTraining, $manager);
+        $this->addProductToCollection($sonataTraining, $phpCollection, $manager);
 
         $manager->flush();
 
@@ -160,6 +168,25 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $productCategory->setCategory($category);
 
         $manager->persist($productCategory);
+    }
+
+    /**
+     * Create a ProductCollection and adds given Product to given Collection.
+     *
+     * @param ProductInterface    $product
+     * @param CollectionInterface $collection
+     * @param bool                $enabled
+     * @param ObjectManager       $manager
+     */
+    protected function addProductToCollection(ProductInterface $product, CollectionInterface $collection, ObjectManager $manager, $enabled = true)
+    {
+        $productCollection = new ProductCollection();
+
+        $productCollection->setEnabled($enabled);
+        $productCollection->setProduct($product);
+        $productCollection->setCollection($collection);
+
+        $manager->persist($productCollection);
     }
 
     /**
@@ -284,6 +311,16 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
     protected function getClothesCategory()
     {
         return $this->getReference('sonata_clothes_category');
+    }
+
+    /**
+     * Returns the PHP collection
+     *
+     * @return CollectionInterface
+     */
+    protected function getPhpCollection()
+    {
+        return $this->getReference('php_collection');
     }
 
     /**
