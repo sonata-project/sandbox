@@ -23,6 +23,7 @@ sonata_block:
         sonata.news.block.recent_comments:
         sonata.news.block.recent_posts:
         sonata.order.block.recent_orders:
+        sonata.customer.block.recent_customers:
         sonata.user.block.menu:
 
 
