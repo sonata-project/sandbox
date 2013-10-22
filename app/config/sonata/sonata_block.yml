@@ -22,6 +22,7 @@ sonata_block:
         sonata.media.block.feature_media:
         sonata.news.block.recent_comments:
         sonata.news.block.recent_posts:
+        sonata.order.block.recent_orders:
         sonata.user.block.menu:
 
 
