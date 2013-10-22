@@ -40,7 +40,8 @@ sonata_admin:
 #            - { position: right, type: sonata.admin_doctrine_orm.block.audit}
             - { position: center, type: sonata.block.service.text, settings: { content: "<h2>Welcome!</h2> You can customize this dashboard by editing the sonata_admin.yml file. The current dashboard presents the recent items from the NewsBundle and a timeline with the latest action"} }
             - { position: center, type: sonata.timeline.block.timeline, settings: { context: SONATA_ADMIN, max_per_page: 25 }}
-            - { position: right, type: sonata.order.block.recent_orders, settings: { title: Recent Orders, number: 7, mode: admin }}
-            - { position: right, type: sonata.customer.block.recent_customers, settings: { title: Recent Customers, number: 7, mode: admin }}
-            - { position: right, type: sonata.news.block.recent_comments, settings: { title: Recent Comments, number: 7, mode: admin }}
-            - { position: right, type: sonata.block.service.rss, settings: { title: Sonata Project's Feeds, url: http://sonata-project.org/blog/archive.rss }}
+            - { position: center, type: sonata.block.service.rss, settings: { title: Sonata Project's Feeds, url: http://sonata-project.org/blog/archive.rss }}
+            - { position: right, type: sonata.order.block.recent_orders, settings: { title: Recent Orders, number: 5, mode: admin }}
+            - { position: right, type: sonata.customer.block.recent_customers, settings: { title: Recent Customers, number: 5, mode: admin }}
+            - { position: right, type: sonata.news.block.recent_posts, settings: { title: Recent Posts, number: 5, mode: admin }}
+            - { position: right, type: sonata.news.block.recent_comments, settings: { title: Recent Comments, number: 5, mode: admin }}
