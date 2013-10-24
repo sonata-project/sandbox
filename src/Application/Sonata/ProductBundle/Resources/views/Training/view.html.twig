@@ -40,7 +40,7 @@ file that was distributed with this source code.
     <form action="{{ url('sonata_basket_add_product') }}" method="POST" >
         {% trans from 'SonataProductBundle' %}sonata.product.label_quantity{% endtrans %} {{ form_widget(form.quantity) }}
 
-        <input type="submit" value="{% trans from 'SonataProductBundle' %}sonata.product.btn_add_to_basket{% endtrans %}"/>
+        <input type="submit" value="{% trans from 'SonataProductBundle' %}sonata.product.btn_add_to_basket{% endtrans %}" class="btn btn-small btn-primary"/>
 
         {{ form_rest(form) }}
     </form>
