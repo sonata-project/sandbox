@@ -65,6 +65,8 @@ class AppKernel extends Kernel
             new Sonata\CacheBundle\SonataCacheBundle(),
             new Sonata\BlockBundle\SonataBlockBundle(),
             new Sonata\SeoBundle\SonataSeoBundle(),
+            new Sonata\ClassificationBundle\SonataClassificationBundle(),
+            new Application\Sonata\ClassificationBundle\ApplicationSonataClassificationBundle(),
             new Sonata\NotificationBundle\SonataNotificationBundle(),
             new Application\Sonata\NotificationBundle\ApplicationSonataNotificationBundle(),
 

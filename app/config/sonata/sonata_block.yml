@@ -2,8 +2,14 @@ sonata_block:
     context_manager: sonata.page.block.context_manager
     default_contexts: [cms]
 
+    http_cache:
+        listener: true
+
     blocks:
         sonata.admin.block.admin_list:
+            contexts:   [admin]
+
+        sonata.admin.block.search_result:
             contexts:   [admin]
 
 #        sonata.admin_doctrine_orm.block.audit:
@@ -11,6 +17,7 @@ sonata_block:
 
         sonata.block.service.text:
         sonata.page.block.container:
+            cache: sonata.cache.memcached
         sonata.page.block.children_pages:
         sonata.block.service.rss:
         sonata.media.block.media:
@@ -20,3 +27,9 @@ sonata_block:
         sonata.news.block.recent_posts:
         sonata.timeline.block.timeline:
 
+        sonata.user.block.account:
+            cache: sonata.page.cache.js_async
+#            cache: sonata.page.cache.esi
+            contexts: [user]
+        sonata.user.block.menu:
+            contexts: [user]
