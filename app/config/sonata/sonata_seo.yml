@@ -28,9 +28,6 @@ sonata_seo:
 
         head:
             'xmlns':              http://www.w3.org/1999/xhtml
-            'xmlns:og':           "http://ogp.me/ns#"
-            'xmlns:fb':           "http://ogp.me/ns/fb#"
-            'xmlns:product':      "http://ogp.me/ns/product#"
 
     sitemap:
         services:
