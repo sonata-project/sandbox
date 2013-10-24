@@ -13,6 +13,7 @@ namespace Sonata\Bundle\EcommerceDemoBundle\DataFixtures\ORM;
 
 use Application\Sonata\CustomerBundle\Entity\Address;
 use Application\Sonata\CustomerBundle\Entity\Customer;
+use Application\Sonata\InvoiceBundle\Entity\Invoice;
 use Application\Sonata\OrderBundle\Entity\OrderElement;
 use Application\Sonata\PaymentBundle\Entity\Transaction;
 use Application\Sonata\UserBundle\Entity\User;
@@ -83,6 +84,8 @@ class LoadOrderData extends AbstractFixture implements ContainerAwareInterface, 
             $order = $this->createOrder($customer, $customerProducts, $manager, $i);
 
             $this->createTransaction($order, $manager);
+
+            $this->createInvoice($order, $manager);
 
             if (!($i % 10)) {
                 $manager->flush();
@@ -203,6 +206,21 @@ class LoadOrderData extends AbstractFixture implements ContainerAwareInterface, 
     }
 
     /**
+     * Creates an Invoice for a given Order.
+     *
+     * @param OrderInterface $order
+     * @param ObjectManager  $manager
+     */
+    protected function createInvoice(OrderInterface $order, ObjectManager $manager)
+    {
+        $invoice = new Invoice();
+
+        $this->getInvoiceTransformer()->transformFromOrder($order, $invoice);
+
+        $manager->persist($invoice);
+    }
+
+    /**
      * Generates a Customer with his addresses.
      *
      * @param ObjectManager $manager
@@ -319,6 +337,16 @@ class LoadOrderData extends AbstractFixture implements ContainerAwareInterface, 
     protected function getProductPool()
     {
         return $this->container->get('sonata.product.pool');
+    }
+
+    /**
+     * Get Invoice Transformer.
+     *
+     * @return \Sonata\Component\Transformer\InvoiceTransformer
+     */
+    protected function getInvoiceTransformer()
+    {
+        return $this->container->get('sonata.payment.transformer.invoice');
     }
 
     /**
