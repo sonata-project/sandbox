@@ -94,7 +94,6 @@ class AppKernel extends Kernel
 
             // DEMO and QA - Can be deleted
             new Sonata\Bundle\DemoBundle\SonataDemoBundle(),
-            new Sonata\Bundle\EcommerceDemoBundle\SonataEcommerceDemoBundle(),
             new Sonata\Bundle\QABundle\SonataQABundle(),
 
             // Disable this if you don't want the audit on entities

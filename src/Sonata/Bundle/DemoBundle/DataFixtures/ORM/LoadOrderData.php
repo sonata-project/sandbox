@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Sonata\Bundle\EcommerceDemoBundle\DataFixtures\ORM;
+namespace Sonata\Bundle\DemoBundle\DataFixtures\ORM;
 
 use Application\Sonata\CustomerBundle\Entity\Address;
 use Application\Sonata\CustomerBundle\Entity\Customer;

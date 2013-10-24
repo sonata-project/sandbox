@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Sonata\Bundle\EcommerceDemoBundle\DataFixtures\ORM;
+namespace Sonata\Bundle\DemoBundle\DataFixtures\ORM;
 
 use Application\Sonata\ProductBundle\Entity\Delivery;
 use Application\Sonata\ProductBundle\Entity\Goodie;
