@@ -58,10 +58,16 @@ class LoadNewsData extends AbstractFixture implements ContainerAwareInterface, O
             $this->getTagManager()->save($tag);
         }
 
+        $collection = $this->getCollectionManager()->create();
+        $collection->setEnabled(true);
+        $collection->setName('General');
+        $this->getCollectionManager()->save($collection);
+
         foreach (range(1, 20) as $id) {
             $post = $postManager->create();
             $post->setAuthor($this->getReference('user-admin'));
 
+            $post->setCollection($collection);
             $post->setAbstract($faker->sentence(30));
             $post->setEnabled(true);
             $post->setTitle($faker->sentence(6));
@@ -128,6 +134,14 @@ RAW
     public function getTagManager()
     {
         return $this->container->get('sonata.classification.manager.tag');
+    }
+
+    /**
+     * @return \Sonata\ClassificationBundle\Model\CollectionManagerInterface
+     */
+    public function getCollectionManager()
+    {
+        return $this->container->get('sonata.classification.manager.collection');
     }
 
     /**

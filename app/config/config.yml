@@ -14,6 +14,7 @@ imports:
     - { resource: sonata/sonata_user.yml }
     - { resource: sonata/sonata_notification.yml }
     - { resource: sonata/sonata_price.yml }
+    - { resource: sonata/sonata_timeline.yml }
 
     # Sonata e-commerce bundles
     - { resource: sonata/sonata_order.yml }
@@ -23,7 +24,6 @@ imports:
     - { resource: sonata/sonata_delivery.yml }
     - { resource: sonata/sonata_customer.yml }
     - { resource: sonata/sonata_basket.yml }
-    - { resource: sonata/sonata_timeline.yml }
 
 framework:
     #esi:             ~

@@ -61,6 +61,15 @@ The sandbox use the ACL system as security handler. You must init it:
     app/console sonata:admin:setup-acl
     app/console sonata:admin:generate-object-acl
 
+Sonata Page Bundle
+~~~~~~~~~~~~~~~~~~
+
+The sandbox use the ACL system as security handler. You must init it:
+
+    app/console init:acl
+    app/console sonata:admin:setup-acl
+    app/console sonata:admin:generate-object-acl
+
 Fixtures
 ~~~~~~~~
 
