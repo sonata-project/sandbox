@@ -439,6 +439,14 @@ CONTENT
         $account->setEnabled(true);
         $account->setPage($global);
 
+        $header->addChildren($basket = $blockManager->create());
+
+        $basket->setType('sonata.basket.block.nb_items');
+        $basket->setPosition(2);
+        $basket->setEnabled(true);
+        $basket->setPage($global);
+
+
         $header->addChildren($menu = $blockManager->create());
 
         $menu->setType('sonata.page.block.children_pages');

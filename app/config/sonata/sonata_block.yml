@@ -40,3 +40,7 @@ sonata_block:
             contexts: [user]
         sonata.user.block.menu:
             contexts: [user]
+
+        sonata.basket.block.nb_items:
+            cache: sonata.page.cache.js_async
+            contexts: [user]
