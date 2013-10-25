@@ -2,7 +2,7 @@
 
 {% block fos_user_content %}
 {% if error %}
-    <div>{{ error|trans({}, 'FOSUserBundle') }}</div>
+    <div class="alert alert-error">{{ error|trans({}, 'FOSUserBundle') }}</div>
 {% endif %}
 
 <form action="{{ path("fos_user_security_check") }}" method="post" class="form-horizontal">
@@ -23,7 +23,7 @@
             <label class="checkbox">
                 <input type="checkbox" id="remember_me" name="_remember_me" value="on" /> {{ 'security.login.remember_me'|trans({}, 'FOSUserBundle') }}
             </label>
-            <button type="submit" class="btn btn-primary">Sign in</button>
+            <button type="submit" class="btn btn-primary">{{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}</button>
             <a href="{{ path('fos_user_registration_register') }}" class="btn">{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</a>
             <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
         </div>
