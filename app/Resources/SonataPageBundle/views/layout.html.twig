@@ -1,0 +1,112 @@
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+{% extends 'SonataPageBundle::base_layout.html.twig' %}
+
+{% block page_container %}
+<div class="container">
+    <div class="content">
+        <div class="row-fluid page-header">
+            <div class="span4">
+                {{ sonata_page_render_container('title', 'global') }}
+            </div>
+
+            <div class="span6 navigation pull-right">
+                <div style="text-align: right; margin-bottom: 10px;">
+                    {{ sonata_page_render_container('header', 'global') }}
+                </div>
+            </div>
+
+            <div style="clear: both"></div>
+        </div>
+
+        {% if page is defined %}
+        <div class="row-fluid">
+            {% if page.name != 'global'%}
+            {{ sonata_page_render_container('content_top', 'global') }}
+            {% endif %}
+            {{ sonata_page_render_container('content_top', page) }}
+        </div>
+        {% endif %}
+
+        <div class="row-fluid">
+            {% if content is defined %}
+            {{ content|raw }}
+            {% else %}
+            {% set content = block('content') %}
+            {% if content|length > 0 %}
+            {{ content|raw }}
+            {% elseif page is defined %}
+            {{ sonata_page_render_container('content', page) }}
+            {% endif %}
+            {% endif %}
+        </div>
+
+        {% if page is defined %}
+        <div>
+            {{ sonata_page_render_container('content_bottom', page) }}
+
+            {% if page.name != 'global'%}
+            {{ sonata_page_render_container('content_bottom', 'global') }}
+            {% endif %}
+        </div>
+        {% endif %}
+    </div>
+
+    <footer>
+        <div class="row-fluid" style="padding: 20px 20px 10px">
+            <div class="span8 offset1">
+                <div class="span2">
+                    <b><a href="/blog">Blog</a></b>
+                </div>
+                <div class="span2">
+                    <b><a href="/shop/category/">Shop</a></b><br/>
+                    <a href="/shop/category/5/clothes">Clothes</a><br/>
+                    <a href="/shop/category/4/clothes">Mugs</a><br/>
+                    <a href="/shop/category/2/trainings">Trainings</a><br/>
+                    <a href="/shop/category/1/goodies">Goodies</a>
+                </div>
+                <div class="span2">
+                    <b>Extras</b><br/>
+                    <a href="/media/gallery/">Gallery</a><br/>
+                    <a href="/media">Media & SEO</a>
+                </div>
+                <div class="span2">
+                    <b><a href="/admin">Admin</a></b>
+                </div>
+            </div>
+            <div class="span3">
+                <ul style="text-align: right">
+                    <li style="display: inline-block;"><a href="https://github.com/sonata-project/" target="_blank"><img src="/bundles/sonatademo/images/glyphicons_social_21_github.png" width="24" height="24"/></a></li>
+                    <li style="display: inline-block;"><a href="https://twitter.com/sonataproject" target="_blank"><img src="/bundles/sonatademo/images/glyphicons_social_31_twitter.png" width="24" height="24"/></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="row-fluid" style="text-align: right">
+            © <a href="http://www.sonata-project.org">Sonata Project</a> provides Sonata demo 2010 - 2013 // Open Software License ("OSL") v. 3.0<br/>
+            Using <a href="http://www.glyphicons.com" target="_blank">GLYPHICONS.com</a> free icons released under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">CC BY 3.0 license</a>
+        </div>
+
+    </footer>
+</div>
+
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-25614705-2']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+</script>
+
+{% endblock %}
