@@ -20,7 +20,7 @@ file that was distributed with this source code.
 
 {% block product_description %}
     <b><a href="{{ url('sonata_product_view', {'productId': basketElement.product.id, 'slug': basketElement.product.slug}) }}">{{ basketElement.name }}</a></b> <br />
-    {{ basketElement.product.description }}
+    {{ basketElement.product.description|raw }}
 {% endblock %}
 
 {#
