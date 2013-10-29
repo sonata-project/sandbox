@@ -22,7 +22,6 @@ use Sonata\ProductBundle\Entity\BaseProduct as BaseProduct;
  */
 abstract class Product extends BaseProduct
 {
-
     /**
      * @var integer $id
      */
@@ -36,5 +35,13 @@ abstract class Product extends BaseProduct
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
     }
 }
