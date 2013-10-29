@@ -261,7 +261,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
     {
         $package = new Package();
 
-        $package->setProductId($product->getId());
+        $package->setProduct($product);
         $package->setWidth(rand(1, 50));
         $package->setHeight(rand(1, 50));
         $package->setLength(rand(1, 50));
