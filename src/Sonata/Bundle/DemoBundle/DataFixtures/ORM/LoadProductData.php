@@ -73,6 +73,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $this->addProductToCategory($phpPlush, $plushesCategory, $manager);
         $this->addProductDeliveries($phpPlush, $manager);
         $this->addProductToCollection($phpPlush, $phpCollection, $manager);
+        $this->addPackageToProduct($phpPlush, $manager);
 
         $phpMug = new Goodie();
         $phpMug->setSku('PHP_MUG');
@@ -91,6 +92,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $this->addProductToCategory($phpMug, $mugCategory, $manager);
         $this->addProductDeliveries($phpMug, $manager);
         $this->addProductToCollection($phpMug, $phpCollection, $manager);
+        $this->addPackageToProduct($phpMug, $manager);
 
         $phpTeeShirt = new Goodie();
         $phpTeeShirt->setSku('PHP_TSHIRT');
@@ -109,6 +111,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $this->addProductToCategory($phpTeeShirt, $clothesCategory, $manager);
         $this->addProductDeliveries($phpTeeShirt, $manager);
         $this->addProductToCollection($phpTeeShirt, $phpCollection, $manager);
+        $this->addPackageToProduct($phpTeeShirt, $manager);
 
         // Training products
         $sonataTraining = new Training();
@@ -131,14 +134,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $this->addProductToCategory($sonataTraining, $sonataCategory, $manager);
         $this->addProductDeliveries($sonataTraining, $manager);
         $this->addProductToCollection($sonataTraining, $phpCollection, $manager);
-
-        $manager->flush();
-
-        // package needs ProductId, @todo: clean doctrine relation
         $this->addPackageToProduct($sonataTraining, $manager);
-        $this->addPackageToProduct($phpPlush, $manager);
-        $this->addPackageToProduct($phpMug, $manager);
-        $this->addPackageToProduct($phpTeeShirt, $manager);
 
         $manager->flush();
     }
@@ -340,6 +336,4 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
     {
         $this->container = $container;
     }
-
-
 }
