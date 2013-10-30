@@ -14,6 +14,7 @@ namespace Sonata\Bundle\DemoBundle\DataFixtures\ORM;
 use Application\Sonata\CustomerBundle\Entity\Address;
 use Application\Sonata\CustomerBundle\Entity\Customer;
 use Application\Sonata\InvoiceBundle\Entity\Invoice;
+use Sonata\Component\Invoice\InvoiceInterface;
 use Application\Sonata\OrderBundle\Entity\OrderElement;
 use Application\Sonata\PaymentBundle\Entity\Transaction;
 use Application\Sonata\UserBundle\Entity\User;
@@ -182,6 +183,10 @@ class LoadOrderData extends AbstractFixture implements ContainerAwareInterface, 
 
         $order->setStatus(array_rand(BaseOrder::getStatusList()));
 
+        if (OrderInterface::STATUS_VALIDATED == $order->getStatus()) {
+            $order->setValidatedAt(new \DateTime());
+        }
+
         $manager->persist($order);
 
         return $order;
@@ -216,6 +221,10 @@ class LoadOrderData extends AbstractFixture implements ContainerAwareInterface, 
         $invoice = new Invoice();
 
         $this->getInvoiceTransformer()->transformFromOrder($order, $invoice);
+
+        if ($order->isValidated()) {
+            $invoice->setStatus(InvoiceInterface::STATUS_PAID);
+        }
 
         $manager->persist($invoice);
     }
