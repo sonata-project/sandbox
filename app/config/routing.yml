@@ -55,9 +55,9 @@ sonata_media_pixlr:
     resource: '@SonataMediaBundle/Resources/config/routing/pixlr.xml'
     prefix: /admin/media
 
-#sonata_user:
-#    resource: @SonataUserBundle/Resources/config/routing/user.xml
-#    prefix: /shop/user
+sonata_customer:
+    resource: @SonataCustomerBundle/Resources/config/routing/customer.xml
+    prefix: /shop/user
 
 sonata_basket:
     resource: @SonataBasketBundle/Resources/config/routing/basket.xml
