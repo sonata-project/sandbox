@@ -138,6 +138,8 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $this->addPackageToProduct($sonataTraining, $manager);
 
         $trainingProvider = $productPool->getProvider($sonataTraining);
+        $trainingProvider->setProductCategoryManager($this->getProductCategoryManager());
+        $trainingProvider->setProductCollectionManager($this->getProductCollectionManager());
 
         // Training beginner variation
         $sonataTrainingBeginner = $trainingProvider->createVariation($sonataTraining);
@@ -186,6 +188,8 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $productCategory->setProduct($product);
         $productCategory->setCategory($category);
 
+        $product->addProductCategory($productCategory);
+
         $manager->persist($productCategory);
     }
 
@@ -205,6 +209,8 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $productCollection->setProduct($product);
         $productCollection->setCollection($collection);
 
+        $product->addProductCollection($productCollection);
+
         $manager->persist($productCollection);
     }
 
@@ -222,6 +228,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $delivery->setEnabled(true);
         $delivery->setPerItem(0);
         $delivery->setProduct($product);
+        $product->addDelivery($delivery);
         $manager->persist($delivery);
 
         $delivery = new Delivery();
@@ -230,6 +237,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $delivery->setEnabled(true);
         $delivery->setPerItem(0);
         $delivery->setProduct($product);
+        $product->addDelivery($delivery);
         $manager->persist($delivery);
 
         $delivery = new Delivery();
@@ -238,6 +246,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $delivery->setEnabled(true);
         $delivery->setPerItem(rand(15, 30));
         $delivery->setProduct($product);
+        $product->addDelivery($delivery);
         $manager->persist($delivery);
 
         $delivery = new Delivery();
@@ -246,6 +255,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $delivery->setEnabled(true);
         $delivery->setPerItem(rand(15, 30));
         $delivery->setProduct($product);
+        $product->addDelivery($delivery);
         $manager->persist($delivery);
     }
 
@@ -288,6 +298,8 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $package->setEnabled(true);
         $package->setCreatedAt(new \DateTime());
         $package->setUpdatedAt(new \DateTime());
+
+        $product->addPackage($package);
 
         $manager->persist($package);
     }
@@ -360,6 +372,26 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
     protected function getProductPool()
     {
         return $this->container->get('sonata.product.pool');
+    }
+
+    /**
+     * Return the ProductCategory manager.
+     *
+     * @return \Sonata\Component\Product\ProductCategoryManagerInterface
+     */
+    protected function getProductCategoryManager()
+    {
+        return $this->container->get('sonata.product_category.product');
+    }
+
+    /**
+     * Return the ProductCollection manager.
+     *
+     * @return \Sonata\Component\Product\ProductCollectionManagerInterface
+     */
+    protected function getProductCollectionManager()
+    {
+        return $this->container->get('sonata.product_collection.product');
     }
 
     /**
