@@ -455,6 +455,71 @@ CONTENT
         $menu->setEnabled(true);
         $menu->setPage($global);
 
+        $global->addBlocks($footer = $blockInteractor->createNewContainer(array(
+            'enabled' => true,
+            'page' => $global,
+            'code' => 'footer',
+        )));
+
+        $footer->setName('The footer container');
+        $footer->addChildren($text = $blockManager->create());
+
+        $text->setType('sonata.block.service.text');
+        $text->setSetting('content', <<<FOOTER
+        <div class="row-fluid" style="padding: 20px 20px 10px">
+            <ul class="span10 nav nav-pills">
+                <li class="span2">
+                    <a href="/blog"><b>Blog</b></a>
+                </li>
+                <li class="span3">
+                    <a href="#"><b>Shop</b></a>
+                    <ul class="nav">
+                        <li><a href="/shop/category/5/clothes">Clothes</a></li>
+                        <li><a href="/shop/category/4/clothes">Mugs</a></li>
+                        <li><a href="/shop/category/2/trainings">Trainings</a></li>
+                        <li><a href="/shop/category/1/goodies">Goodies</a></li>
+                    </ul>
+                </li>
+                <li class="span3">
+                    <a href="#"><b>Extras</b></a>
+                    <ul class="nav">
+                        <li><a href="/media/gallery/">Gallery</a></li>
+                        <li><a href="/media">Media & SEO</a></li>
+                    </ul>
+                </li>
+                <li class="span2">
+                    <a href="/admin"><b>Admin</b></a>
+                </li>
+            </ul>
+            <div class="span2">
+                <ul style="text-align: right">
+                    <li style="display: inline-block;"><a href="https://github.com/sonata-project/" target="_blank"><img src="/bundles/sonatademo/images/glyphicons_social_21_github.png" width="24" height="24"/></a></li>
+                    <li style="display: inline-block;"><a href="https://twitter.com/sonataproject" target="_blank"><img src="/bundles/sonatademo/images/glyphicons_social_31_twitter.png" width="24" height="24"/></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="row-fluid" style="text-align: right">
+            © <a href="http://www.sonata-project.org">Sonata Project</a> provides Sonata demo 2010 - 2013 // Open Software License ("OSL") v. 3.0<br/>
+            Using <a href="http://www.glyphicons.com" target="_blank">GLYPHICONS.com</a> free icons released under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">CC BY 3.0 license</a>
+        </div>
+
+        <script type="text/javascript">
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-25614705-2']);
+            _gaq.push(['_trackPageview']);
+
+            (function() {
+                var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+            })();
+        </script>
+FOOTER
+);
+
+        $text->setPosition(1);
+        $text->setEnabled(true);
+        $text->setPage($global);
         $pageManager->save($global);
     }
 
