@@ -116,20 +116,11 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
 
         // Training products
         $sonataTraining = new Training();
-        $sonataTraining->setSku('SONATA_TRAINING');
-        $sonataTraining->setName('Sonata training (confirmed level)');
-        $sonataTraining->setSlug('sonata-training');
-        $sonataTraining->setDescription('A 2 days training to learn Sonata bundles.');
-        $sonataTraining->setRawDescription('A 2 days training to learn Sonata bundles.');
-        $sonataTraining->setLevel(Training::LEVEL_CONFIRMED);
-        $sonataTraining->setInstructorName('Thomas Rabaix');
-        $sonataTraining->setDuration('2 days');
-        $sonataTraining->setPrice(1450.00);
-        $sonataTraining->setStock(1500);
+        $sonataTraining->setName('Sonata trainings');
+        $sonataTraining->setDescription('A training to learn Sonata bundles.');
+        $sonataTraining->setRawDescription('A training to learn Sonata bundles.');
         $sonataTraining->setVat(0);
-        $sonataTraining->setEnabled(true);
         $manager->persist($sonataTraining);
-        $this->setReference('sonata_training_goodie_product', $sonataTraining);
 
         $this->addMediaToProduct(__DIR__.'/../data/files/sonata_logo.png', 'Sonata logo', 'Sonata logo', $sonataTraining);
         $this->addProductToCategory($sonataTraining, $sonataCategory, $manager);
@@ -143,20 +134,42 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
 
         // Training beginner variation
         $sonataTrainingBeginner = $trainingProvider->createVariation($sonataTraining);
-        $sonataTrainingBeginner->setName('Sonata training (beginner level)');
+        $sonataTrainingBeginner->setSku('SONATA_TRAINING_BEGINNERS');
+        $sonataTrainingBeginner->setName('Sonata training for beginners');
+        $sonataTrainingBeginner->setSlug('sonata-training-for-beginners');
         $sonataTrainingBeginner->setLevel(Training::LEVEL_BEGINNER);
+        $sonataTrainingBeginner->setInstructorName('Thomas Rabaix');
         $sonataTrainingBeginner->setDuration('1 day');
         $sonataTrainingBeginner->setPrice(450.00);
+        $sonataTrainingBeginner->setStock(1500);
         $sonataTrainingBeginner->setEnabled(true);
         $manager->persist($sonataTrainingBeginner);
         $this->setReference('sonata_training_goodie_product_beginner', $sonataTrainingBeginner);
 
+        // Training confirmed variation
+        $sonataTrainingConfirmed = $trainingProvider->createVariation($sonataTraining);
+        $sonataTrainingConfirmed->setSku('SONATA_TRAINING_CONFIRMED');
+        $sonataTrainingConfirmed->setName('Sonata training for confirmed');
+        $sonataTrainingConfirmed->setSlug('sonata-training-for-confirmed');
+        $sonataTrainingConfirmed->setLevel(Training::LEVEL_CONFIRMED);
+        $sonataTrainingConfirmed->setInstructorName('Thomas Rabaix');
+        $sonataTrainingConfirmed->setDuration('2 day');
+        $sonataTrainingConfirmed->setPrice(1450.00);
+        $sonataTrainingConfirmed->setStock(1500);
+        $sonataTrainingConfirmed->setEnabled(true);
+        $manager->persist($sonataTrainingConfirmed);
+        $this->setReference('sonata_training_goodie_product_confirmed', $sonataTrainingConfirmed);
+
         // Training expert variation
         $sonataTrainingExpert = $trainingProvider->createVariation($sonataTraining);
-        $sonataTrainingExpert->setName('Sonata training (expert level)');
+        $sonataTrainingExpert->setSku('SONATA_TRAINING_EXPERTS');
+        $sonataTrainingExpert->setName('Sonata training for experts');
+        $sonataTrainingExpert->setSlug('sonata-training-for-experts');
         $sonataTrainingExpert->setLevel(Training::LEVEL_EXPERT);
+        $sonataTrainingExpert->setInstructorName('Thomas Rabaix');
         $sonataTrainingExpert->setDuration('3 days');
         $sonataTrainingExpert->setPrice(2500.00);
+        $sonataTrainingExpert->setStock(1500);
         $sonataTrainingExpert->setEnabled(true);
         $manager->persist($sonataTrainingExpert);
         $this->setReference('sonata_training_goodie_product_expert', $sonataTrainingExpert);
@@ -307,7 +320,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
     /**
      * Returns the plush sub-Category.
      *
-     * @return \Application\Sonata\ProductBundle\Entity\Category
+     * @return CategoryInterface
      */
     protected function getPlushesCategory()
     {
@@ -317,7 +330,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
     /**
      * Returns the Sonata sub-Category.
      *
-     * @return \Application\Sonata\ProductBundle\Entity\Category
+     * @return CategoryInterface
      */
     protected function getSonataTrainingCategory()
     {
@@ -327,7 +340,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
     /**
      * Returns the mugs sub-Category.
      *
-     * @return \Application\Sonata\ProductBundle\Entity\Category
+     * @return CategoryInterface
      */
     protected function getMugCategory()
     {
@@ -337,7 +350,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
     /**
      * Returns the clothes sub-Category.
      *
-     * @return \Application\Sonata\ProductBundle\Entity\Category
+     * @return CategoryInterface
      */
     protected function getClothesCategory()
     {

@@ -62,8 +62,8 @@ class LoadOrderData extends AbstractFixture implements ContainerAwareInterface, 
 
         $products = array(
             $this->getReference('php_plush_goodie_product'),
-            $this->getReference('sonata_training_goodie_product'),
             $this->getReference('sonata_training_goodie_product_beginner'),
+            $this->getReference('sonata_training_goodie_product_confirmed'),
             $this->getReference('sonata_training_goodie_product_expert'),
             $this->getReference('php_mug_goodie_product'),
             $this->getReference('php_teeshirt_goodie_product'),
