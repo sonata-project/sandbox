@@ -1,0 +1,24 @@
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+
+{% extends sonata_block.templates.block_base %}
+
+{% block block %}
+    <ul style="text-align: right; float: right; display: inline-block">
+        {% if user %}
+            <li style="display: inline-block"><a href="{{ path('sonata_user_profile_show') }}"><i class="icon-edit"></i> {{ user.username }}</a></li>
+            <li style="display: inline-block"><a href="{{ path('fos_user_security_logout') }}"><i class="icon-off"></i> {{ 'link_logout' | trans({}, "SonataUserBundle") }}</a></li>
+        {% else %}
+            <li style="display: inline-block"><a href="{{ path('fos_user_security_login') }}"><i class="icon-user"></i> {{ 'link_login'|trans({}, 'SonataUserBundle') }}</a></li>
+            <li style="display: inline-block"><a href="{{ path('fos_user_registration_register') }}"><i class="icon-pencil"></i> {{ 'link_register'|trans({}, 'SonataUserBundle') }}</a></li>
+        {% endif %}
+    </ul>
+{% endblock %}
