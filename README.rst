@@ -119,4 +119,5 @@ You can now run the tests suite using the following command
 
     php bin/behat
 
-To get more informations about Behat, feel free to check `the official documentation<http://docs.behat.org/>`_.
+To get more informations about Behat, feel free to check `the official documentation
+<http://docs.behat.org/>`_.
