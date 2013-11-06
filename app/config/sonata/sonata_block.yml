@@ -17,7 +17,7 @@ sonata_block:
 
         sonata.block.service.text:
         sonata.page.block.container:
-            cache: sonata.cache.memcached
+            # cache: sonata.cache.memcached
         sonata.page.block.children_pages:
         sonata.block.service.rss:
         sonata.media.block.media:
