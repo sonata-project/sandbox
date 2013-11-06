@@ -21,13 +21,15 @@ file that was distributed with this source code.
 {% block product_title %}{{ product.name }}{% endblock %}
 
 {% block product_description %}
-    <p>
-        <strong>{{ 'training.level_title'|trans([], 'SonataProductBundle') }}&nbsp;:</strong> {{ product.level|trans([], 'SonataProductBundle') }}
-        <br />
-        <strong>{{ 'training.instructor_title'|trans([], 'SonataProductBundle') }}&nbsp;:</strong> {{ product.instructorName|trans([], 'SonataProductBundle') }}
-        <br />
-        <strong>{{ 'training.duration_title'|trans([], 'SonataProductBundle') }}&nbsp;:</strong> {{ product.duration|trans([], 'SonataProductBundle') }}
-    </p>
+    {% if not product.isMaster %}
+        <p>
+            <strong>{{ 'training.level_title'|trans([], 'SonataProductBundle') }}&nbsp;:</strong> {{ product.level|trans([], 'SonataProductBundle') }}
+            <br />
+            <strong>{{ 'training.instructor_title'|trans([], 'SonataProductBundle') }}&nbsp;:</strong> {{ product.instructorName|trans([], 'SonataProductBundle') }}
+            <br />
+            <strong>{{ 'training.duration_title'|trans([], 'SonataProductBundle') }}&nbsp;:</strong> {{ product.duration|trans([], 'SonataProductBundle') }}
+        </p>
+    {% endif %}
 
     {{ product.description|raw }}
 {% endblock %}
