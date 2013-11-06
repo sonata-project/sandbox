@@ -22,10 +22,9 @@ class SonataNotificationStartCommandTest extends CommandTestCase
         $this->assertContains("done!", $output);
 
         foreach (self::getConsumerList() as $def) {
-            list($name, $id) = $def;
+            list($name, ) = $def;
 
             $this->assertContains($name, $output);
-            $this->assertContains($id, $output);
         }
     }
 }

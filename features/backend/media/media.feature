@@ -61,6 +61,16 @@ Scenario: Edit a media
   And I press "Update"
   Then I should see "Item has been successfully updated."
 
+
+Scenario: View a media
+  When I am connected with "admin" and "admin" on "admin/sonata/media/media/list"
+  And I fill in "filter_name_value" with "Symfony 2 by Fabien Potencier"
+  And I press "Filter"
+  And I follow "Show"
+  Then print last response
+  Then I should see "Symfony 2 by Fabien Potencier"
+  Then I should see "Preview ~ reference"
+
 Scenario: View revisions of a media
   When I am connected with "admin" and "admin" on "admin/sonata/media/media/list"
   And I follow "Edit"

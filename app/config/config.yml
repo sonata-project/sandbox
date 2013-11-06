@@ -1,7 +1,6 @@
 imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
-    - { resource: fos_user.yml }
 
     # Sonata Bundles
     - { resource: sonata/sonata_admin.yml }
@@ -14,18 +13,28 @@ imports:
     - { resource: sonata/sonata_seo.yml }
     - { resource: sonata/sonata_notification.yml }
     - { resource: sonata/sonata_user.yml }
+    - { resource: sonata/sonata_timeline.yml }
 
 framework:
     #esi:             ~
-    translator: { fallback: en }
+    translator:
+        fallback: en
     secret:          %secret%
-    router:          { resource: "%kernel.root_dir%/config/routing.yml" }
+    router:
+        resource: "%kernel.root_dir%/config/routing.yml"
+        strict_requirements: ~
     form:            true
     csrf_protection: true
     validation:      { enable_annotations: true }
-    templating:      { engines: ['twig'] } #assets_version: SomeVersionScheme
+    templating:
+        engines: ['twig']
+        #assets_version: SomeVersionScheme
+
     default_locale:  %locale%
-    session: ~
+    session:         ~
+    fragments:       ~
+    trusted_proxies: ~
+    http_method_override: true
 
 # Twig Configuration
 twig:
@@ -36,6 +45,7 @@ twig:
         resources:
             - 'SonataAdminBundle:Form:silex_form_div_layout.html.twig'
             - 'SonataFormatterBundle:Form:formatter.html.twig'
+            - 'SonataMediaBundle:Form:media_widgets.html.twig'
 
 # Assetic Configuration
 assetic:

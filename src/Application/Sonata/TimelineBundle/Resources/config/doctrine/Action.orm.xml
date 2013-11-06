@@ -9,8 +9,8 @@
             association mapping  : http://www.doctrine-project.org/projects/orm/2.0/docs/reference/association-mapping/en
     -->
     <entity
-        name="Application\Sonata\NewsBundle\Entity\Tag"
-        table="news__tag"
+        name="Application\Sonata\TimelineBundle\Entity\Action"
+        table="timeline__action"
         repository-class="Doctrine\ORM\EntityRepository">
 
         <id name="id" type="integer" column="id">

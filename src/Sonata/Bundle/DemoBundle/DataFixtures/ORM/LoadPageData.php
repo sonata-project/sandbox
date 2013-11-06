@@ -45,6 +45,8 @@ class LoadPageData extends AbstractFixture implements ContainerAwareInterface, O
         $this->createGalleryIndex($site);
         $this->createMediaPage($site);
         $this->createUserPage($site);
+
+        $this->createSubSite();
     }
 
     public function createSite()
@@ -58,6 +60,23 @@ class LoadPageData extends AbstractFixture implements ContainerAwareInterface, O
         $site->setEnabledTo(new \DateTime('+10 years'));
         $site->setRelativePath("");
         $site->setIsDefault(true);
+
+        $this->getSiteManager()->save($site);
+
+        return $site;
+    }
+
+    public function createSubSite()
+    {
+        $site = $this->getSiteManager()->create();
+
+        $site->setHost('localhost');
+        $site->setEnabled(true);
+        $site->setName('sub site');
+        $site->setEnabledFrom(new \DateTime('now'));
+        $site->setEnabledTo(new \DateTime('+10 years'));
+        $site->setRelativePath("/sub-site");
+        $site->setIsDefault(false);
 
         $this->getSiteManager()->save($site);
 
@@ -360,11 +379,18 @@ CONTENT
 
         $header->setName('The header container');
 
+        $header->addChildren($account = $blockManager->create());
+
+        $account->setType('sonata.user.block.account');
+        $account->setPosition(1);
+        $account->setEnabled(true);
+        $account->setPage($global);
+
         $header->addChildren($menu = $blockManager->create());
 
         $menu->setType('sonata.page.block.children_pages');
         $menu->setSetting('current', false);
-        $menu->setPosition(1);
+        $menu->setPosition(2);
         $menu->setEnabled(true);
         $menu->setPage($global);
 

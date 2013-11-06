@@ -38,10 +38,6 @@ abstract class CommandTestCase extends WebTestCase
         $application->setCatchExceptions(false);
         $return = $application->run($input, $output);
 
-        if ($exceptionOnExitCode && $return !== 0) {
-            throw new \RuntimeException('Return code is not 0');
-        }
-
         fseek($fp, 0);
         $output = '';
         while (!feof($fp)) {
@@ -49,7 +45,21 @@ abstract class CommandTestCase extends WebTestCase
         }
         fclose($fp);
 
+        if ($exceptionOnExitCode && $return !== 0) {
+            throw new \RuntimeException(sprintf('Return code is not 0: %s', $output));
+        }
+
         return $output;
+    }
+
+    /**
+     * @param Client $client
+     *
+     * @return string
+     */
+    public function getConsoleLocation(Client $client)
+    {
+        return sprintf("%s/console", $client->getContainer()->getParameter('kernel.root_dir'));
     }
 
     /**
@@ -68,8 +78,9 @@ abstract class CommandTestCase extends WebTestCase
             array('sonata.page.admin.site',                   'Application\\Sonata\\PageBundle\\Entity\\Site'),
             array('sonata.news.admin.post',                   'Application\\Sonata\\NewsBundle\\Entity\\Post'),
             array('sonata.news.admin.comment',                'Application\\Sonata\\NewsBundle\\Entity\\Comment'),
-            array('sonata.news.admin.category',               'Application\\Sonata\\NewsBundle\\Entity\\Category'),
-            array('sonata.news.admin.tag',                    'Application\\Sonata\\NewsBundle\\Entity\\Tag'),
+            array('sonata.classification.admin.category',     'Application\\Sonata\\ClassificationBundle\\Entity\\Category'),
+            array('sonata.classification.admin.tag',          'Application\\Sonata\\ClassificationBundle\\Entity\\Tag'),
+            array('sonata.classification.admin.collection',   'Application\\Sonata\\ClassificationBundle\\Entity\\Collection'),
             array('sonata.media.admin.media',                 'Application\\Sonata\\MediaBundle\\Entity\\Media'),
             array('sonata.media.admin.gallery',               'Application\\Sonata\\MediaBundle\\Entity\\Gallery'),
             array('sonata.media.admin.gallery_has_media',     'Application\\Sonata\\MediaBundle\\Entity\\GalleryHasMedia'),
