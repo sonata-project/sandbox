@@ -402,8 +402,9 @@ CONTENT
     You can connect to the <a href="/admin/dashboard">admin section</a> by using two different accounts : <br>
 
     <ul>
-        <li>Login: admin - Password: admin</li>
-        <li>Login: secure - Password: secure - Key: 4YU4QGYPB63HDN2C</li>
+        <li>Standard user: johndoe / johndoe</li>
+        <li>Admin user: admin / admin</li>
+        <li>Two step verification admin user: secure / secure - Key: 4YU4QGYPB63HDN2C</li>
     </ul>
 
     <h3>Two Step Verification</h3>
