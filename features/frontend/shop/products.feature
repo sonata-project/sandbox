@@ -18,7 +18,7 @@ Feature: Products
         And I follow "Goodies"
         And I follow "Plushes"
         Then I should see "PHP plush"
-        And I should see "No subcategories available"
+        But I should not see "No subcategories available"
 
     Scenario: Select a product by browsing products
         When I go to "shop/category"

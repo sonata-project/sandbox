@@ -8,7 +8,6 @@ use Behat\MinkExtension\Context\MinkContext;
  */
 class BrowserContext extends MinkContext
 {
-
     /**
      * @When /^I am connected with "([^"]*)" and "([^"]*)" on "([^"]*)" I should see "([^"]*)"$/
      *
@@ -23,8 +22,9 @@ class BrowserContext extends MinkContext
         $this->assertPageContainsText($match);
     }
 
-
     /**
+     * First, force logout, then go to the login page, fill the informations and finally go to requested page
+     *
      * @Given /^I am connected with "([^"]*)" and "([^"]*)" on "([^"]*)"$/
      *
      * @param string $login
@@ -33,11 +33,12 @@ class BrowserContext extends MinkContext
      */
     public function iAmConnectedWithOn($login, $pwd, $url)
     {
-        $this->visit($url);
+        $this->visit('login');
         $this->fillField('_username', $login);
         $this->fillField('_password', $pwd);
-        $this->pressButton('_submit');
-        // $this->visit($url);
+        $this->pressButton('Login');
+
+        $this->visit($url);
     }
 
     /**
