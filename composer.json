@@ -35,6 +35,9 @@
         "doctrine/doctrine-fixtures-bundle": "~2.2",
         "doctrine/data-fixtures": "1.0.*@dev",
 
+        "jms/security-extra-bundle": "~1.5",
+        "jms/di-extra-bundle": "~1.4",
+
         "symfony-cmf/routing-bundle": "~1.1",
 
         "knplabs/gaufrette": "0.1.4",
@@ -77,7 +80,8 @@
         "behat/mink-goutte-driver": "~1.0",
         "behat/mink": "~1.5",
         "behat/mink-browserkit-driver": "~1.1",
-        "behat/mink-selenium2-driver": "~1.1"
+        "behat/mink-selenium2-driver": "~1.1",
+        "guzzle/guzzle": "~3.0"
     },
 
     "scripts": {
