@@ -102,3 +102,21 @@ By default the Sonata Page bundle is activated, so you need to starts 3 commands
 reference : https://gist.github.com/1151531
 
 Enjoy!
+
+
+
+Tests
+-----
+Functional testing
+~~~~~~~~~~~~~~~~~~
+To run the Behat tests, copy the default configuration file and adjust the base_url to your needs
+::
+
+    cp ./behat.yml.sample ./behat.yml
+
+You can now run the tests suite using the following command
+::
+
+    php bin/behat
+
+To get more informations about Behat, feel free to check `the official documentation`_<http://docs.behat.org/>.
