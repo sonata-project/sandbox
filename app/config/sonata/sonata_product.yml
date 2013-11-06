@@ -12,13 +12,6 @@ sonata_product:
             variations:
                 fields: [name, level, instructor_name, duration, price]
 
-        # Trainings
-        demo.ecommerce.product.sizeable_item:
-            provider: demo.ecommerce.product.sizeable_item.type
-            manager:  demo.ecommerce.product.sizeable_item.manager
-            variations:
-                fields: [size]
-
     class:
         user: Application\Sonata\Userbundle\Entity\User # you must define your own user class
 
