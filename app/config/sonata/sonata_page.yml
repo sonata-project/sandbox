@@ -44,7 +44,7 @@ sonata_page:
     page_defaults:
         homepage: {decorate: false, enabled: true}
 
-   caches:
+    caches:
         esi:
             token:    add an unique token here # default is a random value
             version:  3                        # version 3 is the default on debian wheezy ...
