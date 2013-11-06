@@ -16,12 +16,12 @@ sonata_block:
         sonata.admin.block.search_result:
             contexts:   [admin]
 
-#        sonata.admin_doctrine_orm.block.audit:
-#            contexts:   [admin]
+        #sonata.admin_doctrine_orm.block.audit:
+        #    contexts:   [admin]
 
         sonata.block.service.text:
         sonata.page.block.container:
-#            cache: sonata.cache.memcached
+            # cache: sonata.cache.memcached
         sonata.page.block.children_pages:
         sonata.block.service.rss:
         sonata.media.block.media:
@@ -37,7 +37,7 @@ sonata_block:
 
         sonata.user.block.account:
             cache: sonata.page.cache.js_async
-#            cache: sonata.page.cache.esi
+            #cache: sonata.page.cache.esi
             contexts: [user]
         sonata.user.block.menu:
             contexts: [user]
