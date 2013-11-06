@@ -13,15 +13,17 @@ Feature: Check login
         And I should be on "admin/login"
 
     Scenario Outline: Check authentication with different couples of login / pwd
-        Given I am connected with "<username>" and "<password>" on "admin/login"
-        # When I go to "admin/dashboard"
+        Given I am on "admin/login"
+        And I fill in "_username" with "<username>"
+        And I fill in "_password" with "<password>"
+        And I press "_submit"
         Then the response should contain "<message>"
 
         Examples:
             | username |    password    | message |
-            |   admin  |    admin   | Welcome   |
             |   admin  |    test    | Bad credentials |
-    
+            |   admin  |    admin   | Welcome   |
+
     Scenario: Check user logout action
         Given I am connected with "admin" and "admin" on "admin/login"
         When I go to "admin/dashboard"
