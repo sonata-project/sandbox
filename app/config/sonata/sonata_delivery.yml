@@ -1,6 +1,6 @@
 sonata_delivery:
     services:
-        free_address_not_required:
+        free_address_required:
             name: Free
             enabled: true
             priority: 1
