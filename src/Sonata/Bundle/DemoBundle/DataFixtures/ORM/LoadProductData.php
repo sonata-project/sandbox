@@ -65,7 +65,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $phpPlush->setRawDescription('The PHP plush toy is based on the PHP world-famous elephant from Vincent Pontier: Vince evolved the logo from the three letters into an animal.');
         $phpPlush->setPrice(29.99);
         $phpPlush->setStock(2000);
-        $phpPlush->setVat(0);
+        $phpPlush->setVat(19.6);
         $phpPlush->setEnabled(true);
         $manager->persist($phpPlush);
         $this->setReference('php_plush_goodie_product', $phpPlush);
@@ -84,7 +84,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $phpMug->setRawDescription('You love coffee and PHP ? This mug is for you.');
         $phpMug->setPrice(9.99);
         $phpMug->setStock(10000);
-        $phpMug->setVat(0);
+        $phpMug->setVat(19.6);
         $phpMug->setEnabled(true);
         $manager->persist($phpMug);
         $this->setReference('php_mug_goodie_product', $phpMug);
@@ -103,7 +103,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $phpTeeShirt->setRawDescription('A nice PHP tee-shirt, best clothe ever to pick up girls.');
         $phpTeeShirt->setPrice(25);
         $phpTeeShirt->setStock(0);
-        $phpTeeShirt->setVat(0);
+        $phpTeeShirt->setVat(19.6);
         $phpTeeShirt->setEnabled(true);
         $manager->persist($phpTeeShirt);
         $this->setReference('php_teeshirt_goodie_product', $phpTeeShirt);
@@ -119,7 +119,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $sonataTraining->setName('Sonata trainings');
         $sonataTraining->setDescription('A training to learn Sonata bundles.');
         $sonataTraining->setRawDescription('A training to learn Sonata bundles.');
-        $sonataTraining->setVat(0);
+        $sonataTraining->setVat(5.5);
         $sonataTraining->setEnabled(true);
         $manager->persist($sonataTraining);
 
