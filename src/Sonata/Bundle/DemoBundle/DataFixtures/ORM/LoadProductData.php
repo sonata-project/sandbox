@@ -102,7 +102,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $phpTeeShirt->setDescription('A nice PHP tee-shirt, best clothe ever to pick up girls.');
         $phpTeeShirt->setRawDescription('A nice PHP tee-shirt, best clothe ever to pick up girls.');
         $phpTeeShirt->setPrice(25);
-        $phpTeeShirt->setStock(10000);
+        $phpTeeShirt->setStock(0);
         $phpTeeShirt->setVat(0);
         $phpTeeShirt->setEnabled(true);
         $manager->persist($phpTeeShirt);

@@ -1,4 +1,4 @@
-@frontend @products
+@frontend @product
 Feature: Products
     In order to select some products
     As a visitor
@@ -26,3 +26,8 @@ Feature: Products
         And I follow "Plushes"
         And I follow "PHP plush"
         Then I should see "Vincent Pontier"
+
+    Scenario: Browse out of stock product
+        When I go to "shop/product/3/php-t-shirt"
+        Then the response status code should be 200
+        And I should see "Warning : this product is currently out of stock !"
