@@ -27,7 +27,19 @@ Feature: Products
         And I follow "PHP plush"
         Then I should see "Vincent Pontier"
 
+    @200
     Scenario: Browse out of stock product
         When I go to "shop/product/3/php-t-shirt"
         Then the response status code should be 200
         And I should see "Warning : this product is currently out of stock !"
+
+    @404
+    Scenario: Browse disabled product
+        When I go to "shop/product/4/air-max-sonata-limited-edition"
+        Then the response status code should be 404
+
+    @200
+    Scenario: Direct access to a product without a picture
+        When I go to "shop/product/5/air-max-sonata-ultimate-edition"
+        Then the response status code should be 200
+        And I should see "Get this ULTIMATE edition"
