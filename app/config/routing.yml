@@ -29,7 +29,7 @@ fos_user_resetting:
 
 fos_user_change_password:
     resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
-    prefix: /change-password
+    prefix: /profile
 
 sonata_cache_cache:
     resource: '@SonataCacheBundle/Resources/config/routing/cache.xml'

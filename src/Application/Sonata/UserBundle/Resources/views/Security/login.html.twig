@@ -28,5 +28,10 @@
             <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
         </div>
     </div>
+    <div class="control-group">
+        <div class="controls">
+            <a href="{{ path('fos_user_resetting_request') }}">{{ 'forgotten_password'|trans({}, 'SonataUserBundle') }}</a>
+        </div>
+    </div>
 </form>
 {% endblock fos_user_content %}
