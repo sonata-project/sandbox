@@ -1,4 +1,4 @@
-@backend
+@backend @category
 Feature: Check the category admin module
 
 Scenario: Check category admin pages when not connected

@@ -54,7 +54,6 @@ class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterfac
     public function load(ObjectManager $manager)
     {
         // Goodies category
-
         $goodies = $this->getCategoryManager()->create();
         $goodies->setName('Goodies');
         $goodies->setSlug('goodies');
@@ -113,6 +112,7 @@ class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterfac
         $this->getCategoryManager()->save($symfony);
         $this->setReference('symfony_trainings_category', $symfony);
 
+        // Sonata sub-category
         $sonata = $this->getCategoryManager()->create();
         $sonata->setParent($training);
         $sonata->setName('Sonata');
@@ -121,6 +121,16 @@ class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterfac
         $sonata->setEnabled(true);
         $this->getCategoryManager()->save($sonata);
         $this->setReference('sonata_trainings_category', $sonata);
+
+        // Disabled category for testing purpose
+        $shoes = $this->getCategoryManager()->create();
+        $shoes->setParent($goodies);
+        $shoes->setName('Shoes');
+        $shoes->setSlug('shoes');
+        $shoes->setDescription('Get the last coolest Sonata shoes (seriously)');
+        $shoes->setEnabled(false);
+        $this->getCategoryManager()->save($shoes);
+        $this->setReference('sonata_shoes_category', $sonata);
 
         $manager->flush();
     }
