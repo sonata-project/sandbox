@@ -34,18 +34,20 @@ class TrainingProductProvider extends BaseProductProvider
     /**
      * {@inheritDoc}
      */
-    public function buildEditForm(FormMapper $formMapper)
+    public function buildEditForm(FormMapper $formMapper, $isVariation = false)
     {
-        parent::buildEditForm($formMapper);
+        parent::buildEditForm($formMapper, $isVariation);
 
-        $formMapper
-            ->with('Product')
-                ->add('level', 'choice', array(
-                    'choices'            => Training::getLevelList(),
-                    'translation_domain' => 'SonataProductBundle',
-                ))
-                ->add('instructorName')
-                ->add('duration')
-            ->end();
+        if ($isVariation) {
+            $formMapper
+                ->with('Product')
+                    ->add('level', 'choice', array(
+                        'choices'            => Training::getLevelList(),
+                        'translation_domain' => 'SonataProductBundle',
+                    ))
+                    ->add('instructorName')
+                    ->add('duration')
+                ->end();
+        }
     }
 }

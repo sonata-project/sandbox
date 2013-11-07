@@ -120,6 +120,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $sonataTraining->setDescription('A training to learn Sonata bundles.');
         $sonataTraining->setRawDescription('A training to learn Sonata bundles.');
         $sonataTraining->setVat(0);
+        $sonataTraining->setEnabled(true);
         $manager->persist($sonataTraining);
 
         $this->addMediaToProduct(__DIR__.'/../data/files/sonata_logo.png', 'Sonata logo', 'Sonata logo', $sonataTraining);
