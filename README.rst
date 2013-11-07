@@ -84,16 +84,4 @@ To have some actual data in your DB, you should load the fixtures by running::
     app/console doctrine:fixtures:load
 
 
-Unit Testing
-------------
-
-Automatic Unit Testing with ``watchr``::
-
-    gem install watchr
-    cd /path/to/symfony-project
-    watchr phpunit.watchr
-
-
-reference : https://gist.github.com/1151531
-
 Enjoy!

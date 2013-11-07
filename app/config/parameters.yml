@@ -32,3 +32,7 @@ parameters:
     # Sonata User Options
     sonata_user.google_authenticator.server:  demo.sonata-project.org
 
+    # Sonata Page Options
+    sonata_page.varnish.command: sudo varnishadm -S /etc/varnish/secret -T 127.0.0.1:6082 {{ COMMAND }} "{{ EXPRESSION }}" # you need to adapt this line to work with your configuration
+
+
