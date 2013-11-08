@@ -211,6 +211,72 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $manager->persist($sonataTrainingExpert);
         $this->setReference('sonata_training_goodie_product_expert', $sonataTrainingExpert);
 
+        // PHP disabled master products
+        $phpDisabledTraining = new Training();
+        $phpDisabledTraining->setName('PHP disabled training');
+        $phpDisabledTraining->setDescription('A training to learn how to program using PHP.');
+        $phpDisabledTraining->setRawDescription('A training to learn how to program using PHP.');
+        $phpDisabledTraining->setVat(5.5);
+        $phpDisabledTraining->setEnabled(false);
+        $phpDisabledTraining->setStock(0);
+        $manager->persist($phpDisabledTraining);
+
+        $this->addMediaToProduct(__DIR__.'/../data/files/sonata_logo.png', 'Sonata logo', 'Sonata logo', $phpDisabledTraining);
+        $this->addProductToCategory($phpDisabledTraining, $sonataCategory, $manager);
+        $this->addProductDeliveries($phpDisabledTraining, $manager);
+        $this->addProductToCollection($phpDisabledTraining, $phpCollection, $manager);
+        $this->addPackageToProduct($phpDisabledTraining, $manager);
+
+        $trainingProvider = $productPool->getProvider($phpDisabledTraining);
+        $trainingProvider->setProductCategoryManager($this->getProductCategoryManager());
+        $trainingProvider->setProductCollectionManager($this->getProductCollectionManager());
+
+        // PHP disabled master products
+        $phpDisabledTrainingBeginner = $trainingProvider->createVariation($phpDisabledTraining);
+        $phpDisabledTrainingBeginner->setSku('PHP_TRAINING_BEGINNERS');
+        $phpDisabledTrainingBeginner->setName('PHP training for beginners');
+        $phpDisabledTrainingBeginner->setLevel(Training::LEVEL_BEGINNER);
+        $phpDisabledTrainingBeginner->setInstructorName('Thomas Rabaix');
+        $phpDisabledTrainingBeginner->setDuration('1 day');
+        $phpDisabledTrainingBeginner->setPrice(450.00);
+        $phpDisabledTrainingBeginner->setStock(1500);
+        $phpDisabledTrainingBeginner->setEnabled(true);
+        $manager->persist($phpDisabledTrainingBeginner);
+        $this->setReference('php_training_product_beginner', $phpDisabledTrainingBeginner);
+
+        // PHP disabled master products
+        $phpWorkingTraining = new Training();
+        $phpWorkingTraining->setName('PHP working training');
+        $phpWorkingTraining->setDescription('A training to learn how to program using PHP.');
+        $phpWorkingTraining->setRawDescription('A training to learn how to program using PHP.');
+        $phpWorkingTraining->setVat(5.5);
+        $phpWorkingTraining->setEnabled(true);
+        $phpWorkingTraining->setStock(0);
+        $manager->persist($phpWorkingTraining);
+
+        $this->addMediaToProduct(__DIR__.'/../data/files/sonata_logo.png', 'Sonata logo', 'Sonata logo', $phpWorkingTraining);
+        $this->addProductToCategory($phpWorkingTraining, $sonataCategory, $manager);
+        $this->addProductDeliveries($phpWorkingTraining, $manager);
+        $this->addProductToCollection($phpWorkingTraining, $phpCollection, $manager);
+        $this->addPackageToProduct($phpWorkingTraining, $manager);
+
+        $trainingProvider = $productPool->getProvider($phpWorkingTraining);
+        $trainingProvider->setProductCategoryManager($this->getProductCategoryManager());
+        $trainingProvider->setProductCollectionManager($this->getProductCollectionManager());
+
+        // PHP disabled master products
+        $phpWorkingTrainingBeginner = $trainingProvider->createVariation($phpWorkingTraining);
+        $phpWorkingTrainingBeginner->setSku('PHP_WORKING_TRAINING_BEGINNERS');
+        $phpWorkingTrainingBeginner->setName('PHP working training for beginners');
+        $phpWorkingTrainingBeginner->setLevel(Training::LEVEL_BEGINNER);
+        $phpWorkingTrainingBeginner->setInstructorName('Thomas Rabaix');
+        $phpWorkingTrainingBeginner->setDuration('1 day');
+        $phpWorkingTrainingBeginner->setPrice(450.00);
+        $phpWorkingTrainingBeginner->setStock(0);
+        $phpWorkingTrainingBeginner->setEnabled(true);
+        $manager->persist($phpWorkingTrainingBeginner);
+        $this->setReference('php_working_training_product_beginner', $phpWorkingTrainingBeginner);
+
         $manager->flush();
     }
 
