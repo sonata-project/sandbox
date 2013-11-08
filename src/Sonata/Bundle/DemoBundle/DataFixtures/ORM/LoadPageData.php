@@ -419,7 +419,7 @@ CONTENT
         $title->addChildren($text = $blockManager->create());
 
         $text->setType('sonata.block.service.text');
-        $text->setSetting('content', '<h2><a href="/">Sonata Sandbox</a></h2>');
+        $text->setSetting('content', '<h2><a href="/">Sonata Demo</a></h2>');
         $text->setPosition(1);
         $text->setEnabled(true);
         $text->setPage($global);
