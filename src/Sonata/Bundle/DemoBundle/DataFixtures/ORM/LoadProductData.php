@@ -170,27 +170,16 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $trainingProvider->setProductCollectionManager($this->getProductCollectionManager());
 
         // Training beginner variation
-        $sonataTrainingBeginner = $trainingProvider->createVariation($sonataTraining);
-        $sonataTrainingBeginner->setSku('SONATA_TRAINING_BEGINNERS');
-        $sonataTrainingBeginner->setName('Sonata training for beginners');
-        $sonataTrainingBeginner->setSlug('sonata-training-for-beginners');
-        $sonataTrainingBeginner->setLevel(Training::LEVEL_BEGINNER);
-        $sonataTrainingBeginner->setInstructorName('Thomas Rabaix');
-        $sonataTrainingBeginner->setDuration('1 day');
-        $sonataTrainingBeginner->setPrice(450.00);
+        $sonataTrainingBeginner = $this->generateDefaultTrainingBeginnerVariation($trainingProvider, $sonataTraining);
         $sonataTrainingBeginner->setStock(1500);
         $sonataTrainingBeginner->setEnabled(true);
         $manager->persist($sonataTrainingBeginner);
         $this->setReference('sonata_training_goodie_product_beginner', $sonataTrainingBeginner);
 
         // Training confirmed variation
-        $sonataTrainingConfirmed = $trainingProvider->createVariation($sonataTraining);
+        $sonataTrainingConfirmed = $this->generateDefaultTrainingBeginnerVariation($trainingProvider, $sonataTraining);
         $sonataTrainingConfirmed->setSku('SONATA_TRAINING_CONFIRMED');
-        $sonataTrainingConfirmed->setName('Sonata training for confirmed');
-        $sonataTrainingConfirmed->setSlug('sonata-training-for-confirmed');
         $sonataTrainingConfirmed->setLevel(Training::LEVEL_CONFIRMED);
-        $sonataTrainingConfirmed->setInstructorName('Thomas Rabaix');
-        $sonataTrainingConfirmed->setDuration('2 day');
         $sonataTrainingConfirmed->setPrice(1450.00);
         $sonataTrainingConfirmed->setStock(1500);
         $sonataTrainingConfirmed->setEnabled(true);
@@ -198,12 +187,10 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $this->setReference('sonata_training_goodie_product_confirmed', $sonataTrainingConfirmed);
 
         // Training expert variation
-        $sonataTrainingExpert = $trainingProvider->createVariation($sonataTraining);
+        $sonataTrainingExpert = $this->generateDefaultTrainingBeginnerVariation($trainingProvider, $sonataTraining);
         $sonataTrainingExpert->setSku('SONATA_TRAINING_EXPERTS');
         $sonataTrainingExpert->setName('Sonata training for experts');
-        $sonataTrainingExpert->setSlug('sonata-training-for-experts');
         $sonataTrainingExpert->setLevel(Training::LEVEL_EXPERT);
-        $sonataTrainingExpert->setInstructorName('Thomas Rabaix');
         $sonataTrainingExpert->setDuration('3 days');
         $sonataTrainingExpert->setPrice(2500.00);
         $sonataTrainingExpert->setStock(1500);
@@ -232,13 +219,8 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $trainingProvider->setProductCollectionManager($this->getProductCollectionManager());
 
         // PHP disabled master products
-        $phpDisabledTrainingBeginner = $trainingProvider->createVariation($phpDisabledTraining);
+        $phpDisabledTrainingBeginner = $this->generateDefaultTrainingBeginnerVariation($trainingProvider, $phpDisabledTraining);
         $phpDisabledTrainingBeginner->setSku('PHP_TRAINING_BEGINNERS');
-        $phpDisabledTrainingBeginner->setName('PHP training for beginners');
-        $phpDisabledTrainingBeginner->setLevel(Training::LEVEL_BEGINNER);
-        $phpDisabledTrainingBeginner->setInstructorName('Thomas Rabaix');
-        $phpDisabledTrainingBeginner->setDuration('1 day');
-        $phpDisabledTrainingBeginner->setPrice(450.00);
         $phpDisabledTrainingBeginner->setStock(1500);
         $phpDisabledTrainingBeginner->setEnabled(true);
         $manager->persist($phpDisabledTrainingBeginner);
@@ -265,17 +247,39 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $trainingProvider->setProductCollectionManager($this->getProductCollectionManager());
 
         // PHP disabled master products
-        $phpWorkingTrainingBeginner = $trainingProvider->createVariation($phpWorkingTraining);
+        $phpWorkingTrainingBeginner = $this->generateDefaultTrainingBeginnerVariation($trainingProvider, $phpWorkingTraining);
         $phpWorkingTrainingBeginner->setSku('PHP_WORKING_TRAINING_BEGINNERS');
-        $phpWorkingTrainingBeginner->setName('PHP working training for beginners');
-        $phpWorkingTrainingBeginner->setLevel(Training::LEVEL_BEGINNER);
-        $phpWorkingTrainingBeginner->setInstructorName('Thomas Rabaix');
-        $phpWorkingTrainingBeginner->setDuration('1 day');
-        $phpWorkingTrainingBeginner->setPrice(450.00);
         $phpWorkingTrainingBeginner->setStock(0);
         $phpWorkingTrainingBeginner->setEnabled(true);
         $manager->persist($phpWorkingTrainingBeginner);
         $this->setReference('php_working_training_product_beginner', $phpWorkingTrainingBeginner);
+
+        // PHP disabled child
+        $phpDisabledChild = new Training();
+        $phpDisabledChild->setName('PHP disabled child training');
+        $phpDisabledChild->setDescription('A training to learn how to program using PHP.');
+        $phpDisabledChild->setRawDescription('A training to learn how to program using PHP.');
+        $phpDisabledChild->setVat(5.5);
+        $phpDisabledChild->setEnabled(true);
+        $phpDisabledChild->setStock(0);
+        $manager->persist($phpDisabledChild);
+
+        $this->addMediaToProduct(__DIR__.'/../data/files/sonata_logo.png', 'Sonata logo', 'Sonata logo', $phpDisabledChild);
+        $this->addProductToCategory($phpDisabledChild, $sonataCategory, $manager);
+        $this->addProductDeliveries($phpDisabledChild, $manager);
+        $this->addProductToCollection($phpDisabledChild, $phpCollection, $manager);
+        $this->addPackageToProduct($phpDisabledChild, $manager);
+
+        $trainingProvider = $productPool->getProvider($phpDisabledChild);
+        $trainingProvider->setProductCategoryManager($this->getProductCategoryManager());
+        $trainingProvider->setProductCollectionManager($this->getProductCollectionManager());
+
+        // PHP disabled master products
+        $phpDisabledChildBeginner = $this->generateDefaultTrainingBeginnerVariation($trainingProvider, $phpDisabledChild);
+        $phpDisabledChildBeginner->setSku('PHP_DISABLED_CHILD_TRAINING_BEGINNERS');
+        $phpDisabledChildBeginner->setStock(100);
+        $manager->persist($phpDisabledChildBeginner);
+        $this->setReference('php_disabled_child_training_product_beginner', $phpDisabledChildBeginner);
 
         $manager->flush();
     }
@@ -516,5 +520,26 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
     public function setContainer(ContainerInterface $container = null)
     {
         $this->container = $container;
+    }
+
+    /**
+     * @param \Sonata\Component\Product\ProductProviderInterface $provider
+     * @param \Sonata\Component\Product\ProductInterface $parent
+     *
+     * @return Training
+     */
+    protected function generateDefaultTrainingBeginnerVariation($provider, $parent)
+    {
+        $entity = $provider->createVariation($parent);
+
+        $entity->setName('PHP working training for beginners');
+        $entity->setLevel(Training::LEVEL_BEGINNER);
+        $entity->setInstructorName('Thomas Rabaix');
+        $entity->setDuration('1 day');
+        $entity->setPrice(450.00);
+        $entity->setStock(100);
+        $entity->setEnabled(false);
+
+        return $entity;
     }
 }

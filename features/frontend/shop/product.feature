@@ -45,7 +45,7 @@ Feature: Products
         And I should see "Get this ULTIMATE edition"
 
     @404
-    Scenario: Check various access when product master is disabled
+    Scenario: Check non display when product master is disabled
         When I go to "shop/product/10/php-disabled-training"
         Then the response status code should be 404
         When I go to "shop/product/11/php-training-for-beginners"
@@ -61,3 +61,9 @@ Feature: Products
         Then the response status code should be 200
         And I should see "Warning : this product is currently out of stock !"
 
+    @404
+    Scenario: Check non display of a product when having no active child
+        When I go to "shop/product/14/php-disabled-child-training"
+        Then the response status code should be 404
+        When I go to "shop/product/15/php-disabled-child-training"
+        Then the response status code should be 404
