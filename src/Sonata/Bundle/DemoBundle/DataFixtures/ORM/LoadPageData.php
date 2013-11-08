@@ -202,7 +202,7 @@ CONTENT
         $content->addChildren($text = $blockManager->create());
         $text->setType('sonata.block.service.text');
         $text->setSetting('content', <<<CONTENT
-<h1>Welcome</h1>
+<h2>Welcome</h2>
 
 <p>
     This page is a demo of the Sonata Sandbox available on <a href="https://github.com/sonata-project/sandbox">github</a>.
@@ -221,21 +221,37 @@ CONTENT
         $text->setEnabled(true);
         $text->setPage($homepage);
 
+        // add recents products
+        $content->addChildren($products = $blockManager->create());
+        $products->setType('sonata.product.block.recent_products');
+        $products->setSetting('number', 5);
+        $products->setSetting('title', 'New products');
+        $products->setPosition(2);
+        $products->setEnabled(true);
+        $products->setPage($homepage);
+
+        // add recents articles
+        $content->addChildren($news = $blockManager->create());
+        $news->setType('sonata.news.block.recent_posts');
+        $news->setPosition(3);
+        $news->setEnabled(true);
+        $news->setPage($homepage);
+
         // add a gallery
         $content->addChildren($gallery = $blockManager->create());
         $gallery->setType('sonata.media.block.gallery');
         $gallery->setSetting('galleryId', $this->getReference('media-gallery')->getId());
-        $gallery->setSetting('title', $faker->sentence(4));
+        $gallery->setSetting('title', 'Media gallery');
         $gallery->setSetting('context', 'default');
         $gallery->setSetting('format', 'big');
-        $gallery->setPosition(2);
+        $gallery->setPosition(4);
         $gallery->setEnabled(true);
         $gallery->setPage($homepage);
 
         $content->addChildren($text = $blockManager->create());
         $text->setType('sonata.block.service.text');
 
-        $text->setPosition(3);
+        $text->setPosition(5);
         $text->setEnabled(true);
         $text->setSetting('content', <<<CONTENT
 <h3>Sonata's bundles</h3>
