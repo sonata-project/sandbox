@@ -99,20 +99,16 @@ By default the Sonata Page bundle is activated, so you need to starts 3 commands
     The ``create-snapshots`` create a snapshot (a public page version) from the created pages.
 
 
-reference : https://gist.github.com/1151531
-
-Enjoy!
-
-
-
 Tests
 -----
+
 Functional testing
 ~~~~~~~~~~~~~~~~~~
+
 To run the Behat tests, copy the default configuration file and adjust the base_url to your needs
 ::
 
-    cp ./behat.yml.sample ./behat.yml
+    cp ./behat.yml.dist ./behat.yml
 
 You can now run the tests suite using the following command
 ::
@@ -121,3 +117,12 @@ You can now run the tests suite using the following command
 
 To get more informations about Behat, feel free to check `the official documentation
 <http://docs.behat.org/>`_.
+
+
+Unit testing
+~~~~~~~~~~~~
+
+To run the Sonata test suites, you can run the command::
+
+    bin/test_client_ci.sh
+
