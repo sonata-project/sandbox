@@ -233,7 +233,7 @@ CONTENT
         // add recents products
         $leftCol->addChildren($products = $blockManager->create());
         $products->setType('sonata.product.block.recent_products');
-        $products->setSetting('number', 5);
+        $products->setSetting('number', 3);
         $products->setSetting('title', 'New products');
         $products->setPosition(2);
         $products->setEnabled(true);
