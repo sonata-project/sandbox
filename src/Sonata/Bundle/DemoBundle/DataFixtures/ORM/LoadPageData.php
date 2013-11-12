@@ -181,25 +181,25 @@ CONTENT
         $homepage->setEnabled(true);
         $homepage->setDecorate(0);
         $homepage->setRequestMethod('GET|POST|HEAD|DELETE|PUT');
-        $homepage->setTemplateCode('default');
+        $homepage->setTemplateCode('demo_homepage');
         $homepage->setRouteName(PageInterface::PAGE_ROUTE_CMS_NAME);
         $homepage->setSite($site);
 
         $pageManager->save($homepage);
 
         // CREATE A HEADER BLOCK
-        $homepage->addBlocks($content = $blockInteractor->createNewContainer(array(
+        $homepage->addBlocks($contentTop = $blockInteractor->createNewContainer(array(
             'enabled' => true,
             'page' => $homepage,
-            'code' => 'content',
+            'code' => 'content_top',
         )));
 
-        $content->setName('The container container');
+        $contentTop->setName('The container top container');
 
-        $blockManager->save($content);
+        $blockManager->save($contentTop);
 
         // add a block text
-        $content->addChildren($text = $blockManager->create());
+        $contentTop->addChildren($text = $blockManager->create());
         $text->setType('sonata.block.service.text');
         $text->setSetting('content', <<<CONTENT
 <h2>Welcome</h2>
@@ -221,8 +221,17 @@ CONTENT
         $text->setEnabled(true);
         $text->setPage($homepage);
 
+
+        $homepage->addBlocks($leftCol = $blockInteractor->createNewContainer(array(
+            'enabled' => true,
+            'page' => $homepage,
+            'code' => 'left_col',
+        )));
+
+        $leftCol->setName('Left col container');
+
         // add recents products
-        $content->addChildren($products = $blockManager->create());
+        $leftCol->addChildren($products = $blockManager->create());
         $products->setType('sonata.product.block.recent_products');
         $products->setSetting('number', 5);
         $products->setSetting('title', 'New products');
@@ -230,12 +239,26 @@ CONTENT
         $products->setEnabled(true);
         $products->setPage($homepage);
 
+        $homepage->addBlocks($rightCol = $blockInteractor->createNewContainer(array(
+            'enabled' => true,
+            'page' => $homepage,
+            'code' => 'right_col',
+        )));
+
+        $rightCol->setName('Right col container');
+
         // add recents articles
-        $content->addChildren($news = $blockManager->create());
+        $rightCol->addChildren($news = $blockManager->create());
         $news->setType('sonata.news.block.recent_posts');
         $news->setPosition(3);
         $news->setEnabled(true);
         $news->setPage($homepage);
+
+        $homepage->addBlocks($content = $blockInteractor->createNewContainer(array(
+            'enabled' => true,
+            'page' => $homepage,
+            'code' => 'content',
+        )));
 
         // add a gallery
         $content->addChildren($gallery = $blockManager->create());

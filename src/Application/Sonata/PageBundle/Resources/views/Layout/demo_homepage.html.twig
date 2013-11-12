@@ -1,0 +1,81 @@
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+{% extends 'SonataPageBundle::base_layout.html.twig' %}
+
+{% block page_container %}
+    <div class="container">
+        <div class="content">
+            <div class="row-fluid page-header">
+                <div class="span4">
+                    {{ sonata_page_render_container('title', 'global') }}
+                </div>
+
+                <div class="span6 navigation pull-right">
+                    {{ sonata_page_render_container('header', 'global') }}
+                </div>
+
+                <div style="clear: both"></div>
+            </div>
+
+            {% if page is defined %}
+                <div class="row-fluid">
+                    {% if page.name != 'global'%}
+                        {{ sonata_page_render_container('content_top', 'global') }}
+                    {% endif %}
+                    {{ sonata_page_render_container('content_top', page) }}
+                </div>
+            {% endif %}
+
+            <div class="row-fluid">
+
+                {% if page is defined %}
+                    <div class="span6">
+                        {% if page.name != 'global'%}
+                            {{ sonata_page_render_container('left_col', 'global') }}
+                        {% endif %}
+                        {{ sonata_page_render_container('left_col', page) }}
+                    </div>
+                    <div class="span6">
+                        {% if page.name != 'global'%}
+                            {{ sonata_page_render_container('right_col', 'global') }}
+                        {% endif %}
+                        {{ sonata_page_render_container('right_col', page) }}
+                    </div>
+                {% endif %}
+
+                {% if content is defined %}
+                    {{ content|raw }}
+                {% else %}
+                    {% set content = block('content') %}
+                    {% if content|length > 0 %}
+                        {{ content|raw }}
+                    {% elseif page is defined %}
+                        {{ sonata_page_render_container('content', page) }}
+                    {% endif %}
+                {% endif %}
+            </div>
+
+            {% if page is defined %}
+                <div>
+                    {{ sonata_page_render_container('content_bottom', page) }}
+
+                    {% if page.name != 'global'%}
+                        {{ sonata_page_render_container('content_bottom', 'global') }}
+                    {% endif %}
+                </div>
+            {% endif %}
+        </div>
+
+        <footer>
+            {{ sonata_page_render_container('footer', 'global') }}
+        </footer>
+    </div>
+{% endblock %}
