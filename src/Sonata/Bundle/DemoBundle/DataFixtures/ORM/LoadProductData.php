@@ -44,7 +44,15 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
     public function load(ObjectManager $manager)
     {
         $productPool = $this->getProductPool();
-        
+
+        // default media
+        $defaultMedia = $this->getMediaManager()->create();
+        $defaultMedia->setBinaryContent(new \SplFileInfo(__DIR__.'/../data/files/sonata_logo.png'));
+        $defaultMedia->setEnabled(true);
+        $defaultMedia->setName('sonata_product_default_media');
+        $defaultMedia->setDescription('Default Product media');
+        $this->getMediaManager()->save($defaultMedia, 'sonata_product_default', 'sonata.media.provider.image');
+
         /*
          * @todo
          *  - check licences for used images
@@ -124,6 +132,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $airMax->setStock(500);
         $airMax->setVat(19.6);
         $airMax->setEnabled(false);
+        $airMax->setImage($defaultMedia);
         $manager->persist($airMax);
         $this->setReference('air_max_sonata_product', $airMax);
 
@@ -142,6 +151,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $airMax->setStock(30);
         $airMax->setVat(19.6);
         $airMax->setEnabled(true);
+        $airMax->setImage($defaultMedia);
         $manager->persist($airMax);
         $this->setReference('air_max_sonata_ultimate_product', $airMax);
 
