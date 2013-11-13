@@ -37,6 +37,7 @@ function execute_commands($commands, $output)
     foreach($commands as $command) {
         $output->writeln(sprintf('<info>Executing : </info> %s', $command));
         $p = new \Symfony\Component\Process\Process($command);
+        $p->setTimeout(null);
         $exit = $p->run(function($type, $data) use ($output) {
             $output->write($data);
         });
@@ -54,8 +55,8 @@ $fs->copy(__DIR__.'/src/Sonata/Bundle/DemoBundle/DataFixtures/data/robots.txt', 
 execute_commands(array(
     'app/console cache:warmup --env=dev',
     'app/console cache:create-cache-class --env=dev',
-//    'app/console doctrine:database:drop --force',
-//    'app/console doctrine:database:create',
+    'app/console doctrine:database:drop --force',
+    'app/console doctrine:database:create',
     'app/console doctrine:schema:update --force',
     'app/console doctrine:fixtures:load --verbose',
     'app/console sonata:page:update-core-routes --site=all',

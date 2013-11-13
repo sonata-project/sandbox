@@ -37,7 +37,7 @@ Run the following commands::
 Database initialization
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-At this point, the ``app/console`` command should start with no issues. However some you need the complete some others step:
+At this point, the ``app/console`` command should start with no issues. However some of you might need to complete some others step:
 
 * database configuration (edit the app/config/parameters.yml file)
 
@@ -48,7 +48,7 @@ then runs the commands::
 
 Assets Installation
 ~~~~~~~~~~~~~~~~~~~
-Your frontend still looking weird because bundle assets are not installed. Run the following command to install assets for all active bundles under public directory::
+Your frontend still looks weird because bundle assets are not installed. Run the following command to install assets for all active bundles under public directory::
 
     app/console assets:install web
 
@@ -64,11 +64,34 @@ The sandbox use the ACL system as security handler. You must init it:
 Sonata Page Bundle
 ~~~~~~~~~~~~~~~~~~
 
-By default the Sonata Page bundle is activated, so you need to starts 2 commands before going further::
+The sandbox use the ACL system as security handler. You must init it:
 
-    app/console sonata:page:create-site --enabled=true --name=localhost --host=localhost --relativePath=/ --enabledFrom=now --enabledTo="+10 years" --default=true
+    app/console init:acl
+    app/console sonata:admin:setup-acl
+    app/console sonata:admin:generate-object-acl
+
+Fixtures
+~~~~~~~~
+
+To have some actual data in your DB, you should load the fixtures by running::
+
+    app/console doctrine:fixtures:load
+
+Sonata Page Bundle
+~~~~~~~~~~~~~~~~~~
+
+By default the Sonata Page bundle is activated, so you need to starts 3 commands before going further::
+
     app/console sonata:page:update-core-routes --site=all
     app/console sonata:page:create-snapshots --site=all
+
+
+.. note::
+
+   If you didn't load fixture, you need to create a default website :
+
+       app/console sonata:page:create-site --enabled=true --locale=en --name=localhost --host=localhost --relativePath=/ --enabledFrom=now --enabledTo="+10 years" --default=true
+
 
 .. note::
 
@@ -76,24 +99,30 @@ By default the Sonata Page bundle is activated, so you need to starts 2 commands
     The ``create-snapshots`` create a snapshot (a public page version) from the created pages.
 
 
-Fixtures
+Tests
+-----
+
+Functional testing
 ~~~~~~~~~~~~~~~~~~
 
-To have some actual data in your DB, you should load the fixtures by running::
+To run the Behat tests, copy the default configuration file and adjust the base_url to your needs
+::
 
-    app/console doctrine:fixtures:load
+    cp ./behat.yml.dist ./behat.yml
+
+You can now run the tests suite using the following command
+::
+
+    php bin/behat
+
+To get more informations about Behat, feel free to check `the official documentation
+<http://docs.behat.org/>`_.
 
 
-Unit Testing
-------------
+Unit testing
+~~~~~~~~~~~~
 
-Automatic Unit Testing with ``watchr``::
+To run the Sonata test suites, you can run the command::
 
-    gem install watchr
-    cd /path/to/symfony-project
-    watchr phpunit.watchr
+    bin/test_client_ci.sh
 
-
-reference : https://gist.github.com/1151531
-
-Enjoy!

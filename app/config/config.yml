@@ -11,9 +11,19 @@ imports:
     - { resource: sonata/sonata_news.yml }
     - { resource: sonata/sonata_cache.yml }
     - { resource: sonata/sonata_seo.yml }
-    - { resource: sonata/sonata_notification.yml }
     - { resource: sonata/sonata_user.yml }
+    - { resource: sonata/sonata_notification.yml }
+    - { resource: sonata/sonata_price.yml }
     - { resource: sonata/sonata_timeline.yml }
+
+    # Sonata e-commerce bundles
+    - { resource: sonata/sonata_order.yml }
+    - { resource: sonata/sonata_payment.yml }
+    - { resource: sonata/sonata_product.yml }
+    - { resource: sonata/sonata_invoice.yml }
+    - { resource: sonata/sonata_delivery.yml }
+    - { resource: sonata/sonata_customer.yml }
+    - { resource: sonata/sonata_basket.yml }
 
 framework:
     #esi:             ~
@@ -72,7 +82,8 @@ doctrine:
                 password: %database_password%
 
         types:
-            json: Sonata\Doctrine\Types\JsonType
+            json:     Sonata\Doctrine\Types\JsonType
+            currency: Sonata\Component\Currency\CurrencyDoctrineType
 
     orm:
         auto_generate_proxy_classes: %kernel.debug%

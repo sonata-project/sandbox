@@ -67,7 +67,6 @@ Scenario: View a media
   And I fill in "filter_name_value" with "Symfony 2 by Fabien Potencier"
   And I press "Filter"
   And I follow "Show"
-  Then print last response
   Then I should see "Symfony 2 by Fabien Potencier"
   Then I should see "Preview ~ reference"
 

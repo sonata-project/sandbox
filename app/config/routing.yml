@@ -29,7 +29,7 @@ fos_user_resetting:
 
 fos_user_change_password:
     resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
-    prefix: /change-password
+    prefix: /profile
 
 sonata_cache_cache:
     resource: '@SonataCacheBundle/Resources/config/routing/cache.xml'
@@ -54,6 +54,34 @@ sonata_media_media:
 sonata_media_pixlr:
     resource: '@SonataMediaBundle/Resources/config/routing/pixlr.xml'
     prefix: /admin/media
+
+sonata_customer:
+    resource: @SonataCustomerBundle/Resources/config/routing/customer.xml
+    prefix: /shop/user
+
+sonata_basket:
+    resource: @SonataBasketBundle/Resources/config/routing/basket.xml
+    prefix: /shop/basket
+
+sonata_order:
+    resource: @SonataOrderBundle/Resources/config/routing/order.xml
+    prefix: /shop/user/order
+
+sonata_product:
+    resource: @SonataProductBundle/Resources/config/routing/product.xml
+    prefix: /shop/product
+
+sonata_category:
+    resource: @SonataProductBundle/Resources/config/routing/category.xml
+    prefix: /shop/category
+
+sonata_payment:
+    resource: @SonataPaymentBundle/Resources/config/routing/payment.xml
+    prefix: /shop/payment
+
+sonata_invoice:
+    resource: @SonataInvoiceBundle/Resources/config/routing/invoice.xml
+    prefix: /shop/user/invoice
 
 #_imagine:
 #    resource: .

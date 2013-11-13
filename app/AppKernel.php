@@ -8,7 +8,6 @@ class AppKernel extends Kernel
     public function init()
     {
         // Please read http://symfony.com/doc/2.0/book/installation.html#configuration-and-setup
-        umask(0002);
 
         parent::init();
     }
@@ -55,6 +54,24 @@ class AppKernel extends Kernel
             new Application\Sonata\MediaBundle\ApplicationSonataMediaBundle(),
             // new Liip\ImagineBundle\LiipImagineBundle(),
 
+            // E-COMMERCE
+            new Sonata\BasketBundle\SonataBasketBundle(),
+            new Application\Sonata\BasketBundle\ApplicationSonataBasketBundle(),
+            new Sonata\CustomerBundle\SonataCustomerBundle(),
+            new Application\Sonata\CustomerBundle\ApplicationSonataCustomerBundle(),
+            new Sonata\DeliveryBundle\SonataDeliveryBundle(),
+            new Application\Sonata\DeliveryBundle\ApplicationSonataDeliveryBundle(),
+            new Sonata\InvoiceBundle\SonataInvoiceBundle(),
+            new Application\Sonata\InvoiceBundle\ApplicationSonataInvoiceBundle(),
+            new Sonata\OrderBundle\SonataOrderBundle(),
+            new Application\Sonata\OrderBundle\ApplicationSonataOrderBundle(),
+            new Sonata\PaymentBundle\SonataPaymentBundle(),
+            new Application\Sonata\PaymentBundle\ApplicationSonataPaymentBundle(),
+            new Sonata\ProductBundle\SonataProductBundle(),
+            new Application\Sonata\ProductBundle\ApplicationSonataProductBundle(),
+            new Sonata\PriceBundle\SonataPriceBundle(),
+            new JMS\SerializerBundle\JMSSerializerBundle($this),
+
             // SONATA CORE & HELPER BUNDLES
             new Sonata\EasyExtendsBundle\SonataEasyExtendsBundle(),
             new Sonata\jQueryBundle\SonatajQueryBundle(),
@@ -80,6 +97,9 @@ class AppKernel extends Kernel
             // Disable this if you don't want the audit on entities
             new SimpleThings\EntityAudit\SimpleThingsEntityAuditBundle(),
 
+            // Translations
+            new JMS\TranslationBundle\JMSTranslationBundle(),
+
             // Disable this if you don't want the timeline in the admin
             new Spy\TimelineBundle\SpyTimelineBundle(),
             new Sonata\TimelineBundle\SonataTimelineBundle(),
@@ -88,7 +108,6 @@ class AppKernel extends Kernel
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
-            $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
             $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
             $bundles[] = new Bazinga\Bundle\FakerBundle\BazingaFakerBundle();
             $bundles[] = new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle();
@@ -97,6 +116,10 @@ class AppKernel extends Kernel
         return $bundles;
     }
 
+    /**
+     * @param Symfony\Component\Config\Loader\LoaderInterface $loader
+     * @return void
+     */
     public function registerContainerConfiguration(LoaderInterface $loader)
     {
         $loader->load(__DIR__.'/config/config_'.$this->getEnvironment().'.yml');

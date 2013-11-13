@@ -1,3 +1,6 @@
+.DS_Store
+.idea
+behat.yml
 app/cache
 app/logs
 app/*.cache
@@ -6,6 +9,5 @@ web/uploads
 web/sitemap*.xml
 app/config/parameters*.yml
 vendor
-.idea
 nbproject
-composer.phar
+composer.lock

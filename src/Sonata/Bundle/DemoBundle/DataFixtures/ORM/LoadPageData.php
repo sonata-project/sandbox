@@ -26,7 +26,7 @@ class LoadPageData extends AbstractFixture implements ContainerAwareInterface, O
 {
     private $container;
 
-    function getOrder()
+    public function getOrder()
     {
         return 4;
     }
@@ -44,11 +44,16 @@ class LoadPageData extends AbstractFixture implements ContainerAwareInterface, O
         $this->createBlogIndex($site);
         $this->createGalleryIndex($site);
         $this->createMediaPage($site);
+        $this->createProductPage($site);
+        $this->createBasketPage($site);
         $this->createUserPage($site);
 
         $this->createSubSite();
     }
 
+    /**
+     * @return SiteInterface $site
+     */
     public function createSite()
     {
         $site = $this->getSiteManager()->create();
@@ -155,7 +160,6 @@ CONTENT
         $text->setEnabled(true);
         $text->setPage($galleryIndex);
 
-
         $pageManager->save($galleryIndex);
     }
 
@@ -177,28 +181,28 @@ CONTENT
         $homepage->setEnabled(true);
         $homepage->setDecorate(0);
         $homepage->setRequestMethod('GET|POST|HEAD|DELETE|PUT');
-        $homepage->setTemplateCode('default');
+        $homepage->setTemplateCode('demo_homepage');
         $homepage->setRouteName(PageInterface::PAGE_ROUTE_CMS_NAME);
         $homepage->setSite($site);
 
         $pageManager->save($homepage);
 
         // CREATE A HEADER BLOCK
-        $homepage->addBlocks($content = $blockInteractor->createNewContainer(array(
+        $homepage->addBlocks($contentTop = $blockInteractor->createNewContainer(array(
             'enabled' => true,
             'page' => $homepage,
-            'code' => 'content',
+            'code' => 'content_top',
         )));
 
-        $content->setName('The container container');
+        $contentTop->setName('The container top container');
 
-        $blockManager->save($content);
+        $blockManager->save($contentTop);
 
         // add a block text
-        $content->addChildren($text = $blockManager->create());
+        $contentTop->addChildren($text = $blockManager->create());
         $text->setType('sonata.block.service.text');
         $text->setSetting('content', <<<CONTENT
-<h1>Welcome</h1>
+<h2>Welcome</h2>
 
 <p>
     This page is a demo of the Sonata Sandbox available on <a href="https://github.com/sonata-project/sandbox">github</a>.
@@ -217,21 +221,60 @@ CONTENT
         $text->setEnabled(true);
         $text->setPage($homepage);
 
+
+        $homepage->addBlocks($leftCol = $blockInteractor->createNewContainer(array(
+            'enabled' => true,
+            'page' => $homepage,
+            'code' => 'left_col',
+        )));
+
+        $leftCol->setName('Left col container');
+
+        // add recents products
+        $leftCol->addChildren($products = $blockManager->create());
+        $products->setType('sonata.product.block.recent_products');
+        $products->setSetting('number', 3);
+        $products->setSetting('title', 'New products');
+        $products->setPosition(2);
+        $products->setEnabled(true);
+        $products->setPage($homepage);
+
+        $homepage->addBlocks($rightCol = $blockInteractor->createNewContainer(array(
+            'enabled' => true,
+            'page' => $homepage,
+            'code' => 'right_col',
+        )));
+
+        $rightCol->setName('Right col container');
+
+        // add recents articles
+        $rightCol->addChildren($news = $blockManager->create());
+        $news->setType('sonata.news.block.recent_posts');
+        $news->setPosition(3);
+        $news->setEnabled(true);
+        $news->setPage($homepage);
+
+        $homepage->addBlocks($content = $blockInteractor->createNewContainer(array(
+            'enabled' => true,
+            'page' => $homepage,
+            'code' => 'content',
+        )));
+
         // add a gallery
         $content->addChildren($gallery = $blockManager->create());
         $gallery->setType('sonata.media.block.gallery');
         $gallery->setSetting('galleryId', $this->getReference('media-gallery')->getId());
-        $gallery->setSetting('title', $faker->sentence(4));
+        $gallery->setSetting('title', 'Media gallery');
         $gallery->setSetting('context', 'default');
         $gallery->setSetting('format', 'big');
-        $gallery->setPosition(2);
+        $gallery->setPosition(4);
         $gallery->setEnabled(true);
         $gallery->setPage($homepage);
 
         $content->addChildren($text = $blockManager->create());
         $text->setType('sonata.block.service.text');
 
-        $text->setPosition(3);
+        $text->setPosition(5);
         $text->setEnabled(true);
         $text->setSetting('content', <<<CONTENT
 <h3>Sonata's bundles</h3>
@@ -249,6 +292,52 @@ CONTENT
 );
 
         $pageManager->save($homepage);
+    }
+
+    /**
+     * @param SiteInterface $site
+     */
+    public function createProductPage(SiteInterface $site)
+    {
+        $pageManager = $this->getPageManager();
+
+        $category = $pageManager->create();
+
+        $category->setSlug('shop-category');
+        $category->setUrl('/shop/category');
+        $category->setName('Shop');
+        $category->setEnabled(true);
+        $category->setDecorate(1);
+        $category->setRequestMethod('GET|POST|HEAD|DELETE|PUT');
+        $category->setTemplateCode('default');
+        $category->setRouteName('sonata_category_index');
+        $category->setSite($site);
+        $category->setParent($this->getReference('page-homepage'));
+
+        $pageManager->save($category);
+    }
+
+    /**
+     * @param SiteInterface $site
+     */
+    public function createBasketPage(SiteInterface $site)
+    {
+        $pageManager = $this->getPageManager();
+
+        $basket = $pageManager->create();
+
+        $basket->setSlug('shop-basket');
+        $basket->setUrl('/shop/basket');
+        $basket->setName('Basket');
+        $basket->setEnabled(true);
+        $basket->setDecorate(1);
+        $basket->setRequestMethod('GET|POST|HEAD|DELETE|PUT');
+        $basket->setTemplateCode('default');
+        $basket->setRouteName('sonata_basket_index');
+        $basket->setSite($site);
+        $basket->setParent($this->getReference('page-homepage'));
+
+        $pageManager->save($basket);
     }
 
     /**
@@ -313,8 +402,9 @@ CONTENT
     You can connect to the <a href="/admin/dashboard">admin section</a> by using two different accounts : <br>
 
     <ul>
-        <li>Login: admin - Password: admin</li>
-        <li>Login: secure - Password: secure - Key: 4YU4QGYPB63HDN2C</li>
+        <li>Standard user: johndoe / johndoe</li>
+        <li>Admin user: admin / admin</li>
+        <li>Two step verification admin user: secure / secure - Key: 4YU4QGYPB63HDN2C</li>
     </ul>
 
     <h3>Two Step Verification</h3>
@@ -341,6 +431,9 @@ CONTENT
         $pageManager->save($userPage);
     }
 
+    /**
+     * @param SiteInterface $site
+     */
     public function createGlobalPage(SiteInterface $site)
     {
         $pageManager = $this->getPageManager();
@@ -366,7 +459,7 @@ CONTENT
         $title->addChildren($text = $blockManager->create());
 
         $text->setType('sonata.block.service.text');
-        $text->setSetting('content', '<h2><a href="/">Sonata Sandbox</a></h2>');
+        $text->setSetting('content', '<h2><a href="/">Sonata Demo</a></h2>');
         $text->setPosition(1);
         $text->setEnabled(true);
         $text->setPage($global);
@@ -386,6 +479,14 @@ CONTENT
         $account->setEnabled(true);
         $account->setPage($global);
 
+        $header->addChildren($basket = $blockManager->create());
+
+        $basket->setType('sonata.basket.block.nb_items');
+        $basket->setPosition(2);
+        $basket->setEnabled(true);
+        $basket->setPage($global);
+
+
         $header->addChildren($menu = $blockManager->create());
 
         $menu->setType('sonata.page.block.children_pages');
@@ -401,32 +502,64 @@ CONTENT
         )));
 
         $footer->setName('The footer container');
-
         $footer->addChildren($text = $blockManager->create());
 
         $text->setType('sonata.block.service.text');
         $text->setSetting('content', <<<FOOTER
-        <a href="http://www.sonata-project.org">Sonata Project</a> sandbox demonstration.
+        <div class="row-fluid" style="padding: 20px 20px 10px">
+            <ul class="span10 nav nav-pills">
+                <li class="span2">
+                    <a href="/blog"><b>Blog</b></a>
+                </li>
+                <li class="span3">
+                    <a href="#"><b>Shop</b></a>
+                    <ul class="nav">
+                        <li><a href="/shop/category/5/clothes">Clothes</a></li>
+                        <li><a href="/shop/category/4/clothes">Mugs</a></li>
+                        <li><a href="/shop/category/2/trainings">Trainings</a></li>
+                        <li><a href="/shop/category/1/goodies">Goodies</a></li>
+                    </ul>
+                </li>
+                <li class="span3">
+                    <a href="#"><b>Extras</b></a>
+                    <ul class="nav">
+                        <li><a href="/media/gallery/">Gallery</a></li>
+                        <li><a href="/media">Media & SEO</a></li>
+                    </ul>
+                </li>
+                <li class="span2">
+                    <a href="/admin"><b>Admin</b></a>
+                </li>
+            </ul>
+            <div class="span2">
+                <ul style="text-align: right">
+                    <li style="display: inline-block;"><a href="https://github.com/sonata-project/" target="_blank"><img src="/bundles/sonatademo/images/glyphicons_social_21_github.png" width="24" height="24"/></a></li>
+                    <li style="display: inline-block;"><a href="https://twitter.com/sonataproject" target="_blank"><img src="/bundles/sonatademo/images/glyphicons_social_31_twitter.png" width="24" height="24"/></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="row-fluid" style="text-align: right">
+            © <a href="http://www.sonata-project.org">Sonata Project</a> provides Sonata demo 2010 - 2013 // Open Software License ("OSL") v. 3.0<br/>
+            Using <a href="http://www.glyphicons.com" target="_blank">GLYPHICONS.com</a> free icons released under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">CC BY 3.0 license</a>
+        </div>
 
-<script type="text/javascript">
+        <script type="text/javascript">
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-25614705-2']);
+            _gaq.push(['_trackPageview']);
 
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-25614705-2']);
-  _gaq.push(['_trackPageview']);
-
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-
-</script>
+            (function() {
+                var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+            })();
+        </script>
 FOOTER
 );
+
         $text->setPosition(1);
         $text->setEnabled(true);
         $text->setPage($global);
-
         $pageManager->save($global);
     }
 

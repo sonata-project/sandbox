@@ -1,5 +1,6 @@
 imports:
     - { resource: config.yml }
+#    - { resource: willdurand/bazinga_faker.yml }
 
 framework:
     router:   { resource: "%kernel.root_dir%/config/routing_dev.yml" }
@@ -21,6 +22,3 @@ monolog:
 
 assetic:
     use_controller: true
-
-bazinga_faker:
-    orm: doctrine
