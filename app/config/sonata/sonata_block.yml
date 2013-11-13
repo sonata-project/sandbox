@@ -5,6 +5,9 @@ sonata_block:
     http_cache:
         listener: true
 
+    menus:
+        "SonataDemoBundle:Builder:mainMenu": "Main Menu"
+
     blocks:
         sonata.admin.block.admin_list:
             contexts:   [admin]
@@ -24,6 +27,7 @@ sonata_block:
             # cache: sonata.cache.memcached
         sonata.page.block.children_pages:
         sonata.block.service.rss:
+        sonata.block.service.menu:
         sonata.media.block.media:
         sonata.media.block.gallery:
         sonata.media.block.feature_media:

@@ -489,9 +489,10 @@ CONTENT
 
         $header->addChildren($menu = $blockManager->create());
 
-        $menu->setType('sonata.page.block.children_pages');
-        $menu->setSetting('current', false);
-        $menu->setPosition(2);
+        $menu->setType('sonata.block.service.menu');
+        $menu->setSetting('menu_name', "SonataDemoBundle:Builder:mainMenu");
+        $menu->setSetting('safe_labels', true);
+        $menu->setPosition(3);
         $menu->setEnabled(true);
         $menu->setPage($global);
 
