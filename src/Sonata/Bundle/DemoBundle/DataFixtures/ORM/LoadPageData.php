@@ -305,7 +305,7 @@ CONTENT
 
         $category->setSlug('shop-category');
         $category->setUrl('/shop/category');
-        $category->setName('Product & Category');
+        $category->setName('Shop');
         $category->setEnabled(true);
         $category->setDecorate(1);
         $category->setRequestMethod('GET|POST|HEAD|DELETE|PUT');

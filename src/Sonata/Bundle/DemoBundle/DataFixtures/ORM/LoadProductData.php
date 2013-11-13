@@ -299,7 +299,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
      */
     public function getOrder()
     {
-        return 51;
+        return 12;
     }
 
     /**

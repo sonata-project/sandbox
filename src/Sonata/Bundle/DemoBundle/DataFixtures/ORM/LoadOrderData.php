@@ -58,6 +58,7 @@ class LoadOrderData extends AbstractFixture implements ContainerAwareInterface, 
      */
     public function load(ObjectManager $manager)
     {
+
         $nbCustomers = 500;
 
         $products = array(
@@ -86,6 +87,7 @@ class LoadOrderData extends AbstractFixture implements ContainerAwareInterface, 
 
             $order = $this->createOrder($customer, $customerProducts, $manager, $i);
 
+
             $this->createTransaction($order, $manager);
 
             $this->createInvoice($order, $manager);
@@ -94,6 +96,8 @@ class LoadOrderData extends AbstractFixture implements ContainerAwareInterface, 
                 $manager->flush();
             }
         }
+
+        $manager->flush();
     }
 
     /**
@@ -253,7 +257,7 @@ class LoadOrderData extends AbstractFixture implements ContainerAwareInterface, 
         $user = new User();
         $user->setUsername($i . '-' . $username);
         $user->setUsernameCanonical($i . '-' . $username);
-        $user->setEmail($email);
+        $user->setEmail($i.'_'.$email);
         $user->setEmailCanonical($email);
         $user->setPlainPassword('customer');
 
@@ -383,6 +387,6 @@ class LoadOrderData extends AbstractFixture implements ContainerAwareInterface, 
      */
     public function getOrder()
     {
-        return 52;
+        return 13;
     }
 }
