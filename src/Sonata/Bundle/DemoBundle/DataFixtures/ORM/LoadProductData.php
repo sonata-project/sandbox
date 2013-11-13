@@ -176,8 +176,6 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $this->addPackageToProduct($sonataTraining, $manager);
 
         $trainingProvider = $productPool->getProvider($sonataTraining);
-        $trainingProvider->setProductCategoryManager($this->getProductCategoryManager());
-        $trainingProvider->setProductCollectionManager($this->getProductCollectionManager());
 
         // Training beginner variation
         $sonataTrainingBeginner = $this->generateDefaultTrainingBeginnerVariation($trainingProvider, $sonataTraining);
@@ -225,8 +223,6 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $this->addPackageToProduct($phpDisabledTraining, $manager);
 
         $trainingProvider = $productPool->getProvider($phpDisabledTraining);
-        $trainingProvider->setProductCategoryManager($this->getProductCategoryManager());
-        $trainingProvider->setProductCollectionManager($this->getProductCollectionManager());
 
         // PHP disabled master products
         $phpDisabledTrainingBeginner = $this->generateDefaultTrainingBeginnerVariation($trainingProvider, $phpDisabledTraining);
@@ -253,8 +249,6 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $this->addPackageToProduct($phpWorkingTraining, $manager);
 
         $trainingProvider = $productPool->getProvider($phpWorkingTraining);
-        $trainingProvider->setProductCategoryManager($this->getProductCategoryManager());
-        $trainingProvider->setProductCollectionManager($this->getProductCollectionManager());
 
         // PHP disabled master products
         $phpWorkingTrainingBeginner = $this->generateDefaultTrainingBeginnerVariation($trainingProvider, $phpWorkingTraining);
@@ -281,8 +275,6 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $this->addPackageToProduct($phpDisabledChild, $manager);
 
         $trainingProvider = $productPool->getProvider($phpDisabledChild);
-        $trainingProvider->setProductCategoryManager($this->getProductCategoryManager());
-        $trainingProvider->setProductCollectionManager($this->getProductCollectionManager());
 
         // PHP disabled master products
         $phpDisabledChildBeginner = $this->generateDefaultTrainingBeginnerVariation($trainingProvider, $phpDisabledChild);
@@ -502,26 +494,6 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
     protected function getProductPool()
     {
         return $this->container->get('sonata.product.pool');
-    }
-
-    /**
-     * Return the ProductCategory manager.
-     *
-     * @return \Sonata\Component\Product\ProductCategoryManagerInterface
-     */
-    protected function getProductCategoryManager()
-    {
-        return $this->container->get('sonata.product_category.product');
-    }
-
-    /**
-     * Return the ProductCollection manager.
-     *
-     * @return \Sonata\Component\Product\ProductCollectionManagerInterface
-     */
-    protected function getProductCollectionManager()
-    {
-        return $this->container->get('sonata.product_collection.product');
     }
 
     /**
