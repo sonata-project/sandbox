@@ -35,12 +35,12 @@ Feature: Products
 
     @404
     Scenario: Browse disabled product
-        When I go to "shop/product/4/air-max-sonata-limited-edition"
+        When I go to "shop/product/4/maximum-air-sonata-limited-edition"
         Then the response status code should be 404
 
     @200
     Scenario: Direct access to a product without a picture
-        When I go to "shop/product/5/air-max-sonata-ultimate-edition"
+        When I go to "shop/product/5/maximum-air-sonata-ultimate-edition"
         Then the response status code should be 200
         And I should see "Get this ULTIMATE edition"
 

@@ -122,43 +122,43 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $this->addProductToCollection($phpTeeShirt, $phpCollection, $manager);
         $this->addPackageToProduct($phpTeeShirt, $manager);
 
-        $airMax = new Goodie();
-        $airMax->setSku('AIR_MAX_SONATA');
-        $airMax->setName('Air Max Sonata Limited Edition');
-        $airMax->setSlug('air-max-sonata-limited-edition');
-        $airMax->setDescription('Get this limited edition of the AIR MAX SONATA and fly over PHP bugs. True story.');
-        $airMax->setRawDescription('Get this limited edition of the AIR MAX SONATA and fly over PHP bugs. True story.');
-        $airMax->setPrice(130);
-        $airMax->setStock(500);
-        $airMax->setVat(19.6);
-        $airMax->setEnabled(false);
-        $airMax->setImage($defaultMedia);
-        $manager->persist($airMax);
-        $this->setReference('air_max_sonata_product', $airMax);
+        $maximumAir = new Goodie();
+        $maximumAir->setSku('MAXIMUM_AIR_SONATA');
+        $maximumAir->setName('Maximum Air Sonata Limited Edition');
+        $maximumAir->setSlug('maximum-air-sonata-limited-edition');
+        $maximumAir->setDescription('Get this limited edition of the MAXIMUM AIR SONATA and fly over PHP bugs. True story.');
+        $maximumAir->setRawDescription('Get this limited edition of the MAXIMUM AIR SONATA and fly over PHP bugs. True story.');
+        $maximumAir->setPrice(130);
+        $maximumAir->setStock(500);
+        $maximumAir->setVat(19.6);
+        $maximumAir->setEnabled(false);
+        $maximumAir->setImage($defaultMedia);
+        $manager->persist($maximumAir);
+        $this->setReference('maximum_air_sonata_product', $maximumAir);
 
-        $this->addProductToCategory($airMax, $this->getReference('sonata_shoes_category'), $manager);
-        $this->addProductDeliveries($airMax, $manager);
-        $this->addProductToCollection($airMax, $phpCollection, $manager);
-        $this->addPackageToProduct($airMax, $manager);
+        $this->addProductToCategory($maximumAir, $this->getReference('sonata_shoes_category'), $manager);
+        $this->addProductDeliveries($maximumAir, $manager);
+        $this->addProductToCollection($maximumAir, $phpCollection, $manager);
+        $this->addPackageToProduct($maximumAir, $manager);
 
-        $airMax = new Goodie();
-        $airMax->setSku('AIR_MAX_SONATA_ULTIMATE');
-        $airMax->setName('Air Max Sonata ULTIMATE Edition');
-        $airMax->setSlug('air-max-sonata-ultimate-edition');
-        $airMax->setDescription('Get this ULTIMATE edition of the AIR MAX SONATA and fly over PHP bugs. True story. Even more powerful than the limited edition.');
-        $airMax->setRawDescription('Get this ULTIMATE edition of the AIR MAX SONATA and fly over PHP bugs. True story. Even more powerful than the limited edition.');
-        $airMax->setPrice(250);
-        $airMax->setStock(30);
-        $airMax->setVat(19.6);
-        $airMax->setEnabled(true);
-        $airMax->setImage($defaultMedia);
-        $manager->persist($airMax);
-        $this->setReference('air_max_sonata_ultimate_product', $airMax);
+        $maximumAir = new Goodie();
+        $maximumAir->setSku('MAXIMUM_AIR_SONATA_ULTIMATE');
+        $maximumAir->setName('Maxmimum Air Sonata ULTIMATE Edition');
+        $maximumAir->setSlug('maximum-air-sonata-ultimate-edition');
+        $maximumAir->setDescription('Get this ULTIMATE edition of the MAXIMUM AI SONATA and fly over PHP bugs. True story. Even more powerful than the limited edition.');
+        $maximumAir->setRawDescription('Get this ULTIMATE edition of the MAXIMUM AI SONATA and fly over PHP bugs. True story. Even more powerful than the limited edition.');
+        $maximumAir->setPrice(250);
+        $maximumAir->setStock(30);
+        $maximumAir->setVat(19.6);
+        $maximumAir->setEnabled(true);
+        $maximumAir->setImage($defaultMedia);
+        $manager->persist($maximumAir);
+        $this->setReference('maximum_air_sonata_ultimate_product', $maximumAir);
 
-        $this->addProductToCategory($airMax, $this->getReference('sonata_shoes_category'), $manager);
-        $this->addProductDeliveries($airMax, $manager);
-        $this->addProductToCollection($airMax, $phpCollection, $manager);
-        $this->addPackageToProduct($airMax, $manager);
+        $this->addProductToCategory($maximumAir, $this->getReference('sonata_shoes_category'), $manager);
+        $this->addProductDeliveries($maximumAir, $manager);
+        $this->addProductToCollection($maximumAir, $phpCollection, $manager);
+        $this->addPackageToProduct($maximumAir, $manager);
 
         // Training products
         $sonataTraining = new Training();
