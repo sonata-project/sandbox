@@ -34,6 +34,8 @@ class Builder extends ContainerAware
      */
     public function mainMenu(FactoryInterface $factory, array $options)
     {
+        $shopCategories = $this->container->get('sonata.classification.manager.category')->findBy(array('enabled' => true, 'parent' => null));
+
         $menuOptions = array_merge($options, array(
             'childrenAttributes' => array('class' => 'nav nav-pills'),
         ));
@@ -41,13 +43,38 @@ class Builder extends ContainerAware
         $menu = $factory->createItem('main', $menuOptions);
 
         $menu->addChild('News', array('route' => 'sonata_news_home'));
-        $menu->addChild('Shop', array('route' => 'sonata_category_index'));
+
+        $shopMenuParams = array('route' => 'sonata_category_index');
+
+        if (count($shopCategories) > 0) {
+            $shopMenuParams = array_merge($shopMenuParams, array(
+                'attributes' => array('class' => 'dropdown'),
+                'childrenAttributes' => array('class' => 'dropdown-menu'),
+                'linkAttributes' => array('class' => 'dropdown-toggle', 'data-toggle' => 'dropdown', 'data-target' => '#'),
+                'label' => 'Shop <b class="caret caret-menu"></b>',
+                'extras' => array(
+                    'safe_label' => true,
+                )
+            ));
+        }
+
+        $shop = $menu->addChild('Shop', $shopMenuParams);
+
+        foreach ($shopCategories as $categ) {
+            $shop->addChild($categ->getName(), array(
+                'route' => 'sonata_category_view',
+                'routeParameters' => array(
+                    'categoryId' => $categ->getId(),
+                    'slug' => $categ->getSlug())
+                )
+            );
+        }
 
         $extras = $factory->createItem('extras', array(
             'uri' => "#",
             'attributes' => array('class' => 'dropdown'),
             'childrenAttributes' => array('class' => 'dropdown-menu'),
-            'linkAttributes' => array('class' => 'dropdown-toggle', 'data-toggle' => 'dropdown'),
+            'linkAttributes' => array('class' => 'dropdown-toggle', 'data-toggle' => 'dropdown', 'data-target' => '#'),
             'label' => 'Extras <b class="caret caret-menu"></b>',
             'extras' => array(
                 'safe_label' => true,
