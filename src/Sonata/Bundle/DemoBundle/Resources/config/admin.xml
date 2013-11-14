@@ -20,11 +20,20 @@
             </call>
 
         </service>
+
         <service id="sonata.demo.admin.engine" class="Sonata\Bundle\DemoBundle\Admin\EngineAdmin">
             <tag name="sonata.admin" manager_type="orm" group="Demo" label="Engine" />
 
             <argument />
             <argument>Sonata\Bundle\DemoBundle\Entity\Engine</argument>
+            <argument />
+        </service>
+
+        <service id="sonata.demo.admin.inspection" class="Sonata\Bundle\DemoBundle\Admin\InspectionAdmin">
+            <tag name="sonata.admin" manager_type="orm" group="Demo" label="Inspection"/>
+
+            <argument />
+            <argument>Sonata\Bundle\DemoBundle\Entity\Inspection</argument>
             <argument />
         </service>
     </services>
