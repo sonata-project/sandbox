@@ -7,6 +7,7 @@ What's inside?
 Sonata Standard Edition comes pre-configured with the following bundles:
 
 * Bundles from Symfony Standard distribution
+* Sonata Ecommerce - Sonata E-commerce suite
 * SonataAdminBundle - The missing Symfony2 Admin Generator
 * SonataMediaBundle
 * SonataPageBundle
@@ -33,6 +34,11 @@ Run the following commands::
     cp app/config/parameters.yml.sample app/config/production_parameters.yml
     curl -s http://getcomposer.org/installer | php
     php composer.phar install
+
+Database & fixtures loading
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+If you want a quick start, simply run ``php load_data.php`` ; otherwise, follow the next steps manually.
 
 Database initialization
 ~~~~~~~~~~~~~~~~~~~~~~~
