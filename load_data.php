@@ -62,8 +62,8 @@ execute_commands(array(
     'app/console sonata:page:update-core-routes --site=all',
     'app/console sonata:page:create-snapshots --site=all',
     'app/console assets:install --symlink web',
-    'app/console cache:warmup --env=prod',
-    'app/console cache:create-cache-class --env=prod',
+    'app/console cache:warmup --env=prod --no-debug',
+    'app/console cache:create-cache-class --env=prod --no-debug',
     'app/console init:acl',
     'app/console sonata:admin:setup-acl',
     'app/console sonata:admin:generate-object-acl'
