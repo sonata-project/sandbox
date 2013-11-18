@@ -504,44 +504,42 @@ CONTENT
 
         $footer->setName('The footer container');
 
-        $footerMenu = clone $menu;
-
-        $footer->addChildren($footerMenu);
-
-        $footerMenu->setPosition(1);
-
         $footer->addChildren($text = $blockManager->create());
 
         $text->setType('sonata.block.service.text');
         $text->setSetting('content', <<<FOOTER
-        <div class="row-fluid" style="margin-bottom: 20px;">
-            <div class="span2">
+            <div class="pull-right" style="margin-top: 5px;">
                 <ul>
                     <li style="display: inline-block;"><a href="https://github.com/sonata-project/" target="_blank"><img src="/bundles/sonatademo/images/glyphicons_social_21_github.png" width="24" height="24"/></a></li>
                     <li style="display: inline-block;"><a href="https://twitter.com/sonataproject" target="_blank"><img src="/bundles/sonatademo/images/glyphicons_social_31_twitter.png" width="24" height="24"/></a></li>
                 </ul>
             </div>
-            <div class="span10" style="text-align: right">
+FOOTER
+        );
+
+        $text->setPosition(1);
+        $text->setEnabled(true);
+        $text->setPage($global);
+
+        $footerMenu = clone $menu;
+
+        $footer->addChildren($footerMenu);
+
+        $footerMenu->setPosition(2);
+
+        $footer->addChildren($text = $blockManager->create());
+
+        $text->setType('sonata.block.service.text');
+        $text->setSetting('content', <<<FOOTER
+            <hr />
+            <div style="margin: 20px 0;">
                 © <a href="http://www.sonata-project.org">Sonata Project</a> provides Sonata demo 2010 - 2013 // Open Software License ("OSL") v. 3.0<br/>
                 Using <a href="http://www.glyphicons.com" target="_blank">GLYPHICONS.com</a> free icons released under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">CC BY 3.0 license</a>
             </div>
-        </div>
-
-        <script type="text/javascript">
-            var _gaq = _gaq || [];
-            _gaq.push(['_setAccount', 'UA-25614705-2']);
-            _gaq.push(['_trackPageview']);
-
-            (function() {
-                var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-            })();
-        </script>
 FOOTER
 );
 
-        $text->setPosition(2);
+        $text->setPosition(3);
         $text->setEnabled(true);
         $text->setPage($global);
         $pageManager->save($global);
