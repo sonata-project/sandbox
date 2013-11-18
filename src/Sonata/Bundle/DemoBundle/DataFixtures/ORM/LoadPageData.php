@@ -522,6 +522,7 @@ FOOTER
         $text->setPage($global);
 
         $footerMenu = clone $menu;
+        $footerMenu->setSetting('menu_name', "SonataDemoBundle:Builder:footerMenu");
 
         $footer->addChildren($footerMenu);
 

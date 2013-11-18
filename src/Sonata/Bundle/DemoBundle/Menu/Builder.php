@@ -34,6 +34,8 @@ class Builder extends ContainerAware
      */
     public function mainMenu(FactoryInterface $factory, array $options)
     {
+        $isFooter = array_key_exists('is_footer', $options) ? $options['is_footer'] : false;
+
         $shopCategories = $this->container->get('sonata.classification.manager.category')->findBy(array('enabled' => true, 'parent' => null));
 
         $menuOptions = array_merge($options, array(
@@ -46,7 +48,7 @@ class Builder extends ContainerAware
 
         $shopMenuParams = array('route' => 'sonata_category_index');
 
-        if (count($shopCategories) > 0) {
+        if (count($shopCategories) > 0 && !$isFooter) {
             $shopMenuParams = array_merge($shopMenuParams, array(
                 'attributes' => array('class' => 'dropdown'),
                 'childrenAttributes' => array('class' => 'dropdown-menu'),
@@ -55,6 +57,13 @@ class Builder extends ContainerAware
                 'extras' => array(
                     'safe_label' => true,
                 )
+            ));
+        }
+
+        if ($isFooter) {
+            $shopMenuParams = array_merge($shopMenuParams, array(
+                'attributes' => array('class' => 'span2'),
+                "childrenAttributes" => array('class' => 'nav')
             ));
         }
 
@@ -70,7 +79,11 @@ class Builder extends ContainerAware
             );
         }
 
-        $extras = $factory->createItem('extras', array(
+        $dropdownExtrasOptions = $isFooter ? array(
+            'uri' => "#",
+            'attributes' => array('class' => 'span2'),
+            'childrenAttributes' => array('class' => 'nav'),
+        ) : array(
             'uri' => "#",
             'attributes' => array('class' => 'dropdown'),
             'childrenAttributes' => array('class' => 'dropdown-menu'),
@@ -79,7 +92,8 @@ class Builder extends ContainerAware
             'extras' => array(
                 'safe_label' => true,
             )
-        ));
+        );
+        $extras = $factory->createItem('Extras', $dropdownExtrasOptions);
 
         $extras->addChild('Gallery', array('route' => 'sonata_media_gallery_index'));
         $extras->addChild('Media & SEO', array('route' => 'sonata_demo_media'));
@@ -89,5 +103,10 @@ class Builder extends ContainerAware
         $menu->addChild('Admin', array('route' => 'sonata_admin_redirect'));
 
         return $menu;
+    }
+
+    public function footerMenu(FactoryInterface $factory, array $options)
+    {
+        return $this->mainMenu($factory, array_merge($options, array('is_footer' => true)));
     }
 }

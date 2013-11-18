@@ -14,3 +14,17 @@ file that was distributed with this source code.
     {{ parent() }}
     <link rel="stylesheet" href="/bundles/sonatademo/css/demo.css" type="text/css" media="all" />
 {% endblock %}
+
+{% block sonata_page_head %}
+    <head {{ sonata_seo_head_attributes() }}>
+
+        {{ sonata_seo_title() }}
+        {{ sonata_seo_metadatas() }}
+
+        {{ block('sonata_page_stylesheets') }}
+
+        {{ block('sonata_page_javascripts') }}
+
+        <script src="{{ asset('bundles/sonataadmin/bootstrap/js/bootstrap.min.js') }}" type="text/javascript"></script>
+    </head>
+{% endblock %}
