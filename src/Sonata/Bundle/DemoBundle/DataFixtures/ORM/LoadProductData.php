@@ -136,6 +136,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $manager->persist($maximumAir);
         $this->setReference('maximum_air_sonata_product', $maximumAir);
 
+        $this->addMediaToProduct(__DIR__.'/../data/files/maximum-air-sonata.jpg', 'Maximum Air Sonata Limited edition', 'Maximum Air Sonata Limited edition', $maximumAir);
         $this->addProductToCategory($maximumAir, $this->getReference('sonata_shoes_category'), $manager);
         $this->addProductDeliveries($maximumAir, $manager);
         $this->addProductToCollection($maximumAir, $phpCollection, $manager);
@@ -143,18 +144,18 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
 
         $maximumAir = new Goodie();
         $maximumAir->setSku('MAXIMUM_AIR_SONATA_ULTIMATE');
-        $maximumAir->setName('Maxmimum Air Sonata ULTIMATE Edition');
+        $maximumAir->setName('Maximum Air Sonata ULTIMATE Edition');
         $maximumAir->setSlug('maximum-air-sonata-ultimate-edition');
-        $maximumAir->setDescription('Get this ULTIMATE edition of the MAXIMUM AI SONATA and fly over PHP bugs. True story. Even more powerful than the limited edition.');
-        $maximumAir->setRawDescription('Get this ULTIMATE edition of the MAXIMUM AI SONATA and fly over PHP bugs. True story. Even more powerful than the limited edition.');
+        $maximumAir->setDescription('Get this ULTIMATE edition of the MAXIMUM AIR SONATA and fly over PHP bugs. True story. Even more powerful than the limited edition. Note that this product does not contain any media for behat testing purpose.');
+        $maximumAir->setRawDescription('Get this ULTIMATE edition of the MAXIMUM AIR SONATA and fly over PHP bugs. True story. Even more powerful than the limited edition. Note that this product does not contain any media for behat testing purpose.');
         $maximumAir->setPrice(250);
         $maximumAir->setStock(30);
         $maximumAir->setVat(19.6);
         $maximumAir->setEnabled(true);
-        $maximumAir->setImage($defaultMedia);
         $manager->persist($maximumAir);
         $this->setReference('maximum_air_sonata_ultimate_product', $maximumAir);
 
+        //$this->addMediaToProduct(__DIR__.'/../data/files/maximum-air-sonata-ultimate.jpg', 'Maximum Air Sonata ULTIMATE edition', 'Maximum Air Sonata ULTIMATE edition', $maximumAir);
         $this->addProductToCategory($maximumAir, $this->getReference('sonata_shoes_category'), $manager);
         $this->addProductDeliveries($maximumAir, $manager);
         $this->addProductToCollection($maximumAir, $phpCollection, $manager);
