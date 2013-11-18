@@ -8,7 +8,7 @@ Feature: Basket
     Scenario: Check default empty basket
         Given I am on "shop/category"
         When I go to "shop/basket"
-        Then I should see "Your basket is empty"
+        Then I should see "Go back shopping"
         And the response status code should be 200
 
     Scenario: Adding simple product to basket by browsing (product page)
