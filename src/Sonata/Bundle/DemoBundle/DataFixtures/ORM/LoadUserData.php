@@ -81,6 +81,8 @@ class LoadUserData extends AbstractFixture implements ContainerAwareInterface, O
         $user->setSuperAdmin(false);
         $user->setLocked(false);
 
+        $this->setReference('user-johndoe', $user);
+
         $manager->updateUser($user);
 
     }

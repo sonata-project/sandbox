@@ -252,19 +252,12 @@ class LoadOrderData extends AbstractFixture implements ContainerAwareInterface, 
         $email = $faker->email();
         $username = $faker->userName();
 
-        // User
-        /** @var \Sonata\UserBundle\Model\User $user */
-        $user = new User();
-        $user->setUsername($i . '-' . $username);
-        $user->setUsernameCanonical($i . '-' . $username);
-        $user->setEmail($i.'_'.$email);
-        $user->setEmailCanonical($email);
-        $user->setPlainPassword('customer');
-
+        if (0 === $i % 50 && $this->hasReference('customer-johndoe')) {
+            return $this->getReference('customer-johndoe');
+        }
 
         // Customer
         $customer = new Customer();
-        $customer->setUser($user);
         $customer->setTitle(array_rand(array(BaseCustomer::TITLE_MLLE, BaseCustomer::TITLE_MME, BaseCustomer::TITLE_MR)));
         $customer->setFirstname($firstName);
         $customer->setLastname($lastName);
@@ -322,6 +315,22 @@ class LoadOrderData extends AbstractFixture implements ContainerAwareInterface, 
         $customer->addAddress($customerBillingAddress);
         $customer->addAddress($customerContactAddress);
         $customer->addAddress($customerDeliveryAddress);
+
+        // User
+        if (0 === $i % 50) {
+            $user = $this->getReference('user-johndoe');
+            $this->setReference('customer-johndoe', $customer);
+        } else {
+            /** @var \Sonata\UserBundle\Model\User $user */
+            $user = new User();
+            $user->setUsername($i . '-' . $username);
+            $user->setUsernameCanonical($i . '-' . $username);
+            $user->setEmail($i.'_'.$email);
+            $user->setEmailCanonical($email);
+            $user->setPlainPassword('customer');
+        }
+
+        $customer->setUser($user);
 
         $manager->persist($customerBillingAddress);
         $manager->persist($customerContactAddress);
