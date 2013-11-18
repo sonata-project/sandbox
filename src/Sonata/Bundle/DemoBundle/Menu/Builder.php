@@ -88,12 +88,12 @@ class Builder extends ContainerAware
             'attributes' => array('class' => 'dropdown'),
             'childrenAttributes' => array('class' => 'dropdown-menu'),
             'linkAttributes' => array('class' => 'dropdown-toggle', 'data-toggle' => 'dropdown', 'data-target' => '#'),
-            'label' => 'Extras <b class="caret caret-menu"></b>',
+            'label' => 'Discover <b class="caret caret-menu"></b>',
             'extras' => array(
                 'safe_label' => true,
             )
         );
-        $extras = $factory->createItem('Extras', $dropdownExtrasOptions);
+        $extras = $factory->createItem('Discover', $dropdownExtrasOptions);
 
         $extras->addChild('Gallery', array('route' => 'sonata_media_gallery_index'));
         $extras->addChild('Media & SEO', array('route' => 'sonata_demo_media'));
