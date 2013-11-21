@@ -70,7 +70,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $phpPlush->setName('PHP plush');
         $phpPlush->setSlug('php-plush');
         $phpPlush->setDescription('The PHP plush toy is based on the PHP world-famous elephant from Vincent Pontier: Vince evolved the logo from the three letters into an animal.');
-        $phpPlush->setRawDescription('The PHP plush toy is based on the PHP world-famous elephant from Vincent Pontier: Vince evolved the logo from the three letters into an animal.');
+        $phpPlush->setRawDescription('The PHP plush toy is based on the PHP world-famous elephant from Vincent Pontier: Vince evolved the logo from the three letters into an animal.'.$this->getLorem());
         $phpPlush->setPrice(29.99);
         $phpPlush->setStock(2000);
         $phpPlush->setVat(19.6);
@@ -89,7 +89,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $phpMug->setName('PHP mug');
         $phpMug->setSlug('php-mug');
         $phpMug->setDescription('You love coffee and PHP ? This mug is for you.');
-        $phpMug->setRawDescription('You love coffee and PHP ? This mug is for you.');
+        $phpMug->setRawDescription('You love coffee and PHP ? This mug is for you.'.$this->getLorem());
         $phpMug->setPrice(9.99);
         $phpMug->setStock(10000);
         $phpMug->setVat(19.6);
@@ -108,7 +108,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $phpTeeShirt->setName('PHP tee-shirt');
         $phpTeeShirt->setSlug('php-t-shirt');
         $phpTeeShirt->setDescription('A nice PHP tee-shirt, best clothe ever to pick up girls.');
-        $phpTeeShirt->setRawDescription('A nice PHP tee-shirt, best clothe ever to pick up girls.');
+        $phpTeeShirt->setRawDescription('A nice PHP tee-shirt, best clothe ever to pick up girls.'.$this->getLorem());
         $phpTeeShirt->setPrice(25);
         $phpTeeShirt->setStock(0);
         $phpTeeShirt->setVat(19.6);
@@ -127,7 +127,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $maximumAir->setName('Maximum Air Sonata Limited Edition');
         $maximumAir->setSlug('maximum-air-sonata-limited-edition');
         $maximumAir->setDescription('Get this limited edition of the MAXIMUM AIR SONATA and fly over PHP bugs. True story.');
-        $maximumAir->setRawDescription('Get this limited edition of the MAXIMUM AIR SONATA and fly over PHP bugs. True story.');
+        $maximumAir->setRawDescription('Get this limited edition of the MAXIMUM AIR SONATA and fly over PHP bugs. True story.'.$this->getLorem());
         $maximumAir->setPrice(130);
         $maximumAir->setStock(500);
         $maximumAir->setVat(19.6);
@@ -147,7 +147,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $maximumAir->setName('Maximum Air Sonata ULTIMATE Edition');
         $maximumAir->setSlug('maximum-air-sonata-ultimate-edition');
         $maximumAir->setDescription('Get this ULTIMATE edition of the MAXIMUM AIR SONATA and fly over PHP bugs. True story. Even more powerful than the limited edition. Note that this product does not contain any media for behat testing purpose.');
-        $maximumAir->setRawDescription('Get this ULTIMATE edition of the MAXIMUM AIR SONATA and fly over PHP bugs. True story. Even more powerful than the limited edition. Note that this product does not contain any media for behat testing purpose.');
+        $maximumAir->setRawDescription('Get this ULTIMATE edition of the MAXIMUM AIR SONATA and fly over PHP bugs. True story. Even more powerful than the limited edition. Note that this product does not contain any media for behat testing purpose.'.$this->getLorem());
         $maximumAir->setPrice(250);
         $maximumAir->setStock(30);
         $maximumAir->setVat(19.6);
@@ -165,7 +165,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $sonataTraining = new Training();
         $sonataTraining->setName('Sonata trainings');
         $sonataTraining->setDescription('A training to learn Sonata bundles.');
-        $sonataTraining->setRawDescription('A training to learn Sonata bundles.');
+        $sonataTraining->setRawDescription('A training to learn Sonata bundles.'.$this->getLorem());
         $sonataTraining->setVat(5.5);
         $sonataTraining->setEnabled(true);
         $manager->persist($sonataTraining);
@@ -211,7 +211,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $phpDisabledTraining = new Training();
         $phpDisabledTraining->setName('PHP disabled training');
         $phpDisabledTraining->setDescription('A training to learn how to program using PHP.');
-        $phpDisabledTraining->setRawDescription('A training to learn how to program using PHP.');
+        $phpDisabledTraining->setRawDescription('A training to learn how to program using PHP.'.$this->getLorem());
         $phpDisabledTraining->setVat(5.5);
         $phpDisabledTraining->setEnabled(false);
         $phpDisabledTraining->setStock(0);
@@ -237,7 +237,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $phpWorkingTraining = new Training();
         $phpWorkingTraining->setName('PHP working training');
         $phpWorkingTraining->setDescription('A training to learn how to program using PHP.');
-        $phpWorkingTraining->setRawDescription('A training to learn how to program using PHP.');
+        $phpWorkingTraining->setRawDescription('A training to learn how to program using PHP.'.$this->getLorem());
         $phpWorkingTraining->setVat(5.5);
         $phpWorkingTraining->setEnabled(true);
         $phpWorkingTraining->setStock(0);
@@ -263,7 +263,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $phpDisabledChild = new Training();
         $phpDisabledChild->setName('PHP disabled child training');
         $phpDisabledChild->setDescription('A training to learn how to program using PHP.');
-        $phpDisabledChild->setRawDescription('A training to learn how to program using PHP.');
+        $phpDisabledChild->setRawDescription('A training to learn how to program using PHP.'.$this->getLorem());
         $phpDisabledChild->setVat(5.5);
         $phpDisabledChild->setEnabled(true);
         $phpDisabledChild->setStock(0);
@@ -293,6 +293,17 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
     public function getOrder()
     {
         return 12;
+    }
+
+    protected function getLorem()
+    {
+        return "
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quae cum essent dicta, finem fecimus et ambulandi et disputandi. Duo Reges: constructio interrete. Itaque eos id agere, ut a se dolores, morbos, debilitates repellant. Quae cum dixisset paulumque institisset, Quid est? At iam decimum annum in spelunca iacet. Tibi hoc incredibile, quod beatissimum. Conferam avum tuum Drusum cum C. </p>
+
+<p>Si quicquam extra virtutem habeatur in bonis. Idemque diviserunt naturam hominis in animum et corpus. Aliter homines, aliter philosophos loqui putas oportere? Videmusne ut pueri ne verberibus quidem a contemplandis rebus perquirendisque deterreantur? Cur ipse Pythagoras et Aegyptum lustravit et Persarum magos adiit? Sed ille, ut dixi, vitiose. </p>
+
+<p>Atque his de rebus et splendida est eorum et illustris oratio. Ergo illi intellegunt quid Epicurus dicat, ego non intellego? Quamquam ab iis philosophiam et omnes ingenuas disciplinas habemus; Videamus animi partes, quarum est conspectus illustrior; Non est igitur summum malum dolor. </p>
+        ";
     }
 
     /**

@@ -20,31 +20,16 @@ file that was distributed with this source code.
 
 {% block product_title %}{{ product.name }}{% endblock %}
 
-{% block product_description %}
-    {% if not product.isMaster %}
-        <p>
-            <strong>{{ 'training.level_title'|trans([], 'SonataProductBundle') }}&nbsp;:</strong> {{ product.level|trans([], 'SonataProductBundle') }}
-            <br />
-            <strong>{{ 'training.instructor_title'|trans([], 'SonataProductBundle') }}&nbsp;:</strong> {{ product.instructorName|trans([], 'SonataProductBundle') }}
-            <br />
-            <strong>{{ 'training.duration_title'|trans([], 'SonataProductBundle') }}&nbsp;:</strong> {{ product.duration|trans([], 'SonataProductBundle') }}
-        </p>
-    {% endif %}
-
-    {{ product.description|raw }}
-{% endblock %}
-
 {% block product_gallery %}{% endblock %}
 {% block product_delivery %}{% endblock %}
 
-{% block product_basket %}
-
-    <form action="{{ url('sonata_basket_add_product') }}" method="POST" >
-        {% trans from 'SonataProductBundle' %}sonata.product.label_quantity{% endtrans %} {{ form_widget(form.quantity) }}
-
-        <input type="submit" value="{% trans from 'SonataProductBundle' %}sonata.product.btn_add_to_basket{% endtrans %}" class="btn btn-small btn-primary"/>
-
-        {{ form_rest(form) }}
-    </form>
-
+{% block product_properties_before_price %}
+    {% if not product.isMaster %}
+        <dt style="width: auto;">{{ 'training.level_title'|trans([], 'SonataProductBundle') }}</dt>
+        <dd style="margin-left: 110px;">{{ product.level|trans([], 'SonataProductBundle') }}</dd>
+        <dt style="width: auto;">{{ 'training.instructor_title'|trans([], 'SonataProductBundle') }}</dt>
+        <dd style="margin-left: 110px;">{{ product.instructorName|trans([], 'SonataProductBundle') }}</dd>
+        <dt style="width: auto;">{{ 'training.duration_title'|trans([], 'SonataProductBundle') }}</dt>
+        <dd style="margin-left: 110px;">{{ product.duration|trans([], 'SonataProductBundle') }}</dd>
+    {% endif %}
 {% endblock %}
