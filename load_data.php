@@ -53,16 +53,15 @@ $fs->mkdir(sprintf('%s/web/uploads/media', $rootDir));
 $fs->copy(__DIR__.'/src/Sonata/Bundle/DemoBundle/DataFixtures/data/robots.txt', __DIR__.'/web/robots.txt', true);
 
 execute_commands(array(
-    'app/console cache:warmup --env=dev',
-    'app/console cache:create-cache-class --env=dev',
+    'app/console cache:warmup --env=prod --no-debug',
+    'app/console cache:create-cache-class --env=prod --no-debug',
     'app/console doctrine:database:drop --force',
     'app/console doctrine:database:create',
     'app/console doctrine:schema:update --force',
     'app/console doctrine:fixtures:load --verbose',
-    'app/console sonata:page:update-core-routes --site=all',
-    'app/console sonata:page:create-snapshots --site=all',
+    'app/console sonata:page:update-core-routes --site=all --env=prod --no-debug',
+    'app/console sonata:page:create-snapshots --site=all --env=prod --no-debug',
     'app/console assets:install --symlink web',
-    'app/console cache:warmup --env=prod --no-debug',
     'app/console cache:create-cache-class --env=prod --no-debug',
     'app/console init:acl',
     'app/console sonata:admin:setup-acl',
