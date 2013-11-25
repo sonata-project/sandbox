@@ -1,5 +1,10 @@
 #!/bin/sh
 
+if [ ! -f  "composer.json" ]; then
+    echo "The script must be started at the root of a project with a composer.json file"
+    exit 1
+fi
+
 rm -rf junit
 
 # Execute PHPUnit test on the targetted folder
