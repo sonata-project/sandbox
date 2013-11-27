@@ -47,6 +47,7 @@ class LoadPageData extends AbstractFixture implements ContainerAwareInterface, O
         $this->createProductPage($site);
         $this->createBasketPage($site);
         $this->createUserPage($site);
+        $this->createLegalNotesPage($site);
 
         $this->createSubSite();
     }
@@ -429,6 +430,76 @@ CONTENT
 
 
         $pageManager->save($userPage);
+    }
+
+    /**
+     * @param SiteInterface $site
+     */
+    public function createLegalNotesPage(SiteInterface $site)
+    {
+        $pageManager = $this->getPageManager();
+        $blockManager = $this->getBlockManager();
+        $blockInteractor = $this->getBlockInteractor();
+
+        $page = $pageManager->create();
+        $page->setSlug('/legal-notes');
+        $page->setUrl('/legal-notes');
+        $page->setName('Legal notes');
+        $page->setEnabled(true);
+        $page->setDecorate(1);
+        $page->setRequestMethod('GET|POST|HEAD|DELETE|PUT');
+        $page->setTemplateCode('default');
+        $page->setRouteName('page_slug');
+        $page->setSite($site);
+        $page->setParent($this->getReference('page-homepage'));
+
+        $page->addBlocks($content = $blockInteractor->createNewContainer(array(
+            'enabled' => true,
+            'page' => $page,
+            'code' => 'content_top',
+        )));
+
+        // add the content block filled with text
+        $content->addChildren($text = $blockManager->create());
+        $text->setType('sonata.block.service.text');
+        $text->setSetting('content', <<<CONTENT
+
+<h2>Legal notes</h2>
+<p>Sonata relays on the following open source libraries.</p>
+<section>
+    <h3>Backend and core</h3>
+    <ul>
+        <li><a href="http://symfony.com" title="Symfony, PHP framework official website">Symfony</a></li>
+        <li><a href="http://twig.sensiolabs.org/" title="Twig, PHP template engine">Twig</a></li>
+        <li><a href="http://www.doctrine-project.org/" title="Doctrine, PHP ORM">Doctrine</a></li>
+    </ul>
+</section>
+<section>
+    <h3>Frontend</h3>
+    <ul>
+        <li><a href="http://jquery.com/" title="jQuery javascript library">jQuery</a></li>
+        <li><a href="http://getbootstrap.com/" title="Twitter Bootstrap CSS and Javascript framework">Twitter Bootstrap</a></li>
+        <li><a href="http://glyphicons.com/" title="GLYPHICONS icons">GLYPHICONS free</a></li>
+    </ul>
+</section>
+<section>
+    <h3>Testing and miscellaneous tools</h3>
+    <ul>
+        <li><a href="https://www.github.com" title="Github, code distribution tool">Github</a></li>
+        <li><a href="http://getcomposer.org" title="Composer, dependency management tool">Composer</a></li>
+        <li><a href="https://packagist.org/" title="Packagist, PHP packages repository">Packagist</a></li>
+        <li><a href="https://travis-ci.org/" title="Travis CI, continuous integration tool">Travis CI</a></li>
+        <li><a href="http://phpunit.de/" title="PHPUnit, PHP unit testing library">PHPUnit</a></li>
+        <li><a href="http://behat.org/" title="Behat, test driven development tool">Behat</a></li>
+    </ul>
+</section>
+CONTENT
+        );
+        $text->setPosition(1);
+        $text->setEnabled(true);
+        $text->setPage($page);
+
+        $pageManager->save($page);
     }
 
     /**

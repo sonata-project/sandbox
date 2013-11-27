@@ -102,6 +102,15 @@ class Builder extends ContainerAware
 
         $menu->addChild('Admin', array('route' => 'sonata_admin_redirect'));
 
+        if ($isFooter) {
+            $menu->addChild('Legal notes', array(
+                'route' => 'page_slug',
+                'routeParameters' => array(
+                    'path' => '/legal-notes',
+                )
+            ));
+        }
+
         return $menu;
     }
 
