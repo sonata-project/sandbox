@@ -1,0 +1,53 @@
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+
+<div class="alert alert-default">
+    <strong>This is the basket delivery address step page</strong>
+    <div>Feel free to override it. This file can be found in <code>SonataBasketBundle:Basket:delivery_address_step.html.twig</code>.</div>
+</div>
+
+<h1>{{ 'sonata.basket.title_delivery_step_basket'|trans({}, 'SonataBasketBundle') }}</h1>
+
+{% form_theme form 'SonataBasketBundle:Form:label.html.twig' %}
+
+{{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+{{ form_errors(form) }}
+
+<div class="row-fluid">
+    {% if form.addresses is defined %}
+        <div class="span6">
+            <h4>{% trans from 'SonataBasketBundle' %}sonata.basket.delivery_use_existing_title{% endtrans %}</h4>
+            {% for address in form.addresses %}
+                <div class="well">
+                    <label for="{{ address.vars.id }}" class="radio">
+                        {{ form_widget(address, {'checked': (address.vars.value in (form.addresses.vars.preferred_choices|keys))}) }}
+                        {{ address.vars.label|raw }}
+                    </label>
+                </div>
+            {% endfor %}
+
+            {{ form_widget(form.useSelected) }}
+        </div>
+        <div class="span6">
+            <h4>{% trans from 'SonataBasketBundle' %}sonata.basket.delivery_create_new_title{% endtrans %}</h4>
+            {{ form_rest(form) }}
+        </div>
+    {% else %}
+        {{ form_rest(form) }}
+    {% endif %}
+</div>
+
+<div class="well">
+    <a href="{{ url('sonata_basket_index') }}" class="btn"><i class="icon-arrow-left"></i>&nbsp;{% trans from 'SonataBasketBundle' %}sonata.basket.link_previous_step{% endtrans %}</a>
+
+    <button type="submit" class="btn btn-primary pull-right">{{ 'sonata.basket.btn_update_delivery_step'|trans({}, 'SonataBasketBundle') }}&nbsp;<i class="icon-arrow-right icon-white"></i></button>
+</div>
+{{ form_end(form) }}

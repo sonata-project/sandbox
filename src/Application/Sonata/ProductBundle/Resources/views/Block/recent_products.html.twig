@@ -1,0 +1,47 @@
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+{% extends sonata_block.templates.block_base %}
+
+{% block block %}
+    <div class="row">
+        {% if settings.title %}
+            <h3 class="">{{ settings.title }}</h3>
+        {% endif %}
+
+        <div class="alert alert-default">
+            <strong>This is the recent product block</strong>
+            <div>Feel free to override it. This file can be found in <code>SonataProductBundle:Block:recent_produts.html.twig</code>.</div>
+        </div>
+
+        {% if products|length > 0 %}
+            <ul class="thumbnails">
+                {% for product in products %}
+                    {% if product.hasEnabledVariations or not product.hasVariations%}
+                        <li class="span4">
+                            <a href="{{ url('sonata_product_view', {'productId': product.id, 'slug': product.slug}) }}" class="thumbnail">
+                                {% if product.image %}
+                                    {% thumbnail product.image, 'preview' with {'itemprop': 'image'} %}
+                                {% endif %}
+                                {{ product.name }}
+                                —
+                                {{ product.price|number_format_currency(currency) }}
+                            </a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+
+            <a href="{{ url('sonata_category_index') }}"> {{ 'view_all_products'|trans({}, 'SonataProductBundle') }}</a>
+        {% else %}
+            <p>{{ 'no_product_found'|trans({}, 'SonataProductBundle') }}</p>
+        {% endif %}
+    </div>
+{% endblock %}

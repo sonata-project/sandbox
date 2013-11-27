@@ -1,0 +1,27 @@
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+
+<div class="alert alert-default">
+    <strong>This is the media gallery view page</strong>
+    <div>Feel free to override it. This template can be found in <code>SonataMediaBundle:Gallery:view.html.twig</code>.</div>
+</div>
+
+<h1>{{ gallery.name }}</h1>
+
+<div class="sonata-media-gallery-media-list">
+    {% for galleryHasMedia in gallery.GalleryHasMedias %}
+        <div class="sonata-media-gallery-media-item">
+            <a class="sonata-media-gallery-media-item-link" href="{{ url('sonata_media_view', {'id': galleryHasMedia.media|sonata_urlsafeid }) }}">
+                {% thumbnail galleryHasMedia.media, gallery.defaultFormat %}
+            </a>
+        </div>
+    {% endfor %}
+</div>

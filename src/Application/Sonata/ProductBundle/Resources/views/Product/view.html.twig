@@ -1,0 +1,136 @@
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+
+{% block product %}
+    <!-- Begin product display -->
+    <div class="row-fluid" itemscope itemtype="http://schema.org/Product">
+
+        {% block product_errors %}
+            {%  if not product.hasVariations and product.getStock == 0 %}
+                <div class="alert alert-error">
+                    {% trans from 'SonataProductBundle' %}product_out_of_stock{% endtrans %}
+                </div>
+            {% endif %}
+        {% endblock %}
+
+        <div class="alert alert-default">
+            <strong>This is the product detail page</strong>
+            <div>Feel free to override it. This file can be found in <code>SonataProductBundle:Product:view.html.twig</code>.</div>
+        </div>
+
+        <h2 itemprop="name">{% block product_title %}{{ product.name }}{% endblock %}</h2>
+
+        <!-- Begin product details -->
+        <div class="span8">
+
+            {% block product_details %}
+                <div class="row-fluid">
+                    {% block product_image %}{% thumbnail product.image, 'preview' with {'itemprop':'image', 'class': 'img-rounded', 'style': 'float:left; margin: 0 10px 10px 0;'} %}{% endblock%}
+                    <span itemprop="description">
+                {% block product_description %}{{ product.rawDescription|raw }}{% endblock %}
+            </span>
+                </div>
+
+                <div class="row-fluid">
+                    {% block product_gallery %}Block 'product_gallery' to override{% endblock %}
+                </div>
+            {% endblock %}
+
+        </div>
+        <!-- End product details -->
+
+        <!-- Begin right product display -->
+        <div class="span4 well">
+
+            {% block product_right %}
+                <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+
+                    {% block product_properties %}
+                        <div class="row-fluid">
+                            <dl class="dl-horizontal" style="margin-bottom: 0;">
+
+                                {% block product_properties_before_price %}{% endblock %}
+
+                                <dt style="width: auto;">
+
+                                    {% block product_price_label %}
+                                        {% if product.hasVariations %}
+                                            {% trans from 'SonataProductBundle' %}product_variation_min_price{% endtrans %}
+                                        {% else %}
+                                            {% trans from 'SonataProductBundle' %}product_price{% endtrans %}
+                                        {% endif %}
+                                    {% endblock %}
+
+                                </dt>
+                                <dd itemprop="price" style="margin-left: 110px;">
+
+                                    {% block product_price_price %}
+                                        {% if product.hasEnabledVariations %}
+                                            {{ product.cheaperVariation.price|number_format_currency(currency) }}
+                                        {% else %}
+                                            {{ product.price|number_format_currency(currency) }}
+                                        {% endif %}
+                                    {% endblock %}
+
+                                </dd>
+
+                                {% block product_properties_after_price %}{% endblock %}
+
+                            </dl>
+                        </div>
+                    {% endblock %}
+
+                    {% block product_variations %}
+                        {% if product.hasEnabledVariations %}
+                            {% block variations_label %}<h4>{% trans from 'SonataProductBundle' %}product_variations{% endtrans %}</h4>{% endblock %}
+
+                            {% block product_variations_list %}
+                                {% include "SonataProductBundle:Product:list_variations.html.twig" with {variations: product.enabledVariations} %}
+                            {% endblock %}
+
+                        {% endif %}
+                    {% endblock %}
+
+                    {% block product_delivery %}
+                        <div>
+                            Block 'product_delivery' to override
+                        </div>
+                    {% endblock %}
+
+                    {% if product.isSalable %}
+
+                        <hr/>
+
+                        {% block product_basket %}
+                            {% include "SonataBasketBundle:Basket:add_product_form.html.twig" %}
+                        {% endblock %}
+
+                    {% endif %}
+                </div>
+            {% endblock %}
+
+        </div>
+        <!-- End right product display -->
+
+    </div>
+    <!-- End product display -->
+{% endblock %}
+
+
+{% block product_cross %}
+    <!-- Cross selling -->
+    <div class="row">
+        {% block product_cross_selling %}
+            {% include "SonataProductBundle:Product:view_similar.html.twig" %}
+        {% endblock %}
+    </div>
+    <!-- End Cross selling -->
+{% endblock %}

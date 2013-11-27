@@ -1,0 +1,25 @@
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+
+<div class="alert alert-default">
+    <strong>This the categories page</strong>
+    <div>Feel free to override it. This file can be found in <code>SonataProductBundle:Category:index.html.twig</code>.</div>
+</div>
+
+<h1>{% trans from 'SonataProductBundle' %}title_category_list{% endtrans %}</h1>
+
+<ul>
+    {% for category in pager.getResults %}
+        {% if category.getEnabled %}
+            <li><a href="{{ url('sonata_category_view', {'categoryId': category.id, 'slug': category.slug}) }}">{{ category.name }}</a></li>
+        {% endif %}
+    {% endfor %}
+</ul>

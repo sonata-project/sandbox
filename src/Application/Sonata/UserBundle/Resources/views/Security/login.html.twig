@@ -5,6 +5,11 @@
     <div class="alert alert-error">{{ error|trans({}, 'FOSUserBundle') }}</div>
 {% endif %}
 
+<div class="alert alert-default">
+    <strong>This is the user login page</strong>
+    <div>Feel free to override it. This file can be found in <code>SonataUserBundle:Security:login.html.twig</code>.</div>
+</div>
+
 <form action="{{ path("fos_user_security_check") }}" method="post" class="form-horizontal">
     <div class="control-group">
         <label class="control-label" for="username">{{ 'security.login.username'|trans({}, 'FOSUserBundle') }}</label>

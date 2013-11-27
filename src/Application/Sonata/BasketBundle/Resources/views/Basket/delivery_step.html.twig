@@ -1,0 +1,37 @@
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+
+<div class="alert alert-default">
+    <strong>This is the basket delivery step page</strong>
+    <div>Feel free to override it. This file can be found in <code>SonataBasketBundle:Basket:delivery_step.html.twig</code>.</div>
+</div>
+
+<h1>{{ 'sonata.basket.title_delivery_step_basket'|trans({}, 'SonataBasketBundle') }}</h1>
+
+<h4>{{ 'sonata.basket.title_address_delivery_step_basket'|trans({}, 'SonataBasketBundle') }}</h4>
+{{ basket.deliveryaddress.getFullAddress("<br />")|raw }}
+
+<form action="{{ url('sonata_basket_delivery') }}" method="POST" >
+    <div>
+        <h2>{{ 'sonata.basket.title_delivery_methods'|trans({}, 'SonataBasketBundle') }}</h2>
+
+        {{ form_errors(form.deliveryMethod) }}
+        {{ form_widget(form.deliveryMethod) }}
+    </div>
+
+    {{ form_rest(form) }}
+
+    <div class="well">
+        <a href="{{ url('sonata_basket_delivery_address') }}" class="btn"><i class="icon-arrow-left"></i>&nbsp;{% trans from 'SonataBasketBundle' %}sonata.basket.link_previous_step{% endtrans %}</a>
+
+        <button type="submit" class="btn btn-primary pull-right">{{ 'sonata.basket.btn_update_delivery_step'|trans({}, 'SonataBasketBundle') }}&nbsp;<i class="icon-arrow-right icon-white"></i></button>
+    </div>
+</form>

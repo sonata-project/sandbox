@@ -1,0 +1,29 @@
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+{% extends "SonataUserBundle:Profile:action.html.twig" %}
+
+{% block sonata_profile_title %}{% trans from 'SonataCustomerBundle' %}address_new{% endtrans %}{% endblock %}
+
+{% block sonata_profile_content %}
+    <div class="alert alert-default">
+        <strong>This is the custom address creation page</strong>
+        <div>Feel free to override it. This file can be found in <code>SonataCustomerBundle:Addresses:new.html.twig</code>.</div>
+    </div>
+
+    {% form_theme form 'SonataBasketBundle:Form:label.html.twig' %}
+
+    {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+    {{ form_errors(form) }}
+    {{ form_rest(form) }}
+    <button type="submit" class="btn btn-success">{{ 'sonata.customer.address.save'|trans({}, 'SonataCustomerBundle') }}</button>
+    {{ form_end(form) }}
+
+{% endblock %}

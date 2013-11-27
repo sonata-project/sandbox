@@ -1,0 +1,45 @@
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+
+{% extends "SonataUserBundle:Profile:action.html.twig" %}
+
+{% block sonata_profile_title %}{% trans from 'SonataOrderBundle' %}order_list{% endtrans %}{% endblock %}
+
+{% block sonata_profile_content %}
+    <div class="alert alert-default">
+        <strong>This is the customer order list page</strong>
+        <div>Feel free to override it. This template can be found in <code>SonataOrderBundle:Order:index.html.twig</code>.</div>
+    </div>
+
+    {% if orders|length > 0 %}
+
+        <table class="table table-bordered">
+            <tr>
+                <th>{% trans from 'SonataOrderBundle' %}sonata.order.view.reference{% endtrans %}</th>
+                <th>{% trans from 'SonataOrderBundle' %}sonata.order.view.date{% endtrans %}</th>
+                <th>{% trans from 'SonataOrderBundle' %}sonata.order.view.status{% endtrans %}</th>
+                <th>{% trans from 'SonataOrderBundle' %}sonata.order.view.total_inc{% endtrans %}</th>
+            </tr>
+
+            {% for order in orders %}
+                <tr>
+                    <td><a href="{{ url('sonata_order_view', {'reference' : order.reference}) }}">{{ order.reference }}</a></td>
+                    <td>{{ order.createdAt|date('Y-m-d H:i:s') }}</td>
+                    <td>{{ order.statusName|trans({}, 'SonataOrderBundle') }}</td>
+                    <td class="number">{{ order.totalInc|number_format_currency(order.currency.label) }}</td>
+                </tr>
+            {% endfor %}
+
+        </table>
+    {% else %}
+        <p>{% trans from 'SonataOrderBundle' %}sonata.order.list.no_orders{% endtrans %}</p>
+    {% endif %}
+{% endblock %}
