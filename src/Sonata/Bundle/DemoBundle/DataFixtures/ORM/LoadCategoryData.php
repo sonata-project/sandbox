@@ -115,8 +115,8 @@ class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterfac
         // Sonata sub-category
         $sonata = $this->getCategoryManager()->create();
         $sonata->setParent($training);
-        $sonata->setName('Sonata');
-        $sonata->setSlug('sonata');
+        $sonata->setName('Sonata trainings');
+        $sonata->setSlug('sonata-trainings');
         $sonata->setDescription('Learn how to use Sonata.');
         $sonata->setEnabled(true);
         $this->getCategoryManager()->save($sonata);
