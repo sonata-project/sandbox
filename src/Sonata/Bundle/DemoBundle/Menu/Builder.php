@@ -44,7 +44,7 @@ class Builder extends ContainerAware
 
         $menu = $factory->createItem('main', $menuOptions);
 
-        $menu->addChild('News', array('route' => 'sonata_news_home'));
+        $menu->addChild('Blog', array('route' => 'sonata_news_home'));
 
         $shopMenuParams = array('route' => 'sonata_category_index');
 
