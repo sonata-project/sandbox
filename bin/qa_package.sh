@@ -44,7 +44,7 @@ tar -czf build/$name-$version.tar.gz \
     .
 
 echo "create zip archive"
-zip -9 -r \
+zip -9 -q -r \
     --exclude=app/config/parameters.yml \
     --exclude=*.svn* \
     --exclude=*.git*  \
