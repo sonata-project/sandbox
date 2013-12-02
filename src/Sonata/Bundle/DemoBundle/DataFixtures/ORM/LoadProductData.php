@@ -284,6 +284,25 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $manager->persist($phpDisabledChildBeginner);
         $this->setReference('php_disabled_child_training_product_beginner', $phpDisabledChildBeginner);
 
+        // Training variation with a date
+        $datedTraining = $this->generateDefaultTrainingBeginnerVariation($trainingProvider, $sonataTraining);
+        $datedTraining->setName('Sonata training on Jan 16th, 2014');
+        $datedTraining->setSku('SONATA_DATED_TRAINING_20140116_BEGINNER');
+        $datedTraining->setDescription('Beginner level Sonata training that will occur on 16th of January. Be sure to book your spot now, only 20 applicants will be allowed to join the session !');
+        $datedTraining->setRawDescription('Beginner level Sonata training that will occur on 16th of January. Be sure to book your spot now, only 20 applicants will be allowed to join the session !');
+        $datedTraining->setEnabled(true);
+        $datedTraining->setPrice(900.00);
+        $datedTraining->setStock(20);
+        $datedTraining->setDuration('2 days');
+        $datedTraining->setStartDate(new \DateTime('2014-01-16 09:00:00'));
+
+        $manager->persist($datedTraining);
+
+        $this->addProductToCategory($datedTraining, $sonataCategory, $manager);
+        $this->addProductDeliveries($datedTraining, $manager);
+        $this->addProductToCollection($datedTraining, $phpCollection, $manager);
+
+
         $manager->flush();
     }
 

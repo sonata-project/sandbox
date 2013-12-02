@@ -67,3 +67,12 @@ Feature: Products
         Then the response status code should be 404
         When I go to "shop/product/15/php-disabled-child-training"
         Then the response status code should be 404
+
+    Scenario: Check the display of starting date if provided
+        When I go to "shop/product/16/sonata-trainings"
+        Then I should see "January 16, 2014 09:00"
+
+    Scenario: Check the non display of starting date and related label if value is not set
+        When I go to "shop/product/13/php-working-training"
+        Then I should not see "January 16, 2014 09:00"
+        And I should not see "Starting date"

@@ -46,6 +46,7 @@ class TrainingProductProvider extends BaseProductProvider
                         'translation_domain' => 'SonataProductBundle',
                     ))
                     ->add('instructorName')
+                    ->add('startDate')
                     ->add('duration')
                 ->end();
         }

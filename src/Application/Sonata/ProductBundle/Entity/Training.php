@@ -35,6 +35,11 @@ class Training extends Product
     protected $instructorName;
 
     /**
+     * @var \DateTime
+     */
+    protected $startDate;
+
+    /**
      * @var string
      */
     protected $duration;
@@ -85,6 +90,22 @@ class Training extends Product
     public function getInstructorName()
     {
         return $this->instructorName;
+    }
+
+    /**
+     * @param \DateTime $startDate
+     */
+    public function setStartDate($startDate)
+    {
+        $this->startDate = $startDate;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getStartDate()
+    {
+        return $this->startDate;
     }
 
     /**

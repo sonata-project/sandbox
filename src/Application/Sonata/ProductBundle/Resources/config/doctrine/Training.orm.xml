@@ -23,6 +23,6 @@
         <field name="level"          column="level"           type="string" nullable="false" />
         <field name="instructorName" column="instructor_name" type="string" nullable="false" />
         <field name="duration"       column="duration"        type="string" nullable="false" />
-
+        <field name="startDate"      column="start_date"      type="datetime" nullable="false" />
     </entity>
 </doctrine-mapping>

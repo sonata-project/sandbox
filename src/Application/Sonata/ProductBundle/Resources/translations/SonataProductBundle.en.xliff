@@ -38,6 +38,14 @@
                 <source>form.label_duration</source>
                 <target>Duration</target>
             </trans-unit>
+            <trans-unit id="form.label_start_date">
+                <source>form.label_start_date</source>
+                <target>Starting date</target>
+            </trans-unit>
+            <trans-unit id="training.start_date_title">
+                <source>training.start_date_title</source>
+                <target>Starting date</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

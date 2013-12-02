@@ -34,9 +34,13 @@
                 <source>form.label_instructor_name</source>
                 <target>Formateur</target>
             </trans-unit>
-            <trans-unit id="form.label_duration">
-                <source>form.label_duration</source>
-                <target>Durée</target>
+            <trans-unit id="form.label_start_date">
+                <source>form.label_start_date</source>
+                <target>Date de début</target>
+            </trans-unit>
+            <trans-unit id="training.start_date_title">
+                <source>training.start_date_title</source>
+                <target>Date de début</target>
             </trans-unit>
         </body>
     </file>
