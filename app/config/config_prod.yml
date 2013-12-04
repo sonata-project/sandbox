@@ -1,6 +1,10 @@
 imports:
     - { resource: config.yml }
 
+framework:
+    validation:
+        cache:              apc
+
 doctrine:
     orm:
         entity_managers:
