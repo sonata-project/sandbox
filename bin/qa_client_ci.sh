@@ -26,7 +26,6 @@ run_test() {
 
         status=$?
 
-        echo "${1} return $status"
         if [ $status -ne 0 ]; then
             error_code=1
         fi
