@@ -25,7 +25,7 @@ if (is_file(__DIR__.'/../parameters.demo.yml')) {
 if (!is_file(__DIR__.'/app/config/parameters.yml')) {
     $output->writeln('<error>no default app/config/parameters.yml file</error>');
 
-    exit(0);
+    exit(1);
 }
 /**
  * @param $commands
@@ -83,3 +83,4 @@ if (!$success) {
 
 $output->writeln('<info>Done!</info>');
 
+exit(0);
