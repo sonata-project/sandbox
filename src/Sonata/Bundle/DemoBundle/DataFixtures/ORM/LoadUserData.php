@@ -85,6 +85,14 @@ class LoadUserData extends AbstractFixture implements ContainerAwareInterface, O
 
         $manager->updateUser($user);
 
+        // Behat testing purpose
+        $user = $manager->createUser();
+        $user->setUsername('behat_user');
+        $user->setEmail($faker->safeEmail);
+        $user->setEnabled(true);
+        $user->setPlainPassword('behat_user');
+
+        $manager->updateUser($user);
     }
 
     /**
