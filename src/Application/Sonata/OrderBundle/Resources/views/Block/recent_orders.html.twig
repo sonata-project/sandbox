@@ -24,13 +24,7 @@ file that was distributed with this source code.
         {% if orders|length > 0 %}
             <table class="sonata-order-block-order-container table table-condensed">
                 {% for order in orders %}
-                    {% set rowClass = 'error' %}
-                    {% if order.status is constant('Sonata\\Component\\Order\\OrderInterface::STATUS_VALIDATED') %}
-                        {% set rowClass = 'success' %}
-                    {% elseif order.status is constant('Sonata\\Component\\Order\\OrderInterface::STATUS_OPEN') or order.status is constant('Sonata\\Component\\Order\\OrderInterface::STATUS_PENDING') %}
-                        {% set rowClass = 'info' %}
-                    {% endif %}
-                    <tr class="{{ rowClass }}">
+                    <tr>
                         {% if context.getSetting('mode') == 'admin' %}
                             <td><a href="{{ url('admin_sonata_order_order_edit', { 'id': order.id }) }}">{{ order.reference }}</a></td>
                         {% else %}
@@ -38,6 +32,7 @@ file that was distributed with this source code.
                         {% endif %}
                         <td>{{ order.statusName|trans({}, 'SonataOrderBundle') }}</td>
                         <td class="number">{{ order.totalInc|number_format_currency(order.currency.label) }}</td>
+                        <td><span class="label{{ order|status_class(null, 'important') ? ' label-'~order|status_class(null, 'important') : '' }}">{{ order.statusName|trans([], 'SonataOrderBundle') }}</span></td>
                         <td>{{ order.createdAt|date() }}</td>
                     </tr>
                 {% endfor %}
