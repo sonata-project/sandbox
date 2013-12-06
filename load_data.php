@@ -72,7 +72,7 @@ $success = execute_commands(array(
     'app/console assets:install --symlink web',
     'app/console cache:create-cache-class --env=prod --no-debug',
     'app/console sonata:admin:setup-acl',
-    'app/console sonata:admin:generate-object-acl'
+    'php -d memory_limit=1024M app/console sonata:admin:generate-object-acl'
 ), $output);
 
 if (!$success) {
