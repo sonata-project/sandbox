@@ -11,18 +11,36 @@ if [ ! -f  "composer.json" ]; then
     exit 1
 fi
 
+extended=false
+
+if [ "$1" = "--extended" ]; then
+  extended=true
+fi
+
 if [ ! -d "build" ]; then
     mkdir build
 fi
 
 rm -rf build/junit
 
+if $extended ; then
+    rm -rf build/coverage
+    rm -rf build/clover
+fi
+
 error_code=0
 
 # Execute PHPUnit test on the targetted folder
 run_test() {
     if [ -f "${1}/phpunit.xml.dist" ]; then
-        phpunit -c ${1} --log-junit build/junit/`basename ${1}`.xml
+
+        extra=""
+
+        if $extended ; then
+            extra="--coverage-html build/coverage/`basename ${1}` --coverage-clover build/clover/`basename ${1}`.xml"
+        fi
+
+        phpunit -c ${1} ${extra} --log-junit build/junit/`basename ${1}`.xml
 
         status=$?
 
@@ -47,6 +65,11 @@ run_tests src/MyCompanyName/*                                  # add your own te
 
 if [ $error_code -ne 0 ]; then
     echo "Errors occur when running unit tests"
+
+    exit 1
 fi
 
-exit $error_code
+echo ""
+echo "Tests suites executed successfully!!!"
+
+exit 0
