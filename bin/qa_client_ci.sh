@@ -45,6 +45,7 @@ run_test() {
         status=$?
 
         if [ $status -ne 0 ]; then
+            echo "Unit Test Suite has failed!"
             error_code=1
         fi
     fi
