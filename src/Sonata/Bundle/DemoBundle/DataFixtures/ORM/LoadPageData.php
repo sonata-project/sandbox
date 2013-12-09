@@ -173,8 +173,6 @@ CONTENT
         $blockManager = $this->getBlockManager();
         $blockInteractor = $this->getBlockInteractor();
 
-        $faker = $this->getFaker();
-
         $this->addReference('page-homepage', $homepage = $pageManager->create());
         $homepage->setSlug('/');
         $homepage->setUrl('/');
@@ -223,43 +221,24 @@ CONTENT
         $text->setPage($homepage);
 
 
-        $homepage->addBlocks($leftCol = $blockInteractor->createNewContainer(array(
-            'enabled' => true,
-            'page' => $homepage,
-            'code' => 'left_col',
-        )));
-
-        $leftCol->setName('Left col container');
-
-        // add recents products
-        $leftCol->addChildren($products = $blockManager->create());
-        $products->setType('sonata.product.block.recent_products');
-        $products->setSetting('number', 3);
-        $products->setSetting('title', 'New products');
-        $products->setPosition(2);
-        $products->setEnabled(true);
-        $products->setPage($homepage);
-
-        $homepage->addBlocks($rightCol = $blockInteractor->createNewContainer(array(
-            'enabled' => true,
-            'page' => $homepage,
-            'code' => 'right_col',
-        )));
-
-        $rightCol->setName('Right col container');
-
-        // add recents articles
-        $rightCol->addChildren($news = $blockManager->create());
-        $news->setType('sonata.news.block.recent_posts');
-        $news->setPosition(3);
-        $news->setEnabled(true);
-        $news->setPage($homepage);
-
         $homepage->addBlocks($content = $blockInteractor->createNewContainer(array(
             'enabled' => true,
             'page' => $homepage,
             'code' => 'content',
         )));
+        $content->setName('The content container');
+        $blockManager->save($content);
+
+
+        // add recent products
+        $content->addChildren($newProductsBlock = $blockManager->create());
+        $newProductsBlock->setType('sonata.product.block.recent_products');
+        $newProductsBlock->setSetting('number', 4);
+        $newProductsBlock->setSetting('title', 'New products');
+        $newProductsBlock->setPosition(1);
+        $newProductsBlock->setEnabled(true);
+        $newProductsBlock->setPage($homepage);
+        // End of recent products
 
         // add a gallery
         $content->addChildren($gallery = $blockManager->create());
@@ -268,29 +247,9 @@ CONTENT
         $gallery->setSetting('title', 'Media gallery');
         $gallery->setSetting('context', 'default');
         $gallery->setSetting('format', 'big');
-        $gallery->setPosition(4);
+        $gallery->setPosition(2);
         $gallery->setEnabled(true);
         $gallery->setPage($homepage);
-
-        $content->addChildren($text = $blockManager->create());
-        $text->setType('sonata.block.service.text');
-
-        $text->setPosition(5);
-        $text->setEnabled(true);
-        $text->setSetting('content', <<<CONTENT
-<h3>Sonata's bundles</h3>
-
-<p>
-    Some bundles does not have direct visual representation as they provide services. However, others does have
-    a lot to show :
-
-    <ul>
-        <li><a href="/admin/dashboard">Admin (SonataAdminBundle)</a></li>
-        <li><a href="/blog">Blog (SonataNewsBundle)</a></li>
-    </ul>
-</p>
-CONTENT
-);
 
         $pageManager->save($homepage);
     }

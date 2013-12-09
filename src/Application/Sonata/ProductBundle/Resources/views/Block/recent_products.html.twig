@@ -11,11 +11,19 @@ file that was distributed with this source code.
 {% extends sonata_block.templates.block_base %}
 
 {% block block %}
+<section>
     <div class="row">
-        {% if settings.title %}
-            <h3 class="">{{ settings.title }}</h3>
-        {% endif %}
+        <div class="span10">
+            {% if settings.title %}
+                <h3>{{ settings.title }}</h3>
+            {% endif %}
+        </div>
+        <div class="span2" style="text-align: right">
+            <a href="{{ url('sonata_category_index') }}"> {{ 'view_all_products'|trans({}, 'SonataProductBundle') }}</a>
+        </div>
+    </div>
 
+    <div class="row">
         <div class="alert alert-default">
             <strong>This is the recent product block</strong>
             <div>Feel free to override it. This file can be found in <code>SonataProductBundle:Block:recent_produts.html.twig</code>.</div>
@@ -24,24 +32,24 @@ file that was distributed with this source code.
         {% if products|length > 0 %}
             <ul class="thumbnails">
                 {% for product in products %}
-                    {% if product.hasEnabledVariations or not product.hasVariations%}
-                        <li class="span4">
+                    {% if product.hasEnabledVariations or not product.hasVariations %}
+                        <li class="span3">
                             <a href="{{ url('sonata_product_view', {'productId': product.id, 'slug': product.slug}) }}" class="thumbnail">
                                 {% if product.image %}
                                     {% thumbnail product.image, 'preview' with {'itemprop': 'image'} %}
                                 {% endif %}
-                                {{ product.name }}
-                                —
-                                {{ product.price|number_format_currency(currency) }}
+                                <div class="row">{{ product.name }}</div>
+                                <div class="row" style="text-align: right">
+                                    {{ product.price|number_format_currency(currency) }}
+                                </div>
                             </a>
                         </li>
                     {% endif %}
                 {% endfor %}
             </ul>
-
-            <a href="{{ url('sonata_category_index') }}"> {{ 'view_all_products'|trans({}, 'SonataProductBundle') }}</a>
         {% else %}
             <p>{{ 'no_product_found'|trans({}, 'SonataProductBundle') }}</p>
         {% endif %}
     </div>
+</section>
 {% endblock %}
