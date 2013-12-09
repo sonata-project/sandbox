@@ -32,7 +32,7 @@ file that was distributed with this source code.
                         {% endif %}
                         <td>{{ order.statusName|trans({}, 'SonataOrderBundle') }}</td>
                         <td class="number">{{ order.totalInc|number_format_currency(order.currency.label) }}</td>
-                        <td><span class="label{{ order|status_class(null, 'important') ? ' label-'~order|status_class(null, 'important') : '' }}">{{ order.statusName|trans([], 'SonataOrderBundle') }}</span></td>
+                        <td><span class="label{{ order|sonata_status_class(null, 'important') ? ' label-'~order|sonata_status_class(null, 'important') : '' }}">{{ order.statusName|trans([], 'SonataOrderBundle') }}</span></td>
                         <td>{{ order.createdAt|date() }}</td>
                     </tr>
                 {% endfor %}

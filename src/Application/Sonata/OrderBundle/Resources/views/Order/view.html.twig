@@ -61,15 +61,15 @@ file that was distributed with this source code.
                         <table class="table table-bordered">
                             <tr>
                                 <th>{% trans from 'SonataOrderBundle' %}sonata.order.view.order_status{% endtrans %}</th>
-                                <td><span class="label{{ order|status_class(null, 'important') ? ' label-'~order|status_class(null, 'important') : '' }}">{{ order.statusName|trans({}, 'SonataOrderBundle') }}</span></td>
+                                <td><span class="label{{ order|sonata_status_class(null, 'important') ? ' label-'~order|sonata_status_class(null, 'important') : '' }}">{{ order.statusName|trans({}, 'SonataOrderBundle') }}</span></td>
                             </tr>
                             <tr>
                                 <th>{% trans from 'SonataOrderBundle' %}sonata.order.view.payment_status{% endtrans %}</th>
-                                <td><span class="label{{ order|status_class('payment', 'important') ? ' label-'~order|status_class('payment', 'important') : '' }}">{{ order.paymentStatusName|trans({}, 'SonataPaymentBundle') }}</span></td>
+                                <td><span class="label{{ order|sonata_status_class('payment', 'important') ? ' label-'~order|sonata_status_class('payment', 'important') : '' }}">{{ order.paymentStatusName|trans({}, 'SonataPaymentBundle') }}</span></td>
                             </tr>
                             <tr>
                                 <th>{% trans from 'SonataOrderBundle' %}sonata.order.view.delivery_status{% endtrans %}</th>
-                                <td><span class="label{{ order|status_class('delivery', 'important') ? ' label-'~order|status_class('delivery', 'important') : '' }}">{{ order.deliveryStatusName|trans({}, 'SonataDeliveryBundle') }}</span></td>
+                                <td><span class="label{{ order|sonata_status_class('delivery', 'important') ? ' label-'~order|sonata_status_class('delivery', 'important') : '' }}">{{ order.deliveryStatusName|trans({}, 'SonataDeliveryBundle') }}</span></td>
                             </tr>
                         </table>
                     {% endblock %}
