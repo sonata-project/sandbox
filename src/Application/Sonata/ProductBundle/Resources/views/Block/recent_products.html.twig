@@ -33,14 +33,21 @@ file that was distributed with this source code.
             <ul class="thumbnails">
                 {% for product in products %}
                     {% if product.hasEnabledVariations or not product.hasVariations %}
-                        <li class="span3">
+                        <li class="span3" itemscope itemtype="http://schema.org/Product">
                             <a href="{{ url('sonata_product_view', {'productId': product.id, 'slug': product.slug}) }}" class="thumbnail">
-                                {% if product.image %}
-                                    {% thumbnail product.image, 'preview' with {'itemprop': 'image'} %}
-                                {% endif %}
-                                <div class="row">{{ product.name }}</div>
-                                <div class="row" style="text-align: right">
-                                    {{ product.price|number_format_currency(currency) }}
+                                <div style="min-height: 100px; max-height: 100px; text-align: center">
+                                    {% if product.image %}
+                                        {% thumbnail product.image, 'preview' with {'itemprop': 'image'} %}
+                                    {% endif %}
+                                </div>
+                                <div class="row" itemprop="name" style="min-height: 40px; max-height: 40px">{{ product.name }}</div>
+                                <div class="row" itemprop="price" style="text-align: right">
+                                    {% if not product.hasVariations %}
+                                        {{ product.price|number_format_currency(currency) }}
+                                    {% else %}
+                                        {% trans from 'SonataProductBundle' %}product_variation_min_price{% endtrans %}
+                                        {{ product.cheapestVariation.price|number_format_currency(currency) }}
+                                    {% endif %}
                                 </div>
                             </a>
                         </li>
