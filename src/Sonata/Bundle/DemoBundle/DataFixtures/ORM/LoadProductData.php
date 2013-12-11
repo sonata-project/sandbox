@@ -341,6 +341,10 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $productCategory->setProduct($product);
         $productCategory->setCategory($category);
 
+        if (!$product->hasOneMainCategory()) {
+            $productCategory->setMain(true);
+        }
+
         $product->addProductCategory($productCategory);
 
         $manager->persist($productCategory);
