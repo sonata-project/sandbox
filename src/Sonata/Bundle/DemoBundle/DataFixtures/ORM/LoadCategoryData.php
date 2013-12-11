@@ -41,7 +41,7 @@ class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterfac
     /**
      * Returns the Sonata MediaManager.
      *
-     * @return \Sonata\ClassificationBundle\Model\CategoryManagerInterface
+     * @return \Sonata\CoreBundle\Entity\ManagerInterface
      */
     public function getCategoryManager()
     {
