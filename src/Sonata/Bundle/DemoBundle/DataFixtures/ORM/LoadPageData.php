@@ -201,19 +201,20 @@ CONTENT
         $contentTop->addChildren($text = $blockManager->create());
         $text->setType('sonata.block.service.text');
         $text->setSetting('content', <<<CONTENT
-<h2>Welcome</h2>
+<div class="span3"><h2>Welcome</h2></div>
+<div class="span9">
+    <p>
+        This page is a demo of the Sonata Sandbox available on <a href="https://github.com/sonata-project/sandbox">github</a>.
+        This demo try to be interactive so you will be able to found out the different features provided by the Sonata's Bundle.
+    </p>
 
-<p>
-    This page is a demo of the Sonata Sandbox available on <a href="https://github.com/sonata-project/sandbox">github</a>.
-    This demo try to be interactive so you will be able to found out the different features provided by the Sonata's Bundle.
-</p>
-
-<p>
-    First this page and all the other pages are served by the <code>SonataPageBundle</code>, a page is composed by different
-    blocks. A block is linked to a service. For instance the current gallery is served by a
-    <a href="https://github.com/sonata-project/SonataMediaBundle/blob/master/Block/GalleryBlockService.php">Block service</a>
-    provided by the <code>SonataMediaBundle</code>.
-</p>
+    <p>
+        First this page and all the other pages are served by the <code>SonataPageBundle</code>, a page is composed by different
+        blocks. A block is linked to a service. For instance the current gallery is served by a
+        <a href="https://github.com/sonata-project/SonataMediaBundle/blob/master/Block/GalleryBlockService.php">Block service</a>
+        provided by the <code>SonataMediaBundle</code>.
+    </p>
+</div>
 CONTENT
 );
         $text->setPosition(1);
@@ -229,27 +230,25 @@ CONTENT
         $content->setName('The content container');
         $blockManager->save($content);
 
-
-        // add recent products
-        $content->addChildren($newProductsBlock = $blockManager->create());
-        $newProductsBlock->setType('sonata.product.block.recent_products');
-        $newProductsBlock->setSetting('number', 4);
-        $newProductsBlock->setSetting('title', 'New products');
-        $newProductsBlock->setPosition(1);
-        $newProductsBlock->setEnabled(true);
-        $newProductsBlock->setPage($homepage);
-        // End of recent products
-
-        // add a gallery
+        // Add media gallery block
         $content->addChildren($gallery = $blockManager->create());
         $gallery->setType('sonata.media.block.gallery');
         $gallery->setSetting('galleryId', $this->getReference('media-gallery')->getId());
         $gallery->setSetting('title', 'Media gallery');
         $gallery->setSetting('context', 'default');
         $gallery->setSetting('format', 'big');
-        $gallery->setPosition(2);
+        $gallery->setPosition(1);
         $gallery->setEnabled(true);
         $gallery->setPage($homepage);
+
+        // Add recent products block
+        $content->addChildren($newProductsBlock = $blockManager->create());
+        $newProductsBlock->setType('sonata.product.block.recent_products');
+        $newProductsBlock->setSetting('number', 4);
+        $newProductsBlock->setSetting('title', 'New products');
+        $newProductsBlock->setPosition(2);
+        $newProductsBlock->setEnabled(true);
+        $newProductsBlock->setPage($homepage);
 
         $pageManager->save($homepage);
     }
