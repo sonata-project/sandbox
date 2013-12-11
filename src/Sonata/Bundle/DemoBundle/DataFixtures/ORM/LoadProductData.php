@@ -11,6 +11,7 @@
 
 namespace Sonata\Bundle\DemoBundle\DataFixtures\ORM;
 
+use Application\Sonata\MediaBundle\Entity\GalleryHasMedia;
 use Application\Sonata\ProductBundle\Entity\Delivery;
 use Application\Sonata\ProductBundle\Entity\Goodie;
 use Application\Sonata\ProductBundle\Entity\Package;
@@ -23,6 +24,8 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Sonata\ClassificationBundle\Model\CategoryInterface;
 use Sonata\ClassificationBundle\Model\CollectionInterface;
 use Sonata\Component\Product\ProductInterface;
+use Sonata\MediaBundle\Model\GalleryInterface;
+use Sonata\MediaBundle\Model\MediaInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -132,7 +135,6 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $maximumAir->setStock(500);
         $maximumAir->setVat(19.6);
         $maximumAir->setEnabled(false);
-        $maximumAir->setImage($defaultMedia);
         $manager->persist($maximumAir);
         $this->setReference('maximum_air_sonata_product', $maximumAir);
 
@@ -163,6 +165,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
 
         // Training products
         $sonataTraining = new Training();
+        $sonataTraining->setSku('sonata-trainings');
         $sonataTraining->setName('Sonata trainings');
         $sonataTraining->setDescription('A training to learn Sonata bundles.');
         $sonataTraining->setRawDescription('A training to learn Sonata bundles.'.$this->getLorem());
@@ -209,6 +212,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
 
         // PHP disabled master products
         $phpDisabledTraining = new Training();
+        $phpDisabledTraining->setSku('php-disabled-training');
         $phpDisabledTraining->setName('PHP disabled training');
         $phpDisabledTraining->setDescription('A training to learn how to program using PHP.');
         $phpDisabledTraining->setRawDescription('A training to learn how to program using PHP.'.$this->getLorem());
@@ -235,6 +239,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
 
         // PHP disabled master products
         $phpWorkingTraining = new Training();
+        $phpWorkingTraining->setSku('php-working-training');
         $phpWorkingTraining->setName('PHP working training');
         $phpWorkingTraining->setDescription('A training to learn how to program using PHP.');
         $phpWorkingTraining->setRawDescription('A training to learn how to program using PHP.'.$this->getLorem());
@@ -261,6 +266,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
 
         // PHP disabled child
         $phpDisabledChild = new Training();
+        $phpDisabledChild->setSku('php-disabled-child-training');
         $phpDisabledChild->setName('PHP disabled child training');
         $phpDisabledChild->setDescription('A training to learn how to program using PHP.');
         $phpDisabledChild->setRawDescription('A training to learn how to program using PHP.'.$this->getLorem());
@@ -424,6 +430,8 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
      */
     protected function addMediaToProduct($mediaFilename, $name, $description, ProductInterface $product)
     {
+        $gallery = $this->getGalleryForProduct($product);
+
         $mediaManager = $this->getMediaManager();
 
         $file = new \SplFileInfo($mediaFilename);
@@ -434,9 +442,53 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $media->setName($name);
         $media->setDescription($description);
 
-        $mediaManager->save($media, 'sonata_product', 'sonata.media.provider.image');
+        $this->addMediaToGallery($media, $gallery);
 
-        $product->setImage($media);
+        $mediaManager->save($media, 'sonata_product', 'sonata.media.provider.image');
+        $this->getGalleryManager()->update($gallery);
+    }
+
+    /**
+     * @param ProductInterface $product
+     *
+     * @return object|\Sonata\MediaBundle\Model\MediaInterface
+     */
+    protected function getGalleryForProduct(ProductInterface $product)
+    {
+        $galleryReference = sprintf("gallery_%s", $product->getSku());
+
+        if ($this->hasReference($galleryReference)) {
+            return $this->getReference($galleryReference);
+        }
+
+        $gallery = $this->getGalleryManager()->create();
+
+        $gallery->setName($product->getSlug());
+        $gallery->setEnabled(true);
+        $gallery->setDefaultFormat('small');
+        $gallery->setContext('sonata_product');
+
+        $this->setReference($galleryReference, $gallery);
+
+        $this->getGalleryManager()->update($gallery);
+
+        $product->setGallery($gallery);
+
+        return $gallery;
+    }
+
+    /**
+     * @param MediaInterface   $media
+     * @param GalleryInterface $gallery
+     */
+    protected function addMediaToGallery(MediaInterface $media, GalleryInterface $gallery)
+    {
+        $galleryHasMedia = new GalleryHasMedia();
+        $galleryHasMedia->setMedia($media);
+        $galleryHasMedia->setPosition(count($gallery->getGalleryHasMedias()) + 1);
+        $galleryHasMedia->setEnabled(true);
+
+        $gallery->addGalleryHasMedias($galleryHasMedia);
     }
 
     /**
@@ -529,6 +581,14 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
     protected function getProductPool()
     {
         return $this->container->get('sonata.product.pool');
+    }
+
+    /**
+     * @return \Sonata\MediaBundle\Model\GalleryManagerInterface
+     */
+    public function getGalleryManager()
+    {
+        return $this->container->get('sonata.media.manager.gallery');
     }
 
     /**
