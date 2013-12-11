@@ -49,3 +49,12 @@ sonata_block:
         sonata.basket.block.nb_items:
             cache: sonata.page.cache.js_async
             contexts: [user]
+
+        sonata.seo.block.facebook.like_box:
+        sonata.seo.block.facebook.like_button:
+        sonata.seo.block.facebook.send_button:
+        sonata.seo.block.facebook.share_button:
+        sonata.seo.block.twitter.share_button:
+        sonata.seo.block.twitter.follow_button:
+        sonata.seo.block.twitter.hashtag_button:
+        sonata.seo.block.twitter.mention_button:
