@@ -99,9 +99,6 @@ class AppKernel extends Kernel
             // Disable this if you don't want the audit on entities
             new SimpleThings\EntityAudit\SimpleThingsEntityAuditBundle(),
 
-            // Translations
-            new JMS\TranslationBundle\JMSTranslationBundle(),
-
             // Disable this if you don't want the timeline in the admin
             new Spy\TimelineBundle\SpyTimelineBundle(),
             new Sonata\TimelineBundle\SonataTimelineBundle(),

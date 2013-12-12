@@ -28,7 +28,6 @@
         "jms/security-extra-bundle": "~1.5",
         "jms/di-extra-bundle": "~1.4",
         "jms/serializer-bundle": "~0.11",
-        "jms/translation-bundle": "~1.1",
 
         "doctrine/doctrine-bundle": "~1.2",
         "doctrine/doctrine-migrations-bundle": "dev-master",
