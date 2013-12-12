@@ -21,7 +21,7 @@ Feature: Checkout process
         And I fill in "add_basket_quantity" with "3"
         And I press "Add to basket"
         And I follow "Next step"
-        Then I should see "Login"
+        Then I should see "Username"
 
     Scenario: Checkout with one product in the basket when logging in
         Given I am connected with "behat_user" and "behat_user" on "shop/basket"

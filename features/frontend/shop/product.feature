@@ -73,6 +73,6 @@ Feature: Products
         Then I should see "January 16, 2014 09:00"
 
     Scenario: Check the non display of starting date and related label if value is not set
-        When I go to "shop/product/13/php-working-training"
+        When I go to "shop/product/5/maximum-air-sonata-ultimate-edition"
         Then I should not see "January 16, 2014 09:00"
         And I should not see "Starting date"

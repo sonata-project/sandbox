@@ -26,7 +26,7 @@ Feature: Check the Media / Gallery frontend
     Scenario: Watch a selected media non authenticated
         When I go to "media/gallery/view/1"
         And I follow the first link of section "sonata-media-gallery-media-item"
-        Then I should see "Login"
+        Then I should see "Username"
 
     Scenario: Watch a selected media authenticated
         When I go to "media/gallery/view/1"
