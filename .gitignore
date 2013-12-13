@@ -8,7 +8,7 @@ web/bundles
 web/uploads
 web/sitemap*.xml
 app/config/parameters.yml
-behat.yml.dist
+behat.yml
 vendor
 nbproject
 build
