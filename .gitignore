@@ -10,6 +10,7 @@ web/sitemap*.xml
 app/config/parameters*.yml
 vendor
 nbproject
-composer.lock
 build
 junit
+composer.phar
+composer.lock
