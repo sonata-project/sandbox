@@ -527,51 +527,93 @@ CONTENT
 
         $global->addBlocks($footer = $blockInteractor->createNewContainer(array(
             'enabled' => true,
-            'page' => $global,
-            'code' => 'footer',
-        )));
+            'page'    => $global,
+            'code'    => 'footer'
+        ), function ($container) {
+            $container->setSetting('layout', <<<FOOTER
+<div class="row-fluid page-footer">{{ CONTENT }}</div>
+<hr />
+<div style="margin: 20px 0;">
+    © <a href="http://www.sonata-project.org">Sonata Project</a> provides Sonata demo 2010 - 2013 // Open Software License ("OSL") v. 3.0<br/>
+    Using <a href="http://www.glyphicons.com" target="_blank">GLYPHICONS.com</a> free icons released under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">CC BY 3.0 license</a>
+</div>
+FOOTER
+            );
+        }));
 
         $footer->setName('The footer container');
 
-        $footer->addChildren($text = $blockManager->create());
+        // Footer : add 3 children block containers (left, center, right)
+        $footer->addChildren($footerLeft = $blockInteractor->createNewContainer(array(
+            'enabled' => true,
+            'page'    => $global,
+            'code'    => 'content'
+        ), function ($container) {
+            $container->setSetting('layout', '<div class="span4">{{ CONTENT }}</div>');
+        }));
+
+        $footer->addChildren($footerCenter = $blockInteractor->createNewContainer(array(
+            'enabled' => true,
+            'page'    => $global,
+            'code'    => 'content',
+        ), function ($container) {
+            $container->setSetting('layout', '<div class="span4">{{ CONTENT }}</div>');
+        }));
+
+        $footer->addChildren($footerRight = $blockInteractor->createNewContainer(array(
+            'enabled' => true,
+            'page'    => $global,
+            'code'    => 'content'
+        ), function ($container) {
+            $container->setSetting('layout', '<div class="span4">{{ CONTENT }}</div>');
+        }));
+
+        // Footer left: add a simple text block
+        $footerLeft->addChildren($text = $blockManager->create());
 
         $text->setType('sonata.block.service.text');
-        $text->setSetting('content', <<<FOOTER
-            <div class="pull-right" style="margin-top: 5px;">
-                <ul>
-                    <li style="display: inline-block;"><a href="https://github.com/sonata-project/" target="_blank"><img src="/bundles/sonatademo/images/glyphicons_social_21_github.png" width="24" height="24"/></a></li>
-                    <li style="display: inline-block;"><a href="https://twitter.com/sonataproject" target="_blank"><img src="/bundles/sonatademo/images/glyphicons_social_31_twitter.png" width="24" height="24"/></a></li>
-                </ul>
-            </div>
-FOOTER
+        $text->setSetting('content', '<h3>Sonata Demo</h3><p class="handcraft">Handcrafted in France with love ♥</p>');
+
+        $text->setPosition(1);
+        $text->setEnabled(true);
+        $text->setPage($global);
+
+        // Footer center: add menu links
+        $footerCenter->addChildren($text = $blockManager->create());
+
+        $text->setType('sonata.block.service.text');
+        $text->setSetting('content', <<<CONTENT
+<ul class="links">
+    <li><a href="#">Who we are</a></li>
+    <li><a href="#">Client testimonials</a></li>
+    <li><a href="#">Press</a></li>
+    <li><a href="#">FAQ</a></li>
+    <li><a href="#">Contact us</a></li>
+    <li><a href="#">Terms & conditions</a></li>
+</ul>
+CONTENT
         );
 
         $text->setPosition(1);
         $text->setEnabled(true);
         $text->setPage($global);
 
-        $footerMenu = clone $menu;
-        $footerMenu->setSetting('menu_name', "SonataDemoBundle:Builder:footerMenu");
-
-        $footer->addChildren($footerMenu);
-
-        $footerMenu->setPosition(2);
-
-        $footer->addChildren($text = $blockManager->create());
+        // Footer right: add social links
+        $footerRight->addChildren($text = $blockManager->create());
 
         $text->setType('sonata.block.service.text');
-        $text->setSetting('content', <<<FOOTER
-            <hr />
-            <div style="margin: 20px 0;">
-                © <a href="http://www.sonata-project.org">Sonata Project</a> provides Sonata demo 2010 - 2013 // Open Software License ("OSL") v. 3.0<br/>
-                Using <a href="http://www.glyphicons.com" target="_blank">GLYPHICONS.com</a> free icons released under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">CC BY 3.0 license</a>
-            </div>
-FOOTER
-);
+        $text->setSetting('content', <<<CONTENT
+<ul class="links">
+    <li><a target="_blank" href="http://www.twitter.com/sonataproject">Twitter</a></li>
+    <li><a target="_blank" href="https://groups.google.com/forum/#!forum/sonata-devs">Google Group</a></li>
+</ul>
+CONTENT
+        );
 
-        $text->setPosition(3);
+        $text->setPosition(1);
         $text->setEnabled(true);
         $text->setPage($global);
+
         $pageManager->save($global);
     }
 
