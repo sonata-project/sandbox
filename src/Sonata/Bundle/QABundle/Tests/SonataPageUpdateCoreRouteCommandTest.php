@@ -26,7 +26,7 @@ class SonataPageUpdateCoreRouteCommandTest extends CommandTestCase
     {
         $client = self::createClient();
 
-        $site = $client->getContainer()->get('sonata.page.manager.site')->findOneBy();
+        $site = $client->getContainer()->get('sonata.page.manager.site')->findOneBy(array());
 
         $output = $this->runCommand($client, sprintf("sonata:page:update-core-routes --site=%s", $site->getId()));
 
