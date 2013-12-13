@@ -10,7 +10,7 @@ Feature: Check the categories browsing and security
     Scenario: Browse categories to last level
         Given I am on "shop/category"
         And I follow "Goodies"
-        Then I should not see "Products"
+        Then I should not see "Products list"
         And I should see "Some goodies related to Sonata and Symfony world."
         And I should see "Subcategories"
         But I should see "Plushes"
