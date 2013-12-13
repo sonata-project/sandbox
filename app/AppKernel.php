@@ -56,6 +56,7 @@ class AppKernel extends Kernel
             // new Liip\ImagineBundle\LiipImagineBundle(),
 
             // SONATA CORE & HELPER BUNDLES
+            new Sonata\CoreBundle\SonataCoreBundle(),
             new Sonata\EasyExtendsBundle\SonataEasyExtendsBundle(),
             new Sonata\jQueryBundle\SonatajQueryBundle(),
             new Sonata\AdminBundle\SonataAdminBundle(),
