@@ -8,6 +8,8 @@ web/bundles
 web/uploads
 web/sitemap*.xml
 app/config/parameters*.yml
+app/config/*parameters.yml
+app/config/parameters.yml
 vendor
 nbproject
 build
