@@ -48,11 +48,23 @@ class LoadUserData extends AbstractFixture implements ContainerAwareInterface, O
 
         $manager->updateUser($user);
 
+        $user = $manager->createUser();
+        $user->setUsername('secure');
+        $user->setEmail($faker->safeEmail);
+        $user->setPlainPassword('secure');
+        $user->setEnabled(true);
+        $user->setSuperAdmin(true);
+        $user->setLocked(false);
+        // google chart qr code : https://www.google.com/chart?chs=200x200&chld=M|0&cht=qr&chl=otpauth://totp/secure@http://demo.sonata-project.org%3Fsecret%3D4YU4QGYPB63HDN2C
+        $user->setTwoStepVerificationCode('4YU4QGYPB63HDN2C');
+
+        $manager->updateUser($user);
+
         $this->addReference('user-admin', $user);
 
         foreach (range(1, 20) as $id) {
             $user = $manager->createUser();
-            $user->setUsername($faker->userName);
+            $user->setUsername($faker->userName . $id);
             $user->setEmail($faker->safeEmail);
             $user->setPlainPassword($faker->randomNumber());
             $user->setEnabled(true);
@@ -60,6 +72,17 @@ class LoadUserData extends AbstractFixture implements ContainerAwareInterface, O
 
             $manager->updateUser($user);
         }
+
+        $user = $manager->createUser();
+        $user->setUsername('johndoe');
+        $user->setEmail($faker->safeEmail);
+        $user->setPlainPassword('johndoe');
+        $user->setEnabled(true);
+        $user->setSuperAdmin(false);
+        $user->setLocked(false);
+
+        $manager->updateUser($user);
+
     }
 
     /**

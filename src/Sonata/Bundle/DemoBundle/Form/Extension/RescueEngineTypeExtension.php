@@ -20,6 +20,9 @@ use Sonata\Bundle\DemoBundle\Form\DataTransformer\EngineChoiceTransformer;
 
 class RescueEngineTypeExtension extends AbstractTypeExtension
 {
+    /**
+     * {@inheritdoc}
+     */
     public function buildForm(FormBuilderInterface $formBuilder, array $options)
     {
         if (count($options['rescue_engines']) == 0) {
@@ -27,7 +30,7 @@ class RescueEngineTypeExtension extends AbstractTypeExtension
         }
 
         $rescueEngine = $formBuilder->create('rescueEngine', 'choice', array(
-            'data_class' => 'Sonata\Bundle\DemoBundle\Model\Engine',
+            'data_class' => 'Sonata\Bundle\DemoBundle\Entity\Engine',
             'choices' => $this->getRescueEngines($options['rescue_engines']),
         ));
 
@@ -37,11 +40,17 @@ class RescueEngineTypeExtension extends AbstractTypeExtension
         $formBuilder->add($rescueEngine);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getExtendedType()
     {
         return 'sonata_demo_form_type_car';
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
@@ -49,6 +58,9 @@ class RescueEngineTypeExtension extends AbstractTypeExtension
         ));
     }
 
+    /**
+     * {@inheritdoc}
+     */
     private function getRescueEngines(array $rescueEngines)
     {
         $choices = array();

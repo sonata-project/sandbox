@@ -12,18 +12,23 @@
 namespace Sonata\Bundle\DemoBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sonata\Bundle\DemoBundle\Model\MediaPreview;
+use Sonata\Bundle\DemoBundle\Entity\MediaPreview;
 use Symfony\Component\HttpFoundation\Request;
 use Sonata\Bundle\DemoBundle\Form\Type\CarType;
 
 class DemoController extends Controller
 {
+    /**
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function carAction(Request $request)
     {
         $form = $this->createForm(new CarType());
 
         if ($request->getMethod() == 'POST') {
-            $form->bindRequest($request);
+            $form->bind($request);
         }
 
         ob_start();
@@ -37,16 +42,21 @@ class DemoController extends Controller
         ));
     }
 
+    /**
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function carRescueEngineAction(Request $request)
     {
-        $car = new \Sonata\Bundle\DemoBundle\Model\Car();
+        $car = new \Sonata\Bundle\DemoBundle\Entity\Car();
         $car->setName('Poney Car');
         $car->setCreatedAt(new \DateTime);
 
         $rescueEngines = array(
-            1 => new \Sonata\Bundle\DemoBundle\Model\Engine('Rescue 1', 100),
-            2 => new \Sonata\Bundle\DemoBundle\Model\Engine('Rescue 2', 125),
-            3 => new \Sonata\Bundle\DemoBundle\Model\Engine('Rescue 3', 150),
+            1 => new \Sonata\Bundle\DemoBundle\Entity\Engine('Rescue 1', 100),
+            2 => new \Sonata\Bundle\DemoBundle\Entity\Engine('Rescue 2', 125),
+            3 => new \Sonata\Bundle\DemoBundle\Entity\Engine('Rescue 3', 150),
         );
 
         $form = $this->createForm('sonata_demo_form_type_car', $car, array(
@@ -54,7 +64,7 @@ class DemoController extends Controller
         ));
 
         if ($request->getMethod() == 'POST') {
-            $form->bindRequest($request);
+            $form->bind($request);
         }
 
         ob_start();
@@ -69,6 +79,11 @@ class DemoController extends Controller
         ));
     }
 
+    /**
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function mediaAction(Request $request)
     {
         // preset a default value
@@ -90,7 +105,7 @@ class DemoController extends Controller
 
         // bind and transform the media's binary content into real content
         if ($request->getMethod() == 'POST') {
-            $form->bindRequest($request);
+            $form->bind($request);
 
             $this->getSeoPage()
                 ->setTitle($media->getName())

@@ -52,7 +52,6 @@ $fs->mkdir(sprintf('%s/web/uploads/media', $rootDir));
 $fs->copy(__DIR__.'/src/Sonata/Bundle/DemoBundle/DataFixtures/data/robots.txt', __DIR__.'/web/robots.txt', true);
 
 execute_commands(array(
-    'bin/vendors install',
     'app/console cache:warmup --env=dev',
     'app/console cache:create-cache-class --env=dev',
 //    'app/console doctrine:database:drop --force',
@@ -64,6 +63,9 @@ execute_commands(array(
     'app/console assets:install --symlink web',
     'app/console cache:warmup --env=prod',
     'app/console cache:create-cache-class --env=prod',
+    'app/console init:acl',
+    'app/console sonata:admin:setup-acl',
+    'app/console sonata:admin:generate-object-acl'
 ), $output);
 
 $output->writeln('<info>Done!</info>');

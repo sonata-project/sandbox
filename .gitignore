@@ -1,13 +1,14 @@
-config/parameters.ini
 app/cache
 app/logs
 app/*.cache
 web/bundles
 web/uploads
-
+web/sitemap*.xml
 app/config/parameters*.yml
-composer.lock
+app/config/*parameters.yml
+app/config/parameters.yml
 vendor
 .idea
 nbproject
 composer.phar
+composer.lock

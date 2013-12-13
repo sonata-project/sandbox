@@ -1,13 +1,6 @@
 <?php
 
-
-use Behat\Behat\Context\ClosuredContextInterface,
-    Behat\Behat\Context\TranslatedContextInterface,
-    Behat\Behat\Context\BehatContext,
-    Behat\Behat\Exception\PendingException;
-use Behat\Gherkin\Node\PyStringNode,
-    Behat\Gherkin\Node\TableNode;
-
+use Behat\Mink\Exception\ExpectationException;
 use Behat\MinkExtension\Context\MinkContext;
 
 /**
@@ -45,5 +38,37 @@ class BrowserContext extends MinkContext
         $this->fillField('_password', $pwd);
         $this->pressButton('_submit');
         $this->visit($url);
+    }
+
+    /**
+     * @Given /^I follow link "([^"]*)" with class "([^"]*)"$/
+     */
+    public function iFollowLinkWithClass($text, $class)
+    {
+        $link = $this->getSession()->getPage()->find(
+            'xpath', sprintf("//*[@class='%s' and text() = '%s']", $class, $text)
+        );
+
+        if (!$link) {
+            throw new ExpectationException(sprintf('Unable to follow the link with class: %s and text: %s', $class, $text), $this->getSession());
+        }
+
+        $link->click();
+    }
+
+    /**
+     * @Given /^I follow the first link of section "([^"]*)"$/
+     */
+    public function iFollowTheFirstLinkOfSection($class)
+    {
+        $link = $this->getSession()->getPage()->find(
+            'xpath', sprintf("//*[@class='%s']/a", $class)
+        );
+
+        if (!$link) {
+            throw new ExpectationException(sprintf('Unable to follow the nested link with class: %s', $class), $this->getSession());
+        }
+
+        $link->click();
     }
 }

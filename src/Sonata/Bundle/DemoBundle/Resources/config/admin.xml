@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="sonata.demo.admin.car" class="Sonata\Bundle\DemoBundle\Admin\CarAdmin">
+            <tag name="sonata.admin" manager_type="orm" group="Demo" label="Car" />
+
+            <argument />
+            <argument>Sonata\Bundle\DemoBundle\Entity\Car</argument>
+            <argument />
+
+            <call method="setSubClasses">
+                <argument type="collection">
+                    <argument key="renault">Sonata\Bundle\DemoBundle\Entity\Renault</argument>
+                    <argument key="citroen">Sonata\Bundle\DemoBundle\Entity\Citroen</argument>
+                    <argument key="peugeot">Sonata\Bundle\DemoBundle\Entity\Peugeot</argument>
+                </argument>
+            </call>
+
+        </service>
+        <service id="sonata.demo.admin.engine" class="Sonata\Bundle\DemoBundle\Admin\EngineAdmin">
+            <tag name="sonata.admin" manager_type="orm" group="Demo" label="Engine" />
+
+            <argument />
+            <argument>Sonata\Bundle\DemoBundle\Entity\Engine</argument>
+            <argument />
+        </service>
+    </services>
+
+</container>

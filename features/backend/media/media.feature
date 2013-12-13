@@ -51,7 +51,7 @@ Scenario: Filter medias
   When I am connected with "admin" and "admin" on "admin/sonata/media/media/list"
   And I fill in "filter_name_value" with "Best of Our Wokrs from June to December 2011"
   And I press "Filter"
-  Then I should see "Best of Our Wokrs from June to December 2011" 
+  Then I should see "Best of Our Wokrs from June to December 2011"
 
 Scenario: Edit a media
   When I am connected with "admin" and "admin" on "admin/sonata/media/media/list"
@@ -60,6 +60,16 @@ Scenario: Edit a media
   And I follow "Edit"
   And I press "Update"
   Then I should see "Item has been successfully updated."
+
+
+Scenario: View a media
+  When I am connected with "admin" and "admin" on "admin/sonata/media/media/list"
+  And I fill in "filter_name_value" with "Symfony 2 by Fabien Potencier"
+  And I press "Filter"
+  And I follow "Show"
+  Then print last response
+  Then I should see "Symfony 2 by Fabien Potencier"
+  Then I should see "Preview ~ reference"
 
 Scenario: View revisions of a media
   When I am connected with "admin" and "admin" on "admin/sonata/media/media/list"
@@ -72,6 +82,6 @@ Scenario: Delete a media
   And I fill in "filter_name_value" with "Best of Our Wokrs from June to December 2011"
   And I press "Filter"
   And I follow "Edit"
-  And I follow "Delete"
+  And I follow link "Delete" with class "btn btn-danger"
   And I press "Yes, delete"
   Then I should see "Item has been deleted successfully."

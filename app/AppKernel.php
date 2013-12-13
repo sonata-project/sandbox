@@ -31,7 +31,6 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
 
-
             // KNP HELPER BUNDLES
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
             new Knp\Bundle\MarkdownBundle\KnpMarkdownBundle(),
@@ -46,6 +45,8 @@ class AppKernel extends Kernel
             new Application\Sonata\PageBundle\ApplicationSonataPageBundle(),
 
             // NEWS
+            new Sonata\MarkItUpBundle\SonataMarkItUpBundle(),
+            new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
             new Sonata\NewsBundle\SonataNewsBundle(),
             new Application\Sonata\NewsBundle\ApplicationSonataNewsBundle(),
 
@@ -55,6 +56,7 @@ class AppKernel extends Kernel
             // new Liip\ImagineBundle\LiipImagineBundle(),
 
             // SONATA CORE & HELPER BUNDLES
+            new Sonata\CoreBundle\SonataCoreBundle(),
             new Sonata\EasyExtendsBundle\SonataEasyExtendsBundle(),
             new Sonata\jQueryBundle\SonatajQueryBundle(),
             new Sonata\AdminBundle\SonataAdminBundle(),
@@ -64,13 +66,25 @@ class AppKernel extends Kernel
             new Sonata\CacheBundle\SonataCacheBundle(),
             new Sonata\BlockBundle\SonataBlockBundle(),
             new Sonata\SeoBundle\SonataSeoBundle(),
+            new Sonata\ClassificationBundle\SonataClassificationBundle(),
+            new Application\Sonata\ClassificationBundle\ApplicationSonataClassificationBundle(),
             new Sonata\NotificationBundle\SonataNotificationBundle(),
+            new Application\Sonata\NotificationBundle\ApplicationSonataNotificationBundle(),
 
-            // DEMO
+            // CMF Integration
+            new Symfony\Cmf\Bundle\RoutingBundle\CmfRoutingBundle(),
+
+            // DEMO and QA - Can be deleted
             new Sonata\Bundle\DemoBundle\SonataDemoBundle(),
+            new Sonata\Bundle\QABundle\SonataQABundle(),
 
-            // Enable this if you want to audit backend action
+            // Disable this if you don't want the audit on entities
             new SimpleThings\EntityAudit\SimpleThingsEntityAuditBundle(),
+
+            // Disable this if you don't want the timeline in the admin
+            new Spy\TimelineBundle\SpyTimelineBundle(),
+            new Sonata\TimelineBundle\SonataTimelineBundle(),
+            new Application\Sonata\TimelineBundle\ApplicationSonataTimelineBundle() // easy extends integration
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

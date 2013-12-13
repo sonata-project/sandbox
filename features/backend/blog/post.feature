@@ -19,8 +19,8 @@ Scenario: Add a new post
   When I am connected with "admin" and "admin" on "admin/sonata/news/post/create?uniqid=f155592a220e"
   And I fill in "f155592a220e_title" with "toto"
   And I fill in "f155592a220e_abstract" with "abstract"
-  And I select "markdown" from "f155592a220e_contentFormatter"
-  And I fill in "f155592a220e_rawContent" with "raw content"
+  And I select "markdown" from "f155592a220e_content_contentFormatter"
+  And I fill in "f155592a220e_content_rawContent" with "raw content"
   And I select "2" from "f155592a220e_commentsDefaultStatus_2"
   And I press "Create"
   Then I should see "Item has been successfully created."
@@ -71,7 +71,9 @@ Scenario: Export XLS data
 
 Scenario: Delete a post
   When I am connected with "admin" and "admin" on "admin/sonata/news/post/list"
+  And I fill in "filter_title_value" with "toto"
+  And I press "Filter"
   And I follow "toto"
-  And I follow "Delete"
+  And I follow link "Delete" with class "btn btn-danger"
   And I press "Yes, delete"
   Then I should see "Item has been deleted successfully."
