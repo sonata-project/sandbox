@@ -23,7 +23,7 @@ Installation
 
 Run the following commands::
 
-    git clone http://github.com/koyaan/sandbox.git sonata-sandbox
+    git clone http://github.com/sonata-project/sandbox.git sonata-sandbox
     cd sonata-sandbox
     git checkout hackingday
     curl -s http://getcomposer.org/installer | php
@@ -65,5 +65,4 @@ To run the Sonata test suites, you can run the command::
 
     bin/test_client_ci.sh
 
-=======
 Enjoy!
