@@ -17,11 +17,17 @@ class EngineChoiceTransformer implements DataTransformerInterface
 {
     protected $choices;
 
+    /**
+     * @param array $choices
+     */
     public function __construct(array $choices)
     {
         $this->choices = $choices;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function transform($value)
     {
         foreach ($this->choices as $pos => $choice) {
@@ -33,6 +39,9 @@ class EngineChoiceTransformer implements DataTransformerInterface
         return null;
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function reverseTransform($value)
     {
         if (!$value) {

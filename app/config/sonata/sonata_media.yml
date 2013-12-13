@@ -6,6 +6,8 @@ sonata_media:
     default_context: default
     contexts:
         default:  # the default context is mandatory
+            download:
+                mode: http # X-Sendfile | http
             providers:
                 - sonata.media.provider.dailymotion
                 - sonata.media.provider.youtube
@@ -22,8 +24,33 @@ sonata_media:
                 - sonata.media.provider.image
 
             formats:
-                abtract: { width: 100, quality: 100}
-                wide:    { width: 820 , quality: 100}
+                abstract: { width: 100, quality: 100}
+                wide:     { width: 820, quality: 100}
+
+        sonata_collection:
+            providers:
+              - sonata.media.provider.image
+
+            formats:
+                preview: { width: 100, quality: 100}
+                wide:    { width: 820, quality: 100}
+
+        sonata_category:
+            providers:
+              - sonata.media.provider.image
+
+            formats:
+                preview: { width: 100, quality: 100}
+                wide:    { width: 820, quality: 100}
+
+        sonata_product:
+            providers:
+                - sonata.media.provider.image
+
+            formats:
+                preview:   { width: 100, quality: 100}
+                small:     { width: 200, quality: 100}
+                large:     { width: 600, quality: 100}
 
     cdn:
         # define the public base url for the uploaded media

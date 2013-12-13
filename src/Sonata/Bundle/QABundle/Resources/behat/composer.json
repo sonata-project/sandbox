@@ -1,0 +1,23 @@
+{
+    "name": "sonata-project/behat-integration",
+    "description": "Install behat",
+
+    "license": "MIT",
+
+    "autoload": {
+        "psr-0": { "": "src/" }
+    },
+
+    "minimum-stability": "stable",
+
+    "require": {
+        "behat/behat": "~2.4",
+        "behat/mink-extension": "~1.2",
+        "behat/mink-goutte-driver": "~1.0",
+        "behat/mink": "~1.5"
+    },
+
+    "config": {
+        "bin-dir": "bin"
+    }
+}

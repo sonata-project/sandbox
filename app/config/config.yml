@@ -1,7 +1,6 @@
 imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
-    - { resource: fos_user.yml }
 
     # Sonata Bundles
     - { resource: sonata/sonata_admin.yml }
@@ -12,19 +11,42 @@ imports:
     - { resource: sonata/sonata_news.yml }
     - { resource: sonata/sonata_cache.yml }
     - { resource: sonata/sonata_seo.yml }
+    - { resource: sonata/sonata_user.yml }
     - { resource: sonata/sonata_notification.yml }
+    - { resource: sonata/sonata_price.yml }
+    - { resource: sonata/sonata_timeline.yml }
+    - { resource: sonata/sonata_intl.yml }
+
+    # Sonata e-commerce bundles
+    - { resource: sonata/sonata_order.yml }
+    - { resource: sonata/sonata_payment.yml }
+    - { resource: sonata/sonata_product.yml }
+    - { resource: sonata/sonata_invoice.yml }
+    - { resource: sonata/sonata_delivery.yml }
+    - { resource: sonata/sonata_customer.yml }
+    - { resource: sonata/sonata_basket.yml }
 
 framework:
     #esi:             ~
-    translator: { fallback: en }
+    translator:
+        fallback: en
     secret:          %secret%
-    router:          { resource: "%kernel.root_dir%/config/routing.yml" }
+    router:
+        resource: "%kernel.root_dir%/config/routing.yml"
+        strict_requirements: ~
     form:            true
     csrf_protection: true
-    validation:      { enable_annotations: true }
-    templating:      { engines: ['twig'] } #assets_version: SomeVersionScheme
-    default_locale: %locale%
-    session: ~
+    validation:
+        enable_annotations: true
+    templating:
+        engines: ['twig']
+        #assets_version: SomeVersionScheme
+
+    default_locale:  %locale%
+    session:         ~
+    fragments:       ~
+    trusted_proxies: ~
+    http_method_override: true
 
 # Twig Configuration
 twig:
@@ -34,6 +56,8 @@ twig:
     form:
         resources:
             - 'SonataAdminBundle:Form:silex_form_div_layout.html.twig'
+            - 'SonataFormatterBundle:Form:formatter.html.twig'
+            - 'SonataMediaBundle:Form:media_widgets.html.twig'
 
 # Assetic Configuration
 assetic:
@@ -60,7 +84,8 @@ doctrine:
                 password: %database_password%
 
         types:
-            json: Sonata\Doctrine\Types\JsonType
+            json:     Sonata\Doctrine\Types\JsonType
+            currency: Sonata\Component\Currency\CurrencyDoctrineType
 
     orm:
         auto_generate_proxy_classes: %kernel.debug%
@@ -68,9 +93,7 @@ doctrine:
 
         entity_managers:
             default:
-                #metadata_cache_driver: apc
-                #query_cache_driver: apc
-                #result_cache_driver: apc
+                auto_mapping: true
                 mappings: ~
 
 # Swiftmailer Configuration

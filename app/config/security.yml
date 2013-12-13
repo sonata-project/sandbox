@@ -1,3 +1,6 @@
+parameters:
+    security.acl.permission.map.class: Sonata\AdminBundle\Security\Acl\Permission\AdminPermissionMap
+
 security:
     encoders:
         "Application\Sonata\UserBundle\Entity\User":
@@ -11,8 +14,8 @@ security:
 
         SONATA:
             # if you are not using acl then this line must be uncommented
-            - ROLE_SONATA_PAGE_ADMIN_PAGE_EDIT
-            - ROLE_SONATA_PAGE_ADMIN_BLOCK_EDIT
+            #- ROLE_SONATA_PAGE_ADMIN_PAGE_EDIT
+            #- ROLE_SONATA_PAGE_ADMIN_BLOCK_EDIT
 
     providers:
         fos_userbundle:
@@ -66,9 +69,13 @@ security:
 
         # Secured part of the site
         # This config requires being logged for the whole site and having the admin role for the admin part.
+        # It also secures the shop checkout process
         # Change these rules to adapt them to your needs
         - { path: ^/admin/, role: [ROLE_ADMIN, ROLE_SONATA_ADMIN] }
+        - { path: ^/profile/, role: IS_AUTHENTICATED_FULLY }
+        - { path: ^/shop/basket/step/, role: IS_AUTHENTICATED_FULLY }
+        - { path: ^/shop/user/, role: IS_AUTHENTICATED_FULLY }
         - { path: ^/.*, role: IS_AUTHENTICATED_ANONYMOUSLY }
 
-#    acl:
-#        connection: default
+    acl:
+        connection: default

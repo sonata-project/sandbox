@@ -25,23 +25,32 @@ if (is_file(__DIR__.'/../parameters.demo.yml')) {
 if (!is_file(__DIR__.'/app/config/parameters.yml')) {
     $output->writeln('<error>no default app/config/parameters.yml file</error>');
 
-    exit(0);
+    exit(1);
 }
 /**
  * @param $commands
  * @param \Symfony\Component\Console\Output\ConsoleOutput $output
- * @return void
+ *
+ * @return boolean
  */
 function execute_commands($commands, $output)
 {
     foreach($commands as $command) {
         $output->writeln(sprintf('<info>Executing : </info> %s', $command));
         $p = new \Symfony\Component\Process\Process($command);
-        $exit = $p->run(function($type, $data) use ($output) {
+        $p->setTimeout(null);
+        $p->run(function($type, $data) use ($output) {
             $output->write($data);
         });
+
+        if (!$p->isSuccessful()) {
+            return false;
+        }
+
         $output->writeln("");
     }
+
+    return true;
 }
 
 $output->writeln("<info>Resetting demo</info>");
@@ -51,19 +60,27 @@ $fs->mkdir(sprintf('%s/web/uploads/media', $rootDir));
 
 $fs->copy(__DIR__.'/src/Sonata/Bundle/DemoBundle/DataFixtures/data/robots.txt', __DIR__.'/web/robots.txt', true);
 
-execute_commands(array(
-    'bin/vendors install',
-    'app/console cache:warmup --env=dev',
-    'app/console cache:create-cache-class --env=dev',
-//    'app/console doctrine:database:drop --force',
-//    'app/console doctrine:database:create',
+$success = execute_commands(array(
+    'app/console cache:warmup --env=prod --no-debug',
+    'app/console cache:create-cache-class --env=prod --no-debug',
+    'app/console doctrine:database:drop --force',
+    'app/console doctrine:database:create',
     'app/console doctrine:schema:update --force',
     'app/console doctrine:fixtures:load --verbose',
-    'app/console sonata:page:update-core-routes --site=all',
-    'app/console sonata:page:create-snapshots --site=all',
+    'app/console sonata:page:update-core-routes --site=all --env=prod --no-debug',
+    'app/console sonata:page:create-snapshots --site=all --env=prod --no-debug',
     'app/console assets:install --symlink web',
-    'app/console cache:warmup --env=prod',
-    'app/console cache:create-cache-class --env=prod',
+    'app/console cache:create-cache-class --env=prod --no-debug',
+    'app/console sonata:admin:setup-acl',
+    'php -d memory_limit=1024M app/console sonata:admin:generate-object-acl'
 ), $output);
 
+if (!$success) {
+    $output->writeln('<info>An error occurs when running a command!</info>');
+
+    exit(1);
+}
+
 $output->writeln('<info>Done!</info>');
+
+exit(0);

@@ -1,0 +1,20 @@
+.number {
+    text-align: right !important;
+}
+
+.sonata-bc .page-footer {
+    background-color: #f5f5f5;
+    padding: 20px 20px 10px;
+    margin: -20px -20px 20px;
+}
+
+.sonata-bc .page-footer ul li {
+    list-style: none;
+    text-transform: uppercase;
+    text-align: left;
+    line-height: 25px;
+}
+
+.sonata-bc .page-footer p.handcraft {
+    margin-top: 80px;
+}

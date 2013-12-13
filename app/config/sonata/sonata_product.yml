@@ -1,0 +1,35 @@
+sonata_product:
+    products:
+        # Goodies
+        sonata.ecommerce_demo.product.goodie:
+            provider: sonata.ecommerce_demo.product.goodie.type
+            manager:  sonata.ecommerce_demo.product.goodie.manager
+
+        # Trainings
+        sonata.ecommerce_demo.product.training:
+            provider: sonata.ecommerce_demo.product.training.type
+            manager:  sonata.ecommerce_demo.product.training.manager
+            variations:
+                fields: [name, level, instructor_name, start_date, duration, price]
+
+    class:
+        user: Application\Sonata\Userbundle\Entity\User # you must define your own user class
+
+    seo:
+        product:
+            site: '@sonataproject'
+            creator: '@th0masr'
+            domain: 'http://demo.sonata-project.org'
+            media_prefix: 'http://demo.sonata-project.org'
+            media_format: 'reference'
+
+
+
+# Enable Doctrine to map the provided entities
+doctrine:
+    orm:
+        entity_managers:
+            default:
+                mappings:
+                    ApplicationSonataProductBundle: ~
+                    SonataProductBundle: ~
