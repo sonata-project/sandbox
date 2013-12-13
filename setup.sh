@@ -6,7 +6,7 @@ app/console assets:install web
 app/console init:acl
 app/console sonata:admin:setup-acl
 app/console sonata:admin:generate-object-acl
-#app/console sonata:page:create-site --enabled=1 --name=localhost --host=localhost --relativePath=/ --enabledFrom=now --enabledTo="+10 years" --default=true
+#app/console sonata:page:create-site --enabled=1 --name=localhost --host=localhost --relativePath=/ --enabledFrom=now --enabledTo="+10 years" --default=1
 app/console doctrine:fixtures:load
 app/console sonata:page:update-core-routes --site=all
 app/console sonata:page:create-snapshots --site=all
