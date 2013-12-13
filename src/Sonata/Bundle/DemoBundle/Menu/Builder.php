@@ -44,7 +44,7 @@ class Builder extends ContainerAware
 
         $menu = $factory->createItem('main', $menuOptions);
 
-        $menu->addChild('Blog', array('route' => 'sonata_news_home'));
+        $menu->addChild('News', array('route' => 'sonata_news_home'));
 
         $shopMenuParams = array('route' => 'sonata_category_index');
 
@@ -53,7 +53,7 @@ class Builder extends ContainerAware
                 'attributes' => array('class' => 'dropdown'),
                 'childrenAttributes' => array('class' => 'dropdown-menu'),
                 'linkAttributes' => array('class' => 'dropdown-toggle', 'data-toggle' => 'dropdown', 'data-target' => '#'),
-                'label' => 'Shop <b class="caret caret-menu"></b>',
+                'label' => 'Our products <b class="caret caret-menu"></b>',
                 'extras' => array(
                     'safe_label' => true,
                 )
@@ -88,7 +88,7 @@ class Builder extends ContainerAware
             'attributes' => array('class' => 'dropdown'),
             'childrenAttributes' => array('class' => 'dropdown-menu'),
             'linkAttributes' => array('class' => 'dropdown-toggle', 'data-toggle' => 'dropdown', 'data-target' => '#'),
-            'label' => 'Discover <b class="caret caret-menu"></b>',
+            'label' => 'Our solutions <b class="caret caret-menu"></b>',
             'extras' => array(
                 'safe_label' => true,
             )
@@ -100,7 +100,12 @@ class Builder extends ContainerAware
 
         $menu->addChild($extras);
 
-        $menu->addChild('Admin', array('route' => 'sonata_admin_redirect'));
+        $menu->addChild('Admin', array(
+            'route' => 'page_slug',
+            'routeParameters' => array(
+                'path' => '/user'
+            )
+        ));
 
         if ($isFooter) {
             $menu->addChild('Legal notes', array(
