@@ -96,7 +96,7 @@ By default the Sonata Page bundle is activated, so you need to starts 3 commands
 
    If you didn't load fixture, you need to create a default website :
 
-       app/console sonata:page:create-site --enabled=true --locale=en --name=localhost --host=localhost --relativePath=/ --enabledFrom=now --enabledTo="+10 years" --default=true
+       app/console sonata:page:create-site --enabled=true --locale=en --name=localhost --host=localhost --relativePath=/ --enabledFrom=now --enabledTo="+10 years" --default=1
 
 
 .. note::
