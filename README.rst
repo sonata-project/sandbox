@@ -28,7 +28,7 @@ Run the following commands::
     git checkout hackingday
     curl -s http://getcomposer.org/installer | php
     php composer.phar install
-    ./setup.sh
+    php load_data.php
     cd web
     php -S localhost:9090
 
