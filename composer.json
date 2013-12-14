@@ -35,6 +35,9 @@
         "doctrine/doctrine-fixtures-bundle": "~2.2",
         "doctrine/data-fixtures": "1.0.*@dev",
 
+        "jms/security-extra-bundle": "~1.5",
+        "jms/di-extra-bundle": "~1.4",
+
         "symfony-cmf/routing-bundle": "~1.1",
 
         "knplabs/gaufrette": "0.1.4",
@@ -67,7 +70,8 @@
 
         "stof/doctrine-extensions-bundle": "~1.1",
         "stephpy/TimelineBundle": "2.0.*@dev",
-        "stephpy/timeline": "~1.0@dev"
+        "stephpy/timeline": "~1.0@dev",
+        "incenteev/composer-parameter-handler": "~2.0"
     },
 
     "require-dev": {
@@ -77,17 +81,20 @@
         "behat/mink-goutte-driver": "~1.0",
         "behat/mink": "~1.5",
         "behat/mink-browserkit-driver": "~1.1",
-        "behat/mink-selenium2-driver": "~1.1"
+        "behat/mink-selenium2-driver": "~1.1",
+        "guzzle/guzzle": "~3.0"
     },
 
     "scripts": {
         "post-install-cmd": [
+            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
         ],
         "post-update-cmd": [
+            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
@@ -104,6 +111,19 @@
         "symfony-web-dir": "web",
         "branch-alias": {
             "dev-master": "2.3.x-dev"
-        }
+        },
+        "incenteev-parameters": [
+            {
+                "file": "app/config/parameters.yml",
+                "dist-file": "app/config/parameters.yml.sample",
+                "keep-outdated": true
+            },
+            {
+                "file": "behat.yml",
+                "dist-file": "behat.yml.dist",
+                "parameter-key": "default",
+                "keep-outdated": true
+            }
+        ]
     }
 }
