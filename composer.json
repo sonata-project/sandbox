@@ -117,6 +117,12 @@
                 "file": "app/config/parameters.yml",
                 "dist-file": "app/config/parameters.yml.sample",
                 "keep-outdated": true
+            },
+            {
+                "file": "behat.yml",
+                "dist-file": "behat.yml.dist",
+                "parameter-key": "default",
+                "keep-outdated": true
             }
         ]
     }
