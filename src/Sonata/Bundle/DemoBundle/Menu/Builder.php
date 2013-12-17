@@ -44,7 +44,7 @@ class Builder extends ContainerAware
 
         $menu = $factory->createItem('main', $menuOptions);
 
-        $shopMenuParams = array('route' => 'sonata_category_index');
+        $shopMenuParams = array('route' => 'sonata_catalog_index');
 
         if (count($shopCategories) > 0 && !$isFooter) {
             $shopMenuParams = array_merge($shopMenuParams, array(

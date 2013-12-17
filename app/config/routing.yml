@@ -67,6 +67,10 @@ sonata_order:
     resource: @SonataOrderBundle/Resources/config/routing/order.xml
     prefix: /shop/user/order
 
+sonata_product_catalog:
+    resource: @SonataProductBundle/Resources/config/routing/catalog.xml
+    prefix: /shop/catalog
+
 sonata_product:
     resource: @SonataProductBundle/Resources/config/routing/product.xml
     prefix: /shop/product

@@ -33,3 +33,29 @@
 .sonata-bc .page-footer p.handcraft {
     margin-top: 80px;
 }
+
+/*
+ * Product catalog
+ */
+.sonata-product-navigation-bar {
+    background-color: #f5f5f5;
+    border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px;
+    padding: 10px;
+    margin-bottom: 30px;
+}
+.sonata-product-navigation-bar .pagination {
+    margin: 0 !important;
+}
+.no-products-available {
+    padding: 100px;
+    font-weight: bold;
+    text-align: center;
+}
+.product-grid {
+    padding-left: 10px;
+}
+.product-grid .product-thumbnail {
+    min-height: 100px;
+    max-height: 100px;
+    text-align: center;
+}
