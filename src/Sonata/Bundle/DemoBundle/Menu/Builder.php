@@ -44,8 +44,6 @@ class Builder extends ContainerAware
 
         $menu = $factory->createItem('main', $menuOptions);
 
-        $menu->addChild('News', array('route' => 'sonata_news_home'));
-
         $shopMenuParams = array('route' => 'sonata_category_index');
 
         if (count($shopCategories) > 0 && !$isFooter) {
@@ -53,7 +51,7 @@ class Builder extends ContainerAware
                 'attributes' => array('class' => 'dropdown'),
                 'childrenAttributes' => array('class' => 'dropdown-menu'),
                 'linkAttributes' => array('class' => 'dropdown-toggle', 'data-toggle' => 'dropdown', 'data-target' => '#'),
-                'label' => 'Our products <b class="caret caret-menu"></b>',
+                'label' => 'Products <b class="caret caret-menu"></b>',
                 'extras' => array(
                     'safe_label' => true,
                 )
@@ -68,6 +66,8 @@ class Builder extends ContainerAware
         }
 
         $shop = $menu->addChild('Shop', $shopMenuParams);
+
+        $menu->addChild('News', array('route' => 'sonata_news_home'));
 
         foreach ($shopCategories as $categ) {
             $shop->addChild($categ->getName(), array(
@@ -88,7 +88,7 @@ class Builder extends ContainerAware
             'attributes' => array('class' => 'dropdown'),
             'childrenAttributes' => array('class' => 'dropdown-menu'),
             'linkAttributes' => array('class' => 'dropdown-toggle', 'data-toggle' => 'dropdown', 'data-target' => '#'),
-            'label' => 'Our solutions <b class="caret caret-menu"></b>',
+            'label' => 'Solutions <b class="caret caret-menu"></b>',
             'extras' => array(
                 'safe_label' => true,
             )
