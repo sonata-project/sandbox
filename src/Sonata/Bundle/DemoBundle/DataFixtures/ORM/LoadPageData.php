@@ -49,6 +49,13 @@ class LoadPageData extends AbstractFixture implements ContainerAwareInterface, O
         $this->createUserPage($site);
         $this->createLegalNotesPage($site);
 
+        // Create footer pages
+        $this->createWhoWeArePage($site);
+        $this->createClientTestimonialsPage($site);
+        $this->createPressPage($site);
+        $this->createFAQPage($site);
+        $this->createContactUsPage($site);
+
         $this->createSubSite();
     }
 
@@ -326,35 +333,7 @@ CONTENT
      */
     public function createUserPage(SiteInterface $site)
     {
-        $pageManager = $this->getPageManager();
-        $blockManager = $this->getBlockManager();
-        $blockInteractor = $this->getBlockInteractor();
-
-        $this->addReference('page-user', $userPage = $pageManager->create());
-        $userPage->setSlug('/user');
-        $userPage->setUrl('/user');
-        $userPage->setName('Admin');
-        $userPage->setEnabled(true);
-        $userPage->setDecorate(1);
-        $userPage->setRequestMethod('GET|POST|HEAD|DELETE|PUT');
-        $userPage->setTemplateCode('default');
-        $userPage->setRouteName('page_slug');
-        $userPage->setSite($site);
-        $userPage->setParent($this->getReference('page-homepage'));
-
-        $userPage->addBlocks($content = $blockInteractor->createNewContainer(array(
-            'enabled' => true,
-            'page' => $userPage,
-            'code' => 'content_top',
-        )));
-
-        $content->setName('The content_top container');
-
-        // add a block text
-        $content->addChildren($text = $blockManager->create());
-        $text->setType('sonata.block.service.text');
-        $text->setSetting('content', <<<CONTENT
-
+        $this->createTextContentPage($site, 'user', 'Admin', <<<CONTENT
 <h2>Admin Bundle</h2>
 
 <div>
@@ -381,13 +360,7 @@ CONTENT
 </div>
 
 CONTENT
-);
-        $text->setPosition(1);
-        $text->setEnabled(true);
-        $text->setPage($userPage);
-
-
-        $pageManager->save($userPage);
+        );
     }
 
     /**
@@ -395,33 +368,7 @@ CONTENT
      */
     public function createLegalNotesPage(SiteInterface $site)
     {
-        $pageManager = $this->getPageManager();
-        $blockManager = $this->getBlockManager();
-        $blockInteractor = $this->getBlockInteractor();
-
-        $page = $pageManager->create();
-        $page->setSlug('/legal-notes');
-        $page->setUrl('/legal-notes');
-        $page->setName('Legal notes');
-        $page->setEnabled(true);
-        $page->setDecorate(1);
-        $page->setRequestMethod('GET|POST|HEAD|DELETE|PUT');
-        $page->setTemplateCode('default');
-        $page->setRouteName('page_slug');
-        $page->setSite($site);
-        $page->setParent($this->getReference('page-homepage'));
-
-        $page->addBlocks($content = $blockInteractor->createNewContainer(array(
-            'enabled' => true,
-            'page' => $page,
-            'code' => 'content_top',
-        )));
-
-        // add the content block filled with text
-        $content->addChildren($text = $blockManager->create());
-        $text->setType('sonata.block.service.text');
-        $text->setSetting('content', <<<CONTENT
-
+        $this->createTextContentPage($site, 'legal-notes', 'Legal notes', <<<CONTENT
 <h2>Legal notes</h2>
 <p>Sonata relays on the following open source libraries.</p>
 <section>
@@ -453,6 +400,131 @@ CONTENT
 </section>
 CONTENT
         );
+    }
+
+    /**
+     * Creates the "Who we are" content page (link available in footer)
+     *
+     * @param SiteInterface $site
+     *
+     * @return void
+     */
+    public function createWhoWeArePage(SiteInterface $site)
+    {
+        $this->createTextContentPage($site, 'who-we-are', 'Who we are', <<<CONTENT
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut quis sapien gravida, eleifend diam id, vehicula erat. Aenean ultrices facilisis tellus. Vivamus vitae molestie diam. Donec quis mi porttitor, lobortis ipsum quis, fermentum dui. Donec nec nibh nec risus porttitor pretium et et lorem. Nullam mauris sapien, rutrum sed neque et, convallis ullamcorper lacus. Nullam vehicula a lectus vel suscipit. Nam gravida faucibus fermentum.</p>
+<p>Pellentesque dapibus eu nisi quis adipiscing. Phasellus adipiscing turpis nunc, sed interdum ante porta eu. Ut tempus, purus posuere molestie cursus, quam nisi fermentum est, dictum gravida nulla turpis vel nunc. Maecenas eget sem quam. Nam condimentum mi id lectus venenatis, sit amet semper purus convallis. Nunc ullamcorper magna mi, non adipiscing velit semper quis. Duis vel justo libero. Suspendisse laoreet hendrerit augue cursus congue. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;</p>
+<p>Nullam dignissim sapien vestibulum erat lobortis, sed imperdiet elit varius. Fusce nisi eros, feugiat commodo scelerisque a, lacinia et quam. In neque risus, dignissim non magna non, ultricies faucibus elit. Vivamus in facilisis enim, porttitor volutpat justo. Praesent placerat feugiat nibh et fermentum. Vivamus eu fermentum metus. Sed mattis volutpat quam a suscipit. Donec blandit sagittis est, ac tristique arcu venenatis sed. Fusce vel libero id lectus aliquet sollicitudin. Fusce ultrices porta est, non pellentesque lorem accumsan eget. Fusce id libero sit amet nulla venenatis dapibus. Maecenas fermentum tellus eu magna mollis gravida. Nam non nibh magna.</p>
+CONTENT
+        );
+    }
+
+    /**
+     * Creates the "Client testimonials" content page (link available in footer)
+     *
+     * @param SiteInterface $site
+     *
+     * @return void
+     */
+    public function createClientTestimonialsPage(SiteInterface $site)
+    {
+        $this->createTextContentPage($site, 'client-testimonials', 'Client testimonials', <<<CONTENT
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut quis sapien gravida, eleifend diam id, vehicula erat. Aenean ultrices facilisis tellus. Vivamus vitae molestie diam. Donec quis mi porttitor, lobortis ipsum quis, fermentum dui. Donec nec nibh nec risus porttitor pretium et et lorem. Nullam mauris sapien, rutrum sed neque et, convallis ullamcorper lacus. Nullam vehicula a lectus vel suscipit. Nam gravida faucibus fermentum.</p>
+<p>Pellentesque dapibus eu nisi quis adipiscing. Phasellus adipiscing turpis nunc, sed interdum ante porta eu. Ut tempus, purus posuere molestie cursus, quam nisi fermentum est, dictum gravida nulla turpis vel nunc. Maecenas eget sem quam. Nam condimentum mi id lectus venenatis, sit amet semper purus convallis. Nunc ullamcorper magna mi, non adipiscing velit semper quis. Duis vel justo libero. Suspendisse laoreet hendrerit augue cursus congue. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;</p>
+<p>Nullam dignissim sapien vestibulum erat lobortis, sed imperdiet elit varius. Fusce nisi eros, feugiat commodo scelerisque a, lacinia et quam. In neque risus, dignissim non magna non, ultricies faucibus elit. Vivamus in facilisis enim, porttitor volutpat justo. Praesent placerat feugiat nibh et fermentum. Vivamus eu fermentum metus. Sed mattis volutpat quam a suscipit. Donec blandit sagittis est, ac tristique arcu venenatis sed. Fusce vel libero id lectus aliquet sollicitudin. Fusce ultrices porta est, non pellentesque lorem accumsan eget. Fusce id libero sit amet nulla venenatis dapibus. Maecenas fermentum tellus eu magna mollis gravida. Nam non nibh magna.</p>
+CONTENT
+        );
+    }
+
+    /**
+     * Creates the "Press" content page (link available in footer)
+     *
+     * @param SiteInterface $site
+     *
+     * @return void
+     */
+    public function createPressPage(SiteInterface $site)
+    {
+        $this->createTextContentPage($site, 'press', 'Press', <<<CONTENT
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut quis sapien gravida, eleifend diam id, vehicula erat. Aenean ultrices facilisis tellus. Vivamus vitae molestie diam. Donec quis mi porttitor, lobortis ipsum quis, fermentum dui. Donec nec nibh nec risus porttitor pretium et et lorem. Nullam mauris sapien, rutrum sed neque et, convallis ullamcorper lacus. Nullam vehicula a lectus vel suscipit. Nam gravida faucibus fermentum.</p>
+<p>Pellentesque dapibus eu nisi quis adipiscing. Phasellus adipiscing turpis nunc, sed interdum ante porta eu. Ut tempus, purus posuere molestie cursus, quam nisi fermentum est, dictum gravida nulla turpis vel nunc. Maecenas eget sem quam. Nam condimentum mi id lectus venenatis, sit amet semper purus convallis. Nunc ullamcorper magna mi, non adipiscing velit semper quis. Duis vel justo libero. Suspendisse laoreet hendrerit augue cursus congue. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;</p>
+<p>Nullam dignissim sapien vestibulum erat lobortis, sed imperdiet elit varius. Fusce nisi eros, feugiat commodo scelerisque a, lacinia et quam. In neque risus, dignissim non magna non, ultricies faucibus elit. Vivamus in facilisis enim, porttitor volutpat justo. Praesent placerat feugiat nibh et fermentum. Vivamus eu fermentum metus. Sed mattis volutpat quam a suscipit. Donec blandit sagittis est, ac tristique arcu venenatis sed. Fusce vel libero id lectus aliquet sollicitudin. Fusce ultrices porta est, non pellentesque lorem accumsan eget. Fusce id libero sit amet nulla venenatis dapibus. Maecenas fermentum tellus eu magna mollis gravida. Nam non nibh magna.</p>
+CONTENT
+        );
+    }
+
+    /**
+     * Creates the "FAQ" content page (link available in footer)
+     *
+     * @param SiteInterface $site
+     *
+     * @return void
+     */
+    public function createFAQPage(SiteInterface $site)
+    {
+        $this->createTextContentPage($site, 'faq', 'FAQ', <<<CONTENT
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut quis sapien gravida, eleifend diam id, vehicula erat. Aenean ultrices facilisis tellus. Vivamus vitae molestie diam. Donec quis mi porttitor, lobortis ipsum quis, fermentum dui. Donec nec nibh nec risus porttitor pretium et et lorem. Nullam mauris sapien, rutrum sed neque et, convallis ullamcorper lacus. Nullam vehicula a lectus vel suscipit. Nam gravida faucibus fermentum.</p>
+<p>Pellentesque dapibus eu nisi quis adipiscing. Phasellus adipiscing turpis nunc, sed interdum ante porta eu. Ut tempus, purus posuere molestie cursus, quam nisi fermentum est, dictum gravida nulla turpis vel nunc. Maecenas eget sem quam. Nam condimentum mi id lectus venenatis, sit amet semper purus convallis. Nunc ullamcorper magna mi, non adipiscing velit semper quis. Duis vel justo libero. Suspendisse laoreet hendrerit augue cursus congue. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;</p>
+<p>Nullam dignissim sapien vestibulum erat lobortis, sed imperdiet elit varius. Fusce nisi eros, feugiat commodo scelerisque a, lacinia et quam. In neque risus, dignissim non magna non, ultricies faucibus elit. Vivamus in facilisis enim, porttitor volutpat justo. Praesent placerat feugiat nibh et fermentum. Vivamus eu fermentum metus. Sed mattis volutpat quam a suscipit. Donec blandit sagittis est, ac tristique arcu venenatis sed. Fusce vel libero id lectus aliquet sollicitudin. Fusce ultrices porta est, non pellentesque lorem accumsan eget. Fusce id libero sit amet nulla venenatis dapibus. Maecenas fermentum tellus eu magna mollis gravida. Nam non nibh magna.</p>
+CONTENT
+        );
+    }
+
+    /**
+     * Creates the "Contact us" content page (link available in footer)
+     *
+     * @param SiteInterface $site
+     *
+     * @return void
+     */
+    public function createContactUsPage(SiteInterface $site)
+    {
+        $this->createTextContentPage($site, 'contact-us', 'Contact us', <<<CONTENT
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut quis sapien gravida, eleifend diam id, vehicula erat. Aenean ultrices facilisis tellus. Vivamus vitae molestie diam. Donec quis mi porttitor, lobortis ipsum quis, fermentum dui. Donec nec nibh nec risus porttitor pretium et et lorem. Nullam mauris sapien, rutrum sed neque et, convallis ullamcorper lacus. Nullam vehicula a lectus vel suscipit. Nam gravida faucibus fermentum.</p>
+<p>Pellentesque dapibus eu nisi quis adipiscing. Phasellus adipiscing turpis nunc, sed interdum ante porta eu. Ut tempus, purus posuere molestie cursus, quam nisi fermentum est, dictum gravida nulla turpis vel nunc. Maecenas eget sem quam. Nam condimentum mi id lectus venenatis, sit amet semper purus convallis. Nunc ullamcorper magna mi, non adipiscing velit semper quis. Duis vel justo libero. Suspendisse laoreet hendrerit augue cursus congue. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;</p>
+<p>Nullam dignissim sapien vestibulum erat lobortis, sed imperdiet elit varius. Fusce nisi eros, feugiat commodo scelerisque a, lacinia et quam. In neque risus, dignissim non magna non, ultricies faucibus elit. Vivamus in facilisis enim, porttitor volutpat justo. Praesent placerat feugiat nibh et fermentum. Vivamus eu fermentum metus. Sed mattis volutpat quam a suscipit. Donec blandit sagittis est, ac tristique arcu venenatis sed. Fusce vel libero id lectus aliquet sollicitudin. Fusce ultrices porta est, non pellentesque lorem accumsan eget. Fusce id libero sit amet nulla venenatis dapibus. Maecenas fermentum tellus eu magna mollis gravida. Nam non nibh magna.</p>
+CONTENT
+        );
+    }
+
+    /**
+     * Creates simple content pages
+     *
+     * @param SiteInterface $site    A Site entity instance
+     * @param string        $url     A page URL
+     * @param string        $title   A page title
+     * @param string        $content A text content
+     *
+     * @return void
+     */
+    public function createTextContentPage(SiteInterface $site, $url, $title, $content)
+    {
+        $pageManager = $this->getPageManager();
+        $blockManager = $this->getBlockManager();
+        $blockInteractor = $this->getBlockInteractor();
+
+        $page = $pageManager->create();
+        $page->setSlug(sprintf('/%s', $url));
+        $page->setUrl(sprintf('/%s', $url));
+        $page->setName($title);
+        $page->setEnabled(true);
+        $page->setDecorate(1);
+        $page->setRequestMethod('GET|POST|HEAD|DELETE|PUT');
+        $page->setTemplateCode('default');
+        $page->setRouteName('page_slug');
+        $page->setSite($site);
+        $page->setParent($this->getReference('page-homepage'));
+
+        $page->addBlocks($block = $blockInteractor->createNewContainer(array(
+            'enabled' => true,
+            'page'    => $page,
+            'code'    => 'content_top',
+        )));
+
+        // Add text content block
+        $block->addChildren($text = $blockManager->create());
+        $text->setType('sonata.block.service.text');
+        $text->setSetting('content', sprintf('<h2>%s</h2><div>%s</div>', $title, $content));
         $text->setPosition(1);
         $text->setEnabled(true);
         $text->setPage($page);
@@ -584,12 +656,12 @@ FOOTER
         $text->setType('sonata.block.service.text');
         $text->setSetting('content', <<<CONTENT
 <ul class="links">
-    <li><a href="#">Who we are</a></li>
-    <li><a href="#">Client testimonials</a></li>
-    <li><a href="#">Press</a></li>
-    <li><a href="#">FAQ</a></li>
-    <li><a href="#">Contact us</a></li>
-    <li><a href="#">Terms & conditions</a></li>
+    <li><a href="/who-we-are">Who we are</a></li>
+    <li><a href="/client-testimonials">Client testimonials</a></li>
+    <li><a href="/press">Press</a></li>
+    <li><a href="/faq">FAQ</a></li>
+    <li><a href="/contact-us">Contact us</a></li>
+    <li><a href="/shop/payment/terms-and-conditions">Terms & conditions</a></li>
 </ul>
 CONTENT
         );
