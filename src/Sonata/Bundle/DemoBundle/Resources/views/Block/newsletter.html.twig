@@ -1,0 +1,21 @@
+<div class="row-fluid block-newsletter">
+    <div class="span12" style="text-align: center;">
+        <p>Want to stay in touch with us?</p>
+        <p>Subscribe to our monthly newsletter.</p>
+
+        <div>
+            <form id="newsletter-form" name="newsletter-form" method="post" action="">
+                {{ form_label(form.email) }}
+                {{ form_widget(form.email) }}
+
+                {{ form_rest(form) }}
+
+                <input class="btn" type="submit" value="Subscribe" />
+            </form>
+        </div>
+
+        {% if message %}
+            <div class="alert alert-error">{{ message }}</div>
+        {% endif %}
+    </div>
+</div>
