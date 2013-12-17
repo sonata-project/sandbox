@@ -20,7 +20,6 @@ use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormTypeInterface;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Security\Core\SecurityContextInterface;
@@ -35,11 +34,6 @@ use Symfony\Component\Security\Core\SecurityContextInterface;
 class NewsletterBlockService extends BaseBlockService
 {
     /**
-     * @var Request
-     */
-    protected $request;
-
-    /**
      * @var FormInterface
      */
     protected $form;
@@ -49,16 +43,14 @@ class NewsletterBlockService extends BaseBlockService
      *
      * @param string               $name        A block name
      * @param EngineInterface      $templating  Twig engine service
-     * @param Request              $request     Symfony Request service
      * @param FormFactoryInterface $formFactory Symfony FormFactory service
      * @param string               $formType    Newsletter form type
      */
-    public function __construct($name, EngineInterface $templating, Request $request, FormFactoryInterface $formFactory, $formType)
+    public function __construct($name, EngineInterface $templating, FormFactoryInterface $formFactory, $formType)
     {
         parent::__construct($name, $templating);
 
-        $this->request = $request;
-        $this->form    = $formFactory->create($formType);
+        $this->form = $formFactory->create($formType);
     }
 
     /**
@@ -66,21 +58,10 @@ class NewsletterBlockService extends BaseBlockService
      */
     public function execute(BlockContextInterface $blockContext, Response $response = null)
     {
-        $message = null;
-
-        if ($this->request->isMethod('POST')) {
-            $this->form->handleRequest($this->request);
-
-            if ($this->form->isValid()) {
-                $message = 'Sorry, this is just a demonstration block, it does not really work.';
-            }
-        }
-
         return $this->renderPrivateResponse($blockContext->getTemplate(), array(
             'block'   => $blockContext->getBlock(),
             'context' => $blockContext,
             'form'    => $this->form->createView(),
-            'message' => $message,
         ));
     }
 
