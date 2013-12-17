@@ -8,6 +8,15 @@ Feature: Products
         Given I am on "shop/basket"
 
     @200
+    Scenario: Check the update quantity AJAX call
+      Given I am an XHR request
+      When I go to "shop/product/info/1/1"
+      Then the response status code should be 200
+      And the response is JSON
+      And the price is 29
+      And the stock is 2000
+
+    @200
     Scenario: Check products & categories page status code
         When I go to "shop/category"
         Then I should see "Categories"
@@ -76,3 +85,8 @@ Feature: Products
         When I go to "shop/product/5/maximum-air-sonata-ultimate-edition"
         Then I should not see "January 16, 2014 09:00"
         And I should not see "Starting date"
+
+      @400
+      Scenario: Check the update quantity AJAX call only allows XHR
+        When I go to "shop/product/info/1/1"
+        Then the response status code should be 400
