@@ -257,6 +257,21 @@ CONTENT
         $newProductsBlock->setEnabled(true);
         $newProductsBlock->setPage($homepage);
 
+        $homepage->addBlocks($bottom = $blockInteractor->createNewContainer(array(
+            'enabled' => true,
+            'page'    => $homepage,
+            'code'    => 'content_bottom',
+        )));
+        $bottom->setName('The bottom content container');
+
+        // Homepage footer newsletter block
+        $bottom->addChildren($newsletter = $blockManager->create());
+
+        $newsletter->setType('sonata.demo.block.newsletter');
+        $newsletter->setPosition(1);
+        $newsletter->setEnabled(true);
+        $newsletter->setPage($homepage);
+
         $pageManager->save($homepage);
     }
 
