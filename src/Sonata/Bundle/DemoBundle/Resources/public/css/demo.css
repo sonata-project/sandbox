@@ -59,3 +59,18 @@
     max-height: 100px;
     text-align: center;
 }
+
+/*
+ * News
+ */
+h2.sonata-blog-post-title {
+    font-size: 22px;
+}
+
+.sonata-blog-post-abtract {
+    margin-top: 10px;
+}
+
+.sonata-blog-post-list hr {
+    margin: 20px 0px 5px 0px;
+}
