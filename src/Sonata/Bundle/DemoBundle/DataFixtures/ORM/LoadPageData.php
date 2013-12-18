@@ -621,7 +621,7 @@ CONTENT
 <div class="row-fluid page-footer">{{ CONTENT }}</div>
 <hr />
 <div style="margin: 20px 0;">
-    © <a href="http://www.sonata-project.org">Sonata Project</a> provides Sonata demo 2010 - 2013 // Open Software License ("OSL") v. 3.0<br/>
+    © <a href="http://www.sonata-project.org">Sonata Project</a> provides Sonata demo 2010 - 2013 // MIT License<br/>
     Using <a href="http://www.glyphicons.com" target="_blank">GLYPHICONS.com</a> free icons released under <a href="http://creativecommons.org/licenses/by/3.0/" target="_blank">CC BY 3.0 license</a>
 </div>
 FOOTER
