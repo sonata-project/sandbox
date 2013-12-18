@@ -7,6 +7,20 @@ Feature: Products
     Background:
         Given I am on "shop/basket"
 
+    @400
+    Scenario: Check the update quantity AJAX call only allows XHR
+        When I go to "shop/product/1/info?quantity=1"
+        Then the response status code should be 400
+
+    @200
+    Scenario: Check the update quantity AJAX call
+        Given I am an XHR request
+        When I go to "shop/product/1/info?quantity=1"
+        Then the response status code should be 200
+        And the response is JSON
+        And the price is 29
+        And the stock is 2000
+
     @200
     Scenario: Check products & categories page status code
         When I go to "shop/category"
