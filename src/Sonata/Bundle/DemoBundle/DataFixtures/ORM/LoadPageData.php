@@ -291,7 +291,7 @@ CONTENT
         $category->setDecorate(1);
         $category->setRequestMethod('GET|POST|HEAD|DELETE|PUT');
         $category->setTemplateCode('default');
-        $category->setRouteName('sonata_category_index');
+        $category->setRouteName('sonata_catalog_index');
         $category->setSite($site);
         $category->setParent($this->getReference('page-homepage'));
 
