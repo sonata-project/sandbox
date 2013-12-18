@@ -13,6 +13,7 @@ namespace Sonata\Bundle\DemoBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sonata\Bundle\DemoBundle\Entity\MediaPreview;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Sonata\Bundle\DemoBundle\Form\Type\CarType;
 
@@ -117,6 +118,25 @@ class DemoController extends Controller
         return $this->render('SonataDemoBundle:Demo:media.html.twig', array(
             'form' => $form->createView(),
             'media' => $mediaPreview->getMedia()
+        ));
+    }
+
+    /**
+     * Newsletter subscription action
+     *
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function newsletterAction(Request $request)
+    {
+        $form = $this->createForm('sonata_demo_form_type_newsletter');
+        $form->handleRequest($request);
+
+        $message = 'Sorry, this is just a demonstration block. It does not really works.';
+
+        return $this->render('SonataDemoBundle:Block:newsletter_confirmation.html.twig', array(
+            'message' => $form->isValid() ? $message : null
         ));
     }
 

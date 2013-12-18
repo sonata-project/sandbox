@@ -4,7 +4,7 @@
         <p>Subscribe to our monthly newsletter.</p>
 
         <div>
-            <form id="newsletter-form" name="newsletter-form" method="post" action="">
+            <form id="newsletter-form" name="newsletter-form" method="post" action="{{ path('sonata_demo_newsletter') }}" data-name="sonata-ajax" data-target="newsletter_confirmation">
                 {{ form_label(form.email) }}
                 {{ form_widget(form.email) }}
 
@@ -14,8 +14,6 @@
             </form>
         </div>
 
-        {% if message %}
-            <div class="alert alert-error">{{ message }}</div>
-        {% endif %}
+        <div id="newsletter_confirmation"></div>
     </div>
 </div>

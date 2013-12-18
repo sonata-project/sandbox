@@ -16,6 +16,12 @@ file that was distributed with this source code.
     <link rel="stylesheet" href="/bundles/sonatademo/css/demo.css" type="text/css" media="all" />
 {% endblock %}
 
+{% block sonata_page_javascripts %}
+    {{ parent() }}
+
+    <script src="{{ asset('bundles/sonatademo/js/demo.js') }}" type="text/javascript"></script>
+{% endblock %}
+
 {% block page_container %}
     <div class="container">
         <div class="content">
