@@ -75,10 +75,6 @@ sonata_product:
     resource: @SonataProductBundle/Resources/config/routing/product.xml
     prefix: /shop/product
 
-sonata_category:
-    resource: @SonataProductBundle/Resources/config/routing/category.xml
-    prefix: /shop/category
-
 sonata_payment:
     resource: @SonataPaymentBundle/Resources/config/routing/payment.xml
     prefix: /shop/payment
