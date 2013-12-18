@@ -24,7 +24,7 @@ Feature: Products
     @200
     Scenario: Check the update quantity AJAX call
       Given I am an XHR request
-      When I go to "shop/product/info/1/1"
+      When I go to "shop/product/1/info?quantity=1"
       Then the response status code should be 200
       And the response is JSON
       And the price is 29
