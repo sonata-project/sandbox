@@ -44,7 +44,7 @@ class Builder extends ContainerAware
 
         $menu = $factory->createItem('main', $menuOptions);
 
-        $shopMenuParams = array('route' => 'sonata_category_index');
+        $shopMenuParams = array('route' => 'sonata_catalog_index');
 
         if (count($shopCategories) > 0 && !$isFooter) {
             $shopMenuParams = array_merge($shopMenuParams, array(
@@ -69,12 +69,12 @@ class Builder extends ContainerAware
 
         $menu->addChild('News', array('route' => 'sonata_news_home'));
 
-        foreach ($shopCategories as $categ) {
-            $shop->addChild($categ->getName(), array(
-                'route' => 'sonata_category_view',
+        foreach ($shopCategories as $category) {
+            $shop->addChild($category->getName(), array(
+                'route' => 'sonata_catalog_category',
                 'routeParameters' => array(
-                    'categoryId' => $categ->getId(),
-                    'slug' => $categ->getSlug())
+                    'category_id'   => $category->getId(),
+                    'category_slug' => $category->getSlug()),
                 )
             );
         }
