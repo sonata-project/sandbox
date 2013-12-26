@@ -22,9 +22,9 @@ Feature: Products
         And the stock is 2000
 
     @200
-    Scenario: Check products & categories page status code
-        When I go to "shop/category"
-        Then I should see "Categories"
+    Scenario: Check products & catalog page status code
+        When I go to "shop/catalog"
+        Then I should see "Catalog"
         And the response status code should be 200
 
     Scenario: Browse products by categories
