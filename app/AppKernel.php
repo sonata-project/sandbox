@@ -92,6 +92,9 @@ class AppKernel extends Kernel
             // CMF Integration
             new Symfony\Cmf\Bundle\RoutingBundle\CmfRoutingBundle(),
 
+            // Bootstrap
+            new Mopa\Bundle\BootstrapBundle\MopaBootstrapBundle(),
+
             // DEMO and QA - Can be deleted
             new Sonata\Bundle\DemoBundle\SonataDemoBundle(),
             new Sonata\Bundle\QABundle\SonataQABundle(),
