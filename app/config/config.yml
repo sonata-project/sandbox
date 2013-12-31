@@ -16,6 +16,7 @@ imports:
     - { resource: sonata/sonata_price.yml }
     - { resource: sonata/sonata_timeline.yml }
     - { resource: sonata/sonata_intl.yml }
+    - { resource: sonata/sonata_core.yml }
 
     # Sonata e-commerce bundles
     - { resource: sonata/sonata_order.yml }
@@ -58,7 +59,6 @@ twig:
 
     form:
         resources:
-            - 'SonataAdminBundle:Form:silex_form_div_layout.html.twig'
             - 'SonataFormatterBundle:Form:formatter.html.twig'
             - 'SonataMediaBundle:Form:media_widgets.html.twig'
 
