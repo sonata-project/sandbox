@@ -208,8 +208,8 @@ CONTENT
         $contentTop->addChildren($text = $blockManager->create());
         $text->setType('sonata.block.service.text');
         $text->setSetting('content', <<<CONTENT
-<div class="span3"><h2>Welcome</h2></div>
-<div class="span9">
+<div class="col-md-3"><h2>Welcome</h2></div>
+<div class="col-md-9">
     <p>
         This page is a demo of the Sonata Sandbox available on <a href="https://github.com/sonata-project/sandbox">github</a>.
         This demo try to be interactive so you will be able to found out the different features provided by the Sonata's Bundle.
@@ -618,7 +618,7 @@ CONTENT
             'code'    => 'footer'
         ), function ($container) {
             $container->setSetting('layout', <<<FOOTER
-<div class="row-fluid page-footer">{{ CONTENT }}</div>
+<div class="row page-footer well">{{ CONTENT }}</div>
 <hr />
 <div style="margin: 20px 0;">
     © <a href="http://www.sonata-project.org">Sonata Project</a> provides Sonata demo 2010 - 2013 // MIT License<br/>
@@ -636,7 +636,7 @@ FOOTER
             'page'    => $global,
             'code'    => 'content'
         ), function ($container) {
-            $container->setSetting('layout', '<div class="span4">{{ CONTENT }}</div>');
+            $container->setSetting('layout', '<div class="col-md-4">{{ CONTENT }}</div>');
         }));
 
         $footer->addChildren($footerCenter = $blockInteractor->createNewContainer(array(
@@ -644,7 +644,7 @@ FOOTER
             'page'    => $global,
             'code'    => 'content',
         ), function ($container) {
-            $container->setSetting('layout', '<div class="span4">{{ CONTENT }}</div>');
+            $container->setSetting('layout', '<div class="col-md-4">{{ CONTENT }}</div>');
         }));
 
         $footer->addChildren($footerRight = $blockInteractor->createNewContainer(array(
@@ -652,7 +652,7 @@ FOOTER
             'page'    => $global,
             'code'    => 'content'
         ), function ($container) {
-            $container->setSetting('layout', '<div class="span4">{{ CONTENT }}</div>');
+            $container->setSetting('layout', '<div class="col-md-4">{{ CONTENT }}</div>');
         }));
 
         // Footer left: add a simple text block

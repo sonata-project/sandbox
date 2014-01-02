@@ -16,6 +16,7 @@ imports:
     - { resource: sonata/sonata_price.yml }
     - { resource: sonata/sonata_timeline.yml }
     - { resource: sonata/sonata_intl.yml }
+    - { resource: sonata/sonata_core.yml }
 
     # Sonata e-commerce bundles
     - { resource: sonata/sonata_order.yml }
@@ -25,6 +26,9 @@ imports:
     - { resource: sonata/sonata_delivery.yml }
     - { resource: sonata/sonata_customer.yml }
     - { resource: sonata/sonata_basket.yml }
+
+    # Mopa Bootstrap
+    - { resource: mopa/mopa_bootstrap.yml }
 
 framework:
     #esi:             ~
@@ -55,7 +59,6 @@ twig:
 
     form:
         resources:
-            - 'SonataAdminBundle:Form:silex_form_div_layout.html.twig'
             - 'SonataFormatterBundle:Form:formatter.html.twig'
             - 'SonataMediaBundle:Form:media_widgets.html.twig'
 
@@ -69,6 +72,12 @@ assetic:
         #     jar: %kernel.root_dir%/java/compiler.jar
         # yui_css:
         #     jar: %kernel.root_dir%/java/yuicompressor-2.4.2.jar
+
+        # Comment out those lines if you wish to use the less version of bootstrap
+#        less:
+#            node: /usr/local/bin/node
+#            node_paths: [/usr/local/node/node-v0.10.22/lib/node_modules]
+#            apply_to: "\.less$"
 
 # Doctrine Configuration
 doctrine:

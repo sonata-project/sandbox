@@ -11,9 +11,11 @@ file that was distributed with this source code.
 {% extends 'SonataPageBundle::base_layout.html.twig' %}
 
 {% block sonata_page_stylesheets %}
-    {{ parent() }}
 
-    <link rel="stylesheet" href="/bundles/sonatademo/css/demo.css" type="text/css" media="all" />
+    <link href="{{ asset('bundles/mopabootstrap/bootstrap/dist/css/bootstrap.min.css') }}" type="text/css" rel="stylesheet" media="screen" />
+    <link href="{{ asset('bundles/mopabootstrap/css/datepicker.css') }}" type="text/css" rel="stylesheet" media="screen" />
+    <link href="{{ asset('bundles/sonatademo/css/demo.css') }}" type="text/css" rel="stylesheet" media="screen" />
+
 {% endblock %}
 
 {% block sonata_page_javascripts %}
@@ -27,12 +29,12 @@ file that was distributed with this source code.
 {% block page_container %}
     <div class="container">
         <div class="content">
-            <div class="row-fluid page-header">
-                <div class="span4">
+            <div class="row page-header">
+                <div class="col-md-4">
                     {{ sonata_page_render_container('title', 'global') }}
                 </div>
 
-                <div class="span8 navigation pull-right">
+                <div class="col-md-8 navigation pull-right">
                     {{ sonata_page_render_container('header', 'global') }}
                 </div>
 
@@ -40,7 +42,7 @@ file that was distributed with this source code.
             </div>
 
             {% if page is defined %}
-                <div class="row-fluid">
+                <div class="row">
                     {% if page.name != 'global'%}
                         {{ sonata_page_render_container('content_top', 'global') }}
                     {% endif %}
@@ -48,7 +50,7 @@ file that was distributed with this source code.
                 </div>
             {% endif %}
 
-            <div class="row-fluid">
+            <div class="row">
                 {% block page_content %}
                     {% if content is defined %}
                         {{ content|raw }}
@@ -64,7 +66,7 @@ file that was distributed with this source code.
             </div>
 
             {% if page is defined %}
-                <div>
+                <div class="row">
                     {{ sonata_page_render_container('content_bottom', page) }}
 
                     {% if page.name != 'global'%}
