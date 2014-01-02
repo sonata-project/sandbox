@@ -11,16 +11,10 @@ file that was distributed with this source code.
 {% extends 'SonataPageBundle::base_layout.html.twig' %}
 
 {% block sonata_page_stylesheets %}
-    {#{{ parent() }}#}
 
-    {#'@SonataPageBundle/Resources/public/default.css'#}
-    {% stylesheets
-    '@MopaBootstrapBundle/Resources/public/less/mopabootstrapbundle.less'
-    '@MopaBootstrapBundle/Resources/public/less/eyecon-datepicker.less'
-    '@SonataDemoBundle/Resources/public/css/demo.css'
-    %}
-        <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="screen" />
-    {% endstylesheets %}
+    <link href="{{ asset('bundles/mopabootstrap/bootstrap/dist/css/bootstrap.min.css') }}" type="text/css" rel="stylesheet" media="screen" />
+    <link href="{{ asset('bundles/mopabootstrap/css/datepicker.css') }}" type="text/css" rel="stylesheet" media="screen" />
+    <link href="{{ asset('bundles/sonatademo/css/demo.css') }}" type="text/css" rel="stylesheet" media="screen" />
 
 {% endblock %}
 

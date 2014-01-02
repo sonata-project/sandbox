@@ -72,10 +72,12 @@ assetic:
         #     jar: %kernel.root_dir%/java/compiler.jar
         # yui_css:
         #     jar: %kernel.root_dir%/java/yuicompressor-2.4.2.jar
-        less:
-            node: /usr/local/bin/node
-            node_paths: [/usr/local/node/node-v0.10.22/lib/node_modules]
-            apply_to: "\.less$"
+
+        # Comment out those lines if you wish to use the less version of bootstrap
+#        less:
+#            node: /usr/local/bin/node
+#            node_paths: [/usr/local/node/node-v0.10.22/lib/node_modules]
+#            apply_to: "\.less$"
 
 # Doctrine Configuration
 doctrine:
