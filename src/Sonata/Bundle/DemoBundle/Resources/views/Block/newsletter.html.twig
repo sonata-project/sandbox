@@ -3,9 +3,8 @@
     <p>Subscribe to our monthly newsletter.</p>
 
     <div>
-        <form id="newsletter-form" name="newsletter-form" method="post" action="{{ path('sonata_demo_newsletter') }}" data-name="sonata-ajax" data-target="newsletter_confirmation">
-            {{ form_label(form.email) }}
-            {{ form_widget(form.email) }}
+        <form id="newsletter-form" name="newsletter-form" method="post" action="{{ path('sonata_demo_newsletter') }}" data-name="sonata-ajax" data-target="newsletter_confirmation" class="form-inline">
+            {{ form_row(form.email, {'label_attr': {'class': 'sr-only'}, 'horizontal_input_wrapper_class': 'col-lg-12'}) }}
 
             {{ form_rest(form) }}
 
