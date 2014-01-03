@@ -29,6 +29,7 @@
         "jms/di-extra-bundle": "~1.4",
         "jms/serializer-bundle": "~0.11",
 
+        "doctrine/orm": "~2.4",
         "doctrine/doctrine-bundle": "~1.2",
         "doctrine/doctrine-migrations-bundle": "dev-master",
         "doctrine/migrations": "dev-master",
@@ -44,7 +45,7 @@
         "sonata-project/easy-extends-bundle": "~2.1@dev",
         "sonata-project/seo-bundle": "~1@dev",
         "sonata-project/doctrine-extensions": "~1@dev",
-        "sonata-project/intl-bundle": "~2.1@dev",
+        "sonata-project/intl-bundle": "~2.2@dev",
         "sonata-project/admin-bundle": "~2.2@dev",
         "sonata-project/doctrine-orm-admin-bundle": "~2.2@dev",
         "sonata-project/notification-bundle": "~2.2@dev",
@@ -70,7 +71,9 @@
 
         "stof/doctrine-extensions-bundle": "~1.1",
         "stephpy/TimelineBundle": "2.0.*@dev",
-        "stephpy/timeline": "~1.0@dev"
+        "stephpy/timeline": "~1.0@dev",
+
+        "incenteev/composer-parameter-handler": "~2.0"
     },
 
     "require-dev": {
@@ -85,18 +88,30 @@
 
     "scripts": {
         "post-install-cmd": [
+            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+            "Mopa\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrap",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
-            "Mopa\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrap"
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
         ],
         "post-update-cmd": [
+            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+            "Mopa\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrap",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
+        ],
+        "post-create-project-cmd": [
+            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+            "Mopa\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrap",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
-            "Mopa\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrap"
+            "php load_data.php",
+            "bin/test_client_ci.sh"
         ]
     },
 
@@ -109,6 +124,22 @@
         "symfony-web-dir": "web",
         "branch-alias": {
             "dev-master": "2.3.x-dev"
-        }
+        },
+        "incenteev-parameters": [{
+            "file": "app/config/parameters.yml",
+            "env-map": {
+                "database_driver":   "DATABASE_DRIVER",
+                "database_host":     "DATABASE_HOST",
+                "database_name":     "DATABASE_NAME",
+                "database_user":     "DATABASE_USER",
+                "database_password": "DATABASE_PASSWORD",
+                "mailer_transport":  "MAILER_TRANSPORT",
+                "mailer_host":       "MAILER_HOST",
+                "mailer_user":       "MAILER_USER",
+                "mailer_password":   "MAILER_PASSWORD",
+
+                "sonata_media.cdn.host": "SONATA_MEDIA_CDN_HOST"
+            }
+        }]
     }
 }
