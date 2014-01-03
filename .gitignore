@@ -7,9 +7,12 @@ app/*.cache
 web/bundles
 web/uploads
 web/sitemap*.xml
-app/config/parameters*.yml
+app/config/parameters.yml
+behat.yml
 vendor
 nbproject
 composer.lock
 build
 junit
+composer.phar
+bin/webunit
