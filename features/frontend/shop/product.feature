@@ -27,16 +27,14 @@ Feature: Products
         Then I should see "Catalog"
         And the response status code should be 200
 
-    Scenario: Browse products by categories
-        When I go to "shop/category"
-        And I follow "Goodies"
+    Scenario: Browse products by categories in catalog
+        When I go to "shop/catalog"
         And I follow "Plushes"
         Then I should see "PHP plush"
         But I should not see "No subcategories available"
 
     Scenario: Select a product by browsing products
-        When I go to "shop/category"
-        And I follow "Goodies"
+        When I go to "shop/catalog"
         And I follow "Plushes"
         And I follow "PHP plush"
         Then I should see "Vincent Pontier"
@@ -84,9 +82,9 @@ Feature: Products
 
     Scenario: Check the display of starting date if provided
         When I go to "shop/product/16/sonata-trainings"
-        Then I should see "January 16, 2014 09:00"
+        Then I should see "Jan 16th, 2014"
 
     Scenario: Check the non display of starting date and related label if value is not set
         When I go to "shop/product/5/maximum-air-sonata-ultimate-edition"
-        Then I should not see "January 16, 2014 09:00"
+        Then I should not see "Jan 16th, 2014"
         And I should not see "Starting date"
