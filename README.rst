@@ -7,24 +7,31 @@ What's inside?
 Sonata Standard Edition comes pre-configured with the following bundles:
 
 * Bundles from Symfony Standard distribution
-* Sonata Ecommerce - Sonata E-commerce suite
-* SonataAdminBundle - The missing Symfony2 Admin Generator
-* SonataMediaBundle
-* SonataPageBundle
-* SonataUserBundle
-* SonataEasyExtendsBundle
-* SonataIntlBundle
-* SonataNewsBundle
-* SonatajQueryBundle
-* FOSUserBundle
+* Sonata Admin Bundles: Admin and Doctrine ORM Admin
+* Sonata Ecommerce Bundles: Payment, Customer, Invoice, Order and Product
+* Sonata Foundation Bundles: Core, Notification, Formatter, Intl, Cache, Seo and Easy Extends
+* Sonata Feature Bundles: Page, Media, News, User, Block, Timeline
 
 Installation
 ------------
 
-Run the following commands::
+Get composer::
 
     curl -s http://getcomposer.org/installer | php
+
+
+Run the following command for the 2.3 branch::
+
+    php composer.phar create-project sonata-project/sandbox:dev-2.3
+
+Or to get the 2.3 develop branch::
+
     php composer.phar create-project sonata-project/sandbox:dev-2.3-develop
+
+The installation process used Incenteev's ParameterHandler to handle paramaters.yml configuration. With the current
+installation, it is possible to use environment variables to configure this file::
+
+    DATABASE_NAME=sonata DATABASE_USER=root DATABASE_PASSWORD="" php composer.phar create-project sonata-project/sandbox:dev-2.3-develop
 
 Run
 ---
