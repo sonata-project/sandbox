@@ -12,9 +12,6 @@ sonata_product:
             variations:
                 fields: [name, level, instructor_name, start_date, duration, price]
 
-    class:
-        user: Application\Sonata\Userbundle\Entity\User # you must define your own user class
-
     seo:
         product:
             site: '@sonataproject'
