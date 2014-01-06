@@ -12,3 +12,7 @@ _profiler:
 
 _main:
     resource: routing.yml
+
+sonata_payment_debug:
+    resource: @SonataPaymentBundle/Resources/config/routing/payment_debug.xml
+    prefix:   /shop/payment/debug
