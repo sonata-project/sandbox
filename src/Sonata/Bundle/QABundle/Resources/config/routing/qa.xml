@@ -7,4 +7,8 @@
     <route id="sonata_page_bundle_inner_controller" pattern="/qa/page/controller-helper">
         <default key="_controller">SonataQABundle:Page:controllerHelper</default>
     </route>
+
+    <route id="sonata_qa_serialize" pattern="/qa/serialize">
+        <default key="_controller">SonataQABundle:Serializer:serialize</default>
+    </route>
 </routes>
