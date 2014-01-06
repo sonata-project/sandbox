@@ -32,6 +32,15 @@
 }
 
 /*
+ * Basket
+ */
+.basket .unavailable .help-inline {
+    color: #b94a48;
+    font-weight: bold;
+    vertical-align: inherit;
+}
+
+/*
  * Product catalog
  */
 .sonata-product-navigation-bar {
