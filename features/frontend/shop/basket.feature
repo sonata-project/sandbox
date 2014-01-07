@@ -13,8 +13,7 @@ Feature: Basket
 
     Scenario: Adding simple product to basket by browsing (product page)
         Given I am on "shop/basket"
-        When I go to "shop/category"
-        And I follow "Goodies"
+        When I go to "shop/catalog"
         And I follow "Plushes"
         And I follow "PHP plush"
         And I fill in "add_basket_quantity" with "3"
@@ -35,8 +34,7 @@ Feature: Basket
         And the "sonata_basket_basket_basketElements_0_quantity" field should contain "1"
 
   Scenario: Changing product quantity from basket
-        Given I am on "shop/category"
-        And I follow "Goodies"
+        Given I am on "shop/catalog"
         And I follow "Plushes"
         And I follow "PHP plush"
         And I fill in "add_basket_quantity" with "3"
@@ -51,8 +49,7 @@ Feature: Basket
         And the "sonata_basket_basket_basketElements_0_quantity" field should contain "12"
 
     Scenario: Remove a simple product from basket by browsing (product page)
-        When I go to "shop/category"
-        And I follow "Goodies"
+        When I go to "shop/catalog"
         And I follow "Plushes"
         And I follow "PHP plush"
         And I fill in "add_basket_quantity" with "3"
