@@ -423,15 +423,15 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
     }
 
     /**
-     * @param $mediaFilename
-     * @param $name
-     * @param $description
-     * @param ProductInterface $product
+     * Creates a media and add it to given product instance
+     *
+     * @param string           $mediaFilename A media filename
+     * @param string           $name          A media name to set on creation
+     * @param string           $description   A media description text
+     * @param ProductInterface $product       A Product instance to add media
      */
     protected function addMediaToProduct($mediaFilename, $name, $description, ProductInterface $product)
     {
-        $gallery = $this->getGalleryForProduct($product);
-
         $mediaManager = $this->getMediaManager();
 
         $file = new \SplFileInfo($mediaFilename);
@@ -442,10 +442,9 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $media->setName($name);
         $media->setDescription($description);
 
-        $this->addMediaToGallery($media, $gallery);
-
         $mediaManager->save($media, 'sonata_product', 'sonata.media.provider.image');
-        $this->getGalleryManager()->update($gallery);
+
+        $product->setImage($media);
     }
 
     /**
