@@ -44,9 +44,6 @@
  * Product catalog
  */
 .sonata-product-navigation-bar {
-    background-color: #f5f5f5;
-    border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px;
-    padding: 10px;
     margin-bottom: 30px;
 }
 .sonata-product-navigation-bar .pagination {
