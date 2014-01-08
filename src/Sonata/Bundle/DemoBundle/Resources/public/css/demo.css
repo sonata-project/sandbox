@@ -4,7 +4,7 @@
 
 .sonata-bc .block-newsletter {
     text-align: center;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 .sonata-bc .block-newsletter input[type="email"] {
@@ -18,7 +18,7 @@
 
 .sonata-bc .page-footer {
     background-color: #dedede;
-    margin-top: 10px;
+    margin: 0px;
 }
 
 .sonata-bc .page-footer ul li {
@@ -56,12 +56,17 @@
     text-align: center;
 }
 .product-grid {
-    padding: 10px;
+    padding: 10px 0px 10px 0px;
 }
 .product-grid .product-thumbnail {
     min-height: 100px;
     max-height: 100px;
     text-align: center;
+}
+.product-grid .col-sm-3 {
+    height: 175px;
+    padding-right: 15px;
+    padding-left: 15px;
 }
 
 /*
