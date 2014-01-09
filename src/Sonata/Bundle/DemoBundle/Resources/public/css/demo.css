@@ -64,7 +64,7 @@
     text-align: center;
 }
 .product-grid .col-sm-3 {
-    height: 175px;
+    min-height: 175px;
     padding-right: 15px;
     padding-left: 15px;
 }
