@@ -257,15 +257,38 @@ CONTENT
         $newProductsBlock->setEnabled(true);
         $newProductsBlock->setPage($homepage);
 
+        // Add homepage bottom container
         $homepage->addBlocks($bottom = $blockInteractor->createNewContainer(array(
             'enabled' => true,
             'page'    => $homepage,
             'code'    => 'content_bottom',
-        )));
+        ), function ($container) {
+            $container->setSetting('layout', '<div class="block-newsletter">{{ CONTENT }}</div>');
+        }));
         $bottom->setName('The bottom content container');
 
-        // Homepage footer newsletter block
-        $bottom->addChildren($newsletter = $blockManager->create());
+        // Add homepage bottom left container
+        $bottom->addChildren($bottomLeft = $blockInteractor->createNewContainer(array(
+            'enabled' => true,
+            'page'    => $homepage,
+            'code'    => 'content_bottom_left',
+        ), function ($container) {
+            $container->setSetting('layout', '<div class="col-sm-6 well">{{ CONTENT }}</div>');
+        }));
+        $bottomLeft->setName('The bottom left content container');
+
+        // Add homepage bottom right container
+        $bottom->addChildren($bottomRight = $blockInteractor->createNewContainer(array(
+            'enabled' => true,
+            'page'    => $homepage,
+            'code'    => 'content_bottom_right',
+        ), function ($container) {
+            $container->setSetting('layout', '<div class="col-sm-6 well">{{ CONTENT }}</div>');
+        }));
+        $bottomLeft->setName('The bottom right content container');
+
+        // Add homepage bottom newsletter (left) & twitter (right) blocks
+        $bottomLeft->addChildren($newsletter = $blockManager->create());
 
         $newsletter->setType('sonata.demo.block.newsletter');
         $newsletter->setPosition(1);
