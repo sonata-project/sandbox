@@ -26,7 +26,7 @@ Feature: Basket
         Given I am on "shop/catalog"
         And I follow "Trainings"
         And I follow "Sonata trainings"
-        And I follow "PHP working traini…"
+        And I follow "PHP working training"
         And I follow "PHP working training for beginners"
         And I press "Add to basket"
         Then I should see "Your basket"

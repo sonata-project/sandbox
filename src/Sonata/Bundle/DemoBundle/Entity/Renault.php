@@ -25,8 +25,19 @@ class Renault extends Car
      */
     protected $id;
 
+    /**
+     * @return integer
+     */
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return 'Renault';
     }
 }
