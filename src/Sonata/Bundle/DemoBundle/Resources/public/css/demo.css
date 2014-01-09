@@ -49,6 +49,19 @@
     vertical-align: inherit;
 }
 
+.sonata-bc .demonstration-bar {
+    position: static;
+    width: 100%;
+    z-index: 999;
+    background-color: #000000;
+    color: #ffffff;
+    opacity: 0.8;
+    min-height: 30px;
+    padding-top: 5px;
+    text-align: center;
+    font-size: 1em;
+}
+
 /*
  * Product catalog
  */
