@@ -107,6 +107,7 @@ class LoadPageData extends AbstractFixture implements ContainerAwareInterface, O
         $blogIndex->setSlug('blog');
         $blogIndex->setUrl('/blog');
         $blogIndex->setName('News');
+        $blogIndex->setTitle('News');
         $blogIndex->setEnabled(true);
         $blogIndex->setDecorate(1);
         $blogIndex->setRequestMethod('GET|POST|HEAD|DELETE|PUT');
@@ -131,6 +132,7 @@ class LoadPageData extends AbstractFixture implements ContainerAwareInterface, O
         $galleryIndex->setSlug('gallery');
         $galleryIndex->setUrl('/media/gallery');
         $galleryIndex->setName('Gallery');
+        $galleryIndex->setTitle('Gallery');
         $galleryIndex->setEnabled(true);
         $galleryIndex->setDecorate(1);
         $galleryIndex->setRequestMethod('GET|POST|HEAD|DELETE|PUT');
@@ -184,6 +186,7 @@ CONTENT
         $homepage->setSlug('/');
         $homepage->setUrl('/');
         $homepage->setName('homepage');
+        $homepage->setTitle('Homepage');
         $homepage->setEnabled(true);
         $homepage->setDecorate(0);
         $homepage->setRequestMethod('GET|POST|HEAD|DELETE|PUT');
@@ -310,6 +313,7 @@ CONTENT
         $category->setSlug('shop-category');
         $category->setUrl('/shop/category');
         $category->setName('Shop');
+        $category->setTitle('Shop');
         $category->setEnabled(true);
         $category->setDecorate(1);
         $category->setRequestMethod('GET|POST|HEAD|DELETE|PUT');
@@ -355,6 +359,7 @@ CONTENT
         $media->setSlug('/media');
         $media->setUrl('/media');
         $media->setName('Media & Seo');
+        $media->setTitle('Media & Seo');
         $media->setEnabled(true);
         $media->setDecorate(1);
         $media->setRequestMethod('GET|POST|HEAD|DELETE|PUT');
@@ -545,6 +550,7 @@ CONTENT
         $page->setSlug(sprintf('/%s', $url));
         $page->setUrl(sprintf('/%s', $url));
         $page->setName($title);
+        $page->setTitle($title);
         $page->setEnabled(true);
         $page->setDecorate(1);
         $page->setRequestMethod('GET|POST|HEAD|DELETE|PUT');
