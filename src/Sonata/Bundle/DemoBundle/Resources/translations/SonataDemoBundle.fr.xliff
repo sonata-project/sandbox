@@ -6,6 +6,10 @@
             <source>sonata.demo.block.newsletter.message</source>
             <target>Merci pour votre inscription. Ce bloc est un bloc factice. Nous ne conservons pas vos adresses emails et n'envoyons pas de newsletters</target>
         </trans-unit>
+        <trans-unit id="sonata.demo.demonstration.message">
+            <source>sonata.demo.demonstration.message</source>
+            <target>Note : Ce site est une démonstration de Sonata E-commerce. Aucune commande passée sur ce site ne sera traitée.</target>
+        </trans-unit>
         </body>
     </file>
 </xliff>
