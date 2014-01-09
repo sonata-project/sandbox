@@ -133,7 +133,7 @@ class DemoController extends Controller
         $form = $this->createForm('sonata_demo_form_type_newsletter');
         $form->handleRequest($request);
 
-        $message = 'Sorry, this is just a demonstration block. It does not really work.';
+        $message = 'sonata.demo.block.newsletter.message';
 
         return $this->render('SonataDemoBundle:Block:newsletter_confirmation.html.twig', array(
             'message' => $form->isValid() ? $message : null

@@ -20,6 +20,10 @@
     font-weight: bold;
 }
 
+.sonata-bc #newsletter-confirmation {
+    margin-top: 20px;
+}
+
 .sonata-bc .page-footer {
     background-color: #dedede;
     margin: 0px;
