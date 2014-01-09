@@ -7,6 +7,10 @@
     margin-top: 10px;
 }
 
+.sonata-bc .block-newsletter > div.col-sm-6 {
+    min-height: 155px;
+}
+
 .sonata-bc .block-newsletter input[type="email"] {
     margin-bottom: 0px;
 }
