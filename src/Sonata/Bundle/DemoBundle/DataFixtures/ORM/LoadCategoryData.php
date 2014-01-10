@@ -21,7 +21,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 /**
  * Category fixtures loader.
  *
- * @author Sylvain Deloux <sylvain.deloux@fullsix.com>
+ * @author Sylvain Deloux <sylvain.deloux@ekino.com>
  */
 class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
 {
@@ -41,7 +41,7 @@ class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterfac
     /**
      * Returns the Sonata MediaManager.
      *
-     * @return \Sonata\CoreBundle\Entity\ManagerInterface
+     * @return \Sonata\CoreBundle\Model\ManagerInterface
      */
     public function getCategoryManager()
     {

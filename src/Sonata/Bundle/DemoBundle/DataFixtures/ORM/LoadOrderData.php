@@ -39,7 +39,7 @@ use Faker\Generator;
  * Category fixtures loader.
  *
  * @author Hugo Briand <briand@ekino.com>
- * @author Sylvain Deloux <sylvain.deloux@fullsix.com>
+ * @author Sylvain Deloux <sylvain.deloux@ekino.com>
  */
 class LoadOrderData extends AbstractFixture implements ContainerAwareInterface, OrderedFixtureInterface
 {

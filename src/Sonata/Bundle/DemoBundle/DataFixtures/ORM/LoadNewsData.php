@@ -129,7 +129,7 @@ RAW
     }
 
     /**
-     * @return \Sonata\CoreBundle\Entity\ManagerInterface
+     * @return \Sonata\CoreBundle\Model\ManagerInterface
      */
     public function getTagManager()
     {
@@ -137,7 +137,7 @@ RAW
     }
 
     /**
-     * @return \Sonata\CoreBundle\Entity\ManagerInterface
+     * @return \Sonata\CoreBundle\Model\ManagerInterface
      */
     public function getCollectionManager()
     {
