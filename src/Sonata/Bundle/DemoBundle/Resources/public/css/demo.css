@@ -2,6 +2,10 @@
     text-align: right !important;
 }
 
+.sonata-bc .page-header .nav {
+    clear: both;
+}
+
 .sonata-bc .block-newsletter {
     text-align: center;
     margin-top: 10px;
