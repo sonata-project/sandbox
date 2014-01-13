@@ -73,6 +73,10 @@
     font-size: 1em;
 }
 
+.sonata-bc .add_basket_modal {
+    top: 15%;
+}
+
 /*
  * Product catalog
  */
@@ -87,6 +91,11 @@
     font-weight: bold;
     text-align: center;
 }
+
+/*
+ * Product grid
+ */
+
 .product-grid {
     padding: 10px 0px 10px 0px;
 }
@@ -99,6 +108,32 @@
     min-height: 175px;
     padding-right: 15px;
     padding-left: 15px;
+}
+
+/* Small resolution */
+@media(max-width:767px) {
+    .product-grid .col-sm-3 {
+        margin-top: 30px;
+        min-width: 250px;
+    }
+    .product-grid li:not(:last-child) {
+        margin-top: 0px;
+    }
+}
+
+/* Extra-small resolution */
+@media(max-width:475px) {
+    .product-grid li:not(:last-child) {
+        margin-top: 25px;
+    }
+
+    .product-grid li:first-child {
+        margin-top: 0px;
+    }
+}
+
+.product-grid .col-sm-3:first-line {
+    margin-top: 10px;
 }
 
 /*
