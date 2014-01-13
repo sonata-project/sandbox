@@ -60,10 +60,12 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
          * @todo
          *  - check licences for used images
          */
-        $plushesCategory = $this->getPlushesCategory();
-        $sonataCategory  = $this->getSonataTrainingCategory();
-        $mugCategory     = $this->getMugCategory();
-        $clothesCategory = $this->getClothesCategory();
+        $goodiesCategory   = $this->getGoodiesCategory();
+        $trainingsCategory = $this->getTrainingsCategory();
+        $plushesCategory   = $this->getPlushesCategory();
+        $sonataCategory    = $this->getSonataTrainingCategory();
+        $mugCategory       = $this->getMugCategory();
+        $clothesCategory   = $this->getClothesCategory();
 
         $phpCollection = $this->getPhpCollection();
 
@@ -84,6 +86,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
 
         $this->addMediaToProduct(__DIR__.'/../data/files/elephpant.png', 'PHP elePHPant', 'PHP elePHPant', $phpPlush);
         $this->addProductToCategory($phpPlush, $plushesCategory, $manager);
+        $this->addProductToCategory($phpPlush, $goodiesCategory, $manager);
         $this->addProductDeliveries($phpPlush, $manager);
         $this->addProductToCollection($phpPlush, $phpCollection, $manager);
         $this->addPackageToProduct($phpPlush, $manager);
@@ -104,6 +107,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
 
         $this->addMediaToProduct(__DIR__.'/../data/files/php_mug.jpg', 'PHP mug', 'PHP mug', $phpMug);
         $this->addProductToCategory($phpMug, $mugCategory, $manager);
+        $this->addProductToCategory($phpMug, $goodiesCategory, $manager);
         $this->addProductDeliveries($phpMug, $manager);
         $this->addProductToCollection($phpMug, $phpCollection, $manager);
         $this->addPackageToProduct($phpMug, $manager);
@@ -124,6 +128,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
 
         $this->addMediaToProduct(__DIR__.'/../data/files/php_tee_shirt.png', 'PHP tee-shirt', 'PHP tee-shirt', $phpTeeShirt);
         $this->addProductToCategory($phpTeeShirt, $clothesCategory, $manager);
+        $this->addProductToCategory($phpTeeShirt, $goodiesCategory, $manager);
         $this->addProductDeliveries($phpTeeShirt, $manager);
         $this->addProductToCollection($phpTeeShirt, $phpCollection, $manager);
         $this->addPackageToProduct($phpTeeShirt, $manager);
@@ -144,6 +149,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
 
         $this->addMediaToProduct(__DIR__.'/../data/files/maximum-air-sonata.jpg', 'Maximum Air Sonata Limited edition', 'Maximum Air Sonata Limited edition', $maximumAir);
         $this->addProductToCategory($maximumAir, $this->getReference('sonata_shoes_category'), $manager);
+        $this->addProductToCategory($maximumAir, $goodiesCategory, $manager);
         $this->addProductDeliveries($maximumAir, $manager);
         $this->addProductToCollection($maximumAir, $phpCollection, $manager);
         $this->addPackageToProduct($maximumAir, $manager);
@@ -164,6 +170,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
 
         //$this->addMediaToProduct(__DIR__.'/../data/files/maximum-air-sonata-ultimate.jpg', 'Maximum Air Sonata ULTIMATE edition', 'Maximum Air Sonata ULTIMATE edition', $maximumAir);
         $this->addProductToCategory($maximumAir, $this->getReference('sonata_shoes_category'), $manager);
+        $this->addProductToCategory($maximumAir, $goodiesCategory, $manager);
         $this->addProductDeliveries($maximumAir, $manager);
         $this->addProductToCollection($maximumAir, $phpCollection, $manager);
         $this->addPackageToProduct($maximumAir, $manager);
@@ -181,6 +188,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
 
         $this->addMediaToProduct(__DIR__.'/../data/files/sonata_logo.png', 'Sonata logo', 'Sonata logo', $sonataTraining);
         $this->addProductToCategory($sonataTraining, $sonataCategory, $manager);
+        $this->addProductToCategory($sonataTraining, $trainingsCategory, $manager);
         $this->addProductDeliveries($sonataTraining, $manager);
         $this->addProductToCollection($sonataTraining, $phpCollection, $manager);
         $this->addPackageToProduct($sonataTraining, $manager);
@@ -232,6 +240,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
 
         $this->addMediaToProduct(__DIR__.'/../data/files/sonata_logo.png', 'Sonata logo', 'Sonata logo', $phpDisabledTraining);
         $this->addProductToCategory($phpDisabledTraining, $sonataCategory, $manager);
+        $this->addProductToCategory($phpDisabledTraining, $trainingsCategory, $manager);
         $this->addProductDeliveries($phpDisabledTraining, $manager);
         $this->addProductToCollection($phpDisabledTraining, $phpCollection, $manager);
         $this->addPackageToProduct($phpDisabledTraining, $manager);
@@ -260,6 +269,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
 
         $this->addMediaToProduct(__DIR__.'/../data/files/sonata_logo.png', 'Sonata logo', 'Sonata logo', $phpWorkingTraining);
         $this->addProductToCategory($phpWorkingTraining, $sonataCategory, $manager);
+        $this->addProductToCategory($phpWorkingTraining, $trainingsCategory, $manager);
         $this->addProductDeliveries($phpWorkingTraining, $manager);
         $this->addProductToCollection($phpWorkingTraining, $phpCollection, $manager);
         $this->addPackageToProduct($phpWorkingTraining, $manager);
@@ -288,6 +298,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
 
         $this->addMediaToProduct(__DIR__.'/../data/files/sonata_logo.png', 'Sonata logo', 'Sonata logo', $phpDisabledChild);
         $this->addProductToCategory($phpDisabledChild, $sonataCategory, $manager);
+        $this->addProductToCategory($phpDisabledChild, $trainingsCategory, $manager);
         $this->addProductDeliveries($phpDisabledChild, $manager);
         $this->addProductToCollection($phpDisabledChild, $phpCollection, $manager);
         $this->addPackageToProduct($phpDisabledChild, $manager);
@@ -317,6 +328,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $manager->persist($datedTraining);
 
         $this->addProductToCategory($datedTraining, $sonataCategory, $manager);
+        $this->addProductToCategory($datedTraining, $trainingsCategory, $manager);
         $this->addProductDeliveries($datedTraining, $manager);
         $this->addProductToCollection($datedTraining, $phpCollection, $manager);
 
@@ -522,6 +534,26 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $product->addPackage($package);
 
         $manager->persist($package);
+    }
+
+    /**
+     * Returns the goodies category.
+     *
+     * @return CategoryInterface
+     */
+    protected function getGoodiesCategory()
+    {
+        return $this->getReference('goodies_category');
+    }
+
+    /**
+     * Returns the trainings category.
+     *
+     * @return CategoryInterface
+     */
+    protected function getTrainingsCategory()
+    {
+        return $this->getReference('trainings_category');
     }
 
     /**
