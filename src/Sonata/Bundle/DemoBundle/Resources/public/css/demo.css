@@ -2,6 +2,10 @@
     text-align: right !important;
 }
 
+.sonata-bc .container {
+    max-width: 820px;
+}
+
 .sonata-bc .page-header .nav {
     clear: both;
 }
@@ -41,6 +45,10 @@
 
 .sonata-bc .page-footer p.handcraft {
     margin-top: 80px;
+}
+
+.sonata-bc .page-header .col-sm-4, .sonata-bc .welcome {
+    padding-left: 0px;
 }
 
 /*
