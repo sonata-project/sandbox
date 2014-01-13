@@ -74,6 +74,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $phpPlush->setSlug('php-plush');
         $phpPlush->setDescription('The PHP plush toy is based on the PHP world-famous elephant from Vincent Pontier: Vince evolved the logo from the three letters into an animal.');
         $phpPlush->setRawDescription('The PHP plush toy is based on the PHP world-famous elephant from Vincent Pontier: Vince evolved the logo from the three letters into an animal.'.$this->getLorem());
+        $phpPlush->setPriceIncVat(true);
         $phpPlush->setPrice(29.99);
         $phpPlush->setStock(2000);
         $phpPlush->setVat(19.6);
@@ -93,6 +94,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $phpMug->setSlug('php-mug');
         $phpMug->setDescription('You love coffee and PHP ? This mug is for you.');
         $phpMug->setRawDescription('You love coffee and PHP ? This mug is for you.'.$this->getLorem());
+        $phpMug->setPriceIncVat(true);
         $phpMug->setPrice(9.99);
         $phpMug->setStock(10000);
         $phpMug->setVat(19.6);
@@ -112,6 +114,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $phpTeeShirt->setSlug('php-t-shirt');
         $phpTeeShirt->setDescription('A nice PHP tee-shirt, best clothe ever to pick up girls.');
         $phpTeeShirt->setRawDescription('A nice PHP tee-shirt, best clothe ever to pick up girls.'.$this->getLorem());
+        $phpTeeShirt->setPriceIncVat(true);
         $phpTeeShirt->setPrice(25);
         $phpTeeShirt->setStock(0);
         $phpTeeShirt->setVat(19.6);
@@ -131,6 +134,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $maximumAir->setSlug('maximum-air-sonata-limited-edition');
         $maximumAir->setDescription('Get this limited edition of the MAXIMUM AIR SONATA and fly over PHP bugs. True story.');
         $maximumAir->setRawDescription('Get this limited edition of the MAXIMUM AIR SONATA and fly over PHP bugs. True story.'.$this->getLorem());
+        $maximumAir->setPriceIncVat(true);
         $maximumAir->setPrice(130);
         $maximumAir->setStock(500);
         $maximumAir->setVat(19.6);
@@ -150,6 +154,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $maximumAir->setSlug('maximum-air-sonata-ultimate-edition');
         $maximumAir->setDescription('Get this ULTIMATE edition of the MAXIMUM AIR SONATA and fly over PHP bugs. True story. Even more powerful than the limited edition. Note that this product does not contain any media for behat testing purpose.');
         $maximumAir->setRawDescription('Get this ULTIMATE edition of the MAXIMUM AIR SONATA and fly over PHP bugs. True story. Even more powerful than the limited edition. Note that this product does not contain any media for behat testing purpose.'.$this->getLorem());
+        $maximumAir->setPriceIncVat(true);
         $maximumAir->setPrice(250);
         $maximumAir->setStock(30);
         $maximumAir->setVat(19.6);
@@ -169,6 +174,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $sonataTraining->setName('Sonata trainings');
         $sonataTraining->setDescription('A training to learn Sonata bundles.');
         $sonataTraining->setRawDescription('A training to learn Sonata bundles.'.$this->getLorem());
+        $sonataTraining->setPriceIncVat(true);
         $sonataTraining->setVat(5.5);
         $sonataTraining->setEnabled(true);
         $manager->persist($sonataTraining);
@@ -192,6 +198,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $sonataTrainingConfirmed = $this->generateDefaultTrainingBeginnerVariation($trainingProvider, $sonataTraining);
         $sonataTrainingConfirmed->setSku('SONATA_TRAINING_CONFIRMED');
         $sonataTrainingConfirmed->setLevel(Training::LEVEL_CONFIRMED);
+        $sonataTrainingConfirmed->setPriceIncVat(true);
         $sonataTrainingConfirmed->setPrice(1450.00);
         $sonataTrainingConfirmed->setStock(1500);
         $sonataTrainingConfirmed->setEnabled(true);
@@ -204,6 +211,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $sonataTrainingExpert->setName('Sonata training for experts');
         $sonataTrainingExpert->setLevel(Training::LEVEL_EXPERT);
         $sonataTrainingExpert->setDuration('3 days');
+        $sonataTrainingExpert->setPriceIncVat(true);
         $sonataTrainingExpert->setPrice(2500.00);
         $sonataTrainingExpert->setStock(1500);
         $sonataTrainingExpert->setEnabled(true);
@@ -216,6 +224,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $phpDisabledTraining->setName('PHP disabled training');
         $phpDisabledTraining->setDescription('A training to learn how to program using PHP.');
         $phpDisabledTraining->setRawDescription('A training to learn how to program using PHP.'.$this->getLorem());
+        $phpDisabledTraining->setPriceIncVat(true);
         $phpDisabledTraining->setVat(5.5);
         $phpDisabledTraining->setEnabled(false);
         $phpDisabledTraining->setStock(0);
@@ -243,6 +252,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $phpWorkingTraining->setName('PHP working training');
         $phpWorkingTraining->setDescription('A training to learn how to program using PHP.');
         $phpWorkingTraining->setRawDescription('A training to learn how to program using PHP.'.$this->getLorem());
+        $phpWorkingTraining->setPriceIncVat(true);
         $phpWorkingTraining->setVat(5.5);
         $phpWorkingTraining->setEnabled(true);
         $phpWorkingTraining->setStock(0);
@@ -270,6 +280,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $phpDisabledChild->setName('PHP disabled child training');
         $phpDisabledChild->setDescription('A training to learn how to program using PHP.');
         $phpDisabledChild->setRawDescription('A training to learn how to program using PHP.'.$this->getLorem());
+        $phpDisabledChild->setPriceIncVat(true);
         $phpDisabledChild->setVat(5.5);
         $phpDisabledChild->setEnabled(true);
         $phpDisabledChild->setStock(0);
@@ -297,6 +308,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $datedTraining->setDescription('Beginner level Sonata training that will occur on 16th of January. Be sure to book your spot now, only 20 applicants will be allowed to join the session !');
         $datedTraining->setRawDescription('Beginner level Sonata training that will occur on 16th of January. Be sure to book your spot now, only 20 applicants will be allowed to join the session !');
         $datedTraining->setEnabled(true);
+        $datedTraining->setPriceIncVat(true);
         $datedTraining->setPrice(900.00);
         $datedTraining->setStock(20);
         $datedTraining->setDuration('2 days');
@@ -612,6 +624,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $entity->setLevel(Training::LEVEL_BEGINNER);
         $entity->setInstructorName('Thomas Rabaix');
         $entity->setDuration('1 day');
+        $entity->setPriceIncVat(true);
         $entity->setPrice(450.00);
         $entity->setStock(100);
         $entity->setEnabled(false);
