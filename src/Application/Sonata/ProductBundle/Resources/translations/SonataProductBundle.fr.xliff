@@ -6,6 +6,18 @@
                 <source>training.level_title</source>
                 <target>Niveau de la formation</target>
             </trans-unit>
+            <trans-unit id="level">
+                <source>level</source>
+                <target>Niveau de la formation</target>
+            </trans-unit>
+            <trans-unit id="instructor_name">
+                <source>instructor_name</source>
+                <target>Instructeur</target>
+            </trans-unit>
+            <trans-unit id="duration">
+                <source>duration</source>
+                <target>Durée</target>
+            </trans-unit>
             <trans-unit id="training.instructor_title">
                 <source>training.instructor_title</source>
                 <target>Formateur</target>

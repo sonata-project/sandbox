@@ -2,3 +2,5 @@ sonata_core:
     flashmessage:
         error:
             css_class: danger
+            types:
+                - {type: sonata_ecommerce_error, domain: "SonataProductBundle" }

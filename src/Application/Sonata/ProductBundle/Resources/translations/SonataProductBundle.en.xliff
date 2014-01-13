@@ -6,12 +6,24 @@
                 <source>training.level_title</source>
                 <target>Training level</target>
             </trans-unit>
+            <trans-unit id="level">
+                <source>level</source>
+                <target>Training level</target>
+            </trans-unit>
             <trans-unit id="training.instructor_title">
                 <source>training.instructor_title</source>
                 <target>Instructor</target>
             </trans-unit>
+            <trans-unit id="instructor_name">
+                <source>instructor_name</source>
+                <target>Instructor</target>
+            </trans-unit>
             <trans-unit id="training.duration_title">
                 <source>training.duration_title</source>
+                <target>Duration</target>
+            </trans-unit>
+            <trans-unit id="duration">
+                <source>duration</source>
                 <target>Duration</target>
             </trans-unit>
             <trans-unit id="training.level.beginner">
