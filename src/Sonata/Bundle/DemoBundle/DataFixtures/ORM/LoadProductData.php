@@ -32,7 +32,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 /**
  * Product fixtures loader.
  *
- * @author Sylvain Deloux <sylvain.deloux@fullsix.com>
+ * @author Sylvain Deloux <sylvain.deloux@ekino.com>
  */
 class LoadProductData extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
 {

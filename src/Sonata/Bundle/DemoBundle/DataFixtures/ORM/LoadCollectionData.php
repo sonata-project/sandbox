@@ -43,7 +43,7 @@ class LoadCollectionData extends AbstractFixture implements OrderedFixtureInterf
     /**
      * Returns the Sonata MediaManager.
      *
-     * @return \Sonata\CoreBundle\Entity\ManagerInterface
+     * @return \Sonata\CoreBundle\Model\ManagerInterface
      */
     public function getCollectionManager()
     {
