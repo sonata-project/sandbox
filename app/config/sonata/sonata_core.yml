@@ -3,4 +3,4 @@ sonata_core:
         error:
             css_class: danger
             types:
-                - {type: sonata_ecommerce_error, domain: "SonataProductBundle" }
+                - {type: sonata_product_error, domain: "SonataProductBundle" }
