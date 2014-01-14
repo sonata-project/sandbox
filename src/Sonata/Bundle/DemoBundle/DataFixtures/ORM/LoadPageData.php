@@ -727,6 +727,8 @@ CONTENT
     <li><a href="/faq">FAQ</a></li>
     <li><a href="/contact-us">Contact us</a></li>
     <li><a href="/shop/payment/terms-and-conditions">Terms & conditions</a></li>
+    <li><a target="_blank" href="http://www.twitter.com/sonataproject">Twitter</a></li>
+    <li><a target="_blank" href="https://groups.google.com/forum/#!forum/sonata-devs">Google Group</a></li>
 </ul>
 CONTENT
         );
@@ -740,10 +742,14 @@ CONTENT
 
         $text->setType('sonata.block.service.text');
         $text->setSetting('content', <<<CONTENT
-<ul class="links">
-    <li><a target="_blank" href="http://www.twitter.com/sonataproject">Twitter</a></li>
-    <li><a target="_blank" href="https://groups.google.com/forum/#!forum/sonata-devs">Google Group</a></li>
-</ul>
+
+<a class="twitter-timeline"
+    href="https://twitter.com/sonataproject"
+    data-widget-id="423108745925636096"
+    height="250"
+    >Tweets by @sonataproject</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
 CONTENT
         );
 
