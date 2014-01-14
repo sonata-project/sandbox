@@ -8,7 +8,7 @@
         </trans-unit>
         <trans-unit id="sonata.demo.demonstration.message">
             <source>sonata.demo.demonstration.message</source>
-            <target>Note : Ce site est une démonstration de Sonata E-commerce. Aucune commande passée sur ce site ne sera traitée.</target>
+            <target>Note : Ce site est une démonstration de Sonata. Aucune commande passée sur ce site ne sera traitée.</target>
         </trans-unit>
         </body>
     </file>
