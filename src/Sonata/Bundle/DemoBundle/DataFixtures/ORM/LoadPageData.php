@@ -150,6 +150,13 @@ class LoadPageData extends AbstractFixture implements ContainerAwareInterface, O
 
         $content->setName('The content_top container');
 
+        // add the breadcrumb
+        $content->addChildren($breadcrumb = $blockManager->create());
+        $breadcrumb->setType('sonata.page.block.breadcrumb');
+        $breadcrumb->setPosition(0);
+        $breadcrumb->setEnabled(true);
+        $breadcrumb->setPage($galleryIndex);
+
         // add a block text
         $content->addChildren($text = $blockManager->create());
         $text->setType('sonata.block.service.text');
@@ -185,7 +192,7 @@ CONTENT
         $this->addReference('page-homepage', $homepage = $pageManager->create());
         $homepage->setSlug('/');
         $homepage->setUrl('/');
-        $homepage->setName('homepage');
+        $homepage->setName('Home');
         $homepage->setTitle('Homepage');
         $homepage->setEnabled(true);
         $homepage->setDecorate(0);
@@ -351,6 +358,8 @@ CONTENT
     public function createMediaPage(SiteInterface $site)
     {
         $pageManager = $this->getPageManager();
+        $blockManager = $this->getBlockManager();
+        $blockInteractor = $this->getBlockInteractor();
 
         $this->addReference('page-media', $media = $pageManager->create());
         $media->setSlug('/media');
@@ -364,6 +373,22 @@ CONTENT
         $media->setRouteName('sonata_demo_media');
         $media->setSite($site);
         $media->setParent($this->getReference('page-homepage'));
+
+        // CREATE A HEADER BLOCK
+        $media->addBlocks($content = $blockInteractor->createNewContainer(array(
+            'enabled' => true,
+            'page' => $media,
+            'code' => 'content_top',
+        )));
+
+        $content->setName('The content_top container');
+
+        // add the breadcrumb
+        $content->addChildren($breadcrumb = $blockManager->create());
+        $breadcrumb->setType('sonata.page.block.breadcrumb');
+        $breadcrumb->setPosition(0);
+        $breadcrumb->setEnabled(true);
+        $breadcrumb->setPage($media);
 
         $pageManager->save($media);
     }
@@ -561,6 +586,13 @@ CONTENT
             'page'    => $page,
             'code'    => 'content_top',
         )));
+
+        // add the breadcrumb
+        $block->addChildren($breadcrumb = $blockManager->create());
+        $breadcrumb->setType('sonata.page.block.breadcrumb');
+        $breadcrumb->setPosition(0);
+        $breadcrumb->setEnabled(true);
+        $breadcrumb->setPage($page);
 
         // Add text content block
         $block->addChildren($text = $blockManager->create());

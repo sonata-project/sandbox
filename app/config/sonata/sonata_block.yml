@@ -62,3 +62,4 @@ sonata_block:
         sonata.seo.block.twitter.mention_button:
 
         sonata.demo.block.newsletter:
+        sonata.page.block.breadcrumb:
