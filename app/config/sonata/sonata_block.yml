@@ -37,6 +37,7 @@ sonata_block:
         sonata.product.block.recent_products:
         sonata.product.block.categories_menu:
         sonata.product.block.filters_menu:
+        sonata.product.block.variations_form:
         sonata.customer.block.recent_customers:
 
         sonata.timeline.block.timeline:

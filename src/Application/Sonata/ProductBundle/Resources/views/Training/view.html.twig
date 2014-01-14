@@ -18,6 +18,8 @@ file that was distributed with this source code.
 
 {% extends 'SonataProductBundle:Product:view.html.twig' %}
 
+{% set variations_properties = ['level', 'duration'] %}
+
 {% block product_title %}{{ product.name }}{% endblock %}
 
 {% block product_gallery %}{% endblock %}
