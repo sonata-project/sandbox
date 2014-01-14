@@ -10,6 +10,10 @@
             <source>sonata.demo.demonstration.message</source>
             <target>Note : Ce site est une démonstration de Sonata. Aucune commande passée sur ce site ne sera traitée.</target>
         </trans-unit>
+        <trans-unit id="sonata_content">
+            <source>sonata_content</source>
+            <target>Contenu</target>
+        </trans-unit>
         </body>
     </file>
 </xliff>
