@@ -46,3 +46,50 @@ sonata_admin:
             - { position: right, type: sonata.order.block.recent_orders, settings: { title: Recent Orders, number: 5, mode: admin }}
             - { position: right, type: sonata.customer.block.recent_customers, settings: { title: Recent Customers, number: 5, mode: admin }}
             - { position: right, type: sonata.block.service.rss, settings: { title: Sonata Project's Feeds, url: http://sonata-project.org/blog/archive.rss }}
+
+        groups:
+            sonata.admin.group.user:
+                label:           users
+                label_catalogue: SonataUserBundle
+                items:
+                    - sonata.user.admin.user
+                    - sonata.user.admin.group
+            sonata.admin.group.content:
+                label:           sonata_content
+                label_catalogue: SonataDemoBundle
+                items:
+                    - sonata.page.admin.page
+                    - sonata.page.admin.site
+                    - sonata.news.admin.comment
+                    - sonata.news.admin.post
+            sonata.admin.group.media:
+                label:           media
+                label_catalogue: SonataMediaBundle
+                items:
+                    - sonata.media.admin.media
+                    - sonata.media.admin.gallery
+            sonata.admin.group.ecommerce:
+                label:           sonata_ecommerce
+                label_catalogue: SonataAdminBundle
+                items:
+                    - sonata.customer.admin.customer
+                    - sonata.invoice.admin.invoice
+                    - sonata.order.admin.order
+                    - sonata.product.admin.product
+            sonata.admin.group.classification:
+                label:           sonata_classification
+                label_catalogue: SonataClassificationBundle
+                items:
+                    - sonata.classification.admin.category
+                    - sonata.classification.admin.tag
+                    - sonata.classification.admin.collection
+            sonata.admin.group.notification:
+                label:           sonata_notification
+                label_catalogue: SonataNotificationBundle
+                items:
+                    - sonata.notification.admin.message
+            sonata.admin.group.demo:
+                label: Demo
+                items:
+                    - sonata.demo.admin.car
+                    - sonata.demo.admin.engine
