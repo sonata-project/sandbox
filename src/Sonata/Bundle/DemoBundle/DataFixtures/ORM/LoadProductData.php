@@ -28,6 +28,7 @@ use Sonata\MediaBundle\Model\GalleryInterface;
 use Sonata\MediaBundle\Model\MediaInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\Finder\Finder;
 
 /**
  * Product fixtures loader.
@@ -83,12 +84,13 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $phpPlush->setShortDescriptionFormatter('richhtml');
         $phpPlush->setPrice(29.99);
         $phpPlush->setStock(2000);
-        $phpPlush->setVat(19.6);
+        $phpPlush->setVat(20);
         $phpPlush->setEnabled(true);
         $manager->persist($phpPlush);
         $this->setReference('php_plush_goodie_product', $phpPlush);
 
         $this->addMediaToProduct(__DIR__.'/../data/files/elephpant.png', 'PHP elePHPant', 'PHP elePHPant', $phpPlush);
+        $this->addPhpPlushGallery($phpPlush);
         $this->addProductToCategory($phpPlush, $plushesCategory, $manager);
         $this->addProductToCategory($phpPlush, $goodiesCategory, $manager);
         $this->addProductDeliveries($phpPlush, $manager);
@@ -109,7 +111,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
 
         $phpMug->setPrice(9.99);
         $phpMug->setStock(10000);
-        $phpMug->setVat(19.6);
+        $phpMug->setVat(20);
         $phpMug->setEnabled(true);
         $manager->persist($phpMug);
         $this->setReference('php_mug_goodie_product', $phpMug);
@@ -135,7 +137,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $phpTeeShirt->setShortDescriptionFormatter('richhtml');
         $phpTeeShirt->setPrice(25);
         $phpTeeShirt->setStock(0);
-        $phpTeeShirt->setVat(19.6);
+        $phpTeeShirt->setVat(20);
         $phpTeeShirt->setEnabled(true);
         $manager->persist($phpTeeShirt);
         $this->setReference('php_teeshirt_goodie_product', $phpTeeShirt);
@@ -160,7 +162,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $maximumAir->setShortDescriptionFormatter('richhtml');
         $maximumAir->setPrice(130);
         $maximumAir->setStock(500);
-        $maximumAir->setVat(19.6);
+        $maximumAir->setVat(20);
         $maximumAir->setEnabled(false);
         $manager->persist($maximumAir);
         $this->setReference('maximum_air_sonata_product', $maximumAir);
@@ -185,7 +187,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $maximumAir->setShortDescriptionFormatter('richhtml');
         $maximumAir->setPrice(250);
         $maximumAir->setStock(30);
-        $maximumAir->setVat(19.6);
+        $maximumAir->setVat(20);
         $maximumAir->setEnabled(true);
         $manager->persist($maximumAir);
         $this->setReference('maximum_air_sonata_ultimate_product', $maximumAir);
@@ -208,7 +210,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $sonataTraining->setRawShortDescription('<p>A training to learn Sonata bundles.</p>');
         $sonataTraining->setDescriptionFormatter('richhtml');
         $sonataTraining->setShortDescriptionFormatter('richhtml');
-        $sonataTraining->setVat(5.5);
+        $sonataTraining->setVat(5);
         $sonataTraining->setEnabled(true);
         $manager->persist($sonataTraining);
 
@@ -263,7 +265,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $phpDisabledTraining->setRawShortDescription('<p>A training to learn how to program using PHP.</p>');
         $phpDisabledTraining->setDescriptionFormatter('richhtml');
         $phpDisabledTraining->setShortDescriptionFormatter('richhtml');
-        $phpDisabledTraining->setVat(5.5);
+        $phpDisabledTraining->setVat(5);
         $phpDisabledTraining->setEnabled(false);
         $phpDisabledTraining->setStock(0);
         $manager->persist($phpDisabledTraining);
@@ -296,7 +298,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $phpWorkingTraining->setRawShortDescription('<p>A training to learn how to program using PHP.</p>');
         $phpWorkingTraining->setDescriptionFormatter('richhtml');
         $phpWorkingTraining->setShortDescriptionFormatter('richhtml');
-        $phpWorkingTraining->setVat(5.5);
+        $phpWorkingTraining->setVat(5);
         $phpWorkingTraining->setEnabled(true);
         $phpWorkingTraining->setStock(0);
         $manager->persist($phpWorkingTraining);
@@ -329,7 +331,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $phpDisabledChild->setRawShortDescription('<p>A training to learn how to program using PHP.</p>');
         $phpDisabledChild->setDescriptionFormatter('richhtml');
         $phpDisabledChild->setShortDescriptionFormatter('richhtml');
-        $phpDisabledChild->setVat(5.5);
+        $phpDisabledChild->setVat(5);
         $phpDisabledChild->setEnabled(true);
         $phpDisabledChild->setStock(0);
         $manager->persist($phpDisabledChild);
@@ -511,6 +513,40 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $mediaManager->save($media, 'sonata_product', 'sonata.media.provider.image');
 
         $product->setImage($media);
+    }
+
+    protected function addPhpPlushGallery(ProductInterface $product)
+    {
+        $files = Finder::create()
+            ->name('elephpant_*.jpg')
+            ->in(__DIR__.'/../data/files');
+
+        $gallery = $this->getGalleryManager()->create();
+        $gallery->setName("elePHPant");
+        $gallery->setContext('sonata_product');
+        $gallery->setDefaultFormat('preview');
+        $gallery->setEnabled(true);
+
+        foreach ($files as $pos => $file) {
+            $media = $this->getMediaManager()->create();
+            $media->setBinaryContent($file);
+            $media->setEnabled(true);
+            $media->setDescription("Elephpant");
+            $media->setName("Elephpant");
+
+            $this->getMediaManager()->save($media, 'sonata_product', 'sonata.media.provider.image');
+
+            $galleryHasMedia = new GalleryHasMedia();
+            $galleryHasMedia->setMedia($media);
+            $galleryHasMedia->setPosition($pos+1);
+            $galleryHasMedia->setEnabled(true);
+
+            $gallery->addGalleryHasMedias($galleryHasMedia);
+        }
+
+        $this->getGalleryManager()->update($gallery);
+
+        $product->setGallery($gallery);
     }
 
     /**
