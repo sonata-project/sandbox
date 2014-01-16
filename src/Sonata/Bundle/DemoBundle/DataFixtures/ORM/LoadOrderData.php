@@ -14,6 +14,8 @@ namespace Sonata\Bundle\DemoBundle\DataFixtures\ORM;
 use Application\Sonata\CustomerBundle\Entity\Address;
 use Application\Sonata\CustomerBundle\Entity\Customer;
 use Application\Sonata\InvoiceBundle\Entity\Invoice;
+use Sonata\Component\Basket\Basket;
+use Sonata\Component\Basket\BasketInterface;
 use Sonata\Component\Invoice\InvoiceInterface;
 use Application\Sonata\OrderBundle\Entity\OrderElement;
 use Application\Sonata\PaymentBundle\Entity\Transaction;
@@ -22,6 +24,7 @@ use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Sonata\Component\Currency\Currency;
 use Sonata\Component\Order\OrderInterface;
+use Sonata\Component\Product\ProductDefinition;
 use Sonata\CustomerBundle\Entity\BaseAddress;
 use Sonata\CustomerBundle\Entity\BaseCustomer;
 use Sonata\OrderBundle\Entity\BaseOrder;
@@ -58,6 +61,12 @@ class LoadOrderData extends AbstractFixture implements ContainerAwareInterface, 
      */
     public function load(ObjectManager $manager)
     {
+        $currency = new Currency();
+        $currency->setLabel('EUR');
+
+        $basket = new Basket();
+        $basket->setCurrency($currency);
+        $basket->setProductPool($this->getProductPool());
 
         $nbCustomers = 100;
 
@@ -85,7 +94,7 @@ class LoadOrderData extends AbstractFixture implements ContainerAwareInterface, 
                 $customerProducts = array($products[$orderProductsKeys]);
             }
 
-            $order = $this->createOrder($customer, $customerProducts, $manager, $i);
+            $order = $this->createOrder($basket, $customer, $customerProducts, $manager, $i);
 
 
             $this->createTransaction($order, $manager);
@@ -103,14 +112,15 @@ class LoadOrderData extends AbstractFixture implements ContainerAwareInterface, 
     /**
      * Creates a fake Order.
      *
-     * @param Customer      $customer
-     * @param array         $products
-     * @param ObjectManager $manager
-     * @param int           $pos
+     * @param BasketInterface $basket
+     * @param Customer        $customer
+     * @param array           $products
+     * @param ObjectManager   $manager
+     * @param int             $pos
      *
      * @return OrderInterface
      */
-    protected function createOrder(Customer $customer, array $products, ObjectManager $manager, $pos)
+    protected function createOrder(BasketInterface $basket, Customer $customer, array $products, ObjectManager $manager, $pos)
     {
         $orderElements = array();
         $totalExcl     = 0;
@@ -172,7 +182,7 @@ class LoadOrderData extends AbstractFixture implements ContainerAwareInterface, 
 
         // OrderElements
         foreach ($products as $product) {
-            $orderElement = $this->createOrderElement($product);
+            $orderElement = $this->createOrderElement($basket, $product);
 
             $orderElement->setOrder($order);
 
@@ -201,15 +211,24 @@ class LoadOrderData extends AbstractFixture implements ContainerAwareInterface, 
     /**
      * Creates an OrderElement from a given Product.
      *
-     * @param BaseProduct $product
+     * @param BasketInterface $basket  A basket instance
+     * @param BaseProduct     $product A product instance
      *
      * @return OrderElement
      */
-    protected function createOrderElement(BaseProduct $product)
+    protected function createOrderElement(BasketInterface $basket, BaseProduct $product)
     {
         $productProvider = $this->getProductPool()->getProvider($product);
+        $productManager = $this->getProductPool()->getManager($product);
+
+        $productDefinition = new ProductDefinition($productProvider, $productManager);
 
         $basketElement = $productProvider->createBasketElement($product);
+        $basketElement->setProductDefinition($productDefinition);
+
+        $basket->addBasketElement($basketElement);
+
+        $productProvider->updateComputationPricesFields($basket, $basketElement, $product);
 
         $orderElement = $productProvider->createOrderElement($basketElement);
 
@@ -281,7 +300,7 @@ class LoadOrderData extends AbstractFixture implements ContainerAwareInterface, 
         $customerBillingAddress->setAddress1($faker->address());
         $customerBillingAddress->setPostcode($faker->postcode());
         $customerBillingAddress->setCity($faker->city());
-        $customerBillingAddress->setCountryCode($faker->countryCode());
+        $customerBillingAddress->setCountryCode(0 === $i % 50 ? 'FR' : $faker->countryCode());
         $customerBillingAddress->setPhone($faker->phoneNumber());
 
         // Customer contact address
@@ -295,7 +314,7 @@ class LoadOrderData extends AbstractFixture implements ContainerAwareInterface, 
         $customerContactAddress->setAddress1($faker->address());
         $customerContactAddress->setPostcode($faker->postcode());
         $customerContactAddress->setCity($faker->city());
-        $customerContactAddress->setCountryCode($faker->countryCode());
+        $customerContactAddress->setCountryCode(0 === $i % 50 ? 'FR' : $faker->countryCode());
         $customerContactAddress->setPhone($customer->getPhoneNumber());
 
         // Customer delivery address
@@ -309,7 +328,7 @@ class LoadOrderData extends AbstractFixture implements ContainerAwareInterface, 
         $customerDeliveryAddress->setAddress1($faker->address());
         $customerDeliveryAddress->setPostcode($faker->postcode());
         $customerDeliveryAddress->setCity($faker->city());
-        $customerDeliveryAddress->setCountryCode($faker->countryCode());
+        $customerDeliveryAddress->setCountryCode(0 === $i % 50 ? 'FR' : $faker->countryCode());
         $customerDeliveryAddress->setPhone($faker->phoneNumber());
 
         $customer->addAddress($customerBillingAddress);
