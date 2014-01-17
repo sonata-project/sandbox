@@ -95,6 +95,7 @@ class Builder extends ContainerAware
         );
         $extras = $factory->createItem('Discover', $dropdownExtrasOptions);
 
+        $extras->addChild('Bundles', array('route' => 'page_slug', 'routeParameters' => array('path' => '/bundles')));
         $extras->addChild('Gallery', array('route' => 'sonata_media_gallery_index'));
         $extras->addChild('Media & SEO', array('route' => 'sonata_demo_media'));
 

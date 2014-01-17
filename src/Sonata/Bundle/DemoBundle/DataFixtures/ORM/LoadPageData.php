@@ -19,6 +19,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Sonata\PageBundle\Model\SiteInterface;
 use Sonata\PageBundle\Model\PageInterface;
 
+use Symfony\Cmf\Bundle\RoutingBundle\Tests\Unit\Doctrine\Orm\ContentRepositoryTest;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -41,6 +42,8 @@ class LoadPageData extends AbstractFixture implements ContainerAwareInterface, O
         $site = $this->createSite();
         $this->createGlobalPage($site);
         $this->createHomePage($site);
+        $this->create404ErrorPage($site);
+        $this->create500ErrorPage($site);
         $this->createBlogIndex($site);
         $this->createGalleryIndex($site);
         $this->createMediaPage($site);
@@ -55,6 +58,7 @@ class LoadPageData extends AbstractFixture implements ContainerAwareInterface, O
         $this->createPressPage($site);
         $this->createFAQPage($site);
         $this->createContactUsPage($site);
+        $this->createBundlesPage($site);
 
         $this->createSubSite();
     }
@@ -552,6 +556,252 @@ CONTENT
         );
     }
 
+    public function createBundlesPage(SiteInterface $site)
+    {
+        $this->createTextContentPage($site, 'bundles', 'Sonata Bundles', <<<CONTENT
+<div class="row">
+<div class="col-md-6">
+
+    <div class="panel panel-success">
+      <div class="panel-heading">
+        <h3 class="panel-title">Admin bundles</h3>
+      </div>
+      <div class="panel-body">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut quis sapien gravida, eleifend diam id, vehicula erat.
+      </div>
+      <ul class="list-group">
+        <li class="list-group-item">
+          <div class="media">
+            <a class="pull-left" href="#">
+              <img class="media-object" src="/thumb_1_default_small.jpg">
+            </a>
+            <div class="media-body">
+              <h4 class="media-heading"><a href="http://sonata-project.org/bundles/admin">Admin</a></h4>
+              The missing Symfony2 Admin Generator.
+            </div>
+          </div>
+        </li>
+        <li class="list-group-item">
+          <div class="media">
+            <a class="pull-left" href="#">
+              <img class="media-object" src="/thumb_1_default_small.jpg">
+            </a>
+            <div class="media-body">
+              <h4 class="media-heading"><a href="http://sonata-project.org/bundles/doctrine-orm-admin">Doctrine2 ORM Admin</a></h4>
+              Integrates the Doctrine2 ORM into the Admin Bundle.
+            </div>
+          </div>
+        </li>
+        <li class="list-group-item">
+          <div class="media">
+            <a class="pull-left" href="#">
+              <img class="media-object" src="/thumb_1_default_small.jpg">
+            </a>
+            <div class="media-body">
+              <h4 class="media-heading"><a href="http://sonata-project.org/bundles/propel-admin">Propel Admin</a></h4>
+              Integrates the Propel into the Admin Bundle.
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title">Foundation bundles</h3>
+      </div>
+      <div class="panel-body">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut quis sapien gravida, eleifend diam id, vehicula erat.
+      </div>
+      <ul class="list-group">
+        <li class="list-group-item">
+          <div class="media">
+            <a class="pull-left" href="#">
+              <img class="media-object" src="/thumb_1_default_small.jpg">
+            </a>
+            <div class="media-body">
+              <h4 class="media-heading"><a href="http://sonata-project.org/bundles/core">Core</a></h4>
+              Provides base classes used by Sonata's Bundles.
+            </div>
+          </div>
+        </li>
+        <li class="list-group-item">
+          <div class="media">
+            <a class="pull-left" href="#">
+              <img class="media-object" src="/thumb_1_default_small.jpg">
+            </a>
+            <div class="media-body">
+              <h4 class="media-heading"><a href="http://sonata-project.org/bundles/notification">Notification</a></h4>
+              Message Queue Solution with Abstracted Backends.
+            </div>
+          </div>
+        </li>
+        <li class="list-group-item">
+          <div class="media">
+            <a class="pull-left" href="#">
+              <img class="media-object" src="/thumb_1_default_small.jpg">
+            </a>
+            <div class="media-body">
+              <h4 class="media-heading"><a href="http://sonata-project.org/bundles/formatter">Formatter</a></h4>
+              Add text helpers.
+            </div>
+          </div>
+        </li>
+        <li class="list-group-item">
+          <div class="media">
+            <a class="pull-left" href="#">
+              <img class="media-object" src="/thumb_1_default_small.jpg">
+            </a>
+            <div class="media-body">
+              <h4 class="media-heading"><a href="http://sonata-project.org/bundles/intl">Internationalization (i18n)</a></h4>
+              Integrate the PHP Intl extension into a Symfony2 Project.
+            </div>
+          </div>
+        </li>
+        <li class="list-group-item">
+          <div class="media">
+            <a class="pull-left" href="#">
+              <img class="media-object" src="/thumb_1_default_small.jpg">
+            </a>
+            <div class="media-body">
+              <h4 class="media-heading"><a href="http://sonata-project.org/bundles/cache">Cache</a></h4>
+              Cache handlers&nbsp;: ESI, Memcached, APC and more…
+            </div>
+          </div>
+        </li>
+        <li class="list-group-item">
+          <div class="media">
+            <a class="pull-left" href="#">
+              <img class="media-object" src="/thumb_1_default_small.jpg">
+            </a>
+            <div class="media-body">
+              <h4 class="media-heading"><a href="http://sonata-project.org/bundles/seo">SEO</a></h4>
+              Integrates a shareable object to handle all SEO requirements&nbsp;: title, meta, Open Graph and more…
+            </div>
+          </div>
+        </li>
+        <li class="list-group-item">
+          <div class="media">
+            <a class="pull-left" href="#">
+              <img class="media-object" src="/thumb_1_default_small.jpg">
+            </a>
+            <div class="media-body">
+              <h4 class="media-heading"><a href="http://sonata-project.org/bundles/easy-extends">EasyExtends</a></h4>
+              EasyExtends is a tool for generating a valid bundle structure from a Vendor Bundle.
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+</div>
+<div class="col-md-6">
+
+    <div class="panel panel-warning">
+      <div class="panel-heading">
+        <h3 class="panel-title">E-commerce bundles</h3>
+      </div>
+      <div class="panel-body">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut quis sapien gravida, eleifend diam id, vehicula erat.
+      </div>
+      <ul class="list-group">
+        <li class="list-group-item">
+          <div class="media">
+            <a class="pull-left" href="#">
+              <img class="media-object" src="/thumb_1_default_small.jpg">
+            </a>
+            <div class="media-body">
+              <h4 class="media-heading"><a href="http://sonata-project.org/bundles/ecommerce">Ecommerce</a></h4>
+              Implements base tools for integrated e-commerce features
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title">Features bundles</h3>
+      </div>
+      <div class="panel-body">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut quis sapien gravida, eleifend diam id, vehicula erat.
+      </div>
+      <ul class="list-group">
+        <li class="list-group-item">
+          <div class="media">
+            <a class="pull-left" href="#">
+              <img class="media-object" src="/thumb_1_default_small.jpg">
+            </a>
+            <div class="media-body">
+              <h4 class="media-heading"><a href="http://sonata-project.org/bundles/page">Page</a></h4>
+              A Symfony2 friendly CMS.
+            </div>
+          </div>
+        </li>
+        <li class="list-group-item">
+          <div class="media">
+            <a class="pull-left" href="#">
+              <img class="media-object" src="/thumb_1_default_small.jpg">
+            </a>
+            <div class="media-body">
+              <h4 class="media-heading"><a href="http://sonata-project.org/bundles/media">Media</a></h4>
+              Media management bundle on steroid for Symfony2.
+            </div>
+          </div>
+        </li>
+        <li class="list-group-item">
+          <div class="media">
+            <a class="pull-left" href="#">
+              <img class="media-object" src="/thumb_1_default_small.jpg">
+            </a>
+            <div class="media-body">
+              <h4 class="media-heading"><a href="http://sonata-project.org/bundles/news">News</a></h4>
+              A simple blog/news platform.
+            </div>
+          </div>
+        </li>
+        <li class="list-group-item">
+          <div class="media">
+            <a class="pull-left" href="#">
+              <img class="media-object" src="/thumb_1_default_small.jpg">
+            </a>
+            <div class="media-body">
+              <h4 class="media-heading"><a href="http://sonata-project.org/bundles/user">User</a></h4>
+              FOS/User integration.
+            </div>
+          </div>
+        </li>
+        <li class="list-group-item">
+          <div class="media">
+            <a class="pull-left" href="#">
+              <img class="media-object" src="/thumb_1_default_small.jpg">
+            </a>
+            <div class="media-body">
+              <h4 class="media-heading"><a href="http://sonata-project.org/bundles/block">Block</a></h4>
+              Handle rendering of block element. A block is a small unit with its own logic and templates. A block can be inserted anywhere in a current template.
+            </div>
+          </div>
+        </li>
+        <li class="list-group-item">
+          <div class="media">
+            <a class="pull-left" href="#">
+              <img class="media-object" src="/thumb_1_default_small.jpg">
+            </a>
+            <div class="media-body">
+              <h4 class="media-heading"><a href="http://sonata-project.org/bundles/timeline">Timeline</a></h4>
+              Integrates SpyTimelineBundle into Sonata's bundles.
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+</div>
+</div>
+CONTENT
+        );
+    }
+
     /**
      * Creates simple content pages
      *
@@ -598,6 +848,88 @@ CONTENT
         $block->addChildren($text = $blockManager->create());
         $text->setType('sonata.block.service.text');
         $text->setSetting('content', sprintf('<h2>%s</h2><div>%s</div>', $title, $content));
+        $text->setPosition(1);
+        $text->setEnabled(true);
+        $text->setPage($page);
+
+        $pageManager->save($page);
+    }
+
+    public function create404ErrorPage(SiteInterface $site)
+    {
+        $pageManager = $this->getPageManager();
+        $blockManager = $this->getBlockManager();
+        $blockInteractor = $this->getBlockInteractor();
+
+        $page = $pageManager->create();
+        $page->setName('_page_internal_error_not_found');
+        $page->setTitle('Error 404');
+        $page->setEnabled(true);
+        $page->setDecorate(1);
+        $page->setRequestMethod('GET|POST|HEAD|DELETE|PUT');
+        $page->setTemplateCode('default');
+        $page->setRouteName('_page_internal_error_not_found');
+        $page->setSite($site);
+        $page->setParent($this->getReference('page-homepage'));
+
+        $page->addBlocks($block = $blockInteractor->createNewContainer(array(
+            'enabled' => true,
+            'page'    => $page,
+            'code'    => 'content_top',
+        )));
+
+        // add the breadcrumb
+        $block->addChildren($breadcrumb = $blockManager->create());
+        $breadcrumb->setType('sonata.page.block.breadcrumb');
+        $breadcrumb->setPosition(0);
+        $breadcrumb->setEnabled(true);
+        $breadcrumb->setPage($page);
+
+        // Add text content block
+        $block->addChildren($text = $blockManager->create());
+        $text->setType('sonata.block.service.text');
+        $text->setSetting('content', '<h2>Error 404</h2><div>Page not found.</div>');
+        $text->setPosition(1);
+        $text->setEnabled(true);
+        $text->setPage($page);
+
+        $pageManager->save($page);
+    }
+
+    public function create500ErrorPage(SiteInterface $site)
+    {
+        $pageManager = $this->getPageManager();
+        $blockManager = $this->getBlockManager();
+        $blockInteractor = $this->getBlockInteractor();
+
+        $page = $pageManager->create();
+        $page->setName('_page_internal_error_not_found');
+        $page->setTitle('Error 500');
+        $page->setEnabled(true);
+        $page->setDecorate(1);
+        $page->setRequestMethod('GET|POST|HEAD|DELETE|PUT');
+        $page->setTemplateCode('default');
+        $page->setRouteName('_page_internal_error_fatal');
+        $page->setSite($site);
+        $page->setParent($this->getReference('page-homepage'));
+
+        $page->addBlocks($block = $blockInteractor->createNewContainer(array(
+            'enabled' => true,
+            'page'    => $page,
+            'code'    => 'content_top',
+        )));
+
+        // add the breadcrumb
+        $block->addChildren($breadcrumb = $blockManager->create());
+        $breadcrumb->setType('sonata.page.block.breadcrumb');
+        $breadcrumb->setPosition(0);
+        $breadcrumb->setEnabled(true);
+        $breadcrumb->setPage($page);
+
+        // Add text content block
+        $block->addChildren($text = $blockManager->create());
+        $text->setType('sonata.block.service.text');
+        $text->setSetting('content', '<h2>Error 500</h2><div>Internal error.</div>');
         $text->setPosition(1);
         $text->setEnabled(true);
         $text->setPage($page);
