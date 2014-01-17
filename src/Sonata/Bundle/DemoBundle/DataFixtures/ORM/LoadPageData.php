@@ -49,6 +49,9 @@ class LoadPageData extends AbstractFixture implements ContainerAwareInterface, O
         $this->createUserPage($site);
         $this->createLegalNotesPage($site);
 
+        $this->create404ErrorPage($site);
+        $this->create500ErrorPage($site);
+
         // Create footer pages
         $this->createWhoWeArePage($site);
         $this->createClientTestimonialsPage($site);
@@ -120,6 +123,108 @@ class LoadPageData extends AbstractFixture implements ContainerAwareInterface, O
     }
 
     /**
+     * Creates 404 error page blocks
+     */
+    public function create404ErrorPage(SiteInterface $site)
+    {
+        $pageManager = $this->getPageManager();
+        $blockManager = $this->getBlockManager();
+        $blockInteractor = $this->getBlockInteractor();
+
+        $page404 = $pageManager->create();
+        $page404->setSlug('_page_internal_error_not_found');
+        $page404->setUrl('/404');
+        $page404->setName('_page_internal_error_not_found');
+        $page404->setTitle('Page not found');
+        $page404->setEnabled(true);
+        $page404->setDecorate(1);
+        $page404->setRequestMethod('GET|POST|HEAD|DELETE|PUT');
+        $page404->setTemplateCode('default');
+        $page404->setRouteName('_page_internal_error_not_found');
+        $page404->setParent($this->getReference('page-homepage'));
+        $page404->setSite($site);
+
+        $page404->addBlocks($contentTop = $blockInteractor->createNewContainer(array(
+            'enabled' => true,
+            'page' => $page404,
+            'code' => 'content_top',
+        )));
+
+        $contentTop->setName('The content_top container');
+
+        $contentTop->addChildren($text = $blockManager->create());
+        $text->setType('sonata.block.service.text');
+        $text->setSetting('content', <<<CONTENT
+<h2>Page not found</h2>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="alert alert-danger">
+            <strong>This page cannot be found.</strong>
+            <div>Please feel free to verify you try to access a correct page or contact us.</div>
+        </div>
+    </div>
+</div>
+CONTENT
+        );
+        $text->setPosition(1);
+        $text->setEnabled(true);
+        $text->setPage($page404);
+
+        $pageManager->save($page404);
+    }
+
+    /**
+     * Creates 500 error page blocks
+     */
+    public function create500ErrorPage(SiteInterface $site)
+    {
+        $pageManager = $this->getPageManager();
+        $blockManager = $this->getBlockManager();
+        $blockInteractor = $this->getBlockInteractor();
+
+        $page500 = $pageManager->create();
+        $page500->setSlug('_page_internal_error_fatal');
+        $page500->setUrl('/500');
+        $page500->setName('_page_internal_error_fatal');
+        $page500->setTitle('An error has occured');
+        $page500->setEnabled(true);
+        $page500->setDecorate(1);
+        $page500->setRequestMethod('GET|POST|HEAD|DELETE|PUT');
+        $page500->setTemplateCode('default');
+        $page500->setRouteName('_page_internal_error_fatal');
+        $page500->setParent($this->getReference('page-homepage'));
+        $page500->setSite($site);
+
+        $page500->addBlocks($contentTop = $blockInteractor->createNewContainer(array(
+            'enabled' => true,
+            'page' => $page500,
+            'code' => 'content_top',
+        )));
+
+        $contentTop->setName('The content_top container');
+
+        $contentTop->addChildren($text = $blockManager->create());
+        $text->setType('sonata.block.service.text');
+        $text->setSetting('content', <<<CONTENT
+<h2>An error has occured</h2>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="alert alert-danger">
+            <strong>There is an error while processing the page.</strong>
+            <div>Please feel free to provide us your use case to reproduce it.</div>
+        </div>
+    </div>
+</div>
+CONTENT
+        );
+        $text->setPosition(1);
+        $text->setEnabled(true);
+        $text->setPage($page500);
+
+        $pageManager->save($page500);
+    }
+
+    /**
      * @param SiteInterface $site
      */
     public function createGalleryIndex(SiteInterface $site)
@@ -165,7 +270,7 @@ class LoadPageData extends AbstractFixture implements ContainerAwareInterface, O
 
 <h1>Gallery List</h1>
 CONTENT
-);
+        );
         $text->setPosition(1);
         $text->setEnabled(true);
         $text->setPage($galleryIndex);
@@ -226,7 +331,7 @@ CONTENT
     </p>
 </div>
 CONTENT
-);
+        );
         $text->setPosition(1);
         $text->setEnabled(true);
         $text->setPage($homepage);
