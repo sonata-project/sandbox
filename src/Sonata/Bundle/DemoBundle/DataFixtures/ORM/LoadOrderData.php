@@ -58,8 +58,7 @@ class LoadOrderData extends AbstractFixture implements ContainerAwareInterface, 
      */
     public function load(ObjectManager $manager)
     {
-
-        $nbCustomers = 500;
+        $nbCustomers = 100;
 
         $products = array(
             $this->getReference('php_plush_goodie_product'),
@@ -160,6 +159,7 @@ class LoadOrderData extends AbstractFixture implements ContainerAwareInterface, 
         // Delivery
         $order->setDeliveryMethod('free'); // @todo : change Delivery method integration
         $order->setDeliveryCost(rand(5, 40));
+        $order->setDeliveryVat(20);
         $order->setDeliveryStatus(array_rand(Delivery::getStatusList()));
 
         $currency = new Currency();
@@ -317,7 +317,7 @@ class LoadOrderData extends AbstractFixture implements ContainerAwareInterface, 
         $customer->addAddress($customerDeliveryAddress);
 
         // User
-        if (0 === $i % 50) {
+        if (0 === $i % 10) {
             $user = $this->getReference('user-johndoe');
             $this->setReference('customer-johndoe', $customer);
         } else {
