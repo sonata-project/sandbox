@@ -73,7 +73,7 @@
     font-size: 1em;
 }
 
-.sonata-bc .add_basket_modal {
+.sonata-bc #add_basket_modal {
     top: 15%;
 }
 
