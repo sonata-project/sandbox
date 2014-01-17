@@ -19,6 +19,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Sonata\PageBundle\Model\SiteInterface;
 use Sonata\PageBundle\Model\PageInterface;
 
+use Symfony\Cmf\Bundle\RoutingBundle\Tests\Unit\Doctrine\Orm\ContentRepositoryTest;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -57,6 +58,7 @@ class LoadPageData extends AbstractFixture implements ContainerAwareInterface, O
         $this->createPressPage($site);
         $this->createFAQPage($site);
         $this->createContactUsPage($site);
+        $this->createBundlesPage($site);
 
         $this->createSubSite();
     }
@@ -550,6 +552,252 @@ CONTENT
 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut quis sapien gravida, eleifend diam id, vehicula erat. Aenean ultrices facilisis tellus. Vivamus vitae molestie diam. Donec quis mi porttitor, lobortis ipsum quis, fermentum dui. Donec nec nibh nec risus porttitor pretium et et lorem. Nullam mauris sapien, rutrum sed neque et, convallis ullamcorper lacus. Nullam vehicula a lectus vel suscipit. Nam gravida faucibus fermentum.</p>
 <p>Pellentesque dapibus eu nisi quis adipiscing. Phasellus adipiscing turpis nunc, sed interdum ante porta eu. Ut tempus, purus posuere molestie cursus, quam nisi fermentum est, dictum gravida nulla turpis vel nunc. Maecenas eget sem quam. Nam condimentum mi id lectus venenatis, sit amet semper purus convallis. Nunc ullamcorper magna mi, non adipiscing velit semper quis. Duis vel justo libero. Suspendisse laoreet hendrerit augue cursus congue. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;</p>
 <p>Nullam dignissim sapien vestibulum erat lobortis, sed imperdiet elit varius. Fusce nisi eros, feugiat commodo scelerisque a, lacinia et quam. In neque risus, dignissim non magna non, ultricies faucibus elit. Vivamus in facilisis enim, porttitor volutpat justo. Praesent placerat feugiat nibh et fermentum. Vivamus eu fermentum metus. Sed mattis volutpat quam a suscipit. Donec blandit sagittis est, ac tristique arcu venenatis sed. Fusce vel libero id lectus aliquet sollicitudin. Fusce ultrices porta est, non pellentesque lorem accumsan eget. Fusce id libero sit amet nulla venenatis dapibus. Maecenas fermentum tellus eu magna mollis gravida. Nam non nibh magna.</p>
+CONTENT
+        );
+    }
+
+    public function createBundlesPage(SiteInterface $site)
+    {
+        $this->createTextContentPage($site, 'bundles', 'Sonata Bundles', <<<CONTENT
+<div class="row">
+<div class="col-md-6">
+
+    <div class="panel panel-success">
+      <div class="panel-heading">
+        <h3 class="panel-title">Admin bundles</h3>
+      </div>
+      <div class="panel-body">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut quis sapien gravida, eleifend diam id, vehicula erat.
+      </div>
+      <ul class="list-group">
+        <li class="list-group-item">
+          <div class="media">
+            <a class="pull-left" href="#">
+              <img class="media-object" src="/thumb_1_default_small.jpg">
+            </a>
+            <div class="media-body">
+              <h4 class="media-heading"><a href="http://sonata-project.org/bundles/admin">Admin</a></h4>
+              The missing Symfony2 Admin Generator.
+            </div>
+          </div>
+        </li>
+        <li class="list-group-item">
+          <div class="media">
+            <a class="pull-left" href="#">
+              <img class="media-object" src="/thumb_1_default_small.jpg">
+            </a>
+            <div class="media-body">
+              <h4 class="media-heading"><a href="http://sonata-project.org/bundles/doctrine-orm-admin">Doctrine2 ORM Admin</a></h4>
+              Integrates the Doctrine2 ORM into the Admin Bundle.
+            </div>
+          </div>
+        </li>
+        <li class="list-group-item">
+          <div class="media">
+            <a class="pull-left" href="#">
+              <img class="media-object" src="/thumb_1_default_small.jpg">
+            </a>
+            <div class="media-body">
+              <h4 class="media-heading"><a href="http://sonata-project.org/bundles/propel-admin">Propel Admin</a></h4>
+              Integrates the Propel into the Admin Bundle.
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title">Foundation bundles</h3>
+      </div>
+      <div class="panel-body">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut quis sapien gravida, eleifend diam id, vehicula erat.
+      </div>
+      <ul class="list-group">
+        <li class="list-group-item">
+          <div class="media">
+            <a class="pull-left" href="#">
+              <img class="media-object" src="/thumb_1_default_small.jpg">
+            </a>
+            <div class="media-body">
+              <h4 class="media-heading"><a href="http://sonata-project.org/bundles/core">Core</a></h4>
+              Provides base classes used by Sonata's Bundles.
+            </div>
+          </div>
+        </li>
+        <li class="list-group-item">
+          <div class="media">
+            <a class="pull-left" href="#">
+              <img class="media-object" src="/thumb_1_default_small.jpg">
+            </a>
+            <div class="media-body">
+              <h4 class="media-heading"><a href="http://sonata-project.org/bundles/notification">Notification</a></h4>
+              Message Queue Solution with Abstracted Backends.
+            </div>
+          </div>
+        </li>
+        <li class="list-group-item">
+          <div class="media">
+            <a class="pull-left" href="#">
+              <img class="media-object" src="/thumb_1_default_small.jpg">
+            </a>
+            <div class="media-body">
+              <h4 class="media-heading"><a href="http://sonata-project.org/bundles/formatter">Formatter</a></h4>
+              Add text helpers.
+            </div>
+          </div>
+        </li>
+        <li class="list-group-item">
+          <div class="media">
+            <a class="pull-left" href="#">
+              <img class="media-object" src="/thumb_1_default_small.jpg">
+            </a>
+            <div class="media-body">
+              <h4 class="media-heading"><a href="http://sonata-project.org/bundles/intl">Internationalization (i18n)</a></h4>
+              Integrate the PHP Intl extension into a Symfony2 Project.
+            </div>
+          </div>
+        </li>
+        <li class="list-group-item">
+          <div class="media">
+            <a class="pull-left" href="#">
+              <img class="media-object" src="/thumb_1_default_small.jpg">
+            </a>
+            <div class="media-body">
+              <h4 class="media-heading"><a href="http://sonata-project.org/bundles/cache">Cache</a></h4>
+              Cache handlers&nbsp;: ESI, Memcached, APC and more…
+            </div>
+          </div>
+        </li>
+        <li class="list-group-item">
+          <div class="media">
+            <a class="pull-left" href="#">
+              <img class="media-object" src="/thumb_1_default_small.jpg">
+            </a>
+            <div class="media-body">
+              <h4 class="media-heading"><a href="http://sonata-project.org/bundles/seo">SEO</a></h4>
+              Integrates a shareable object to handle all SEO requirements&nbsp;: title, meta, Open Graph and more…
+            </div>
+          </div>
+        </li>
+        <li class="list-group-item">
+          <div class="media">
+            <a class="pull-left" href="#">
+              <img class="media-object" src="/thumb_1_default_small.jpg">
+            </a>
+            <div class="media-body">
+              <h4 class="media-heading"><a href="http://sonata-project.org/bundles/easy-extends">EasyExtends</a></h4>
+              EasyExtends is a tool for generating a valid bundle structure from a Vendor Bundle.
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+</div>
+<div class="col-md-6">
+
+    <div class="panel panel-warning">
+      <div class="panel-heading">
+        <h3 class="panel-title">E-commerce bundles</h3>
+      </div>
+      <div class="panel-body">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut quis sapien gravida, eleifend diam id, vehicula erat.
+      </div>
+      <ul class="list-group">
+        <li class="list-group-item">
+          <div class="media">
+            <a class="pull-left" href="#">
+              <img class="media-object" src="/thumb_1_default_small.jpg">
+            </a>
+            <div class="media-body">
+              <h4 class="media-heading"><a href="http://sonata-project.org/bundles/ecommerce">Ecommerce</a></h4>
+              Implements base tools for integrated e-commerce features
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title">Features bundles</h3>
+      </div>
+      <div class="panel-body">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut quis sapien gravida, eleifend diam id, vehicula erat.
+      </div>
+      <ul class="list-group">
+        <li class="list-group-item">
+          <div class="media">
+            <a class="pull-left" href="#">
+              <img class="media-object" src="/thumb_1_default_small.jpg">
+            </a>
+            <div class="media-body">
+              <h4 class="media-heading"><a href="http://sonata-project.org/bundles/page">Page</a></h4>
+              A Symfony2 friendly CMS.
+            </div>
+          </div>
+        </li>
+        <li class="list-group-item">
+          <div class="media">
+            <a class="pull-left" href="#">
+              <img class="media-object" src="/thumb_1_default_small.jpg">
+            </a>
+            <div class="media-body">
+              <h4 class="media-heading"><a href="http://sonata-project.org/bundles/media">Media</a></h4>
+              Media management bundle on steroid for Symfony2.
+            </div>
+          </div>
+        </li>
+        <li class="list-group-item">
+          <div class="media">
+            <a class="pull-left" href="#">
+              <img class="media-object" src="/thumb_1_default_small.jpg">
+            </a>
+            <div class="media-body">
+              <h4 class="media-heading"><a href="http://sonata-project.org/bundles/news">News</a></h4>
+              A simple blog/news platform.
+            </div>
+          </div>
+        </li>
+        <li class="list-group-item">
+          <div class="media">
+            <a class="pull-left" href="#">
+              <img class="media-object" src="/thumb_1_default_small.jpg">
+            </a>
+            <div class="media-body">
+              <h4 class="media-heading"><a href="http://sonata-project.org/bundles/user">User</a></h4>
+              FOS/User integration.
+            </div>
+          </div>
+        </li>
+        <li class="list-group-item">
+          <div class="media">
+            <a class="pull-left" href="#">
+              <img class="media-object" src="/thumb_1_default_small.jpg">
+            </a>
+            <div class="media-body">
+              <h4 class="media-heading"><a href="http://sonata-project.org/bundles/block">Block</a></h4>
+              Handle rendering of block element. A block is a small unit with its own logic and templates. A block can be inserted anywhere in a current template.
+            </div>
+          </div>
+        </li>
+        <li class="list-group-item">
+          <div class="media">
+            <a class="pull-left" href="#">
+              <img class="media-object" src="/thumb_1_default_small.jpg">
+            </a>
+            <div class="media-body">
+              <h4 class="media-heading"><a href="http://sonata-project.org/bundles/timeline">Timeline</a></h4>
+              Integrates SpyTimelineBundle into Sonata's bundles.
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+</div>
+</div>
 CONTENT
         );
     }
