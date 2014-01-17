@@ -41,6 +41,8 @@ class LoadPageData extends AbstractFixture implements ContainerAwareInterface, O
         $site = $this->createSite();
         $this->createGlobalPage($site);
         $this->createHomePage($site);
+        $this->create404ErrorPage($site);
+        $this->create500ErrorPage($site);
         $this->createBlogIndex($site);
         $this->createGalleryIndex($site);
         $this->createMediaPage($site);
@@ -598,6 +600,88 @@ CONTENT
         $block->addChildren($text = $blockManager->create());
         $text->setType('sonata.block.service.text');
         $text->setSetting('content', sprintf('<h2>%s</h2><div>%s</div>', $title, $content));
+        $text->setPosition(1);
+        $text->setEnabled(true);
+        $text->setPage($page);
+
+        $pageManager->save($page);
+    }
+
+    public function create404ErrorPage(SiteInterface $site)
+    {
+        $pageManager = $this->getPageManager();
+        $blockManager = $this->getBlockManager();
+        $blockInteractor = $this->getBlockInteractor();
+
+        $page = $pageManager->create();
+        $page->setName('_page_internal_error_not_found');
+        $page->setTitle('Error 404');
+        $page->setEnabled(true);
+        $page->setDecorate(1);
+        $page->setRequestMethod('GET|POST|HEAD|DELETE|PUT');
+        $page->setTemplateCode('default');
+        $page->setRouteName('_page_internal_error_not_found');
+        $page->setSite($site);
+        $page->setParent($this->getReference('page-homepage'));
+
+        $page->addBlocks($block = $blockInteractor->createNewContainer(array(
+            'enabled' => true,
+            'page'    => $page,
+            'code'    => 'content_top',
+        )));
+
+        // add the breadcrumb
+        $block->addChildren($breadcrumb = $blockManager->create());
+        $breadcrumb->setType('sonata.page.block.breadcrumb');
+        $breadcrumb->setPosition(0);
+        $breadcrumb->setEnabled(true);
+        $breadcrumb->setPage($page);
+
+        // Add text content block
+        $block->addChildren($text = $blockManager->create());
+        $text->setType('sonata.block.service.text');
+        $text->setSetting('content', '<h2>Error 404</h2><div>Page not found.</div>');
+        $text->setPosition(1);
+        $text->setEnabled(true);
+        $text->setPage($page);
+
+        $pageManager->save($page);
+    }
+
+    public function create500ErrorPage(SiteInterface $site)
+    {
+        $pageManager = $this->getPageManager();
+        $blockManager = $this->getBlockManager();
+        $blockInteractor = $this->getBlockInteractor();
+
+        $page = $pageManager->create();
+        $page->setName('_page_internal_error_not_found');
+        $page->setTitle('Error 500');
+        $page->setEnabled(true);
+        $page->setDecorate(1);
+        $page->setRequestMethod('GET|POST|HEAD|DELETE|PUT');
+        $page->setTemplateCode('default');
+        $page->setRouteName('_page_internal_error_fatal');
+        $page->setSite($site);
+        $page->setParent($this->getReference('page-homepage'));
+
+        $page->addBlocks($block = $blockInteractor->createNewContainer(array(
+            'enabled' => true,
+            'page'    => $page,
+            'code'    => 'content_top',
+        )));
+
+        // add the breadcrumb
+        $block->addChildren($breadcrumb = $blockManager->create());
+        $breadcrumb->setType('sonata.page.block.breadcrumb');
+        $breadcrumb->setPosition(0);
+        $breadcrumb->setEnabled(true);
+        $breadcrumb->setPage($page);
+
+        // Add text content block
+        $block->addChildren($text = $blockManager->create());
+        $text->setType('sonata.block.service.text');
+        $text->setSetting('content', '<h2>Error 500</h2><div>Internal error.</div>');
         $text->setPosition(1);
         $text->setEnabled(true);
         $text->setPage($page);
