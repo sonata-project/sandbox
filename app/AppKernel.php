@@ -93,6 +93,9 @@ class AppKernel extends Kernel
             // CMF Integration
             new Symfony\Cmf\Bundle\RoutingBundle\CmfRoutingBundle(),
 
+            // Liip Bundles
+//            new Liip\ImagineBundle\LiipImagineBundle(),
+
             // Bootstrap
             new Mopa\Bundle\BootstrapBundle\MopaBootstrapBundle(),
 

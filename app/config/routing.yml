@@ -83,10 +83,6 @@ sonata_invoice:
     resource: @SonataInvoiceBundle/Resources/config/routing/invoice.xml
     prefix: /shop/user/invoice
 
-#_imagine:
-#    resource: .
-#    type:     imagine
-
 blog:
     resource: '@SonataNewsBundle/Resources/config/routing/news.xml'
     prefix: /blog
@@ -103,3 +99,8 @@ _sonata_admin:
 soanata_user:
     resource: '@SonataUserBundle/Resources/config/routing/admin_security.xml'
     prefix: /admin
+
+# Support for LiipImagineBundle
+#_imagine:
+#    resource: .
+#    type:     imagine

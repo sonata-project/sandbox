@@ -64,8 +64,26 @@ sonata_media:
             create:     true
 
     providers:
+        # ...
         file:
+            # the resizer must be set to false, otherwhise this can delete icon files from the fs
             resizer:    false
+        image:
+           thumbnail: sonata.media.thumbnail.format          # default value
+#           thumbnail: sonata.media.thumbnail.consumer.format # can be used to dispatch the resize action to async task
+#            thumbnail: sonata.media.thumbnail.liip_imagine    # use the LiipImagineBundle to resize the image
+        vimeo:
+            thumbnail: sonata.media.thumbnail.format          # default value
+#           thumbnail: sonata.media.thumbnail.consumer.format # can be used to dispatch the resize action to async task
+#           thumbnail: sonata.media.thumbnail.liip_imagine    # use the LiipImagineBundle to resize the image
+        youtube:
+            thumbnail: sonata.media.thumbnail.format          # default value
+#           thumbnail: sonata.media.thumbnail.consumer.format # can be used to dispatch the resize action to async task
+#           thumbnail: sonata.media.thumbnail.liip_imagine    # use the LiipImagineBundle to resize the image
+        dailymotion:
+            thumbnail: sonata.media.thumbnail.format          # default value
+#           thumbnail: sonata.media.thumbnail.consumer.format # can be used to dispatch the resize action to async task
+#           thumbnail: sonata.media.thumbnail.liip_imagine    # use the LiipImagineBundle to resize the image
 
     pixlr:
         enabled:  true
@@ -83,18 +101,73 @@ sonata_media:
 #
 #liip_imagine:
 #    filter_sets:
+#
+#        # this configuration match the sonata_media configuration format definition
+#        sonata_product_preview:
+#            quality: 75
+#            controller_action: 'SonataMediaBundle:Media:liipImagineFilter'
+#            filters:
+#                thumbnail: { size: [100, 100], mode: outbound }
+#
+#        sonata_product_small:
+#            quality: 75
+#            controller_action: 'SonataMediaBundle:Media:liipImagineFilter'
+#            filters:
+#                thumbnail: { size: [200, 100], mode: outbound }
+#
+#        sonata_product_large:
+#            quality: 75
+#            controller_action: 'SonataMediaBundle:Media:liipImagineFilter'
+#            filters:
+#                thumbnail: { size: [600, 100], mode: outbound }
+#
+#        news_abstract:
+#            quality: 75
+#            controller_action: 'SonataMediaBundle:Media:liipImagineFilter'
+#            filters:
+#                thumbnail: { size: [100, 100], mode: outbound }
+#
+#        news_wide:
+#            quality: 75
+#            controller_action: 'SonataMediaBundle:Media:liipImagineFilter'
+#            filters:
+#                thumbnail: { size: [820, 100], mode: outbound }
+#
+#        sonata_collection_preview:
+#            quality: 75
+#            controller_action: 'SonataMediaBundle:Media:liipImagineFilter'
+#            filters:
+#                thumbnail: { size: [100, 100], mode: outbound }
+#
+#        sonata_collection_wide:
+#            quality: 75
+#            controller_action: 'SonataMediaBundle:Media:liipImagineFilter'
+#            filters:
+#                thumbnail: { size: [820, 100], mode: outbound }
+#
+#        sonata_category_preview:
+#            quality: 75
+#            controller_action: 'SonataMediaBundle:Media:liipImagineFilter'
+#            filters:
+#                thumbnail: { size: [100, 100], mode: outbound }
+#
+#        sonata_category_wide:
+#            quality: 75
+#            controller_action: 'SonataMediaBundle:Media:liipImagineFilter'
+#            filters:
+#                thumbnail: { size: [820, 100], mode: outbound }
+#
 #        default_small:
 #            quality: 75
 #            controller_action: 'SonataMediaBundle:Media:liipImagineFilter'
 #            filters:
-#                thumbnail: { size: [100, 70], mode: outbound }
-#
+#                thumbnail: { size: [100, 100], mode: outbound }
 #
 #        default_big:
 #            quality: 75
 #            controller_action: 'SonataMediaBundle:Media:liipImagineFilter'
 #            filters:
-#                thumbnail: { size: [500, 70], mode: outbound }
+#                thumbnail: { size: [820, 70], mode: outbound }
 
 # Enable Doctrine to map the provided entities
 doctrine:
