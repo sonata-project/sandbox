@@ -1,7 +1,18 @@
+/*
+ * Helpers
+ */
 .number {
     text-align: right !important;
 }
+.truncate {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 
+/*
+ * Sonata Demo
+ */
 .sonata-bc .container {
     max-width: 820px;
 }
@@ -99,9 +110,11 @@
 /*
  * Product grid
  */
-
 .product-grid {
     padding: 10px 0px 10px 0px;
+}
+.product-grid .thumbnail {
+    margin-bottom: 20px;
 }
 .product-grid .product-thumbnail {
     min-height: 100px;
