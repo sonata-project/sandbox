@@ -23,18 +23,3 @@ file that was distributed with this source code.
 {% block product_title %}{{ product.name }}{% endblock %}
 
 {% block product_delivery %}{% endblock %}
-
-{% block product_properties_before_price %}
-    {% if not product.isMaster %}
-        <dt style="width: auto;">{{ 'training.level_title'|trans([], 'SonataProductBundle') }}</dt>
-        <dd style="margin-left: 110px;">{{ product.level|trans([], 'SonataProductBundle') }}</dd>
-        <dt style="width: auto;">{{ 'training.instructor_title'|trans([], 'SonataProductBundle') }}</dt>
-        <dd style="margin-left: 110px;">{{ product.instructorName|trans([], 'SonataProductBundle') }}</dd>
-        {% if product.startDate %}
-            <dt style="width: auto;">{{ 'training.start_date_title'|trans([], 'SonataProductBundle') }}</dt>
-            <dd style="margin-left: 110px;">{{ product.startDate|date() }}</dd>
-        {% endif %}
-        <dt style="width: auto;">{{ 'training.duration_title'|trans([], 'SonataProductBundle') }}</dt>
-        <dd style="margin-left: 110px;">{{ product.duration|trans([], 'SonataProductBundle') }}</dd>
-    {% endif %}
-{% endblock %}
