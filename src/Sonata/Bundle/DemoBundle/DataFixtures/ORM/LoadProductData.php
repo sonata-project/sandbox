@@ -61,6 +61,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
          * @todo
          *  - check licences for used images
          */
+        $dummyCategory     = $this->getDummyCategory();
         $goodiesCategory   = $this->getGoodiesCategory();
         $trainingsCategory = $this->getTrainingsCategory();
         $plushesCategory   = $this->getPlushesCategory();
@@ -69,6 +70,38 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $clothesCategory   = $this->getClothesCategory();
 
         $phpCollection = $this->getPhpCollection();
+
+        $dummyProductsCount = 500;
+
+        for ($i = 0; $i < $dummyProductsCount; $i++) {
+            // Goodies products
+            $dummy = new Goodie();
+            $dummy->setSku('dummy_'.$i);
+            $dummy->setName('Dummy');
+            $dummy->setSlug('dummy');
+            $dummy->setDescription('Dummy product');
+            $dummy->setRawDescription('<p>Dummy product</p>'.$this->getLorem());
+            $dummy->setPriceIncVat(true);
+            $dummy->setShortDescription('Dummy product');
+            $dummy->setRawShortDescription('<p>Dummy product</p>');
+            $dummy->setDescriptionFormatter('richhtml');
+            $dummy->setShortDescriptionFormatter('richhtml');
+            $dummy->setPrice(rand(0, 2*$i));
+            $dummy->setStock(rand(1, 100*$i));
+            $dummy->setVat(20);
+            $dummy->setEnabled(true);
+            $manager->persist($dummy);
+            $this->setReference('dummy_product_'.$i, $dummy);
+
+            $this->addMediaToProduct(__DIR__.'/../data/files/sonata_logo.png', 'Dummy '.$i, 'Dummy product '.$i, $dummy);
+            $this->addProductToCategory($dummy, $dummyCategory, $manager);
+            $this->addProductDeliveries($dummy, $manager);
+            $this->addPackageToProduct($dummy, $manager);
+
+            if (0 === ($i % 20)) {
+                $manager->flush();
+            }
+        }
 
         // Goodies products
         $phpPlush = new Goodie();
@@ -174,30 +207,30 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $this->addProductToCollection($maximumAir, $phpCollection, $manager);
         $this->addPackageToProduct($maximumAir, $manager);
 
-        $maximumAir = new Goodie();
-        $maximumAir->setSku('MAXIMUM_AIR_SONATA_ULTIMATE');
-        $maximumAir->setName('Maximum Air Sonata ULTIMATE Edition');
-        $maximumAir->setSlug('maximum-air-sonata-ultimate-edition');
-        $maximumAir->setDescription('Get this ULTIMATE edition of the MAXIMUM AIR SONATA and fly over PHP bugs. True story. Even more powerful than the limited edition. Note that this product does not contain any media for behat testing purpose.');
-        $maximumAir->setRawDescription('Get this ULTIMATE edition of the MAXIMUM AIR SONATA and fly over PHP bugs. True story. Even more powerful than the limited edition. Note that this product does not contain any media for behat testing purpose.'.$this->getLorem());
-        $maximumAir->setPriceIncVat(true);
-        $maximumAir->setShortDescription('Get this ULTIMATE edition of the MAXIMUM AIR SONATA and fly over PHP bugs. True story. Even more powerful than the limited edition. Note that this product does not contain any media for behat testing purpose.');
-        $maximumAir->setRawShortDescription('<p>Get this ULTIMATE edition of the MAXIMUM AIR SONATA and fly over PHP bugs. True story. Even more powerful than the limited edition. Note that this product does not contain any media for behat testing purpose.</p>');
-        $maximumAir->setDescriptionFormatter('richhtml');
-        $maximumAir->setShortDescriptionFormatter('richhtml');
-        $maximumAir->setPrice(250);
-        $maximumAir->setStock(30);
-        $maximumAir->setVat(20);
-        $maximumAir->setEnabled(true);
-        $manager->persist($maximumAir);
-        $this->setReference('maximum_air_sonata_ultimate_product', $maximumAir);
+        $maximumAirUlt = new Goodie();
+        $maximumAirUlt->setSku('MAXIMUM_AIR_SONATA_ULTIMATE');
+        $maximumAirUlt->setName('Maximum Air Sonata ULTIMATE Edition');
+        $maximumAirUlt->setSlug('maximum-air-sonata-ultimate-edition');
+        $maximumAirUlt->setDescription('Get this ULTIMATE edition of the MAXIMUM AIR SONATA and fly over PHP bugs. True story. Even more powerful than the limited edition. Note that this product does not contain any media for behat testing purpose.');
+        $maximumAirUlt->setRawDescription('Get this ULTIMATE edition of the MAXIMUM AIR SONATA and fly over PHP bugs. True story. Even more powerful than the limited edition. Note that this product does not contain any media for behat testing purpose.'.$this->getLorem());
+        $maximumAirUlt->setPriceIncVat(true);
+        $maximumAirUlt->setShortDescription('Get this ULTIMATE edition of the MAXIMUM AIR SONATA and fly over PHP bugs. True story. Even more powerful than the limited edition. Note that this product does not contain any media for behat testing purpose.');
+        $maximumAirUlt->setRawShortDescription('<p>Get this ULTIMATE edition of the MAXIMUM AIR SONATA and fly over PHP bugs. True story. Even more powerful than the limited edition. Note that this product does not contain any media for behat testing purpose.</p>');
+        $maximumAirUlt->setDescriptionFormatter('richhtml');
+        $maximumAirUlt->setShortDescriptionFormatter('richhtml');
+        $maximumAirUlt->setPrice(250);
+        $maximumAirUlt->setStock(30);
+        $maximumAirUlt->setVat(20);
+        $maximumAirUlt->setEnabled(true);
+        $manager->persist($maximumAirUlt);
+        $this->setReference('maximum_air_sonata_ultimate_product', $maximumAirUlt);
 
-        //$this->addMediaToProduct(__DIR__.'/../data/files/maximum-air-sonata-ultimate.jpg', 'Maximum Air Sonata ULTIMATE edition', 'Maximum Air Sonata ULTIMATE edition', $maximumAir);
-        $this->addProductToCategory($maximumAir, $this->getReference('sonata_shoes_category'), $manager);
-        $this->addProductToCategory($maximumAir, $goodiesCategory, $manager);
-        $this->addProductDeliveries($maximumAir, $manager);
-        $this->addProductToCollection($maximumAir, $phpCollection, $manager);
-        $this->addPackageToProduct($maximumAir, $manager);
+        //$this->addMediaToProduct(__DIR__.'/../data/files/maximum-air-sonata-ultimate.jpg', 'Maximum Air Sonata ULTIMATE edition', 'Maximum Air Sonata ULTIMATE edition', $maximumAirUlt);
+        $this->addProductToCategory($maximumAirUlt, $this->getReference('sonata_shoes_category'), $manager);
+        $this->addProductToCategory($maximumAirUlt, $goodiesCategory, $manager);
+        $this->addProductDeliveries($maximumAirUlt, $manager);
+        $this->addProductToCollection($maximumAirUlt, $phpCollection, $manager);
+        $this->addPackageToProduct($maximumAirUlt, $manager);
 
         // Training products
         $sonataTraining = new Training();
@@ -225,6 +258,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
 
         // Training beginner variation
         $sonataTrainingBeginner = $this->generateDefaultTrainingBeginnerVariation($trainingProvider, $sonataTraining);
+        $sonataTrainingBeginner->setName("Sonata training for beginner users.");
         $sonataTrainingBeginner->setStock(1500);
         $sonataTrainingBeginner->setEnabled(true);
         $manager->persist($sonataTrainingBeginner);
@@ -232,6 +266,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
 
         // Training confirmed variation
         $sonataTrainingConfirmed = $this->generateDefaultTrainingBeginnerVariation($trainingProvider, $sonataTraining);
+        $sonataTrainingConfirmed->setName("Sonata training for confirmed users.");
         $sonataTrainingConfirmed->setSku('SONATA_TRAINING_CONFIRMED');
         $sonataTrainingConfirmed->setLevel(Training::LEVEL_CONFIRMED);
         $sonataTrainingConfirmed->setPriceIncVat(true);
@@ -243,6 +278,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
 
         // Training expert variation
         $sonataTrainingExpert = $this->generateDefaultTrainingBeginnerVariation($trainingProvider, $sonataTraining);
+        $sonataTrainingExpert->setName("Sonata training for expert users.");
         $sonataTrainingExpert->setSku('SONATA_TRAINING_EXPERTS');
         $sonataTrainingExpert->setName('Sonata training for experts');
         $sonataTrainingExpert->setLevel(Training::LEVEL_EXPERT);
@@ -612,6 +648,16 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $product->addPackage($package);
 
         $manager->persist($package);
+    }
+
+    /**
+     * Returns the dummy category.
+     *
+     * @return CategoryInterface
+     */
+    protected function getDummyCategory()
+    {
+        return $this->getReference('dummy_category');
     }
 
     /**

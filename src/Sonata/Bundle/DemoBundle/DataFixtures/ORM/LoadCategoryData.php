@@ -122,6 +122,16 @@ class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterfac
         $this->getCategoryManager()->save($sonata);
         $this->setReference('sonata_trainings_category', $sonata);
 
+        // Dummy category
+        $dummy = $this->getCategoryManager()->create();
+        $dummy->setName('Dummy');
+        $dummy->setSlug('dummy');
+        $dummy->setDescription('Dummy category with many dummy products');
+        $dummy->setEnabled(true);
+        $this->getCategoryManager()->save($dummy);
+
+        $this->setReference('dummy_category', $dummy);
+
         // Disabled category for testing purpose
         $shoes = $this->getCategoryManager()->create();
         $shoes->setParent($goodies);
