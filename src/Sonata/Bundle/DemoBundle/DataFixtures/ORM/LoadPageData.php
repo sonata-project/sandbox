@@ -166,6 +166,8 @@ class LoadPageData extends AbstractFixture implements ContainerAwareInterface, O
         $text->setType('sonata.block.service.text');
         $text->setSetting('content', <<<CONTENT
 
+<h1>Gallery List</h1>
+
 <p>
     This current text is defined in a <code>text block</code> linked to a custom symfony action <code>GalleryController::indexAction</code>
     the SonataPageBundle can encapsulate an action into a dedicated template. <br /><br />
@@ -174,7 +176,6 @@ class LoadPageData extends AbstractFixture implements ContainerAwareInterface, O
     areas are displayed, just double click on one to edit it.
 </p>
 
-<h1>Gallery List</h1>
 CONTENT
 );
         $text->setPosition(1);

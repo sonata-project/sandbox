@@ -62,7 +62,7 @@
     padding-left: 0px;
 }
 
-.breadcrumb>li+li:before {
+.sonata_breadcrumb .breadcrumb>li+li:before {
     content: "\00BB";
 }
 
