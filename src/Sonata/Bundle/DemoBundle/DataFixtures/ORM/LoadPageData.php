@@ -279,29 +279,16 @@ CONTENT
         }));
         $bottom->setName('The bottom content container');
 
-        // Add homepage bottom left container
-        $bottom->addChildren($bottomLeft = $blockInteractor->createNewContainer(array(
+        // Add homepage newsletter container
+        $bottom->addChildren($bottomNewsletter = $blockInteractor->createNewContainer(array(
             'enabled' => true,
             'page'    => $homepage,
-            'code'    => 'content_bottom_left',
+            'code'    => 'bottom_newsletter',
         ), function ($container) {
-            $container->setSetting('layout', '<div class="col-sm-6 well">{{ CONTENT }}</div>');
+            $container->setSetting('layout', '<div class="col-sm-8 col-sm-offset-2 well">{{ CONTENT }}</div>');
         }));
-        $bottomLeft->setName('The bottom left content container');
-
-        // Add homepage bottom right container
-        $bottom->addChildren($bottomRight = $blockInteractor->createNewContainer(array(
-            'enabled' => true,
-            'page'    => $homepage,
-            'code'    => 'content_bottom_right',
-        ), function ($container) {
-            $container->setSetting('layout', '<div class="col-sm-6 well">{{ CONTENT }}</div>');
-        }));
-        $bottomLeft->setName('The bottom right content container');
-
-        // Add homepage bottom newsletter (left) & twitter (right) blocks
-        $bottomLeft->addChildren($newsletter = $blockManager->create());
-
+        $bottomNewsletter->setName('The bottom newsetter container');
+        $bottomNewsletter->addChildren($newsletter = $blockManager->create());
         $newsletter->setType('sonata.demo.block.newsletter');
         $newsletter->setPosition(1);
         $newsletter->setEnabled(true);
