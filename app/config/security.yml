@@ -53,7 +53,11 @@ security:
                 use_forward:    false
                 check_path:     /login_check
                 failure_path:   null
-            logout:       true
+            logout:
+                path: /logout
+                # We set invalidate_session to false because we want basket
+                # to be fully persisted even when user logout and login again
+                invalidate_session: false
             anonymous:    true
 
     access_control:
