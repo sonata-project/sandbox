@@ -177,7 +177,7 @@ class LoadPageData extends AbstractFixture implements ContainerAwareInterface, O
 </p>
 
 CONTENT
-);
+        );
         $text->setPosition(1);
         $text->setEnabled(true);
         $text->setPage($galleryIndex);
@@ -236,7 +236,7 @@ CONTENT
     </p>
 </div>
 CONTENT
-);
+        );
         $text->setPosition(1);
         $text->setEnabled(true);
         $text->setPage($homepage);
@@ -966,22 +966,45 @@ CONTENT
 
         $header->setName('The header container');
 
-        $header->addChildren($account = $blockManager->create());
+        $global->addBlocks($headerTop = $blockInteractor->createNewContainer(array(
+            'enabled' => true,
+            'page' => $global,
+            'code' => 'header-top',
+        ), function ($container) {
+            $container->setSetting('layout', '<div class="pull-right">{{ CONTENT }}</div>');
+        }));
+
+        $headerTop->setPosition(1);
+
+        $header->addChildren($headerTop);
+
+        $headerTop->addChildren($account = $blockManager->create());
 
         $account->setType('sonata.user.block.account');
         $account->setPosition(1);
         $account->setEnabled(true);
         $account->setPage($global);
 
-        $header->addChildren($basket = $blockManager->create());
+        $headerTop->addChildren($basket = $blockManager->create());
 
         $basket->setType('sonata.basket.block.nb_items');
         $basket->setPosition(2);
         $basket->setEnabled(true);
         $basket->setPage($global);
 
+        $global->addBlocks($headerMenu = $blockInteractor->createNewContainer(array(
+            'enabled' => true,
+            'page' => $global,
+            'code' => 'header-menu',
+        )));
 
-        $header->addChildren($menu = $blockManager->create());
+        $headerMenu->setPosition(2);
+
+        $header->addChildren($headerMenu);
+
+        $headerMenu->setName('The header menu container');
+        $headerMenu->setPosition(3);
+        $headerMenu->addChildren($menu = $blockManager->create());
 
         $menu->setType('sonata.block.service.menu');
         $menu->setSetting('menu_name', "SonataDemoBundle:Builder:mainMenu");
