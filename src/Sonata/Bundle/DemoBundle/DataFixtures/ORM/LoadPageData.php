@@ -1066,7 +1066,8 @@ CONTENT
 <a class="twitter-timeline"
     href="https://twitter.com/sonataproject"
     data-widget-id="423108745925636096"
-    height="250"
+    data-chrome="nofooter noborders noscrollbar transparent"
+    data-tweet-limit=”2"
     >Tweets by @sonataproject</a>
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 
@@ -1075,6 +1076,7 @@ CONTENT
 
         $text->setPosition(1);
         $text->setEnabled(true);
+        $text->setName('The Twitter Block');
         $text->setPage($global);
 
         $pageManager->save($global);
