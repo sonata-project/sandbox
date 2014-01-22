@@ -170,6 +170,7 @@ class LoadOrderData extends AbstractFixture implements ContainerAwareInterface, 
         // Delivery
         $order->setDeliveryMethod('free'); // @todo : change Delivery method integration
         $order->setDeliveryCost(rand(5, 40));
+        $order->setDeliveryVat(20);
         $order->setDeliveryStatus(array_rand(Delivery::getStatusList()));
 
         $currency = new Currency();
