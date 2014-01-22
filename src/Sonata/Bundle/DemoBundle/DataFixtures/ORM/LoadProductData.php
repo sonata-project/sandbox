@@ -81,14 +81,14 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
             $dummy->setSlug('dummy');
             $dummy->setDescription('Dummy product');
             $dummy->setRawDescription('<p>Dummy product</p>'.$this->getLorem());
-            $dummy->setPriceIncVat(true);
+            $dummy->setIsPriceIncludingVat(true);
             $dummy->setShortDescription('Dummy product');
             $dummy->setRawShortDescription('<p>Dummy product</p>');
             $dummy->setDescriptionFormatter('richhtml');
             $dummy->setShortDescriptionFormatter('richhtml');
             $dummy->setPrice(rand(0, 2*$i));
             $dummy->setStock(rand(1, 100*$i));
-            $dummy->setVat(20);
+            $dummy->setVatRate(20);
             $dummy->setEnabled(true);
             $manager->persist($dummy);
             $this->setReference('dummy_product_'.$i, $dummy);
@@ -213,7 +213,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $maximumAirUlt->setSlug('maximum-air-sonata-ultimate-edition');
         $maximumAirUlt->setDescription('Get this ULTIMATE edition of the MAXIMUM AIR SONATA and fly over PHP bugs. True story. Even more powerful than the limited edition. Note that this product does not contain any media for behat testing purpose.');
         $maximumAirUlt->setRawDescription('Get this ULTIMATE edition of the MAXIMUM AIR SONATA and fly over PHP bugs. True story. Even more powerful than the limited edition. Note that this product does not contain any media for behat testing purpose.'.$this->getLorem());
-        $maximumAir->setIsPriceIncludingVat(true);
+        $maximumAirUlt->setIsPriceIncludingVat(true);
         $maximumAirUlt->setShortDescription('Get this ULTIMATE edition of the MAXIMUM AIR SONATA and fly over PHP bugs. True story. Even more powerful than the limited edition. Note that this product does not contain any media for behat testing purpose.');
         $maximumAirUlt->setRawShortDescription('<p>Get this ULTIMATE edition of the MAXIMUM AIR SONATA and fly over PHP bugs. True story. Even more powerful than the limited edition. Note that this product does not contain any media for behat testing purpose.</p>');
         $maximumAirUlt->setDescriptionFormatter('richhtml');
