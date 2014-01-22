@@ -41,31 +41,31 @@ Feature: Products
 
     @200
     Scenario: Browse out of stock product
-        When I go to "shop/product/3/php-t-shirt"
+        When I go to "shop/product/php-t-shirt/3"
         Then the response status code should be 200
         And I should see "Warning : this product is currently out of stock !"
 
     @404
     Scenario: Browse disabled product
-        When I go to "shop/product/4/maximum-air-sonata-limited-edition"
+        When I go to "shop/product/maximum-air-sonata-limited-edition/4"
         Then the response status code should be 404
 
     @200
     Scenario: Direct access to a product without a picture
-        When I go to "shop/product/5/maximum-air-sonata-ultimate-edition"
+        When I go to "shop/product/maximum-air-sonata-ultimate-edition/5"
         Then the response status code should be 200
         And I should see "Get this ULTIMATE edition"
 
     @404
     Scenario: Check non display when product master is disabled
-        When I go to "shop/product/10/php-disabled-training"
+        When I go to "shop/product/php-disabled-training/10"
         Then the response status code should be 404
         When I go to "shop/product/11/php-training-for-beginners"
         Then the response status code should be 404
 
     @200
     Scenario: Check display of master product when having an active child
-        When I go to "shop/product/12/php-working-training"
+        When I go to "shop/product/php-working-training/12"
         Then the response status code should be 200
         And I should not see "Warning : this product is currently out of stock !"
         But I should see "PHP working training for beginners"
@@ -75,16 +75,16 @@ Feature: Products
 
     @404
     Scenario: Check non display of a product when having no active child
-        When I go to "shop/product/14/php-disabled-child-training"
+        When I go to "shop/product/php-disabled-child-training/14"
         Then the response status code should be 404
-        When I go to "shop/product/15/php-disabled-child-training"
+        When I go to "shop/product/php-disabled-child-training/15"
         Then the response status code should be 404
 
     Scenario: Check the display of starting date if provided
-        When I go to "shop/product/16/sonata-trainings"
+        When I go to "shop/product/sonata-trainings/16"
         Then I should see "Jan 16th, 2014"
 
     Scenario: Check the non display of starting date and related label if value is not set
-        When I go to "shop/product/5/maximum-air-sonata-ultimate-edition"
+        When I go to "shop/product/maximum-air-sonata-ultimate-edition/5"
         Then I should not see "Jan 16th, 2014"
         And I should not see "Starting date"
