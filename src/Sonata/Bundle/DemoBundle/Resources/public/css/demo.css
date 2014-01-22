@@ -66,6 +66,10 @@
     content: "\00BB";
 }
 
+form .form-actions {
+    min-height: 48px;
+}
+
 /*
  * Basket
  */
