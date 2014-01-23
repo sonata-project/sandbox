@@ -12,13 +12,13 @@ class BrowserContext extends MinkContext
      * @When /^I am connected with "([^"]*)" and "([^"]*)" on "([^"]*)" I should see "([^"]*)"$/
      *
      * @param string $login
-     * @param string $pwd
+     * @param string $rawPassword
      * @param string $url
      * @param string $match
      */
-    public function iAmConnectedWithAndOnIShouldSee($login, $pwd, $url, $match)
+    public function iAmConnectedWithAndOnIShouldSee($login, $rawPassword, $url, $match)
     {
-        $this->iAmConnectedWithOn($login, $pwd, $url);
+        $this->iAmConnectedWithOn($login, $rawPassword, $url);
         $this->assertPageContainsText($match);
     }
 
@@ -28,14 +28,15 @@ class BrowserContext extends MinkContext
      * @Given /^I am connected with "([^"]*)" and "([^"]*)" on "([^"]*)"$/
      *
      * @param string $login
-     * @param string $pwd
+     * @param string $rawPassword
      * @param string $url
      */
-    public function iAmConnectedWithOn($login, $pwd, $url)
+    public function iAmConnectedWithOn($login, $rawPassword, $url)
     {
+        $this->visit('logout');
         $this->visit('login');
         $this->fillField('_username', $login);
-        $this->fillField('_password', $pwd);
+        $this->fillField('_password', $rawPassword);
         $this->pressButton('Login');
 
         $this->visit($url);
