@@ -60,17 +60,126 @@ class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterfac
         $goodies->setDescription('Some goodies related to Sonata and Symfony world.');
         $goodies->setEnabled(true);
         $this->getCategoryManager()->save($goodies);
-
         $this->setReference('goodies_category', $goodies);
 
-        // Training category
-        $training = $this->getCategoryManager()->create();
-        $training->setName('Trainings');
-        $training->setSlug('trainings');
-        $training->setDescription('Want to learn Sonata? Check out our trainings.');
-        $training->setEnabled(true);
-        $this->getCategoryManager()->save($training);
-        $this->setReference('trainings_category', $training);
+        // Travels category
+        $travels = $this->getCategoryManager()->create();
+        $travels->setName('Travels');
+        $travels->setSlug('travels');
+        $travels->setDescription('Discover our travels');
+        $travels->setEnabled(true);
+        $this->getCategoryManager()->save($travels);
+        $this->setReference('travels_category', $travels);
+
+        // Asia category
+        /*$asia = $this->getCategoryManager()->create();
+        $asia->setParent($travels);
+        $asia->setName('Asia');
+        $asia->setSlug('asia');
+        $asia->setDescription('Want to travel in Asia? Check out our travels.');
+        $asia->setEnabled(true);
+        $this->getCategoryManager()->save($asia);
+        $this->setReference('travels_asia_category', $asia);*/
+
+        // Japan category
+        /*$japan = $this->getCategoryManager()->create();
+        $japan->setParent($travels);
+        $japan->setName('Japan');
+        $japan->setSlug('japan');
+        $japan->setDescription('Want to travel in Japan? Check out our travels.');
+        $japan->setEnabled(true);
+        $this->getCategoryManager()->save($japan);
+        $this->setReference('travels_japan_category', $japan);*/
+
+        // North America category
+        $northAmerica = $this->getCategoryManager()->create();
+        $northAmerica->setParent($travels);
+        $northAmerica->setName('North America');
+        $northAmerica->setSlug('north-america');
+        $northAmerica->setDescription('Want to travel in North America? Check out our travels.');
+        $northAmerica->setEnabled(true);
+        $this->getCategoryManager()->save($northAmerica);
+        $this->setReference('travels_north_america_category', $northAmerica);
+
+        // Canada category
+        $canada = $this->getCategoryManager()->create();
+        $canada->setParent($travels);
+        $canada->setName('Canada');
+        $canada->setSlug('canada');
+        $canada->setDescription('Want to travel in Canada? Check out our travels.');
+        $canada->setEnabled(true);
+        $this->getCategoryManager()->save($canada);
+        $this->setReference('travels_canada_category', $canada);
+
+        // Quebec category
+        $quebec = $this->getCategoryManager()->create();
+        $quebec->setParent($travels);
+        $quebec->setName('Quebec');
+        $quebec->setSlug('quebec');
+        $quebec->setDescription('Want to travel in Quebec? Check out our travels.');
+        $quebec->setEnabled(true);
+        $this->getCategoryManager()->save($quebec);
+        $this->setReference('travels_quebec_category', $quebec);
+
+        // Europe category
+        $europe = $this->getCategoryManager()->create();
+        $europe->setParent($travels);
+        $europe->setName('Europe');
+        $europe->setSlug('europe');
+        $europe->setDescription('Want to travel in Europe? Check out our travels.');
+        $europe->setEnabled(true);
+        $this->getCategoryManager()->save($europe);
+        $this->setReference('travels_europe_category', $europe);
+
+        // France category
+        $france = $this->getCategoryManager()->create();
+        $france->setParent($travels);
+        $france->setName('France');
+        $france->setSlug('france');
+        $france->setDescription('Want to travel in France? Check out our travels.');
+        $france->setEnabled(true);
+        $this->getCategoryManager()->save($france);
+        $this->setReference('travels_france_category', $france);
+
+        // Paris category
+        $paris = $this->getCategoryManager()->create();
+        $paris->setParent($travels);
+        $paris->setName('Paris');
+        $paris->setSlug('paris');
+        $paris->setDescription('Want to travel in Paris? Check out our travels.');
+        $paris->setEnabled(true);
+        $this->getCategoryManager()->save($paris);
+        $this->setReference('travels_paris_category', $paris);
+
+        // Great britain category
+        /*$greatBritain = $this->getCategoryManager()->create();
+        $greatBritain->setParent($travels);
+        $greatBritain->setName('Great Britain');
+        $greatBritain->setSlug('great-britain');
+        $greatBritain->setDescription('Want to travel in Great Britain? Check out our travels.');
+        $greatBritain->setEnabled(true);
+        $this->getCategoryManager()->save($greatBritain);
+        $this->setReference('travels_great_britain_category', $greatBritain);*/
+
+        // London category
+        /*$london = $this->getCategoryManager()->create();
+        $london->setParent($travels);
+        $london->setName('London');
+        $london->setSlug('london');
+        $london->setDescription('Want to travel in London? Check out our travels.');
+        $london->setEnabled(true);
+        $this->getCategoryManager()->save($london);
+        $this->setReference('travels_london_category', $london);*/
+
+        // Switzerland category
+        $switzerland = $this->getCategoryManager()->create();
+        $switzerland->setParent($travels);
+        $switzerland->setName('Switzerland');
+        $switzerland->setSlug('switzerland');
+        $switzerland->setDescription('Want to travel in Switzerland? Check out our travels.');
+        $switzerland->setEnabled(true);
+        $this->getCategoryManager()->save($switzerland);
+        $this->setReference('travels_switzerland_category', $switzerland);
 
         // Goodies sub-categories
         $plushes = $this->getCategoryManager()->create();
@@ -101,26 +210,6 @@ class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterfac
         $clothes->setEnabled(true);
         $this->getCategoryManager()->save($clothes);
         $this->setReference('sonata_clothes_category', $clothes);
-
-        // Training sub-categories
-        $symfony = $this->getCategoryManager()->create();
-        $symfony->setParent($training);
-        $symfony->setName('Symfony2');
-        $symfony->setSlug('symfony2');
-        $symfony->setDescription('Symfony2 trainings, with experts.');
-        $symfony->setEnabled(true);
-        $this->getCategoryManager()->save($symfony);
-        $this->setReference('symfony_trainings_category', $symfony);
-
-        // Sonata sub-category
-        $sonata = $this->getCategoryManager()->create();
-        $sonata->setParent($training);
-        $sonata->setName('Sonata trainings');
-        $sonata->setSlug('sonata-trainings');
-        $sonata->setDescription('Learn how to use Sonata.');
-        $sonata->setEnabled(true);
-        $this->getCategoryManager()->save($sonata);
-        $this->setReference('sonata_trainings_category', $sonata);
 
         // Dummy category
         $dummy = $this->getCategoryManager()->create();

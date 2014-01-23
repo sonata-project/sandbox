@@ -18,11 +18,14 @@ file that was distributed with this source code.
 
 {% extends 'SonataProductBundle:Product:form_basket_element.html.twig' %}
 
-{#
 {% block product_description %}
-    <strong><a href="{{ url('sonata_product_view', {'productId': basketElement.product.id, 'slug': basketElement.product.slug}) }}">{{ basketElement.name }}</a></strong>
-    <br />
-    <em>{{ basketElement.product.description|raw|truncate(200, false, '…') }}</em>
+    <b><a href="{{ url('sonata_product_view', {'productId': basketElement.product.id, 'slug': basketElement.product.slug}) }}">{{ basketElement.name }}</a></b> <br />
+    {{ basketElement.product.description|truncate(200, true, '...')|raw }}
+{% endblock %}
+
+{#
+{% block product_unit_price %}
+    {{ basketElement.getUnitPrice(false)|number_format_currency(basket.currency, {}, {}, basket.locale) }}
 {% endblock %}
 
 {% block product_quantity %}
@@ -30,7 +33,11 @@ file that was distributed with this source code.
     {{ form_widget(formView.quantity) }}
 {% endblock %}
 
-{% block product_total %}
+{% block product_total_excl %}
+    {{ basketElement.getTotal(false)|number_format_currency(basket.currency, {}, {}, basket.locale) }}
+{% endblock %}
+
+{% block product_total_inc %}
     {{ basketElement.getTotal(true)|number_format_currency(basket.currency, {}, {}, basket.locale) }}
 {% endblock %}
 

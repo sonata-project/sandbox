@@ -28,5 +28,16 @@
             <argument type="service" id="serializer" />
         </service>
 
+        <!-- Travel -->
+
+        <service id="sonata.ecommerce_demo.product.travel.manager" class="Sonata\ProductBundle\Entity\ProductManager">
+            <argument>Application\Sonata\ProductBundle\Entity\Travel</argument>
+            <argument type="service" id="sonata.product.entity_manager" />
+        </service>
+
+        <service id="sonata.ecommerce_demo.product.travel.type" class="Application\Sonata\ProductBundle\Provider\TravelProductProvider">
+            <argument type="service" id="serializer" />
+        </service>
+
     </services>
 </container>

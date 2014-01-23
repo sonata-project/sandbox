@@ -73,7 +73,7 @@ class LoadNewsData extends AbstractFixture implements ContainerAwareInterface, O
             $post->setTitle($faker->sentence(6));
             $post->setPublicationDateStart($faker->dateTimeBetween('-30 days', '-1 days'));
 
-            $id = $this->getReference('sonata-media-'.rand(2, 7))->getId();
+            $id = $this->getReference('sonata-media-0')->getId();
 
             $raw =<<<RAW
 ### Gist Formatter

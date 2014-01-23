@@ -10,10 +10,6 @@
 
 namespace Application\Sonata\ProductBundle\Provider;
 
-use JMS\Serializer\SerializerInterface;
-
-use Application\Sonata\ProductBundle\Entity\Training;
-
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\ProductBundle\Model\BaseProductProvider;
 
@@ -27,25 +23,14 @@ use Sonata\ProductBundle\Model\BaseProductProvider;
  *
  * @author <yourname> <youremail>
  */
-class TrainingProductProvider extends BaseProductProvider
+class TravelProductProvider extends BaseProductProvider
 {
     /**
-     * {@inheritdoc}
-     */
-    public function __construct(SerializerInterface $serializer)
-    {
-        $this->serializer = $serializer;
-        $this->setOptions(array(
-            'product_add_modal' => true
-        ));
-    }
-
-    /**
-     * {@inheritdoc}
+     * {@inheritDoc}
      */
     public function getBaseControllerName()
     {
-        return 'SonataProductBundle:Training';
+        return 'SonataProductBundle:Travel';
     }
 
     /**
@@ -55,17 +40,16 @@ class TrainingProductProvider extends BaseProductProvider
     {
         parent::buildEditForm($formMapper, $isVariation);
 
+        $formMapper
+            ->with('Product')
+                ->add('travelDate');
+
         if ($isVariation) {
             $formMapper
-                ->with('Product')
-                    ->add('level', 'choice', array(
-                        'choices'            => Training::getLevelList(),
-                        'translation_domain' => 'SonataProductBundle',
-                    ))
-                    ->add('instructorName')
-                    ->add('startDate')
-                    ->add('duration')
-                ->end();
+                ->add('travelDays')
+                ->add('travellers');
         }
+
+        $formMapper->end();
     }
 }

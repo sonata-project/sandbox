@@ -20,6 +20,6 @@ use Sonata\ProductBundle\Repository\BaseProductRepository;
  *
  * @author <yourname> <youremail>
  */
-class TrainingRepository extends BaseProductRepository
+class TravelRepository extends BaseProductRepository
 {
 }

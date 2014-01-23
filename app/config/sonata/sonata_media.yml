@@ -17,7 +17,7 @@ sonata_media:
 
             formats:
                 small: { width: 100, quality: 100}
-                big:   { width: 820 , quality: 100}
+                big:   { width: 970 , quality: 100}
 
         news:
             providers:
