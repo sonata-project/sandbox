@@ -6,7 +6,7 @@ Feature: Checkout process
 
     @200
     Scenario: No checkout for empty basket
-        Given I am on "shop/category"
+        Given I am on "shop/catalog"
         When I go to "shop/basket"
         Then I should see "Your basket is empty"
         But I should not see "Next step"
@@ -14,7 +14,7 @@ Feature: Checkout process
     Scenario: Checkout with one product in the basket when not logged in
         Given I am on "shop/basket"
         And I should see "Your basket is empty"
-        And I go to "shop/category"
+        And I go to "shop/catalog"
         And I follow "Goodies"
         And I follow "Plushes"
         And I follow "PHP plush"
@@ -26,7 +26,7 @@ Feature: Checkout process
     Scenario: Checkout with one product in the basket when logging in
         Given I am connected with "behat_user" and "behat_user" on "shop/basket"
         And I should see "Your basket is empty"
-        And I go to "shop/category"
+        And I go to "shop/catalog"
         And I follow "Goodies"
         And I follow "Plushes"
         And I follow "PHP plush"
@@ -68,7 +68,7 @@ Feature: Checkout process
     Scenario: Ensure to see order
         Given I am connected with "behat_user" and "behat_user" on "shop/basket"
         And I should see "Your basket is empty"
-        And I go to "shop/category"
+        And I go to "shop/catalog"
         And I follow "Goodies"
         And I follow "Plushes"
         And I follow "PHP plush"
@@ -111,7 +111,7 @@ Feature: Checkout process
     Scenario: Ensure to see an invoice
         Given I am connected with "behat_user" and "behat_user" on "shop/basket"
         And I should see "Your basket is empty"
-        And I go to "shop/category"
+        And I go to "shop/catalog"
         And I follow "Goodies"
         And I follow "Plushes"
         And I follow "PHP plush"
