@@ -13,7 +13,7 @@ Scenario: Check gallery admin pages when connected
 Scenario: Add a new gallery with some errors
   When I am connected with "admin" and "admin" on "admin/sonata/media/gallery/create?context=default&uniqid=f155592a220e"
   And I press "Create"
-  Then I should see "An error has occurred during the creation of item \"%name%\"."
+  Then I should see "An error has occurred during the creation of item \"n/a\"."
 
 Scenario: Add a new gallery
   When I am connected with "admin" and "admin" on "admin/sonata/media/gallery/create?context=default&uniqid=f155592a220e"

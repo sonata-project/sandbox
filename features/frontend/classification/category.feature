@@ -22,9 +22,9 @@ Feature: Check the categories browsing and security
         And I should see "Products"
         And I should see "PHP plush"
 
-    Scenario: Check browsing non display of disabled category
+    Scenario: Check browsing non display of empty category
         Given I am on "shop/category"
-        And I follow "Goodies"
+        And I follow "Symfony2"
         Then I should see "No products available"
 
     Scenario: Check non direct access to disabled category

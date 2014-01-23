@@ -13,7 +13,7 @@ Scenario: Check comment admin pages when connected
 Scenario: Add a new comment with some errors
   When I am connected with "admin" and "admin" on "admin/sonata/news/comment/create?uniqid=f155592a220e"
   And I press "Create"
-  Then I should see "An error has occurred during the creation of item \"%name%\"."
+  Then I should see "An error has occurred during the creation of item \"n/a"."
 
 Scenario: Add a new comment
   When I am connected with "admin" and "admin" on "admin/sonata/news/comment/create?uniqid=f155592a220e"
