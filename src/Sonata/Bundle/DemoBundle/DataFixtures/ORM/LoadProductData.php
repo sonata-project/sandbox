@@ -68,6 +68,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $sonataCategory    = $this->getSonataTrainingCategory();
         $mugCategory       = $this->getMugCategory();
         $clothesCategory   = $this->getClothesCategory();
+        $shoesCategory     = $this->getShoesCategory();
 
         $phpCollection = $this->getPhpCollection();
 
@@ -201,7 +202,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $this->setReference('maximum_air_sonata_product', $maximumAir);
 
         $this->addMediaToProduct(__DIR__.'/../data/files/maximum-air-sonata.jpg', 'Maximum Air Sonata Limited edition', 'Maximum Air Sonata Limited edition', $maximumAir);
-        $this->addProductToCategory($maximumAir, $this->getReference('sonata_shoes_category'), $manager);
+        $this->addProductToCategory($maximumAir, $shoesCategory, $manager);
         $this->addProductToCategory($maximumAir, $goodiesCategory, $manager);
         $this->addProductDeliveries($maximumAir, $manager);
         $this->addProductToCollection($maximumAir, $phpCollection, $manager);
@@ -226,7 +227,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $this->setReference('maximum_air_sonata_ultimate_product', $maximumAirUlt);
 
         //$this->addMediaToProduct(__DIR__.'/../data/files/maximum-air-sonata-ultimate.jpg', 'Maximum Air Sonata ULTIMATE edition', 'Maximum Air Sonata ULTIMATE edition', $maximumAirUlt);
-        $this->addProductToCategory($maximumAirUlt, $this->getReference('sonata_shoes_category'), $manager);
+        $this->addProductToCategory($maximumAirUlt, $shoesCategory, $manager);
         $this->addProductToCategory($maximumAirUlt, $goodiesCategory, $manager);
         $this->addProductDeliveries($maximumAirUlt, $manager);
         $this->addProductToCollection($maximumAirUlt, $phpCollection, $manager);
@@ -714,6 +715,16 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
     protected function getClothesCategory()
     {
         return $this->getReference('sonata_clothes_category');
+    }
+
+    /**
+     * Returns the shoes sub-Category.
+     *
+     * @return CategoryInterface
+     */
+    protected function getShoesCategory()
+    {
+        return $this->getReference('sonata_shoes_category');
     }
 
     /**
