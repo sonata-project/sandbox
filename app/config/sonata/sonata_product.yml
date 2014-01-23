@@ -5,12 +5,12 @@ sonata_product:
             provider: sonata.ecommerce_demo.product.goodie.type
             manager:  sonata.ecommerce_demo.product.goodie.manager
 
-        # Trainings
-        sonata.ecommerce_demo.product.training:
-            provider: sonata.ecommerce_demo.product.training.type
-            manager:  sonata.ecommerce_demo.product.training.manager
+        # Travel
+        sonata.ecommerce_demo.product.travel:
+            provider: sonata.ecommerce_demo.product.travel.type
+            manager: sonata.ecommerce_demo.product.travel.manager
             variations:
-                fields: [name, level, instructor_name, start_date, duration, price]
+                fields: [travellers, travelDays]
 
     seo:
         product:

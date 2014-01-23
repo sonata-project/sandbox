@@ -9,9 +9,9 @@
             association mapping  : http://www.doctrine-project.org/projects/orm/2.0/docs/reference/association-mapping/en
     -->
     <entity
-        name="Application\Sonata\ProductBundle\Entity\Training"
+        name="Application\Sonata\ProductBundle\Entity\Travel"
         table="product__product"
-        repository-class="Application\Sonata\ProductBundle\Repository\TrainingRepository"
+        repository-class="Application\Sonata\ProductBundle\Repository\TravelRepository"
         >
 
         <!--
@@ -20,9 +20,9 @@
             ie : <field name="customField" column="prefix_custom_field" type="string" length="255" />
         -->
 
-        <field name="level"          column="level"           type="string" nullable="false" />
-        <field name="instructorName" column="instructor_name" type="string" nullable="false" />
-        <field name="duration"       column="duration"        type="string" nullable="false" />
-        <field name="startDate"      column="start_date"      type="datetime" nullable="false" />
+        <field name="travellers" column="travellers"  type="integer"  nullable="false" />
+        <field name="travelDate" column="travel_date" type="datetime" nullable="false" />
+        <field name="travelDays" column="travel_days" type="integer"  nullable="false" />
+
     </entity>
 </doctrine-mapping>
