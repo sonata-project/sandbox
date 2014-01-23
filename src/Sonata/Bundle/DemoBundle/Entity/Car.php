@@ -11,7 +11,9 @@
 
 namespace Sonata\Bundle\DemoBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
@@ -48,6 +50,17 @@ class Car
      * @ORM\ManyToOne(targetEntity="Engine", cascade={"persist"}, fetch="EAGER")
      */
     protected $rescueEngine;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Inspection", cascade={"persist", "remove"}, mappedBy="car")
+     * @Assert\Valid
+     */
+    protected $inspections;
+
+    public function __construct()
+    {
+        $this->inspections = new ArrayCollection();
+    }
 
     public function getId()
     {
@@ -120,5 +133,52 @@ class Car
     public function getRescueEngine()
     {
         return $this->rescueEngine;
+    }
+
+    /**
+     * @param Inspection[] $inspections
+     */
+    public function setInspections($inspections)
+    {
+        $this->inspections->clear();
+
+        foreach ($inspections as $inspection) {
+            $this->addInspection($inspection);
+        }
+    }
+
+    /**
+     * @return Inspection[]
+     */
+    public function getInspections()
+    {
+        return $this->inspections;
+    }
+
+    /**
+     * @param Inspection $inspection
+     * @return void
+     */
+    public function addInspection(Inspection $inspection)
+    {
+        $inspection->setCar($this);
+        $this->inspections->add($inspection);
+    }
+
+    /**
+     * @param Inspection $inspection
+     * @return void
+     */
+    public function removeInspection(Inspection $inspection)
+    {
+        $this->inspections->removeElement($inspection);
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->getName() ?: 'n/a';
     }
 }
