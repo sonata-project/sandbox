@@ -62,6 +62,24 @@ class BrowserContext extends MinkContext
     }
 
     /**
+     * @Given /^I follow the first link of class "([^"]*)"$/
+     *
+     * @param string $class
+     */
+    public function iFollowFirstLinkOfClass($class)
+    {
+        $link = $this->getSession()->getPage()->find(
+            'xpath', sprintf("//*[@class='%s']", $class)
+        );
+
+        if (!$link) {
+            throw new ExpectationException(sprintf('Unable to follow the link with class: %s ', $class), $this->getSession());
+        }
+
+        $link->click();
+    }
+
+    /**
      * Follow the first link found nested in a section selected with "class"
      *
      * @Given /^I follow the first link of section "([^"]*)"$/
