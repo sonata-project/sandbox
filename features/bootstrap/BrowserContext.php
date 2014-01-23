@@ -99,4 +99,24 @@ class BrowserContext extends MinkContext
 
         $link->click();
     }
+
+    /**
+     * Follow the last link found in the table element found nested in a section selected with "class"
+     *
+     * @Given /^I follow the last listed link of section "([^"]*)"$/
+     *
+     * @param string $class
+     */
+    public function iFollowTheLastListedLinkOfSection($class)
+    {
+        $link = $this->getSession()->getPage()->find(
+            'xpath', sprintf("//*[@class='%s']/tr[last()]/td/a", $class)
+        );
+
+        if (!$link) {
+            throw new ExpectationException(sprintf('Unable to follow the last listed link nested with class: %s', $class), $this->getSession());
+        }
+
+        $link->click();
+    }
 }
