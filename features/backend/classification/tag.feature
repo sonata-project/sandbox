@@ -13,7 +13,7 @@ Scenario: Check category admin pages when connected
 Scenario: Add a new tag with some errors
   When I am connected with "admin" and "admin" on "admin/sonata/classification/tag/create?uniqid=f155592a220e"
   And I press "Create"
-  Then I should see "An error has occurred during the creation of item \"%name%\"."
+  Then I should see "An error has occurred during the creation of item \"n/a\"."
 
 Scenario: Add a new tag
   When I am connected with "admin" and "admin" on "admin/sonata/classification/tag/create?uniqid=f155592a220e"
