@@ -391,8 +391,6 @@ CONTENT
     public function createUserPage(SiteInterface $site)
     {
         $this->createTextContentPage($site, 'user', 'Admin', <<<CONTENT
-<h2>Admin Bundle</h2>
-
 <div>
     You can connect to the <a href="/admin/dashboard">admin section</a> by using two different accounts : <br>
 

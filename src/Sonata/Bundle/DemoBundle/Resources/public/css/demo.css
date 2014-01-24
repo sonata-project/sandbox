@@ -65,6 +65,10 @@
     padding-left: 0px;
 }
 
+.sonata-bc .nivoGallery ul img {
+    max-height: none;
+}
+
 .sonata_breadcrumb .breadcrumb>li+li:before {
     content: "\00BB";
 }
