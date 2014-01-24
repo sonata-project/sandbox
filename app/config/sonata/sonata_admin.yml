@@ -48,24 +48,13 @@ sonata_admin:
             - { position: right, type: sonata.block.service.rss, settings: { title: Sonata Project's Feeds, url: http://sonata-project.org/blog/archive.rss }}
 
         groups:
-            sonata.admin.group.user:
-                label:           users
-                label_catalogue: SonataUserBundle
-                items:
-                    - sonata.user.admin.user
-                    - sonata.user.admin.group
             sonata.admin.group.content:
                 label:           sonata_content
                 label_catalogue: SonataDemoBundle
                 items:
                     - sonata.page.admin.page
-                    - sonata.page.admin.site
                     - sonata.news.admin.comment
                     - sonata.news.admin.post
-            sonata.admin.group.media:
-                label:           media
-                label_catalogue: SonataMediaBundle
-                items:
                     - sonata.media.admin.media
                     - sonata.media.admin.gallery
             sonata.admin.group.ecommerce:
@@ -83,10 +72,13 @@ sonata_admin:
                     - sonata.classification.admin.category
                     - sonata.classification.admin.tag
                     - sonata.classification.admin.collection
-            sonata.admin.group.notification:
-                label:           sonata_notification
-                label_catalogue: SonataNotificationBundle
+            sonata.admin.group.administration:
+                label:           sonata_administration
+                label_catalogue: SonataAdminBundle
                 items:
+                    - sonata.user.admin.user
+                    - sonata.user.admin.group
+                    - sonata.page.admin.site
                     - sonata.notification.admin.message
             sonata.admin.group.demo:
                 label: Demo
