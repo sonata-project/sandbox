@@ -556,6 +556,19 @@ EOF
         $manager->persist($quebecExtraLargeTravel);
         $this->setReference('travel_quebec_extra_large_product', $quebecExtraLargeTravel);
 
+        // Quebec tour extra-large group variation 15 days
+        $quebecExtraLargeTravel = $this->generateDefaultTravelVariation($travelProvider, $quebecTravel);
+        $quebecExtraLargeTravel->setName('Quebec tour for extra-large group, 2 weeks!');
+        $quebecExtraLargeTravel->setPriceIncludingVat(false);
+        $quebecExtraLargeTravel->setPrice(1850);
+        $quebecExtraLargeTravel->setTravellers(12);
+        $quebecExtraLargeTravel->setTravelDate(new \DateTime('2015-12-20'));
+        $quebecExtraLargeTravel->setTravelDays(15);
+        $quebecExtraLargeTravel->setStock(50);
+
+        $manager->persist($quebecExtraLargeTravel);
+        $this->setReference('travel_quebec_extra_large_product', $quebecExtraLargeTravel);
+
         // Paris tour products
         $parisTravel = new Travel();
         $parisTravel->setSku('travel-paris-tour');

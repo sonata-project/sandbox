@@ -24,13 +24,11 @@ Feature: Basket
 
     Scenario: Adding a variation product to basket by browsing (product page)
         Given I am on "shop/catalog"
-        And I follow "Trainings"
-        And I follow "Sonata trainings"
-        And I follow "PHP working training"
-        And I follow "PHP working training for beginners"
+        And I follow "Travels"
+        And I follow "Quebec tour"
         And I press "Add to basket"
         Then I should see "Your basket"
-        And I should see "PHP working training for beginners"
+        And I should see "Quebec tour for small group"
         And the "sonata_basket_basket_basketElements_0_quantity" field should contain "1"
 
   Scenario: Changing product quantity from basket
