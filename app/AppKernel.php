@@ -12,6 +12,8 @@ class AppKernel extends Kernel
         bcscale(3);
 
         parent::init();
+
+        bcscale(3);
     }
 
     public function registerBundles()
