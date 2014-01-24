@@ -70,6 +70,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $shoesCategory     = $this->getShoesCategory();
 
         $phpCollection = $this->getPhpCollection();
+        $travelCollection = $this->getTravelCollection();
 
         $dummyProductsCount = 500;
 
@@ -270,6 +271,7 @@ EOF
         $this->addMediaToProduct(__DIR__.'/../data/files/maximum-air-sonata.jpg', 'Maximum Air Sonata Limited edition', 'Maximum Air Sonata Limited edition', $maximumAir);
         $this->addProductToCategory($maximumAir, $this->getReference('sonata_shoes_category'), $manager);
         $this->addProductToCategory($maximumAir, $goodiesCategory, $manager);
+        $this->addProductToCategory($maximumAir, $shoesCategory, $manager);
         $this->addProductDeliveries($maximumAir, $manager);
         $this->addProductToCollection($maximumAir, $phpCollection, $manager);
         $this->addPackageToProduct($maximumAir, $manager);
@@ -295,6 +297,7 @@ EOF
         $this->addMediaToProduct(__DIR__.'/../data/files/sonata_logo.png', 'Maximum Air Sonata ULTIMATE edition', 'Maximum Air Sonata ULTIMATE edition', $maximumAirUlt);
         $this->addProductToCategory($maximumAirUlt, $this->getReference('sonata_shoes_category'), $manager);
         $this->addProductToCategory($maximumAirUlt, $goodiesCategory, $manager);
+        $this->addProductToCategory($maximumAirUlt, $shoesCategory, $manager);
         $this->addProductDeliveries($maximumAirUlt, $manager);
         $this->addProductToCollection($maximumAirUlt, $phpCollection, $manager);
         $this->addPackageToProduct($maximumAirUlt, $manager);
@@ -367,7 +370,7 @@ EOF
         $this->addProductToCategory($japanTravel, $this->getReference('travels_asia_category'), $manager);
         $this->addProductToCategory($japanTravel, $this->getReference('travels_japan_category'), $manager);
         $this->addProductDeliveries($japanTravel, $manager);
-        $this->addProductToCollection($japanTravel, $phpCollection, $manager);
+        $this->addProductToCollection($japanTravel, $travelCollection, $manager);
         $this->addPackageToProduct($japanTravel, $manager);
 
         $travelProvider = $productPool->getProvider($japanTravel);*/
@@ -494,7 +497,7 @@ EOF
         $this->addProductToCategory($quebecTravel, $this->getReference('travels_canada_category'), $manager);
         $this->addProductToCategory($quebecTravel, $this->getReference('travels_quebec_category'), $manager);
         $this->addProductDeliveries($quebecTravel, $manager);
-        $this->addProductToCollection($quebecTravel, $phpCollection, $manager);
+        $this->addProductToCollection($quebecTravel, $travelCollection, $manager);
         $this->addPackageToProduct($quebecTravel, $manager);
 
         $travelProvider = $productPool->getProvider($quebecTravel);
@@ -610,14 +613,14 @@ EOF
         $manager->persist($parisTravel);
         $this->setReference('travel_paris_product', $parisTravel);
 
-        $this->addMediaToProduct(__DIR__.'/../data/files/hugo-paris/IMG_3008 - 2013-08-18 à 15-52-18.jpg', 'Paris Travel', 'Paris Travel', $parisTravel);
+        $this->addMediaToProduct(__DIR__.'/../data/files/hugo-paris/IMG_3008.jpg', 'Paris Travel', 'Paris Travel', $parisTravel);
         $this->addParisGallery($parisTravel);
         $this->addProductToCategory($parisTravel, $travelsCategory, $manager);
         $this->addProductToCategory($parisTravel, $this->getReference('travels_europe_category'), $manager);
         $this->addProductToCategory($parisTravel, $this->getReference('travels_france_category'), $manager);
         $this->addProductToCategory($parisTravel, $this->getReference('travels_paris_category'), $manager);
         $this->addProductDeliveries($parisTravel, $manager);
-        $this->addProductToCollection($parisTravel, $phpCollection, $manager);
+        $this->addProductToCollection($parisTravel, $travelCollection, $manager);
         $this->addPackageToProduct($parisTravel, $manager);
 
         $travelProvider = $productPool->getProvider($parisTravel);
@@ -743,7 +746,7 @@ EOF
         $this->addProductToCategory($londonTravel, $this->getReference('travels_great_britain_category'), $manager);
         $this->addProductToCategory($londonTravel, $this->getReference('travels_london_category'), $manager);
         $this->addProductDeliveries($londonTravel, $manager);
-        $this->addProductToCollection($londonTravel, $phpCollection, $manager);
+        $this->addProductToCollection($londonTravel, $travelCollection, $manager);
         $this->addPackageToProduct($londonTravel, $manager);
 
         $travelProvider = $productPool->getProvider($londonTravel);*/
@@ -865,7 +868,7 @@ EOF
         $this->addProductToCategory($switzerlandTravel, $this->getReference('travels_europe_category'), $manager);
         $this->addProductToCategory($switzerlandTravel, $this->getReference('travels_switzerland_category'), $manager);
         $this->addProductDeliveries($switzerlandTravel, $manager);
-        $this->addProductToCollection($switzerlandTravel, $phpCollection, $manager);
+        $this->addProductToCollection($switzerlandTravel, $travelCollection, $manager);
         $this->addPackageToProduct($switzerlandTravel, $manager);
 
         $travelProvider = $productPool->getProvider($switzerlandTravel);
@@ -1376,6 +1379,16 @@ EOF
     protected function getPhpCollection()
     {
         return $this->getReference('php_collection');
+    }
+
+    /**
+     * Returns the Travel collection
+     *
+     * @return CollectionInterface
+     */
+    protected function getTravelCollection()
+    {
+        return $this->getReference('travel_collection');
     }
 
     /**

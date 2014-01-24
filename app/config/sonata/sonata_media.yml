@@ -50,7 +50,7 @@ sonata_media:
             formats:
                 preview:   { width: 100, quality: 100}
                 small:     { width: 200, quality: 100}
-                large:     { width: 600, quality: 100}
+                large:     { width: 640, quality: 100}
 
     cdn:
         # define the public base url for the uploaded media

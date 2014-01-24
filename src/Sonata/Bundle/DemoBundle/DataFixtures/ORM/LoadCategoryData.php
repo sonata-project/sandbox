@@ -227,7 +227,7 @@ class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterfac
         $shoes->setName('Shoes');
         $shoes->setSlug('shoes');
         $shoes->setDescription('Get the last coolest Sonata shoes (seriously)');
-        $shoes->setEnabled(false);
+        $shoes->setEnabled(true);
         $this->getCategoryManager()->save($shoes);
         $this->setReference('sonata_shoes_category', $shoes);
 
