@@ -1,0 +1,21 @@
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+
+<dl class="dl-horizontal" style="margin-bottom: 0;">
+    {% if not product.isMaster %}
+        <dt style="width: auto;">{{ 'travel.travel_days'|trans([], 'SonataProductBundle') }}</dt>
+        <dd style="margin-left: 110px;">{{ product.travelDays }}</dd>
+        <dt style="width: auto;">{{ 'travel.travellers'|trans([], 'SonataProductBundle') }}</dt>
+        <dd style="margin-left: 110px;">{{ product.travellers }}</dd>
+        <dt style="width: auto;">{{ 'travel.travel_date'|trans([], 'SonataProductBundle') }}</dt>
+        <dd style="margin-left: 110px;">{{ product.travelDate|format_date }}</dd>
+    {% endif %}
+</dl>

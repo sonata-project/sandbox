@@ -2,10 +2,6 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
     <file source-language="en" target-language="fr" datatype="plaintext" original="file.ext">
         <body>
-            <trans-unit id="training.level_title">
-                <source>training.level_title</source>
-                <target>Niveau de la formation</target>
-            </trans-unit>
             <trans-unit id="level">
                 <source>level</source>
                 <target>Niveau de la formation</target>
@@ -17,26 +13,6 @@
             <trans-unit id="duration">
                 <source>duration</source>
                 <target>Durée</target>
-            </trans-unit>
-            <trans-unit id="training.instructor_title">
-                <source>training.instructor_title</source>
-                <target>Formateur</target>
-            </trans-unit>
-            <trans-unit id="training.duration_title">
-                <source>training.duration_title</source>
-                <target>Durée</target>
-            </trans-unit>
-            <trans-unit id="training.level.beginner">
-                <source>training.level.beginner</source>
-                <target>Débutant</target>
-            </trans-unit>
-            <trans-unit id="training.level.confirmed">
-                <source>training.level.confirmed</source>
-                <target>Confirmé</target>
-            </trans-unit>
-            <trans-unit id="training.level.expert">
-                <source>training.level.expert</source>
-                <target>Expert</target>
             </trans-unit>
             <trans-unit id="form.label_level">
                 <source>form.label_level</source>
@@ -50,9 +26,17 @@
                 <source>form.label_start_date</source>
                 <target>Date de début</target>
             </trans-unit>
-            <trans-unit id="training.start_date_title">
-                <source>training.start_date_title</source>
-                <target>Date de début</target>
+            <trans-unit id="travel.travellers">
+                <source>travel.travellers</source>
+                <target>Travellers</target>
+            </trans-unit>
+            <trans-unit id="travel.travel_date">
+                <source>travel.travel_date</source>
+                <target>Travel date</target>
+            </trans-unit>
+            <trans-unit id="travel.travel_days">
+                <source>travel.travel_days</source>
+                <target>Days number</target>
             </trans-unit>
         </body>
     </file>

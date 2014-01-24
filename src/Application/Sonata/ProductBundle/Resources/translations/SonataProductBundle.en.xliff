@@ -2,41 +2,17 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
     <file source-language="en" target-language="en" datatype="plaintext" original="file.ext">
         <body>
-            <trans-unit id="training.level_title">
-                <source>training.level_title</source>
-                <target>Training level</target>
-            </trans-unit>
             <trans-unit id="level">
                 <source>level</source>
                 <target>Training level</target>
-            </trans-unit>
-            <trans-unit id="training.instructor_title">
-                <source>training.instructor_title</source>
-                <target>Instructor</target>
             </trans-unit>
             <trans-unit id="instructor_name">
                 <source>instructor_name</source>
                 <target>Instructor</target>
             </trans-unit>
-            <trans-unit id="training.duration_title">
-                <source>training.duration_title</source>
-                <target>Duration</target>
-            </trans-unit>
             <trans-unit id="duration">
                 <source>duration</source>
                 <target>Duration</target>
-            </trans-unit>
-            <trans-unit id="training.level.beginner">
-                <source>training.level.beginner</source>
-                <target>Beginner</target>
-            </trans-unit>
-            <trans-unit id="training.level.confirmed">
-                <source>training.level.confirmed</source>
-                <target>Confirmed</target>
-            </trans-unit>
-            <trans-unit id="training.level.expert">
-                <source>training.level.expert</source>
-                <target>Expert</target>
             </trans-unit>
             <trans-unit id="form.label_level">
                 <source>form.label_level</source>
@@ -54,9 +30,17 @@
                 <source>form.label_start_date</source>
                 <target>Starting date</target>
             </trans-unit>
-            <trans-unit id="training.start_date_title">
-                <source>training.start_date_title</source>
-                <target>Starting date</target>
+            <trans-unit id="travel.travellers">
+                <source>travel.travellers</source>
+                <target>Travellers</target>
+            </trans-unit>
+            <trans-unit id="travel.travel_date">
+                <source>travel.travel_date</source>
+                <target>Travel date</target>
+            </trans-unit>
+            <trans-unit id="travel.travel_days">
+                <source>travel.travel_days</source>
+                <target>Days number</target>
             </trans-unit>
         </body>
     </file>
