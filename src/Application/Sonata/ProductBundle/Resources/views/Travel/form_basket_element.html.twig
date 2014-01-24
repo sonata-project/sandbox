@@ -19,29 +19,5 @@ file that was distributed with this source code.
 {% extends 'SonataProductBundle:Product:form_basket_element.html.twig' %}
 
 {% block product_description %}
-    <b><a href="{{ url('sonata_product_view', {'productId': basketElement.product.id, 'slug': basketElement.product.slug}) }}">{{ basketElement.name }}</a></b> <br />
-    {{ basketElement.product.description|truncate(200, true, '...')|raw }}
+    {{ basketElement.product.rawShortDescription|raw }}
 {% endblock %}
-
-{#
-{% block product_unit_price %}
-    {{ basketElement.getUnitPrice(false)|number_format_currency(basket.currency, {}, {}, basket.locale) }}
-{% endblock %}
-
-{% block product_quantity %}
-    {{ form_errors(formView.quantity) }}
-    {{ form_widget(formView.quantity) }}
-{% endblock %}
-
-{% block product_total_excl %}
-    {{ basketElement.getTotal(false)|number_format_currency(basket.currency, {}, {}, basket.locale) }}
-{% endblock %}
-
-{% block product_total_inc %}
-    {{ basketElement.getTotal(true)|number_format_currency(basket.currency, {}, {}, basket.locale) }}
-{% endblock %}
-
-{% block product_delete %}
-    {{ form_widget(formView.delete) }}
-{% endblock %}
-#}
