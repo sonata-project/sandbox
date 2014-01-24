@@ -115,6 +115,26 @@ form .form-actions {
 }
 
 /*
+ * Product catalog menu
+ */
+div.col-sm-3 div.list-group a.lead.list-group-item:first-child {
+    margin-top: 0px;
+}
+
+div.col-sm-3 div.list-group a.lead.list-group-item {
+    margin-top: 20px;
+}
+
+div.col-sm-3 div.list-group a:not(.lead).list-group-item,
+div.col-sm-3 div.list-group div.menu_level_1,
+div.col-sm-3 div.list-group div.menu_level_2,
+div.col-sm-3 div.list-group div.menu_level_3,
+div.col-sm-3 div.list-group div.menu_level_4 {
+    width: 96%;
+    margin-left: 4%;
+}
+
+/*
  * Product grid
  */
 .product-grid {

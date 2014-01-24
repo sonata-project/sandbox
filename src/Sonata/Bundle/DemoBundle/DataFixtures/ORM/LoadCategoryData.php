@@ -113,7 +113,7 @@ class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterfac
 
         // Quebec category
         $quebec = $this->getCategoryManager()->create();
-        $quebec->setParent($travels);
+        $quebec->setParent($canada);
         $quebec->setName('Quebec');
         $quebec->setSlug('quebec');
         $quebec->setDescription('Want to travel in Quebec? Check out our travels.');
@@ -133,7 +133,7 @@ class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterfac
 
         // France category
         $france = $this->getCategoryManager()->create();
-        $france->setParent($travels);
+        $france->setParent($europe);
         $france->setName('France');
         $france->setSlug('france');
         $france->setDescription('Want to travel in France? Check out our travels.');
@@ -143,7 +143,7 @@ class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterfac
 
         // Paris category
         $paris = $this->getCategoryManager()->create();
-        $paris->setParent($travels);
+        $paris->setParent($france);
         $paris->setName('Paris');
         $paris->setSlug('paris');
         $paris->setDescription('Want to travel in Paris? Check out our travels.');
@@ -173,7 +173,7 @@ class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterfac
 
         // Switzerland category
         $switzerland = $this->getCategoryManager()->create();
-        $switzerland->setParent($travels);
+        $switzerland->setParent($europe);
         $switzerland->setName('Switzerland');
         $switzerland->setSlug('switzerland');
         $switzerland->setDescription('Want to travel in Switzerland? Check out our travels.');
