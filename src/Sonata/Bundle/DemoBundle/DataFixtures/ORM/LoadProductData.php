@@ -72,6 +72,8 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $phpCollection = $this->getPhpCollection();
         $travelCollection = $this->getTravelCollection();
 
+        $dummyMedia = $this->createMedia(__DIR__.'/../data/files/sonata_logo.png', 'Dummy', 'Dummy product');
+
         $dummyProductsCount = 500;
 
         for ($i = 0; $i < $dummyProductsCount; $i++) {
@@ -94,7 +96,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
             $manager->persist($dummy);
             $this->setReference('dummy_product_'.$i, $dummy);
 
-            $this->addMediaToProduct(__DIR__.'/../data/files/sonata_logo.png', 'Dummy '.$i, 'Dummy product '.$i, $dummy);
+            $dummy->setImage($dummyMedia);
             $this->addProductToCategory($dummy, $dummyCategory, $manager);
             $this->addProductDeliveries($dummy, $manager);
             $this->addPackageToProduct($dummy, $manager);
@@ -1050,6 +1052,20 @@ EOF
      */
     protected function addMediaToProduct($mediaFilename, $name, $description, ProductInterface $product, $author = null, $copyright = null)
     {
+        $product->setImage($this->createMedia($mediaFilename, $name, $description, $author, $copyright));
+    }
+
+    /**
+     * @param string $mediaFilename
+     * @param string $name
+     * @param string $description
+     * @param string $author
+     * @param string $copyright
+     *
+     * @return MediaInterface
+     */
+    protected function createMedia($mediaFilename, $name, $description, $author = null, $copyright = null)
+    {
         $mediaManager = $this->getMediaManager();
 
         $file = new \SplFileInfo($mediaFilename);
@@ -1064,7 +1080,7 @@ EOF
 
         $mediaManager->save($media, 'sonata_product', 'sonata.media.provider.image');
 
-        $product->setImage($media);
+        return $media;
     }
 
     /**
