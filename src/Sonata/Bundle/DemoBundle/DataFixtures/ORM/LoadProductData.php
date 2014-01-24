@@ -347,9 +347,9 @@ EOF
         $japanTravel->setRawShortDescription(
             <<<EOF
 <p>
-Tokyo (東京 Tōkyō?, "Eastern Capital") (Japanese: [toːkʲoː], English /ˈtoʊki.oʊ/), officially Tokyo Metropolis (東京都 Tōkyō-to?),[4] is one of the 47 prefectures of Japan.[5] Tokyo is the capital of Japan, the centre of the Greater Tokyo Area, and the largest metropolitan area in the world.[6] It is the seat of the Japanese government and the Imperial Palace, and the home of the Japanese Imperial Family. Tokyo is in the Kantō region on the southeastern side of the main island Honshu and includes the Izu Islands and Ogasawara Islands.[7] Tokyo Metropolis was formed in 1943 from the merger of the former Tokyo Prefecture (東京府 Tōkyō-fu?) and the city of Tokyo (東京市 Tōkyō-shi?).
+Tokyo (東京 Tōkyō?, "Eastern Capital") (Japanese: [toːkʲoː], English /ˈtoʊki.oʊ/), officially Tokyo Metropolis (東京都 Tōkyō-to?),[4] is one of the 47 prefectures of Japan.[5] Tokyo is the capital of Japan, the centre of the Greater Tokyo Area, and the largest metropolitan area in the world.[6] It is the seat of the Japanese government and the Imperial Palace, and the home of the Japanese Imperial Family. Tokyo is in the Kantō region on the southeastern side of the main island Honshu and includes the Izu Islands and Ogasawara Islands.
 
-References - http://en.wikipedia.org/wiki/Tokyo
+References - <a href="http://en.wikipedia.org/wiki/Tokyo" target="_blank">http://en.wikipedia.org/wiki/Tokyo</a>
 </p>
 EOF
 
@@ -472,9 +472,9 @@ EOF
         $quebecTravel->setRawShortDescription(
             <<<EOF
 <p>
-Quebec (Listeni/kwɨˈbɛk/ or /kɨˈbɛk/; French: Québec [kebɛk] ( listen))[7] is a province in east-central Canada.[8][9] It is the only Canadian province that has a predominantly French-speaking population, and the only one to have French as its sole provincial official language.
+Quebec (Listeni/kwɨˈbɛk/ or /kɨˈbɛk/; French: Québec [kebɛk] ( listen))[7] is a province in east-central Canada.
 
-References - http://en.wikipedia.org/wiki/Quebec
+References - <a href="http://en.wikipedia.org/wiki/Quebec" target="_blank">http://en.wikipedia.org/wiki/Quebec</a>
 </p>
 EOF
 
@@ -595,9 +595,9 @@ EOF
         $parisTravel->setRawShortDescription(
             <<<EOF
 <p>
-Paris (English /ˈpærɪs/, Listeni/ˈpɛrɪs/; French: [paʁi] ( listen)) is the capital and most populous city of France. It is situated on the River Seine, in the north of the country, at the heart of the Île-de-France region. Within its administrative limits (the 20 arrondissements), the city had 2,234,105 inhabitants in 2009 while its metropolitan area is one of the largest population centres in Europe with more than 12 million inhabitants.
+Paris (English /ˈpærɪs/, Listeni/ˈpɛrɪs/; French: [paʁi] ( listen)) is the capital and most populous city of France. It is situated on the River Seine, in the north of the country, at the heart of the Île-de-France region.
 
-References - http://en.wikipedia.org/wiki/Paris
+References - <a href="http://en.wikipedia.org/wiki/Paris" target="_blank">http://en.wikipedia.org/wiki/Paris</a>
 </p>
 EOF
 
@@ -722,9 +722,9 @@ EOF
         $londonTravel->setRawShortDescription(
             <<<EOF
 <p>
-London Listeni/ˈlʌndən/ is the capital city of England and of the United Kingdom. It is the most populous region, urban zone and metropolitan area in the United Kingdom. Standing on the River Thames, London has been a major settlement for two millennia, its history going back to its founding by the Romans, who named it Londinium.[5] London's ancient core, the City of London, largely retains its 1.12-square-mile (2.9 km2) mediaeval boundaries and in 2011 had a resident population of 7,375, making it the smallest city in England. Since at least the 19th century, the term London has also referred to the metropolis developed around this core.[6] The bulk of this conurbation forms the London region[7] and the Greater London administrative area,[8][note 1] governed by the Mayor of London and the London Assembly.[9]
+London Listeni/ˈlʌndən/ is the capital city of England and of the United Kingdom. It is the most populous region, urban zone and metropolitan area in the United Kingdom. Standing on the River Thames, London has been a major settlement for two millennia, its history going back to its founding by the Romans, who named it Londinium.[5] London's ancient core, the City of London, largely retains its 1.12-square-mile (2.9 km2) mediaeval boundaries and in 2011 had a resident population of 7,375, making it the smallest city in England. Since at least the 19th century, the term London has also referred to the metropolis developed around this core.
 
-References - http://en.wikipedia.org/wiki/London
+References - <a href="http://en.wikipedia.org/wiki/London" target="_blank">http://en.wikipedia.org/wiki/London</a>
 </p>
 EOF
 
@@ -844,9 +844,9 @@ EOF
         $switzerlandTravel->setRawShortDescription(
             <<<EOF
 <p>
-Switzerland (German: Schweiz[note 3] [ˈʃvaɪts]; French: Suisse [sɥis]; Italian: Svizzera [ˈzvittsera]; Romansh: Svizra [ˈʒviːtsrɐ] or [ˈʒviːtsʁːɐ]), officially the Swiss Confederation (Latin: Confoederatio Helvetica, hence its abbreviation CH), is a federal parliamentary republic consisting of 26 cantons, with Bern as the seat of the federal authorities. The country is situated in Western and Central Europe,[note 4] where it is bordered by Germany to the north, France to the west, Italy to the south, and Austria and Liechtenstein to the east. Switzerland is a landlocked country geographically divided between the Alps, the Swiss Plateau and the Jura, spanning an area of 41,285 km2 (15,940 sq mi). While the Alps occupy the greater part of the territory, the Swiss population of approximately 8 million people is concentrated mostly on the Plateau, where the largest cities are to be found. Among them are the two global cities and economic centres of Zürich and Geneva.
+Switzerland (German: Schweiz[note 3] [ˈʃvaɪts]; French: Suisse [sɥis]; Italian: Svizzera [ˈzvittsera]; Romansh: Svizra [ˈʒviːtsrɐ] or [ˈʒviːtsʁːɐ]), officially the Swiss Confederation (Latin: Confoederatio Helvetica, hence its abbreviation CH), is a federal parliamentary republic consisting of 26 cantons, with Bern as the seat of the federal authorities. The country is situated in Western and Central Europe,[note 4] where it is bordered by Germany to the north, France to the west, Italy to the south, and Austria and Liechtenstein to the east. Switzerland is a landlocked country geographically divided between the Alps, the Swiss Plateau and the Jura, spanning an area of 41,285 km2 (15,940 sq mi).
 
-References - http://en.wikipedia.org/wiki/Switzerland
+References - <a href="http://en.wikipedia.org/wiki/Switzerland" target="_blank">http://en.wikipedia.org/wiki/Switzerland</a>
 </p>
 EOF
 
