@@ -14,7 +14,7 @@ Scenario: Add a new page with some errors
   When I am connected with "admin" and "admin" on "admin/sonata/page/page/create?uniqid=f155592a220e"
   And I follow "localhost"
   And I press "Create"
-  Then I should see "An error has occurred during the creation of item \"n/a\"."
+  Then I should see "An error has occurred during the creation of item \"-\"."
 
 Scenario: Add a new page
   When I am connected with "admin" and "admin" on "admin/sonata/page/page/create?uniqid=f155592a220e"
