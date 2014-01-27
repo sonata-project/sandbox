@@ -80,10 +80,23 @@ form .form-actions {
 /*
  * Basket
  */
-.basket .unavailable .help-inline {
+table.basket thead tr {
+    background-color: #428bca;
+    color: #ffffff;
+}
+
+table.basket thead tr th {
+    text-align: center;
+}
+
+table.basket .unavailable .help-inline {
     color: #b94a48;
     font-weight: bold;
     vertical-align: inherit;
+}
+
+.checkbox input[type="checkbox"] {
+    float: none;
 }
 
 .sonata-bc .demonstration-bar {
