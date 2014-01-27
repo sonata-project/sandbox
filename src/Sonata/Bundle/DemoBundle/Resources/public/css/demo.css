@@ -185,6 +185,14 @@ div.col-sm-3 div.list-group div.menu_level_4 {
 }
 
 /*
+ * Product slider thumbnails
+ */
+
+div#slider-thumbs ul.list-inline {
+    width: 620px;
+}
+
+/*
  * News
  */
 h2.sonata-blog-post-title {
