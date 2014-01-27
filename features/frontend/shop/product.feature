@@ -100,3 +100,36 @@ Feature: Products
         When I go to "shop/product/maximum-air-sonata-ultimate-edition/507"
         Then I should not see "Jan 16th, 2014"
         And I should not see "Starting date"
+
+    Scenario: Access to travel list
+        When I go to "shop/catalog"
+        And I follow "Travels"
+        And I follow "Quebec tour"
+        Then the response status code should be 200
+        And I should see "Quebec tour for small group"
+
+    Scenario: Direct access to a travel
+        When I go to "shop/catalog"
+        And I follow "Travels"
+        And I follow "Paris tour"
+        Then the response status code should be 200
+        And I should see "Paris tour for small group"
+
+    Scenario: Direct access to a travel
+        When I go to "shop/catalog"
+        And I follow "Travels"
+        And I follow "Switzerland tour"
+        Then the response status code should be 200
+        And I should see "Switzerland tour for small group"
+
+    Scenario: Browse travels
+        When I go to "shop/catalog/travels/2"
+        Then I should see "Quebec tour"
+        And I should see "Paris tour"
+        And I should see "Switzerland tour"
+
+    Scenario: Browse travels
+        When I go to "shop/catalog/travel"
+        And I follow "Europe"
+        Then I should see "France"
+        Then I should see "Switzerland"

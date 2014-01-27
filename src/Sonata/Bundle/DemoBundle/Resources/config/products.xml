@@ -17,17 +17,6 @@
             <argument type="service" id="serializer" />
         </service>
 
-        <!-- Trainings -->
-
-        <service id="sonata.ecommerce_demo.product.training.manager" class="Sonata\ProductBundle\Entity\ProductManager">
-            <argument>Application\Sonata\ProductBundle\Entity\Training</argument>
-            <argument type="service" id="sonata.product.entity_manager" />
-        </service>
-
-        <service id="sonata.ecommerce_demo.product.training.type" class="Application\Sonata\ProductBundle\Provider\TrainingProductProvider">
-            <argument type="service" id="serializer" />
-        </service>
-
         <!-- Travel -->
 
         <service id="sonata.ecommerce_demo.product.travel.manager" class="Sonata\ProductBundle\Entity\ProductManager">
