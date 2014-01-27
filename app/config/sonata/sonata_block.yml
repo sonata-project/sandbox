@@ -53,10 +53,12 @@ sonata_block:
             cache: sonata.page.cache.js_async
             contexts: [user]
 
+        sonata.seo.block.email.share_button:
         sonata.seo.block.facebook.like_box:
         sonata.seo.block.facebook.like_button:
         sonata.seo.block.facebook.send_button:
         sonata.seo.block.facebook.share_button:
+        sonata.seo.block.pinterest.pin_button:
         sonata.seo.block.twitter.share_button:
         sonata.seo.block.twitter.follow_button:
         sonata.seo.block.twitter.hashtag_button:
