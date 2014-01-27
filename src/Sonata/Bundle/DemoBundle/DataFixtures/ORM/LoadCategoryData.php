@@ -72,24 +72,24 @@ class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterfac
         $this->setReference('travels_category', $travels);
 
         // Asia category
-        /*$asia = $this->getCategoryManager()->create();
+        $asia = $this->getCategoryManager()->create();
         $asia->setParent($travels);
         $asia->setName('Asia');
         $asia->setSlug('asia');
         $asia->setDescription('Want to travel in Asia? Check out our travels.');
         $asia->setEnabled(true);
         $this->getCategoryManager()->save($asia);
-        $this->setReference('travels_asia_category', $asia);*/
+        $this->setReference('travels_asia_category', $asia);
 
         // Japan category
-        /*$japan = $this->getCategoryManager()->create();
-        $japan->setParent($travels);
+        $japan = $this->getCategoryManager()->create();
+        $japan->setParent($asia);
         $japan->setName('Japan');
         $japan->setSlug('japan');
         $japan->setDescription('Want to travel in Japan? Check out our travels.');
         $japan->setEnabled(true);
         $this->getCategoryManager()->save($japan);
-        $this->setReference('travels_japan_category', $japan);*/
+        $this->setReference('travels_japan_category', $japan);
 
         // North America category
         $northAmerica = $this->getCategoryManager()->create();
