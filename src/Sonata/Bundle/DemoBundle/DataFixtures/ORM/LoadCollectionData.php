@@ -75,6 +75,16 @@ class LoadCollectionData extends AbstractFixture implements OrderedFixtureInterf
 
         $this->setReference('travel_collection', $travel);
 
+        // Dummy collection
+        $dummy = $this->getCollectionManager()->create();
+        $dummy->setName("Dummys");
+        $dummy->setSlug("Dummys");
+        $dummy->setDescription("Every dummys you want");
+        $dummy->setEnabled(true);
+        $this->getCollectionManager()->save($dummy);
+
+        $this->setReference('dummy_collection', $dummy);
+
         $manager->flush();
     }
 

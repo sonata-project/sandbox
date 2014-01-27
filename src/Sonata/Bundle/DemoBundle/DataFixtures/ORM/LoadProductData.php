@@ -71,22 +71,23 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
 
         $phpCollection = $this->getPhpCollection();
         $travelCollection = $this->getTravelCollection();
+        $dummyCollection = $this->getDummyCollection();
 
         $dummyMedia = $this->createMedia(__DIR__.'/../data/files/sonata_logo.png', 'Dummy', 'Dummy product');
 
-        $dummyProductsCount = 500;
+        $dummyProductsCount = 501;
 
-        for ($i = 0; $i < $dummyProductsCount; $i++) {
+        for ($i = 1; $i < $dummyProductsCount; $i++) {
             // Goodies products
             $dummy = new Goodie();
             $dummy->setSku('dummy_'.$i);
-            $dummy->setName('Dummy');
+            $dummy->setName(sprintf('Dummy %d', $i));
             $dummy->setSlug('dummy');
-            $dummy->setDescription('Dummy product');
-            $dummy->setRawDescription('<p>Dummy product</p>'.$this->getLorem());
+            $dummy->setDescription('Dummy product. We use it to test our catalog capabilities.');
+            $dummy->setRawDescription('<p>Dummy product. We use it to test our catalog capabilities.</p>'.$this->getLorem());
             $dummy->setPriceIncludingVat(true);
-            $dummy->setShortDescription('Dummy product');
-            $dummy->setRawShortDescription('<p>Dummy product</p>');
+            $dummy->setShortDescription('Dummy product. We use it to test our catalog capabilities.');
+            $dummy->setRawShortDescription('<p>Dummy product. We use it to test our catalog capabilities.</p>');
             $dummy->setDescriptionFormatter('richhtml');
             $dummy->setShortDescriptionFormatter('richhtml');
             $dummy->setPrice(rand(0, 2*$i));
@@ -98,6 +99,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
 
             $dummy->setImage($dummyMedia);
             $this->addProductToCategory($dummy, $dummyCategory, $manager);
+            $this->addProductToCollection($dummy, $dummyCollection, $manager);
             $this->addProductDeliveries($dummy, $manager);
             $this->addPackageToProduct($dummy, $manager);
 
@@ -305,7 +307,7 @@ EOF
         $this->addPackageToProduct($maximumAirUlt, $manager);
 
         // Japan tour products
-        /*$japanTravel = new Travel();
+        $japanTravel = new Travel();
         $japanTravel->setSku('travel-japan-tour');
         $japanTravel->setName('Japan tour');
         $japanTravel->setSlug('travel-japan-tour');
@@ -367,7 +369,8 @@ EOF
         $manager->persist($japanTravel);
         $this->setReference('travel_japan_product', $japanTravel);
 
-        $this->addMediaToProduct(__DIR__.'/../data/files/elephpant.png', 'Japan Travel', 'Japan Travel', $japanTravel);
+        $this->addMediaToProduct(__DIR__.'/../data/files/maha-japan/L9999744.jpg', 'Japan Travel', 'Japan Travel', $japanTravel);
+        $this->addJapanGallery($japanTravel);
         $this->addProductToCategory($japanTravel, $travelsCategory, $manager);
         $this->addProductToCategory($japanTravel, $this->getReference('travels_asia_category'), $manager);
         $this->addProductToCategory($japanTravel, $this->getReference('travels_japan_category'), $manager);
@@ -375,11 +378,13 @@ EOF
         $this->addProductToCollection($japanTravel, $travelCollection, $manager);
         $this->addPackageToProduct($japanTravel, $manager);
 
-        $travelProvider = $productPool->getProvider($japanTravel);*/
+        $travelProvider = $productPool->getProvider($japanTravel);
 
         // Japan tour small group variation
-        /*$japanSmallTravel = $this->generateDefaultTravelVariation($travelProvider, $japanTravel);
+        $japanSmallTravel = $this->generateDefaultTravelVariation($travelProvider, $japanTravel);
         $japanSmallTravel->setName('Japan tour for small group');
+        $japanSmallTravel->setSku('travel-japan-tour-5');
+        $japanSmallTravel->setSlug('travel-japan-tour-5');
         $japanSmallTravel->setPriceIncludingVat(false);
         $japanSmallTravel->setPrice(1800);
         $japanSmallTravel->setTravellers(5);
@@ -388,11 +393,13 @@ EOF
         $japanSmallTravel->setStock(40);
 
         $manager->persist($japanSmallTravel);
-        $this->setReference('travel_japan_small_product', $japanSmallTravel);*/
+        $this->setReference('travel_japan_small_product', $japanSmallTravel);
 
         // Japan tour medium group variation
-        /*$japanMediumTravel = $this->generateDefaultTravelVariation($travelProvider, $japanTravel);
+        $japanMediumTravel = $this->generateDefaultTravelVariation($travelProvider, $japanTravel);
         $japanMediumTravel->setName('Japan tour for medium group');
+        $japanMediumTravel->setSku('travel-japan-tour-7');
+        $japanMediumTravel->setSlug('travel-japan-tour-7');
         $japanMediumTravel->setPriceIncludingVat(false);
         $japanMediumTravel->setPrice(2050);
         $japanMediumTravel->setTravellers(7);
@@ -401,11 +408,13 @@ EOF
         $japanMediumTravel->setStock(40);
 
         $manager->persist($japanMediumTravel);
-        $this->setReference('travel_japan_medium_product', $japanMediumTravel);*/
+        $this->setReference('travel_japan_medium_product', $japanMediumTravel);
 
         // Japan tour large group variation
-        /*$japanLargeTravel = $this->generateDefaultTravelVariation($travelProvider, $japanTravel);
+        $japanLargeTravel = $this->generateDefaultTravelVariation($travelProvider, $japanTravel);
         $japanLargeTravel->setName('Japan tour for large group');
+        $japanLargeTravel->setSku('travel-japan-tour-9');
+        $japanLargeTravel->setSlug('travel-japan-tour-9');
         $japanLargeTravel->setPriceIncludingVat(false);
         $japanLargeTravel->setPrice(2200);
         $japanLargeTravel->setTravellers(9);
@@ -414,11 +423,13 @@ EOF
         $japanLargeTravel->setStock(40);
 
         $manager->persist($japanLargeTravel);
-        $this->setReference('travel_japan_large_product', $japanLargeTravel);*/
+        $this->setReference('travel_japan_large_product', $japanLargeTravel);
 
         // Japan tour extra-large group variation
-        /*$japanExtraLargeTravel = $this->generateDefaultTravelVariation($travelProvider, $japanTravel);
+        $japanExtraLargeTravel = $this->generateDefaultTravelVariation($travelProvider, $japanTravel);
         $japanExtraLargeTravel->setName('Japan tour for extra-large group');
+        $japanExtraLargeTravel->setSku('travel-japan-tour-12');
+        $japanExtraLargeTravel->setSlug('travel-japan-tour-12');
         $japanExtraLargeTravel->setPriceIncludingVat(false);
         $japanExtraLargeTravel->setPrice(2350);
         $japanExtraLargeTravel->setTravellers(12);
@@ -427,7 +438,7 @@ EOF
         $japanExtraLargeTravel->setStock(40);
 
         $manager->persist($japanExtraLargeTravel);
-        $this->setReference('travel_japan_extra_large_product', $japanExtraLargeTravel);*/
+        $this->setReference('travel_japan_extra_large_product', $japanExtraLargeTravel);
 
         // Quebec tour products
         $quebecTravel = new Travel();
@@ -507,6 +518,8 @@ EOF
         // Quebec tour small group variation
         $quebecSmallTravel = $this->generateDefaultTravelVariation($travelProvider, $quebecTravel);
         $quebecSmallTravel->setName('Quebec tour for small group');
+        $quebecSmallTravel->setSku('travel-quebec-tour-5');
+        $quebecSmallTravel->setSlug('travel-quebec-tour-5');
         $quebecSmallTravel->setPriceIncludingVat(false);
         $quebecSmallTravel->setPrice(850);
         $quebecSmallTravel->setTravellers(5);
@@ -520,6 +533,8 @@ EOF
         // Quebec tour medium group variation
         $quebecMediumTravel = $this->generateDefaultTravelVariation($travelProvider, $quebecTravel);
         $quebecMediumTravel->setName('Quebec tour for medium group');
+        $quebecMediumTravel->setSku('travel-quebec-tour-7');
+        $quebecMediumTravel->setSlug('travel-quebec-tour-7');
         $quebecMediumTravel->setPriceIncludingVat(false);
         $quebecMediumTravel->setPrice(1050);
         $quebecMediumTravel->setTravellers(7);
@@ -533,6 +548,8 @@ EOF
         // Quebec tour large group variation
         $quebecLargeTravel = $this->generateDefaultTravelVariation($travelProvider, $quebecTravel);
         $quebecLargeTravel->setName('Quebec tour for large group');
+        $quebecLargeTravel->setSku('travel-quebec-tour-9');
+        $quebecLargeTravel->setSlug('travel-quebec-tour-9');
         $quebecLargeTravel->setPriceIncludingVat(false);
         $quebecLargeTravel->setPrice(1200);
         $quebecLargeTravel->setTravellers(9);
@@ -546,6 +563,8 @@ EOF
         // Quebec tour extra-large group variation
         $quebecExtraLargeTravel = $this->generateDefaultTravelVariation($travelProvider, $quebecTravel);
         $quebecExtraLargeTravel->setName('Quebec tour for extra-large group');
+        $quebecExtraLargeTravel->setSku('travel-quebec-tour-12');
+        $quebecExtraLargeTravel->setSlug('travel-quebec-tour-12');
         $quebecExtraLargeTravel->setPriceIncludingVat(false);
         $quebecExtraLargeTravel->setPrice(1350);
         $quebecExtraLargeTravel->setTravellers(12);
@@ -630,6 +649,8 @@ EOF
         // Paris tour small group variation
         $parisSmallTravel = $this->generateDefaultTravelVariation($travelProvider, $parisTravel);
         $parisSmallTravel->setName('Paris tour for small group');
+        $parisSmallTravel->setSku('travel-paris-tour-5');
+        $parisSmallTravel->setSlug('travel-paris-tour-5');
         $parisSmallTravel->setPriceIncludingVat(false);
         $parisSmallTravel->setPrice(400);
         $parisSmallTravel->setTravellers(5);
@@ -643,6 +664,8 @@ EOF
         // Paris tour medium group variation
         $parisMediumTravel = $this->generateDefaultTravelVariation($travelProvider, $parisTravel);
         $parisMediumTravel->setName('Paris tour for medium group');
+        $parisMediumTravel->setSku('travel-paris-tour-7');
+        $parisMediumTravel->setSlug('travel-paris-tour-7');
         $parisMediumTravel->setPriceIncludingVat(false);
         $parisMediumTravel->setPrice(700);
         $parisMediumTravel->setTravellers(7);
@@ -656,6 +679,8 @@ EOF
         // Paris tour large group variation
         $parisLargeTravel = $this->generateDefaultTravelVariation($travelProvider, $parisTravel);
         $parisLargeTravel->setName('Paris tour for large group');
+        $parisLargeTravel->setSku('travel-paris-tour-9');
+        $parisLargeTravel->setSlug('travel-paris-tour-9');
         $parisLargeTravel->setPriceIncludingVat(false);
         $parisLargeTravel->setPrice(850);
         $parisLargeTravel->setTravellers(9);
@@ -669,6 +694,8 @@ EOF
         // Paris tour extra-large group variation
         $parisExtraLargeTravel = $this->generateDefaultTravelVariation($travelProvider, $parisTravel);
         $parisExtraLargeTravel->setName('Paris tour for extra-large group');
+        $parisExtraLargeTravel->setSku('travel-paris-tour-12');
+        $parisExtraLargeTravel->setSlug('travel-paris-tour-12');
         $parisExtraLargeTravel->setPriceIncludingVat(false);
         $parisExtraLargeTravel->setPrice(975);
         $parisExtraLargeTravel->setTravellers(12);
@@ -756,6 +783,8 @@ EOF
         // London tour small group variation
         /*$londonSmallTravel = $this->generateDefaultTravelVariation($travelProvider, $londonTravel);
         $londonSmallTravel->setName('London tour for small group');
+        $londonSmallTravel->setSku('travel-london-tour-5');
+        $londonSmallTravel->setSlug('travel-london-tour-5');
         $londonSmallTravel->setPriceIncludingVat(false);
         $londonSmallTravel->setPrice(400);
         $londonSmallTravel->setTravellers(5);
@@ -769,6 +798,8 @@ EOF
         // London tour medium group variation
         /*$londonMediumTravel = $this->generateDefaultTravelVariation($travelProvider, $londonTravel);
         $londonMediumTravel->setName('London tour for medium group');
+        $londonMediumTravel->setSku('travel-london-tour-7');
+        $londonMediumTravel->setSlug('travel-london-tour-7');
         $londonMediumTravel->setPriceIncludingVat(false);
         $londonMediumTravel->setPrice(700);
         $londonMediumTravel->setTravellers(7);
@@ -782,6 +813,8 @@ EOF
         // London tour large group variation
         /*$londonLargeTravel = $this->generateDefaultTravelVariation($travelProvider, $londonTravel);
         $londonLargeTravel->setName('London tour for large group');
+        $londonLargeTravel->setSku('travel-london-tour-9');
+        $londonLargeTravel->setSlug('travel-london-tour-9');
         $londonLargeTravel->setPriceIncludingVat(false);
         $londonLargeTravel->setPrice(850);
         $londonLargeTravel->setTravellers(9);
@@ -795,6 +828,8 @@ EOF
         // London tour extra-large group variation
         /*$londonExtraLargeTravel = $this->generateDefaultTravelVariation($travelProvider, $londonTravel);
         $londonExtraLargeTravel->setName('London tour for extra-large group');
+        $londonExtraLargeTravel->setSku('travel-london-tour-12');
+        $londonExtraLargeTravel->setSlug('travel-london-tour-12');
         $londonExtraLargeTravel->setPriceIncludingVat(false);
         $londonExtraLargeTravel->setPrice(975);
         $londonExtraLargeTravel->setTravellers(12);
@@ -878,6 +913,8 @@ EOF
         // London tour small group variation
         $switzerlandSmallTravel = $this->generateDefaultTravelVariation($travelProvider, $switzerlandTravel);
         $switzerlandSmallTravel->setName('Switzerland tour for small group');
+        $switzerlandSmallTravel->setSku('travel-switzerland-tour-5');
+        $switzerlandSmallTravel->setSlug('travel-switzerland-tour-5');
         $switzerlandSmallTravel->setPriceIncludingVat(false);
         $switzerlandSmallTravel->setPrice(475);
         $switzerlandSmallTravel->setTravellers(5);
@@ -891,6 +928,8 @@ EOF
         // London tour medium group variation
         $switzerlandMediumTravel = $this->generateDefaultTravelVariation($travelProvider, $switzerlandTravel);
         $switzerlandMediumTravel->setName('Switzerland tour for medium group');
+        $switzerlandMediumTravel->setSku('travel-switzerland-tour-7');
+        $switzerlandMediumTravel->setSlug('travel-switzerland-tour-7');
         $switzerlandMediumTravel->setPriceIncludingVat(false);
         $switzerlandMediumTravel->setPrice(750);
         $switzerlandMediumTravel->setTravellers(7);
@@ -904,6 +943,8 @@ EOF
         // London tour large group variation
         $switzerlandLargeTravel = $this->generateDefaultTravelVariation($travelProvider, $switzerlandTravel);
         $switzerlandLargeTravel->setName('Switzerland tour for large group');
+        $switzerlandLargeTravel->setSku('travel-switzerland-tour-9');
+        $switzerlandLargeTravel->setSlug('travel-switzerland-tour-9');
         $switzerlandLargeTravel->setPriceIncludingVat(false);
         $switzerlandLargeTravel->setPrice(875);
         $switzerlandLargeTravel->setTravellers(9);
@@ -917,6 +958,8 @@ EOF
         // London tour extra-large group variation
         $switzerlandExtraLargeTravel = $this->generateDefaultTravelVariation($travelProvider, $switzerlandTravel);
         $switzerlandExtraLargeTravel->setName('Switzerland tour for extra-large group');
+        $switzerlandExtraLargeTravel->setSku('travel-switzerland-tour-12');
+        $switzerlandExtraLargeTravel->setSlug('travel-switzerland-tour-12');
         $switzerlandExtraLargeTravel->setPriceIncludingVat(false);
         $switzerlandExtraLargeTravel->setPrice(1000);
         $switzerlandExtraLargeTravel->setTravellers(12);
@@ -1253,6 +1296,47 @@ EOF
     }
 
     /**
+     * Returns Japan gallery from a specified directory
+     *
+     * @param ProductInterface $product
+     */
+    protected function addJapanGallery(ProductInterface $product)
+    {
+        $gallery = $this->getGalleryManager()->create();
+        $gallery->setName('Japan');
+        $gallery->setContext('sonata_product');
+        $gallery->setDefaultFormat('preview');
+        $gallery->setEnabled(true);
+
+        $files = Finder::create()
+            ->name('*.jpg')
+            ->in(__DIR__.'/../data/files/maha-japan');
+
+        foreach ($files as $pos => $file) {
+            $media = $this->getMediaManager()->create();
+            $media->setBinaryContent($file);
+            $media->setEnabled(true);
+            $media->setDescription('Japan');
+            $media->setName('Japan');
+            $media->setAuthorName('Maha Kanas');
+            $media->setCopyright("CC BY-NC-SA 4.0");
+
+            $this->getMediaManager()->save($media, 'sonata_product', 'sonata.media.provider.image');
+
+            $galleryHasMedia = new GalleryHasMedia();
+            $galleryHasMedia->setMedia($media);
+            $galleryHasMedia->setPosition($pos+1);
+            $galleryHasMedia->setEnabled(true);
+
+            $gallery->addGalleryHasMedias($galleryHasMedia);
+        }
+
+        $this->getGalleryManager()->update($gallery);
+
+        $product->setGallery($gallery);
+    }
+
+    /**
      * @param ProductInterface $product
      *
      * @return object|\Sonata\MediaBundle\Model\MediaInterface
@@ -1405,6 +1489,16 @@ EOF
     protected function getTravelCollection()
     {
         return $this->getReference('travel_collection');
+    }
+
+    /**
+     * Returns the Dummy collection
+     *
+     * @return CollectionInterface
+     */
+    protected function getDummyCollection()
+    {
+        return $this->getReference('dummy_collection');
     }
 
     /**
