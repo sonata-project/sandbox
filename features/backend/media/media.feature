@@ -55,11 +55,11 @@ Scenario: Filter medias
 
 Scenario: Edit a media
   When I am connected with "admin" and "admin" on "admin/sonata/media/media/list"
-  And I fill in "filter_name_value" with "Symfony 2 by Fabien Potencier"
+  And I fill in "filter_name_value" with "Switzerland"
   And I press "Filter"
   And I follow "Edit"
   And I press "Update"
-  Then I should see "Item \"Symfony 2 by Fabien Potencier\" has been successfully updated."
+  Then I should see "Item \"Switzerland\" has been successfully updated."
 
 Scenario: View a media
   When I am connected with "admin" and "admin" on "admin/sonata/media/media/list"
