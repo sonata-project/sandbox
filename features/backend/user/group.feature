@@ -13,7 +13,7 @@ Scenario: Check group admin pages when connected
 Scenario: Add a new group with some errors
   When I am connected with "admin" and "admin" on "admin/sonata/user/group/create?uniqid=f155592a220e"
   And I press "Create"
-  Then I should see "An error has occurred during the creation of item \"n/a\"."
+  Then I should see "An error has occurred during the creation of item \"\"."
 
 Scenario: Add a new group
   When I am connected with "admin" and "admin" on "admin/sonata/user/group/create?uniqid=f155592a220e"
