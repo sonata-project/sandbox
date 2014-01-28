@@ -24,15 +24,15 @@ Feature: Products
     @200
     Scenario: Check the variation choice form redirection AJAX call
         Given I am an XHR request
-        When I go to "shop/product/travel-quebec-tour/509/variation?sonata_product_variation_choices%5Btravellers%5D=1&sonata_product_variation_choices%5BtravelDays%5D=0"
+        When I go to "shop/product/travel-quebec-tour/513/variation?sonata_product_variation_choices%5Btravellers%5D=1&sonata_product_variation_choices%5BtravelDays%5D=0"
         Then the response status code should be 200
         And the response is JSON
-        And the variation_url is "/shop/product/travel-quebec-tour/510"
+        And the variation_url is "/shop/product/travel-quebec-tour-7/515"
 
     @200
     Scenario: Check the variation choice form redirection AJAX call error
         Given I am an XHR request
-      When I go to "shop/product/travel-quebec-tour/509/variation?sonata_product_variation_choices%5Btravellers%5D=1&sonata_product_variation_choices%5BtravelDays%5D=1"
+      When I go to "shop/product/travel-quebec-tour/513/variation?sonata_product_variation_choices%5Btravellers%5D=1&sonata_product_variation_choices%5BtravelDays%5D=1"
         Then the response status code should be 200
         And the response is JSON
         And the error is "Sorry, the product you're looking for is unavailable."
@@ -81,7 +81,7 @@ Feature: Products
 
     @200
     Scenario: Check display of master product when having an active child
-        When I go to "shop/product/travel-quebec-tour/508"
+        When I go to "shop/product/travel-quebec-tour/513"
         Then the response status code should be 200
         And I should see "Quebec tour for small group"
 
