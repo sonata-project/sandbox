@@ -10,7 +10,7 @@ sonata_product:
             provider: sonata.ecommerce_demo.product.travel.type
             manager: sonata.ecommerce_demo.product.travel.manager
             variations:
-                fields: [travellers, travelDays]
+                fields: [travellers, travelDays, name, price, stock, vatRate, priceIncludingVat, enabled]
 
     seo:
         product:
