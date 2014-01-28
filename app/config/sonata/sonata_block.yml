@@ -23,6 +23,7 @@ sonata_block:
         #    contexts:   [admin]
 
         sonata.block.service.text:
+        sonata.block.service.container:
         sonata.page.block.container:
             # cache: sonata.cache.memcached
         sonata.page.block.children_pages:
