@@ -170,6 +170,15 @@ div.col-sm-3 div.list-group div.menu_level_4 {
     padding-right: 15px;
     padding-left: 15px;
 }
+.product-grid .col-sm-3 .panel .panel-body,
+.product-grid .col-sm-4 .panel .panel-body {
+    padding: 0px;
+}
+.product-grid .col-sm-3 .panel .panel-body img.img-responsive,
+.product-grid .col-sm-4 .panel .panel-body img.img-responsive {
+    margin-left: auto;
+    margin-right: auto;
+}
 
 /* Small resolution */
 @media(max-width:767px) {

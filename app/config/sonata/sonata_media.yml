@@ -49,7 +49,7 @@ sonata_media:
 
             formats:
                 preview:   { width: 100, quality: 100}
-                small:     { width: 200, quality: 100}
+                small:     { width: 300, quality: 100}
                 large:     { width: 750, quality: 100}
 
     cdn:
