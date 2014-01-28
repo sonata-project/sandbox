@@ -63,10 +63,10 @@ Scenario: Edit a media
 
 Scenario: View a media
   When I am connected with "admin" and "admin" on "admin/sonata/media/media/list"
-  And I fill in "filter_name_value" with "Symfony 2 by Fabien Potencier"
+  And I fill in "filter_name_value" with "Canada"
   And I press "Filter"
   And I follow "Show"
-  Then I should see "Symfony 2 by Fabien Potencier"
+  Then I should see "Canada"
   Then I should see "Preview ~ reference"
 
 Scenario: View revisions of a media
@@ -77,9 +77,9 @@ Scenario: View revisions of a media
 
 Scenario: Delete a media
   When I am connected with "admin" and "admin" on "admin/sonata/media/media/list"
-  And I fill in "filter_name_value" with "Best of Our Wokrs from June to December 2011"
+  And I fill in "filter_name_value" with "Paris"
   And I press "Filter"
   And I follow "Edit"
   And I follow link "Delete" with class "btn btn-danger"
   And I press "Yes, delete"
-  Then I should see "Item \"Best of Our Wokrs from June to December 2011\" has been deleted successfully."
+  Then I should see "Item \"Paris\" has been deleted successfully."
