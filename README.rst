@@ -28,7 +28,7 @@ Or to get the 2.3 develop branch::
 
     php composer.phar create-project sonata-project/sandbox:dev-2.3-develop
 
-The installation process used Incenteev's ParameterHandler to handle paramaters.yml configuration. With the current
+The installation process used Incenteev's ParameterHandler to handle parameters.yml configuration. With the current
 installation, it is possible to use environment variables to configure this file::
 
     DATABASE_NAME=sonata DATABASE_USER=root DATABASE_PASSWORD="" php composer.phar create-project sonata-project/sandbox:dev-2.3-develop
