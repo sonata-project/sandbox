@@ -14,6 +14,7 @@ namespace Sonata\Bundle\QABundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use JMS\Serializer\SerializationContext;
 
 class SerializerController extends Controller
 {
@@ -23,13 +24,15 @@ class SerializerController extends Controller
      *
      * reference: https://github.com/sonata-project/SonataPageBundle/pull/211
      *
+     * @param Request $request
+     *
      * @return Response
      */
     public function serializeAction(Request $request)
     {
         $raw = array(
             'json' => 'no data available',
-            'xml' => 'no data available',
+            'xml'  => 'no data available',
         );
 
         if ($request->isMethod('POST')) {
@@ -41,9 +44,22 @@ class SerializerController extends Controller
                 $object = $this->getDoctrine()->getRepository($class)->findOneBy(array());
             }
 
+            $serializationContext = SerializationContext::create();
+
+            if ($request->get('group')) {
+                $serializationContext->setGroups(array($request->get('group')));
+            }
+
+            if ($request->get('version')) {
+                $serializationContext->setVersion($request->get('version'));
+            }
+
+            $jsonSerializationContext = $serializationContext;
+            $xmlSerializationContext  = clone $serializationContext;
+
             $raw = array(
-                'json' => $this->get('jms_serializer')->serialize($object, 'json'),
-                'xml' => $this->get('jms_serializer')->serialize($object, 'xml'),
+                'json' => $this->get('jms_serializer')->serialize($object, 'json', $jsonSerializationContext),
+                'xml'  => $this->get('jms_serializer')->serialize($object, 'xml',  $xmlSerializationContext),
             );
         }
 
@@ -57,6 +73,8 @@ class SerializerController extends Controller
 
             $classes[] = $meta->name;
         }
+
+
 
         return $this->render('SonataQABundle:Serializer:serialize.html.twig', array(
             'classes' => $classes,
