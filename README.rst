@@ -71,6 +71,6 @@ Unit testing
 
 To run the Sonata test suites, you can run the command::
 
-    bin/test_client_ci.sh
+    bin/qa_client_ci.sh
 
 Enjoy!
