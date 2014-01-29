@@ -82,4 +82,5 @@ Scenario: Delete a media
   And I follow "Edit"
   And I follow link "Delete" with class "btn btn-danger"
   And I press "Yes, delete"
-  Then I should see "Item \"Paris\" has been deleted successfully."
+  Then I should be on "admin/sonata/media/media/list?provider=&context=default"
+  And I should see "An Error has occurred during deletion of item \"Paris\"."
