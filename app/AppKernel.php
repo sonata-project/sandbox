@@ -114,7 +114,12 @@ class AppKernel extends Kernel
             // Disable this if you don't want the timeline in the admin
             new Spy\TimelineBundle\SpyTimelineBundle(),
             new Sonata\TimelineBundle\SonataTimelineBundle(),
-            new Application\Sonata\TimelineBundle\ApplicationSonataTimelineBundle() // easy extends integration
+            new Application\Sonata\TimelineBundle\ApplicationSonataTimelineBundle(), // easy extends integration
+
+            // API
+            new FOS\RestBundle\FOSRestBundle(),
+            new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
+            new Bazinga\Bundle\HateoasBundle\BazingaHateoasBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

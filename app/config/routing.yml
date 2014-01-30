@@ -11,6 +11,8 @@ sonata_demo:
 sonata_qa:
     resource: "@SonataQABundle/Resources/config/routing/qa.xml"
 
+api:
+    resource: routing_api.yml
 
 sonata_user_security:
     resource: "@SonataUserBundle/Resources/config/routing/sonata_security_1.xml"

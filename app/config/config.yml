@@ -33,6 +33,11 @@ imports:
     # Knp Paginator
     - { resource: knp/knp_paginator.yml }
 
+    # FOS Rest
+    - { resource: fos/fos_rest.yml }
+    - { resource: nelmio/nelmio_apidoc.yml }
+    - { resource: bazinga/bazinga_hateoas.yml }
+
 framework:
     #esi:             ~
     translator:

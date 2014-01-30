@@ -73,7 +73,11 @@
         "stephpy/TimelineBundle": "2.0.*@dev",
         "stephpy/timeline": "~1.0@dev",
 
-        "incenteev/composer-parameter-handler": "~2.0"
+        "incenteev/composer-parameter-handler": "~2.0",
+
+        "friendsofsymfony/rest-bundle": " 1.1.*",
+        "nelmio/api-doc-bundle": "2.4.*",
+        "willdurand/hateoas-bundle": "0.2.*"
     },
 
     "require-dev": {
