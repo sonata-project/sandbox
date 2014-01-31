@@ -1,5 +1,7 @@
 <?php
 
+die("You are not allowed to access to the API. Check ".basename(__FILE__)." for more information.");
+
 // this check prevents access to debug front controllers that are deployed by accident to production servers.
 // feel free to remove this, extend it, or make something more sophisticated.
 if (!in_array(@$_SERVER['REMOTE_ADDR'], array(
@@ -11,9 +13,10 @@ if (!in_array(@$_SERVER['REMOTE_ADDR'], array(
 }
 
 require_once __DIR__.'/../app/bootstrap.php.cache';
-require_once __DIR__ . '/../app/AppKernel.php';
+require_once __DIR__ . '/../app/ApiKernel.php';
 
-$kernel = new AppKernel('dev', true);
+$kernel = new ApiKernel('dev', true);
+
 //$kernel->loadClassCache();
 
 // if you want to use the SonataPageBundle with multisite

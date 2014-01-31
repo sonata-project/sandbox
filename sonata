@@ -1,0 +1,38 @@
+#!/usr/bin/env php
+<?php
+
+require_once __DIR__.'/app/bootstrap.php.cache';
+
+use Symfony\Bundle\FrameworkBundle\Console\Application;
+use Symfony\Component\Console\Input\ArgvInput;
+
+if (count($_SERVER['argv']) < 2) {
+    die(<<<IDIE
+Error : please provide a valid application name
+
+./sonata <application_name> <symfony:command> <command_options>
+
+IDIE
+);
+}
+
+// retrieve the application name
+$name = $_SERVER['argv'][1];
+unset($_SERVER['argv'][1]);
+
+$input = new ArgvInput($_SERVER['argv']);
+
+$env = $input->getParameterOption(array('--env', '-e'), getenv('SYMFONY_ENV') ?: 'dev');
+$debug = getenv('SYMFONY_DEBUG') !== '0' && !$input->hasParameterOption(array('--no-debug', '')) && $env !== 'prod';
+
+
+$kernelClass = ucfirst($name).'Kernel';
+
+include_once __DIR__.'/app/'.$kernelClass.'.php';
+
+$kernel = new $kernelClass($env, $debug);
+
+$application = new Application($kernel);
+$application->setAutoExit(false);
+
+exit($application->run($input));

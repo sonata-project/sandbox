@@ -30,8 +30,8 @@ security:
         # This firewall is used to handle the admin login area
         # This part is handled by the Sonata User Bundle
         admin:
-            pattern:      /admin(.*)
-            context:        user
+            pattern:            /admin(.*)
+            context:            user
             form_login:
                 provider:       fos_userbundle
                 login_path:     /admin/login

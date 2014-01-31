@@ -1,3 +1,6 @@
+_main:
+    resource: "routing.yml"
+
 _assetic:
     resource: .
     type:     assetic
@@ -9,9 +12,6 @@ _wdt:
 _profiler:
     resource: "@WebProfilerBundle/Resources/config/routing/profiler.xml"
     prefix:   /_profiler
-
-_main:
-    resource: routing.yml
 
 sonata_payment_debug:
     resource: @SonataPaymentBundle/Resources/config/routing/payment_debug.xml

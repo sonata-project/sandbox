@@ -1,0 +1,92 @@
+Sonata Standard Edition
+=======================
+
+What's inside?
+--------------
+
+Sonata Standard Edition comes pre-configured with the following bundles:
+
+* Bundles from Symfony Standard distribution
+* Sonata Admin Bundles: Admin and Doctrine ORM Admin
+* Sonata Ecommerce Bundles: Payment, Customer, Invoice, Order and Product
+* Sonata Foundation Bundles: Core, Notification, Formatter, Intl, Cache, Seo and Easy Extends
+* Sonata Feature Bundles: Page, Media, News, User, Block, Timeline
+* Api Bundles: FOSRestBundle, BazingaHateoasBundle, NelmioApiDocBundle and JMSSerializerBundle
+
+### Front and API Controllers
+
+The sandbox handles multiple kernels: one for the standard front & back office application, and another dedicated to the API.
+
+The current implementation tries to follow the default folder structure of a standard symfony distribution. However, there are a few minor things to know:
+
+* cache folders are named as ``APPNAME_ENVNAME``.
+* log files are named as ``APPNAME_ENVNAME.log``.
+* the api front controller names are ``api.php`` and ``api_dev.php``.
+* the api configuration is located in ``app/config/api``.
+* new bundles can be added to the BaseKernel if they are required on all subkernels.
+* the ``./app/console`` command behaves as the original one.
+* the ``./sonata`` command works as the ``app/console`` however the first argument must be the app name.
+* a new ``kernel.conf_dir`` parameter is now available
+
+The separation has been done to improve performance on the routing side and to avoid loading too much services on the main front controller.
+
+For security reasons, the ``ApiKernel`` is not accessible from an HTTP Request by default. You need to activate the ``ApiKernel`` in the ``api.php`` and ``api_dev.php`` files to enable the API feature.
+
+
+Installation
+------------
+
+Get composer:
+
+    curl -s http://getcomposer.org/installer | php
+
+Run the following command for the 2.3 branch:
+
+    php composer.phar create-project sonata-project/sandbox:dev-2.3
+
+Or to get the 2.3 develop branch:
+
+    php composer.phar create-project sonata-project/sandbox:dev-2.3-develop
+
+The installation process used Incenteev's ParameterHandler to handle parameters.yml configuration. With the current
+installation, it is possible to use environment variables to configure this file:
+
+    DATABASE_NAME=sonata DATABASE_USER=root DATABASE_PASSWORD="" php composer.phar create-project sonata-project/sandbox:dev-2.3-develop
+
+Run
+---
+
+If you are running PHP5.4, you can use the built in server to start the demo:
+
+    php -S localhost:9090 -t web/app
+
+Now open your browser and go to http://localhost:9090/
+
+Tests
+-----
+
+### Functional testing
+
+To run the Behat tests, copy the default configuration file and adjust the base_url to your needs
+
+    # behat.yml
+    imports:
+        - behat.yml.dist
+
+    # Overwrite only the config you want to change here
+
+You can now run the tests suite using the following command
+
+    php bin/behat
+
+To get more informations about Behat, feel free to check `the official documentation
+<http://docs.behat.org/>`_.
+
+
+### Unit testing
+
+To run the Sonata test suites, you can run the command:
+
+    bin/test_client_ci.sh
+
+Enjoy!
