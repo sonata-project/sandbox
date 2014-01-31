@@ -1,0 +1,6 @@
+#common:
+#    resource: "../../config/routing.yml"
+
+api:
+    resource: routing_api.yml
+

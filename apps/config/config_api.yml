@@ -1,0 +1,11 @@
+imports:
+    - { resource: config.yml }
+    # API
+    - { resource: fos/fos_rest.yml }
+    - { resource: nelmio/nelmio_apidoc.yml }
+    - { resource: bazinga/bazinga_hateoas.yml }
+
+sonata_page:
+    ignore_route_patterns:
+        - ^api(.*)          # ignore API routes
+        - ^nelmio(.*)       # ignore API doc routes

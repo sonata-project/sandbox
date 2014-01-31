@@ -12,6 +12,15 @@ Sonata Standard Edition comes pre-configured with the following bundles:
 * Sonata Foundation Bundles: Core, Notification, Formatter, Intl, Cache, Seo and Easy Extends
 * Sonata Feature Bundles: Page, Media, News, User, Block, Timeline
 
+Multiple Kernels
+----------------
+
+The sandbox handles multiple kernels: one for the standard front & back office application, and another dedicated to the API.
+
+That means that in order to get those two kernels, we needed to separate two application: app & api. You'll find those applications in the apps directory at the root of the project.
+
+The project organization is then slightly different than what you might be used to in a Symfony project. For instance, you'll need to create two different vhosts
+
 Installation
 ------------
 
@@ -38,7 +47,7 @@ Run
 
 If you are running PHP5.4, you can use the built in server to start the demo::
 
-    php -S localhost:9090 -t web
+    php -S localhost:9090 -t web/app
 
 Now open your browser and go to http://localhost:9090/
 
