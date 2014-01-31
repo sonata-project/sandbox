@@ -1,11 +1,13 @@
 <?php
 
+die("You are not allowed to access to the API. Check ".basename(__FILE__)." for more information.");
+
 require_once __DIR__.'/../app/bootstrap.php.cache';
-require_once __DIR__ . '/../app/AppKernel.php';
+require_once __DIR__ . '/../app/ApiKernel.php';
 //require_once __DIR__.'/../app/AppCache.php';
 
-//$kernel = new AppCache(new AppKernel('prod', false));
-$kernel = new AppKernel('prod', false);
+//$kernel = new AppCache(new ApiKernel('prod', false));
+$kernel = new ApiKernel('prod', false);
 //$kernel->loadClassCache();
 
 // if you want to use the SonataPageBundle with multisite

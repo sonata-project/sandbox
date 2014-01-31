@@ -33,32 +33,27 @@ imports:
     # Knp Paginator
     - { resource: knp/knp_paginator.yml }
 
-    # FOS Rest
-    - { resource: fos/fos_rest.yml }
-    - { resource: nelmio/nelmio_apidoc.yml }
-    - { resource: bazinga/bazinga_hateoas.yml }
-
 framework:
-    #esi:             ~
+    #esi:                   ~
     translator:
-        fallback: en
-    secret:          %secret%
+        fallback:           en
+    secret:                 %secret%
     router:
-        resource: "%kernel.root_dir%/config/routing.yml"
+        resource:           "%kernel.conf_dir%/routing.yml"
         strict_requirements: ~
-    form:            true
-    csrf_protection: true
+    form:                    true
+    csrf_protection:         true
     validation:
-        enable_annotations: true
+        enable_annotations:  true
     templating:
-        engines: ['twig']
-        #assets_version: SomeVersionScheme
+        engines:             ['twig']
+        #assets_version:      SomeVersionScheme
 
-    default_locale:  %locale%
-    session:         ~
-    fragments:       ~
-    trusted_proxies: ~
-    http_method_override: true
+    default_locale:          %locale%
+    session:                 ~
+    fragments:               ~
+    trusted_proxies:         ~
+    http_method_override:    true
 
 # Twig Configuration
 twig:

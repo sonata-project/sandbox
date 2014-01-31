@@ -16,8 +16,6 @@ sonata_page:
     ignore_route_patterns:
         - (.*)admin(.*)     # ignore admin route, ie route containing 'admin'
         - ^_(.*)            # ignore symfony routes
-        - ^api(.*)          # ignore API routes
-        - ^nelmio(.*)       # ignore API doc routes
 
     ignore_routes:
         - sonata_page_cache_esi

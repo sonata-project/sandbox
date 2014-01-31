@@ -5,13 +5,15 @@ use Symfony\Component\Config\Loader\LoaderInterface;
 
 include_once __DIR__ . '/BaseKernel.php';
 
-class AppKernel extends BaseKernel
+class ApiKernel extends BaseKernel
 {
     public function registerBundles()
     {
         return array_merge(parent::registerBundles(), array(
-            // insert your front bundles here
-
+            // API
+            new FOS\RestBundle\FOSRestBundle(),
+            new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
+            new Bazinga\Bundle\HateoasBundle\BazingaHateoasBundle(),
         ));
     }
 }
