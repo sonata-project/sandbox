@@ -9,12 +9,12 @@
 
 if [ -z "$1" ]; then
     echo "Please provide a valid project name"
-     exit 1
+    exit 1
 fi
 
 if [ -z "$2" ]; then
     echo "Please provide a valid version name"
-     exit 1
+    exit 1
 fi
 
 if [ ! -f  "composer.json" ]; then

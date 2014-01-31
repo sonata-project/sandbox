@@ -26,6 +26,9 @@ sonata_block:
         sonata.block.service.container:
         sonata.page.block.container:
             # cache: sonata.cache.memcached
+            # cache: sonata.cache.predis
+            # cache: sonata.page.cache.esi # if you are using the PageBundle
+            # cache: sonata.block.cache.esi # if you are using the BlockBundle without the PageBundle
         sonata.page.block.children_pages:
         sonata.block.service.rss:
         sonata.block.service.menu:
