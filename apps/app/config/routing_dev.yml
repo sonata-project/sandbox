@@ -1,0 +1,5 @@
+_main:
+    resource: routing.yml
+
+_dev:
+    resource: "../../config/routing_dev.yml"
