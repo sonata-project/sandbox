@@ -75,11 +75,20 @@ Scenario: View revisions of a media
   And I follow "Revisions"
   Then the response status code should be 200
 
-Scenario: Delete a media
+Scenario: Add a Media, then delete it immediately
+  When I am connected with "admin" and "admin" on "admin/sonata/media/media/create?provider=sonata.media.provider.image&context=default&uniqid=f155592a220e"
+  And I attach the file "app/Resources/behat/sonata.jpg" to "f155592a220e_binaryContent"
+  And I press "Create"
+  Then I should see "has been successfully created."
+  And I follow link "Delete" with class "btn btn-danger"
+  And I press "Yes, delete"
+  Then I should see "has been deleted successfully."
+
+Scenario: Try to delete an undeletable Media
   When I am connected with "admin" and "admin" on "admin/sonata/media/media/list"
   And I fill in "filter_name_value" with "Paris"
   And I press "Filter"
   And I follow "Edit"
   And I follow link "Delete" with class "btn btn-danger"
   And I press "Yes, delete"
-  Then I should see "Item \"Paris\" has been deleted successfully."
+  Then I should see "An Error has occurred during deletion of item \"Paris\"."

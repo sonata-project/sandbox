@@ -4,3 +4,4 @@ default:
             base_url: 'http://demo.sonata-project.org/'
             goutte:    ~
             #selenium2: ~
+            files_path: .
