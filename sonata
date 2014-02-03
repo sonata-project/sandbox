@@ -1,19 +1,28 @@
 #!/usr/bin/env php
 <?php
 
-require_once __DIR__.'/app/bootstrap.php.cache';
+require_once __DIR__.'/apps/bootstrap.php.cache';
+require_once __DIR__.'/apps/BaseKernel.php';
 
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Component\Console\Input\ArgvInput;
+use Symfony\Component\Console\Output\ConsoleOutput;
+
+// retrieve the application name
+$input = new ArgvInput($_SERVER['argv']);
+$output = new ConsoleOutput();
 
 if (count($_SERVER['argv']) < 2) {
-    die(<<<IDIE
-Error : please provide a valid application name
+
+    $output->writeln(<<<ERROR
+<error>Error : please provide a valid application name</error>
 
 ./sonata <application_name> <symfony:command> <command_options>
 
-IDIE
+ERROR
 );
+
+   exit(1);
 }
 
 // retrieve the application name
@@ -28,11 +37,14 @@ $debug = getenv('SYMFONY_DEBUG') !== '0' && !$input->hasParameterOption(array('-
 
 $kernelClass = ucfirst($name).'Kernel';
 
-include_once __DIR__.'/app/'.$kernelClass.'.php';
+include_once __DIR__.'/apps/'.ucfirst($name).'/'.$kernelClass.'.php';
 
 $kernel = new $kernelClass($env, $debug);
+
+$output->writeln("<info>Starting $kernelClass</info> - <comment>The Sonata Project</comment>");
+$output->writeln("");
 
 $application = new Application($kernel);
 $application->setAutoExit(false);
 
-exit($application->run($input));
+exit($application->run($input, $output));

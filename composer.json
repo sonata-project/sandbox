@@ -123,14 +123,14 @@
     },
 
     "extra": {
-        "symfony-app-dir": "app",
+        "symfony-app-dir": "apps",
         "symfony-web-dir": "web",
         "symfony-assets-install": "symlink",
         "branch-alias": {
             "dev-master": "2.3.x-dev"
         },
         "incenteev-parameters": [{
-            "file": "app/config/parameters.yml",
+            "file": "apps/shared/parameters.yml",
             "env-map": {
                 "database_driver":   "DATABASE_DRIVER",
                 "database_host":     "DATABASE_HOST",

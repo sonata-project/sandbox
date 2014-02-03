@@ -13,24 +13,25 @@ Sonata Standard Edition comes pre-configured with the following bundles:
 * Sonata Feature Bundles: Page, Media, News, User, Block, Timeline
 * Api Bundles: FOSRestBundle, BazingaHateoasBundle, NelmioApiDocBundle and JMSSerializerBundle
 
-### Front and API Controllers
+### Front, Admin and API Controllers
 
-The sandbox handles multiple kernels: one for the standard front & back office application, and another dedicated to the API.
+The sandbox handles multiple kernels:
+
+* ``AdminKernel`` for ``/admin/*`` urls
+* ``ApiKernel`` for ``/api/*`` urls
+* ``FrontKernel`` for all others urls
 
 The current implementation tries to follow the default folder structure of a standard symfony distribution. However, there are a few minor things to know:
 
-* cache folders are named as ``APPNAME_ENVNAME``.
-* log files are named as ``APPNAME_ENVNAME.log``.
-* the api front controller names are ``api.php`` and ``api_dev.php``.
-* the api configuration is located in ``app/config/api``.
+* ``cache`` folders are named as ``APPNAME_ENVNAME`` and located in ``PROJECT_FOLDER/cache``.
+* ``logs`` files are named as ``APPNAME_ENVNAME.log`` and located in ``PROJECT_LOG/logs``.
+* the configuration files are located in ``apps/KERNEL_NAME``.
 * new bundles can be added to the BaseKernel if they are required on all subkernels.
-* the ``./app/console`` command behaves as the original one.
+* the ``./apps/console`` command behaves as the original one but with the ``AdminKernel`` as all bundles are almost available with this kernel.
 * the ``./sonata`` command works as the ``app/console`` however the first argument must be the app name.
 * a new ``kernel.conf_dir`` parameter is now available
 
 The separation has been done to improve performance on the routing side and to avoid loading too much services on the main front controller.
-
-For security reasons, the ``ApiKernel`` is not accessible from an HTTP Request by default. You need to activate the ``ApiKernel`` in the ``api.php`` and ``api_dev.php`` files to enable the API feature.
 
 
 Installation
@@ -87,6 +88,6 @@ To get more informations about Behat, feel free to check `the official documenta
 
 To run the Sonata test suites, you can run the command:
 
-    bin/test_client_ci.sh
+    bin/qa_client_ci.sh
 
 Enjoy!

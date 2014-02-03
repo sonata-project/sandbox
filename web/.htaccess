@@ -1,5 +1,5 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
     RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteRule ^(.*)$ api.php [QSA,L]
+    RewriteRule ^(.*)$ app.php [QSA,L]
 </IfModule>

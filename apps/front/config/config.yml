@@ -1,0 +1,95 @@
+imports:
+    - { resource: ../../shared/parameters.yml }
+    - { resource: ../../shared/config.yml }
+    - { resource: ../../shared/security.yml }
+
+    # Mopa Bootstrap
+    - { resource: ../../shared//mopa/mopa_bootstrap.yml }
+
+    # Knp Paginator
+    - { resource: ../../shared/knp/knp_paginator.yml }
+
+framework:
+    #esi:                   ~
+    translator:
+        fallback:           en
+    secret:                 %secret%
+    router:
+        resource:           "%kernel.conf_dir%/routing.yml"
+        strict_requirements: ~
+    form:                    true
+    csrf_protection:         true
+    validation:
+        enable_annotations:  true
+    templating:
+        engines:             ['twig']
+        #assets_version:      SomeVersionScheme
+
+    default_locale:          %locale%
+    session:                 ~
+    fragments:               ~
+    trusted_proxies:         ~
+    http_method_override:    true
+
+# Twig Configuration
+twig:
+    debug:            %kernel.debug%
+    strict_variables: %kernel.debug%
+
+    form:
+        resources:
+            - 'SonataFormatterBundle:Form:formatter.html.twig'
+            - 'SonataMediaBundle:Form:media_widgets.html.twig'
+
+# Assetic Configuration
+#assetic:
+#    debug:          %kernel.debug%
+#    use_controller: false
+#    filters:
+#        cssrewrite: ~
+#        # closure:
+#        #     jar: %kernel.root_dir%/java/compiler.jar
+#        # yui_css:
+#        #     jar: %kernel.root_dir%/java/yuicompressor-2.4.2.jar
+#
+#        # Comment out those lines if you wish to use the less version of bootstrap
+#        less:
+#            node: /usr/local/bin/node
+#            node_paths: [/usr/local/node/node-v0.10.22/lib/node_modules]
+#            apply_to: "\.less$"
+
+# Doctrine Configuration
+doctrine:
+    dbal:
+        default_connection: default
+
+        connections:
+            default:
+                driver:   %database_driver%
+                dbname:   %database_name%
+                user:     %database_user%
+                host:     %database_host%
+                password: %database_password%
+
+        types:
+            json:     Sonata\Doctrine\Types\JsonType
+            currency: Sonata\Component\Currency\CurrencyDoctrineType
+
+    orm:
+        auto_generate_proxy_classes: %kernel.debug%
+        default_entity_manager: default
+
+        entity_managers:
+            default:
+                auto_mapping: true
+                mappings: ~
+
+# Swiftmailer Configuration
+swiftmailer:
+    transport: %mailer_transport%
+    host:      %mailer_host%
+    username:  %mailer_user%
+    password:  %mailer_password%
+
+jms_security_extra:
+    secure_all_services: false
