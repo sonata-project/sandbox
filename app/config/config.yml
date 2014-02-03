@@ -52,6 +52,8 @@ twig:
     debug:            %kernel.debug%
     strict_variables: %kernel.debug%
 
+    base_template_class: Sonata\CacheBundle\Twig\TwigTemplate14
+
     form:
         resources:
             - 'SonataFormatterBundle:Form:formatter.html.twig'
