@@ -1,7 +1,7 @@
 behat.yml
 cache/*
 logs/*
-apps/*.cache
+app/*.cache
 web/bundles
 web/uploads
 web/sitemap*.xml
