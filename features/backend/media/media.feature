@@ -77,7 +77,7 @@ Scenario: View revisions of a media
 
 Scenario: Add a Media, then delete it immediately
   When I am connected with "admin" and "admin" on "admin/sonata/media/media/create?provider=sonata.media.provider.image&context=default&uniqid=f155592a220e"
-  And I attach the file "app/Resources/behat/sonata.jpg" to "f155592a220e_binaryContent"
+  And I attach the file "features/fixtures/sonata.jpg" to "f155592a220e_binaryContent"
   And I press "Create"
   Then I should see "has been successfully created."
   And I follow link "Delete" with class "btn btn-danger"

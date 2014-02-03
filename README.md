@@ -33,6 +33,10 @@ The current implementation tries to follow the default folder structure of a sta
 
 The separation has been done to improve performance on the routing side and to avoid loading too much services on the main front controller.
 
+### Sessions
+
+Sessions are stored in the ``PROJECT_FOLDER/cache/sessions`` folder. Sessions are shared accross the AdminKernel and the FrontKernel, the ``security.yml`` also share the same settings with the ``context`` options.
+
 
 Installation
 ------------

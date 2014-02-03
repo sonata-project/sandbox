@@ -9,8 +9,8 @@
  * file that was distributed with this source code.
  */
 
-require_once __DIR__.'/../apps/bootstrap.php.cache';
-require_once __DIR__.'/../apps/BaseKernel.php';
+require_once __DIR__ . '/../app/bootstrap.php.cache';
+require_once __DIR__ . '/../app/AppKernel.php';
 
 //use Symfony\Component\HttpFoundation\Request;
 
@@ -48,7 +48,7 @@ function sonata_bootstrap($name, $env, $debug) {
 
     $className = ucfirst($name).'Kernel';
 
-    require_once __DIR__.'/../apps/'.$name.'/'.$className.'.php';
+    require_once __DIR__.'/../app/'.$name.'/'.$className.'.php';
 
     $kernel = new $className($env, $debug);
 

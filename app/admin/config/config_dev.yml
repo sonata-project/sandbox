@@ -1,0 +1,4 @@
+imports:
+    - { resource: config.yml }
+    - { resource: ../../config/config.yml }
+    - { resource: ../../config/config_dev.yml }

@@ -1,20 +1,30 @@
 #!/usr/bin/env php
 <?php
 
-require_once __DIR__.'/apps/bootstrap.php.cache';
-require_once __DIR__.'/apps/BaseKernel.php';
+require_once __DIR__.'/app/bootstrap.php.cache';
+require_once __DIR__.'/app/AppKernel.php';
 
-use Symfony\Bundle\FrameworkBundle\Console\Application;
-use Symfony\Component\Console\Input\ArgvInput;
+use Symfony\Component\Process\Process;
 use Symfony\Component\Console\Output\ConsoleOutput;
+use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Input\ArgvInput;
 
 // retrieve the application name
-$input = new ArgvInput($_SERVER['argv']);
 $output = new ConsoleOutput();
 
-if (count($_SERVER['argv']) < 2) {
+$validApp = array(
+    'admin' => array('admin'),
+    'front' => array('front'),
+    'api'   => array('api'),
+    'all'   => array('api', 'front', 'admin'),
+);
+
+$output->writeln("<info>The Sonata Project</info> - <comment>http://sonata-project.org</comment>");
+
+if (count($_SERVER['argv']) < 2 || !isset($validApp[$_SERVER['argv'][1]])) {
 
     $output->writeln(<<<ERROR
+
 <error>Error : please provide a valid application name</error>
 
 ./sonata <application_name> <symfony:command> <command_options>
@@ -25,26 +35,26 @@ ERROR
    exit(1);
 }
 
-// retrieve the application name
-$name = $_SERVER['argv'][1];
+$group = $_SERVER['argv'][1];
+
 unset($_SERVER['argv'][1]);
 
-$input = new ArgvInput($_SERVER['argv']);
+$args = new ArgvInput($_SERVER['argv']);
 
-$env = $input->getParameterOption(array('--env', '-e'), getenv('SYMFONY_ENV') ?: 'dev');
-$debug = getenv('SYMFONY_DEBUG') !== '0' && !$input->hasParameterOption(array('--no-debug', '')) && $env !== 'prod';
+$success = true;
 
+foreach ($validApp[$group] as $app) {
 
-$kernelClass = ucfirst($name).'Kernel';
+    $process = new Process(sprintf("./app/console %s %s", $app, (string)$args), null, null, null, 0);
 
-include_once __DIR__.'/apps/'.ucfirst($name).'/'.$kernelClass.'.php';
+    $process->run(function($status, $data) use ($output) {
+        $output->write($data, false, OutputInterface::OUTPUT_RAW);
+    });
 
-$kernel = new $kernelClass($env, $debug);
+    $success = $success ? $process->isSuccessful() : $success;
 
-$output->writeln("<info>Starting $kernelClass</info> - <comment>The Sonata Project</comment>");
-$output->writeln("");
+    $output->writeln("");
+}
 
-$application = new Application($kernel);
-$application->setAutoExit(false);
+exit($success ? 0 : 1);
 
-exit($application->run($input, $output));

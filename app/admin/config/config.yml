@@ -1,0 +1,11 @@
+imports:
+    - { resource: sonata_admin.yml }
+    - { resource: ../../config/parameters.yml }
+    - { resource: ../../config/security.yml }
+
+sonata_page:
+    ignore_route_patterns:
+        - (.*)admin(.*)     # ignore admin route, ie route containing 'admin'
+
+    ignore_uri_patterns:
+        - admin(.*)         # ignore admin route, ie route containing 'admin'
