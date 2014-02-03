@@ -1,18 +1,34 @@
 <h1>Serialize test page</h1>
 
-Please select a class to serialize:
-
 <form action="{{ url('sonata_qa_serialize') }}" method="post">
 
-    <select name="class">
-        {% for class in classes %}
-            <option value="{{ class }}" {% if app.request.get('class') == class %}selected="selected"{% endif %}>{{ class }}</option>
-        {% endfor %}
-    </select>
+    <p>
+        <label for="class">Please select a class to serialize:</label><br />
+        <select name="class">
+            {% for class in classes %}
+                <option value="{{ class }}" {% if app.request.get('class') == class %}selected="selected"{% endif %}>{{ class }}</option>
+            {% endfor %}
+        </select>
+    </p>
 
-    <input type="text" name="id" value="{{ app.request.get('id') }}" placeholder="Enter a PK (optional)">
+    <p>
+        <label for="id">Id.:</label>
+        <input type="text" name="id" value="{{ app.request.get('id') }}" placeholder="Enter a PK (optional)">
+    </p>
 
-    <input type="submit">
+    <p>
+        <label for="group">Group:</label>
+        <input type="text" name="group" value="{{ app.request.get('group') }}" placeholder="Enter a group (optional)">
+    </p>
+
+    <p>
+        <label for="version">Version:</label>
+        <input type="text" name="version" value="{{ app.request.get('version') }}" placeholder="Enter a version (optional)">
+    </p>
+
+    <p>
+        <input type="submit">
+    </p>
 </form>
 
 <div class="row">
