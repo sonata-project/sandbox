@@ -40,7 +40,19 @@
             </trans-unit>
             <trans-unit id="travel.travel_days">
                 <source>travel.travel_days</source>
-                <target>Days number</target>
+                <target>Days</target>
+            </trans-unit>
+            <trans-unit id="form.label_travel_days">
+                <source>form.label_travel_days</source>
+                <target>Days</target>
+            </trans-unit>
+            <trans-unit id="form.label_travellers">
+                <source>form.label_travellers</source>
+                <target>Travellers</target>
+            </trans-unit>
+            <trans-unit id="form.label_travel_date">
+                <source>form.label_travel_date</source>
+                <target>Travel date</target>
             </trans-unit>
         </body>
     </file>

@@ -22,21 +22,37 @@
                 <source>form.label_instructor_name</source>
                 <target>Formateur</target>
             </trans-unit>
+            <trans-unit id="form.label_duration">
+                <source>form.label_duration</source>
+                <target>Durée</target>
+            </trans-unit>
             <trans-unit id="form.label_start_date">
                 <source>form.label_start_date</source>
                 <target>Date de début</target>
             </trans-unit>
             <trans-unit id="travel.travellers">
                 <source>travel.travellers</source>
-                <target>Travellers</target>
+                <target>Voyageurs</target>
             </trans-unit>
             <trans-unit id="travel.travel_date">
                 <source>travel.travel_date</source>
-                <target>Travel date</target>
+                <target>Date du voyage</target>
             </trans-unit>
             <trans-unit id="travel.travel_days">
                 <source>travel.travel_days</source>
-                <target>Days number</target>
+                <target>Jours</target>
+            </trans-unit>
+            <trans-unit id="form.label_travel_days">
+                <source>form.label_travel_days</source>
+                <target>Jours</target>
+            </trans-unit>
+            <trans-unit id="form.label_travellers">
+                <source>form.label_travellers</source>
+                <target>Voyageurs</target>
+            </trans-unit>
+            <trans-unit id="form.label_travel_date">
+                <source>form.label_travel_date</source>
+                <target>Date du voyage</target>
             </trans-unit>
         </body>
     </file>
