@@ -22,7 +22,7 @@ if (count($_SERVER['argv']) > 1) {
     $name = $_SERVER['argv'][1];
     $kernelClass = ucfirst($name).'Kernel';
 
-    if (!is_file(__DIR__.'/'.ucfirst($name).'/'.$kernelClass.'.php')) {
+    if (!is_file(__DIR__.'/'.strtolower($name).'/'.$kernelClass.'.php')) {
         $name = $kernelClass = false;
     } else {
         unset($_SERVER['argv'][1]); // remove the app name from the argv
@@ -46,7 +46,7 @@ if ($debug) {
     Debug::enable();
 }
 
-include_once __DIR__.'/'.ucfirst($name).'/'.$kernelClass.'.php';
+include_once __DIR__.'/'.strtolower($name).'/'.$kernelClass.'.php';
 $kernel = new $kernelClass($env, $debug);
 
 $application = new Application($kernel);
