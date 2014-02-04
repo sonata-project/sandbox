@@ -214,6 +214,11 @@ div#slider-thumbs ul.list-inline {
     width: 620px;
 }
 
+div#slider-thumbs ul li {
+    padding-left: 0px;
+    margin-bottom: 10px;
+}
+
 /*
  * News
  */
