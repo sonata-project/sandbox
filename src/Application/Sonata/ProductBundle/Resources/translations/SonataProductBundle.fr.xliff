@@ -54,6 +54,18 @@
                 <source>form.label_travel_date</source>
                 <target>Date du voyage</target>
             </trans-unit>
+            <trans-unit id="form_travellers">
+                <source>form_travellers</source>
+                <target>Voyageurs</target>
+            </trans-unit>
+            <trans-unit id="form_travelDate">
+                <source>form_travelDate</source>
+                <target>Date du voyage</target>
+            </trans-unit>
+            <trans-unit id="form_travelDays">
+                <source>form_travelDays</source>
+                <target>Nombre de jours</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
