@@ -559,7 +559,7 @@ CONTENT
         <li class="list-group-item">
           <div class="media">
             <a class="pull-left" href="#">
-              <img class="media-object" src="/thumb_1_default_small.jpg">
+              <img class="media-object" src="/bundles/sonatademo/images/sonata-logo.png">
             </a>
             <div class="media-body">
               <h4 class="media-heading"><a href="http://sonata-project.org/bundles/admin">Admin</a></h4>
@@ -570,7 +570,7 @@ CONTENT
         <li class="list-group-item">
           <div class="media">
             <a class="pull-left" href="#">
-              <img class="media-object" src="/thumb_1_default_small.jpg">
+              <img class="media-object" src="/bundles/sonatademo/images/sonata-logo.png">
             </a>
             <div class="media-body">
               <h4 class="media-heading"><a href="http://sonata-project.org/bundles/doctrine-orm-admin">Doctrine2 ORM Admin</a></h4>
@@ -581,7 +581,7 @@ CONTENT
         <li class="list-group-item">
           <div class="media">
             <a class="pull-left" href="#">
-              <img class="media-object" src="/thumb_1_default_small.jpg">
+              <img class="media-object" src="/bundles/sonatademo/images/sonata-logo.png">
             </a>
             <div class="media-body">
               <h4 class="media-heading"><a href="http://sonata-project.org/bundles/propel-admin">Propel Admin</a></h4>
@@ -603,7 +603,7 @@ CONTENT
         <li class="list-group-item">
           <div class="media">
             <a class="pull-left" href="#">
-              <img class="media-object" src="/thumb_1_default_small.jpg">
+              <img class="media-object" src="/bundles/sonatademo/images/sonata-logo.png">
             </a>
             <div class="media-body">
               <h4 class="media-heading"><a href="http://sonata-project.org/bundles/core">Core</a></h4>
@@ -614,7 +614,7 @@ CONTENT
         <li class="list-group-item">
           <div class="media">
             <a class="pull-left" href="#">
-              <img class="media-object" src="/thumb_1_default_small.jpg">
+              <img class="media-object" src="/bundles/sonatademo/images/sonata-logo.png">
             </a>
             <div class="media-body">
               <h4 class="media-heading"><a href="http://sonata-project.org/bundles/notification">Notification</a></h4>
@@ -625,7 +625,7 @@ CONTENT
         <li class="list-group-item">
           <div class="media">
             <a class="pull-left" href="#">
-              <img class="media-object" src="/thumb_1_default_small.jpg">
+              <img class="media-object" src="/bundles/sonatademo/images/sonata-logo.png">
             </a>
             <div class="media-body">
               <h4 class="media-heading"><a href="http://sonata-project.org/bundles/formatter">Formatter</a></h4>
@@ -636,7 +636,7 @@ CONTENT
         <li class="list-group-item">
           <div class="media">
             <a class="pull-left" href="#">
-              <img class="media-object" src="/thumb_1_default_small.jpg">
+              <img class="media-object" src="/bundles/sonatademo/images/sonata-logo.png">
             </a>
             <div class="media-body">
               <h4 class="media-heading"><a href="http://sonata-project.org/bundles/intl">Internationalization (i18n)</a></h4>
@@ -647,7 +647,7 @@ CONTENT
         <li class="list-group-item">
           <div class="media">
             <a class="pull-left" href="#">
-              <img class="media-object" src="/thumb_1_default_small.jpg">
+              <img class="media-object" src="/bundles/sonatademo/images/sonata-logo.png">
             </a>
             <div class="media-body">
               <h4 class="media-heading"><a href="http://sonata-project.org/bundles/cache">Cache</a></h4>
@@ -658,7 +658,7 @@ CONTENT
         <li class="list-group-item">
           <div class="media">
             <a class="pull-left" href="#">
-              <img class="media-object" src="/thumb_1_default_small.jpg">
+              <img class="media-object" src="/bundles/sonatademo/images/sonata-logo.png">
             </a>
             <div class="media-body">
               <h4 class="media-heading"><a href="http://sonata-project.org/bundles/seo">SEO</a></h4>
@@ -669,7 +669,7 @@ CONTENT
         <li class="list-group-item">
           <div class="media">
             <a class="pull-left" href="#">
-              <img class="media-object" src="/thumb_1_default_small.jpg">
+              <img class="media-object" src="/bundles/sonatademo/images/sonata-logo.png">
             </a>
             <div class="media-body">
               <h4 class="media-heading"><a href="http://sonata-project.org/bundles/easy-extends">EasyExtends</a></h4>
@@ -694,7 +694,7 @@ CONTENT
         <li class="list-group-item">
           <div class="media">
             <a class="pull-left" href="#">
-              <img class="media-object" src="/thumb_1_default_small.jpg">
+              <img class="media-object" src="/bundles/sonatademo/images/sonata-logo.png">
             </a>
             <div class="media-body">
               <h4 class="media-heading"><a href="http://sonata-project.org/bundles/ecommerce">Ecommerce</a></h4>
@@ -716,7 +716,7 @@ CONTENT
         <li class="list-group-item">
           <div class="media">
             <a class="pull-left" href="#">
-              <img class="media-object" src="/thumb_1_default_small.jpg">
+              <img class="media-object" src="/bundles/sonatademo/images/sonata-logo.png">
             </a>
             <div class="media-body">
               <h4 class="media-heading"><a href="http://sonata-project.org/bundles/page">Page</a></h4>
@@ -727,7 +727,7 @@ CONTENT
         <li class="list-group-item">
           <div class="media">
             <a class="pull-left" href="#">
-              <img class="media-object" src="/thumb_1_default_small.jpg">
+              <img class="media-object" src="/bundles/sonatademo/images/sonata-logo.png">
             </a>
             <div class="media-body">
               <h4 class="media-heading"><a href="http://sonata-project.org/bundles/media">Media</a></h4>
@@ -738,7 +738,7 @@ CONTENT
         <li class="list-group-item">
           <div class="media">
             <a class="pull-left" href="#">
-              <img class="media-object" src="/thumb_1_default_small.jpg">
+              <img class="media-object" src="/bundles/sonatademo/images/sonata-logo.png">
             </a>
             <div class="media-body">
               <h4 class="media-heading"><a href="http://sonata-project.org/bundles/news">News</a></h4>
@@ -749,7 +749,7 @@ CONTENT
         <li class="list-group-item">
           <div class="media">
             <a class="pull-left" href="#">
-              <img class="media-object" src="/thumb_1_default_small.jpg">
+              <img class="media-object" src="/bundles/sonatademo/images/sonata-logo.png">
             </a>
             <div class="media-body">
               <h4 class="media-heading"><a href="http://sonata-project.org/bundles/user">User</a></h4>
@@ -760,7 +760,7 @@ CONTENT
         <li class="list-group-item">
           <div class="media">
             <a class="pull-left" href="#">
-              <img class="media-object" src="/thumb_1_default_small.jpg">
+              <img class="media-object" src="/bundles/sonatademo/images/sonata-logo.png">
             </a>
             <div class="media-body">
               <h4 class="media-heading"><a href="http://sonata-project.org/bundles/block">Block</a></h4>
@@ -771,7 +771,7 @@ CONTENT
         <li class="list-group-item">
           <div class="media">
             <a class="pull-left" href="#">
-              <img class="media-object" src="/thumb_1_default_small.jpg">
+              <img class="media-object" src="/bundles/sonatademo/images/sonata-logo.png">
             </a>
             <div class="media-body">
               <h4 class="media-heading"><a href="http://sonata-project.org/bundles/timeline">Timeline</a></h4>
