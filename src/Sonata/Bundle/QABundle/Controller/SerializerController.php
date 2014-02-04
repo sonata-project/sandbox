@@ -46,6 +46,8 @@ class SerializerController extends Controller
 
             $serializationContext = SerializationContext::create();
 
+            $serializationContext->enableMaxDepthChecks();
+
             if ($request->get('group')) {
                 $serializationContext->setGroups(array($request->get('group')));
             }
