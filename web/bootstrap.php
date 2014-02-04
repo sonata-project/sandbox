@@ -48,7 +48,7 @@ function sonata_bootstrap($name, $env, $debug) {
 
     $className = ucfirst($name).'Kernel';
 
-    require_once __DIR__.'/../app/'.$name.'/'.$className.'.php';
+    require_once __DIR__.'/../app/'.strtolower($name).'/'.$className.'.php';
 
     $kernel = new $className($env, $debug);
 
