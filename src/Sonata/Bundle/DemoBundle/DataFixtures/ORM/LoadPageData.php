@@ -392,16 +392,34 @@ CONTENT
     {
         $this->createTextContentPage($site, 'user', 'Admin', <<<CONTENT
 <div>
-    You can connect to the <a href="/admin/dashboard">admin section</a> by using two different accounts : <br>
+
+    <h3>Available accounts</h3>
+    You can connect to the <a href="/admin/dashboard">admin section</a> by using two different accounts:<br>
 
     <ul>
-        <li>Standard user: johndoe / johndoe</li>
-        <li>Admin user: admin / admin</li>
-        <li>Two step verification admin user: secure / secure - Key: 4YU4QGYPB63HDN2C</li>
+        <li><em>Standard</em> user:
+			<ul>
+				<li> Login - <strong>johndoe</strong></li>
+				<li> Password - <strong>johndoe</strong></li>
+			</ul>
+		</li>
+        <li><em>Admin</em> user:
+			<ul>
+				<li> Login - <strong>admin</strong></li>
+				<li> Password - <strong>admin</strong></li>
+			</ul>
+		</li>
+        <li><em>Two-step Verification admin</em> user:
+			<ul>
+				<li> Login - <strong>admin</strong></li>
+				<li> Password - <strong>admin</strong></li>
+				<li> Key - <strong>4YU4QGYPB63HDN2C</strong></li>
+			</ul>
+		</li>
     </ul>
 
-    <h3>Two Step Verification</h3>
-    The <b>secure</b> account is a demo of the Two Step Verification provided by
+    <h3>Two-Step Verification</h3>
+    The <strong>secure</strong> account is a demo of the Two-Step Verification provided by
     the <a href="http://sonata-project.org/bundles/user/2-0/doc/reference/two_step_validation.html">Sonata User Bundle</a>
 
     <br />
