@@ -6,3 +6,8 @@ sonata_api_news:
     type:         rest
     prefix:       /api/news
     resource:     "@SonataNewsBundle/Resources/config/routing/api.xml"
+
+sonata_api_media:
+    type:         rest
+    prefix:       /api/media
+    resource:     "@SonataMediaBundle/Resources/config/routing/api.xml"
