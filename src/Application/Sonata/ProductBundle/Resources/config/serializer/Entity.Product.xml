@@ -2,6 +2,9 @@
 <serializer>
     <class name="Application\Sonata\ProductBundle\Entity\Product" exclusion-policy="all" xml-root-name="product" discriminator-field-name="productType">
 
+        <!--
+            Don't forget to define your Product inheritances here if you want to use them in Sonata API.
+        -->
         <discriminator-class value="sonata.ecommerce_demo.product.travel">Application\Sonata\ProductBundle\Entity\Travel</discriminator-class>
         <discriminator-class value="sonata.ecommerce_demo.product.goodie">Application\Sonata\ProductBundle\Entity\Goodie</discriminator-class>
 
