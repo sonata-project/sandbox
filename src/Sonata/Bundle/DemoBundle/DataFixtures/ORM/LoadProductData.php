@@ -273,7 +273,6 @@ EOF
         $this->setReference('maximum_air_sonata_product', $maximumAir);
 
         $this->addMediaToProduct(__DIR__.'/../data/files/maximum-air-sonata.jpg', 'Maximum Air Sonata Limited edition', 'Maximum Air Sonata Limited edition', $maximumAir);
-        $this->addProductToCategory($maximumAir, $this->getReference('sonata_shoes_category'), $manager);
         $this->addProductToCategory($maximumAir, $goodiesCategory, $manager);
         $this->addProductToCategory($maximumAir, $shoesCategory, $manager);
         $this->addProductDeliveries($maximumAir, $manager);
