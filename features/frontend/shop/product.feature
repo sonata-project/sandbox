@@ -13,21 +13,32 @@ Feature: Products
         Then the response status code should be 400
 
     @200
-    Scenario: Check the update quantity AJAX call
+    Scenario Outline: Check the update quantity AJAX call
         Given I am an XHR request
-        When I go to "shop/product/501/info?quantity=1"
+        When I go to "shop/product/<identifier>/info?quantity=<quantity>"
         Then the response status code should be 200
         And the response is JSON
-        And the price is 35.988
+        And the price is <price>
         And the stock is 2000
 
+        Examples:
+            | identifier | quantity | price   |
+            |    501     |     1    | 35.988  |
+            |    501     |     3    | 107.964 |
+            |    501     |     5    | 179.94  |
+
     @200
-    Scenario: Check the variation choice form redirection AJAX call
+    Scenario Outline: Check the variation choice form redirection AJAX call
         Given I am an XHR request
-        When I go to "shop/product/travel-quebec-tour/513/variation?sonata_product_variation_choices%5Btravellers%5D=1&sonata_product_variation_choices%5BtravelDays%5D=0"
+        When I go to "shop/product/travel-quebec-tour/513/variation?sonata_product_variation_choices%5Btravellers%5D=<travellers>&sonata_product_variation_choices%5BtravelDays%5D=<traveldays>"
         Then the response status code should be 200
         And the response is JSON
-        And the variation_url is "/shop/product/travel-quebec-tour-7/515"
+        And the variation_url is "<url>"
+
+        Examples:
+            | travellers | traveldays | url                                    |
+            |      1     |     0      | /shop/product/travel-quebec-tour-7/515 |
+            |      2     |     0      | /shop/product/travel-quebec-tour-9/516 |
 
     @200
     Scenario: Check the variation choice form redirection AJAX call error
@@ -43,17 +54,30 @@ Feature: Products
         Then I should see "Catalog"
         And the response status code should be 200
 
-    Scenario: Browse products by categories in catalog
+    Scenario Outline: Browse products by categories in catalog
         When I go to "shop/catalog"
-        And I follow "Plushes"
-        Then I should see "PHP plush"
+        And I follow "<category>"
+        Then I should see "<product>"
         But I should not see "No subcategories available"
 
-    Scenario: Select a product by browsing products
+        Examples:
+            | category | product    |
+            | Plushes  | PHP plush  |
+            | Mugs     | PHP mug    |
+            | Travels  | Japan tour |
+            | Paris    | Paris tour |
+
+    Scenario Outline: Select a product by browsing products
         When I go to "shop/catalog"
-        And I follow "Plushes"
-        And I follow "PHP plush"
-        Then I should see "Vincent Pontier"
+        And I follow "<category>"
+        And I follow "<product>"
+        Then I should see "<description>"
+
+        Examples:
+            | category | product       | description          |
+            | Plushes  | PHP plush     | Vincent Pontier      |
+            | Clothes  | PHP tee-shirt | A nice PHP tee-shirt |
+            | Japan    | Japan tour    | Greater Tokyo Area   |
 
     @200
     Scenario: Browse out of stock product
@@ -101,26 +125,18 @@ Feature: Products
         Then I should not see "Jan 16th, 2014"
         And I should not see "Starting date"
 
-    Scenario: Access to travel list
+    Scenario Outline: Direct access to a travel
         When I go to "shop/catalog"
-        And I follow "Travels"
-        And I follow "Quebec tour"
+        And I follow "<category>"
+        And I follow "<product>"
         Then the response status code should be 200
-        And I should see "Quebec tour for small group"
+        And I should see "<variation>"
 
-    Scenario: Direct access to a travel
-        When I go to "shop/catalog"
-        And I follow "Travels"
-        And I follow "Paris tour"
-        Then the response status code should be 200
-        And I should see "Paris tour for small group"
-
-    Scenario: Direct access to a travel
-        When I go to "shop/catalog"
-        And I follow "Travels"
-        And I follow "Switzerland tour"
-        Then the response status code should be 200
-        And I should see "Switzerland tour for small group"
+        Examples:
+            | category | product           | variation                         |
+            | Travels  | Quebec tour       | Quebec tour for small group       |
+            | Travels  | Paris tour        | Paris tour for small group        |
+            | Travels  | Switzerland tour  | Switzerland tour for small group  |
 
     Scenario: Browse travels
         When I go to "shop/catalog/travels/2"
