@@ -73,6 +73,10 @@
     content: "\00BB";
 }
 
+form div.alert ~ .form-actions {
+    min-height: 54px;
+}
+
 form .form-actions {
     min-height: 48px;
 }
