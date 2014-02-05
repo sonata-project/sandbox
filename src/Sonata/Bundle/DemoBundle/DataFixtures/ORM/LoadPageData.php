@@ -424,33 +424,32 @@ CONTENT
     public function createLegalNotesPage(SiteInterface $site)
     {
         $this->createTextContentPage($site, 'legal-notes', 'Legal notes', <<<CONTENT
-<h2>Legal notes</h2>
-<p>Sonata relays on the following open source libraries.</p>
+<p>The Sonata framework is built with many great open source libraries / tools.</p>
 <section>
-    <h3>Backend and core</h3>
+    <h3>Backend</h3>
     <ul>
-        <li><a href="http://symfony.com" title="Symfony, PHP framework official website">Symfony</a></li>
-        <li><a href="http://twig.sensiolabs.org/" title="Twig, PHP template engine">Twig</a></li>
-        <li><a href="http://www.doctrine-project.org/" title="Doctrine, PHP ORM">Doctrine</a></li>
+        <li><a href="http://symfony.com" title="Symfony, PHP framework official website">Symfony 2</a>, the PHP framework for web projects (Code licensed under MIT),</li>
+        <li><a href="http://twig.sensiolabs.org" title="Twig, PHP template engine">Twig</a>, the PHP template engine (Code licensed under the new BSD license),</li>
+        <li><a href="http://www.doctrine-project.org" title="Doctrine, PHP ORM">Doctrine</a>, the PHP ORM.</li>
     </ul>
 </section>
 <section>
     <h3>Frontend</h3>
     <ul>
-        <li><a href="http://jquery.com/" title="jQuery javascript library">jQuery</a></li>
-        <li><a href="http://getbootstrap.com/" title="Twitter Bootstrap CSS and Javascript framework">Twitter Bootstrap</a></li>
-        <li><a href="http://glyphicons.com/" title="GLYPHICONS icons">GLYPHICONS free</a></li>
+        <li><a href="http://jquery.com" title="jQuery javascript library">jQuery</a>, a cross-platform JavaScript library (Code licensed under MIT),</li>
+        <li><a href="http://getbootstrap.com" title="Bootstrap front-end framework">Bootstrap</a>, the front-end framework (Code licensed under MIT),</li>
+        <li><a href="http://glyphicons.com" title="GLYPHICONS icons">GLYPHICONS</a>, library included in the Bootstrap framework (same license as Bootstrap).</li>
     </ul>
 </section>
 <section>
-    <h3>Testing and miscellaneous tools</h3>
+    <h3>Other miscellaneous tools</h3>
     <ul>
         <li><a href="https://www.github.com" title="Github, code distribution tool">Github</a></li>
         <li><a href="http://getcomposer.org" title="Composer, dependency management tool">Composer</a></li>
-        <li><a href="https://packagist.org/" title="Packagist, PHP packages repository">Packagist</a></li>
-        <li><a href="https://travis-ci.org/" title="Travis CI, continuous integration tool">Travis CI</a></li>
-        <li><a href="http://phpunit.de/" title="PHPUnit, PHP unit testing library">PHPUnit</a></li>
-        <li><a href="http://behat.org/" title="Behat, test driven development tool">Behat</a></li>
+        <li><a href="https://packagist.org" title="Packagist, PHP packages repository">Packagist</a></li>
+        <li><a href="https://travis-ci.org" title="Travis CI, continuous integration tool">Travis CI</a></li>
+        <li><a href="http://phpunit.de" title="PHPUnit, PHP unit testing library">PHPUnit</a></li>
+        <li><a href="http://behat.org" title="Behat, test driven development tool">Behat</a></li>
     </ul>
 </section>
 CONTENT
