@@ -1,5 +1,5 @@
 _main:
-    resource: "routing.yml"
+    resource: routing.yml
 
 #_assetic:
 #    resource: .
