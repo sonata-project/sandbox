@@ -33,7 +33,7 @@ Feature: Order
     And I should see "Your basket"
     And I should see "<product>"
     And I should see "Delivery charge"
-    And I should see "€0.00"
+    And I should see "0,00 €"
     And I should see "<price_vat>"
     And I should see "<price_total_vat>"
     And I should see "<total_no_vat>"
@@ -46,7 +46,7 @@ Feature: Order
     And I should see "Your order"
     And I should see "<product>"
     And I should see "Delivery"
-    And I should see "€0.00"
+    And I should see "0,00 €"
     And I should see "<price_vat>"
     And I should see "<price_total_vat>"
     And I should see "<total_no_vat>"
@@ -62,7 +62,7 @@ Feature: Order
     And I should see "<total_vat>"
 
     Examples:
-        | category | product        | quantity | price_vat | price_total_vat | vat    | total_no_vat | total_vat |
-        | Plushes  | Blue PHP plush |     3    |  €35.99   |     €107.96     | €17.99 |    €89.97    |   €107.96 |
-        | Mugs     | PHP mug        |     5    |  €9.99    |     €49.95      | €9.99  |    €39.96    |   €49.95  |
-        | Mugs     | PHP mug        |     8    |  €9.99    |     €79.92      | €15.98 |    €63.94    |   €79.92  |
+        | category | product        | quantity | price_vat | price_total_vat | vat     | total_no_vat | total_vat  |
+        | Plushes  | Blue PHP plush |     3    |  35,99 €  |     107,96 €    | 17,99 € |    89,97 €   |   107,96 € |
+        | Mugs     | PHP mug        |     5    |  9,99 €   |     49,95 €     | 9,99 €  |    39,96 €   |   49,95 €  |
+        | Mugs     | PHP mug        |     8    |  9,99 €   |     79,92 €     | 15,98 € |    63,94 €   |   79,92 €  |
