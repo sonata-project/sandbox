@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<serializer>
+    <class name="Application\Sonata\ProductBundle\Entity\Goodie" exclusion-policy="all" xml-root-name="product">
+
+    </class>
+</serializer>
