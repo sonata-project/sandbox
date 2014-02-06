@@ -63,7 +63,7 @@ $fs->mkdir(sprintf('%s/web/uploads/media', $rootDir));
 $fs->copy(__DIR__.'/src/Sonata/Bundle/DemoBundle/DataFixtures/data/robots.txt', __DIR__.'/web/app/robots.txt', true);
 
 $success = execute_commands(array(
-    'rm -rf ./cache/*',
+    'rm -rf ./app/cache/*',
 
     './app/console cache:warmup --env=prod --no-debug',
     './app/console cache:create-cache-class --env=prod --no-debug',
