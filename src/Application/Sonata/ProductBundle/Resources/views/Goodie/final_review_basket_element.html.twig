@@ -17,11 +17,6 @@ file that was distributed with this source code.
 
 {% extends 'SonataProductBundle:Product:final_review_basket_element.html.twig' %}
 
-{% block product_description %}
-    <b>{{ basketElement.name }}</b> <br />
-    {{ basketElement.product.description|raw }}
-{% endblock %}
-
 {#
 {% block product_unit_price %}
     {{ basketElement.getUnitPrice(true)|number_format_currency(basket.currency.label, {}, {}, basket.locale) }}
