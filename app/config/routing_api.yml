@@ -16,3 +16,8 @@ sonata_api_notification:
     type:         rest
     prefix:       /notification
     resource:     "@SonataNotificationBundle/Resources/config/routing/api.xml"
+
+sonata_api_ecommerce_product:
+    type:         rest
+    prefix:       /ecommerce
+    resource:     "@SonataProductBundle/Resources/config/routing/api.xml"
