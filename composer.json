@@ -53,6 +53,7 @@
         "sonata-project/media-bundle": "~2.2@dev",
         "sonata-project/user-bundle": "~2.2@dev",
         "sonata-project/cache-bundle": "~2.1@dev",
+        "sonata-project/cache": "~1.0@dev",
         "sonata-project/page-bundle": "~2.3@dev",
         "sonata-project/core-bundle": "~2.2@dev",
         "sonata-project/formatter-bundle": "~2.3@dev",

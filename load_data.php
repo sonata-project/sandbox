@@ -65,17 +65,16 @@ $fs->copy(__DIR__.'/src/Sonata/Bundle/DemoBundle/DataFixtures/data/robots.txt', 
 $success = execute_commands(array(
     'rm -rf ./cache/*',
 
-    './sonata all cache:warmup --env=prod --no-debug',
-    './sonata all cache:warmup --env=dev --no-debug',
-    './sonata admin cache:create-cache-class --env=prod --no-debug',
-    './sonata admin doctrine:database:drop --force',
-    './sonata admin doctrine:database:create',
-    './sonata admin doctrine:schema:update --force',
-    'php -d memory_limit=1024M ./sonata admin doctrine:fixtures:load --verbose --env=dev',
-    './sonata front sonata:page:update-core-routes --site=all --no-debug --base-command="./sonata front"',
-    './sonata front sonata:page:create-snapshots --site=all --no-debug  --base-console="./sonata front"',
-    './sonata all assets:install --symlink web',
-    './sonata admin sonata:admin:setup-acl',
+    './app/console cache:warmup --env=prod --no-debug',
+    './app/console cache:create-cache-class --env=prod --no-debug',
+    './app/console doctrine:database:drop --force',
+    './app/console doctrine:database:create',
+    './app/console doctrine:schema:update --force',
+    'php -d memory_limit=1024M ./app/console doctrine:fixtures:load --verbose --env=dev',
+    './app/console sonata:page:update-core-routes --site=all --no-debug',
+    './app/console sonata:page:create-snapshots --site=all --no-debug',
+    './app/console assets:install --symlink web',
+    './app/console sonata:admin:setup-acl',
 
     'php -d memory_limit=1024M ./app/console sonata:admin:generate-object-acl'
 ), $output);

@@ -3,7 +3,7 @@
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Config\Loader\LoaderInterface;
 
-abstract class AppKernel extends Kernel
+class AppKernel extends Kernel
 {
     /**
      * {@inheritdoc}
@@ -14,18 +14,6 @@ abstract class AppKernel extends Kernel
         bcscale(3);
 
         parent::init();
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    protected function getKernelParameters()
-    {
-        return array_merge(parent::getKernelParameters(), array(
-            'kernel.conf_dir'        => $this->getConfDir(),
-            'kernel.shared_conf_dir' => $this->getProjectDir().'/app/config',
-            'kernel.project_dir'     => $this->getProjectDir(),
-        ));
     }
 
     /**
@@ -70,6 +58,22 @@ abstract class AppKernel extends Kernel
             new Sonata\MediaBundle\SonataMediaBundle(),
             new Application\Sonata\MediaBundle\ApplicationSonataMediaBundle(),
             // new Liip\ImagineBundle\LiipImagineBundle(),
+
+            new Sonata\MarkItUpBundle\SonataMarkItUpBundle(),
+
+            new Sonata\AdminBundle\SonataAdminBundle(),
+            new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
+
+            // @todo: remove this bundle
+            new Application\Sonata\AdminBundle\ApplicationSonataAdminBundle(),
+
+            // Disable this if you don't want the audit on entities
+            new SimpleThings\EntityAudit\SimpleThingsEntityAuditBundle(),
+
+            // API
+            new FOS\RestBundle\FOSRestBundle(),
+            new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
+            new Bazinga\Bundle\HateoasBundle\BazingaHateoasBundle(),
 
             // E-COMMERCE
             new Sonata\BasketBundle\SonataBasketBundle(),
@@ -118,6 +122,7 @@ abstract class AppKernel extends Kernel
 
             new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
 
+            new Mopa\Bundle\BootstrapBundle\MopaBootstrapBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
@@ -135,55 +140,6 @@ abstract class AppKernel extends Kernel
      */
     public function registerContainerConfiguration(LoaderInterface $loader)
     {
-        $loader->load($this->getConfDir().'/config_'.$this->getEnvironment().'.yml');
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getCacheDir()
-    {
-        return $this->getProjectDir().'/cache/'.$this->getName().'_'.$this->environment;
-    }
-
-    /**
-     * @return string
-     */
-    public function getConfDir()
-    {
-        return $this->getProjectDir().'/app/'.$this->getName().'/config';
-    }
-
-    /**
-     * @return string
-     */
-    public function getProjectDir()
-    {
-        return realpath($this->getRootDir().'/../..');
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getLogDir()
-    {
-        return $this->getProjectDir().'/logs';
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getName()
-    {
-        if (null === $this->name) {
-            $name = get_class($this);
-            if (substr($name, -6) !== 'Kernel') {
-                throw new \RuntimeException('Invalid Kernel class name, must be XXXKernel');
-            }
-
-            $this->name = strtolower(substr($name, 0, -6));
-        }
-
-        return $this->name;
+        $loader->load(__DIR__.'/config/config_'.$this->getEnvironment().'.yml');
     }
 }

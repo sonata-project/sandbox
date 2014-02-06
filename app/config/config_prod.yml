@@ -1,3 +1,6 @@
+imports:
+    - { resource: config.yml }
+
 framework:
     validation:
         cache:                         apc

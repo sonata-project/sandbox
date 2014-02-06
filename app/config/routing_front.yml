@@ -1,9 +1,3 @@
-# Internal routing configuration to handle ESI
-#_internal:
-#   resource: "@FrameworkBundle/Resources/config/routing/internal.xml"
-#   prefix:   /_internal
-
-
 # these 2 references : sonata_demo and sonata_qa can be safely removed
 sonata_demo:
     resource: "@SonataDemoBundle/Resources/config/routing/demo.xml"
@@ -81,22 +75,3 @@ sonata_invoice:
 blog:
     resource: '@SonataNewsBundle/Resources/config/routing/news.xml'
     prefix: /blog
-
-# Support for LiipImagineBundle
-#_imagine:
-#    resource: .
-#    type:     imagine
-
-# cross links between kernels
-sonata_admin_dashboard:
-    path: /admin
-
-admin_sonata_page_page_edit:
-    path: /admin/sonata/page/page/{id}/edit
-
-admin_sonata_page_page_snapshot_create:
-    path: /admin/sonata/page/page/{id}/snapshot/create
-
-admin_sonata_page_page_list:
-    path: /admin/sonata/page/page/list
-

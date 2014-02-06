@@ -9,17 +9,21 @@
  * file that was distributed with this source code.
  */
 
-// The app.php file is different from the original one (distributed in the Symfony Distribution)
-//
-//    The bootstrap.php file contains all initialisation informations, feel free to improve the
-//    file to match your requirements.
-//
-//    The bootstrap.php file also handle kernel detection, by default there are 3 kernels:
-//      - /admin => AdminKernel
-//      - /api   => ApiKernel
-//      - /*     => FrontKernel
-//
+require_once __DIR__ . '/../app/bootstrap.php.cache';
+require_once __DIR__ . '/../app/AppKernel.php';
 
-include_once __DIR__.'/bootstrap.php';
+//use Symfony\Component\HttpFoundation\Request;
 
-sonata_handle('prod', false)->send();
+// if you want to use the SonataPageBundle with multisite
+// using different relative paths, you must change the request
+// object to use the SiteRequest
+use Sonata\PageBundle\Request\SiteRequest as Request;
+
+$request = Request::createFromGlobals();
+
+$kernel = new AppKernel('prod', false);
+
+$response = $kernel->handle($request);
+$response->send();
+
+$kernel->terminate($request, $response);

@@ -1,15 +1,11 @@
 NelmioApiDocBundle:
-    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
-    prefix:   /api/doc
+    resource:     "@NelmioApiDocBundle/Resources/config/routing.yml"
+    prefix:       /api/doc
 
 sonata_api_news:
     type:         rest
     prefix:       /api/news
     resource:     "@SonataNewsBundle/Resources/config/routing/api.xml"
-
-blog:
-    resource: '@SonataNewsBundle/Resources/config/routing/news.xml'
-    prefix: /blog
 
 sonata_api_media:
     type:         rest

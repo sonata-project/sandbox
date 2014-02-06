@@ -16,28 +16,8 @@ use Symfony\Component\Console\Output\ConsoleOutput;
 
 use Symfony\Component\Debug\Debug;
 
-$name = $kernelClass = false;
-
-if (count($_SERVER['argv']) > 1) {
-    $name = $_SERVER['argv'][1];
-    $kernelClass = ucfirst($name).'Kernel';
-
-    if (!is_file(__DIR__.'/'.strtolower($name).'/'.$kernelClass.'.php')) {
-        $name = $kernelClass = false;
-    } else {
-        unset($_SERVER['argv'][1]); // remove the app name from the argv
-    }
-}
-
-if (!$name) {
-    $kernelClass = "AdminKernel";
-    $name = "admin";
-}
-
 // retrieve the application name
 $input = new ArgvInput($_SERVER['argv']);
-$output = new ConsoleOutput();
-$output->setDecorated(true);
 
 $env   = $input->getParameterOption(array('--env', '-e'), getenv('SYMFONY_ENV') ?: 'dev');
 $debug = getenv('SYMFONY_DEBUG') !== '0' && !$input->hasParameterOption(array('--no-debug', '')) && $env !== 'prod';
@@ -46,13 +26,9 @@ if ($debug) {
     Debug::enable();
 }
 
-include_once __DIR__.'/'.strtolower($name).'/'.$kernelClass.'.php';
-$kernel = new $kernelClass($env, $debug);
+$kernel = new AppKernel($env, $debug);
 
 $application = new Application($kernel);
 $application->setAutoExit(false);
 
-$output->writeln(sprintf("<info>Starting %s</info> - <comment>The Sonata Project</comment>", $kernelClass));
-$output->writeln("");
-
-exit($application->run($input, $output));
+exit($application->run($input));
