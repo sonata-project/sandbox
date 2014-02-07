@@ -21,3 +21,8 @@ sonata_api_ecommerce_product:
     type:         rest
     prefix:       /ecommerce
     resource:     "@SonataProductBundle/Resources/config/routing/api.xml"
+
+sonata_api_ecommerce_order:
+    type:         rest
+    prefix:       /ecommerce
+    resource:     "@SonataOrderBundle/Resources/config/routing/api.xml"
