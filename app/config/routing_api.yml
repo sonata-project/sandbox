@@ -41,3 +41,8 @@ sonata_api_ecommerce_basket:
     type:         rest
     prefix:       /ecommerce
     resource:     "@SonataBasketBundle/Resources/config/routing/api.xml"
+
+sonata_api_page:
+    type:         rest
+    prefix:       /page
+    resource:     "@SonataPageBundle/Resources/config/routing/api.xml"
