@@ -7,6 +7,9 @@
 #            servers:
 #                - varnishadm -T 127.0.0.1:2000 {{ COMMAND }} "{{ EXPRESSION }}"
 #
+#        ssi:
+#            token: TheToken
+#
 #        mongo:
 #            database:   cache
 #            collection: cache

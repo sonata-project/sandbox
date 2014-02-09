@@ -411,8 +411,8 @@ CONTENT
 		</li>
         <li><em>Two-step Verification admin</em> user:
 			<ul>
-				<li> Login - <strong>admin</strong></li>
-				<li> Password - <strong>admin</strong></li>
+				<li> Login - <strong>secure</strong></li>
+				<li> Password - <strong>secure</strong></li>
 				<li> Key - <strong>4YU4QGYPB63HDN2C</strong></li>
 			</ul>
 		</li>
