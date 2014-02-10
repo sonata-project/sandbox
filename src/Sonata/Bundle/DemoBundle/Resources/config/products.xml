@@ -10,7 +10,7 @@
 
         <service id="sonata.ecommerce_demo.product.goodie.manager" class="Sonata\ProductBundle\Entity\ProductManager">
             <argument>Application\Sonata\ProductBundle\Entity\Goodie</argument>
-            <argument type="service" id="sonata.product.entity_manager" />
+            <argument type="service" id="doctrine" />
         </service>
 
         <service id="sonata.ecommerce_demo.product.goodie.type" class="Application\Sonata\ProductBundle\Provider\GoodieProductProvider">
@@ -21,7 +21,7 @@
 
         <service id="sonata.ecommerce_demo.product.travel.manager" class="Sonata\ProductBundle\Entity\ProductManager">
             <argument>Application\Sonata\ProductBundle\Entity\Travel</argument>
-            <argument type="service" id="sonata.product.entity_manager" />
+            <argument type="service" id="doctrine" />
         </service>
 
         <service id="sonata.ecommerce_demo.product.travel.type" class="Application\Sonata\ProductBundle\Provider\TravelProductProvider">
