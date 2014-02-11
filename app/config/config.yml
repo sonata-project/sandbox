@@ -117,6 +117,11 @@ swiftmailer:
 jms_security_extra:
     secure_all_services: false
 
+jms_serializer:
+    metadata:
+        directories:
+            - { path: %kernel.root_dir%/../vendor/sonata-project/user-bundle/Sonata/UserBundle/Resources/config/serializer/FOSUserBundle, namespace_prefix: 'FOS\UserBundle' }
+
 # Assetic Configuration
 #assetic:
 #    debug:          %kernel.debug%
