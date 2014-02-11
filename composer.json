@@ -62,6 +62,7 @@
         "sonata-project/timeline-bundle": "~2.2@dev",
         "sonata-project/classification-bundle": "~2.2@dev",
         "sonata-project/ecommerce": "dev-develop",
+        "sonata-project/comment-bundle": "~2.2@dev",
 
         "dflydev/markdown": "~1.0",
         "simplethings/entity-audit-bundle": "~0.5",
@@ -76,6 +77,7 @@
 
         "incenteev/composer-parameter-handler": "~2.0",
 
+        "friendsofsymfony/comment-bundle": "~2.0@dev",
         "friendsofsymfony/rest-bundle": " 1.1.*",
         "nelmio/api-doc-bundle": "2.4.*",
         "willdurand/hateoas-bundle": "0.2.*"

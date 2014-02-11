@@ -57,6 +57,7 @@ sonata_admin:
                     - sonata.news.admin.post
                     - sonata.media.admin.media
                     - sonata.media.admin.gallery
+                    - sonata.comment.admin.thread
             sonata.admin.group.ecommerce:
                 label:           sonata_ecommerce
                 label_catalogue: SonataAdminBundle
