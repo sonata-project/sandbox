@@ -1,0 +1,318 @@
+fos_elastica:
+    clients:
+        default:
+            host:                               localhost
+            port:                               9200
+
+    serializer:
+        callback_class:                         FOS\ElasticaBundle\Serializer\Callback
+        serializer:                             serializer
+
+    indexes:
+        sonata_admin:
+            type_prototype:
+                index_analyzer:                 ~
+                search_analyzer:                ~
+                persistence:
+                   driver:                      orm
+                   identifier:                  id
+
+            client:                             default
+
+            types:
+                # Blog Bundle
+                post:
+                    serializer:                 { groups: ['sonata_search'] }
+                    mappings:
+                        name:                   { boost: 5 }
+                        content:                ~
+                        enabled:                { type: boolean }
+                        slug:                   ~
+                        publication_start_date: { type: date }
+                        comment_enabled:        { type: boolean }
+                        comment_close_at:       { type: date  }
+                        comment_counts:         { type: integer }
+                        created_at:             { type: date }
+                        updated_at:             { type: date }
+
+                    persistence:
+                        model:                  Application\Sonata\NewsBundle\Entity\Post
+                        provider:               ~
+
+                comment:
+                    serializer:                 { groups: ['sonata_search'] }
+                    mappings:
+                        name:                   { boost: 5 }
+                        url:                    ~
+                        email:                  ~
+                        message:                ~
+                        status:                 { type: integer }
+                        created_at:             { type: date }
+                        updated_at:             { type: date }
+
+
+                    persistence:
+                        model:                  Application\Sonata\NewsBundle\Entity\Comment
+                        provider:               ~
+
+                # User Bundle
+                user:
+                    serializer:                 { groups: ['sonata_search'] }
+                    mappings:
+                        username:               { boost: 5 }
+                        enabled:                { type: boolean }
+                        locked:                 { type: boolean }
+                        expired:                { type: boolean }
+                        expired_at:             { type: date }
+                        firstname:              ~
+                        lastname:               ~
+                        website:                ~
+                        biography:              ~
+                        gender:                 ~
+                        locale:                 ~
+                        timezone:               ~
+                        phone:                  ~
+                        facebook_uid:           ~
+                        facebook_name:          ~
+                        facebook_data:          ~
+                        twitter_uid:            ~
+                        twitter_name:           ~
+                        twitter_data:           ~
+                        gplus_uid:              ~
+                        gplus_name:             ~
+                        gplus_data:             ~
+                        created_at:             { type: date }
+                        updated_at:             { type: date }
+
+                    persistence:
+                        model:                  Application\Sonata\UserBundle\Entity\User
+                        provider:               ~
+
+                group:
+                    serializer:                 { groups: ['sonata_search'] }
+                    mappings:
+                        name:                   { boost: 5 }
+                        roles:                  ~
+                    persistence:
+                        model:                  Application\Sonata\UserBundle\Entity\Group
+                        provider:               ~
+
+                # Media Bundle
+                media:
+                    serializer:   { groups: ['sonata_search'] }
+                    mappings:
+                        name:                   ~
+                        description:            ~
+                        enabled:                { type: boolean }
+                        provider_name:          ~
+                        provider_status:        ~
+                        provider_reference:     ~
+                        # provider_metadata:      ~ # need to look how to store hash map
+                        width:                  { type: integer }
+                        height:                 { type: integer }
+                        length:                 { type: float }
+                        content_type:           ~
+                        content_size:           { type: integer }
+                        copyright:              ~
+                        author_name:            ~
+                        context:                ~
+                        cdn_is_flushable:       { type: boolean }
+                        cdn_flush_at:           { type: date }
+                        cdn_status:             { type: integer }
+                        created_at:             { type: date }
+                        updated_at:             { type: date }
+
+                    persistence:
+                        model:    Application\Sonata\MediaBundle\Entity\Media
+                        provider: ~
+
+                gallery:
+                    serializer:   { groups: ['sonata_search'] }
+                    mappings:
+                        name:                   ~
+                        context:                ~
+                        default_format:         ~
+                        enabled:                { type: boolean }
+                        created_at:             { type: date }
+                        updated_at:             { type: date }
+                    persistence:
+                        model:    Application\Sonata\MediaBundle\Entity\Gallery
+                        provider: ~
+
+                # Page Bundle
+                site:
+                    serializer:   { groups: ['sonata_search'] }
+                    mappings:
+                        enabled:                { type: boolean }
+                        name:                   ~
+                        relative_path:          ~
+                        host:                   ~
+                        enabled_from:           { type: date }
+                        enabled_to:             { type: date }
+                        is_default:             { type: boolean }
+                        locale:                 ~
+                        title:                  ~
+                        meta_keywords:          ~
+                        meta_description:       ~
+                        created_at:             { type: date }
+                        updated_at:             { type: date }
+
+                    persistence:
+                        model:    Application\Sonata\PageBundle\Entity\Site
+                        provider: ~
+
+                page:
+                    serializer:   { groups: ['sonata_search'] }
+                    mappings:
+                        #site_id:                ~
+                        #parent_id:              ~
+                        #target_id:              ~
+                        route_name:             ~
+                        page_alias:             ~
+                        type:                   ~
+                        position:               { type: integer }
+                        enabled:                { type: boolean }
+                        decorate:               { type: boolean }
+                        edited:                 { type: boolean }
+                        name:                   ~
+                        slug:                   ~
+                        url:                    ~
+                        custom_url:             ~
+                        request_method:         ~
+                        title:                  ~
+                        meta_keyword:           ~
+                        meta_description:       ~
+                        javascript:             ~
+                        stylesheet:             ~
+                        raw_headers:            ~
+                        template:               ~
+                        created_at:             { type: date }
+                        updated_at:             { type: date }
+
+                    persistence:
+                        model:    Application\Sonata\PageBundle\Entity\Page
+                        provider: ~
+
+#                snapshot:
+#                    serializer:   { groups: ['sonata_search'] }
+#                    mappings:
+#                        name:     { boost: 5 }
+#                    persistence:
+#                        model:    Application\Sonata\PageBundle\Entity\Snapshot
+#                        provider: ~
+#
+                block:
+                    serializer:   { groups: ['sonata_search'] }
+                    mappings:
+                        #parent_id:              ~
+                        #page_id:                ~
+                        name:                   ~
+                        type:                   ~
+                        #settings:               { type: array }
+                        enabled:                { type: boolean }
+                        position:               { type: integer }
+                        created_at:             { type: date }
+                        updated_at:             { type: date }
+
+                    persistence:
+                        model:    Application\Sonata\PageBundle\Entity\Block
+                        provider: ~
+
+                snapshot:
+                    serializer:   { groups: ['sonata_search'] }
+                    mappings:
+                        #site_id:                ~
+                        #page_id:                ~
+                        #parent_id:              ~
+                        #target_id:              ~
+                        route_name:             ~
+                        page_alias:             ~
+                        type:                   ~
+                        position:               { type: integer }
+                        enabled:                { type: boolean }
+                        decorate:               { type: boolean }
+                        name:                   ~
+                        url:                    ~
+                        #content:                ~
+                        publication_date_start: { type: date }
+                        publication_date_end:   { type: date }
+                        created_at:             { type: date }
+                        updated_at:             { type: date }
+
+                    persistence:
+                        model:    Application\Sonata\PageBundle\Entity\Snapshot
+                        provider: ~
+
+                # Classification Bundle
+                collection:
+                    serializer:   { groups: ['sonata_search'] }
+                    mappings:
+                        name:                   ~
+                        enabled:                { type: boolean }
+                        slug:                   ~
+                        description:            ~
+                        created_at:             { type: date }
+                        updated_at:             { type: date }
+
+                    persistence:
+                        model:    Application\Sonata\ClassificationBundle\Entity\Collection
+                        provider: ~
+
+                tag:
+                    serializer:   { groups: ['sonata_search'] }
+                    mappings:
+                        name:                   ~
+                        enabled:                { type: boolean }
+                        slug:                   ~
+                        created_at:             { type: date }
+                        updated_at:             { type: date }
+
+                    persistence:
+                        model:    Application\Sonata\ClassificationBundle\Entity\Tag
+                        provider: ~
+
+                category:
+                    serializer:   { groups: ['sonata_search'] }
+                    mappings:
+                        name:                   ~
+                        enabled:                { type: boolean }
+                        slug:                   ~
+                        created_at:             { type: date }
+                        updated_at:             { type: date }
+
+                    persistence:
+                        model:    Application\Sonata\ClassificationBundle\Entity\Category
+                        provider: ~
+
+                # Ecommerce Bundle
+                product:
+                    serializer:   { groups: ['sonata_search'] }
+                    mappings:
+                        name:     { boost: 5 }
+                    persistence:
+                        model:    Application\Sonata\ProductBundle\Entity\Product
+                        provider: ~
+
+                order:
+                    serializer:   { groups: ['sonata_search'] }
+                    mappings:
+                        name:     { boost: 5 }
+                    persistence:
+                        model:    Application\Sonata\OrderBundle\Entity\Order
+                        provider: ~
+
+                invoice:
+                    serializer:   { groups: ['sonata_search'] }
+                    mappings:
+                        name:     { boost: 5 }
+                    persistence:
+                        model:    Application\Sonata\InvoiceBundle\Entity\Invoice
+                        provider: ~
+
+                transaction:
+                    serializer:   { groups: ['sonata_search'] }
+                    mappings:
+                        name:     { boost: 5 }
+                    persistence:
+                        model:    Application\Sonata\PaymentBundle\Entity\Transaction
+                        provider: ~
