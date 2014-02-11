@@ -19,7 +19,7 @@ Feature: Products
         Then the response status code should be 200
         And the response is JSON
         And the price is <price>
-        And the stock is 2000
+        And the stock is 1974
 
         Examples:
             | identifier | quantity | price   |
