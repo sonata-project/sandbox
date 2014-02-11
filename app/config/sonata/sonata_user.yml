@@ -1,14 +1,6 @@
 #
 # more information can be found here http://sonata-project.org/bundles/user
 #
-fos_user:
-    db_driver:      orm # can be orm or odm
-    firewall_name:  main
-    user_class:     Application\Sonata\UserBundle\Entity\User
-
-    group:
-        group_class: Application\Sonata\UserBundle\Entity\Group
-
 # Enable Doctrine to map the provided entities
 doctrine:
     orm:
@@ -19,6 +11,7 @@ doctrine:
                     ApplicationSonataUserBundle: ~
                     SonataUserBundle: ~
 
+# if you change the class configuration, please also alter the fos_user.yml file
 sonata_user:
     security_acl:             false
     table:

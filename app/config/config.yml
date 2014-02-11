@@ -8,7 +8,10 @@ imports:
     # Knp Paginator
     - { resource: knp/knp_paginator.yml }
 
+    # FriendOfSymfony Bundles
     - { resource: fos/fos_rest.yml }
+    - { resource: fos/fos_user.yml }
+
     - { resource: bazinga/bazinga_hateos.yml }
 
     # Sonata Core Bundles
