@@ -237,3 +237,11 @@ h2.sonata-blog-post-title {
 .sonata-blog-post-list hr {
     margin: 20px 0px 5px 0px;
 }
+
+/*
+ * Comments
+ */
+
+.fos_comment_comment_show {
+    border-top: 1px solid #ccc;
+}

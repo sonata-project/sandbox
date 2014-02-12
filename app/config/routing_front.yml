@@ -75,3 +75,9 @@ sonata_invoice:
 blog:
     resource: '@SonataNewsBundle/Resources/config/routing/news.xml'
     prefix: /blog
+
+fos_comment:
+    type: rest
+    resource: "@FOSCommentBundle/Resources/config/routing.yml"
+    prefix: /comments
+    defaults: { _format: html }
