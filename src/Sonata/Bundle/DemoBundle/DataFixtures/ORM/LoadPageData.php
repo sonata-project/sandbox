@@ -50,6 +50,7 @@ class LoadPageData extends AbstractFixture implements ContainerAwareInterface, O
         $this->createProductPage($site);
         $this->createBasketPage($site);
         $this->createUserPage($site);
+        $this->createApiPage($site);
         $this->createLegalNotesPage($site);
 
         // Create footer pages
@@ -428,6 +429,34 @@ CONTENT
         <img src="/bundles/sonatademo/images/secure_qr_code.png" class="img-polaroid" />
         <br />
         <em>Take a shot of this QR Code with <a href="https://support.google.com/accounts/bin/answer.py?hl=en&answer=1066447">Google Authenticator</a></em>
+    </center>
+
+</div>
+
+CONTENT
+        );
+    }
+
+    /**
+     * @param SiteInterface $site
+     */
+    public function createApiPage(SiteInterface $site)
+    {
+        $this->createTextContentPage($site, 'api-landing', 'API', <<<CONTENT
+<div>
+
+    <h3>Available account</h3>
+    You can connect to the <a href="/api/doc">api documentation</a> by using the following account:<br>
+
+    <ul>
+        <li> Login - <strong>admin</strong></li>
+        <li> Password - <strong>admin</strong></li>
+    </ul>
+
+    <br />
+    <br />
+    <center>
+        <img src="/bundles/sonatademo/images/api.png" class="img-rounded" />
     </center>
 
 </div>
