@@ -64,6 +64,8 @@
         "sonata-project/ecommerce": "dev-develop",
         "sonata-project/comment-bundle": "~2.2@dev",
 
+        "friendsofsymfony/comment-bundle": "~2.0@dev",
+
         "dflydev/markdown": "~1.0",
         "simplethings/entity-audit-bundle": "~0.5",
         "willdurand/faker-bundle": "~1.0",
@@ -72,15 +74,10 @@
         "twbs/bootstrap": "v3.0.0",
 
         "stof/doctrine-extensions-bundle": "~1.1",
-        "stephpy/TimelineBundle": "2.0.*@dev",
+        "stephpy/TimelineBundle": "~2.0@dev",
         "stephpy/timeline": "~1.0@dev",
 
-        "incenteev/composer-parameter-handler": "~2.0",
-
-        "friendsofsymfony/comment-bundle": "~2.0@dev",
-        "friendsofsymfony/rest-bundle": " 1.1.*",
-        "nelmio/api-doc-bundle": "2.4.*",
-        "willdurand/hateoas-bundle": "0.2.*"
+        "incenteev/composer-parameter-handler": "~2.0"
     },
 
     "require-dev": {

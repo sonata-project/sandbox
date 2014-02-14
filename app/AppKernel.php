@@ -74,7 +74,6 @@ class AppKernel extends Kernel
             // API
             new FOS\RestBundle\FOSRestBundle(),
             new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
-            new Bazinga\Bundle\HateoasBundle\BazingaHateoasBundle(),
 
             // E-COMMERCE
             new Sonata\BasketBundle\SonataBasketBundle(),

@@ -14,7 +14,7 @@ imports:
     - { resource: fos/fos_user.yml }
     #- { resource: fos/fos_elastica.yml }
 
-    - { resource: bazinga/bazinga_hateos.yml }
+    #- { resource: bazinga/bazinga_hateos.yml }
 
     # Sonata Core Bundles
     - { resource: sonata/sonata_block.yml }
