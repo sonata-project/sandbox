@@ -77,10 +77,7 @@
 
         "incenteev/composer-parameter-handler": "~2.0",
 
-        "friendsofsymfony/comment-bundle": "~2.0@dev",
-        "friendsofsymfony/rest-bundle": " 1.1.*",
-        "nelmio/api-doc-bundle": "2.4.*",
-        "willdurand/hateoas-bundle": "0.2.*"
+        "friendsofsymfony/comment-bundle": "~2.0@dev"
     },
 
     "require-dev": {
