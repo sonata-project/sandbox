@@ -83,10 +83,10 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
             $dummy->setSku('dummy_'.$i);
             $dummy->setName(sprintf('Dummy %d', $i));
             $dummy->setSlug('dummy');
-            $dummy->setDescription('Dummy product. We use it to test our catalog capabilities.');
+            $dummy->setDescription('<p>Dummy product. We use it to test our catalog capabilities.</p>'.$this->getLorem());
             $dummy->setRawDescription('<p>Dummy product. We use it to test our catalog capabilities.</p>'.$this->getLorem());
             $dummy->setPriceIncludingVat(true);
-            $dummy->setShortDescription('Dummy product. We use it to test our catalog capabilities.');
+            $dummy->setShortDescription('<p>Dummy product. We use it to test our catalog capabilities.</p>');
             $dummy->setRawShortDescription('<p>Dummy product. We use it to test our catalog capabilities.</p>');
             $dummy->setDescriptionFormatter('richhtml');
             $dummy->setShortDescriptionFormatter('richhtml');
@@ -113,10 +113,10 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $bluePhpPlush->setSku('php-plush-blue');
         $bluePhpPlush->setName('Blue PHP plush');
         $bluePhpPlush->setSlug('php-plush-blue');
-        $bluePhpPlush->setDescription('The PHP plush toy is based on the PHP world-famous elephant from Vincent Pontier (aka el roubio): Vincent evolved the logo from the three letters into an animal. More informations about Vincent http://www.elroubio.net/.');
-        $bluePhpPlush->setRawDescription('The PHP plush toy is based on the PHP world-famous elephant from Vincent Pontier (aka el roubio): Vincent evolved the logo from the three letters into an animal. More informations about Vincent http://www.elroubio.net/.');
+        $bluePhpPlush->setDescription('<p>The PHP plush toy is based on the PHP world-famous elephant from Vincent Pontier (aka el roubio): Vincent evolved the logo from the three letters into an animal. More informations about Vincent <a href="http://www.elroubio.net/">http://www.elroubio.net/</a>.</p>');
+        $bluePhpPlush->setRawDescription('<p>The PHP plush toy is based on the PHP world-famous elephant from Vincent Pontier (aka el roubio): Vincent evolved the logo from the three letters into an animal. More informations about Vincent <a href="http://www.elroubio.net/">http://www.elroubio.net/</a>.</p>');
         $bluePhpPlush->setPriceIncludingVat(false);
-        $bluePhpPlush->setShortDescription('The PHP plush toy is based on the PHP world-famous elephant from Vincent Pontier.');
+        $bluePhpPlush->setShortDescription('<p>The PHP plush toy is based on the PHP world-famous elephant from Vincent Pontier.</p>');
         $bluePhpPlush->setRawShortDescription('<p>The PHP plush toy is based on the PHP world-famous elephant from Vincent Pontier.</p>');
         $bluePhpPlush->setDescriptionFormatter('richhtml');
         $bluePhpPlush->setShortDescriptionFormatter('richhtml');
@@ -144,10 +144,10 @@ EOF
         $greenPhpPlush->setSku('php-plush-green');
         $greenPhpPlush->setName('Green PHP plush');
         $greenPhpPlush->setSlug('php-plush-green');
-        $greenPhpPlush->setDescription('The PHP plush toy is based on the PHP world-famous elephant from Vincent Pontier (aka el roubio): Vincent evolved the logo from the three letters into an animal. More informations about Vincent http://www.elroubio.net/.');
-        $greenPhpPlush->setRawDescription('The PHP plush toy is based on the PHP world-famous elephant from Vincent Pontier (aka el roubio): Vincent evolved the logo from the three letters into an animal. More informations about Vincent http://www.elroubio.net/.');
+        $greenPhpPlush->setDescription('<p>The PHP plush toy is based on the PHP world-famous elephant from Vincent Pontier (aka el roubio): Vincent evolved the logo from the three letters into an animal. More informations about Vincent <a href="http://www.elroubio.net/">http://www.elroubio.net/</a>.</p>');
+        $greenPhpPlush->setRawDescription('<p>The PHP plush toy is based on the PHP world-famous elephant from Vincent Pontier (aka el roubio): Vincent evolved the logo from the three letters into an animal. More informations about Vincent <a href="http://www.elroubio.net/">http://www.elroubio.net/</a>.</p>');
         $greenPhpPlush->setPriceIncludingVat(false);
-        $greenPhpPlush->setShortDescription('The PHP plush toy is based on the PHP world-famous elephant from Vincent Pontier.');
+        $greenPhpPlush->setShortDescription('<p>The PHP plush toy is based on the PHP world-famous elephant from Vincent Pontier.</p>');
         $greenPhpPlush->setRawShortDescription('<p>The PHP plush toy is based on the PHP world-famous elephant from Vincent Pontier.</p>');
         $greenPhpPlush->setDescriptionFormatter('richhtml');
         $greenPhpPlush->setShortDescriptionFormatter('richhtml');
@@ -175,10 +175,10 @@ EOF
         $orangePhpPlush->setSku('php-plush-orange');
         $orangePhpPlush->setName('Orange PHP plush');
         $orangePhpPlush->setSlug('php-plush-orange');
-        $orangePhpPlush->setDescription('The PHP plush toy is based on the PHP world-famous elephant from Vincent Pontier (aka el roubio): Vincent evolved the logo from the three letters into an animal. More informations about Vincent http://www.elroubio.net/.');
-        $orangePhpPlush->setRawDescription('The PHP plush toy is based on the PHP world-famous elephant from Vincent Pontier (aka el roubio): Vincent evolved the logo from the three letters into an animal. More informations about Vincent http://www.elroubio.net/.');
+        $orangePhpPlush->setDescription('<p>The PHP plush toy is based on the PHP world-famous elephant from Vincent Pontier (aka el roubio): Vincent evolved the logo from the three letters into an animal. More informations about Vincent <a href="http://www.elroubio.net/">http://www.elroubio.net/</a>.</p>');
+        $orangePhpPlush->setRawDescription('<p>The PHP plush toy is based on the PHP world-famous elephant from Vincent Pontier (aka el roubio): Vincent evolved the logo from the three letters into an animal. More informations about Vincent <a href="http://www.elroubio.net/">http://www.elroubio.net/</a>.</p>');
         $orangePhpPlush->setPriceIncludingVat(false);
-        $orangePhpPlush->setShortDescription('The PHP plush toy is based on the PHP world-famous elephant from Vincent Pontier.');
+        $orangePhpPlush->setShortDescription('<p>The PHP plush toy is based on the PHP world-famous elephant from Vincent Pontier.</p>');
         $orangePhpPlush->setRawShortDescription('<p>The PHP plush toy is based on the PHP world-famous elephant from Vincent Pontier.</p>');
         $orangePhpPlush->setDescriptionFormatter('richhtml');
         $orangePhpPlush->setShortDescriptionFormatter('richhtml');
@@ -206,10 +206,10 @@ EOF
         $phpMug->setSku('PHP_MUG');
         $phpMug->setName('PHP mug');
         $phpMug->setSlug('php-mug');
-        $phpMug->setDescription('You love coffee and PHP ? This mug is for you.');
-        $phpMug->setRawDescription('You love coffee and PHP ? This mug is for you.'.$this->getLorem());
+        $phpMug->setDescription('<p>You love coffee and PHP ? This mug is for you.</p>'.$this->getLorem());
+        $phpMug->setRawDescription('<p>You love coffee and PHP ? This mug is for you.</p>'.$this->getLorem());
         $phpMug->setPriceIncludingVat(true);
-        $phpMug->setShortDescription('You love coffee and PHP ? This mug is for you.');
+        $phpMug->setShortDescription('<p>You love coffee and PHP ? This mug is for you.</p>');
         $phpMug->setRawShortDescription('<p>You love coffee and PHP ? This mug is for you.</p>');
         $phpMug->setDescriptionFormatter('richhtml');
         $phpMug->setShortDescriptionFormatter('richhtml');
@@ -232,11 +232,11 @@ EOF
         $phpTeeShirt->setSku('PHP_TSHIRT');
         $phpTeeShirt->setName('PHP tee-shirt');
         $phpTeeShirt->setSlug('php-t-shirt');
-        $phpTeeShirt->setDescription('A nice PHP tee-shirt, best clothe ever to pick up girls.');
-        $phpTeeShirt->setRawDescription('A nice PHP tee-shirt, best clothe ever to pick up girls.'.$this->getLorem());
+        $phpTeeShirt->setDescription('<p>A nice PHP tee-shirt, best clothe ever to pick up girls.</p>'.$this->getLorem());
+        $phpTeeShirt->setRawDescription('<p>A nice PHP tee-shirt, best clothe ever to pick up girls.</p>'.$this->getLorem());
 
         $phpTeeShirt->setPriceIncludingVat(true);
-        $phpTeeShirt->setShortDescription('A nice PHP tee-shirt, best clothe ever to pick up girls.');
+        $phpTeeShirt->setShortDescription('<p>A nice PHP tee-shirt, best clothe ever to pick up girls.</p>');
         $phpTeeShirt->setRawShortDescription('<p>A nice PHP tee-shirt, best clothe ever to pick up girls.</p>');
         $phpTeeShirt->setDescriptionFormatter('richhtml');
         $phpTeeShirt->setShortDescriptionFormatter('richhtml');
@@ -258,10 +258,10 @@ EOF
         $maximumAir->setSku('MAXIMUM_AIR_SONATA');
         $maximumAir->setName('Maximum Air Sonata Limited Edition');
         $maximumAir->setSlug('maximum-air-sonata-limited-edition');
-        $maximumAir->setDescription('Get this limited edition of the MAXIMUM AIR SONATA and fly over PHP bugs. True story.');
-        $maximumAir->setRawDescription('Get this limited edition of the MAXIMUM AIR SONATA and fly over PHP bugs. True story.'.$this->getLorem());
+        $maximumAir->setDescription('<p>Get this limited edition of the MAXIMUM AIR SONATA and fly over PHP bugs. True story.</p>'.$this->getLorem());
+        $maximumAir->setRawDescription('<p>Get this limited edition of the MAXIMUM AIR SONATA and fly over PHP bugs. True story.</p>'.$this->getLorem());
         $maximumAir->setPriceIncludingVat(true);
-        $maximumAir->setShortDescription('Get this limited edition of the MAXIMUM AIR SONATA and fly over PHP bugs. True story.');
+        $maximumAir->setShortDescription('<p>Get this limited edition of the MAXIMUM AIR SONATA and fly over PHP bugs. True story.</p>');
         $maximumAir->setRawShortDescription('<p>Get this limited edition of the MAXIMUM AIR SONATA and fly over PHP bugs. True story.</p>');
         $maximumAir->setDescriptionFormatter('richhtml');
         $maximumAir->setShortDescriptionFormatter('richhtml');
@@ -283,10 +283,10 @@ EOF
         $maximumAirUlt->setSku('MAXIMUM_AIR_SONATA_ULTIMATE');
         $maximumAirUlt->setName('Maximum Air Sonata ULTIMATE Edition');
         $maximumAirUlt->setSlug('maximum-air-sonata-ultimate-edition');
-        $maximumAirUlt->setDescription('Get this ULTIMATE edition of the MAXIMUM AIR SONATA and fly over PHP bugs. True story. Even more powerful than the limited edition. Note that this product does not contain any media for behat testing purpose.');
-        $maximumAirUlt->setRawDescription('Get this ULTIMATE edition of the MAXIMUM AIR SONATA and fly over PHP bugs. True story. Even more powerful than the limited edition. Note that this product does not contain any media for behat testing purpose.'.$this->getLorem());
+        $maximumAirUlt->setDescription('<p>Get this ULTIMATE edition of the MAXIMUM AIR SONATA and fly over PHP bugs. True story. Even more powerful than the limited edition. Note that this product does not contain any media for behat testing purpose.</p>'.$this->getLorem());
+        $maximumAirUlt->setRawDescription('<p>Get this ULTIMATE edition of the MAXIMUM AIR SONATA and fly over PHP bugs. True story. Even more powerful than the limited edition. Note that this product does not contain any media for behat testing purpose.</p>'.$this->getLorem());
         $maximumAirUlt->setPriceIncludingVat(true);
-        $maximumAirUlt->setShortDescription('Get this ULTIMATE edition of the MAXIMUM AIR SONATA and fly over PHP bugs. True story. Even more powerful than the limited edition. Note that this product does not contain any media for behat testing purpose.');
+        $maximumAirUlt->setShortDescription('<p>Get this ULTIMATE edition of the MAXIMUM AIR SONATA and fly over PHP bugs. True story. Even more powerful than the limited edition. Note that this product does not contain any media for behat testing purpose.</p>');
         $maximumAirUlt->setRawShortDescription('<p>Get this ULTIMATE edition of the MAXIMUM AIR SONATA and fly over PHP bugs. True story. Even more powerful than the limited edition. Note that this product does not contain any media for behat testing purpose.</p>');
         $maximumAirUlt->setDescriptionFormatter('richhtml');
         $maximumAirUlt->setShortDescriptionFormatter('richhtml');
@@ -311,38 +311,38 @@ EOF
         $japanTravel->setSlug('travel-japan-tour');
         $japanTravel->setDescription(
             <<<EOF
-Tokyo (東京 Tōkyō?, "Eastern Capital") (Japanese: [toːkʲoː], English /ˈtoʊki.oʊ/), officially Tokyo Metropolis (東京都 Tōkyō-to?),[4] is one of the 47 prefectures of Japan.[5] Tokyo is the capital of Japan, the centre of the Greater Tokyo Area, and the largest metropolitan area in the world.[6] It is the seat of the Japanese government and the Imperial Palace, and the home of the Japanese Imperial Family. Tokyo is in the Kantō region on the southeastern side of the main island Honshu and includes the Izu Islands and Ogasawara Islands.[7] Tokyo Metropolis was formed in 1943 from the merger of the former Tokyo Prefecture (東京府 Tōkyō-fu?) and the city of Tokyo (東京市 Tōkyō-shi?).
+<p>Tokyo (東京 Tōkyō?, "Eastern Capital") (Japanese: [toːkʲoː], English /ˈtoʊki.oʊ/), officially Tokyo Metropolis (東京都 Tōkyō-to?),[4] is one of the 47 prefectures of Japan.[5] Tokyo is the capital of Japan, the centre of the Greater Tokyo Area, and the largest metropolitan area in the world.[6] It is the seat of the Japanese government and the Imperial Palace, and the home of the Japanese Imperial Family. Tokyo is in the Kantō region on the southeastern side of the main island Honshu and includes the Izu Islands and Ogasawara Islands.[7] Tokyo Metropolis was formed in 1943 from the merger of the former Tokyo Prefecture (東京府 Tōkyō-fu?) and the city of Tokyo (東京市 Tōkyō-shi?).</p>
 
-Tokyo is often referred to and thought of as a city, but is officially known as a "metropolitan prefecture", which differs from a city. The Tokyo metropolitan government administers the 23 Special Wards of Tokyo (each governed as an individual city), which cover the area that was formerly the City of Tokyo before it merged and became the subsequent metropolitan prefecture in 1943. The metropolitan government also administers 39 municipalities in the western part of the prefecture and the two outlying island chains. The population of the special wards is over 9 million people, with the total population of the prefecture exceeding 13 million. The prefecture is part of the world's most populous metropolitan area with upwards of 35 million people and the world's largest urban agglomeration economy with a GDP of US$1.479 trillion at purchasing power parity, ahead of the New York metropolitan area in 2008. The city hosts 51 of the Fortune Global 500 companies, the highest number of any city.[8]
+<p>Tokyo is often referred to and thought of as a city, but is officially known as a "metropolitan prefecture", which differs from a city. The Tokyo metropolitan government administers the 23 Special Wards of Tokyo (each governed as an individual city), which cover the area that was formerly the City of Tokyo before it merged and became the subsequent metropolitan prefecture in 1943. The metropolitan government also administers 39 municipalities in the western part of the prefecture and the two outlying island chains. The population of the special wards is over 9 million people, with the total population of the prefecture exceeding 13 million. The prefecture is part of the world's most populous metropolitan area with upwards of 35 million people and the world's largest urban agglomeration economy with a GDP of US$1.479 trillion at purchasing power parity, ahead of the New York metropolitan area in 2008. The city hosts 51 of the Fortune Global 500 companies, the highest number of any city.[8]</p>
 Switzerland
 
-The city is considered an alpha+ world city, listed by the GaWC's 2008 inventory[9] and ranked fourth among global cities by A.T. Kearney's 2012 Global Cities Index.[10] In 2012, Tokyo was named the most expensive city for expatriates, according to the Mercer and Economist Intelligence Unit cost-of-living surveys,[11] and in 2009 named the third Most Liveable City and the World’s Most Livable Megalopolis by the magazine Monocle.[12] The Michelin Guide has awarded Tokyo by far the most Michelin stars of any city in the world.[13][14]
-Tokyo hosted the Summer Olympic Games in 1964, and is scheduled to host the games again in 2020.[15]
+<p>The city is considered an alpha+ world city, listed by the GaWC's 2008 inventory[9] and ranked fourth among global cities by A.T. Kearney's 2012 Global Cities Index.[10] In 2012, Tokyo was named the most expensive city for expatriates, according to the Mercer and Economist Intelligence Unit cost-of-living surveys,[11] and in 2009 named the third Most Liveable City and the World’s Most Livable Megalopolis by the magazine Monocle.[12] The Michelin Guide has awarded Tokyo by far the most Michelin stars of any city in the world.[13][14]
+Tokyo hosted the Summer Olympic Games in 1964, and is scheduled to host the games again in 2020.[15]</p>
 
-References - http://en.wikipedia.org/wiki/Tokyo
+<p>References - <a href="http://en.wikipedia.org/wiki/Tokyo" target="_blank">http://en.wikipedia.org/wiki/Tokyo</a></p>
 EOF
 
         );
         $japanTravel->setRawDescription(
             <<<EOF
-Tokyo (東京 Tōkyō?, "Eastern Capital") (Japanese: [toːkʲoː], English /ˈtoʊki.oʊ/), officially Tokyo Metropolis (東京都 Tōkyō-to?),[4] is one of the 47 prefectures of Japan.[5] Tokyo is the capital of Japan, the centre of the Greater Tokyo Area, and the largest metropolitan area in the world.[6] It is the seat of the Japanese government and the Imperial Palace, and the home of the Japanese Imperial Family. Tokyo is in the Kantō region on the southeastern side of the main island Honshu and includes the Izu Islands and Ogasawara Islands.[7] Tokyo Metropolis was formed in 1943 from the merger of the former Tokyo Prefecture (東京府 Tōkyō-fu?) and the city of Tokyo (東京市 Tōkyō-shi?).
+<p>Tokyo (東京 Tōkyō?, "Eastern Capital") (Japanese: [toːkʲoː], English /ˈtoʊki.oʊ/), officially Tokyo Metropolis (東京都 Tōkyō-to?),[4] is one of the 47 prefectures of Japan.[5] Tokyo is the capital of Japan, the centre of the Greater Tokyo Area, and the largest metropolitan area in the world.[6] It is the seat of the Japanese government and the Imperial Palace, and the home of the Japanese Imperial Family. Tokyo is in the Kantō region on the southeastern side of the main island Honshu and includes the Izu Islands and Ogasawara Islands.[7] Tokyo Metropolis was formed in 1943 from the merger of the former Tokyo Prefecture (東京府 Tōkyō-fu?) and the city of Tokyo (東京市 Tōkyō-shi?).</p>
 
-Tokyo is often referred to and thought of as a city, but is officially known as a "metropolitan prefecture", which differs from a city. The Tokyo metropolitan government administers the 23 Special Wards of Tokyo (each governed as an individual city), which cover the area that was formerly the City of Tokyo before it merged and became the subsequent metropolitan prefecture in 1943. The metropolitan government also administers 39 municipalities in the western part of the prefecture and the two outlying island chains. The population of the special wards is over 9 million people, with the total population of the prefecture exceeding 13 million. The prefecture is part of the world's most populous metropolitan area with upwards of 35 million people and the world's largest urban agglomeration economy with a GDP of US$1.479 trillion at purchasing power parity, ahead of the New York metropolitan area in 2008. The city hosts 51 of the Fortune Global 500 companies, the highest number of any city.[8]
+<p>Tokyo is often referred to and thought of as a city, but is officially known as a "metropolitan prefecture", which differs from a city. The Tokyo metropolitan government administers the 23 Special Wards of Tokyo (each governed as an individual city), which cover the area that was formerly the City of Tokyo before it merged and became the subsequent metropolitan prefecture in 1943. The metropolitan government also administers 39 municipalities in the western part of the prefecture and the two outlying island chains. The population of the special wards is over 9 million people, with the total population of the prefecture exceeding 13 million. The prefecture is part of the world's most populous metropolitan area with upwards of 35 million people and the world's largest urban agglomeration economy with a GDP of US$1.479 trillion at purchasing power parity, ahead of the New York metropolitan area in 2008. The city hosts 51 of the Fortune Global 500 companies, the highest number of any city.[8]</p>
 Switzerland
 
-The city is considered an alpha+ world city, listed by the GaWC's 2008 inventory[9] and ranked fourth among global cities by A.T. Kearney's 2012 Global Cities Index.[10] In 2012, Tokyo was named the most expensive city for expatriates, according to the Mercer and Economist Intelligence Unit cost-of-living surveys,[11] and in 2009 named the third Most Liveable City and the World’s Most Livable Megalopolis by the magazine Monocle.[12] The Michelin Guide has awarded Tokyo by far the most Michelin stars of any city in the world.[13][14]
-Tokyo hosted the Summer Olympic Games in 1964, and is scheduled to host the games again in 2020.[15]
+<p>The city is considered an alpha+ world city, listed by the GaWC's 2008 inventory[9] and ranked fourth among global cities by A.T. Kearney's 2012 Global Cities Index.[10] In 2012, Tokyo was named the most expensive city for expatriates, according to the Mercer and Economist Intelligence Unit cost-of-living surveys,[11] and in 2009 named the third Most Liveable City and the World’s Most Livable Megalopolis by the magazine Monocle.[12] The Michelin Guide has awarded Tokyo by far the most Michelin stars of any city in the world.[13][14]
+Tokyo hosted the Summer Olympic Games in 1964, and is scheduled to host the games again in 2020.[15]</p>
 
-References - http://en.wikipedia.org/wiki/Tokyo
+<p>References - <a href="http://en.wikipedia.org/wiki/Tokyo" target="_blank">http://en.wikipedia.org/wiki/Tokyo</a></p>
 EOF
 
         );
         $japanTravel->setPriceIncludingVat(false);
         $japanTravel->setShortDescription(
             <<<EOF
-Tokyo (東京 Tōkyō?, "Eastern Capital") (Japanese: [toːkʲoː], English /ˈtoʊki.oʊ/), officially Tokyo Metropolis (東京都 Tōkyō-to?),[4] is one of the 47 prefectures of Japan.[5] Tokyo is the capital of Japan, the centre of the Greater Tokyo Area, and the largest metropolitan area in the world.[6] It is the seat of the Japanese government and the Imperial Palace, and the home of the Japanese Imperial Family. Tokyo is in the Kantō region on the southeastern side of the main island Honshu and includes the Izu Islands and Ogasawara Islands.[7] Tokyo Metropolis was formed in 1943 from the merger of the former Tokyo Prefecture (東京府 Tōkyō-fu?) and the city of Tokyo (東京市 Tōkyō-shi?).
+<p>Tokyo (東京 Tōkyō?, "Eastern Capital") (Japanese: [toːkʲoː], English /ˈtoʊki.oʊ/), officially Tokyo Metropolis (東京都 Tōkyō-to?),[4] is one of the 47 prefectures of Japan.[5] Tokyo is the capital of Japan, the centre of the Greater Tokyo Area, and the largest metropolitan area in the world.[6] It is the seat of the Japanese government and the Imperial Palace, and the home of the Japanese Imperial Family. Tokyo is in the Kantō region on the southeastern side of the main island Honshu and includes the Izu Islands and Ogasawara Islands.[7] Tokyo Metropolis was formed in 1943 from the merger of the former Tokyo Prefecture (東京府 Tōkyō-fu?) and the city of Tokyo (東京市 Tōkyō-shi?).</p>
 
-References - http://en.wikipedia.org/wiki/Tokyo
+<p>References - <a href="http://en.wikipedia.org/wiki/Tokyo" target="_blank">http://en.wikipedia.org/wiki/Tokyo</a></p>
 EOF
 
         );
@@ -445,38 +445,38 @@ EOF
         $quebecTravel->setSlug('travel-quebec-tour');
         $quebecTravel->setDescription(
             <<<EOF
-Quebec (Listeni/kwɨˈbɛk/ or /kɨˈbɛk/; French: Québec [kebɛk] ( listen))[7] is a province in east-central Canada.[8][9] It is the only Canadian province that has a predominantly French-speaking population, and the only one to have French as its sole provincial official language.
+<p>Quebec (Listeni/kwɨˈbɛk/ or /kɨˈbɛk/; French: Québec [kebɛk] ( listen))[7] is a province in east-central Canada.[8][9] It is the only Canadian province that has a predominantly French-speaking population, and the only one to have French as its sole provincial official language.</p>
 
-Quebec is Canada's largest province by area and its second-largest administrative division; only the territory of Nunavut is larger. It is bordered to the west by the province of Ontario, James Bay and Hudson Bay, to the north by Hudson Strait and Ungava Bay, to the east by the Gulf of Saint Lawrence and the provinces of Newfoundland and Labrador and New Brunswick. It is bordered on the south by the US states of Maine, New Hampshire, Vermont, and New York. It also shares maritime borders with Nunavut, Prince Edward Island, and Nova Scotia.
+<p>Quebec is Canada's largest province by area and its second-largest administrative division; only the territory of Nunavut is larger. It is bordered to the west by the province of Ontario, James Bay and Hudson Bay, to the north by Hudson Strait and Ungava Bay, to the east by the Gulf of Saint Lawrence and the provinces of Newfoundland and Labrador and New Brunswick. It is bordered on the south by the US states of Maine, New Hampshire, Vermont, and New York. It also shares maritime borders with Nunavut, Prince Edward Island, and Nova Scotia.</p>
 
-Quebec is Canada's second most populous province, after Ontario. Most inhabitants live in urban areas near the Saint Lawrence River between Montreal and Quebec City, the capital. English-speaking communities and English-language institutions are concentrated in the west of the island of Montreal but are also significantly present in the Outaouais, Eastern Townships, and Gaspé regions. The Nord-du-Québec region, occupying the northern half of the province, is sparsely populated and inhabited primarily by Aboriginal peoples.[10]
+<p>Quebec is Canada's second most populous province, after Ontario. Most inhabitants live in urban areas near the Saint Lawrence River between Montreal and Quebec City, the capital. English-speaking communities and English-language institutions are concentrated in the west of the island of Montreal but are also significantly present in the Outaouais, Eastern Townships, and Gaspé regions. The Nord-du-Québec region, occupying the northern half of the province, is sparsely populated and inhabited primarily by Aboriginal peoples.[10]</p>
 
-Quebec independence debates have played a large role in the politics of the province. Parti Québécois governments held referendums on sovereignty in 1980 and 1995; both were voted down by voters, the latter defeated by a very narrow margin.[11] In 2006, the House of Commons of Canada passed a symbolic motion recognizing the "Québécois as a nation within a united Canada."[12][13]
+<p>Quebec independence debates have played a large role in the politics of the province. Parti Québécois governments held referendums on sovereignty in 1980 and 1995; both were voted down by voters, the latter defeated by a very narrow margin.[11] In 2006, the House of Commons of Canada passed a symbolic motion recognizing the "Québécois as a nation within a united Canada."[12][13]</p>
 
-References - http://en.wikipedia.org/wiki/Quebec
+<p>References - <a href="http://en.wikipedia.org/wiki/Quebec" target="_blank">http://en.wikipedia.org/wiki/Quebec</a></p>
 EOF
 
         );
         $quebecTravel->setRawDescription(
             <<<EOF
-Quebec (Listeni/kwɨˈbɛk/ or /kɨˈbɛk/; French: Québec [kebɛk] ( listen))[7] is a province in east-central Canada.[8][9] It is the only Canadian province that has a predominantly French-speaking population, and the only one to have French as its sole provincial official language.
+<p>Quebec (Listeni/kwɨˈbɛk/ or /kɨˈbɛk/; French: Québec [kebɛk] ( listen))[7] is a province in east-central Canada.[8][9] It is the only Canadian province that has a predominantly French-speaking population, and the only one to have French as its sole provincial official language.</p>
 
-Quebec is Canada's largest province by area and its second-largest administrative division; only the territory of Nunavut is larger. It is bordered to the west by the province of Ontario, James Bay and Hudson Bay, to the north by Hudson Strait and Ungava Bay, to the east by the Gulf of Saint Lawrence and the provinces of Newfoundland and Labrador and New Brunswick. It is bordered on the south by the US states of Maine, New Hampshire, Vermont, and New York. It also shares maritime borders with Nunavut, Prince Edward Island, and Nova Scotia.
+<p>Quebec is Canada's largest province by area and its second-largest administrative division; only the territory of Nunavut is larger. It is bordered to the west by the province of Ontario, James Bay and Hudson Bay, to the north by Hudson Strait and Ungava Bay, to the east by the Gulf of Saint Lawrence and the provinces of Newfoundland and Labrador and New Brunswick. It is bordered on the south by the US states of Maine, New Hampshire, Vermont, and New York. It also shares maritime borders with Nunavut, Prince Edward Island, and Nova Scotia.</p>
 
-Quebec is Canada's second most populous province, after Ontario. Most inhabitants live in urban areas near the Saint Lawrence River between Montreal and Quebec City, the capital. English-speaking communities and English-language institutions are concentrated in the west of the island of Montreal but are also significantly present in the Outaouais, Eastern Townships, and Gaspé regions. The Nord-du-Québec region, occupying the northern half of the province, is sparsely populated and inhabited primarily by Aboriginal peoples.[10]
+<p>Quebec is Canada's second most populous province, after Ontario. Most inhabitants live in urban areas near the Saint Lawrence River between Montreal and Quebec City, the capital. English-speaking communities and English-language institutions are concentrated in the west of the island of Montreal but are also significantly present in the Outaouais, Eastern Townships, and Gaspé regions. The Nord-du-Québec region, occupying the northern half of the province, is sparsely populated and inhabited primarily by Aboriginal peoples.[10]</p>
 
-Quebec independence debates have played a large role in the politics of the province. Parti Québécois governments held referendums on sovereignty in 1980 and 1995; both were voted down by voters, the latter defeated by a very narrow margin.[11] In 2006, the House of Commons of Canada passed a symbolic motion recognizing the "Québécois as a nation within a united Canada."[12][13]
+<p>Quebec independence debates have played a large role in the politics of the province. Parti Québécois governments held referendums on sovereignty in 1980 and 1995; both were voted down by voters, the latter defeated by a very narrow margin.[11] In 2006, the House of Commons of Canada passed a symbolic motion recognizing the "Québécois as a nation within a united Canada."[12][13]</p>
 
-References - http://en.wikipedia.org/wiki/Quebec
+<p>References - <a href="http://en.wikipedia.org/wiki/Quebec" target="_blank">http://en.wikipedia.org/wiki/Quebec</a></p>
 EOF
 
         );
         $quebecTravel->setPriceIncludingVat(false);
         $quebecTravel->setShortDescription(
             <<<EOF
-Quebec (Listeni/kwɨˈbɛk/ or /kɨˈbɛk/; French: Québec [kebɛk] ( listen))[7] is a province in east-central Canada.[8][9] It is the only Canadian province that has a predominantly French-speaking population, and the only one to have French as its sole provincial official language.
+<p>Quebec (Listeni/kwɨˈbɛk/ or /kɨˈbɛk/; French: Québec [kebɛk] ( listen))[7] is a province in east-central Canada.[8][9] It is the only Canadian province that has a predominantly French-speaking population, and the only one to have French as its sole provincial official language.</p>
 
-References - http://en.wikipedia.org/wiki/Quebec
+<p>References - <a href="http://en.wikipedia.org/wiki/Quebec" target="_blank">http://en.wikipedia.org/wiki/Quebec</a></p>
 EOF
 
         );
@@ -593,34 +593,34 @@ EOF
         $parisTravel->setSlug('travel-paris-tour');
         $parisTravel->setDescription(
             <<<EOF
-Paris (English /ˈpærɪs/, Listeni/ˈpɛrɪs/; French: [paʁi] ( listen)) is the capital and most populous city of France. It is situated on the River Seine, in the north of the country, at the heart of the Île-de-France region. Within its administrative limits (the 20 arrondissements), the city had 2,234,105 inhabitants in 2009 while its metropolitan area is one of the largest population centres in Europe with more than 12 million inhabitants.
+<p>Paris (English /ˈpærɪs/, Listeni/ˈpɛrɪs/; French: [paʁi] ( listen)) is the capital and most populous city of France. It is situated on the River Seine, in the north of the country, at the heart of the Île-de-France region. Within its administrative limits (the 20 arrondissements), the city had 2,234,105 inhabitants in 2009 while its metropolitan area is one of the largest population centres in Europe with more than 12 million inhabitants.</p>
 
-An important settlement for more than two millennia, by the late 12th century Paris had become a walled cathedral city that was one of Europe's foremost centres of learning and the arts and the largest city in the Western world until the turn of the 18th century. Paris was the focal point for many important political events throughout its history, including the French Revolution. Today it is one of the world's leading business and cultural centres, and its influence in politics, education, entertainment, media, science, fashion and the arts all contribute to its status as one of the world's major cities. The city has one of the largest GDPs in the world, €607 billion (US$845 billion) as of 2011, and as a result of its high concentration of national and international political, cultural and scientific institutions is one of the world's leading tourist destinations. The Paris Region hosts the world headquarters of 30 of the Fortune Global 500 companies[6] in several business districts, notably La Défense, the largest dedicated business district in Europe.[7]
+<p>An important settlement for more than two millennia, by the late 12th century Paris had become a walled cathedral city that was one of Europe's foremost centres of learning and the arts and the largest city in the Western world until the turn of the 18th century. Paris was the focal point for many important political events throughout its history, including the French Revolution. Today it is one of the world's leading business and cultural centres, and its influence in politics, education, entertainment, media, science, fashion and the arts all contribute to its status as one of the world's major cities. The city has one of the largest GDPs in the world, €607 billion (US$845 billion) as of 2011, and as a result of its high concentration of national and international political, cultural and scientific institutions is one of the world's leading tourist destinations. The Paris Region hosts the world headquarters of 30 of the Fortune Global 500 companies[6] in several business districts, notably La Défense, the largest dedicated business district in Europe.[7]</p>
 
-Centuries of cultural and political development have brought Paris a variety of museums, theatres, monuments and architectural styles. Many of its masterpieces such as the Louvre and the Arc de Triomphe are iconic buildings, especially its internationally recognized symbol, the Eiffel Tower. Long regarded as an international centre for the arts, works by history's most famous painters can be found in the Louvre, the Musée d'Orsay and its many other museums and galleries. Paris is a global hub of fashion and has been referred to as the "international capital of style", noted for its haute couture tailoring, its high-end boutiques, and the twice-yearly Paris Fashion Week. It is world renowned for its haute cuisine, attracting many of the world's leading chefs. Many of France's most prestigious universities and Grandes Écoles are in Paris or its suburbs, and France's major newspapers Le Monde, Le Figaro, Libération are based in the city, and Le Parisien in Saint-Ouen near Paris.
+<p>Centuries of cultural and political development have brought Paris a variety of museums, theatres, monuments and architectural styles. Many of its masterpieces such as the Louvre and the Arc de Triomphe are iconic buildings, especially its internationally recognized symbol, the Eiffel Tower. Long regarded as an international centre for the arts, works by history's most famous painters can be found in the Louvre, the Musée d'Orsay and its many other museums and galleries. Paris is a global hub of fashion and has been referred to as the "international capital of style", noted for its haute couture tailoring, its high-end boutiques, and the twice-yearly Paris Fashion Week. It is world renowned for its haute cuisine, attracting many of the world's leading chefs. Many of France's most prestigious universities and Grandes Écoles are in Paris or its suburbs, and France's major newspapers Le Monde, Le Figaro, Libération are based in the city, and Le Parisien in Saint-Ouen near Paris.</p>
 
-References - http://en.wikipedia.org/wiki/Paris
+<p>References - <a href="http://en.wikipedia.org/wiki/Paris" target="_blank">http://en.wikipedia.org/wiki/Paris</a></p>
 EOF
 
         );
         $parisTravel->setRawDescription(
             <<<EOF
-Paris (English /ˈpærɪs/, Listeni/ˈpɛrɪs/; French: [paʁi] ( listen)) is the capital and most populous city of France. It is situated on the River Seine, in the north of the country, at the heart of the Île-de-France region. Within its administrative limits (the 20 arrondissements), the city had 2,234,105 inhabitants in 2009 while its metropolitan area is one of the largest population centres in Europe with more than 12 million inhabitants.
+<p>Paris (English /ˈpærɪs/, Listeni/ˈpɛrɪs/; French: [paʁi] ( listen)) is the capital and most populous city of France. It is situated on the River Seine, in the north of the country, at the heart of the Île-de-France region. Within its administrative limits (the 20 arrondissements), the city had 2,234,105 inhabitants in 2009 while its metropolitan area is one of the largest population centres in Europe with more than 12 million inhabitants.</p>
 
-An important settlement for more than two millennia, by the late 12th century Paris had become a walled cathedral city that was one of Europe's foremost centres of learning and the arts and the largest city in the Western world until the turn of the 18th century. Paris was the focal point for many important political events throughout its history, including the French Revolution. Today it is one of the world's leading business and cultural centres, and its influence in politics, education, entertainment, media, science, fashion and the arts all contribute to its status as one of the world's major cities. The city has one of the largest GDPs in the world, €607 billion (US$845 billion) as of 2011, and as a result of its high concentration of national and international political, cultural and scientific institutions is one of the world's leading tourist destinations. The Paris Region hosts the world headquarters of 30 of the Fortune Global 500 companies[6] in several business districts, notably La Défense, the largest dedicated business district in Europe.[7]
+<p>An important settlement for more than two millennia, by the late 12th century Paris had become a walled cathedral city that was one of Europe's foremost centres of learning and the arts and the largest city in the Western world until the turn of the 18th century. Paris was the focal point for many important political events throughout its history, including the French Revolution. Today it is one of the world's leading business and cultural centres, and its influence in politics, education, entertainment, media, science, fashion and the arts all contribute to its status as one of the world's major cities. The city has one of the largest GDPs in the world, €607 billion (US$845 billion) as of 2011, and as a result of its high concentration of national and international political, cultural and scientific institutions is one of the world's leading tourist destinations. The Paris Region hosts the world headquarters of 30 of the Fortune Global 500 companies[6] in several business districts, notably La Défense, the largest dedicated business district in Europe.[7]</p>
 
-Centuries of cultural and political development have brought Paris a variety of museums, theatres, monuments and architectural styles. Many of its masterpieces such as the Louvre and the Arc de Triomphe are iconic buildings, especially its internationally recognized symbol, the Eiffel Tower. Long regarded as an international centre for the arts, works by history's most famous painters can be found in the Louvre, the Musée d'Orsay and its many other museums and galleries. Paris is a global hub of fashion and has been referred to as the "international capital of style", noted for its haute couture tailoring, its high-end boutiques, and the twice-yearly Paris Fashion Week. It is world renowned for its haute cuisine, attracting many of the world's leading chefs. Many of France's most prestigious universities and Grandes Écoles are in Paris or its suburbs, and France's major newspapers Le Monde, Le Figaro, Libération are based in the city, and Le Parisien in Saint-Ouen near Paris.
+<p>Centuries of cultural and political development have brought Paris a variety of museums, theatres, monuments and architectural styles. Many of its masterpieces such as the Louvre and the Arc de Triomphe are iconic buildings, especially its internationally recognized symbol, the Eiffel Tower. Long regarded as an international centre for the arts, works by history's most famous painters can be found in the Louvre, the Musée d'Orsay and its many other museums and galleries. Paris is a global hub of fashion and has been referred to as the "international capital of style", noted for its haute couture tailoring, its high-end boutiques, and the twice-yearly Paris Fashion Week. It is world renowned for its haute cuisine, attracting many of the world's leading chefs. Many of France's most prestigious universities and Grandes Écoles are in Paris or its suburbs, and France's major newspapers Le Monde, Le Figaro, Libération are based in the city, and Le Parisien in Saint-Ouen near Paris.</p>
 
-References - http://en.wikipedia.org/wiki/Paris
+<p>References - <a href="http://en.wikipedia.org/wiki/Paris" target="_blank">http://en.wikipedia.org/wiki/Paris</a></p>
 EOF
 
         );
         $parisTravel->setPriceIncludingVat(false);
         $parisTravel->setShortDescription(
             <<<EOF
-Paris (English /ˈpærɪs/, Listeni/ˈpɛrɪs/; French: [paʁi] ( listen)) is the capital and most populous city of France. It is situated on the River Seine, in the north of the country, at the heart of the Île-de-France region. Within its administrative limits (the 20 arrondissements), the city had 2,234,105 inhabitants in 2009 while its metropolitan area is one of the largest population centres in Europe with more than 12 million inhabitants.
+<p>Paris (English /ˈpærɪs/, Listeni/ˈpɛrɪs/; French: [paʁi] ( listen)) is the capital and most populous city of France. It is situated on the River Seine, in the north of the country, at the heart of the Île-de-France region. Within its administrative limits (the 20 arrondissements), the city had 2,234,105 inhabitants in 2009 while its metropolitan area is one of the largest population centres in Europe with more than 12 million inhabitants.</p>
 
-References - http://en.wikipedia.org/wiki/Paris
+<p>References - <a href="http://en.wikipedia.org/wiki/Paris" target="_blank">http://en.wikipedia.org/wiki/Paris</a></p>
 EOF
 
         );
@@ -858,34 +858,36 @@ EOF
         $switzerlandTravel->setSlug('travel-switzerland-tour');
         $switzerlandTravel->setDescription(
             <<<EOF
-Switzerland (German: Schweiz[note 3] [ˈʃvaɪts]; French: Suisse [sɥis]; Italian: Svizzera [ˈzvittsera]; Romansh: Svizra [ˈʒviːtsrɐ] or [ˈʒviːtsʁːɐ]), officially the Swiss Confederation (Latin: Confoederatio Helvetica, hence its abbreviation CH), is a federal parliamentary republic consisting of 26 cantons, with Bern as the seat of the federal authorities. The country is situated in Western and Central Europe,[note 4] where it is bordered by Germany to the north, France to the west, Italy to the south, and Austria and Liechtenstein to the east. Switzerland is a landlocked country geographically divided between the Alps, the Swiss Plateau and the Jura, spanning an area of 41,285 km2 (15,940 sq mi). While the Alps occupy the greater part of the territory, the Swiss population of approximately 8 million people is concentrated mostly on the Plateau, where the largest cities are to be found. Among them are the two global cities and economic centres of Zürich and Geneva.
+<p>Switzerland (German: Schweiz[note 3] [ˈʃvaɪts]; French: Suisse [sɥis]; Italian: Svizzera [ˈzvittsera]; Romansh: Svizra [ˈʒviːtsrɐ] or [ˈʒviːtsʁːɐ]), officially the Swiss Confederation (Latin: Confoederatio Helvetica, hence its abbreviation CH), is a federal parliamentary republic consisting of 26 cantons, with Bern as the seat of the federal authorities. The country is situated in Western and Central Europe,[note 4] where it is bordered by Germany to the north, France to the west, Italy to the south, and Austria and Liechtenstein to the east. Switzerland is a landlocked country geographically divided between the Alps, the Swiss Plateau and the Jura, spanning an area of 41,285 km2 (15,940 sq mi). While the Alps occupy the greater part of the territory, the Swiss population of approximately 8 million people is concentrated mostly on the Plateau, where the largest cities are to be found. Among them are the two global cities and economic centres of Zürich and Geneva.
 
-The establishment of the Swiss Confederation is traditionally dated to 1 August 1291, which is celebrated annually as Swiss National Day. It has a long history of armed neutrality—it has not been in a state of war internationally since 1815—and did not join the United Nations until 2002. It pursues, however, an active foreign policy and is frequently involved in peace-building processes around the world.[8] Switzerland is also the birthplace of the Red Cross and home to a large number of international organizations, including the second largest UN office. On the European level, it is a founding member of the European Free Trade Association and is part of the Schengen Area – although it is notably not a member of the European Union, nor the European Economic Area. Switzerland comprises four main linguistic and cultural regions: German, French, Italian and the Romansh-speaking valleys. Therefore the Swiss, although predominantly German-speaking, do not form a nation in the sense of a common ethnic or linguistic identity; rather, the strong sense of identity and community is founded on a common historical background, shared values such as federalism and direct democracy,[9] and Alpine symbolism.[10]
+<p>The establishment of the Swiss Confederation is traditionally dated to 1 August 1291, which is celebrated annually as Swiss National Day. It has a long history of armed neutrality—it has not been in a state of war internationally since 1815—and did not join the United Nations until 2002. It pursues, however, an active foreign policy and is frequently involved in peace-building processes around the world.[8] Switzerland is also the birthplace of the Red Cross and home to a large number of international organizations, including the second largest UN office. On the European level, it is a founding member of the European Free Trade Association and is part of the Schengen Area – although it is notably not a member of the European Union, nor the European Economic Area. Switzerland comprises four main linguistic and cultural regions: German, French, Italian and the Romansh-speaking valleys. Therefore the Swiss, although predominantly German-speaking, do not form a nation in the sense of a common ethnic or linguistic identity; rather, the strong sense of identity and community is founded on a common historical background, shared values such as federalism and direct democracy,[9] and Alpine symbolism.[10]
 
-Switzerland has the highest wealth per adult (financial and non-financial assets) in the world according to Credit Suisse and eighth-highest per capita gross domestic product on the IMF list.[11][12] Swiss citizens have the second-highest life expectancy in the world on UN and WHO lists. Switzerland has the top rank in Bribe Payers Index indicating very low levels of business corruption. Moreover for the last five years the country has enjoyed highest economic and tourist competitiveness according to Global Competitiveness Report and Travel and Tourism Competitiveness Report respectively, both developed by the World Economic Forum. Zürich and Geneva have been ranked among cities with highest quality of life in the world with the former coming second globally according to Mercer.[13]
+<p>Switzerland has the highest wealth per adult (financial and non-financial assets) in the world according to Credit Suisse and eighth-highest per capita gross domestic product on the IMF list.[11][12] Swiss citizens have the second-highest life expectancy in the world on UN and WHO lists. Switzerland has the top rank in Bribe Payers Index indicating very low levels of business corruption. Moreover for the last five years the country has enjoyed highest economic and tourist competitiveness according to Global Competitiveness Report and Travel and Tourism Competitiveness Report respectively, both developed by the World Economic Forum. Zürich and Geneva have been ranked among cities with highest quality of life in the world with the former coming second globally according to Mercer.[13]
 
-References - http://en.wikipedia.org/wiki/Switzerland
+<p>References - <a href="http://en.wikipedia.org/wiki/Switzerland" target="_blank">http://en.wikipedia.org/wiki/Switzerland</a></p>
 EOF
 
         );
         $switzerlandTravel->setRawDescription(
             <<<EOF
-Switzerland (German: Schweiz[note 3] [ˈʃvaɪts]; French: Suisse [sɥis]; Italian: Svizzera [ˈzvittsera]; Romansh: Svizra [ˈʒviːtsrɐ] or [ˈʒviːtsʁːɐ]), officially the Swiss Confederation (Latin: Confoederatio Helvetica, hence its abbreviation CH), is a federal parliamentary republic consisting of 26 cantons, with Bern as the seat of the federal authorities. The country is situated in Western and Central Europe,[note 4] where it is bordered by Germany to the north, France to the west, Italy to the south, and Austria and Liechtenstein to the east. Switzerland is a landlocked country geographically divided between the Alps, the Swiss Plateau and the Jura, spanning an area of 41,285 km2 (15,940 sq mi). While the Alps occupy the greater part of the territory, the Swiss population of approximately 8 million people is concentrated mostly on the Plateau, where the largest cities are to be found. Among them are the two global cities and economic centres of Zürich and Geneva.
+<p>Switzerland (German: Schweiz[note 3] [ˈʃvaɪts]; French: Suisse [sɥis]; Italian: Svizzera [ˈzvittsera]; Romansh: Svizra [ˈʒviːtsrɐ] or [ˈʒviːtsʁːɐ]), officially the Swiss Confederation (Latin: Confoederatio Helvetica, hence its abbreviation CH), is a federal parliamentary republic consisting of 26 cantons, with Bern as the seat of the federal authorities. The country is situated in Western and Central Europe,[note 4] where it is bordered by Germany to the north, France to the west, Italy to the south, and Austria and Liechtenstein to the east. Switzerland is a landlocked country geographically divided between the Alps, the Swiss Plateau and the Jura, spanning an area of 41,285 km2 (15,940 sq mi). While the Alps occupy the greater part of the territory, the Swiss population of approximately 8 million people is concentrated mostly on the Plateau, where the largest cities are to be found. Among them are the two global cities and economic centres of Zürich and Geneva.
 
-The establishment of the Swiss Confederation is traditionally dated to 1 August 1291, which is celebrated annually as Swiss National Day. It has a long history of armed neutrality—it has not been in a state of war internationally since 1815—and did not join the United Nations until 2002. It pursues, however, an active foreign policy and is frequently involved in peace-building processes around the world.[8] Switzerland is also the birthplace of the Red Cross and home to a large number of international organizations, including the second largest UN office. On the European level, it is a founding member of the European Free Trade Association and is part of the Schengen Area – although it is notably not a member of the European Union, nor the European Economic Area. Switzerland comprises four main linguistic and cultural regions: German, French, Italian and the Romansh-speaking valleys. Therefore the Swiss, although predominantly German-speaking, do not form a nation in the sense of a common ethnic or linguistic identity; rather, the strong sense of identity and community is founded on a common historical background, shared values such as federalism and direct democracy,[9] and Alpine symbolism.[10]
+<p>The establishment of the Swiss Confederation is traditionally dated to 1 August 1291, which is celebrated annually as Swiss National Day. It has a long history of armed neutrality—it has not been in a state of war internationally since 1815—and did not join the United Nations until 2002. It pursues, however, an active foreign policy and is frequently involved in peace-building processes around the world.[8] Switzerland is also the birthplace of the Red Cross and home to a large number of international organizations, including the second largest UN office. On the European level, it is a founding member of the European Free Trade Association and is part of the Schengen Area – although it is notably not a member of the European Union, nor the European Economic Area. Switzerland comprises four main linguistic and cultural regions: German, French, Italian and the Romansh-speaking valleys. Therefore the Swiss, although predominantly German-speaking, do not form a nation in the sense of a common ethnic or linguistic identity; rather, the strong sense of identity and community is founded on a common historical background, shared values such as federalism and direct democracy,[9] and Alpine symbolism.[10]
 
-Switzerland has the highest wealth per adult (financial and non-financial assets) in the world according to Credit Suisse and eighth-highest per capita gross domestic product on the IMF list.[11][12] Swiss citizens have the second-highest life expectancy in the world on UN and WHO lists. Switzerland has the top rank in Bribe Payers Index indicating very low levels of business corruption. Moreover for the last five years the country has enjoyed highest economic and tourist competitiveness according to Global Competitiveness Report and Travel and Tourism Competitiveness Report respectively, both developed by the World Economic Forum. Zürich and Geneva have been ranked among cities with highest quality of life in the world with the former coming second globally according to Mercer.[13]
+<p>Switzerland has the highest wealth per adult (financial and non-financial assets) in the world according to Credit Suisse and eighth-highest per capita gross domestic product on the IMF list.[11][12] Swiss citizens have the second-highest life expectancy in the world on UN and WHO lists. Switzerland has the top rank in Bribe Payers Index indicating very low levels of business corruption. Moreover for the last five years the country has enjoyed highest economic and tourist competitiveness according to Global Competitiveness Report and Travel and Tourism Competitiveness Report respectively, both developed by the World Economic Forum. Zürich and Geneva have been ranked among cities with highest quality of life in the world with the former coming second globally according to Mercer.[13]
 
-References - http://en.wikipedia.org/wiki/Switzerland
+<p>References - <a href="http://en.wikipedia.org/wiki/Switzerland" target="_blank">http://en.wikipedia.org/wiki/Switzerland</a></p>
 EOF
 
         );
         $switzerlandTravel->setPriceIncludingVat(false);
         $switzerlandTravel->setShortDescription(
             <<<EOF
-Switzerland (German: Schweiz[note 3] [ˈʃvaɪts]; French: Suisse [sɥis]; Italian: Svizzera [ˈzvittsera]; Romansh: Svizra [ˈʒviːtsrɐ] or [ˈʒviːtsʁːɐ]), officially the Swiss Confederation (Latin: Confoederatio Helvetica, hence its abbreviation CH), is a federal parliamentary republic consisting of 26 cantons, with Bern as the seat of the federal authorities. The country is situated in Western and Central Europe,[note 4] where it is bordered by Germany to the north, France to the west, Italy to the south, and Austria and Liechtenstein to the east. Switzerland is a landlocked country geographically divided between the Alps, the Swiss Plateau and the Jura, spanning an area of 41,285 km2 (15,940 sq mi). While the Alps occupy the greater part of the territory, the Swiss population of approximately 8 million people is concentrated mostly on the Plateau, where the largest cities are to be found. Among them are the two global cities and economic centres of Zürich and Geneva.
+<p>
+Switzerland (German: Schweiz[note 3] [ˈʃvaɪts]; French: Suisse [sɥis]; Italian: Svizzera [ˈzvittsera]; Romansh: Svizra [ˈʒviːtsrɐ] or [ˈʒviːtsʁːɐ]), officially the Swiss Confederation (Latin: Confoederatio Helvetica, hence its abbreviation CH), is a federal parliamentary republic consisting of 26 cantons, with Bern as the seat of the federal authorities. The country is situated in Western and Central Europe,[note 4] where it is bordered by Germany to the north, France to the west, Italy to the south, and Austria and Liechtenstein to the east. Switzerland is a landlocked country geographically divided between the Alps, the Swiss Plateau and the Jura, spanning an area of 41,285 km2 (15,940 sq mi).
 
-References - http://en.wikipedia.org/wiki/Switzerland
+References - <a href="http://en.wikipedia.org/wiki/Switzerland" target="_blank">http://en.wikipedia.org/wiki/Switzerland</a>
+</p>
 EOF
 
         );
