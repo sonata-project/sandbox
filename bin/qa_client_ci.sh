@@ -60,9 +60,9 @@ run_tests() {
     done
 }
 
-run_tests *                                                    # run application tests
-run_tests vendor/sonata-project/*/*/* vendor/sonata-project/*  # run Sonata's unit tests
-run_tests src/MyCompanyName/*                                  # add your own test suite here
+run_tests *                        # run application tests
+run_tests vendor/sonata-project/*  # run Sonata's unit tests
+run_tests src/MyCompanyName/*      # add your own test suite here
 
 if [ $error_code -ne 0 ]; then
     echo "Errors occur when running unit tests"
