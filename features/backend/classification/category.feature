@@ -1,4 +1,4 @@
-@backend
+@backend @category
 Feature: Check the category admin module
 
 Scenario: Check category admin pages when not connected
@@ -13,13 +13,13 @@ Scenario: Check category admin pages when connected
 Scenario: Add a new category with some errors
   When I am connected with "admin" and "admin" on "admin/sonata/classification/category/create?uniqid=f155592a220e"
   And I press "Create"
-  Then I should see "An error has occurred during item creation."
+  Then I should see "An error has occurred during the creation of item \"n/a\"."
 
 Scenario: Add a new category
   When I am connected with "admin" and "admin" on "admin/sonata/classification/category/create?uniqid=f155592a220e"
   And I fill in "f155592a220e_name" with "toto"
   And I press "Create"
-  Then I should see "Item has been successfully created."
+  Then I should see "Item \"toto\" has been successfully created."
 
 Scenario: Filter categories
   When I am connected with "admin" and "admin" on "admin/sonata/classification/category/list"
@@ -31,7 +31,7 @@ Scenario: Edit a category
   When I am connected with "admin" and "admin" on "admin/sonata/classification/category/list"
   And I follow "toto"
   And I press "Update"
-  Then I should see "Item has been successfully updated."
+  Then I should see "Item \"toto\" has been successfully updated."
 
 Scenario: View history of a category
   When I am connected with "admin" and "admin" on "admin/sonata/classification/category/list"
@@ -68,4 +68,4 @@ Scenario: Delete a category
   And I follow "toto"
   And I follow link "Delete" with class "btn btn-danger"
   And I press "Yes, delete"
-  Then I should see "Item has been deleted successfully."
+  Then I should see "Item \"toto\" has been deleted successfully."

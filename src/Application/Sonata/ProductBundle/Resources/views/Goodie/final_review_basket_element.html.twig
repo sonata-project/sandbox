@@ -1,0 +1,32 @@
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+
+{#
+    Default product template file, you can
+      => customize the global template : SonataProductBundle:Product:final_review_basket_element.twig
+      => rewrite your own template
+#}
+
+{% extends 'SonataProductBundle:Product:final_review_basket_element.html.twig' %}
+
+{#
+{% block product_unit_price %}
+    {{ basketElement.getUnitPrice(true)|number_format_currency(basket.currency.label, {}, {}, basket.locale) }}
+{% endblock %}
+
+{% block product_quantity %}
+    {{ basketElement.quantity }}
+{% endblock %}
+
+{% block product_total %}
+    {{ basketElement.getTotal(true)|number_format_currency(basket.currency.label, {}, {}, basket.locale) }}
+{% endblock %}
+#}

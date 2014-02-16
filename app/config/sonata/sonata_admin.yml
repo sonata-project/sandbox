@@ -5,7 +5,7 @@ sonata_admin:
     # default value, change it to sonata.admin.security.handler.acl to use ACL
     security:
         handler: sonata.admin.security.handler.acl
-         # acl security information
+        # acl security information
         information:
             GUEST:    [VIEW, LIST]
             STAFF:    [EDIT, LIST, CREATE]
@@ -21,12 +21,13 @@ sonata_admin:
     title_logo: %sonata_admin.logo_title%
     options:
         html5_validate: false # does not use html5 validation
+        pager_links: 5 # pager max links to display
 
     templates:
         # default global templates
         # the layout template include javascript/stylesheet to the formatter bundle,
         # if you don't need it use the default one: SonataAdminBundle::standard_layout.html.twig
-        layout:  SonataAdminBundle::layout.html.twig
+        layout:  ApplicationSonataAdminBundle::demo_layout.html.twig
         ajax:    SonataAdminBundle::ajax_layout.html.twig
 
         # default value if done set, actions templates, should extends a global templates
@@ -40,6 +41,48 @@ sonata_admin:
 #            - { position: right, type: sonata.admin_doctrine_orm.block.audit}
             - { position: center, type: sonata.block.service.text, settings: { content: "<h2>Welcome!</h2> You can customize this dashboard by editing the sonata_admin.yml file. The current dashboard presents the recent items from the NewsBundle and a timeline with the latest action"} }
             - { position: center, type: sonata.timeline.block.timeline, settings: { context: SONATA_ADMIN, max_per_page: 25 }}
-            - { position: right, type: sonata.news.block.recent_posts, settings: { title: Recent Posts, number: 7, mode: admin }}
-            - { position: right, type: sonata.news.block.recent_comments, settings: { title: Recent Comments, number: 7, mode: admin }}
+            - { position: center, type: sonata.news.block.recent_posts, settings: { title: Recent Posts, number: 7, mode: admin }}
+            - { position: center, type: sonata.news.block.recent_comments, settings: { title: Recent Comments, number: 7, mode: admin }}
+            - { position: right, type: sonata.order.block.recent_orders, settings: { title: Recent Orders, number: 5, mode: admin }}
+            - { position: right, type: sonata.customer.block.recent_customers, settings: { title: Recent Customers, number: 5, mode: admin }}
             - { position: right, type: sonata.block.service.rss, settings: { title: Sonata Project's Feeds, url: http://sonata-project.org/blog/archive.rss }}
+
+        groups:
+            sonata.admin.group.content:
+                label:           sonata_content
+                label_catalogue: SonataDemoBundle
+                items:
+                    - sonata.page.admin.page
+                    - sonata.news.admin.comment
+                    - sonata.news.admin.post
+                    - sonata.media.admin.media
+                    - sonata.media.admin.gallery
+                    - sonata.comment.admin.thread
+            sonata.admin.group.ecommerce:
+                label:           sonata_ecommerce
+                label_catalogue: SonataAdminBundle
+                items:
+                    - sonata.customer.admin.customer
+                    - sonata.invoice.admin.invoice
+                    - sonata.order.admin.order
+                    - sonata.product.admin.product
+            sonata.admin.group.classification:
+                label:           sonata_classification
+                label_catalogue: SonataClassificationBundle
+                items:
+                    - sonata.classification.admin.category
+                    - sonata.classification.admin.tag
+                    - sonata.classification.admin.collection
+            sonata.admin.group.administration:
+                label:           sonata_administration
+                label_catalogue: SonataAdminBundle
+                items:
+                    - sonata.user.admin.user
+                    - sonata.user.admin.group
+                    - sonata.page.admin.site
+                    - sonata.notification.admin.message
+            sonata.admin.group.demo:
+                label: Demo
+                items:
+                    - sonata.demo.admin.car
+                    - sonata.demo.admin.engine

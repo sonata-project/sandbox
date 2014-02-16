@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+    <file source-language="en" target-language="en" datatype="plaintext"  original="file.ext">
+        <body>
+        <trans-unit id="sonata.demo.block.newsletter.message">
+            <source>sonata.demo.block.newsletter.message</source>
+            <target>Thank you for your subscription. This is a fake block. We don't keep your e-mail address and don't send newsletters in purpose!</target>
+        </trans-unit>
+        <trans-unit id="sonata.demo.demonstration.message">
+            <source>sonata.demo.demonstration.message</source>
+            <target>Note: this website is a demo of Sonata. Any orders placed on this site will not be processed.</target>
+        </trans-unit>
+        <trans-unit id="sonata_content">
+            <source>sonata_content</source>
+            <target>Content</target>
+        </trans-unit>
+        </body>
+    </file>
+</xliff>

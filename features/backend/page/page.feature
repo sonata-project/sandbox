@@ -14,7 +14,7 @@ Scenario: Add a new page with some errors
   When I am connected with "admin" and "admin" on "admin/sonata/page/page/create?uniqid=f155592a220e"
   And I follow "localhost"
   And I press "Create"
-  Then I should see "An error has occurred during item creation."
+  Then I should see "An error has occurred during the creation of item \"-\"."
 
 Scenario: Add a new page
   When I am connected with "admin" and "admin" on "admin/sonata/page/page/create?uniqid=f155592a220e"
@@ -22,9 +22,9 @@ Scenario: Add a new page
   And I fill in "f155592a220e_name" with "toto"
   And I fill in "f155592a220e_position" with "1"
   And I select "default" from "f155592a220e_templateCode"
-  And I select "homepage" from "f155592a220e_parent"
+  And I select "Home" from "f155592a220e_parent"
   And I press "Create"
-  Then I should see "Item has been successfully created."
+  Then I should see "Item \"toto\" has been successfully created."
 
 Scenario: Filter pages
   When I am connected with "admin" and "admin" on "admin/sonata/page/page/list"
@@ -38,7 +38,7 @@ Scenario: Edit a page
   And I press "Filter"
   And I follow "toto"
   And I press "Update"
-  Then I should see "Item has been successfully updated."
+  Then I should see "Item \"toto\" has been successfully updated."
 
 Scenario: View revisions of a page
   When I am connected with "admin" and "admin" on "admin/sonata/page/page/list"
@@ -63,7 +63,7 @@ Scenario: Delete a page
   And I follow "toto"
   And I follow "Delete"
   And I press "Yes, delete"
-  Then I should see "Item has been deleted successfully."
+  Then I should see "Item \"toto\" has been deleted successfully."
 
 Scenario: Export JSON data
   When I am connected with "admin" and "admin" on "admin/sonata/page/page/list"

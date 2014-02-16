@@ -1,0 +1,32 @@
+sonata_product:
+    products:
+        # Goodies
+        sonata.ecommerce_demo.product.goodie:
+            provider: sonata.ecommerce_demo.product.goodie.type
+            manager:  sonata.ecommerce_demo.product.goodie.manager
+
+        # Travel
+        sonata.ecommerce_demo.product.travel:
+            provider: sonata.ecommerce_demo.product.travel.type
+            manager: sonata.ecommerce_demo.product.travel.manager
+            variations:
+                fields: [travellers, travelDays, sku, slug, name, price, stock, vatRate, priceIncludingVat, enabled]
+
+    seo:
+        product:
+            site: '@sonataproject'
+            creator: '@th0masr'
+            domain: 'http://demo.sonata-project.org'
+            media_prefix: 'http://demo.sonata-project.org'
+            media_format: 'reference'
+
+
+
+# Enable Doctrine to map the provided entities
+doctrine:
+    orm:
+        entity_managers:
+            default:
+                mappings:
+                    ApplicationSonataProductBundle: ~
+                    SonataProductBundle: ~

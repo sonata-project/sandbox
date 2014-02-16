@@ -28,10 +28,10 @@ sonata_seo:
 
         head:
             'xmlns':              http://www.w3.org/1999/xhtml
-            'xmlns:og':           http://opengraphprotocol.org/schema/
-            #'xmlns:fb':           "http://www.facebook.com/2008/fbml"
 
     sitemap:
+        services:
+            - sonata.product.seo_iterator
         doctrine_orm:
             # media
             - { connection: doctrine.dbal.default_connection, route: sonata_media_view, parameters: {id: null}, query: "SELECT id, updated_at as lastmod, 'weekly' as changefreq, '0.5' as prioriy FROM media__media WHERE enabled = true" }
@@ -39,3 +39,7 @@ sonata_seo:
             - { connection: doctrine.dbal.default_connection, route: sonata_news_view, parameters: {permalink: null}, query: "SELECT CONCAT_WS('/', YEAR(created_at), MONTH(created_at), DAY(created_at), slug) as permalink , updated_at as lastmod, 'weekly' as changefreq, '0.5' as prioriy FROM news__post WHERE enabled = 1 AND (publication_date_start IS NULL OR publication_date_start <= NOW())" }
             # page - works only for one site, please adapt the code if required
             - { connection: doctrine.dbal.default_connection, route: page_slug, parameters: {path: null}, query: "SELECT url as path, updated_at as lastmod, 'weekly' as changefreq, '0.5' as prioriy FROM page__snapshot WHERE route_name = 'page_slug' AND enabled = 1 AND (publication_date_start IS NULL OR publication_date_start <= NOW())" }
+            # product categories
+            - { connection: doctrine.dbal.default_connection, route: sonata_catalog_category, parameters: {category_id: null, category_slug: null}, query: "SELECT id as category_id, slug as category_slug, updated_at as lastmod, 'weekly' as changefreq, '0.5' as prioriy FROM classification__category WHERE enabled = true" }
+            # products
+            - { connection: doctrine.dbal.default_connection, route: sonata_product_view, parameters: {productId: null, slug: null}, query: "SELECT id as productId, slug, updated_at as lastmod, 'weekly' as changefreq, '0.5' as prioriy FROM product__product WHERE enabled = true" }

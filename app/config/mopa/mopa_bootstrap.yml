@@ -1,0 +1,5 @@
+mopa_bootstrap:
+    form:   # Adds twig form theme  support
+        show_legend: false
+        render_optional_text: false
+#    menu: ~  # enables twig helpers for menu

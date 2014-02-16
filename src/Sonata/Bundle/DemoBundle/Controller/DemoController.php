@@ -13,6 +13,7 @@ namespace Sonata\Bundle\DemoBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sonata\Bundle\DemoBundle\Entity\MediaPreview;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Sonata\Bundle\DemoBundle\Form\Type\CarType;
 
@@ -88,7 +89,7 @@ class DemoController extends Controller
     {
         // preset a default value
         $media = $this->get('sonata.media.manager.media')->create();
-        $media->setBinaryContent('http://www.youtube.com/watch?v=qTVfFmENgPU');
+        $media->setBinaryContent('http://www.youtube.com/watch?v=oHg5SJYRHA0');
 
         // create the target object
         $mediaPreview = new MediaPreview();
@@ -117,6 +118,25 @@ class DemoController extends Controller
         return $this->render('SonataDemoBundle:Demo:media.html.twig', array(
             'form' => $form->createView(),
             'media' => $mediaPreview->getMedia()
+        ));
+    }
+
+    /**
+     * Newsletter subscription action
+     *
+     * @param \Symfony\Component\HttpFoundation\Request $request
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function newsletterAction(Request $request)
+    {
+        $form = $this->createForm('sonata_demo_form_type_newsletter');
+        $form->handleRequest($request);
+
+        $message = 'sonata.demo.block.newsletter.message';
+
+        return $this->render('SonataDemoBundle:Block:newsletter_confirmation.html.twig', array(
+            'message' => $form->isValid() ? $message : null
         ));
     }
 

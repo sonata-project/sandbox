@@ -13,7 +13,7 @@ Scenario: Check user admin pages when connected
 Scenario: Add a new user with some errors
   When I am connected with "admin" and "admin" on "admin/sonata/user/user/create?uniqid=f155592a220e"
   And I press "Create"
-  Then I should see "An error has occurred during item creation."
+  Then I should see "An error has occurred during the creation of item \"-\"."
 
 Scenario: Add a new user
   When I am connected with "admin" and "admin" on "admin/sonata/user/user/create?uniqid=f155592a220e"
@@ -21,7 +21,7 @@ Scenario: Add a new user
   And I fill in "f155592a220e_email" with "toto@local.host"
   And I fill in "f155592a220e_plainPassword" with "tata"
   And I press "Create"
-  Then I should see "Item has been successfully created."
+  Then I should see "Item \"toto\" has been successfully created."
 
 Scenario: Filter users
   When I am connected with "admin" and "admin" on "admin/sonata/user/user/list"
@@ -43,7 +43,7 @@ Scenario: Edit a user
   And I press "Filter"
   And I follow "toto"
   And I press "Update"
-  Then I should see "Item has been successfully updated."
+  Then I should see "Item \"toto\" has been successfully updated."
 
 Scenario: Export JSON data
   When I am connected with "admin" and "admin" on "admin/sonata/user/user/list"
@@ -72,4 +72,4 @@ Scenario: Delete a user
   And I follow "toto"
   And I follow link "Delete" with class "btn btn-danger"
   And I press "Yes, delete"
-  Then I should see "Item has been deleted successfully."
+  Then I should see "Item \"toto\" has been deleted successfully."

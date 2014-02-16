@@ -1,11 +1,11 @@
-app/cache
-app/logs
+behat.yml
+app/cache/*
+app/logs/*
 app/*.cache
 web/bundles
 web/uploads
 web/sitemap*.xml
 app/config/parameters*.yml
 vendor
-.idea
-nbproject
-composer.phar
+build
+composer.lock

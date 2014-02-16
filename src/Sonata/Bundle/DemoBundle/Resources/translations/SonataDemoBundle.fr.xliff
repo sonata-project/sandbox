@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+    <file source-language="fr" target-language="fr" datatype="plaintext"  original="file.ext">
+        <body>
+        <trans-unit id="sonata.demo.block.newsletter.message">
+            <source>sonata.demo.block.newsletter.message</source>
+            <target>Merci pour votre inscription. Ce bloc est un bloc factice. Nous ne conservons pas vos adresses emails et n'envoyons pas de newsletters</target>
+        </trans-unit>
+        <trans-unit id="sonata.demo.demonstration.message">
+            <source>sonata.demo.demonstration.message</source>
+            <target>Note : Ce site est une démonstration de Sonata. Aucune commande passée sur ce site ne sera traitée.</target>
+        </trans-unit>
+        <trans-unit id="sonata_content">
+            <source>sonata_content</source>
+            <target>Contenu</target>
+        </trans-unit>
+        </body>
+    </file>
+</xliff>

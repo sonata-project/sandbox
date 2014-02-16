@@ -81,8 +81,18 @@ class LoadUserData extends AbstractFixture implements ContainerAwareInterface, O
         $user->setSuperAdmin(false);
         $user->setLocked(false);
 
+        $this->setReference('user-johndoe', $user);
+
         $manager->updateUser($user);
 
+        // Behat testing purpose
+        $user = $manager->createUser();
+        $user->setUsername('behat_user');
+        $user->setEmail($faker->safeEmail);
+        $user->setEnabled(true);
+        $user->setPlainPassword('behat_user');
+
+        $manager->updateUser($user);
     }
 
     /**

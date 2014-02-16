@@ -1,0 +1,123 @@
+bazinga_faker:
+    orm: doctrine
+    locale: en_GB
+    entities:
+        Application\Sonata\OrderBundle\Entity\Order:
+            number: 50
+            custom_formatters:
+                status:
+                    method: randomNumber
+                    parameters:
+                        - 0
+                        - 5
+                deliveryStatus:
+                    method: randomNumber
+                    parameters:
+                        - 0
+                        - 5
+                paymentStatus:
+                    method: randomElement
+                    parameters: [ [ '0', '1', '2', '3', '4', '9', '10', '11', '12' ] ]
+                billingAddress1:
+                    method: streetAddress
+                billingAddress2:
+                    method: streetAddress
+                billingAddress3:
+                    method: streetAddress
+                billingCity:
+                    method: city
+                billingCountryCode:
+                    method: randomElement
+                    parameters:
+                        - [ 'EN', 'FR' ]
+                billingName:
+                    method: word
+                billingPhone:
+                    method: phoneNumber
+                billingMobile:
+                    method: phoneNumber
+                billingFax:
+                    method: phoneNumber
+                billingPostcode:
+                    method: postcode
+                billingEmail:
+                    method: email
+
+                shippingAddress1:
+                    method: streetAddress
+                shippingAddress2:
+                    method: streetAddress
+                shippingAddress3:
+                    method: streetAddress
+                shippingCity:
+                    method: city
+                shippingCountryCode:
+                    method: randomElement
+                    parameters:
+                        - [ 'EN', 'FR' ]
+                shippingName:
+                    method: word
+                shippingPhone:
+                    method: phoneNumber
+                shippingMobile:
+                    method: phoneNumber
+                shippingFax:
+                    method: phoneNumber
+                shippingPostcode:
+                    method: postcode
+                shippingEmail:
+                    method: email
+
+                currency:
+                    method: randomElement
+                    parameters:
+                        - ['EUR']
+                reference:
+                    method: randomNumber
+                locale:
+                    method: languageCode
+                    
+                    
+        Application\Sonata\InvoiceBundle\Entity\Invoice:
+            number: 50
+            custom_formatters:
+                status:
+                    method: randomNumber
+                    parameters:
+                        - 0
+                        - 5
+                address1:
+                    method: streetAddress
+                address2:
+                    method: streetAddress
+                address3:
+                    method: streetAddress
+                city:
+                    method: city
+                country:
+                    method: randomElement
+                    parameters:
+                        - [ 'EN', 'FR' ]
+                name:
+                    method: word
+                phone:
+                    method: phoneNumber
+                mobile:
+                    method: phoneNumber
+                fax:
+                    method: phoneNumber
+                postcode:
+                    method: postcode
+                email:
+                    method: email
+
+                currency:
+                    method: randomElement
+                    parameters:
+                        - ['EUR']
+                reference:
+                    method: randomNumber
+                totalExcl:
+                    method: randomNumber
+                totalInc:
+                    method: randomNumber

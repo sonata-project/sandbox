@@ -13,6 +13,11 @@ cmf_routing:
 sonata_page:
     multisite:             host_with_path # host
     use_streamed_response: false # set the value to false in debug mode or if the reverse proxy does not handle streamed response
+
+    ignore_uri_patterns:
+        - ^/admin(.*)
+        - ^/api/(.*)
+
     ignore_route_patterns:
         - (.*)admin(.*)     # ignore admin route, ie route containing 'admin'
         - ^_(.*)            # ignore symfony routes
@@ -28,9 +33,6 @@ sonata_page:
         - sonata_cache_js_sync
         - sonata_cache_apc
 
-    ignore_uri_patterns:
-        - admin(.*)         # ignore admin route, ie route containing 'admin'
-
     cache_invalidation:
         service:  sonata.page.cache.invalidation.simple
         recorder: sonata.page.cache.recorder
@@ -39,10 +41,11 @@ sonata_page:
 
     default_template: default
     templates:
-        default: { path: 'SonataPageBundle::layout.html.twig', name: 'default' }
+        default:  { path: 'ApplicationSonataPageBundle::demo_layout.html.twig',     name: 'default' }
+        2columns: { path: 'ApplicationSonataPageBundle::demo_2columns_layout.html.twig', name: '2 columns layout' }
 
     page_defaults:
-        homepage: {decorate: false, enabled: true}
+        homepage: { decorate: false, enabled: true }
 
     caches:
         esi:

@@ -45,16 +45,19 @@ class LoadMediaData extends AbstractFixture implements ContainerAwareInterface, 
         $manager = $this->getMediaManager();
         $faker = $this->getFaker();
 
-        $files = Finder::create()
-            ->name('*.JPG')
-            ->in(__DIR__.'/../data/files');
+        $canada = Finder::create()->name('IMG_3587*.jpg')->in(__DIR__.'/../data/files/gilles-canada');
+        $paris = Finder::create()->name('IMG_3008*.jpg')->in(__DIR__.'/../data/files/hugo-paris');
+        $switzerland = Finder::create()->name('switzerland_2012-05-19_006.jpg')->in(__DIR__.'/../data/files/sylvain-switzerland');
 
         $i = 0;
-        foreach ($files as $pos => $file) {
+        foreach ($canada as $file) {
             $media = $manager->create();
             $media->setBinaryContent($file);
             $media->setEnabled(true);
-            $media->setDescription($faker->sentence(15));
+            $media->setName('Canada');
+            $media->setDescription('Canada');
+            $media->setAuthorName('Gilles Rosenbaum');
+            $media->setCopyright('CC BY-NC-SA 4.0');
 
             $this->addReference('sonata-media-'.($i++), $media);
 
@@ -63,18 +66,34 @@ class LoadMediaData extends AbstractFixture implements ContainerAwareInterface, 
             $this->addMedia($gallery, $media);
         }
 
-        $videos = array(
-            'ocAyDZC2aiU' => 'sonata.media.provider.youtube',
-            'xdw0tz'      => 'sonata.media.provider.dailymotion',
-            '9636197'     => 'sonata.media.provider.vimeo'
-        );
-
-        foreach ($videos as $video => $provider) {
+        foreach ($paris as $file) {
             $media = $manager->create();
-            $media->setBinaryContent($video);
+            $media->setBinaryContent($file);
             $media->setEnabled(true);
+            $media->setName('Paris');
+            $media->setDescription('Paris');
+            $media->setAuthorName('Hugo Briand');
+            $media->setCopyright("Je soussigné Hugo Briand donne l'autorisation à Sonata-Project d'utiliser mes photos comme bon lui semblera");
 
-            $manager->save($media, 'default', $provider);
+            $this->addReference('sonata-media-'.($i++), $media);
+
+            $manager->save($media, 'default', 'sonata.media.provider.image');
+
+            $this->addMedia($gallery, $media);
+        }
+
+        foreach ($switzerland as $file) {
+            $media = $manager->create();
+            $media->setBinaryContent($file);
+            $media->setEnabled(true);
+            $media->setName('Switzerland');
+            $media->setDescription('Switzerland');
+            $media->setAuthorName('Sylvain Deloux');
+            $media->setCopyright('CC BY-NC-SA 4.0');
+
+            $this->addReference('sonata-media-'.($i++), $media);
+
+            $manager->save($media, 'default', 'sonata.media.provider.image');
 
             $this->addMedia($gallery, $media);
         }

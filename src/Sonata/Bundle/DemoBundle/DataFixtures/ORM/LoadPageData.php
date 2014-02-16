@@ -19,6 +19,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Sonata\PageBundle\Model\SiteInterface;
 use Sonata\PageBundle\Model\PageInterface;
 
+use Symfony\Cmf\Bundle\RoutingBundle\Tests\Unit\Doctrine\Orm\ContentRepositoryTest;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -26,7 +27,7 @@ class LoadPageData extends AbstractFixture implements ContainerAwareInterface, O
 {
     private $container;
 
-    function getOrder()
+    public function getOrder()
     {
         return 4;
     }
@@ -41,14 +42,31 @@ class LoadPageData extends AbstractFixture implements ContainerAwareInterface, O
         $site = $this->createSite();
         $this->createGlobalPage($site);
         $this->createHomePage($site);
+        $this->create404ErrorPage($site);
+        $this->create500ErrorPage($site);
         $this->createBlogIndex($site);
         $this->createGalleryIndex($site);
         $this->createMediaPage($site);
+        $this->createProductPage($site);
+        $this->createBasketPage($site);
         $this->createUserPage($site);
+        $this->createApiPage($site);
+        $this->createLegalNotesPage($site);
+
+        // Create footer pages
+        $this->createWhoWeArePage($site);
+        $this->createClientTestimonialsPage($site);
+        $this->createPressPage($site);
+        $this->createFAQPage($site);
+        $this->createContactUsPage($site);
+        $this->createBundlesPage($site);
 
         $this->createSubSite();
     }
 
+    /**
+     * @return SiteInterface $site
+     */
     public function createSite()
     {
         $site = $this->getSiteManager()->create();
@@ -94,6 +112,7 @@ class LoadPageData extends AbstractFixture implements ContainerAwareInterface, O
         $blogIndex->setSlug('blog');
         $blogIndex->setUrl('/blog');
         $blogIndex->setName('News');
+        $blogIndex->setTitle('News');
         $blogIndex->setEnabled(true);
         $blogIndex->setDecorate(1);
         $blogIndex->setRequestMethod('GET|POST|HEAD|DELETE|PUT');
@@ -118,6 +137,7 @@ class LoadPageData extends AbstractFixture implements ContainerAwareInterface, O
         $galleryIndex->setSlug('gallery');
         $galleryIndex->setUrl('/media/gallery');
         $galleryIndex->setName('Gallery');
+        $galleryIndex->setTitle('Gallery');
         $galleryIndex->setEnabled(true);
         $galleryIndex->setDecorate(1);
         $galleryIndex->setRequestMethod('GET|POST|HEAD|DELETE|PUT');
@@ -135,10 +155,19 @@ class LoadPageData extends AbstractFixture implements ContainerAwareInterface, O
 
         $content->setName('The content_top container');
 
+        // add the breadcrumb
+        $content->addChildren($breadcrumb = $blockManager->create());
+        $breadcrumb->setType('sonata.page.block.breadcrumb');
+        $breadcrumb->setPosition(0);
+        $breadcrumb->setEnabled(true);
+        $breadcrumb->setPage($galleryIndex);
+
         // add a block text
         $content->addChildren($text = $blockManager->create());
         $text->setType('sonata.block.service.text');
         $text->setSetting('content', <<<CONTENT
+
+<h1>Gallery List</h1>
 
 <p>
     This current text is defined in a <code>text block</code> linked to a custom symfony action <code>GalleryController::indexAction</code>
@@ -148,13 +177,11 @@ class LoadPageData extends AbstractFixture implements ContainerAwareInterface, O
     areas are displayed, just double click on one to edit it.
 </p>
 
-<h1>Gallery List</h1>
 CONTENT
-);
+        );
         $text->setPosition(1);
         $text->setEnabled(true);
         $text->setPage($galleryIndex);
-
 
         $pageManager->save($galleryIndex);
     }
@@ -168,87 +195,154 @@ CONTENT
         $blockManager = $this->getBlockManager();
         $blockInteractor = $this->getBlockInteractor();
 
-        $faker = $this->getFaker();
-
         $this->addReference('page-homepage', $homepage = $pageManager->create());
         $homepage->setSlug('/');
         $homepage->setUrl('/');
-        $homepage->setName('homepage');
+        $homepage->setName('Home');
+        $homepage->setTitle('Homepage');
         $homepage->setEnabled(true);
         $homepage->setDecorate(0);
         $homepage->setRequestMethod('GET|POST|HEAD|DELETE|PUT');
-        $homepage->setTemplateCode('default');
+        $homepage->setTemplateCode('2columns');
         $homepage->setRouteName(PageInterface::PAGE_ROUTE_CMS_NAME);
         $homepage->setSite($site);
 
         $pageManager->save($homepage);
 
         // CREATE A HEADER BLOCK
+        $homepage->addBlocks($contentTop = $blockInteractor->createNewContainer(array(
+            'enabled' => true,
+            'page' => $homepage,
+            'code' => 'content_top',
+        )));
+
+        $contentTop->setName('The container top container');
+
+        $blockManager->save($contentTop);
+
+        // add a block text
+        $contentTop->addChildren($text = $blockManager->create());
+        $text->setType('sonata.block.service.text');
+        $text->setSetting('content', <<<CONTENT
+<div class="col-md-3 welcome"><h2>Welcome</h2></div>
+<div class="col-md-9">
+    <p>
+        This page is a demo of the Sonata Sandbox available on <a href="https://github.com/sonata-project/sandbox">github</a>.
+        This demo try to be interactive so you will be able to found out the different features provided by the Sonata's Bundle.
+    </p>
+
+    <p>
+        First this page and all the other pages are served by the <code>SonataPageBundle</code>, a page is composed by different
+        blocks.
+    </p>
+</div>
+CONTENT
+        );
+        $text->setPosition(1);
+        $text->setEnabled(true);
+        $text->setPage($homepage);
+
+
         $homepage->addBlocks($content = $blockInteractor->createNewContainer(array(
             'enabled' => true,
             'page' => $homepage,
             'code' => 'content',
         )));
-
-        $content->setName('The container container');
-
+        $content->setName('The content container');
         $blockManager->save($content);
 
-        // add a block text
-        $content->addChildren($text = $blockManager->create());
-        $text->setType('sonata.block.service.text');
-        $text->setSetting('content', <<<CONTENT
-<h1>Welcome</h1>
-
-<p>
-    This page is a demo of the Sonata Sandbox available on <a href="https://github.com/sonata-project/sandbox">github</a>.
-    This demo try to be interactive so you will be able to found out the different features provided by the Sonata's Bundle.
-</p>
-
-<p>
-    First this page and all the other pages are served by the <code>SonataPageBundle</code>, a page is composed by different
-    blocks. A block is linked to a service. For instance the current gallery is served by a
-    <a href="https://github.com/sonata-project/SonataMediaBundle/blob/master/Block/GalleryBlockService.php">Block service</a>
-    provided by the <code>SonataMediaBundle</code>.
-</p>
-CONTENT
-);
-        $text->setPosition(1);
-        $text->setEnabled(true);
-        $text->setPage($homepage);
-
-        // add a gallery
+        // Add media gallery block
         $content->addChildren($gallery = $blockManager->create());
         $gallery->setType('sonata.media.block.gallery');
         $gallery->setSetting('galleryId', $this->getReference('media-gallery')->getId());
-        $gallery->setSetting('title', $faker->sentence(4));
         $gallery->setSetting('context', 'default');
         $gallery->setSetting('format', 'big');
-        $gallery->setPosition(2);
+        $gallery->setPosition(1);
         $gallery->setEnabled(true);
         $gallery->setPage($homepage);
 
-        $content->addChildren($text = $blockManager->create());
-        $text->setType('sonata.block.service.text');
+        // Add recent products block
+        $content->addChildren($newProductsBlock = $blockManager->create());
+        $newProductsBlock->setType('sonata.product.block.recent_products');
+        $newProductsBlock->setSetting('number', 4);
+        $newProductsBlock->setSetting('title', 'New products');
+        $newProductsBlock->setPosition(2);
+        $newProductsBlock->setEnabled(true);
+        $newProductsBlock->setPage($homepage);
 
-        $text->setPosition(3);
-        $text->setEnabled(true);
-        $text->setSetting('content', <<<CONTENT
-<h3>Sonata's bundles</h3>
+        // Add homepage bottom container
+        $homepage->addBlocks($bottom = $blockInteractor->createNewContainer(array(
+            'enabled' => true,
+            'page'    => $homepage,
+            'code'    => 'content_bottom',
+        ), function ($container) {
+            $container->setSetting('layout', '<div class="block-newsletter">{{ CONTENT }}</div>');
+        }));
+        $bottom->setName('The bottom content container');
 
-<p>
-    Some bundles does not have direct visual representation as they provide services. However, others does have
-    a lot to show :
-
-    <ul>
-        <li><a href="/admin/dashboard">Admin (SonataAdminBundle)</a></li>
-        <li><a href="/blog">Blog (SonataNewsBundle)</a></li>
-    </ul>
-</p>
-CONTENT
-);
+        // Add homepage newsletter container
+        $bottom->addChildren($bottomNewsletter = $blockInteractor->createNewContainer(array(
+            'enabled' => true,
+            'page'    => $homepage,
+            'code'    => 'bottom_newsletter',
+        ), function ($container) {
+            $container->setSetting('layout', '<div class="col-sm-8 col-sm-offset-2 well">{{ CONTENT }}</div>');
+        }));
+        $bottomNewsletter->setName('The bottom newsetter container');
+        $bottomNewsletter->addChildren($newsletter = $blockManager->create());
+        $newsletter->setType('sonata.demo.block.newsletter');
+        $newsletter->setPosition(1);
+        $newsletter->setEnabled(true);
+        $newsletter->setPage($homepage);
 
         $pageManager->save($homepage);
+    }
+
+    /**
+     * @param SiteInterface $site
+     */
+    public function createProductPage(SiteInterface $site)
+    {
+        $pageManager = $this->getPageManager();
+
+        $category = $pageManager->create();
+
+        $category->setSlug('shop-category');
+        $category->setUrl('/shop/category');
+        $category->setName('Shop');
+        $category->setTitle('Shop');
+        $category->setEnabled(true);
+        $category->setDecorate(1);
+        $category->setRequestMethod('GET|POST|HEAD|DELETE|PUT');
+        $category->setTemplateCode('default');
+        $category->setRouteName('sonata_catalog_index');
+        $category->setSite($site);
+        $category->setParent($this->getReference('page-homepage'));
+
+        $pageManager->save($category);
+    }
+
+    /**
+     * @param SiteInterface $site
+     */
+    public function createBasketPage(SiteInterface $site)
+    {
+        $pageManager = $this->getPageManager();
+
+        $basket = $pageManager->create();
+
+        $basket->setSlug('shop-basket');
+        $basket->setUrl('/shop/basket');
+        $basket->setName('Basket');
+        $basket->setEnabled(true);
+        $basket->setDecorate(1);
+        $basket->setRequestMethod('GET|POST|HEAD|DELETE|PUT');
+        $basket->setTemplateCode('default');
+        $basket->setRouteName('sonata_basket_index');
+        $basket->setSite($site);
+        $basket->setParent($this->getReference('page-homepage'));
+
+        $pageManager->save($basket);
     }
 
     /**
@@ -257,11 +351,14 @@ CONTENT
     public function createMediaPage(SiteInterface $site)
     {
         $pageManager = $this->getPageManager();
+        $blockManager = $this->getBlockManager();
+        $blockInteractor = $this->getBlockInteractor();
 
         $this->addReference('page-media', $media = $pageManager->create());
         $media->setSlug('/media');
         $media->setUrl('/media');
         $media->setName('Media & Seo');
+        $media->setTitle('Media & Seo');
         $media->setEnabled(true);
         $media->setDecorate(1);
         $media->setRequestMethod('GET|POST|HEAD|DELETE|PUT');
@@ -269,6 +366,22 @@ CONTENT
         $media->setRouteName('sonata_demo_media');
         $media->setSite($site);
         $media->setParent($this->getReference('page-homepage'));
+
+        // CREATE A HEADER BLOCK
+        $media->addBlocks($content = $blockInteractor->createNewContainer(array(
+            'enabled' => true,
+            'page' => $media,
+            'code' => 'content_top',
+        )));
+
+        $content->setName('The content_top container');
+
+        // add the breadcrumb
+        $content->addChildren($breadcrumb = $blockManager->create());
+        $breadcrumb->setType('sonata.page.block.breadcrumb');
+        $breadcrumb->setPosition(0);
+        $breadcrumb->setEnabled(true);
+        $breadcrumb->setPage($media);
 
         $pageManager->save($media);
     }
@@ -278,48 +391,36 @@ CONTENT
      */
     public function createUserPage(SiteInterface $site)
     {
-        $pageManager = $this->getPageManager();
-        $blockManager = $this->getBlockManager();
-        $blockInteractor = $this->getBlockInteractor();
-
-        $this->addReference('page-user', $userPage = $pageManager->create());
-        $userPage->setSlug('/user');
-        $userPage->setUrl('/user');
-        $userPage->setName('Admin');
-        $userPage->setEnabled(true);
-        $userPage->setDecorate(1);
-        $userPage->setRequestMethod('GET|POST|HEAD|DELETE|PUT');
-        $userPage->setTemplateCode('default');
-        $userPage->setRouteName('page_slug');
-        $userPage->setSite($site);
-        $userPage->setParent($this->getReference('page-homepage'));
-
-        $userPage->addBlocks($content = $blockInteractor->createNewContainer(array(
-            'enabled' => true,
-            'page' => $userPage,
-            'code' => 'content_top',
-        )));
-
-        $content->setName('The content_top container');
-
-        // add a block text
-        $content->addChildren($text = $blockManager->create());
-        $text->setType('sonata.block.service.text');
-        $text->setSetting('content', <<<CONTENT
-
-<h2>Admin Bundle</h2>
-
+        $this->createTextContentPage($site, 'user', 'Admin', <<<CONTENT
 <div>
-    You can connect to the <a href="/admin/dashboard">admin section</a> by using two different accounts : <br>
+
+    <h3>Available accounts</h3>
+    You can connect to the <a href="/admin/dashboard">admin section</a> by using two different accounts:<br>
 
     <ul>
-        <li>Standard user: johndoe / johndoe</li>
-        <li>Admin user: admin / admin</li>
-        <li>Two step verification admin user: secure / secure - Key: 4YU4QGYPB63HDN2C</li>
+        <li><em>Standard</em> user:
+            <ul>
+                <li> Login - <strong>johndoe</strong></li>
+                <li> Password - <strong>johndoe</strong></li>
+            </ul>
+        </li>
+        <li><em>Admin</em> user:
+            <ul>
+                <li> Login - <strong>admin</strong></li>
+                <li> Password - <strong>admin</strong></li>
+            </ul>
+        </li>
+        <li><em>Two-step Verification admin</em> user:
+            <ul>
+                <li> Login - <strong>secure</strong></li>
+                <li> Password - <strong>secure</strong></li>
+                <li> Key - <strong>4YU4QGYPB63HDN2C</strong></li>
+            </ul>
+        </li>
     </ul>
 
-    <h3>Two Step Verification</h3>
-    The <b>secure</b> account is a demo of the Two Step Verification provided by
+    <h3>Two-Step Verification</h3>
+    The <strong>secure</strong> account is a demo of the Two-Step Verification provided by
     the <a href="http://sonata-project.org/bundles/user/2-0/doc/reference/two_step_validation.html">Sonata User Bundle</a>
 
     <br />
@@ -333,15 +434,544 @@ CONTENT
 </div>
 
 CONTENT
-);
-        $text->setPosition(1);
-        $text->setEnabled(true);
-        $text->setPage($userPage);
-
-
-        $pageManager->save($userPage);
+        );
     }
 
+    /**
+     * @param SiteInterface $site
+     */
+    public function createApiPage(SiteInterface $site)
+    {
+        $this->createTextContentPage($site, 'api-landing', 'API', <<<CONTENT
+<div>
+
+    <h3>Available account</h3>
+    You can connect to the <a href="/api/doc">api documentation</a> by using the following account:<br>
+
+    <ul>
+        <li> Login - <strong>admin</strong></li>
+        <li> Password - <strong>admin</strong></li>
+    </ul>
+
+    <br />
+    <br />
+    <center>
+        <img src="/bundles/sonatademo/images/api.png" class="img-rounded" />
+    </center>
+
+</div>
+
+CONTENT
+        );
+    }
+
+    /**
+     * @param SiteInterface $site
+     */
+    public function createLegalNotesPage(SiteInterface $site)
+    {
+        $this->createTextContentPage($site, 'legal-notes', 'Legal notes', <<<CONTENT
+<p>The Sonata framework is built with many great open source libraries / tools.</p>
+<section>
+    <h3>Backend</h3>
+    <ul>
+        <li><a href="http://symfony.com" title="Symfony, PHP framework official website">Symfony 2</a>, the PHP framework for web projects (Code licensed under MIT),</li>
+        <li><a href="http://twig.sensiolabs.org" title="Twig, PHP template engine">Twig</a>, the PHP template engine (Code licensed under the new BSD license),</li>
+        <li><a href="http://www.doctrine-project.org" title="Doctrine, PHP ORM">Doctrine</a>, the PHP ORM.</li>
+    </ul>
+</section>
+<section>
+    <h3>Frontend</h3>
+    <ul>
+        <li><a href="http://jquery.com" title="jQuery javascript library">jQuery</a>, a cross-platform JavaScript library (Code licensed under MIT),</li>
+        <li><a href="http://getbootstrap.com" title="Bootstrap front-end framework">Bootstrap</a>, the front-end framework (Code licensed under MIT),</li>
+        <li><a href="http://glyphicons.com" title="GLYPHICONS icons">GLYPHICONS</a>, library included in the Bootstrap framework (same license as Bootstrap).</li>
+    </ul>
+</section>
+<section>
+    <h3>Other miscellaneous tools</h3>
+    <ul>
+        <li><a href="https://www.github.com" title="Github, code distribution tool">Github</a></li>
+        <li><a href="http://getcomposer.org" title="Composer, dependency management tool">Composer</a></li>
+        <li><a href="https://packagist.org" title="Packagist, PHP packages repository">Packagist</a></li>
+        <li><a href="https://travis-ci.org" title="Travis CI, continuous integration tool">Travis CI</a></li>
+        <li><a href="http://phpunit.de" title="PHPUnit, PHP unit testing library">PHPUnit</a></li>
+        <li><a href="http://behat.org" title="Behat, test driven development tool">Behat</a></li>
+    </ul>
+</section>
+CONTENT
+        );
+    }
+
+    /**
+     * Creates the "Who we are" content page (link available in footer)
+     *
+     * @param SiteInterface $site
+     *
+     * @return void
+     */
+    public function createWhoWeArePage(SiteInterface $site)
+    {
+        $this->createTextContentPage($site, 'who-we-are', 'Who we are', <<<CONTENT
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut quis sapien gravida, eleifend diam id, vehicula erat. Aenean ultrices facilisis tellus. Vivamus vitae molestie diam. Donec quis mi porttitor, lobortis ipsum quis, fermentum dui. Donec nec nibh nec risus porttitor pretium et et lorem. Nullam mauris sapien, rutrum sed neque et, convallis ullamcorper lacus. Nullam vehicula a lectus vel suscipit. Nam gravida faucibus fermentum.</p>
+<p>Pellentesque dapibus eu nisi quis adipiscing. Phasellus adipiscing turpis nunc, sed interdum ante porta eu. Ut tempus, purus posuere molestie cursus, quam nisi fermentum est, dictum gravida nulla turpis vel nunc. Maecenas eget sem quam. Nam condimentum mi id lectus venenatis, sit amet semper purus convallis. Nunc ullamcorper magna mi, non adipiscing velit semper quis. Duis vel justo libero. Suspendisse laoreet hendrerit augue cursus congue. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;</p>
+<p>Nullam dignissim sapien vestibulum erat lobortis, sed imperdiet elit varius. Fusce nisi eros, feugiat commodo scelerisque a, lacinia et quam. In neque risus, dignissim non magna non, ultricies faucibus elit. Vivamus in facilisis enim, porttitor volutpat justo. Praesent placerat feugiat nibh et fermentum. Vivamus eu fermentum metus. Sed mattis volutpat quam a suscipit. Donec blandit sagittis est, ac tristique arcu venenatis sed. Fusce vel libero id lectus aliquet sollicitudin. Fusce ultrices porta est, non pellentesque lorem accumsan eget. Fusce id libero sit amet nulla venenatis dapibus. Maecenas fermentum tellus eu magna mollis gravida. Nam non nibh magna.</p>
+CONTENT
+        );
+    }
+
+    /**
+     * Creates the "Client testimonials" content page (link available in footer)
+     *
+     * @param SiteInterface $site
+     *
+     * @return void
+     */
+    public function createClientTestimonialsPage(SiteInterface $site)
+    {
+        $this->createTextContentPage($site, 'client-testimonials', 'Client testimonials', <<<CONTENT
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut quis sapien gravida, eleifend diam id, vehicula erat. Aenean ultrices facilisis tellus. Vivamus vitae molestie diam. Donec quis mi porttitor, lobortis ipsum quis, fermentum dui. Donec nec nibh nec risus porttitor pretium et et lorem. Nullam mauris sapien, rutrum sed neque et, convallis ullamcorper lacus. Nullam vehicula a lectus vel suscipit. Nam gravida faucibus fermentum.</p>
+<p>Pellentesque dapibus eu nisi quis adipiscing. Phasellus adipiscing turpis nunc, sed interdum ante porta eu. Ut tempus, purus posuere molestie cursus, quam nisi fermentum est, dictum gravida nulla turpis vel nunc. Maecenas eget sem quam. Nam condimentum mi id lectus venenatis, sit amet semper purus convallis. Nunc ullamcorper magna mi, non adipiscing velit semper quis. Duis vel justo libero. Suspendisse laoreet hendrerit augue cursus congue. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;</p>
+<p>Nullam dignissim sapien vestibulum erat lobortis, sed imperdiet elit varius. Fusce nisi eros, feugiat commodo scelerisque a, lacinia et quam. In neque risus, dignissim non magna non, ultricies faucibus elit. Vivamus in facilisis enim, porttitor volutpat justo. Praesent placerat feugiat nibh et fermentum. Vivamus eu fermentum metus. Sed mattis volutpat quam a suscipit. Donec blandit sagittis est, ac tristique arcu venenatis sed. Fusce vel libero id lectus aliquet sollicitudin. Fusce ultrices porta est, non pellentesque lorem accumsan eget. Fusce id libero sit amet nulla venenatis dapibus. Maecenas fermentum tellus eu magna mollis gravida. Nam non nibh magna.</p>
+CONTENT
+        );
+    }
+
+    /**
+     * Creates the "Press" content page (link available in footer)
+     *
+     * @param SiteInterface $site
+     *
+     * @return void
+     */
+    public function createPressPage(SiteInterface $site)
+    {
+        $this->createTextContentPage($site, 'press', 'Press', <<<CONTENT
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut quis sapien gravida, eleifend diam id, vehicula erat. Aenean ultrices facilisis tellus. Vivamus vitae molestie diam. Donec quis mi porttitor, lobortis ipsum quis, fermentum dui. Donec nec nibh nec risus porttitor pretium et et lorem. Nullam mauris sapien, rutrum sed neque et, convallis ullamcorper lacus. Nullam vehicula a lectus vel suscipit. Nam gravida faucibus fermentum.</p>
+<p>Pellentesque dapibus eu nisi quis adipiscing. Phasellus adipiscing turpis nunc, sed interdum ante porta eu. Ut tempus, purus posuere molestie cursus, quam nisi fermentum est, dictum gravida nulla turpis vel nunc. Maecenas eget sem quam. Nam condimentum mi id lectus venenatis, sit amet semper purus convallis. Nunc ullamcorper magna mi, non adipiscing velit semper quis. Duis vel justo libero. Suspendisse laoreet hendrerit augue cursus congue. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;</p>
+<p>Nullam dignissim sapien vestibulum erat lobortis, sed imperdiet elit varius. Fusce nisi eros, feugiat commodo scelerisque a, lacinia et quam. In neque risus, dignissim non magna non, ultricies faucibus elit. Vivamus in facilisis enim, porttitor volutpat justo. Praesent placerat feugiat nibh et fermentum. Vivamus eu fermentum metus. Sed mattis volutpat quam a suscipit. Donec blandit sagittis est, ac tristique arcu venenatis sed. Fusce vel libero id lectus aliquet sollicitudin. Fusce ultrices porta est, non pellentesque lorem accumsan eget. Fusce id libero sit amet nulla venenatis dapibus. Maecenas fermentum tellus eu magna mollis gravida. Nam non nibh magna.</p>
+CONTENT
+        );
+    }
+
+    /**
+     * Creates the "FAQ" content page (link available in footer)
+     *
+     * @param SiteInterface $site
+     *
+     * @return void
+     */
+    public function createFAQPage(SiteInterface $site)
+    {
+        $this->createTextContentPage($site, 'faq', 'FAQ', <<<CONTENT
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut quis sapien gravida, eleifend diam id, vehicula erat. Aenean ultrices facilisis tellus. Vivamus vitae molestie diam. Donec quis mi porttitor, lobortis ipsum quis, fermentum dui. Donec nec nibh nec risus porttitor pretium et et lorem. Nullam mauris sapien, rutrum sed neque et, convallis ullamcorper lacus. Nullam vehicula a lectus vel suscipit. Nam gravida faucibus fermentum.</p>
+<p>Pellentesque dapibus eu nisi quis adipiscing. Phasellus adipiscing turpis nunc, sed interdum ante porta eu. Ut tempus, purus posuere molestie cursus, quam nisi fermentum est, dictum gravida nulla turpis vel nunc. Maecenas eget sem quam. Nam condimentum mi id lectus venenatis, sit amet semper purus convallis. Nunc ullamcorper magna mi, non adipiscing velit semper quis. Duis vel justo libero. Suspendisse laoreet hendrerit augue cursus congue. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;</p>
+<p>Nullam dignissim sapien vestibulum erat lobortis, sed imperdiet elit varius. Fusce nisi eros, feugiat commodo scelerisque a, lacinia et quam. In neque risus, dignissim non magna non, ultricies faucibus elit. Vivamus in facilisis enim, porttitor volutpat justo. Praesent placerat feugiat nibh et fermentum. Vivamus eu fermentum metus. Sed mattis volutpat quam a suscipit. Donec blandit sagittis est, ac tristique arcu venenatis sed. Fusce vel libero id lectus aliquet sollicitudin. Fusce ultrices porta est, non pellentesque lorem accumsan eget. Fusce id libero sit amet nulla venenatis dapibus. Maecenas fermentum tellus eu magna mollis gravida. Nam non nibh magna.</p>
+CONTENT
+        );
+    }
+
+    /**
+     * Creates the "Contact us" content page (link available in footer)
+     *
+     * @param SiteInterface $site
+     *
+     * @return void
+     */
+    public function createContactUsPage(SiteInterface $site)
+    {
+        $this->createTextContentPage($site, 'contact-us', 'Contact us', <<<CONTENT
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut quis sapien gravida, eleifend diam id, vehicula erat. Aenean ultrices facilisis tellus. Vivamus vitae molestie diam. Donec quis mi porttitor, lobortis ipsum quis, fermentum dui. Donec nec nibh nec risus porttitor pretium et et lorem. Nullam mauris sapien, rutrum sed neque et, convallis ullamcorper lacus. Nullam vehicula a lectus vel suscipit. Nam gravida faucibus fermentum.</p>
+<p>Pellentesque dapibus eu nisi quis adipiscing. Phasellus adipiscing turpis nunc, sed interdum ante porta eu. Ut tempus, purus posuere molestie cursus, quam nisi fermentum est, dictum gravida nulla turpis vel nunc. Maecenas eget sem quam. Nam condimentum mi id lectus venenatis, sit amet semper purus convallis. Nunc ullamcorper magna mi, non adipiscing velit semper quis. Duis vel justo libero. Suspendisse laoreet hendrerit augue cursus congue. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;</p>
+<p>Nullam dignissim sapien vestibulum erat lobortis, sed imperdiet elit varius. Fusce nisi eros, feugiat commodo scelerisque a, lacinia et quam. In neque risus, dignissim non magna non, ultricies faucibus elit. Vivamus in facilisis enim, porttitor volutpat justo. Praesent placerat feugiat nibh et fermentum. Vivamus eu fermentum metus. Sed mattis volutpat quam a suscipit. Donec blandit sagittis est, ac tristique arcu venenatis sed. Fusce vel libero id lectus aliquet sollicitudin. Fusce ultrices porta est, non pellentesque lorem accumsan eget. Fusce id libero sit amet nulla venenatis dapibus. Maecenas fermentum tellus eu magna mollis gravida. Nam non nibh magna.</p>
+CONTENT
+        );
+    }
+
+    public function createBundlesPage(SiteInterface $site)
+    {
+        $this->createTextContentPage($site, 'bundles', 'Sonata Bundles', <<<CONTENT
+<div class="row">
+<div class="col-md-6">
+
+    <div class="panel panel-success">
+      <div class="panel-heading">
+        <h3 class="panel-title">Admin bundles</h3>
+      </div>
+      <div class="panel-body">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut quis sapien gravida, eleifend diam id, vehicula erat.
+      </div>
+      <ul class="list-group">
+        <li class="list-group-item">
+          <div class="media">
+            <a class="pull-left" href="#">
+              <img class="media-object" src="/bundles/sonatademo/images/sonata-logo.png">
+            </a>
+            <div class="media-body">
+              <h4 class="media-heading"><a href="http://sonata-project.org/bundles/admin">Admin</a></h4>
+              The missing Symfony2 Admin Generator.
+            </div>
+          </div>
+        </li>
+        <li class="list-group-item">
+          <div class="media">
+            <a class="pull-left" href="#">
+              <img class="media-object" src="/bundles/sonatademo/images/sonata-logo.png">
+            </a>
+            <div class="media-body">
+              <h4 class="media-heading"><a href="http://sonata-project.org/bundles/doctrine-orm-admin">Doctrine2 ORM Admin</a></h4>
+              Integrates the Doctrine2 ORM into the Admin Bundle.
+            </div>
+          </div>
+        </li>
+        <li class="list-group-item">
+          <div class="media">
+            <a class="pull-left" href="#">
+              <img class="media-object" src="/bundles/sonatademo/images/sonata-logo.png">
+            </a>
+            <div class="media-body">
+              <h4 class="media-heading"><a href="http://sonata-project.org/bundles/propel-admin">Propel Admin</a></h4>
+              Integrates the Propel into the Admin Bundle.
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title">Foundation bundles</h3>
+      </div>
+      <div class="panel-body">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut quis sapien gravida, eleifend diam id, vehicula erat.
+      </div>
+      <ul class="list-group">
+        <li class="list-group-item">
+          <div class="media">
+            <a class="pull-left" href="#">
+              <img class="media-object" src="/bundles/sonatademo/images/sonata-logo.png">
+            </a>
+            <div class="media-body">
+              <h4 class="media-heading"><a href="http://sonata-project.org/bundles/core">Core</a></h4>
+              Provides base classes used by Sonata's Bundles.
+            </div>
+          </div>
+        </li>
+        <li class="list-group-item">
+          <div class="media">
+            <a class="pull-left" href="#">
+              <img class="media-object" src="/bundles/sonatademo/images/sonata-logo.png">
+            </a>
+            <div class="media-body">
+              <h4 class="media-heading"><a href="http://sonata-project.org/bundles/notification">Notification</a></h4>
+              Message Queue Solution with Abstracted Backends.
+            </div>
+          </div>
+        </li>
+        <li class="list-group-item">
+          <div class="media">
+            <a class="pull-left" href="#">
+              <img class="media-object" src="/bundles/sonatademo/images/sonata-logo.png">
+            </a>
+            <div class="media-body">
+              <h4 class="media-heading"><a href="http://sonata-project.org/bundles/formatter">Formatter</a></h4>
+              Add text helpers.
+            </div>
+          </div>
+        </li>
+        <li class="list-group-item">
+          <div class="media">
+            <a class="pull-left" href="#">
+              <img class="media-object" src="/bundles/sonatademo/images/sonata-logo.png">
+            </a>
+            <div class="media-body">
+              <h4 class="media-heading"><a href="http://sonata-project.org/bundles/intl">Internationalization (i18n)</a></h4>
+              Integrate the PHP Intl extension into a Symfony2 Project.
+            </div>
+          </div>
+        </li>
+        <li class="list-group-item">
+          <div class="media">
+            <a class="pull-left" href="#">
+              <img class="media-object" src="/bundles/sonatademo/images/sonata-logo.png">
+            </a>
+            <div class="media-body">
+              <h4 class="media-heading"><a href="http://sonata-project.org/bundles/cache">Cache</a></h4>
+              Cache handlers&nbsp;: ESI, Memcached, APC and more…
+            </div>
+          </div>
+        </li>
+        <li class="list-group-item">
+          <div class="media">
+            <a class="pull-left" href="#">
+              <img class="media-object" src="/bundles/sonatademo/images/sonata-logo.png">
+            </a>
+            <div class="media-body">
+              <h4 class="media-heading"><a href="http://sonata-project.org/bundles/seo">SEO</a></h4>
+              Integrates a shareable object to handle all SEO requirements&nbsp;: title, meta, Open Graph and more…
+            </div>
+          </div>
+        </li>
+        <li class="list-group-item">
+          <div class="media">
+            <a class="pull-left" href="#">
+              <img class="media-object" src="/bundles/sonatademo/images/sonata-logo.png">
+            </a>
+            <div class="media-body">
+              <h4 class="media-heading"><a href="http://sonata-project.org/bundles/easy-extends">EasyExtends</a></h4>
+              EasyExtends is a tool for generating a valid bundle structure from a Vendor Bundle.
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+</div>
+<div class="col-md-6">
+
+    <div class="panel panel-warning">
+      <div class="panel-heading">
+        <h3 class="panel-title">E-commerce bundles</h3>
+      </div>
+      <div class="panel-body">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut quis sapien gravida, eleifend diam id, vehicula erat.
+      </div>
+      <ul class="list-group">
+        <li class="list-group-item">
+          <div class="media">
+            <a class="pull-left" href="#">
+              <img class="media-object" src="/bundles/sonatademo/images/sonata-logo.png">
+            </a>
+            <div class="media-body">
+              <h4 class="media-heading"><a href="http://sonata-project.org/bundles/ecommerce">Ecommerce</a></h4>
+              Implements base tools for integrated e-commerce features
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title">Features bundles</h3>
+      </div>
+      <div class="panel-body">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut quis sapien gravida, eleifend diam id, vehicula erat.
+      </div>
+      <ul class="list-group">
+        <li class="list-group-item">
+          <div class="media">
+            <a class="pull-left" href="#">
+              <img class="media-object" src="/bundles/sonatademo/images/sonata-logo.png">
+            </a>
+            <div class="media-body">
+              <h4 class="media-heading"><a href="http://sonata-project.org/bundles/page">Page</a></h4>
+              A Symfony2 friendly CMS.
+            </div>
+          </div>
+        </li>
+        <li class="list-group-item">
+          <div class="media">
+            <a class="pull-left" href="#">
+              <img class="media-object" src="/bundles/sonatademo/images/sonata-logo.png">
+            </a>
+            <div class="media-body">
+              <h4 class="media-heading"><a href="http://sonata-project.org/bundles/media">Media</a></h4>
+              Media management bundle on steroid for Symfony2.
+            </div>
+          </div>
+        </li>
+        <li class="list-group-item">
+          <div class="media">
+            <a class="pull-left" href="#">
+              <img class="media-object" src="/bundles/sonatademo/images/sonata-logo.png">
+            </a>
+            <div class="media-body">
+              <h4 class="media-heading"><a href="http://sonata-project.org/bundles/news">News</a></h4>
+              A simple blog/news platform.
+            </div>
+          </div>
+        </li>
+        <li class="list-group-item">
+          <div class="media">
+            <a class="pull-left" href="#">
+              <img class="media-object" src="/bundles/sonatademo/images/sonata-logo.png">
+            </a>
+            <div class="media-body">
+              <h4 class="media-heading"><a href="http://sonata-project.org/bundles/user">User</a></h4>
+              FOS/User integration.
+            </div>
+          </div>
+        </li>
+        <li class="list-group-item">
+          <div class="media">
+            <a class="pull-left" href="#">
+              <img class="media-object" src="/bundles/sonatademo/images/sonata-logo.png">
+            </a>
+            <div class="media-body">
+              <h4 class="media-heading"><a href="http://sonata-project.org/bundles/block">Block</a></h4>
+              Handle rendering of block element. A block is a small unit with its own logic and templates. A block can be inserted anywhere in a current template.
+            </div>
+          </div>
+        </li>
+        <li class="list-group-item">
+          <div class="media">
+            <a class="pull-left" href="#">
+              <img class="media-object" src="/bundles/sonatademo/images/sonata-logo.png">
+            </a>
+            <div class="media-body">
+              <h4 class="media-heading"><a href="http://sonata-project.org/bundles/timeline">Timeline</a></h4>
+              Integrates SpyTimelineBundle into Sonata's bundles.
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+</div>
+</div>
+CONTENT
+        );
+    }
+
+    /**
+     * Creates simple content pages
+     *
+     * @param SiteInterface $site    A Site entity instance
+     * @param string        $url     A page URL
+     * @param string        $title   A page title
+     * @param string        $content A text content
+     *
+     * @return void
+     */
+    public function createTextContentPage(SiteInterface $site, $url, $title, $content)
+    {
+        $pageManager = $this->getPageManager();
+        $blockManager = $this->getBlockManager();
+        $blockInteractor = $this->getBlockInteractor();
+
+        $page = $pageManager->create();
+        $page->setSlug(sprintf('/%s', $url));
+        $page->setUrl(sprintf('/%s', $url));
+        $page->setName($title);
+        $page->setTitle($title);
+        $page->setEnabled(true);
+        $page->setDecorate(1);
+        $page->setRequestMethod('GET|POST|HEAD|DELETE|PUT');
+        $page->setTemplateCode('default');
+        $page->setRouteName('page_slug');
+        $page->setSite($site);
+        $page->setParent($this->getReference('page-homepage'));
+
+        $page->addBlocks($block = $blockInteractor->createNewContainer(array(
+            'enabled' => true,
+            'page'    => $page,
+            'code'    => 'content_top',
+        )));
+
+        // add the breadcrumb
+        $block->addChildren($breadcrumb = $blockManager->create());
+        $breadcrumb->setType('sonata.page.block.breadcrumb');
+        $breadcrumb->setPosition(0);
+        $breadcrumb->setEnabled(true);
+        $breadcrumb->setPage($page);
+
+        // Add text content block
+        $block->addChildren($text = $blockManager->create());
+        $text->setType('sonata.block.service.text');
+        $text->setSetting('content', sprintf('<h2>%s</h2><div>%s</div>', $title, $content));
+        $text->setPosition(1);
+        $text->setEnabled(true);
+        $text->setPage($page);
+
+        $pageManager->save($page);
+    }
+
+    public function create404ErrorPage(SiteInterface $site)
+    {
+        $pageManager = $this->getPageManager();
+        $blockManager = $this->getBlockManager();
+        $blockInteractor = $this->getBlockInteractor();
+
+        $page = $pageManager->create();
+        $page->setName('_page_internal_error_not_found');
+        $page->setTitle('Error 404');
+        $page->setEnabled(true);
+        $page->setDecorate(1);
+        $page->setRequestMethod('GET|POST|HEAD|DELETE|PUT');
+        $page->setTemplateCode('default');
+        $page->setRouteName('_page_internal_error_not_found');
+        $page->setSite($site);
+        $page->setParent($this->getReference('page-homepage'));
+
+        $page->addBlocks($block = $blockInteractor->createNewContainer(array(
+            'enabled' => true,
+            'page'    => $page,
+            'code'    => 'content_top',
+        )));
+
+        // add the breadcrumb
+        $block->addChildren($breadcrumb = $blockManager->create());
+        $breadcrumb->setType('sonata.page.block.breadcrumb');
+        $breadcrumb->setPosition(0);
+        $breadcrumb->setEnabled(true);
+        $breadcrumb->setPage($page);
+
+        // Add text content block
+        $block->addChildren($text = $blockManager->create());
+        $text->setType('sonata.block.service.text');
+        $text->setSetting('content', '<h2>Error 404</h2><div>Page not found.</div>');
+        $text->setPosition(1);
+        $text->setEnabled(true);
+        $text->setPage($page);
+
+        $pageManager->save($page);
+    }
+
+    public function create500ErrorPage(SiteInterface $site)
+    {
+        $pageManager = $this->getPageManager();
+        $blockManager = $this->getBlockManager();
+        $blockInteractor = $this->getBlockInteractor();
+
+        $page = $pageManager->create();
+        $page->setName('_page_internal_error_not_found');
+        $page->setTitle('Error 500');
+        $page->setEnabled(true);
+        $page->setDecorate(1);
+        $page->setRequestMethod('GET|POST|HEAD|DELETE|PUT');
+        $page->setTemplateCode('default');
+        $page->setRouteName('_page_internal_error_fatal');
+        $page->setSite($site);
+        $page->setParent($this->getReference('page-homepage'));
+
+        $page->addBlocks($block = $blockInteractor->createNewContainer(array(
+            'enabled' => true,
+            'page'    => $page,
+            'code'    => 'content_top',
+        )));
+
+        // add the breadcrumb
+        $block->addChildren($breadcrumb = $blockManager->create());
+        $breadcrumb->setType('sonata.page.block.breadcrumb');
+        $breadcrumb->setPosition(0);
+        $breadcrumb->setEnabled(true);
+        $breadcrumb->setPage($page);
+
+        // Add text content block
+        $block->addChildren($text = $blockManager->create());
+        $text->setType('sonata.block.service.text');
+        $text->setSetting('content', '<h2>Error 500</h2><div>Internal error.</div>');
+        $text->setPosition(1);
+        $text->setEnabled(true);
+        $text->setPage($page);
+
+        $pageManager->save($page);
+    }
+
+    /**
+     * @param SiteInterface $site
+     */
     public function createGlobalPage(SiteInterface $site)
     {
         $pageManager = $this->getPageManager();
@@ -367,7 +997,7 @@ CONTENT
         $title->addChildren($text = $blockManager->create());
 
         $text->setType('sonata.block.service.text');
-        $text->setSetting('content', '<h2><a href="/">Sonata Sandbox</a></h2>');
+        $text->setSetting('content', '<h2><a href="/">Sonata Demo</a></h2>');
         $text->setPosition(1);
         $text->setEnabled(true);
         $text->setPage($global);
@@ -380,52 +1010,140 @@ CONTENT
 
         $header->setName('The header container');
 
-        $header->addChildren($account = $blockManager->create());
+        $global->addBlocks($headerTop = $blockInteractor->createNewContainer(array(
+            'enabled' => true,
+            'page' => $global,
+            'code' => 'header-top',
+        ), function ($container) {
+            $container->setSetting('layout', '<div class="pull-right">{{ CONTENT }}</div>');
+        }));
+
+        $headerTop->setPosition(1);
+
+        $header->addChildren($headerTop);
+
+        $headerTop->addChildren($account = $blockManager->create());
 
         $account->setType('sonata.user.block.account');
         $account->setPosition(1);
         $account->setEnabled(true);
         $account->setPage($global);
 
-        $header->addChildren($menu = $blockManager->create());
+        $headerTop->addChildren($basket = $blockManager->create());
 
-        $menu->setType('sonata.page.block.children_pages');
-        $menu->setSetting('current', false);
-        $menu->setPosition(2);
+        $basket->setType('sonata.basket.block.nb_items');
+        $basket->setPosition(2);
+        $basket->setEnabled(true);
+        $basket->setPage($global);
+
+        $global->addBlocks($headerMenu = $blockInteractor->createNewContainer(array(
+            'enabled' => true,
+            'page' => $global,
+            'code' => 'header-menu',
+        )));
+
+        $headerMenu->setPosition(2);
+
+        $header->addChildren($headerMenu);
+
+        $headerMenu->setName('The header menu container');
+        $headerMenu->setPosition(3);
+        $headerMenu->addChildren($menu = $blockManager->create());
+
+        $menu->setType('sonata.block.service.menu');
+        $menu->setSetting('menu_name', "SonataDemoBundle:Builder:mainMenu");
+        $menu->setSetting('safe_labels', true);
+        $menu->setPosition(3);
         $menu->setEnabled(true);
         $menu->setPage($global);
 
         $global->addBlocks($footer = $blockInteractor->createNewContainer(array(
             'enabled' => true,
-            'page' => $global,
-            'code' => 'footer',
-        )));
+            'page'    => $global,
+            'code'    => 'footer'
+        ), function ($container) {
+            $container->setSetting('layout', '<div class="row page-footer well">{{ CONTENT }}</div>');
+        }));
 
         $footer->setName('The footer container');
 
-        $footer->addChildren($text = $blockManager->create());
+        // Footer : add 3 children block containers (left, center, right)
+        $footer->addChildren($footerLeft = $blockInteractor->createNewContainer(array(
+            'enabled' => true,
+            'page'    => $global,
+            'code'    => 'content'
+        ), function ($container) {
+            $container->setSetting('layout', '<div class="col-md-4">{{ CONTENT }}</div>');
+        }));
+
+        $footer->addChildren($footerCenter = $blockInteractor->createNewContainer(array(
+            'enabled' => true,
+            'page'    => $global,
+            'code'    => 'content',
+        ), function ($container) {
+            $container->setSetting('layout', '<div class="col-md-4">{{ CONTENT }}</div>');
+        }));
+
+        $footer->addChildren($footerRight = $blockInteractor->createNewContainer(array(
+            'enabled' => true,
+            'page'    => $global,
+            'code'    => 'content'
+        ), function ($container) {
+            $container->setSetting('layout', '<div class="col-md-4">{{ CONTENT }}</div>');
+        }));
+
+        // Footer left: add a simple text block
+        $footerLeft->addChildren($text = $blockManager->create());
 
         $text->setType('sonata.block.service.text');
-        $text->setSetting('content', <<<FOOTER
-        <a href="http://www.sonata-project.org">Sonata Project</a> sandbox demonstration.
+        $text->setSetting('content', '<h3>Sonata Demo</h3><p class="handcraft">Handcrafted in France with love ♥</p>');
 
-<script type="text/javascript">
-
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-25614705-2']);
-  _gaq.push(['_trackPageview']);
-
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-
-</script>
-FOOTER
-);
         $text->setPosition(1);
         $text->setEnabled(true);
+        $text->setPage($global);
+
+        // Footer center: add menu links
+        $footerCenter->addChildren($text = $blockManager->create());
+
+        $text->setType('sonata.block.service.text');
+        $text->setSetting('content', <<<CONTENT
+<ul class="links">
+    <li><a href="/who-we-are">Who we are</a></li>
+    <li><a href="/client-testimonials">Client testimonials</a></li>
+    <li><a href="/press">Press</a></li>
+    <li><a href="/faq">FAQ</a></li>
+    <li><a href="/contact-us">Contact us</a></li>
+    <li><a href="/shop/payment/terms-and-conditions">Terms & conditions</a></li>
+    <li><a target="_blank" href="http://www.twitter.com/sonataproject">Twitter</a></li>
+    <li><a target="_blank" href="https://groups.google.com/forum/#!forum/sonata-devs">Google Group</a></li>
+</ul>
+CONTENT
+        );
+
+        $text->setPosition(1);
+        $text->setEnabled(true);
+        $text->setPage($global);
+
+        // Footer right: add social links
+        $footerRight->addChildren($text = $blockManager->create());
+
+        $text->setType('sonata.block.service.text');
+        $text->setSetting('content', <<<CONTENT
+
+<a class="twitter-timeline"
+    href="https://twitter.com/sonataproject"
+    data-widget-id="423108745925636096"
+    data-chrome="nofooter noborders noscrollbar transparent"
+    data-tweet-limit=”2"
+    >Tweets by @sonataproject</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+CONTENT
+        );
+
+        $text->setPosition(1);
+        $text->setEnabled(true);
+        $text->setName('The Twitter Block');
         $text->setPage($global);
 
         $pageManager->save($global);

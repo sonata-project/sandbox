@@ -7,7 +7,7 @@ framework:
         storage_id: session.storage.filesystem
 
 web_profiler:
-    toolbar: false
+    toolbar:             false
     intercept_redirects: false
 
 swiftmailer:

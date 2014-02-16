@@ -87,6 +87,15 @@ abstract class CommandTestCase extends WebTestCase
             array('sonata.notification.admin.message',        'Application\\Sonata\\NotificationBundle\\Entity\\Message'),
             array('sonata.demo.admin.car',                    'Sonata\\Bundle\\DemoBundle\\Entity\\Car'),
             array('sonata.demo.admin.engine',                 'Sonata\\Bundle\\DemoBundle\\Entity\\Engine'),
+            array('sonata.customer.admin.customer',           'Application\Sonata\CustomerBundle\Entity\Customer'),
+            array('sonata.customer.admin.address',            'Application\Sonata\CustomerBundle\Entity\Address'),
+            array('sonata.invoice.admin.invoice',             'Application\Sonata\InvoiceBundle\Entity\Invoice'),
+            array('sonata.order.admin.order',                 'Application\Sonata\OrderBundle\Entity\Order'),
+            array('sonata.order.admin.order_element',         'Application\Sonata\OrderBundle\Entity\OrderElement'),
+            array('sonata.product.admin.product',             'Application\Sonata\ProductBundle\Entity\Product'),
+            array('sonata.product.admin.product_category',    'Application\Sonata\ProductBundle\Entity\ProductCategory'),
+            array('sonata.product.admin.product_collection',  'Application\Sonata\ProductBundle\Entity\ProductCollection'),
+            array('sonata.product.admin.delivery',            'Application\Sonata\ProductBundle\Entity\Delivery'),
         );
     }
 
@@ -125,6 +134,17 @@ abstract class CommandTestCase extends WebTestCase
             array('sonata.block.service.empty', ),
             array('sonata.block.service.text', ),
             array('sonata.block.service.rss', ),
+            array('sonata.block.service.menu', ),
+            array('sonata.timeline.block.timeline', ),
+            array('sonata.customer.block.recent_customers', ),
+            array('sonata.basket.block.nb_items', ),
+            array('sonata.news.block.recent_posts', ),
+            array('sonata.news.block.recent_comments', ),
+            array('sonata.user.block.menu', ),
+            array('sonata.user.block.account', ),
+            array('sonata.basket.block.nb_items', ),
+            array('sonata.order.block.recent_orders', ),
+            array('sonata.product.block.recent_products', ),
         );
     }
 

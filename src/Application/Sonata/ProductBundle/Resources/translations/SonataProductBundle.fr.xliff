@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" target-language="fr" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="level">
+                <source>level</source>
+                <target>Niveau de la formation</target>
+            </trans-unit>
+            <trans-unit id="instructor_name">
+                <source>instructor_name</source>
+                <target>Instructeur</target>
+            </trans-unit>
+            <trans-unit id="duration">
+                <source>duration</source>
+                <target>Durée</target>
+            </trans-unit>
+            <trans-unit id="form.label_level">
+                <source>form.label_level</source>
+                <target>Niveau</target>
+            </trans-unit>
+            <trans-unit id="form.label_instructor_name">
+                <source>form.label_instructor_name</source>
+                <target>Formateur</target>
+            </trans-unit>
+            <trans-unit id="form.label_duration">
+                <source>form.label_duration</source>
+                <target>Durée</target>
+            </trans-unit>
+            <trans-unit id="form.label_start_date">
+                <source>form.label_start_date</source>
+                <target>Date de début</target>
+            </trans-unit>
+            <trans-unit id="travel.travellers">
+                <source>travel.travellers</source>
+                <target>Voyageurs</target>
+            </trans-unit>
+            <trans-unit id="travel.travel_date">
+                <source>travel.travel_date</source>
+                <target>Date du voyage</target>
+            </trans-unit>
+            <trans-unit id="travel.travel_days">
+                <source>travel.travel_days</source>
+                <target>Jours</target>
+            </trans-unit>
+            <trans-unit id="form.label_travel_days">
+                <source>form.label_travel_days</source>
+                <target>Jours</target>
+            </trans-unit>
+            <trans-unit id="form.label_travellers">
+                <source>form.label_travellers</source>
+                <target>Voyageurs</target>
+            </trans-unit>
+            <trans-unit id="form.label_travel_date">
+                <source>form.label_travel_date</source>
+                <target>Date du voyage</target>
+            </trans-unit>
+            <trans-unit id="form_travellers">
+                <source>form_travellers</source>
+                <target>Voyageurs</target>
+            </trans-unit>
+            <trans-unit id="form_travelDate">
+                <source>form_travelDate</source>
+                <target>Date du voyage</target>
+            </trans-unit>
+            <trans-unit id="form_travelDays">
+                <source>form_travelDays</source>
+                <target>Nombre de jours</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

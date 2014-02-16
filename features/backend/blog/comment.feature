@@ -13,7 +13,7 @@ Scenario: Check comment admin pages when connected
 Scenario: Add a new comment with some errors
   When I am connected with "admin" and "admin" on "admin/sonata/news/comment/create?uniqid=f155592a220e"
   And I press "Create"
-  Then I should see "An error has occurred during item creation."
+  Then I should see "An error has occurred during the creation of item \"n-a\"."
 
 Scenario: Add a new comment
   When I am connected with "admin" and "admin" on "admin/sonata/news/comment/create?uniqid=f155592a220e"
@@ -21,7 +21,7 @@ Scenario: Add a new comment
   And I fill in "f155592a220e_email" with "toto@ekino.com"
   And I fill in "f155592a220e_message" with "comment"
   And I press "Create"
-  Then I should see "Item has been successfully created."
+  Then I should see "Item \"toto\" has been successfully created."
 
 Scenario: Export JSON data
   When I am connected with "admin" and "admin" on "admin/sonata/news/comment/list"
@@ -55,7 +55,7 @@ Scenario: Edit a comment
   And I press "Filter"
   And I follow "toto"
   And I press "Update"
-  Then I should see "Item has been successfully updated."
+  Then I should see "Item \"toto\" has been successfully updated."
 
 Scenario: View history of a comment
   When I am connected with "admin" and "admin" on "admin/sonata/news/comment/list"
@@ -72,4 +72,4 @@ Scenario: Delete a comment
   And I follow "toto"
   And I follow link "Delete" with class "btn btn-danger"
   And I press "Yes, delete"
-  Then I should see "Item has been deleted successfully."
+  Then I should see "Item \"toto\" has been deleted successfully."

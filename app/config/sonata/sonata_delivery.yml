@@ -1,0 +1,18 @@
+sonata_delivery:
+    services:
+        free_address_required:
+            name: Free
+            enabled: true
+            priority: 1
+            code: free
+
+    selector: sonata.delivery.selector.default
+
+# Enable Doctrine to map the provided entities
+doctrine:
+    orm:
+        entity_managers:
+            default:
+                mappings:
+                    ApplicationSonataDeliveryBundle: ~
+                    SonataDeliveryBundle: ~

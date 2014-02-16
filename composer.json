@@ -1,12 +1,12 @@
 {
     "name": "sonata-project/sandbox",
-    "description": "Sonata Project's sandbox",
+    "description": "Sonata Project's sandbox (with ecommerce bundles)",
+
+    "license": "MIT",
 
     "autoload": {
         "psr-0": { "": "src/" }
     },
-
-    "license": "MIT",
 
     "minimum-stability": "stable",
 
@@ -16,7 +16,7 @@
         "twig/twig": "~1.12",
         "twig/extensions": "~1.0",
 
-        "symfony/symfony": "~2.3",
+        "symfony/symfony": "~2.3.7",
         "symfony/assetic-bundle": "~2.3",
         "symfony/swiftmailer-bundle": "~2.3",
         "symfony/monolog-bundle": "~2.3",
@@ -25,14 +25,16 @@
         "sensio/framework-extra-bundle": "~2.3",
         "sensio/generator-bundle": "~2.3",
 
+        "jms/security-extra-bundle": "~1.5",
+        "jms/di-extra-bundle": "~1.4",
+        "jms/serializer-bundle": "~0.11",
+
+        "doctrine/orm": "~2.4",
         "doctrine/doctrine-bundle": "~1.2",
         "doctrine/doctrine-migrations-bundle": "dev-master",
         "doctrine/migrations": "dev-master",
         "doctrine/doctrine-fixtures-bundle": "~2.2",
         "doctrine/data-fixtures": "1.0.*@dev",
-
-        "jms/security-extra-bundle": "~1.5",
-        "jms/di-extra-bundle": "~1.4",
 
         "symfony-cmf/routing-bundle": "~1.1",
 
@@ -57,14 +59,23 @@
         "sonata-project/exporter": "~1.3",
         "sonata-project/timeline-bundle": "~2.2@dev",
         "sonata-project/classification-bundle": "~2.2",
+        "sonata-project/ecommerce": "dev-develop",
+        "sonata-project/comment-bundle": "~2.2@dev",
+
+        "friendsofsymfony/comment-bundle": "~2.0@dev",
 
         "dflydev/markdown": "~1.0",
         "simplethings/entity-audit-bundle": "~0.5",
         "willdurand/faker-bundle": "~1.0",
 
+        "mopa/bootstrap-bundle": "v3.0.0-beta3",
+        "twbs/bootstrap": "v3.0.0",
+
         "stof/doctrine-extensions-bundle": "~1.1",
-        "stephpy/TimelineBundle": "2.0.*@dev",
-        "stephpy/timeline": "~1.0@dev"
+        "stephpy/TimelineBundle": "~2.0@dev",
+        "stephpy/timeline": "~1.0@dev",
+
+        "incenteev/composer-parameter-handler": "~2.0"
     },
 
     "require-dev": {
@@ -73,21 +84,36 @@
         "behat/behat": "~2.4",
         "behat/mink-extension": "~1.2",
         "behat/mink-goutte-driver": "~1.0",
-        "behat/mink": "~1.5"
+        "behat/mink": "~1.5",
+        "behat/mink-browserkit-driver": "~1.1",
+        "behat/mink-selenium2-driver": "~1.1"
     },
 
     "scripts": {
         "post-install-cmd": [
+            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+            "Mopa\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrap",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
         ],
         "post-update-cmd": [
+            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+            "Mopa\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrap",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
+        ],
+        "post-create-project-cmd": [
+            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+            "Mopa\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrap",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
+            "php load_data.php"
         ]
     },
 
@@ -98,8 +124,25 @@
     "extra": {
         "symfony-app-dir": "app",
         "symfony-web-dir": "web",
+        "symfony-assets-install": "symlink",
         "branch-alias": {
             "dev-master": "2.3.x-dev"
-        }
+        },
+        "incenteev-parameters": [{
+            "file": "app/config/parameters.yml",
+            "env-map": {
+                "database_driver":   "DATABASE_DRIVER",
+                "database_host":     "DATABASE_HOST",
+                "database_name":     "DATABASE_NAME",
+                "database_user":     "DATABASE_USER",
+                "database_password": "DATABASE_PASSWORD",
+                "mailer_transport":  "MAILER_TRANSPORT",
+                "mailer_host":       "MAILER_HOST",
+                "mailer_user":       "MAILER_USER",
+                "mailer_password":   "MAILER_PASSWORD",
+
+                "sonata_media.cdn.host": "SONATA_MEDIA_CDN_HOST"
+            }
+        }]
     }
 }

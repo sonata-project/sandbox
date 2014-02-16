@@ -47,7 +47,7 @@ class SonataPageDumpCommandTest extends CommandTestCase
     {
         $client = self::createClient();
 
-        $page = $client->getContainer()->get('sonata.page.manager.page')->findOneBy();
+        $page = $client->getContainer()->get('sonata.page.manager.page')->findOneBy(array());
 
         $output = $this->runCommand($client, sprintf("sonata:page:dump-page sonata.page.cms.page %d", $page->getId()));
 

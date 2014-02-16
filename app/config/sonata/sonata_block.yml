@@ -5,31 +5,69 @@ sonata_block:
     http_cache:
         listener: true
 
+    menus:
+        "SonataDemoBundle:Builder:mainMenu": "Main Menu"
+
     blocks:
         sonata.admin.block.admin_list:
+            contexts:   [admin]
+        sonata.timeline.block.timeline:
+            contexts:   [admin]
+        sonata.admin.block.search_result:
             contexts:   [admin]
 
         sonata.admin.block.search_result:
             contexts:   [admin]
 
-#        sonata.admin_doctrine_orm.block.audit:
-#            contexts:   [admin]
+        #sonata.admin_doctrine_orm.block.audit:
+        #    contexts:   [admin]
 
         sonata.block.service.text:
+        sonata.block.service.container:
         sonata.page.block.container:
             # cache: sonata.cache.memcached
+            # cache: sonata.cache.predis
+            # cache: sonata.page.cache.esi # if you are using the PageBundle
+            # cache: sonata.block.cache.esi # if you are using the BlockBundle without the PageBundle
         sonata.page.block.children_pages:
         sonata.block.service.rss:
+        sonata.block.service.menu:
         sonata.media.block.media:
         sonata.media.block.gallery:
         sonata.media.block.feature_media:
         sonata.news.block.recent_comments:
         sonata.news.block.recent_posts:
+        sonata.order.block.recent_orders:
+        sonata.product.block.recent_products:
+        sonata.product.block.categories_menu:
+        sonata.product.block.filters_menu:
+        sonata.product.block.variations_form:
+        sonata.customer.block.recent_customers:
+
         sonata.timeline.block.timeline:
 
         sonata.user.block.account:
             cache: sonata.page.cache.js_async
-#            cache: sonata.page.cache.esi
+            #cache: sonata.page.cache.esi
             contexts: [user]
         sonata.user.block.menu:
             contexts: [user]
+
+        sonata.basket.block.nb_items:
+            cache: sonata.page.cache.js_async
+            contexts: [user]
+
+        sonata.seo.block.social.container:
+        sonata.seo.block.email.share_button:
+        sonata.seo.block.facebook.like_box:
+        sonata.seo.block.facebook.like_button:
+        sonata.seo.block.facebook.send_button:
+        sonata.seo.block.facebook.share_button:
+        sonata.seo.block.pinterest.pin_button:
+        sonata.seo.block.twitter.share_button:
+        sonata.seo.block.twitter.follow_button:
+        sonata.seo.block.twitter.hashtag_button:
+        sonata.seo.block.twitter.mention_button:
+
+        sonata.demo.block.newsletter:
+        sonata.page.block.breadcrumb:

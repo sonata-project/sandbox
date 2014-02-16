@@ -1,0 +1,9 @@
+fos_comment:
+    db_driver: orm
+    class:
+        model:
+            comment: Application\Sonata\CommentBundle\Entity\Comment
+            thread: Application\Sonata\CommentBundle\Entity\Thread
+    form:
+        comment:
+            type: sonata_comment_comment

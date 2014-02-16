@@ -16,4 +16,9 @@
         <default key="_controller">SonataDemoBundle:Demo:carRescueEngine</default>
     </route>
 
+    <route id="sonata_demo_newsletter" pattern="/newsletter">
+        <default key="_controller">SonataDemoBundle:Demo:newsletter</default>
+        <requirement key="_method">POST</requirement>
+    </route>
+
 </routes>

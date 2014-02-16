@@ -1,0 +1,40 @@
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+
+
+{#
+    Default product template file, you can
+      => customize the global template : Product:Product:view.twig
+      => rewrite your own template
+#}
+
+{% extends 'SonataProductBundle:Product:form_basket_element.html.twig' %}
+
+{#
+{% block product_description %}
+    <strong><a href="{{ url('sonata_product_view', {'productId': basketElement.product.id, 'slug': basketElement.product.slug}) }}">{{ basketElement.name }}</a></strong>
+    <br />
+    <em>{{ basketElement.product.description|raw|truncate(200, false, '…') }}</em>
+{% endblock %}
+
+{% block product_quantity %}
+    {{ form_errors(formView.quantity) }}
+    {{ form_widget(formView.quantity) }}
+{% endblock %}
+
+{% block product_total %}
+    {{ basketElement.getTotal(true)|number_format_currency(basket.currency, {}, {}, basket.locale) }}
+{% endblock %}
+
+{% block product_delete %}
+    {{ form_widget(formView.delete) }}
+{% endblock %}
+#}

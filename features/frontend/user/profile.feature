@@ -4,7 +4,7 @@ Feature: Edit profile information
 Scenario: Connect as user
   When I am connected with "johndoe" and "johndoe" on "login"
   And I go to "profile/"
-  Then I should see "My Profile"
+  Then I should see "Dashboard"
 
 Scenario: Edit my information
   When I am connected with "johndoe" and "johndoe" on "login"

@@ -34,8 +34,8 @@ class RescueEngineTypeExtension extends AbstractTypeExtension
             'choices' => $this->getRescueEngines($options['rescue_engines']),
         ));
 
-        $rescueEngine->resetClientTransformers();
-        $rescueEngine->appendClientTransformer(new EngineChoiceTransformer($options['rescue_engines']));
+        $rescueEngine->resetViewTransformers();
+        $rescueEngine->addViewTransformer(new EngineChoiceTransformer($options['rescue_engines']));
 
         $formBuilder->add($rescueEngine);
     }
@@ -54,7 +54,8 @@ class RescueEngineTypeExtension extends AbstractTypeExtension
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'rescue_engines' => array()
+            'rescue_engines' => array(),
+            'data_class'     => 'Sonata\Bundle\DemoBundle\Entity\Engine',
         ));
     }
 

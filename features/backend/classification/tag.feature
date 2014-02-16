@@ -13,13 +13,13 @@ Scenario: Check category admin pages when connected
 Scenario: Add a new tag with some errors
   When I am connected with "admin" and "admin" on "admin/sonata/classification/tag/create?uniqid=f155592a220e"
   And I press "Create"
-  Then I should see "An error has occurred during item creation."
+  Then I should see "An error has occurred during the creation of item \"n/a\"."
 
 Scenario: Add a new tag
   When I am connected with "admin" and "admin" on "admin/sonata/classification/tag/create?uniqid=f155592a220e"
   And I fill in "f155592a220e_name" with "toto"
   And I press "Create"
-  Then I should see "Item has been successfully created."
+  Then I should see "Item \"toto\" has been successfully created."
 
 Scenario: Filter tags
   When I am connected with "admin" and "admin" on "admin/sonata/classification/tag/list"
@@ -31,7 +31,7 @@ Scenario: Edit a tag
   When I am connected with "admin" and "admin" on "admin/sonata/classification/tag/list"
   And I follow "toto"
   And I press "Update"
-  Then I should see "Item has been successfully updated."
+  Then I should see "Item \"toto\" has been successfully updated."
 
 Scenario: View revisions of a tag
   When I am connected with "admin" and "admin" on "admin/sonata/classification/tag/list"
@@ -66,4 +66,4 @@ Scenario: Delete a tag
   And I follow "toto"
   And I follow link "Delete" with class "btn btn-danger"
   And I press "Yes, delete"
-  Then I should see "Item has been deleted successfully."
+  Then I should see "Item \"toto\" has been deleted successfully."

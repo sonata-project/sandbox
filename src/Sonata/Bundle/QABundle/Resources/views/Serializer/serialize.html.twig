@@ -1,0 +1,44 @@
+<h1>Serialize test page</h1>
+
+<form action="{{ url('sonata_qa_serialize') }}" method="post">
+    <p class="well">
+        <label for="class">Class:</label>
+        <select name="class">
+            {% for class in classes %}
+                <option value="{{ class }}" {% if app.request.get('class') == class %}selected="selected"{% endif %}>{{ class }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="id">Id.:</label>
+        <input type="text" name="id" value="{{ app.request.get('id') }}" placeholder="optional" size="3">
+
+        <label for="group">Group:</label>
+        <input type="text" name="group" value="{{ app.request.get('group') }}" placeholder="optional" size="5">
+
+        <label for="version">Version:</label>
+        <input type="text" name="version" value="{{ app.request.get('version') }}" placeholder="optional" size="5">
+
+        <input type="submit" value="Serialize" class="btn btn-primary pull-right">
+    </p>
+</form>
+
+<ul class="nav nav-pills" style="margin-bottom: 15px;">
+    <li class="active"><a href="#xml">XML</a></li>
+    <li><a href="#json">Json</a></li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane active" id="xml">
+        <pre>{{ raw['xml'] }}</pre>
+    </div>
+    <div class="tab-pane" id="json">
+        <pre>{{ raw['json'] }}</pre>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $('.nav-pills a').click(function (e) {
+        e.preventDefault()
+        $(this).tab('show')
+    })
+</script>

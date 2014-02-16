@@ -47,7 +47,7 @@ class SonataPageRenderBlockCommandTest extends CommandTestCase
     {
         $client = self::createClient();
 
-        $page = $client->getContainer()->get('sonata.page.manager.page')->findOneBy();
+        $page = $client->getContainer()->get('sonata.page.manager.page')->findOneBy(array());
         $block = $client->getContainer()->get('sonata.page.manager.block')->findOneBy(array(
             'page' => $page->getId()
         ));
