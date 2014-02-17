@@ -16,9 +16,6 @@ sonata_block:
         sonata.admin.block.search_result:
             contexts:   [admin]
 
-        sonata.admin.block.search_result:
-            contexts:   [admin]
-
         #sonata.admin_doctrine_orm.block.audit:
         #    contexts:   [admin]
 
