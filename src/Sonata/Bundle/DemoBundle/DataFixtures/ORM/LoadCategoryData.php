@@ -131,6 +131,16 @@ class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterfac
         $this->getCategoryManager()->save($europe);
         $this->setReference('travels_europe_category', $europe);
 
+        // Switzerland category
+        $switzerland = $this->getCategoryManager()->create();
+        $switzerland->setParent($europe);
+        $switzerland->setName('Switzerland');
+        $switzerland->setSlug('switzerland');
+        $switzerland->setDescription('Want to travel in Switzerland? Check out our travels.');
+        $switzerland->setEnabled(true);
+        $this->getCategoryManager()->save($switzerland);
+        $this->setReference('travels_switzerland_category', $switzerland);
+
         // France category
         $france = $this->getCategoryManager()->create();
         $france->setParent($europe);
@@ -170,16 +180,6 @@ class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterfac
         $london->setEnabled(true);
         $this->getCategoryManager()->save($london);
         $this->setReference('travels_london_category', $london);*/
-
-        // Switzerland category
-        $switzerland = $this->getCategoryManager()->create();
-        $switzerland->setParent($europe);
-        $switzerland->setName('Switzerland');
-        $switzerland->setSlug('switzerland');
-        $switzerland->setDescription('Want to travel in Switzerland? Check out our travels.');
-        $switzerland->setEnabled(true);
-        $this->getCategoryManager()->save($switzerland);
-        $this->setReference('travels_switzerland_category', $switzerland);
 
         // Goodies sub-categories
         $plushes = $this->getCategoryManager()->create();
