@@ -50,7 +50,7 @@ security:
             anonymous:    true
 
         api:
-            pattern:   /api(.*)
+            pattern:   /api/(.*)
             http_basic:
                 realm:         "Secured Demo Area"
                 provider:       in_memory
