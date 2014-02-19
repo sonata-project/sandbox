@@ -13,6 +13,9 @@
 /*
  * Sonata Demo
  */
+div .page-header h2 {
+    display: inline;
+}
 
 @media screen and (min-width: 1200px) {
     .sonata-bc .container {

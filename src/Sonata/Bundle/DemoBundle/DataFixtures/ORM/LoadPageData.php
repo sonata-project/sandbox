@@ -986,22 +986,6 @@ CONTENT
         $pageManager->save($global);
 
         // CREATE A HEADER BLOCK
-        $global->addBlocks($title = $blockInteractor->createNewContainer(array(
-            'enabled' => true,
-            'page' => $global,
-            'code' => 'title',
-        )));
-
-        $title->setName('The title container');
-
-        $title->addChildren($text = $blockManager->create());
-
-        $text->setType('sonata.block.service.text');
-        $text->setSetting('content', '<h2><a href="/">Sonata Demo</a></h2>');
-        $text->setPosition(1);
-        $text->setEnabled(true);
-        $text->setPage($global);
-
         $global->addBlocks($header = $blockInteractor->createNewContainer(array(
             'enabled' => true,
             'page' => $global,
@@ -1009,6 +993,14 @@ CONTENT
         )));
 
         $header->setName('The header container');
+
+        $header->addChildren($text = $blockManager->create());
+
+        $text->setType('sonata.block.service.text');
+        $text->setSetting('content', '<h2><a href="/">Sonata Demo</a></h2>');
+        $text->setPosition(1);
+        $text->setEnabled(true);
+        $text->setPage($global);
 
         $global->addBlocks($headerTop = $blockInteractor->createNewContainer(array(
             'enabled' => true,
