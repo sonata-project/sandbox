@@ -11,7 +11,6 @@
 
 namespace Application\Sonata\CommentBundle\Entity;
 
-use FOS\CommentBundle\Model\SignedCommentInterface;
 use Sonata\CommentBundle\Entity\BaseComment as BaseComment;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -23,7 +22,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  *
  * @author <yourname> <youremail>
  */
-class Comment extends BaseComment implements SignedCommentInterface
+class Comment extends BaseComment
 {
     /**
      * @var integer $id
@@ -43,29 +42,5 @@ class Comment extends BaseComment implements SignedCommentInterface
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setAuthor(UserInterface $author)
-    {
-        $this->author = $author;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getAuthor()
-    {
-        return $this->author;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getAuthorName()
-    {
-        return $this->getAuthor() ? $this->getAuthor()->getUsername() : 'Anonymous';
     }
 }
