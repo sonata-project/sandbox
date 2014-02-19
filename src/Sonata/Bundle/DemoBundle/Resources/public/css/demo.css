@@ -17,6 +17,14 @@ div .page-header h2 {
     display: inline;
 }
 
+footer div.page-footer div.col-sm-3:first-child h2 {
+    margin-top: 1px;
+}
+
+footer ul {
+    padding-left: 0px;
+}
+
 @media screen and (min-width: 1200px) {
     .sonata-bc .container {
         max-width: 970px;
@@ -50,7 +58,8 @@ div .page-header h2 {
 }
 
 .sonata-bc .page-footer {
-    background-color: #dedede;
+    background-color: #242424;
+    color: #fff;
     margin: 0px;
 }
 
@@ -60,8 +69,19 @@ div .page-header h2 {
     line-height: 25px;
 }
 
+.sonata-bc .page-footer h4 {
+    font-size: 15px;
+}
+
+.sonata-bc .page-footer a {
+    color: #839496;
+    font-size: 12px;
+}
+
 .sonata-bc .page-footer p.handcraft {
-    margin-top: 80px;
+    margin-top: 15px;
+    color: #8a8a8a;
+    font-size: 10px;
 }
 
 .sonata-bc .page-header .col-sm-4, .sonata-bc .welcome {

@@ -1065,49 +1065,53 @@ CONTENT
             'page'    => $global,
             'code'    => 'content'
         ), function ($container) {
-            $container->setSetting('layout', '<div class="col-md-4">{{ CONTENT }}</div>');
+            $container->setSetting('layout', '<div class="col-sm-3">{{ CONTENT }}</div>');
         }));
 
-        $footer->addChildren($footerCenter = $blockInteractor->createNewContainer(array(
+        $footer->addChildren($footerLinksLeft = $blockInteractor->createNewContainer(array(
             'enabled' => true,
             'page'    => $global,
             'code'    => 'content',
         ), function ($container) {
-            $container->setSetting('layout', '<div class="col-md-4">{{ CONTENT }}</div>');
+            $container->setSetting('layout', '<div class="col-sm-2 col-sm-offset-3">{{ CONTENT }}</div>');
         }));
 
-        $footer->addChildren($footerRight = $blockInteractor->createNewContainer(array(
+        $footer->addChildren($footerLinksCenter = $blockInteractor->createNewContainer(array(
             'enabled' => true,
             'page'    => $global,
             'code'    => 'content'
         ), function ($container) {
-            $container->setSetting('layout', '<div class="col-md-4">{{ CONTENT }}</div>');
+            $container->setSetting('layout', '<div class="col-sm-2">{{ CONTENT }}</div>');
+        }));
+
+        $footer->addChildren($footerLinksRight = $blockInteractor->createNewContainer(array(
+            'enabled' => true,
+            'page'    => $global,
+            'code'    => 'content'
+        ), function ($container) {
+            $container->setSetting('layout', '<div class="col-sm-2">{{ CONTENT }}</div>');
         }));
 
         // Footer left: add a simple text block
         $footerLeft->addChildren($text = $blockManager->create());
 
         $text->setType('sonata.block.service.text');
-        $text->setSetting('content', '<h3>Sonata Demo</h3><p class="handcraft">Handcrafted in France with love ♥</p>');
+        $text->setSetting('content', '<h2>Sonata Demo</h2><p class="handcraft">HANDCRAFTED IN PARIS<br />WITH MIXED HERITAGE</p><p><a href="http://twitter.com/sonataproject" target="_blank">Follow Sonata on Twitter</a></p>');
 
         $text->setPosition(1);
         $text->setEnabled(true);
         $text->setPage($global);
 
-        // Footer center: add menu links
-        $footerCenter->addChildren($text = $blockManager->create());
+        // Footer left links
+        $footerLinksLeft->addChildren($text = $blockManager->create());
 
         $text->setType('sonata.block.service.text');
         $text->setSetting('content', <<<CONTENT
+<h4>PRODUCT</h4>
 <ul class="links">
-    <li><a href="/who-we-are">Who we are</a></li>
-    <li><a href="/client-testimonials">Client testimonials</a></li>
-    <li><a href="/press">Press</a></li>
+    <li><a href="/">Sonata</a></li>
+    <li><a href="/api">API</a></li>
     <li><a href="/faq">FAQ</a></li>
-    <li><a href="/contact-us">Contact us</a></li>
-    <li><a href="/shop/payment/terms-and-conditions">Terms & conditions</a></li>
-    <li><a target="_blank" href="http://www.twitter.com/sonataproject">Twitter</a></li>
-    <li><a target="_blank" href="https://groups.google.com/forum/#!forum/sonata-devs">Google Group</a></li>
 </ul>
 CONTENT
         );
@@ -1116,26 +1120,40 @@ CONTENT
         $text->setEnabled(true);
         $text->setPage($global);
 
-        // Footer right: add social links
-        $footerRight->addChildren($text = $blockManager->create());
+        // Footer middle links
+        $footerLinksCenter->addChildren($text = $blockManager->create());
 
         $text->setType('sonata.block.service.text');
         $text->setSetting('content', <<<CONTENT
-
-<a class="twitter-timeline"
-    href="https://twitter.com/sonataproject"
-    data-widget-id="423108745925636096"
-    data-chrome="nofooter noborders noscrollbar transparent"
-    data-tweet-limit=”2"
-    >Tweets by @sonataproject</a>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-
+<h4>ABOUT</h4>
+<ul class="links">
+    <li><a href="/about-sonata">About Sonata</a></li>
+    <li><a href="/privacy">Privacy</a></li>
+    <li><a href="/shop/payment/terms-and-conditions">Terms</a></li>
+</ul>
 CONTENT
         );
 
         $text->setPosition(1);
         $text->setEnabled(true);
-        $text->setName('The Twitter Block');
+        $text->setPage($global);
+
+        // Footer right links
+        $footerLinksRight->addChildren($text = $blockManager->create());
+
+        $text->setType('sonata.block.service.text');
+        $text->setSetting('content', <<<CONTENT
+<h4>COMMUNITY</h4>
+<ul class="links">
+    <li><a href="/blog">Blog</a></li>
+    <li><a href="http://www.github.com/sonata-project" target="_blank">Github</a></li>
+    <li><a href="/contact-us">Contact us</a></li>
+</ul>
+CONTENT
+        );
+
+        $text->setPosition(1);
+        $text->setEnabled(true);
         $text->setPage($global);
 
         $pageManager->save($global);
