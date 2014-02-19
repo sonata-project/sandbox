@@ -13,6 +13,9 @@
 /*
  * Sonata Demo
  */
+div .page-header h2 {
+    display: inline;
+}
 
 footer div.page-footer div.col-sm-3:first-child h2 {
     margin-top: 1px;
