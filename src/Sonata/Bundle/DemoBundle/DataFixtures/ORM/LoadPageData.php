@@ -51,6 +51,7 @@ class LoadPageData extends AbstractFixture implements ContainerAwareInterface, O
         $this->createBasketPage($site);
         $this->createUserPage($site);
         $this->createApiPage($site);
+        $this->createPrivacyPage($site);
         $this->createLegalNotesPage($site);
 
         // Create footer pages
@@ -433,6 +434,19 @@ CONTENT
 
 </div>
 
+CONTENT
+        );
+    }
+
+    /**
+     * @param SiteInterface $site
+     */
+    public function createPrivacyPage(SiteInterface $site)
+    {
+        $this->createTextContentPage($site, 'privacy', 'Privacy', <<<CONTENT
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut quis sapien gravida, eleifend diam id, vehicula erat. Aenean ultrices facilisis tellus. Vivamus vitae molestie diam. Donec quis mi porttitor, lobortis ipsum quis, fermentum dui. Donec nec nibh nec risus porttitor pretium et et lorem. Nullam mauris sapien, rutrum sed neque et, convallis ullamcorper lacus. Nullam vehicula a lectus vel suscipit. Nam gravida faucibus fermentum.</p>
+<p>Pellentesque dapibus eu nisi quis adipiscing. Phasellus adipiscing turpis nunc, sed interdum ante porta eu. Ut tempus, purus posuere molestie cursus, quam nisi fermentum est, dictum gravida nulla turpis vel nunc. Maecenas eget sem quam. Nam condimentum mi id lectus venenatis, sit amet semper purus convallis. Nunc ullamcorper magna mi, non adipiscing velit semper quis. Duis vel justo libero. Suspendisse laoreet hendrerit augue cursus congue. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;</p>
+<p>Nullam dignissim sapien vestibulum erat lobortis, sed imperdiet elit varius. Fusce nisi eros, feugiat commodo scelerisque a, lacinia et quam. In neque risus, dignissim non magna non, ultricies faucibus elit. Vivamus in facilisis enim, porttitor volutpat justo. Praesent placerat feugiat nibh et fermentum. Vivamus eu fermentum metus. Sed mattis volutpat quam a suscipit. Donec blandit sagittis est, ac tristique arcu venenatis sed. Fusce vel libero id lectus aliquet sollicitudin. Fusce ultrices porta est, non pellentesque lorem accumsan eget. Fusce id libero sit amet nulla venenatis dapibus. Maecenas fermentum tellus eu magna mollis gravida. Nam non nibh magna.</p>
 CONTENT
         );
     }
@@ -1109,8 +1123,8 @@ CONTENT
         $text->setSetting('content', <<<CONTENT
 <h4>PRODUCT</h4>
 <ul class="links">
-    <li><a href="/">Sonata</a></li>
-    <li><a href="/api">API</a></li>
+    <li><a href="/bundles">Sonata</a></li>
+    <li><a href="/api-landing">API</a></li>
     <li><a href="/faq">FAQ</a></li>
 </ul>
 CONTENT
@@ -1127,7 +1141,7 @@ CONTENT
         $text->setSetting('content', <<<CONTENT
 <h4>ABOUT</h4>
 <ul class="links">
-    <li><a href="/about-sonata">About Sonata</a></li>
+    <li><a href="http://www.sonata-project.org/about" target="_blank">About Sonata</a></li>
     <li><a href="/privacy">Privacy</a></li>
     <li><a href="/shop/payment/terms-and-conditions">Terms</a></li>
 </ul>
