@@ -57,10 +57,6 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $defaultMedia->setDescription('Default Product media');
         $this->getMediaManager()->save($defaultMedia, 'sonata_product_default', 'sonata.media.provider.image');
 
-        /*
-         * @todo
-         *  - check licences for used images
-         */
         $dummyCategory     = $this->getDummyCategory();
         $goodiesCategory   = $this->getGoodiesCategory();
         $travelsCategory   = $this->getTravelsCategory();
@@ -228,6 +224,8 @@ EOF
         $this->addProductToCollection($phpMug, $phpCollection, $manager);
         $this->addPackageToProduct($phpMug, $manager);
 
+
+        // PHP T-Shirt
         $phpTeeShirt = new Goodie();
         $phpTeeShirt->setSku('PHP_TSHIRT');
         $phpTeeShirt->setName('PHP tee-shirt');
@@ -254,6 +252,8 @@ EOF
         $this->addProductToCollection($phpTeeShirt, $phpCollection, $manager);
         $this->addPackageToProduct($phpTeeShirt, $manager);
 
+
+        // PHP Maximum Air Sonata
         $maximumAir = new Goodie();
         $maximumAir->setSku('MAXIMUM_AIR_SONATA');
         $maximumAir->setName('Maximum Air Sonata Limited Edition');
@@ -279,6 +279,8 @@ EOF
         $this->addProductToCollection($maximumAir, $phpCollection, $manager);
         $this->addPackageToProduct($maximumAir, $manager);
 
+
+        // PHP Maximum Air Sonata Ultimate Edition
         $maximumAirUlt = new Goodie();
         $maximumAirUlt->setSku('MAXIMUM_AIR_SONATA_ULTIMATE');
         $maximumAirUlt->setName('Maximum Air Sonata ULTIMATE Edition');
@@ -319,7 +321,7 @@ Switzerland
 <p>The city is considered an alpha+ world city, listed by the GaWC's 2008 inventory[9] and ranked fourth among global cities by A.T. Kearney's 2012 Global Cities Index.[10] In 2012, Tokyo was named the most expensive city for expatriates, according to the Mercer and Economist Intelligence Unit cost-of-living surveys,[11] and in 2009 named the third Most Liveable City and the World’s Most Livable Megalopolis by the magazine Monocle.[12] The Michelin Guide has awarded Tokyo by far the most Michelin stars of any city in the world.[13][14]
 Tokyo hosted the Summer Olympic Games in 1964, and is scheduled to host the games again in 2020.[15]</p>
 
-<p>References - <a href="http://en.wikipedia.org/wiki/Tokyo" target="_blank">http://en.wikipedia.org/wiki/Tokyo</a></p>
+<p>References <a href="http://en.wikipedia.org/wiki/Tokyo" target="_blank">Wikipedia.org [en]</a></p>
 EOF
 
         );
@@ -333,26 +335,24 @@ Switzerland
 <p>The city is considered an alpha+ world city, listed by the GaWC's 2008 inventory[9] and ranked fourth among global cities by A.T. Kearney's 2012 Global Cities Index.[10] In 2012, Tokyo was named the most expensive city for expatriates, according to the Mercer and Economist Intelligence Unit cost-of-living surveys,[11] and in 2009 named the third Most Liveable City and the World’s Most Livable Megalopolis by the magazine Monocle.[12] The Michelin Guide has awarded Tokyo by far the most Michelin stars of any city in the world.[13][14]
 Tokyo hosted the Summer Olympic Games in 1964, and is scheduled to host the games again in 2020.[15]</p>
 
-<p>References - <a href="http://en.wikipedia.org/wiki/Tokyo" target="_blank">http://en.wikipedia.org/wiki/Tokyo</a></p>
+<p>References <a href="http://en.wikipedia.org/wiki/Tokyo" target="_blank">Wikipedia.org [en]</a></p>
 EOF
 
         );
         $japanTravel->setPriceIncludingVat(false);
         $japanTravel->setShortDescription(
             <<<EOF
-<p>Tokyo (東京 Tōkyō?, "Eastern Capital") (Japanese: [toːkʲoː], English /ˈtoʊki.oʊ/), officially Tokyo Metropolis (東京都 Tōkyō-to?),[4] is one of the 47 prefectures of Japan.[5] Tokyo is the capital of Japan, the centre of the Greater Tokyo Area, and the largest metropolitan area in the world.[6] It is the seat of the Japanese government and the Imperial Palace, and the home of the Japanese Imperial Family. Tokyo is in the Kantō region on the southeastern side of the main island Honshu and includes the Izu Islands and Ogasawara Islands.[7] Tokyo Metropolis was formed in 1943 from the merger of the former Tokyo Prefecture (東京府 Tōkyō-fu?) and the city of Tokyo (東京市 Tōkyō-shi?).</p>
+<p>Tokyo (東京 Tōkyō?, "Eastern Capital") (Japanese: [toːkʲoː], English /ˈtoʊki.oʊ/), officially Tokyo Metropolis (東京都 Tōkyō-to?),[4] is one of the 47 prefectures of Japan.</p><p>[5] Tokyo is the capital of Japan, the centre of the Greater Tokyo Area, and the largest metropolitan area in the world.</p><p>[6] It is the seat of the Japanese government and the Imperial Palace, and the home of the Japanese Imperial Family.</p>
 
-<p>References - <a href="http://en.wikipedia.org/wiki/Tokyo" target="_blank">http://en.wikipedia.org/wiki/Tokyo</a></p>
+<p>References <a href="http://en.wikipedia.org/wiki/Tokyo" target="_blank">Wikipedia.org [en]</a></p>
 EOF
 
         );
         $japanTravel->setRawShortDescription(
             <<<EOF
-<p>
-Tokyo (東京 Tōkyō?, "Eastern Capital") (Japanese: [toːkʲoː], English /ˈtoʊki.oʊ/), officially Tokyo Metropolis (東京都 Tōkyō-to?),[4] is one of the 47 prefectures of Japan.[5] Tokyo is the capital of Japan, the centre of the Greater Tokyo Area, and the largest metropolitan area in the world.[6] It is the seat of the Japanese government and the Imperial Palace, and the home of the Japanese Imperial Family. Tokyo is in the Kantō region on the southeastern side of the main island Honshu and includes the Izu Islands and Ogasawara Islands.
+<p>Tokyo (東京 Tōkyō?, "Eastern Capital") (Japanese: [toːkʲoː], English /ˈtoʊki.oʊ/), officially Tokyo Metropolis (東京都 Tōkyō-to?),[4] is one of the 47 prefectures of Japan.</p><p>[5] Tokyo is the capital of Japan, the centre of the Greater Tokyo Area, and the largest metropolitan area in the world.</p><p>[6] It is the seat of the Japanese government and the Imperial Palace, and the home of the Japanese Imperial Family.</p>
 
-References - <a href="http://en.wikipedia.org/wiki/Tokyo" target="_blank">http://en.wikipedia.org/wiki/Tokyo</a>
-</p>
+<p>References <a href="http://en.wikipedia.org/wiki/Tokyo" target="_blank">Wikipedia.org [en]</a></p>
 EOF
 
         );
@@ -360,7 +360,7 @@ EOF
         $japanTravel->setShortDescriptionFormatter('richhtml');
         $japanTravel->setPrice(1800);
         $japanTravel->setStock(40);
-        $japanTravel->setVatRate(20);
+        $japanTravel->setVatRate(10);
         $japanTravel->setTravelDate(new \DateTime('2015-08-10'));
         $japanTravel->setEnabled(true);
 
@@ -453,7 +453,7 @@ EOF
 
 <p>Quebec independence debates have played a large role in the politics of the province. Parti Québécois governments held referendums on sovereignty in 1980 and 1995; both were voted down by voters, the latter defeated by a very narrow margin.[11] In 2006, the House of Commons of Canada passed a symbolic motion recognizing the "Québécois as a nation within a united Canada."[12][13]</p>
 
-<p>References - <a href="http://en.wikipedia.org/wiki/Quebec" target="_blank">http://en.wikipedia.org/wiki/Quebec</a></p>
+<p>References <a href="http://en.wikipedia.org/wiki/Quebec" target="_blank">Wikipedia.org [en]</a></p>
 EOF
 
         );
@@ -467,26 +467,24 @@ EOF
 
 <p>Quebec independence debates have played a large role in the politics of the province. Parti Québécois governments held referendums on sovereignty in 1980 and 1995; both were voted down by voters, the latter defeated by a very narrow margin.[11] In 2006, the House of Commons of Canada passed a symbolic motion recognizing the "Québécois as a nation within a united Canada."[12][13]</p>
 
-<p>References - <a href="http://en.wikipedia.org/wiki/Quebec" target="_blank">http://en.wikipedia.org/wiki/Quebec</a></p>
+<p>References <a href="http://en.wikipedia.org/wiki/Quebec" target="_blank">Wikipedia.org [en]</a></p>
 EOF
 
         );
         $quebecTravel->setPriceIncludingVat(false);
         $quebecTravel->setShortDescription(
             <<<EOF
-<p>Quebec (Listeni/kwɨˈbɛk/ or /kɨˈbɛk/; French: Québec [kebɛk] ( listen))[7] is a province in east-central Canada.[8][9] It is the only Canadian province that has a predominantly French-speaking population, and the only one to have French as its sole provincial official language.</p>
+<p>Quebec (Listeni/kwɨˈbɛk/ or /kɨˈbɛk/; French: Québec [kebɛk] ( listen))[7] is a province in east-central Canada.</p> <p>[8][9] It is the only Canadian province that has a predominantly French-speaking population, and the only one to have French as its sole provincial official language.</p>
 
-<p>References - <a href="http://en.wikipedia.org/wiki/Quebec" target="_blank">http://en.wikipedia.org/wiki/Quebec</a></p>
+<p>References <a href="http://en.wikipedia.org/wiki/Quebec" target="_blank">Wikipedia.org [en]</a></p>
 EOF
 
         );
         $quebecTravel->setRawShortDescription(
             <<<EOF
-<p>
-Quebec (Listeni/kwɨˈbɛk/ or /kɨˈbɛk/; French: Québec [kebɛk] ( listen))[7] is a province in east-central Canada.
+<p>Quebec (Listeni/kwɨˈbɛk/ or /kɨˈbɛk/; French: Québec [kebɛk] ( listen))[7] is a province in east-central Canada.</p> <p>[8][9] It is the only Canadian province that has a predominantly French-speaking population, and the only one to have French as its sole provincial official language.</p>
 
-References - <a href="http://en.wikipedia.org/wiki/Quebec" target="_blank">http://en.wikipedia.org/wiki/Quebec</a>
-</p>
+<p>References <a href="http://en.wikipedia.org/wiki/Quebec" target="_blank">Wikipedia.org [en]</a></p>
 EOF
 
         );
@@ -494,7 +492,7 @@ EOF
         $quebecTravel->setShortDescriptionFormatter('richhtml');
         $quebecTravel->setPrice(850);
         $quebecTravel->setStock(50);
-        $quebecTravel->setVatRate(20);
+        $quebecTravel->setVatRate(10);
         $quebecTravel->setTravelDate(new \DateTime('2015-12-20'));
         $quebecTravel->setEnabled(true);
 
@@ -576,6 +574,8 @@ EOF
         // Quebec tour extra-large group variation 15 days
         $quebecExtraLargeTravel = $this->generateDefaultTravelVariation($travelProvider, $quebecTravel);
         $quebecExtraLargeTravel->setName('Quebec tour for extra-large group, 2 weeks!');
+        $quebecExtraLargeTravel->setSku('travel-quebec-tour-12-15d');
+        $quebecExtraLargeTravel->setSlug('travel-quebec-tour-12-15d');
         $quebecExtraLargeTravel->setPriceIncludingVat(false);
         $quebecExtraLargeTravel->setPrice(1850);
         $quebecExtraLargeTravel->setTravellers(12);
@@ -599,7 +599,7 @@ EOF
 
 <p>Centuries of cultural and political development have brought Paris a variety of museums, theatres, monuments and architectural styles. Many of its masterpieces such as the Louvre and the Arc de Triomphe are iconic buildings, especially its internationally recognized symbol, the Eiffel Tower. Long regarded as an international centre for the arts, works by history's most famous painters can be found in the Louvre, the Musée d'Orsay and its many other museums and galleries. Paris is a global hub of fashion and has been referred to as the "international capital of style", noted for its haute couture tailoring, its high-end boutiques, and the twice-yearly Paris Fashion Week. It is world renowned for its haute cuisine, attracting many of the world's leading chefs. Many of France's most prestigious universities and Grandes Écoles are in Paris or its suburbs, and France's major newspapers Le Monde, Le Figaro, Libération are based in the city, and Le Parisien in Saint-Ouen near Paris.</p>
 
-<p>References - <a href="http://en.wikipedia.org/wiki/Paris" target="_blank">http://en.wikipedia.org/wiki/Paris</a></p>
+<p>References <a href="http://en.wikipedia.org/wiki/Paris" target="_blank">Wikipedia.org [en]</a></p>
 EOF
 
         );
@@ -611,26 +611,24 @@ EOF
 
 <p>Centuries of cultural and political development have brought Paris a variety of museums, theatres, monuments and architectural styles. Many of its masterpieces such as the Louvre and the Arc de Triomphe are iconic buildings, especially its internationally recognized symbol, the Eiffel Tower. Long regarded as an international centre for the arts, works by history's most famous painters can be found in the Louvre, the Musée d'Orsay and its many other museums and galleries. Paris is a global hub of fashion and has been referred to as the "international capital of style", noted for its haute couture tailoring, its high-end boutiques, and the twice-yearly Paris Fashion Week. It is world renowned for its haute cuisine, attracting many of the world's leading chefs. Many of France's most prestigious universities and Grandes Écoles are in Paris or its suburbs, and France's major newspapers Le Monde, Le Figaro, Libération are based in the city, and Le Parisien in Saint-Ouen near Paris.</p>
 
-<p>References - <a href="http://en.wikipedia.org/wiki/Paris" target="_blank">http://en.wikipedia.org/wiki/Paris</a></p>
+<p>References <a href="http://en.wikipedia.org/wiki/Paris" target="_blank">Wikipedia.org [en]</a></p>
 EOF
 
         );
         $parisTravel->setPriceIncludingVat(false);
         $parisTravel->setShortDescription(
             <<<EOF
-<p>Paris (English /ˈpærɪs/, Listeni/ˈpɛrɪs/; French: [paʁi] ( listen)) is the capital and most populous city of France. It is situated on the River Seine, in the north of the country, at the heart of the Île-de-France region. Within its administrative limits (the 20 arrondissements), the city had 2,234,105 inhabitants in 2009 while its metropolitan area is one of the largest population centres in Europe with more than 12 million inhabitants.</p>
+<p>Paris (English /ˈpærɪs/, Listeni/ˈpɛrɪs/; French: [paʁi] ( listen)) is the capital and most populous city of France. It is situated on the River Seine, in the north of the country, at the heart of the Île-de-France region. </p> <p> Within its administrative limits (the 20 arrondissements), the city had 2,234,105 inhabitants in 2009 while its metropolitan area is one of the largest population centres in Europe with more than 12 million inhabitants.</p>
 
-<p>References - <a href="http://en.wikipedia.org/wiki/Paris" target="_blank">http://en.wikipedia.org/wiki/Paris</a></p>
+<p>References <a href="http://en.wikipedia.org/wiki/Paris" target="_blank">Wikipedia.org [en]</a></p>
 EOF
 
         );
         $parisTravel->setRawShortDescription(
             <<<EOF
-<p>
-Paris (English /ˈpærɪs/, Listeni/ˈpɛrɪs/; French: [paʁi] ( listen)) is the capital and most populous city of France. It is situated on the River Seine, in the north of the country, at the heart of the Île-de-France region.
+<p>Paris (English /ˈpærɪs/, Listeni/ˈpɛrɪs/; French: [paʁi] ( listen)) is the capital and most populous city of France. It is situated on the River Seine, in the north of the country, at the heart of the Île-de-France region. </p> <p> Within its administrative limits (the 20 arrondissements), the city had 2,234,105 inhabitants in 2009 while its metropolitan area is one of the largest population centres in Europe with more than 12 million inhabitants.</p>
 
-References - <a href="http://en.wikipedia.org/wiki/Paris" target="_blank">http://en.wikipedia.org/wiki/Paris</a>
-</p>
+<p>References <a href="http://en.wikipedia.org/wiki/Paris" target="_blank">Wikipedia.org [en]</a></p>
 EOF
 
         );
@@ -638,7 +636,7 @@ EOF
         $parisTravel->setShortDescriptionFormatter('richhtml');
         $parisTravel->setPrice(400);
         $parisTravel->setStock(85);
-        $parisTravel->setVatRate(20);
+        $parisTravel->setVatRate(10);
         $parisTravel->setTravelDate(new \DateTime('2015-06-02'));
         $parisTravel->setEnabled(true);
 
@@ -773,7 +771,7 @@ EOF
         $londonTravel->setShortDescriptionFormatter('richhtml');
         $londonTravel->setPrice(400);
         $londonTravel->setStock(85);
-        $londonTravel->setVatRate(20);
+        $londonTravel->setVatRate(10);
         $londonTravel->setTravelDate(new \DateTime('2014-10-28'));
         $londonTravel->setEnabled(true);
 
@@ -864,7 +862,7 @@ EOF
 
 <p>Switzerland has the highest wealth per adult (financial and non-financial assets) in the world according to Credit Suisse and eighth-highest per capita gross domestic product on the IMF list.[11][12] Swiss citizens have the second-highest life expectancy in the world on UN and WHO lists. Switzerland has the top rank in Bribe Payers Index indicating very low levels of business corruption. Moreover for the last five years the country has enjoyed highest economic and tourist competitiveness according to Global Competitiveness Report and Travel and Tourism Competitiveness Report respectively, both developed by the World Economic Forum. Zürich and Geneva have been ranked among cities with highest quality of life in the world with the former coming second globally according to Mercer.[13]
 
-<p>References - <a href="http://en.wikipedia.org/wiki/Switzerland" target="_blank">http://en.wikipedia.org/wiki/Switzerland</a></p>
+<p>References <a href="http://en.wikipedia.org/wiki/Switzerland" target="_blank">Wikipedia.org [en]</a></p>
 EOF
 
         );
@@ -876,7 +874,7 @@ EOF
 
 <p>Switzerland has the highest wealth per adult (financial and non-financial assets) in the world according to Credit Suisse and eighth-highest per capita gross domestic product on the IMF list.[11][12] Swiss citizens have the second-highest life expectancy in the world on UN and WHO lists. Switzerland has the top rank in Bribe Payers Index indicating very low levels of business corruption. Moreover for the last five years the country has enjoyed highest economic and tourist competitiveness according to Global Competitiveness Report and Travel and Tourism Competitiveness Report respectively, both developed by the World Economic Forum. Zürich and Geneva have been ranked among cities with highest quality of life in the world with the former coming second globally according to Mercer.[13]
 
-<p>References - <a href="http://en.wikipedia.org/wiki/Switzerland" target="_blank">http://en.wikipedia.org/wiki/Switzerland</a></p>
+<p>References <a href="http://en.wikipedia.org/wiki/Switzerland" target="_blank">Wikipedia.org [en]</a></p>
 EOF
 
         );
@@ -884,20 +882,18 @@ EOF
         $switzerlandTravel->setShortDescription(
             <<<EOF
 <p>
-Switzerland (German: Schweiz[note 3] [ˈʃvaɪts]; French: Suisse [sɥis]; Italian: Svizzera [ˈzvittsera]; Romansh: Svizra [ˈʒviːtsrɐ] or [ˈʒviːtsʁːɐ]), officially the Swiss Confederation (Latin: Confoederatio Helvetica, hence its abbreviation CH), is a federal parliamentary republic consisting of 26 cantons, with Bern as the seat of the federal authorities. The country is situated in Western and Central Europe,[note 4] where it is bordered by Germany to the north, France to the west, Italy to the south, and Austria and Liechtenstein to the east. Switzerland is a landlocked country geographically divided between the Alps, the Swiss Plateau and the Jura, spanning an area of 41,285 km2 (15,940 sq mi).
+Switzerland (German: Schweiz[note 3] [ˈʃvaɪts]; French: Suisse [sɥis]; Italian: Svizzera [ˈzvittsera]; Romansh: Svizra [ˈʒviːtsrɐ] or [ˈʒviːtsʁːɐ]), officially the Swiss Confederation (Latin: Confoederatio Helvetica, hence its abbreviation CH), is a federal parliamentary republic consisting of 26 cantons, with Bern as the seat of the federal authorities.</p>
 
-References - <a href="http://en.wikipedia.org/wiki/Switzerland" target="_blank">http://en.wikipedia.org/wiki/Switzerland</a>
-</p>
+<p>References <a href="http://en.wikipedia.org/wiki/Switzerland" target="_blank">Wikipedia.org [en]</a></p>
 EOF
 
         );
         $switzerlandTravel->setRawShortDescription(
             <<<EOF
 <p>
-Switzerland (German: Schweiz[note 3] [ˈʃvaɪts]; French: Suisse [sɥis]; Italian: Svizzera [ˈzvittsera]; Romansh: Svizra [ˈʒviːtsrɐ] or [ˈʒviːtsʁːɐ]), officially the Swiss Confederation (Latin: Confoederatio Helvetica, hence its abbreviation CH), is a federal parliamentary republic consisting of 26 cantons, with Bern as the seat of the federal authorities. The country is situated in Western and Central Europe,[note 4] where it is bordered by Germany to the north, France to the west, Italy to the south, and Austria and Liechtenstein to the east. Switzerland is a landlocked country geographically divided between the Alps, the Swiss Plateau and the Jura, spanning an area of 41,285 km2 (15,940 sq mi).
+Switzerland (German: Schweiz[note 3] [ˈʃvaɪts]; French: Suisse [sɥis]; Italian: Svizzera [ˈzvittsera]; Romansh: Svizra [ˈʒviːtsrɐ] or [ˈʒviːtsʁːɐ]), officially the Swiss Confederation (Latin: Confoederatio Helvetica, hence its abbreviation CH), is a federal parliamentary republic consisting of 26 cantons, with Bern as the seat of the federal authorities.</p>
 
-References - <a href="http://en.wikipedia.org/wiki/Switzerland" target="_blank">http://en.wikipedia.org/wiki/Switzerland</a>
-</p>
+<p>References <a href="http://en.wikipedia.org/wiki/Switzerland" target="_blank">Wikipedia.org [en]</a></p>
 EOF
 
         );
@@ -923,7 +919,7 @@ EOF
 
         $travelProvider = $productPool->getProvider($switzerlandTravel);
 
-        // London tour small group variation
+        // Switzerland tour small group variation
         $switzerlandSmallTravel = $this->generateDefaultTravelVariation($travelProvider, $switzerlandTravel);
         $switzerlandSmallTravel->setName('Switzerland tour for small group');
         $switzerlandSmallTravel->setSku('travel-switzerland-tour-5');
@@ -938,7 +934,7 @@ EOF
         $manager->persist($switzerlandSmallTravel);
         $this->setReference('travel_switzerland_small_product', $switzerlandSmallTravel);
 
-        // London tour medium group variation
+        // Switzerland tour medium group variation
         $switzerlandMediumTravel = $this->generateDefaultTravelVariation($travelProvider, $switzerlandTravel);
         $switzerlandMediumTravel->setName('Switzerland tour for medium group');
         $switzerlandMediumTravel->setSku('travel-switzerland-tour-7');
@@ -953,7 +949,7 @@ EOF
         $manager->persist($switzerlandMediumTravel);
         $this->setReference('travel_switzerland_medium_product', $switzerlandMediumTravel);
 
-        // London tour large group variation
+        // Switzerland tour large group variation
         $switzerlandLargeTravel = $this->generateDefaultTravelVariation($travelProvider, $switzerlandTravel);
         $switzerlandLargeTravel->setName('Switzerland tour for large group');
         $switzerlandLargeTravel->setSku('travel-switzerland-tour-9');
@@ -968,7 +964,7 @@ EOF
         $manager->persist($switzerlandLargeTravel);
         $this->setReference('travel_switzerland_large_product', $switzerlandLargeTravel);
 
-        // London tour extra-large group variation
+        // Switzerland tour extra-large group variation
         $switzerlandExtraLargeTravel = $this->generateDefaultTravelVariation($travelProvider, $switzerlandTravel);
         $switzerlandExtraLargeTravel->setName('Switzerland tour for extra-large group');
         $switzerlandExtraLargeTravel->setSku('travel-switzerland-tour-12');
