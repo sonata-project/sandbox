@@ -53,6 +53,7 @@ class LoadPageData extends AbstractFixture implements ContainerAwareInterface, O
         $this->createApiPage($site);
         $this->createPrivacyPage($site);
         $this->createLegalNotesPage($site);
+        $this->createTermsPage($site);
 
         // Create footer pages
         $this->createWhoWeArePage($site);
@@ -185,6 +186,46 @@ CONTENT
         $text->setPage($galleryIndex);
 
         $pageManager->save($galleryIndex);
+    }
+
+    /**
+     * @param SiteInterface $site
+     */
+    public function createTermsPage(SiteInterface $site)
+    {
+        $pageManager = $this->getPageManager();
+        $blockManager = $this->getBlockManager();
+        $blockInteractor = $this->getBlockInteractor();
+
+        $terms = $pageManager->create();
+        $terms->setSlug('shop-payment-terms-and-conditions');
+        $terms->setUrl('/shop/payment/terms-and-conditions');
+        $terms->setName('Terms and conditions');
+        $terms->setTitle('Terms and conditions');
+        $terms->setEnabled(true);
+        $terms->setDecorate(1);
+        $terms->setRequestMethod('GET|POST|HEAD|DELETE|PUT');
+        $terms->setTemplateCode('default');
+        $terms->setRouteName('sonata_payment_terms');
+        $terms->setParent($this->getReference('page-homepage'));
+        $terms->setSite($site);
+
+        // CREATE A HEADER BLOCK
+        $terms->addBlocks($content = $blockInteractor->createNewContainer(array(
+            'enabled' => true,
+            'page' => $terms,
+            'code' => 'content_top',
+        )));
+        $content->setName('The content_top container');
+
+        // add the breadcrumb
+        $content->addChildren($breadcrumb = $blockManager->create());
+        $breadcrumb->setType('sonata.page.block.breadcrumb');
+        $breadcrumb->setPosition(0);
+        $breadcrumb->setEnabled(true);
+        $breadcrumb->setPage($terms);
+
+        $pageManager->save($terms);
     }
 
     /**
