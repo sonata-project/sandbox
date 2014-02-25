@@ -103,7 +103,7 @@ class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterfac
 
         // Canada category
         $canada = $this->getCategoryManager()->create();
-        $canada->setParent($travels);
+        $canada->setParent($northAmerica);
         $canada->setName('Canada');
         $canada->setSlug('canada');
         $canada->setDescription('Want to travel in Canada? Check out our travels.');
