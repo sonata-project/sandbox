@@ -16,6 +16,7 @@ class FeatureContext extends BehatContext
     public function __construct(array $parameters)
     {
         $this->useContext('browser', new \BrowserContext($parameters));
+        $this->useContext('api',     new \Behat\CommonContexts\WebApiContext($parameters['base_url']));
     }
 
     /**
@@ -86,6 +87,30 @@ class FeatureContext extends BehatContext
 
         if ($error !== $data['error']) {
             throw new Exception("The error was not ".$error.", it was ".$data['error']);
+        }
+    }
+
+    /**
+     * @Given /^the response should contain json$/
+     */
+    public function theResponseShouldContainJson()
+    {
+        $responseContent = $this->getSubcontext('api')->getBrowser()->getLastResponse()->getContent();
+
+        if (!json_decode($responseContent)) {
+            throw new Exception(sprintf('Response was not json : "%s"'), $responseContent);
+        }
+    }
+
+    /**
+     * @Given /^the response should contain XML$/
+     */
+    public function theResponseShouldContainXml()
+    {
+        $responseContent = $this->getSubcontext('api')->getBrowser()->getLastResponse()->getContent();
+
+        if (!simplexml_load_string($responseContent)) {
+            throw new Exception(sprintf('Response was not XML : "%s"'), $responseContent);
         }
     }
 }
