@@ -97,8 +97,8 @@ class FeatureContext extends BehatContext
     {
         $responseContent = $this->getSubcontext('api')->getBrowser()->getLastResponse()->getContent();
 
-        if (!json_decode($responseContent)) {
-            throw new Exception(sprintf('Response was not json : "%s"'), $responseContent);
+        if (null === json_decode($responseContent)) {
+            throw new Exception(sprintf('Response was not json : "%s"', $responseContent));
         }
     }
 
@@ -109,8 +109,8 @@ class FeatureContext extends BehatContext
     {
         $responseContent = $this->getSubcontext('api')->getBrowser()->getLastResponse()->getContent();
 
-        if (!simplexml_load_string($responseContent)) {
-            throw new Exception(sprintf('Response was not XML : "%s"'), $responseContent);
+        if (false === simplexml_load_string($responseContent)) {
+            throw new Exception(sprintf('Response was not XML : "%s"', $responseContent));
         }
     }
 }
