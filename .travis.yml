@@ -1,0 +1,15 @@
+language: php
+
+php:
+  - 5.4
+
+services:
+  - memcached
+  - mongodb
+  - redis-server
+
+before_script:
+  - time ./.travis_setup.sh
+
+script: ./bin/qa_client_ci.sh && bin/behat -f progress
+
