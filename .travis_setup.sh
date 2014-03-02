@@ -10,7 +10,7 @@ echo "SET PASSWORD FOR 'travis'@'localhost' = PASSWORD('sonata');" | mysql -u tr
 echo "CREATE DATABASE sonata" | mysql -u travis -psonata
 
 # tweak some php settings
-echo "apc.shm_size=256M" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
+echo "apc.shm_size=512M" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
 
 # fix behat host
 sed -i 's@demo.sonata-project.org@localhost/app.php@g' behat.yml.dist
@@ -24,15 +24,17 @@ sudo apt-get install nginx
 CURRENT_PATH=`pwd`
 
 echo "
-worker_processes 1;
+worker_processes 2;
 
 events {
-    worker_connections 1024;
+    worker_connections 512;
 }
 
 http {
     include mime.types;
     default_type application/octet-stream;
+
+    access_log off;
 
     gzip on;
 
@@ -65,16 +67,15 @@ group = travis
 listen = /var/run/php5-fpm.sock
 
 pm = static
-pm.max_children = 4
+pm.max_children = 8
 
-php_admin_value[memory_limit] = 256M
+php_admin_value[memory_limit] = 512M
 " > ~/php-fpm.conf
 
 
 sudo ~/.phpenv/versions/$(phpenv version-name)/bin/php-fpm --fpm-config ~/php-fpm.conf
 
 sudo /etc/init.d/nginx restart
-
 
 # make sure we run with the last version of composer
 wget https://getcomposer.org/composer.phar
