@@ -11,5 +11,5 @@ services:
 before_script:
   - time ./.travis_setup.sh
 
-script: ./bin/qa_client_ci.sh && bin/behat -v -f progress
+script: ./bin/qa_client_ci.sh && bin/behat -f progress
 
