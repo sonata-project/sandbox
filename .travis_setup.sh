@@ -72,9 +72,15 @@ pm.max_children = 8
 php_admin_value[memory_limit] = 512M
 " > ~/php-fpm.conf
 
+# setup mock email (from http://michaelthessel.com/mock-mail-setup-for-travis-ci/)
+sudo apt-get install -y -qq postfix
+sudo service postfix stop
+nohup smtp-sink -d "%d.%H.%M.%S" localhost:2500 1000 &
+echo -e '#!/usr/bin/env bash\nexit 0' | sudo tee /usr/sbin/sendmail
+echo 'sendmail_path = "/usr/sbin/sendmail -t -i "' | sudo tee /home/travis/.phpenv/versions/$(phpenv version-name)/etc/conf.d/sendmail.ini
 
+# restart php-fpm and nginx
 sudo ~/.phpenv/versions/$(phpenv version-name)/bin/php-fpm --fpm-config ~/php-fpm.conf
-
 sudo /etc/init.d/nginx restart
 
 # make sure we run with the last version of composer
