@@ -152,6 +152,9 @@ table.basket .unavailable .help-inline {
 .sonata-product-navigation-bar .pagination {
     margin: 0 !important;
 }
+.sonata-product-navigation-bar h4.panel-title {
+    padding: 6px 12px;
+}
 .no-products-available {
     padding: 100px;
     font-weight: bold;
