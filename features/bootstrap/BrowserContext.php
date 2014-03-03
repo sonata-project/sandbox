@@ -138,4 +138,49 @@ class BrowserContext extends MinkContext
 
         $link->click();
     }
+
+    /**
+     * Check the statuses of first order in array
+     *
+     * @Given /^I should see the first order of "([^"]*)" with statuses "([^"]*)", "([^"]*)", "([^"]*)"$/
+     *
+     * @param $orderTableClass
+     * @param $orderStatus
+     * @param $paymentStatus
+     * @param $deliveryStatus
+     *
+     * @throws Behat\Mink\Exception\ExpectationException
+     */
+    public function firstOrderStatuses($orderTableClass, $orderStatus, $paymentStatus, $deliveryStatus)
+    {
+        $tableRow = $this->getSession()->getPage()->find(
+            'xpath', sprintf("//table[@id='%s']/tr[2]", $orderTableClass)
+        );
+
+        if (false === strpos($tableRow->getText(), sprintf("%s %s %s", $orderStatus, $paymentStatus, $deliveryStatus))) {
+            throw new ExpectationException(sprintf('First order doesn\'t contain statuses %s %s and %s', $orderStatus, $paymentStatus, $deliveryStatus), $this->getSession());
+        }
+    }
+
+    /**
+     * Follow first order link
+     *
+     * @Given /^I follow first order of "([^"]*)"$/
+     *
+     * @param $orderTableClass
+     *
+     * @throws Behat\Mink\Exception\ExpectationException
+     */
+    public function firstOrderLink($orderTableClass)
+    {
+        $firstOrderLink = $this->getSession()->getPage()->find(
+            'xpath', sprintf("//table[@id='%s']/tr[2]/td/a", $orderTableClass)
+        );
+
+        if (!$firstOrderLink) {
+            throw new ExpectationException(sprintf('Unable to follow the first listed link in orders from: %s', $orderTableClass), $this->getSession());
+        }
+
+        $firstOrderLink->click();
+    }
 }

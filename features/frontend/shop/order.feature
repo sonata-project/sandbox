@@ -42,7 +42,15 @@ Feature: Order
     Then I check "basket_tac"
     And I press "Process to payment"
     And I should see "Confirmation payment valid"
-    Then I follow the first link of class "btn btn-primary pull-right"
+
+    # Going to profile
+    Then I follow the first link of class "btn btn-default"
+    And I should see "Dashboard"
+    Then I follow "Orders"
+    And I should see "Past orders"
+    And I should see the first order of "past-orders" with statuses "Validated", "Validated", "Open"
+
+    Then I follow first order of "past-orders"
     And I should see "Your order"
     And I should see "<product>"
     And I should see "Delivery"
