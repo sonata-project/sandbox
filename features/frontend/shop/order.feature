@@ -48,9 +48,9 @@ Feature: Order
     And I should see "Dashboard"
     Then I follow "Orders"
     And I should see "Past orders"
-    And I should see the first order of "past-orders" with statuses "Validated", "Validated", "Open"
+    And I should see the first order of "sonata-ecommerce-past-orders" with statuses "Validated", "Validated", "Open"
 
-    Then I follow first order of "past-orders"
+    Then I follow first order of "sonata-ecommerce-past-orders"
     And I should see "Your order"
     And I should see "<product>"
     And I should see "Delivery"
