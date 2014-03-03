@@ -14,6 +14,10 @@
             <source>sonata_content</source>
             <target>Contenu</target>
         </trans-unit>
+        <trans-unit id="sonata_basket_update_confirmation">
+            <source>sonata_basket_update_confirmation</source>
+            <target>Vous n'avez pas mis-à-jour votre panier, continuer?</target>
+        </trans-unit>
         </body>
     </file>
 </xliff>
