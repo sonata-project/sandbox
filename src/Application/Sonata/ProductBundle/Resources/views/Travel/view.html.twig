@@ -18,6 +18,8 @@ file that was distributed with this source code.
 
 {% extends 'SonataProductBundle:Product:view.html.twig' %}
 
+{% set variations_properties = ['travellers', 'travelDays'] %}
+
 {% block product_title %}{{ product.name }}{% endblock %}
 
 {% block product_description %}
@@ -27,11 +29,3 @@ file that was distributed with this source code.
 {% block product_gallery %}Product gallery{% endblock %}
 
 {% block product_delivery %}{% endblock %}
-
-{% block  product_variations_form_block %}
-    <div class="row">
-        <div class="col-lg-12">
-            {{ sonata_block_render({'type': 'sonata.product.block.variations_form'}, {'product': product, 'variations_properties': ['travellers', 'travelDays']}) }}
-        </div>
-    </div>
-{% endblock %}
