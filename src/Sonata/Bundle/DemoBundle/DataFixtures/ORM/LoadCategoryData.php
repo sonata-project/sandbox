@@ -53,15 +53,6 @@ class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterfac
      */
     public function load(ObjectManager $manager)
     {
-        // Goodies category
-        $goodies = $this->getCategoryManager()->create();
-        $goodies->setName('Goodies');
-        $goodies->setSlug('goodies');
-        $goodies->setDescription('Some goodies related to Sonata and Symfony world.');
-        $goodies->setEnabled(true);
-        $this->getCategoryManager()->save($goodies);
-        $this->setReference('goodies_category', $goodies);
-
         // Travels category
         $travels = $this->getCategoryManager()->create();
         $travels->setName('Travels');
@@ -180,6 +171,15 @@ class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterfac
         $london->setEnabled(true);
         $this->getCategoryManager()->save($london);
         $this->setReference('travels_london_category', $london);*/
+
+        // Goodies category
+        $goodies = $this->getCategoryManager()->create();
+        $goodies->setName('Goodies');
+        $goodies->setSlug('goodies');
+        $goodies->setDescription('Some goodies related to Sonata and Symfony world.');
+        $goodies->setEnabled(true);
+        $this->getCategoryManager()->save($goodies);
+        $this->setReference('goodies_category', $goodies);
 
         // Goodies sub-categories
         $plushes = $this->getCategoryManager()->create();

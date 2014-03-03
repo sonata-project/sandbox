@@ -139,7 +139,8 @@ Feature: Products
             | Travels  | Switzerland tour  | Switzerland tour for small group  |
 
     Scenario: Browse travels
-        When I go to "shop/catalog/travels/2"
+        When I go to "shop/catalog"
+        And I follow "Travels"
         Then I should see "Quebec tour"
         And I should see "Paris tour"
         And I should see "Switzerland tour"
