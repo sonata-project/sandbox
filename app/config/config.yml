@@ -94,6 +94,7 @@ doctrine:
                 user:     %database_user%
                 host:     %database_host%
                 password: %database_password%
+                path:     %kernel.root_dir%/%database_name%.db
 
         types:
             json:     Sonata\Doctrine\Types\JsonType
