@@ -317,7 +317,7 @@ CONTENT
             'page'    => $homepage,
             'code'    => 'content_bottom',
         ), function ($container) {
-            $container->setSetting('layout', '<div class="block-newsletter">{{ CONTENT }}</div>');
+            $container->setSetting('layout', '{{ CONTENT }}');
         }));
         $bottom->setName('The bottom content container');
 
@@ -327,7 +327,7 @@ CONTENT
             'page'    => $homepage,
             'code'    => 'bottom_newsletter',
         ), function ($container) {
-            $container->setSetting('layout', '<div class="col-sm-8 col-sm-offset-2 well">{{ CONTENT }}</div>');
+            $container->setSetting('layout', '<div class="block-newsletter col-sm-6 well">{{ CONTENT }}</div>');
         }));
         $bottomNewsletter->setName('The bottom newsetter container');
         $bottomNewsletter->addChildren($newsletter = $blockManager->create());
@@ -335,6 +335,23 @@ CONTENT
         $newsletter->setPosition(1);
         $newsletter->setEnabled(true);
         $newsletter->setPage($homepage);
+
+        // Add homepage embed tweet container
+        $bottom->addChildren($bottomEmbed = $blockInteractor->createNewContainer(array(
+            'enabled' => true,
+            'page'    => $homepage,
+            'code'    => 'bottom_embed',
+        ), function ($container) {
+            $container->setSetting('layout', '<div class="col-sm-6">{{ CONTENT }}</div>');
+        }));
+        $bottomEmbed->setName('The bottom embedded tweet container');
+        $bottomEmbed->addChildren($embedded = $blockManager->create());
+        $embedded->setType('sonata.seo.block.twitter.embed');
+        $embedded->setPosition(1);
+        $embedded->setEnabled(true);
+        $embedded->setSetting('tweet', "https://twitter.com/dunglas/statuses/438337742565826560");
+        $embedded->setSetting('lang', "en");
+        $embedded->setPage($homepage);
 
         $pageManager->save($homepage);
     }
