@@ -93,8 +93,8 @@ abstract class CommandTestCase extends WebTestCase
             array('sonata.order.admin.order',                 'Application\Sonata\OrderBundle\Entity\Order'),
             array('sonata.order.admin.order_element',         'Application\Sonata\OrderBundle\Entity\OrderElement'),
             array('sonata.product.admin.product',             'Application\Sonata\ProductBundle\Entity\Product'),
-            array('sonata.product.admin.product_category',    'Application\Sonata\ProductBundle\Entity\ProductCategory'),
-            array('sonata.product.admin.product_collection',  'Application\Sonata\ProductBundle\Entity\ProductCollection'),
+            array('sonata.product.admin.product.category',    'Application\Sonata\ProductBundle\Entity\ProductCategory'),
+            array('sonata.product.admin.product.collection',  'Application\Sonata\ProductBundle\Entity\ProductCollection'),
             array('sonata.product.admin.delivery',            'Application\Sonata\ProductBundle\Entity\Delivery'),
         );
     }
