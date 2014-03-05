@@ -35,7 +35,14 @@ if (!is_file(__DIR__.'/app/config/parameters.yml')) {
  */
 function execute_commands($commands, $output)
 {
-    foreach($commands as $command) {
+    foreach($commands as $commandInst) {
+    	if (is_array($commandInst)) {
+    		$command = $commandInst[0];
+    		$stopOnFailure = $commandInst[1];
+    	} else {
+    		$command = $commandInst;
+    		$stopOnFailure = true;
+    	}
         $output->writeln(sprintf('<info>Executing : </info> %s', $command));
         $p = new \Symfony\Component\Process\Process($command);
         $p->setTimeout(null);
@@ -43,7 +50,7 @@ function execute_commands($commands, $output)
             $output->write($data);
         });
 
-        if (!$p->isSuccessful()) {
+        if (!$p->isSuccessful() && $stopOnFailure) {
             return false;
         }
 
@@ -64,7 +71,7 @@ $success = execute_commands(array(
     'rm -rf app/cache/*',
     'app/console cache:warmup --env=prod --no-debug',
     'app/console cache:create-cache-class --env=prod --no-debug',
-    'app/console doctrine:database:drop --force',
+    array('app/console doctrine:database:drop --force', false),
     'app/console doctrine:database:create',
     'app/console doctrine:schema:update --force',
     'app/console doctrine:fixtures:load --verbose',
