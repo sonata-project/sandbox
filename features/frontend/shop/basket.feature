@@ -9,17 +9,20 @@ Feature: Basket
         Given I am on "shop/category"
         When I go to "shop/basket"
         Then I should see "Go back shopping"
+        And I should see "Recent products"
         And the response status code should be 200
 
     Scenario Outline: Adding simple product to basket by browsing (product page)
         Given I am on "shop/basket"
         When I go to "shop/catalog"
         And I follow "Plushes"
-        And I follow "PHP plush"
+        And I follow "Blue PHP plush"
         And I fill in "add_basket_quantity" with "<quantity>"
         And I press "Add to basket"
         Then I should see "Your basket"
-        And I should see "PHP plush"
+        And I should see "Blue PHP plush"
+        And I should see "Similar products"
+        And I should see "Green PHP plush"
         And the "sonata_basket_basket_basketElements_0_quantity" field should contain "<value>"
 
         Examples:
