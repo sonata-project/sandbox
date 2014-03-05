@@ -2,6 +2,11 @@ NelmioApiDocBundle:
     resource:     "@NelmioApiDocBundle/Resources/config/routing.yml"
     prefix:       /doc
 
+sonata_api_classification:
+    type:         rest
+    prefix:       /classification
+    resource:     "@SonataClassificationBundle/Resources/config/routing/api.xml"
+
 sonata_api_news:
     type:         rest
     prefix:       /news

@@ -2,11 +2,23 @@
 
 use Behat\Behat\Context\BehatContext;
 
+use Behat\Gherkin\Node\TableNode;
+
 /**
  * Features context.
  */
 class FeatureContext extends BehatContext
 {
+    /**
+     * @var string
+     */
+    private $baseUrl;
+
+    /**
+     * @var array
+     */
+    private $identifiers = array();
+
     /**
      * Initializes context.
      * Every scenario gets it's own context object.
@@ -15,6 +27,8 @@ class FeatureContext extends BehatContext
      */
     public function __construct(array $parameters)
     {
+        $this->baseUrl = $parameters['base_url'];
+
         $this->useContext('browser', new \BrowserContext($parameters));
         $this->useContext('api',     new \Behat\CommonContexts\WebApiContext($parameters['base_url']));
     }
@@ -112,5 +126,99 @@ class FeatureContext extends BehatContext
         if (false === simplexml_load_string($responseContent)) {
             throw new Exception(sprintf('Response was not XML : "%s"', $responseContent));
         }
+    }
+
+    /**
+     * Sends HTTP request to specific URL using latest identifier.
+     *
+     * @param string $method request method
+     * @param string $url    relative url
+     *
+     * @When /^(?:I )?send a ([A-Z]+) request to "([^"]+)" using last identifier:$/
+     */
+    public function iSendARequestUsingLastIdentifier($method, $url)
+    {
+        $this->sendRequestUsingLastIdentifier($method, $url);
+    }
+
+    /**
+     * Sends HTTP request to specific URL with field values from Table and using latest identifier.
+     *
+     * @param string    $method request method
+     * @param string    $url    relative url
+     * @param TableNode $post   table of post values
+     *
+     * @When /^(?:I )?send a ([A-Z]+) request to "([^"]+)" using last identifier with values:$/
+     */
+    public function iSendARequestWithValuesUsingLastIdentifier($method, $url, TableNode $post)
+    {
+        $this->sendRequestUsingLastIdentifier($method, $url, $post);
+    }
+
+    /**
+     * Sends a request using last identifier
+     *
+     * @param string    $method request method
+     * @param string    $url    relative url
+     * @param TableNode $post   table of post values
+     */
+    protected function sendRequestUsingLastIdentifier($method, $url, TableNode $post = null)
+    {
+        $url    = $this->baseUrl.'/'.ltrim($this->replaceIdentifiers($url), '/');
+        $fields = array();
+
+        if ($post) {
+            foreach ($post->getRowsHash() as $key => $val) {
+                if (preg_match('/^<(.*)>$/', $val)) {
+                    $alias = str_replace(array('<', '>'), null, $val);
+                    $val = isset($this->identifiers[$alias]) ? $this->identifiers[$alias] : $val;
+                }
+
+                $fields[$key] = $val;
+            }
+        }
+
+        $headers = $this->getSubcontext('api')->getBrowser()->getLastRequest()->getHeaders();
+        $url = str_replace('//api', '/api', $url);
+
+        $this->getSubcontext('api')->getBrowser()->submit($url, $fields, $method, $headers);
+    }
+
+    /**
+     * @Then /^store the XML response identifier as "(.*)"$/
+     */
+    public function storeTheResponseIdentifier($alias)
+    {
+        $responseContent = $this->getSubcontext('api')->getBrowser()->getLastResponse()->getContent();
+
+        $data = simplexml_load_string($responseContent);
+
+        if (false === $data) {
+            throw new Exception(sprintf('Response was not XML : "%s"', $responseContent));
+        }
+
+        $this->identifiers[$alias] = current($data->attributes()->id);
+    }
+
+    /**
+     * Returns URL with last identifier stored in context
+     *
+     * @param string $url
+     *
+     * @return string
+     */
+    protected function replaceIdentifiers($url)
+    {
+        preg_match_all('/<(.*)>/U', $url, $matches);
+
+        if (isset($matches[1])) {
+            foreach ($matches[1] as $alias) {
+                if (isset($this->identifiers[$alias])) {
+                    $url = str_replace(sprintf('<%s>', $alias), $this->identifiers[$alias], $url);
+                }
+            }
+        }
+
+        return $url;
     }
 }
