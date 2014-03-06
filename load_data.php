@@ -70,7 +70,7 @@ $success = execute_commands(array(
     './app/console doctrine:database:drop --force',
     './app/console doctrine:database:create',
     './app/console doctrine:schema:update --force',
-    'php -d memory_limit=1024M ./app/console doctrine:fixtures:load --verbose --env=dev',
+    'php -d memory_limit=1024M -d max_execution_time=600 ./app/console doctrine:fixtures:load --verbose --env=dev',
     './app/console sonata:page:update-core-routes --site=all --no-debug',
     './app/console sonata:page:create-snapshots --site=all --no-debug',
     './app/console assets:install --symlink web',
