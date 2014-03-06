@@ -8,6 +8,14 @@ sonata_block:
     menus:
         "SonataDemoBundle:Builder:mainMenu": "Main Menu"
 
+    profiler:
+        container_types:
+          - sonata.block.service.container
+          - sonata.page.block.container
+          - cmf.block.container
+          - cmf.block.slideshow
+          - sonata.seo.block.social.container
+
     blocks:
         sonata.admin.block.admin_list:
             contexts:   [admin]
