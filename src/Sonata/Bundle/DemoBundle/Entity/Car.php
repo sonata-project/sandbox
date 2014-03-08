@@ -57,6 +57,17 @@ class Car
      */
     protected $inspections;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Color", cascade={"persist"}, fetch="EAGER")
+     * @ORM\joinColumns({
+     *      @ORM\JoinColumn(name="color_r", referencedColumnName="r"),
+     *      @ORM\JoinColumn(name="color_g", referencedColumnName="g"),
+     *      @ORM\JoinColumn(name="color_b", referencedColumnName="b"),
+     *      @ORM\JoinColumn(name="color_material_id", referencedColumnName="material_id")
+     * })
+     */
+    protected $color;
+
     public function __construct()
     {
         $this->inspections = new ArrayCollection();
@@ -180,5 +191,21 @@ class Car
     public function __toString()
     {
         return $this->getName() ?: 'n/a';
+    }
+
+    /**
+     * @param mixed $color
+     */
+    public function setColor($color)
+    {
+        $this->color = $color;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getColor()
+    {
+        return $this->color;
     }
 }

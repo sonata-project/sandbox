@@ -16,12 +16,11 @@ use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
-use Sonata\Bundle\DemoBundle\Entity\Inspection;
 
 /**
  * @author Thomas Rabaix <thomas.rabaix@sonata-project.org>
  */
-class CarAdmin extends Admin
+class ColorAdmin extends Admin
 {
     /**
      * {@inheritdoc}
@@ -29,10 +28,11 @@ class CarAdmin extends Admin
     protected function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
-            ->add('name')
-            ->add('engine')
-            ->add('rescueEngine')
-            ->add('createdAt')
+            ->add('r')
+            ->add('g')
+            ->add('b')
+            ->add('material')
+            ->add('enabled')
         ;
     }
 
@@ -42,11 +42,11 @@ class CarAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('name')
-            ->add('engine')
-            ->add('rescueEngine')
-            ->add('createdAt')
-            ->add('color')
+            ->addIdentifier('r')
+            ->addIdentifier('g')
+            ->addIdentifier('b')
+            ->add('material')
+            ->add('enabled')
         ;
     }
 
@@ -56,11 +56,11 @@ class CarAdmin extends Admin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('name')
-            ->add('engine')
-            ->add('rescueEngine')
-            ->add('createdAt')
-            ->add('color')
+            ->add('r')
+            ->add('g')
+            ->add('b')
+            ->add('material')
+            ->add('enabled')
         ;
     }
 
@@ -70,24 +70,11 @@ class CarAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('name')
-            ->add('engine', 'sonata_type_model_list')
-            ->add('rescueEngine')
-            ->add('inspections', 'sonata_type_collection', array('by_reference' => false), array('edit' => 'inline'))
-            ->add('createdAt')
-            ->add('color', 'sonata_type_model_list')
+            ->add('r')
+            ->add('g')
+            ->add('b')
+            ->add('material')
+            ->add('enabled')
         ;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getNewInstance()
-    {
-        $object = parent::getNewInstance();
-
-        $object->addInspection(new Inspection());
-
-        return $object;
     }
 }
