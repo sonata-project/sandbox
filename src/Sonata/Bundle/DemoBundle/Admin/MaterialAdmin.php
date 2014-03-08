@@ -20,7 +20,7 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 /**
  * @author Thomas Rabaix <thomas.rabaix@sonata-project.org>
  */
-class CarAdmin extends Admin
+class MaterialAdmin extends Admin
 {
     /**
      * {@inheritdoc}
@@ -28,10 +28,8 @@ class CarAdmin extends Admin
     protected function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
+            ->add('id')
             ->add('name')
-            ->add('engine')
-            ->add('rescueEngine')
-            ->add('createdAt')
         ;
     }
 
@@ -41,11 +39,8 @@ class CarAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
+            ->addIdentifier('id')
             ->addIdentifier('name')
-            ->add('engine')
-            ->add('rescueEngine')
-            ->add('createdAt')
-            ->add('color')
         ;
     }
 
@@ -55,11 +50,8 @@ class CarAdmin extends Admin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
+            ->add('id')
             ->add('name')
-            ->add('engine')
-            ->add('rescueEngine')
-            ->add('createdAt')
-            ->add('color')
         ;
     }
 
@@ -70,10 +62,6 @@ class CarAdmin extends Admin
     {
         $formMapper
             ->add('name')
-            ->add('engine', 'sonata_type_model_list')
-            ->add('rescueEngine')
-            ->add('createdAt')
-            ->add('color', 'sonata_type_model_list')
         ;
     }
 }

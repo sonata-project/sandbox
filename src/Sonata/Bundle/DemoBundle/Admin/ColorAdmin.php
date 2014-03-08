@@ -20,7 +20,7 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 /**
  * @author Thomas Rabaix <thomas.rabaix@sonata-project.org>
  */
-class CarAdmin extends Admin
+class ColorAdmin extends Admin
 {
     /**
      * {@inheritdoc}
@@ -28,10 +28,11 @@ class CarAdmin extends Admin
     protected function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
-            ->add('name')
-            ->add('engine')
-            ->add('rescueEngine')
-            ->add('createdAt')
+            ->add('r')
+            ->add('g')
+            ->add('b')
+            ->add('material')
+            ->add('enabled')
         ;
     }
 
@@ -41,11 +42,11 @@ class CarAdmin extends Admin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('name')
-            ->add('engine')
-            ->add('rescueEngine')
-            ->add('createdAt')
-            ->add('color')
+            ->addIdentifier('r')
+            ->addIdentifier('g')
+            ->addIdentifier('b')
+            ->add('material')
+            ->add('enabled')
         ;
     }
 
@@ -55,11 +56,11 @@ class CarAdmin extends Admin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('name')
-            ->add('engine')
-            ->add('rescueEngine')
-            ->add('createdAt')
-            ->add('color')
+            ->add('r')
+            ->add('g')
+            ->add('b')
+            ->add('material')
+            ->add('enabled')
         ;
     }
 
@@ -69,11 +70,11 @@ class CarAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->add('name')
-            ->add('engine', 'sonata_type_model_list')
-            ->add('rescueEngine')
-            ->add('createdAt')
-            ->add('color', 'sonata_type_model_list')
+            ->add('r')
+            ->add('g')
+            ->add('b')
+            ->add('material')
+            ->add('enabled')
         ;
     }
 }

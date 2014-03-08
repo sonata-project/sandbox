@@ -49,6 +49,17 @@ class Car
      */
     protected $rescueEngine;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Color", cascade={"persist"}, fetch="EAGER")
+     * @ORM\joinColumns({
+     *      @ORM\JoinColumn(name="color_r", referencedColumnName="r"),
+     *      @ORM\JoinColumn(name="color_g", referencedColumnName="g"),
+     *      @ORM\JoinColumn(name="color_b", referencedColumnName="b"),
+     *      @ORM\JoinColumn(name="color_material_id", referencedColumnName="material_id")
+     * })
+     */
+    protected $color;
+
     public function getId()
     {
         return $this->id;
@@ -121,4 +132,21 @@ class Car
     {
         return $this->rescueEngine;
     }
+
+    /**
+     * @param mixed $color
+     */
+    public function setColor($color)
+    {
+        $this->color = $color;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getColor()
+    {
+        return $this->color;
+    }
+
 }

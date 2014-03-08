@@ -40,7 +40,8 @@ sonata_admin:
             - { position: left, type: sonata.admin.block.admin_list }
 #            - { position: right, type: sonata.admin_doctrine_orm.block.audit}
             - { position: center, type: sonata.block.service.text, settings: { content: "<h2>Welcome!</h2> You can customize this dashboard by editing the sonata_admin.yml file. The current dashboard presents the recent items from the NewsBundle and a timeline with the latest action"} }
-            - { position: center, type: sonata.timeline.block.timeline, settings: { context: SONATA_ADMIN, max_per_page: 25 }}
+            # This block is disabled for now as the bundle generates an exception with composite key
+            #- { position: center, type: sonata.timeline.block.timeline, settings: { context: SONATA_ADMIN, max_per_page: 25 }}
             - { position: center, type: sonata.news.block.recent_posts, settings: { title: Recent Posts, number: 7, mode: admin }}
             - { position: center, type: sonata.news.block.recent_comments, settings: { title: Recent Comments, number: 7, mode: admin }}
             - { position: right, type: sonata.order.block.recent_orders, settings: { title: Recent Orders, number: 5, mode: admin }}
@@ -86,3 +87,5 @@ sonata_admin:
                 items:
                     - sonata.demo.admin.car
                     - sonata.demo.admin.engine
+                    - sonata.demo.admin.color
+                    - sonata.demo.admin.material
