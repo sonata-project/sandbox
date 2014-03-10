@@ -59,7 +59,7 @@ class Car
 
     /**
      * @ORM\ManyToOne(targetEntity="Color", cascade={"persist"}, fetch="EAGER")
-     * @ORM\joinColumns({
+     * @ORM\JoinColumns({
      *      @ORM\JoinColumn(name="color_r", referencedColumnName="r"),
      *      @ORM\JoinColumn(name="color_g", referencedColumnName="g"),
      *      @ORM\JoinColumn(name="color_b", referencedColumnName="b"),
