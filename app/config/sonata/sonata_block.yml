@@ -11,29 +11,38 @@ sonata_block:
     blocks:
         sonata.admin.block.admin_list:
             contexts:   [admin]
-        sonata.timeline.block.timeline:
-            contexts:   [admin]
         sonata.admin.block.search_result:
             contexts:   [admin]
 
         #sonata.admin_doctrine_orm.block.audit:
         #    contexts:   [admin]
 
+        # Builtin Block
         sonata.block.service.text:
         sonata.block.service.container:
+        sonata.block.service.rss:
+        sonata.block.service.menu:
+        sonata.block.service.template:
+
+        # PageBundle's Blocks
         sonata.page.block.container:
             # cache: sonata.cache.memcached
             # cache: sonata.cache.predis
             # cache: sonata.page.cache.esi # if you are using the PageBundle
             # cache: sonata.block.cache.esi # if you are using the BlockBundle without the PageBundle
         sonata.page.block.children_pages:
-        sonata.block.service.rss:
-        sonata.block.service.menu:
+        sonata.page.block.breadcrumb:
+
+        # MediaBundle's Blocks
         sonata.media.block.media:
         sonata.media.block.gallery:
         sonata.media.block.feature_media:
+
+        # NewsBundle's Blocks
         sonata.news.block.recent_comments:
         sonata.news.block.recent_posts:
+
+        # Ecommerce's Blocks
         sonata.order.block.recent_orders:
         sonata.product.block.recent_products:
         sonata.product.block.similar_products:
@@ -41,9 +50,20 @@ sonata_block:
         sonata.product.block.filters_menu:
         sonata.product.block.variations_form:
         sonata.customer.block.recent_customers:
+        sonata.basket.block.nb_items:
+            cache: sonata.page.cache.js_async
+            contexts: [user]
+        sonata.basket.block.nb_items:
+            cache: sonata.page.cache.js_async
+            contexts: [user]
+
+        # TimelineBundle's Blocks
 
         sonata.timeline.block.timeline:
+        sonata.timeline.block.timeline:
+            contexts:   [admin]
 
+        # UserBundle's Blocks
         sonata.user.block.account:
             cache: sonata.page.cache.js_async
             #cache: sonata.page.cache.esi
@@ -51,10 +71,7 @@ sonata_block:
         sonata.user.block.menu:
             contexts: [user]
 
-        sonata.basket.block.nb_items:
-            cache: sonata.page.cache.js_async
-            contexts: [user]
-
+        # SeoBundle's Blocks
         sonata.seo.block.email.share_button:
         sonata.seo.block.facebook.like_box:
         sonata.seo.block.facebook.like_button:
@@ -68,4 +85,4 @@ sonata_block:
         sonata.seo.block.twitter.embed:
 
         sonata.demo.block.newsletter:
-        sonata.page.block.breadcrumb:
+
