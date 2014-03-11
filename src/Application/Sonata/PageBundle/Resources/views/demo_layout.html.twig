@@ -10,6 +10,15 @@ file that was distributed with this source code.
 #}
 {% extends 'SonataPageBundle::layout.html.twig' %}
 
+{% block sonata_page_body_tag %}
+    {{ parent() }}
+
+    {% include "SonataSeoBundle:Block:_facebook_sdk.html.twig" %}
+    {% include "SonataSeoBundle:Block:_twitter_sdk.html.twig" %}
+    {% include "SonataSeoBundle:Block:_pinterest_sdk.html.twig" %}
+
+{% endblock %}
+
 {% block sonata_page_stylesheets %}
 
     <link href="{{ asset('bundles/sonatacore/select2/select2.css') }}" type="text/css" rel="stylesheet" media="screen" />
