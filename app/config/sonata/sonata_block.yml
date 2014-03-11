@@ -55,7 +55,6 @@ sonata_block:
             cache: sonata.page.cache.js_async
             contexts: [user]
 
-        sonata.seo.block.social.container:
         sonata.seo.block.email.share_button:
         sonata.seo.block.facebook.like_box:
         sonata.seo.block.facebook.like_button:
