@@ -134,7 +134,7 @@ Feature: Checkout process
         And I press "Update the delivery step"
         Then I should see "Update the payment step"
         When I fill in "sonata_basket_address_name" with "Behat #2 address name"
-        And I fill in "sonata_basket_address_firstname" with "firstname"
+        And I fill in "sonata_basket_address_firstname" with "billing firstname"
         And I fill in "sonata_basket_address_lastname" with "lastname"
         And I fill in "sonata_basket_address_address1" with "Address 1"
         And I fill in "sonata_basket_address_address2" with "Address 2"
@@ -151,4 +151,5 @@ Feature: Checkout process
         And I follow "Check your order"
         Then I should see "Your invoice"
         And I follow "Your invoice"
+        Then I should see "billing firstname lastname"
         Then the response status code should be 200
