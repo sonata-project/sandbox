@@ -23,7 +23,7 @@ Get composer:
 Run the following command for the 2.3 branch:
 
     php composer.phar create-project sonata-project/sandbox:2.3.x-dev
-    
+
 Or to get the 2.3 develop branch:
 
     php composer.phar create-project sonata-project/sandbox:dev-2.3-develop
@@ -68,8 +68,7 @@ You can now run the tests suite using the following command
 
     php bin/behat
 
-To get more informations about Behat, feel free to check `the official documentation
-<http://docs.behat.org/>`_.
+To get more informations about Behat, feel free to check [the official documentation][link_behat].
 
 
 ### Unit testing
@@ -79,3 +78,5 @@ To run the Sonata test suites, you can run the command:
     bin/qa_client_ci.sh
 
 Enjoy!
+
+[link_behat]: http://docs.behat.org "the official Behat documentation"
