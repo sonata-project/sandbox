@@ -93,8 +93,7 @@ You can now run the tests suite using the following command
 
     php bin/behat
 
-To get more informations about Behat, feel free to check `the official documentation
-<http://docs.behat.org/>`_.
+To get more informations about Behat, feel free to check [the official documentation][link_behat].
 
 
 ### Unit testing
@@ -104,3 +103,5 @@ To run the Sonata test suites, you can run the command:
     bin/qa_client_ci.sh
 
 Enjoy!
+
+[link_behat]: http://docs.behat.org "the official Behat documentation"
