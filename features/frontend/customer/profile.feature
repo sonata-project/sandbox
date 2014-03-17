@@ -12,6 +12,7 @@ Feature: Edit profile information
         When I am connected with "johndoe" and "johndoe" on "login"
         And I go to "/profile"
         Then I should see "Dashboard"
+        And I should see "Recent Orders"
         And the response status code should be 200
 
     @profile @customer @edition
