@@ -73,7 +73,7 @@ class LoadMediaData extends AbstractFixture implements ContainerAwareInterface, 
             $media->setName('Paris');
             $media->setDescription('Paris');
             $media->setAuthorName('Hugo Briand');
-            $media->setCopyright("Je soussigné Hugo Briand donne l'autorisation à Sonata-Project d'utiliser mes photos comme bon lui semblera");
+            $media->setCopyright("CC BY-NC-SA 4.0");
 
             $this->addReference('sonata-media-'.($i++), $media);
 
