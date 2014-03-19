@@ -1,6 +1,6 @@
 sonata_basket:
     builder:            sonata.basket.builder.standard
-    factory:            sonata.basket.session.factory
+    factory:            sonata.basket.entity.factory
     loader:             sonata.basket.loader.standard
 
 
