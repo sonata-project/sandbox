@@ -197,7 +197,14 @@ class FeatureContext extends BehatContext
             throw new Exception(sprintf('Response was not XML : "%s"', $responseContent));
         }
 
-        $this->identifiers[$alias] = current($data->attributes()->id);
+        $identifier = $data->attributes()->id;
+
+        if (null === $identifier) {
+            $data = current($data);
+            $identifier = $data->attributes()->id;
+        }
+
+        $this->identifiers[$alias] = current($identifier);
     }
 
     /**
