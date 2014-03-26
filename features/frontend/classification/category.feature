@@ -14,7 +14,7 @@ Feature: Check the categories browsing and security
     And the response status code should be 200
 
   @catalog @category @goodies
-  Scenario: Browse catalog by category
+  Scenario: Browse catalog through the Goodies' category
     When I go to "/shop/catalog"
     And I follow "Goodies"
     Then I should see "Blue PHP plush"
@@ -25,7 +25,7 @@ Feature: Check the categories browsing and security
     And I should see "Maximum Air Sonata Ultimate Edition"
 
   @catalog @category @travels
-  Scenario: Browse catalog by category
+  Scenario: Browse catalog through the Travels' category
     When I go to "/shop/catalog"
     And I follow "Travels"
     Then I should see "Japan tour"
@@ -34,9 +34,9 @@ Feature: Check the categories browsing and security
     And I should see "Switzerland tour"
 
   @catalog @category @dummies
-  Scenario: Browse catalog by category
+  Scenario: Browse catalog through the Dummies' category
     When I go to "/shop/catalog"
-    And I follow "Plushes"
+    And I follow "Dummy"
     Then I should see "Dummy 1"
     And I should see "Dummy 2"
     And I should see "Dummy 3"
