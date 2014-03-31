@@ -104,29 +104,54 @@ class FeatureContext extends BehatContext
         }
     }
 
+
     /**
-     * @Given /^the response should contain json$/
+     * @Given /^response should contain "([jJ][sS][oO][nN]|[xX][mM][lL])" object$/
      */
-    public function theResponseShouldContainJson()
+    public function theResponseShouldContainObject($objectType)
     {
         $responseContent = $this->getSubcontext('api')->getBrowser()->getLastResponse()->getContent();
 
-        if (null === json_decode($responseContent)) {
-            throw new Exception(sprintf('Response was not json : "%s"', $responseContent));
+        $objectType = strtolower($objectType);
+
+        switch($objectType) {
+            case 'xml':
+                if (false === simplexml_load_string($responseContent)) {
+                    throw new Exception(sprintf('Response was not xml : "%s"', $responseContent));
+                }
+                break;
+            case 'json':
+                if (null === json_decode($responseContent)) {
+                    throw new Exception(sprintf('Response was not json : "%s"', $responseContent));
+                }
+                break;
         }
     }
 
-    /**
-     * @Given /^the response should contain XML$/
-     */
-    public function theResponseShouldContainXml()
-    {
-        $responseContent = $this->getSubcontext('api')->getBrowser()->getLastResponse()->getContent();
 
-        if (false === simplexml_load_string($responseContent)) {
-            throw new Exception(sprintf('Response was not XML : "%s"', $responseContent));
-        }
-    }
+//    /**
+//     * @Given /^response should contain json$/
+//     */
+//    public function theResponseShouldContainJson()
+//    {
+//        $responseContent = $this->getSubcontext('api')->getBrowser()->getLastResponse()->getContent();
+//
+//        if (null === json_decode($responseContent)) {
+//            throw new Exception(sprintf('Response was not json : "%s"', $responseContent));
+//        }
+//    }
+//
+//    /**
+//     * @Given /^response should contain XML$/
+//     */
+//    public function theResponseShouldContainXml()
+//    {
+//        $responseContent = $this->getSubcontext('api')->getBrowser()->getLastResponse()->getContent();
+//
+//        if (false === simplexml_load_string($responseContent)) {
+//            throw new Exception(sprintf('Response was not XML : "%s"', $responseContent));
+//        }
+//    }
 
     /**
      * Sends HTTP request to specific URL using latest identifier.
