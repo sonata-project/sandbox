@@ -143,6 +143,10 @@ table.basket .unavailable .help-inline {
     top: 15%;
 }
 
+.sonata-bc label.disabled {
+    color: #aaa;
+}
+
 /*
  * Product catalog
  */
