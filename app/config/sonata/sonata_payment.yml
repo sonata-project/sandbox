@@ -1,4 +1,6 @@
 sonata_payment:
+    methods:
+        pass: ~
     services:
 #        sonata.payment.method.paypal:
 #            name:     Paypal
@@ -31,7 +33,6 @@ sonata_payment:
 #                openssl:            /opt/local/bin/openssl
         pass:
             name:    Pass
-            enabled: true
             code:    pass
             browser: sonata.payment.browser.curl
 

@@ -20,10 +20,11 @@ monolog:
 #            level: info
 
 sonata_payment:
+    methods:
+        debug: ~
     services:
         debug:
             name:    Debug Payment
-            enabled: true
             code:    debug
             browser: sonata.payment.browser.curl
 
