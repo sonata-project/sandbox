@@ -1,8 +1,11 @@
 sonata_delivery:
+    methods:
+        free: ~
+        take_away: application.sonata.delivery.take_away
+
     services:
         free_address_required:
             name: Free
-            enabled: true
             priority: 1
             code: free
 
