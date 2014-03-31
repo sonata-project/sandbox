@@ -1,44 +1,38 @@
 @api @get @order @ecommerce
 Feature: Check the GET API calls for OrderBundle
 
-  Scenario: Check order list (json)
+  Background:
     Given I am authenticating as "admin" with "admin" password
-    When  I send a GET request to "/api/ecommerce/orders.json"
-    Then  the response code should be 200
-    And   the response should contain json
-    Then  response should contain "payment_method"
 
-  Scenario: Check order list (xml)
-    Given I am authenticating as "admin" with "admin" password
-    When  I send a GET request to "/api/ecommerce/orders.xml"
-    Then  the response code should be 200
-    And   the response should contain XML
-    Then  response should contain "payment_method"
+  Scenario Outline: Retrieve the list of orders
+    When I send a GET request to "<resource>"
+    Then the response code should be <status_code>
+    And response should contain "<format>" object
+    And response should contain "<message>"
 
-  Scenario: Check unique order (json)
-    Given I am authenticating as "admin" with "admin" password
-    When  I send a GET request to "/api/ecommerce/orders/1.json"
-    Then  the response code should be 200
-    And   the response should contain json
-    Then  response should contain "payment_method"
+    Examples:
+      | resource| status_code | format | message |
+      | /api/ecommerce/orders.json | 200 | json | payment_method |
+      | /api/ecommerce/orders.xml  | 200 | xml  | payment_method |
 
-  Scenario: Check unique order (xml)
-    Given I am authenticating as "admin" with "admin" password
-    When  I send a GET request to "/api/ecommerce/orders/1.xml"
-    Then  the response code should be 200
-    And   the response should contain XML
-    Then  response should contain "payment_method"
+  Scenario Outline: Retrieve an order by an unique ID
+    When I send a GET request to "<resource>"
+    Then the response code should be <status_code>
+    And response should contain "<format>" object
+    And response should contain "<message>"
 
-  Scenario: Check order elements (json)
-    Given I am authenticating as "admin" with "admin" password
-    When  I send a GET request to "/api/ecommerce/orders/1/orderelements.json"
-    Then  the response code should be 200
-    And   the response should contain json
-    Then  response should contain "raw_product"
+    Examples:
+      | resource| status_code | format | message |
+      | /api/ecommerce/orders/1.json | 200 | json | payment_method |
+      | /api/ecommerce/orders/1.xml  | 200 | xml  | payment_method |
 
-  Scenario: Check order elements (xml)
-    Given I am authenticating as "admin" with "admin" password
-    When  I send a GET request to "/api/ecommerce/orders/1/orderelements.xml"
-    Then  the response code should be 200
-    And   the response should contain XML
-    Then  response should contain "raw_product"
+  Scenario Outline: Retrieve all order elements of an unique order
+    When I send a GET request to "<resource>"
+    Then the response code should be <status_code>
+    And response should contain "<format>" object
+    And response should contain "<message>"
+
+    Examples:
+      | resource| status_code | format | message |
+      | /api/ecommerce/orders/1/orderelements.json | 200 | json | raw_product |
+      | /api/ecommerce/orders/1/orderelements.xml  | 200 | xml  | raw_product |
