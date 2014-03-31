@@ -1,44 +1,61 @@
 @api @get @invoice @ecommerce
-Feature: Check the GET API calls for InvoiceBundle
+Feature: Check the API for InvoiceBundle
+  I want to test the GET API calls
 
-  Scenario: Check invoice list (json)
+  Background:
     Given I am authenticating as "admin" with "admin" password
-    When  I send a GET request to "/api/ecommerce/invoices.json"
-    Then  the response code should be 200
-    And   the response should contain json
-    Then  response should contain "payment_method"
 
-  Scenario: Check invoice list (xml)
-    Given I am authenticating as "admin" with "admin" password
-    When  I send a GET request to "/api/ecommerce/invoices.xml"
-    Then  the response code should be 200
-    And   the response should contain XML
-    Then  response should contain "payment_method"
+  Scenario Outline: Check invoice list
+    When I send a GET request to "<resource>"
+    Then the response code should be <status_code>
+    And response should contain "<format>" object
+    And response should contain "<message>"
 
-  Scenario: Check unique invoice (json)
-    Given I am authenticating as "admin" with "admin" password
-    When  I send a GET request to "/api/ecommerce/invoices/1.json"
-    Then  the response code should be 200
-    And   the response should contain json
-    Then  response should contain "payment_method"
+    Examples:
+      | resource| status_code | format | message |
+      | /api/ecommerce/invoices.json | 200 | json | payment_method |
+      | /api/ecommerce/invoices.xml  | 200 | xml  | payment_method |
 
-  Scenario: Check unique invoice (xml)
-    Given I am authenticating as "admin" with "admin" password
-    When  I send a GET request to "/api/ecommerce/invoices/1.xml"
-    Then  the response code should be 200
-    And   the response should contain XML
-    Then  response should contain "payment_method"
+  Scenario Outline: Check unique invoice
+    When I send a GET request to "<resource>"
+    Then the response code should be <status_code>
+    And response should contain "<format>" object
+    And response should contain "<message>"
 
-  Scenario: Check invoice elements (json)
-    Given I am authenticating as "admin" with "admin" password
-    When  I send a GET request to "/api/ecommerce/invoices/1/invoiceelements.json"
-    Then  the response code should be 200
-    And   the response should contain json
-    Then  response should contain "order_element_id"
+    Examples:
+      | resource| status_code | format | message |
+      | /api/ecommerce/invoices/1.json | 200 | json | payment_method |
+      | /api/ecommerce/invoices/1.xml  | 200 | xml  | payment_method |
 
-  Scenario: Check invoice elements (xml)
-    Given I am authenticating as "admin" with "admin" password
-    When  I send a GET request to "/api/ecommerce/invoices/1/invoiceelements.xml"
-    Then  the response code should be 200
-    And   the response should contain XML
-    Then  response should contain "order_element_id"
+  Scenario Outline: Check unavailable unique invoice
+    When I send a GET request to "<resource>"
+    Then the response code should be <status_code>
+    And response should contain "<format>" object
+    And response should contain "<message>"
+
+    Examples:
+      | resource| status_code | format | message |
+      | /api/ecommerce/invoices/120.json | 404 | json | Not Found |
+      | /api/ecommerce/invoices/120.xml  | 404 | xml | Not Found |
+
+  Scenario Outline: Check invoice elements
+    When I send a GET request to "<resource>"
+    Then the response code should be <status_code>
+    And response should contain "<format>" object
+    And response should contain "<message>"
+
+    Examples:
+      | resource| status_code | format | message |
+      | /api/ecommerce/invoices/1/invoiceelements.json | 200 | json | order_element_id |
+      | /api/ecommerce/invoices/1/invoiceelements.xml  | 200 | xml  | order_element_id |
+
+  Scenario Outline: Check unavailable invoice elements
+    When I send a GET request to "<resource>"
+    Then the response code should be <status_code>
+    And response should contain "<format>" object
+    And response should contain "<message>"
+
+    Examples:
+      | resource| status_code | format | message |
+      | /api/ecommerce/invoices/120/invoiceelements.json | 404 | json | Not Found |
+      | /api/ecommerce/invoices/120/invoiceelements.xml  | 404 | xml  | Not Found |
