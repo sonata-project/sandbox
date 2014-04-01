@@ -1,21 +1,29 @@
 @api @user
 Feature: Check the User controller calls for UserBundle
+  I want to test the different API calls
 
   Background:
     Given I am authenticating as "admin" with "admin" password
 
   # GET
 
-  Scenario: Get all users
-    When I send a GET request to "/api/user/users.xml"
-    Then the response code should be 200
-    And response should contain "xml" object
-    And response should contain "admin"
-    And response should contain "secure"
+  @api @user @list
+  Scenario Outline: Retrieve all available users
+    When I send a GET request to "<resource>"
+    Then the response code should be <status_code>
+    And response should contain "<format>" object
+    And response should contain "<account_1>"
+    And response should contain "<account_2>"
+
+  Examples:
+    | resource| status_code | format | account_1 | account_2 |
+    | /api/user/users.json | 200 | json | admin | secure |
+    | /api/user/users.xml  | 200 | xml  | admin | secure |
 
   # POST
 
-  Scenario: Post new user (with errors)
+  @api @user @new @ko
+  Scenario: Post new user with errors
     When I send a POST request to "/api/user/users.xml" with values:
       | plainPassword | mypassword               |
       | email         | my@username.com          |
@@ -26,6 +34,7 @@ Feature: Check the User controller calls for UserBundle
     Then  the response code should be 500
     And response should contain "xml" object
 
+  @api @user @workflow
   Scenario: User full workflow
     When I send a POST request to "/api/user/users.xml" with values:
       | username      | myusername               |
