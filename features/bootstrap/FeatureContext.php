@@ -128,31 +128,6 @@ class FeatureContext extends BehatContext
         }
     }
 
-
-//    /**
-//     * @Given /^response should contain json$/
-//     */
-//    public function theResponseShouldContainJson()
-//    {
-//        $responseContent = $this->getSubcontext('api')->getBrowser()->getLastResponse()->getContent();
-//
-//        if (null === json_decode($responseContent)) {
-//            throw new Exception(sprintf('Response was not json : "%s"', $responseContent));
-//        }
-//    }
-//
-//    /**
-//     * @Given /^response should contain XML$/
-//     */
-//    public function theResponseShouldContainXml()
-//    {
-//        $responseContent = $this->getSubcontext('api')->getBrowser()->getLastResponse()->getContent();
-//
-//        if (false === simplexml_load_string($responseContent)) {
-//            throw new Exception(sprintf('Response was not XML : "%s"', $responseContent));
-//        }
-//    }
-
     /**
      * Sends HTTP request to specific URL using latest identifier.
      *
