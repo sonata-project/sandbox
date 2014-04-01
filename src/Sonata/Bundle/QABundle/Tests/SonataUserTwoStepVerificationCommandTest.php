@@ -29,7 +29,7 @@ class SonataUserTwoStepVerificationCommandTest extends CommandTestCase
 
         $output = $this->runCommand($client, "sonata:user:two-step-verification --reset secure");
 
-        $this->assertContains("Url : https://www.google.com/", $output);
+        $this->assertContains("Url : https://chart.googleapis.com/", $output);
 
         $user = $client->getContainer()->get('fos_user.user_manager')->findUserBy(array(
             'username' => 'secure'
