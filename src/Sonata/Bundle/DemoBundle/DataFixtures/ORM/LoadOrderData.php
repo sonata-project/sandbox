@@ -157,31 +157,33 @@ class LoadOrderData extends AbstractFixture implements ContainerAwareInterface, 
 
         // Billing
         $customerBillingAddressAddresses = $customer->getAddressesByType(BaseAddress::TYPE_BILLING);
-        $order->setBillingAddress1($customerBillingAddressAddresses[0]->getAddress1());
-        $order->setBillingAddress2($customerBillingAddressAddresses[0]->getAddress2());
-        $order->setBillingAddress3($customerBillingAddressAddresses[0]->getAddress3());
-        $order->setBillingCity($customerBillingAddressAddresses[0]->getCity());
-        $order->setBillingCountryCode($customerBillingAddressAddresses[0]->getCountryCode());
+        $customerBillingAddressAddresses = $customerBillingAddressAddresses->current();
+        $order->setBillingAddress1($customerBillingAddressAddresses->getAddress1());
+        $order->setBillingAddress2($customerBillingAddressAddresses->getAddress2());
+        $order->setBillingAddress3($customerBillingAddressAddresses->getAddress3());
+        $order->setBillingCity($customerBillingAddressAddresses->getCity());
+        $order->setBillingCountryCode($customerBillingAddressAddresses->getCountryCode());
         $order->setBillingEmail($customer->getEmail());
         $order->setBillingName($customer->getFullname());
-        $order->setBillingPhone($customerBillingAddressAddresses[0]->getPhone());
+        $order->setBillingPhone($customerBillingAddressAddresses->getPhone());
         $order->setBillingFax($customer->getFaxNumber());
         $order->setBillingMobile($customer->getMobileNumber());
-        $order->setBillingPostcode($customerBillingAddressAddresses[0]->getPostcode());
+        $order->setBillingPostcode($customerBillingAddressAddresses->getPostcode());
 
         // Shipping
         $customerDeliveryAddressAddresses = $customer->getAddressesByType(BaseAddress::TYPE_DELIVERY);
-        $order->setShippingAddress1($customerDeliveryAddressAddresses[0]->getAddress1());
-        $order->setShippingAddress2($customerDeliveryAddressAddresses[0]->getAddress2());
-        $order->setShippingAddress3($customerDeliveryAddressAddresses[0]->getAddress3());
-        $order->setShippingCity($customerDeliveryAddressAddresses[0]->getCity());
-        $order->setShippingCountryCode($customerDeliveryAddressAddresses[0]->getCountryCode());
+        $customerDeliveryAddressAddresses = $customerDeliveryAddressAddresses->current();
+        $order->setShippingAddress1($customerDeliveryAddressAddresses->getAddress1());
+        $order->setShippingAddress2($customerDeliveryAddressAddresses->getAddress2());
+        $order->setShippingAddress3($customerDeliveryAddressAddresses->getAddress3());
+        $order->setShippingCity($customerDeliveryAddressAddresses->getCity());
+        $order->setShippingCountryCode($customerDeliveryAddressAddresses->getCountryCode());
         $order->setShippingEmail($customer->getEmail());
         $order->setShippingName($customer->getFullname());
-        $order->setShippingPhone($customerDeliveryAddressAddresses[0]->getPhone());
+        $order->setShippingPhone($customerDeliveryAddressAddresses->getPhone());
         $order->setShippingFax($customer->getFaxNumber());
         $order->setShippingMobile($customer->getMobileNumber());
-        $order->setShippingPostcode($customerDeliveryAddressAddresses[0]->getPostcode());
+        $order->setShippingPostcode($customerDeliveryAddressAddresses->getPostcode());
 
         // Delivery
         $order->setDeliveryMethod('free'); // @todo : change Delivery method integration
