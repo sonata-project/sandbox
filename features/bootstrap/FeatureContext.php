@@ -129,6 +129,25 @@ class FeatureContext extends BehatContext
     }
 
     /**
+     * @Given /^response should be a binary$/
+     */
+    public function theResponseShouldBeABinary()
+    {
+        /** @var \Behat\CommonContexts\WebApiContext $context */
+        $context = $this->getSubcontext('api');
+        /** @var \Guzzle\Http\Message\Response $response */
+        $response = $context->getBrowser()->getLastResponse();
+
+        if ("bytes" !== $response->getHeader('Accept-Ranges')) {
+            throw new Exception(sprintf('Response Accept-Ranges header not bytes: "%s"', $response->getHeader('Accept-Ranges')));
+        }
+
+        if (false === strpos($response->getHeader('Content-Disposition'), 'attachment')) {
+            throw new Exception(sprintf('Response Content-Disposition header not attachment: "%s"', $response->getHeader('Content-Disposition')));
+        }
+    }
+
+    /**
      * Sends HTTP request to specific URL using latest identifier.
      *
      * @param string $method request method

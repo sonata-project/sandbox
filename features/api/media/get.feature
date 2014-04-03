@@ -29,18 +29,17 @@ Feature: Check the API for MediaBundle
       | /api/media/media/1.json | 200 | json | IMG_3587.jpg |
       | /api/media/media/1.xml  | 200 | xml  | IMG_3587.jpg |
 
-  @skipped @api @media @unique @binary
+  @api @media @unique @binary
   Scenario Outline: Retrieve the media binaries for a unique ID
     When I send a GET request to "<resource>"
     Then the response code should be <status_code>
-    And response should contain "<format>" object
-    And response should contain "<message>"
+    And response should be a binary
 
     Examples:
-      | resource| status_code | format | message |
-      | /api/media/media/1/binaries/reference.json  | 200 | json  | provider_metadata |
-      | /api/media/media/1/binaries/reference.xml   | 200 | xml   | provider_metadata |
-      | /api/media/media/1/binaries/reference.html  | 200 | html  | provider_metadata |
+      | resource| status_code |
+      | /api/media/media/1/binaries/reference.json  | 200 |
+      | /api/media/media/1/binaries/reference.xml   | 200 |
+      | /api/media/media/1/binaries/reference.html  | 200 |
 
   @api @media @url @format @ok
   Scenario Outline: Return available urls for each media
@@ -64,8 +63,8 @@ Feature: Check the API for MediaBundle
 
     Examples:
       | resource| status_code | format | message |
-      | /api/media/media/120/formats.json | 404 | json | message |
-      | /api/media/media/120/formats.xml  | 404 | xml  | Not Found |
+      | /api/media/media/120/formats.json | 404 | json | Media (120) was not found |
+      | /api/media/media/120/formats.xml  | 404 | xml  | Media (120) was not found |
 
   @api @gallery @list
   Scenario Outline: Retrive the list of available galleries
@@ -103,8 +102,8 @@ Feature: Check the API for MediaBundle
 
     Examples:
       | resource| status_code | format | message |
-      | /api/media/galleries/120.json | 404 | json | Not Found |
-      | /api/media/galleries/120.xml  | 404 | xml  | Not Found |
+      | /api/media/galleries/120.json | 404 | json | Gallery (120) not found |
+      | /api/media/galleries/120.xml  | 404 | xml  | Gallery (120) not found |
 
   @api @galleryhasmedias @gallery @unique @ok
   Scenario Outline: Retrieve the galleryhasmedias of a specific gallery by a unique ID
@@ -128,8 +127,8 @@ Feature: Check the API for MediaBundle
 
     Examples:
       | resource| status_code | format | message |
-      | /api/media/galleries/120/galleryhasmedias.json | 404 | json | Not Found |
-      | /api/media/galleries/120/galleryhasmedias.xml  | 404 | xml  | Not Found |
+      | /api/media/galleries/120/galleryhasmedias.json | 404 | json | Gallery (120) not found |
+      | /api/media/galleries/120/galleryhasmedias.xml  | 404 | xml  | Gallery (120) not found |
 
   @api @medias @gallery @unique @ok
   Scenario Outline: Retrieves the medias of a specific gallery by a unique ID
@@ -154,5 +153,5 @@ Feature: Check the API for MediaBundle
 
     Examples:
       | resource| status_code | format | message |
-      | /api/media/galleries/120/medias.json | 404 | json | Not Found |
-      | /api/media/galleries/120/medias.xml  | 404 | xml  | Not Found |
+      | /api/media/galleries/120/medias.json | 404 | json | Gallery (120) not found |
+      | /api/media/galleries/120/medias.xml  | 404 | xml  | Gallery (120) not found |
