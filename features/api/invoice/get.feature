@@ -35,8 +35,8 @@ Feature: Check the API for InvoiceBundle
 
     Examples:
       | resource| status_code | format | message |
-      | /api/ecommerce/invoices/120.json | 404 | json | Not Found |
-      | /api/ecommerce/invoices/120.xml  | 404 | xml | Not Found |
+      | /api/ecommerce/invoices/120.json | 404 | json | Invoice (120) not found |
+      | /api/ecommerce/invoices/120.xml  | 404 | xml | Invoice (120) not found |
 
   Scenario Outline: Check invoice elements
     When I send a GET request to "<resource>"
@@ -57,5 +57,5 @@ Feature: Check the API for InvoiceBundle
 
     Examples:
       | resource| status_code | format | message |
-      | /api/ecommerce/invoices/120/invoiceelements.json | 404 | json | Not Found |
-      | /api/ecommerce/invoices/120/invoiceelements.xml  | 404 | xml  | Not Found |
+      | /api/ecommerce/invoices/120/invoiceelements.json | 404 | json | Invoice (120) not found |
+      | /api/ecommerce/invoices/120/invoiceelements.xml  | 404 | xml  | Invoice (120) not found |
