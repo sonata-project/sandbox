@@ -31,7 +31,7 @@ Feature: Check the API for MediaBundle
       | enabled     | 1              |
     Then the response code should be 404
     And response should contain "xml" object
-    And response should contain "Not Found"
+    And response should contain "unable to retrieve the provider named : `nonexisting`"
 
   Scenario: Media full workflow
     When I send a POST request to "/api/media/providers/sonata.media.provider.youtube/media.xml" with values:

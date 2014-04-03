@@ -7,3 +7,6 @@ fos_rest:
     body_converter:
         enabled: false
         validate: true
+    exception:
+        messages:
+            'Symfony\Component\HttpKernel\Exception\NotFoundHttpException': true
