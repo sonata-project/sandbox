@@ -52,6 +52,7 @@ sonata_admin:
             sonata.admin.group.content:
                 label:           sonata_content
                 label_catalogue: SonataDemoBundle
+                icon:            '<i class="fa fa-th"></i>'
                 items:
                     - sonata.page.admin.page
                     - sonata.news.admin.comment
@@ -62,6 +63,7 @@ sonata_admin:
             sonata.admin.group.ecommerce:
                 label:           sonata_ecommerce
                 label_catalogue: SonataAdminBundle
+                icon:            '<i class="fa fa-dollar"></i>'
                 items:
                     - sonata.customer.admin.customer
                     - sonata.invoice.admin.invoice
@@ -70,6 +72,7 @@ sonata_admin:
             sonata.admin.group.classification:
                 label:           sonata_classification
                 label_catalogue: SonataClassificationBundle
+                icon:            '<i class="fa fa-sitemap"></i>'
                 items:
                     - sonata.classification.admin.category
                     - sonata.classification.admin.tag
@@ -77,6 +80,7 @@ sonata_admin:
             sonata.admin.group.administration:
                 label:           sonata_administration
                 label_catalogue: SonataAdminBundle
+                icon:            '<i class="fa fa-cogs"></i>'
                 items:
                     - sonata.user.admin.user
                     - sonata.user.admin.group
@@ -84,6 +88,7 @@ sonata_admin:
                     - sonata.notification.admin.message
             sonata.admin.group.demo:
                 label: Demo
+                icon:  '<i class="fa fa-play-circle"></i>'
                 items:
                     - sonata.demo.admin.car
                     - sonata.demo.admin.engine
