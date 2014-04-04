@@ -73,7 +73,7 @@ class ColorAdmin extends Admin
             ->add('r')
             ->add('g')
             ->add('b')
-            ->add('material')
+            ->add('material', 'sonata_type_model_list')
             ->add('enabled')
         ;
     }
