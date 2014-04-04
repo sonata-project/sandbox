@@ -47,7 +47,7 @@ Get composer:
 
 Run the following command for the 2.3 branch:
 
-    php composer.phar create-project sonata-project/sandbox:dev-2.3
+    php composer.phar create-project sonata-project/sandbox:2.3.x-dev
 
 Or to get the 2.3 develop branch:
 
