@@ -63,7 +63,7 @@ Reset the data
 
 Fixtures are automatically loaded on the ``composer create-project`` step. If you'd like to reset your sandbox to the default fixtures (or you had an issue while installing and want to fill in the fixtures manually), you may run:
 
-    php load_data.php
+    php bin/load_data.php
 
 This will completely reset your database.
 
