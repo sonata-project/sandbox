@@ -13,7 +13,7 @@ if (!is_file('composer.json')) {
     throw new \RuntimeException('This script must be started from the project root folder');
 }
 
-$rootDir = __DIR__;
+$rootDir = __DIR__ . '/..';
 
 require_once __DIR__ . '/../app/bootstrap.php.cache';
 
