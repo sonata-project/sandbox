@@ -1,5 +1,5 @@
 assetic:
-    debug:          false
+    debug:          %kernel.debug%
     use_controller: false
     read_from:      %kernel.root_dir%/../web
     write_to:       %kernel.root_dir%/../web
@@ -13,6 +13,22 @@ assetic:
     assets:
         # see http://sonata-project.org/blog/2012/5/15/assetic-package-configuration
         #
+        sonata_jqueryui_js:
+            inputs:
+                - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/jqueryui/ui/jquery-ui.js
+                - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/jqueryui/ui/i18n/jquery-ui-i18n.js
+
+            filters:
+                - yui_js
+
+        sonata_jqueryui_css:
+            inputs:
+                - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/jqueryui/themes/flick/jquery-ui.css
+
+            filters:
+                - cssrewrite
+                - yui_css
+
         sonata_formatter_js:
             inputs:
                 - %kernel.root_dir%/../web/bundles/sonataformatter/vendor/ckeditor/ckeditor.js
@@ -38,6 +54,7 @@ assetic:
         sonata_admin_js:
             inputs:
                 - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/jquery/dist/jquery.js
+                - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/jquery.scrollTo/jquery.scrollTo.js
                 - %kernel.root_dir%/../web/bundles/sonataadmin/jquery/jquery.form.js
                 - %kernel.root_dir%/../web/bundles/sonataadmin/jquery/jquery.confirmExit.js
                 - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/bootstrap/dist/js/bootstrap.js
@@ -84,7 +101,6 @@ assetic:
                 - %kernel.root_dir%/../web/bundles/sonatacore/select2/select2.css
                 - %kernel.root_dir%/../web/bundles/mopabootstrap/css/datepicker.css
                 - %kernel.root_dir%/../web/bundles/sonatademo/css/demo.css
-
 
             filters:
                 - cssrewrite
