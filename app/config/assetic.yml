@@ -1,5 +1,5 @@
 assetic:
-    debug:          %kernel.debug%
+    debug:          false # %kernel.debug%
     use_controller: false
     read_from:      %kernel.root_dir%/../web
     write_to:       %kernel.root_dir%/../web
@@ -15,8 +15,41 @@ assetic:
         #
         sonata_jqueryui_js:
             inputs:
-                - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/jqueryui/ui/jquery-ui.js
-                - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/jqueryui/ui/i18n/jquery-ui-i18n.js
+                - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/jqueryui/ui/jquery.ui.core.js
+                - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/jqueryui/ui/jquery.ui.widget.js
+                - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/jqueryui/ui/jquery.ui.mouse.js
+                - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/jqueryui/ui/jquery.ui.draggable.js
+                - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/jqueryui/ui/jquery.ui.droppable.js
+                - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/jqueryui/ui/jquery.ui.resizable.js
+                - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/jqueryui/ui/jquery.ui.selectable.js
+                - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/jqueryui/ui/jquery.ui.sortable.js
+                - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/jqueryui/ui/jquery.ui.effect.js
+#                - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/jqueryui/ui/jquery.ui.accordion.js
+#                - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/jqueryui/ui/jquery.ui.autocomplete.js
+#                - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/jqueryui/ui/jquery.ui.button.js
+#                - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/jqueryui/ui/jquery.ui.datepicker.js
+#                - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/jqueryui/ui/jquery.ui.dialog.js
+#                - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/jqueryui/ui/jquery.ui.effect-blind.js
+#                - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/jqueryui/ui/jquery.ui.effect-bounce.js
+#                - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/jqueryui/ui/jquery.ui.effect-clip.js
+#                - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/jqueryui/ui/jquery.ui.effect-drop.js
+#                - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/jqueryui/ui/jquery.ui.effect-explode.js
+#                - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/jqueryui/ui/jquery.ui.effect-fade.js
+#                - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/jqueryui/ui/jquery.ui.effect-fold.js
+#                - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/jqueryui/ui/jquery.ui.effect-highlight.js
+#                - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/jqueryui/ui/jquery.ui.effect-pulsate.js
+#                - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/jqueryui/ui/jquery.ui.effect-scale.js
+#                - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/jqueryui/ui/jquery.ui.effect-shake.js
+#                - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/jqueryui/ui/jquery.ui.effect-slide.js
+#                - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/jqueryui/ui/jquery.ui.effect-transfer.js
+#                - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/jqueryui/ui/jquery.ui.menu.js
+                - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/jqueryui/ui/jquery.ui.position.js
+#                - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/jqueryui/ui/jquery.ui.progressbar.js
+#                - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/jqueryui/ui/jquery.ui.slider.js
+#                - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/jqueryui/ui/jquery.ui.spinner.js
+#                - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/jqueryui/ui/jquery.ui.tabs.js
+                - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/jqueryui/ui/jquery.ui.tooltip.js
+#                - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/jqueryui/ui/i18n/jquery-ui-i18n.js
 
             filters:
                 - yui_js
@@ -55,11 +88,12 @@ assetic:
             inputs:
                 - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/jquery/dist/jquery.js
                 - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/jquery.scrollTo/jquery.scrollTo.js
-                - %kernel.root_dir%/../web/bundles/sonataadmin/jquery/jquery.form.js
-                - %kernel.root_dir%/../web/bundles/sonataadmin/jquery/jquery.confirmExit.js
+                - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js
                 - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/bootstrap/dist/js/bootstrap.js
                 - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/x-editable/dist/bootstrap3-editable/js/bootstrap-editable.js
                 - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/select2/select2.js
+                - %kernel.root_dir%/../web/bundles/sonataadmin/jquery/jquery.form.js
+                - %kernel.root_dir%/../web/bundles/sonataadmin/jquery/jquery.confirmExit.js
                 - %kernel.root_dir%/../web/bundles/sonataadmin/App.js
                 - %kernel.root_dir%/../web/bundles/sonataadmin/Admin.js
 
