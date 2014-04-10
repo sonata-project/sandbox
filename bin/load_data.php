@@ -60,6 +60,13 @@ function execute_commands($commands, $output)
     return true;
 }
 
+// find out the default php runtime
+$bin = 'php';
+
+if (defined('PHP_BINARY')) {
+    $bin = PHP_BINARY;
+}
+
 $output->writeln("<info>Resetting demo</info>");
 
 $fs->remove(sprintf('%s/web/uploads/media', $rootDir));
@@ -70,18 +77,17 @@ $fs->copy(__DIR__.'/../src/Sonata/Bundle/DemoBundle/DataFixtures/data/robots.txt
 $success = execute_commands(array(
     'rm -rf ./app/cache/*',
 
-    './app/console cache:warmup --env=prod --no-debug',
-    './app/console cache:create-cache-class --env=prod --no-debug',
-    './app/console doctrine:database:drop --force',
-    './app/console doctrine:database:create',
-    './app/console doctrine:schema:update --force',
-    'php -d memory_limit=1024M -d max_execution_time=600 ./app/console doctrine:fixtures:load --verbose --env=dev',
-    './app/console sonata:page:update-core-routes --site=all --no-debug',
-    './app/console sonata:page:create-snapshots --site=all --no-debug',
-    './app/console assets:install --symlink web',
-    './app/console sonata:admin:setup-acl',
-
-    'php -d memory_limit=1024M ./app/console sonata:admin:generate-object-acl'
+    $bin . ' ./app/console cache:warmup --env=prod --no-debug',
+    $bin . ' ./app/console cache:create-cache-class --env=prod --no-debug',
+    $bin . ' ./app/console doctrine:database:drop --force',
+    $bin . ' ./app/console doctrine:database:create',
+    $bin . ' ./app/console doctrine:schema:update --force',
+    $bin . '  -d memory_limit=1024M -d max_execution_time=600 ./app/console doctrine:fixtures:load --verbose --env=dev',
+    $bin . ' ./app/console sonata:page:update-core-routes --site=all --no-debug',
+    $bin . ' ./app/console sonata:page:create-snapshots --site=all --no-debug',
+    $bin . ' ./app/console assets:install --symlink web',
+    $bin . ' ./app/console sonata:admin:setup-acl',
+    $bin . '  -d memory_limit=1024M ./app/console sonata:admin:generate-object-acl'
 ), $output);
 
 if (!$success) {
