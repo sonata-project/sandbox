@@ -128,15 +128,15 @@ sonata_admin:
 
 
 #            - bundles/sonataadmin/vendor/jquery/dist/jquery.min.js
-            - bundles/sonataadmin/vendor/jqueryui/ui/jquery.ui.core.js
-            - bundles/sonataadmin/vendor/jqueryui/ui/jquery.ui.widget.js
-            - bundles/sonataadmin/vendor/jqueryui/ui/jquery.ui.mouse.js
-            - bundles/sonataadmin/vendor/jqueryui/ui/jquery.ui.draggable.js
-            - bundles/sonataadmin/vendor/jqueryui/ui/jquery.ui.droppable.js
-            - bundles/sonataadmin/vendor/jqueryui/ui/jquery.ui.resizable.js
-            - bundles/sonataadmin/vendor/jqueryui/ui/jquery.ui.selectable.js
-            - bundles/sonataadmin/vendor/jqueryui/ui/jquery.ui.sortable.js
-            - bundles/sonataadmin/vendor/jqueryui/ui/jquery.ui.effect.js
+#            - bundles/sonataadmin/vendor/jqueryui/ui/jquery.ui.core.js
+#            - bundles/sonataadmin/vendor/jqueryui/ui/jquery.ui.widget.js
+#            - bundles/sonataadmin/vendor/jqueryui/ui/jquery.ui.mouse.js
+#            - bundles/sonataadmin/vendor/jqueryui/ui/jquery.ui.draggable.js
+#            - bundles/sonataadmin/vendor/jqueryui/ui/jquery.ui.droppable.js
+#            - bundles/sonataadmin/vendor/jqueryui/ui/jquery.ui.resizable.js
+#            - bundles/sonataadmin/vendor/jqueryui/ui/jquery.ui.selectable.js
+#            - bundles/sonataadmin/vendor/jqueryui/ui/jquery.ui.sortable.js
+#            - bundles/sonataadmin/vendor/jqueryui/ui/jquery.ui.effect.js
 #            - bundles/sonataadmin/vendor/jqueryui/ui/jquery.ui.accordion.js
 #            - bundles/sonataadmin/vendor/jqueryui/ui/jquery.ui.autocomplete.js
 #            - bundles/sonataadmin/vendor/jqueryui/ui/jquery.ui.button.js
@@ -156,12 +156,12 @@ sonata_admin:
 #            - bundles/sonataadmin/vendor/jqueryui/ui/jquery.ui.effect-slide.js
 #            - bundles/sonataadmin/vendor/jqueryui/ui/jquery.ui.effect-transfer.js
 #            - bundles/sonataadmin/vendor/jqueryui/ui/jquery.ui.menu.js
-            - sonataadmin/vendor/jqueryui/ui/jquery.ui.position.js
+#            - sonataadmin/vendor/jqueryui/ui/jquery.ui.position.js
 #            - bundles/sonataadmin/vendor/jqueryui/ui/jquery.ui.progressbar.js
 #            - bundles/sonataadmin/vendor/jqueryui/ui/jquery.ui.slider.js
 #            - bundles/sonataadmin/vendor/jqueryui/ui/jquery.ui.spinner.js
 #            - bundles/sonataadmin/vendor/jqueryui/ui/jquery.ui.tabs.js
-            - bundles/sonataadmin/vendor/jqueryui/ui/jquery.ui.tooltip.js
+#            - bundles/sonataadmin/vendor/jqueryui/ui/jquery.ui.tooltip.js
 #            - bundles/sonataadmin/vendor/jqueryui/ui/minified/i18n/jquery-ui-i18n.min.js
 #            - bundles/sonataadmin/jquery/jquery.form.js
 #            - bundles/sonataadmin/jquery/jquery.confirmExit.js
