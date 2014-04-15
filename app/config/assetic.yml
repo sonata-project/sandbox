@@ -64,7 +64,8 @@ assetic:
 
         sonata_formatter_js:
             inputs:
-                - %kernel.root_dir%/../web/bundles/sonataformatter/vendor/ckeditor/ckeditor.js
+                # do not uncomment this, ckeditor behave badly when compacted...
+                #- %kernel.root_dir%/../web/bundles/sonataformatter/vendor/ckeditor/ckeditor.js
                 - %kernel.root_dir%/../web/bundles/sonataformatter/vendor/markitup-markitup/markitup/jquery.markitup.js
                 - %kernel.root_dir%/../web/bundles/sonataformatter/markitup/sets/markdown/set.js
                 - %kernel.root_dir%/../web/bundles/sonataformatter/markitup/sets/html/set.js
