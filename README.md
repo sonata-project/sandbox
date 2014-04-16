@@ -47,7 +47,7 @@ Run
 
 If you are running PHP5.4, you can use the built in server to start the demo:
 
-    php -S localhost:9090 -t web/app
+    app/console server:run localhost:9090
 
 Now open your browser and go to http://localhost:9090/
 
