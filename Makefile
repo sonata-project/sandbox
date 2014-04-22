@@ -1,4 +1,4 @@
-.PHONY: test test-all install update clean dev bower load assets
+.PHONY: test test-all install update clean dev bower load assets optimize
 
 help:
 	@echo "Please use \`make <target>' where <target> is one of"
@@ -12,6 +12,8 @@ help:
 	@echo "  bower      to make a Bower install"
 	@echo "  load       to load fixtures"
 	@echo "  assets     to install assets"
+	@echo "  optimize   to optimize sandbox"
+	@echo "  check      run default symfony check"
 
 test:
 	phpunit -c app
@@ -19,6 +21,14 @@ test:
 test-all:
 	./bin/qa_client_ci.sh
 	bin/behat -f progress
+
+check:
+	php app/check.php
+
+optimize: composer-optimize clean assets
+
+composer-optimize:
+	composer dump-autoload -o
 
 install:
 	composer install
@@ -33,7 +43,8 @@ update:
 
 clean:
 	rm -rf app/cache/*
-	app/console cache:warmup
+	php app/console cache:warmup --env=prod --no-debug
+	php app/console cache:warmup --env=dev
 
 dev:
 	php -S localhost:8000 -t web
