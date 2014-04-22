@@ -89,7 +89,7 @@ assetic:
             inputs:
                 - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/jquery/dist/jquery.js
                 - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/jquery.scrollTo/jquery.scrollTo.js
-                - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js
+#                - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js
                 - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/bootstrap/dist/js/bootstrap.js
                 - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/x-editable/dist/bootstrap3-editable/js/bootstrap-editable.js
                 - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/select2/select2.js

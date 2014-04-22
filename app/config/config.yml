@@ -95,6 +95,7 @@ doctrine:
                 user:     %database_user%
                 host:     %database_host%
                 password: %database_password%
+                charset:  UTF8
 
         types:
             json:     Sonata\Doctrine\Types\JsonType
