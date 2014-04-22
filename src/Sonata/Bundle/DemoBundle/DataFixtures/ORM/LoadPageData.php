@@ -960,7 +960,6 @@ CONTENT
         $page->setTemplateCode('default');
         $page->setRouteName('_page_internal_error_not_found');
         $page->setSite($site);
-        $page->setParent($this->getReference('page-homepage'));
 
         $page->addBlocks($block = $blockInteractor->createNewContainer(array(
             'enabled' => true,
@@ -1001,7 +1000,6 @@ CONTENT
         $page->setTemplateCode('default');
         $page->setRouteName('_page_internal_error_fatal');
         $page->setSite($site);
-        $page->setParent($this->getReference('page-homepage'));
 
         $page->addBlocks($block = $blockInteractor->createNewContainer(array(
             'enabled' => true,
