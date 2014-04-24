@@ -86,3 +86,8 @@ sonata_block:
 
         sonata.demo.block.newsletter:
 
+
+        # Formatter
+        sonata.formatter.block.formatter:
+
+        sonata.seo.block.breadcrumb.homepage:
