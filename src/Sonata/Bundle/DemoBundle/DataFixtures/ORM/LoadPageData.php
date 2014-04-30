@@ -992,7 +992,7 @@ CONTENT
         $blockInteractor = $this->getBlockInteractor();
 
         $page = $pageManager->create();
-        $page->setName('_page_internal_error_not_found');
+        $page->setName('_page_internal_error_fatal');
         $page->setTitle('Error 500');
         $page->setEnabled(true);
         $page->setDecorate(1);

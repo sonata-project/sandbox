@@ -39,6 +39,13 @@ sonata_page:
         classes:
             "Application\Sonata\PageBundle\Entity\Block": getId
 
+    assets:
+        stylesheets:
+            - assetic/sonata_front_css.css
+
+        javascripts:
+            - assetic/sonata_front_js.js
+
     default_template: default
     templates:
         default:
