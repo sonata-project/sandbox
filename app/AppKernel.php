@@ -106,6 +106,7 @@ class AppKernel extends Kernel
             new Sonata\NotificationBundle\SonataNotificationBundle(),
             new Application\Sonata\NotificationBundle\ApplicationSonataNotificationBundle(),
             new Application\Sonata\SeoBundle\ApplicationSonataSeoBundle(),
+            new Sonata\DatagridBundle\SonataDatagridBundle(),
 
             // Search Integration
             //new FOS\ElasticaBundle\FOSElasticaBundle(),
