@@ -19,10 +19,6 @@ file that was distributed with this source code.
 
 {% endblock %}
 
-{% block sonata_page_stylesheets %}
-    <link rel="stylesheet" href="{{ asset('assetic/sonata_front_css.css') }}" type="text/css" media="all" />
-{% endblock %}
-
 {% block sonata_page_javascripts %}
     <script type="text/javascript">
         var basket_update_confirmation_message = '{{ 'sonata_basket_update_confirmation'|trans({}, 'SonataDemoBundle')|escape('js') }}';
