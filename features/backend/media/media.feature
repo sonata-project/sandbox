@@ -4,7 +4,7 @@ Feature: Check the media admin module
 Scenario: Check media admin pages when not connected
   When I go to "admin/sonata/media/media/list"
   Then the response status code should be 200
-  And I should see "Username"
+  And I should see "Authentication"
 
 Scenario: Check media admin pages when connected
   When I am connected with "admin" and "admin" on "admin/sonata/media/media/list"
@@ -29,22 +29,22 @@ Scenario: Add a new dailymotion video
 
 Scenario: Export JSON data
   When I am connected with "admin" and "admin" on "admin/sonata/media/media/list"
-  And I follow "json"
+  And I follow "JSON"
   Then the response status code should be 200
 
 Scenario: Export CSV data
   When I am connected with "admin" and "admin" on "admin/sonata/media/media/list"
-  And I follow "csv"
+  And I follow "CSV"
   Then the response status code should be 200
 
 Scenario: Export XML data
   When I am connected with "admin" and "admin" on "admin/sonata/media/media/list"
-  And I follow "xml"
+  And I follow "XML"
   Then the response status code should be 200
 
 Scenario: Export XLS data
   When I am connected with "admin" and "admin" on "admin/sonata/media/media/list"
-  And I follow "xls"
+  And I follow "XLS"
   Then the response status code should be 200
 
 Scenario: Filter medias
@@ -57,7 +57,7 @@ Scenario: Edit a media
   When I am connected with "admin" and "admin" on "admin/sonata/media/media/list"
   And I fill in "filter_name_value" with "Switzerland"
   And I press "Filter"
-  And I follow "Edit"
+  And I follow "Switzerland"
   And I press "Update"
   Then I should see "Item \"Switzerland\" has been successfully updated."
 
@@ -65,13 +65,13 @@ Scenario: View a media
   When I am connected with "admin" and "admin" on "admin/sonata/media/media/list"
   And I fill in "filter_name_value" with "Canada"
   And I press "Filter"
-  And I follow "Show"
+  And I follow "Canada"
   Then I should see "Canada"
-  Then I should see "Preview ~ reference"
+  Then I should see "Preview"
 
 Scenario: View revisions of a media
   When I am connected with "admin" and "admin" on "admin/sonata/media/media/list"
-  And I follow "Edit"
+  And I follow "Canada"
   And I follow "Revisions"
   Then the response status code should be 200
 
@@ -88,7 +88,7 @@ Scenario: Try to delete an undeletable Media
   When I am connected with "admin" and "admin" on "admin/sonata/media/media/list"
   And I fill in "filter_name_value" with "Paris"
   And I press "Filter"
-  And I follow "Edit"
+  And I follow "Paris"
   And I follow link "Delete" with class "btn btn-danger"
   And I press "Yes, delete"
   Then I should see "An Error has occurred during deletion of item \"Paris\"."

@@ -4,7 +4,7 @@ Feature: Check the page admin module
 Scenario: Check page admin pages when not connected
   When I go to "admin/sonata/page/page/list"
   Then the response status code should be 200
-  And I should see "Username"
+  And I should see "Authentication"
 
 Scenario: Check page admin pages when connected
   When I am connected with "admin" and "admin" on "admin/sonata/page/page/list"
@@ -67,20 +67,20 @@ Scenario: Delete a page
 
 Scenario: Export JSON data
   When I am connected with "admin" and "admin" on "admin/sonata/page/page/list"
-  And I follow "json"
+  And I follow "JSON"
   Then the response status code should be 200
 
 Scenario: Export CSV data
   When I am connected with "admin" and "admin" on "admin/sonata/page/page/list"
-  And I follow "csv"
+  And I follow "CSV"
   Then the response status code should be 200
 
 Scenario: Export XML data
   When I am connected with "admin" and "admin" on "admin/sonata/page/page/list"
-  And I follow "xml"
+  And I follow "XML"
   Then the response status code should be 200
 
 Scenario: Export XLS data
   When I am connected with "admin" and "admin" on "admin/sonata/page/page/list"
-  And I follow "xls"
+  And I follow "XLS"
   Then the response status code should be 200
