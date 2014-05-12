@@ -4,7 +4,7 @@ Feature: Check the comment admin module
 Scenario: Check comment admin pages when not connected
   When I go to "admin/sonata/news/comment/list"
   Then the response status code should be 200
-  And I should see "Username"
+  And I should see "Authentication"
 
 Scenario: Check comment admin pages when connected
   When I am connected with "admin" and "admin" on "admin/sonata/news/comment/list"
@@ -25,22 +25,22 @@ Scenario: Add a new comment
 
 Scenario: Export JSON data
   When I am connected with "admin" and "admin" on "admin/sonata/news/comment/list"
-  And I follow "json"
+  And I follow "JSON"
   Then the response status code should be 200
 
 Scenario: Export CSV data
   When I am connected with "admin" and "admin" on "admin/sonata/news/comment/list"
-  And I follow "csv"
+  And I follow "CSV"
   Then the response status code should be 200
 
 Scenario: Export XML data
   When I am connected with "admin" and "admin" on "admin/sonata/news/comment/list"
-  And I follow "xml"
+  And I follow "XML"
   Then the response status code should be 200
 
 Scenario: Export XLS data
   When I am connected with "admin" and "admin" on "admin/sonata/news/comment/list"
-  And I follow "xls"
+  And I follow "XLS"
   Then the response status code should be 200
 
 Scenario: Filter comments
