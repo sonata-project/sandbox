@@ -56,7 +56,7 @@ assetic:
 
         sonata_jqueryui_css:
             inputs:
-                - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/jqueryui/themes/flick/jquery-ui.css
+                - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/jqueryui/themes/base/jquery-ui.css
 
             filters:
                 - cssrewrite
