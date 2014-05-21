@@ -51,7 +51,7 @@ class BrowserContext extends MinkContext
     public function iFollowLinkWithClass($text, $class)
     {
         $link = $this->getSession()->getPage()->find(
-            'xpath', sprintf("//*[@class='%s' and text() = '%s']", $class, $text)
+            'xpath', sprintf("//*[@class='%s' and contains(., '%s')]", $class, $text)
         );
 
         if (!$link) {

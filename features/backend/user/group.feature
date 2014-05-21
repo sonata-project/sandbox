@@ -4,7 +4,7 @@ Feature: Check the user admin module
 Scenario: Check group admin pages when not connected
   When I go to "admin/sonata/user/group/list"
   Then the response status code should be 200
-  And I should see "Username"
+  And I should see "Authentication"
 
 Scenario: Check group admin pages when connected
   When I am connected with "admin" and "admin" on "admin/sonata/user/group/list"

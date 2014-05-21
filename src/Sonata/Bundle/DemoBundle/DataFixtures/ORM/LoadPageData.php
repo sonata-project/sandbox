@@ -457,24 +457,24 @@ CONTENT
 
     <ul>
         <li><em>Standard</em> user:
-			<ul>
-				<li> Login - <strong>johndoe</strong></li>
-				<li> Password - <strong>johndoe</strong></li>
-			</ul>
-		</li>
+            <ul>
+                <li> Login - <strong>johndoe</strong></li>
+                <li> Password - <strong>johndoe</strong></li>
+            </ul>
+        </li>
         <li><em>Admin</em> user:
-			<ul>
-				<li> Login - <strong>admin</strong></li>
-				<li> Password - <strong>admin</strong></li>
-			</ul>
-		</li>
+            <ul>
+                <li> Login - <strong>admin</strong></li>
+                <li> Password - <strong>admin</strong></li>
+            </ul>
+        </li>
         <li><em>Two-step Verification admin</em> user:
-			<ul>
-				<li> Login - <strong>secure</strong></li>
-				<li> Password - <strong>secure</strong></li>
-				<li> Key - <strong>4YU4QGYPB63HDN2C</strong></li>
-			</ul>
-		</li>
+            <ul>
+                <li> Login - <strong>secure</strong></li>
+                <li> Password - <strong>secure</strong></li>
+                <li> Key - <strong>4YU4QGYPB63HDN2C</strong></li>
+            </ul>
+        </li>
     </ul>
 
     <h3>Two-Step Verification</h3>
@@ -992,7 +992,7 @@ CONTENT
         $blockInteractor = $this->getBlockInteractor();
 
         $page = $pageManager->create();
-        $page->setName('_page_internal_error_not_found');
+        $page->setName('_page_internal_error_fatal');
         $page->setTitle('Error 500');
         $page->setEnabled(true);
         $page->setDecorate(1);
