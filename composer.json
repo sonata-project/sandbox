@@ -62,8 +62,10 @@
         "sonata-project/classification-bundle": "~2.2@dev",
         "sonata-project/ecommerce": "dev-develop",
         "sonata-project/comment-bundle": "~2.2@dev",
+        "sonata-project/datagrid-bundle": "~2.2@dev",
 
         "friendsofsymfony/comment-bundle": "~2.0@dev",
+        "friendsofsymfony/elastica-bundle": "~3@dev",
 
         "dflydev/markdown": "~1.0",
         "simplethings/entity-audit-bundle": "~0.5",

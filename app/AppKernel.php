@@ -95,6 +95,7 @@ class AppKernel extends Kernel
             new Application\Sonata\CommentBundle\ApplicationSonataCommentBundle(),
 
             // SONATA CORE & HELPER BUNDLES
+            new Sonata\DatagridBundle\SonataDatagridBundle(),
             new Sonata\EasyExtendsBundle\SonataEasyExtendsBundle(),
             new Sonata\jQueryBundle\SonatajQueryBundle(),
             new Sonata\CoreBundle\SonataCoreBundle(),
@@ -110,7 +111,7 @@ class AppKernel extends Kernel
             new Application\Sonata\SeoBundle\ApplicationSonataSeoBundle(),
 
             // Search Integration
-            //new FOS\ElasticaBundle\FOSElasticaBundle(),
+            new FOS\ElasticaBundle\FOSElasticaBundle(),
 
             // CMF Integration
             new Symfony\Cmf\Bundle\RoutingBundle\CmfRoutingBundle(),
@@ -123,8 +124,6 @@ class AppKernel extends Kernel
             new Spy\TimelineBundle\SpyTimelineBundle(),
             new Sonata\TimelineBundle\SonataTimelineBundle(),
             new Application\Sonata\TimelineBundle\ApplicationSonataTimelineBundle(), // easy extends integration
-
-
 
             new Mopa\Bundle\BootstrapBundle\MopaBootstrapBundle()
         );
