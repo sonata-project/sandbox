@@ -30,7 +30,7 @@ class FeatureContext extends BehatContext
         $this->baseUrl = $parameters['base_url'];
 
         $this->useContext('browser', new \BrowserContext($parameters));
-        $this->useContext('api',     new \Behat\CommonContexts\WebApiContext($parameters['base_url']));
+        $this->useContext('api',     new \ApiContext($parameters['base_url']));
     }
 
     /**
@@ -153,7 +153,7 @@ class FeatureContext extends BehatContext
      * @param string $method request method
      * @param string $url    relative url
      *
-     * @When /^(?:I )?send a ([A-Z]+) request to "([^"]+)" using last identifier:$/
+     * @When /^(?:I )?send a ([A-Z]+) request to "([^"]+)" using (?:last )?identifier:?$/
      */
     public function iSendARequestUsingLastIdentifier($method, $url)
     {
@@ -167,7 +167,7 @@ class FeatureContext extends BehatContext
      * @param string    $url    relative url
      * @param TableNode $post   table of post values
      *
-     * @When /^(?:I )?send a ([A-Z]+) request to "([^"]+)" using last identifier with values:$/
+     * @When /^(?:I )?send a ([A-Z]+) request to "([^"]+)" using (?:last )?identifier with values:$/
      */
     public function iSendARequestWithValuesUsingLastIdentifier($method, $url, TableNode $post)
     {
@@ -225,6 +225,44 @@ class FeatureContext extends BehatContext
 
         $this->identifiers[$alias] = current($identifier);
     }
+
+    /**
+     * @Given /^I have a Post identified by "(.*)" with values:$/
+     */
+    public function iHaveAPostIdentifiedByWithValues($identifier, TableNode $values)
+    {
+        return $this->iHaveAPostIdentifiedBy($identifier, $values);
+    }
+
+    /**
+     * @Given /^I have a Post identified by "(.*)"$/
+     */
+    public function iHaveAPostIdentifiedBy($identifier, TableNode $values = null)
+    {
+        if (is_null($values)) {
+            $values = new TableNode(<<<TABLE
+      | title                 | My post title       |
+      | slug                  | my-post-slug        |
+      | abstract              | My abstract content |
+      | rawContent            | My raw content      |
+      | contentFormatter      | markdown            |
+      | enabled               | 1                   |
+      | commentsEnabled       | 1                   |
+      | commentsDefaultStatus | 1                   |
+      | author                | 1                   |
+TABLE
+            );
+        }
+
+        return array(
+            new \Behat\Behat\Context\Step\When('I send a POST request to "/api/news/posts.xml" with values:', $values),
+            new \Behat\Behat\Context\Step\Then('the response code should be 200'),
+            new \Behat\Behat\Context\Step\Then('response should contain "xml" object'),
+            new \Behat\Behat\Context\Step\Then('response should contain "created_at"'),
+            new \Behat\Behat\Context\Step\Then(sprintf('store the XML response identifier as "%s"', $identifier)),
+        );
+    }
+
 
     /**
      * Returns URL with last identifier stored in context
