@@ -37,7 +37,10 @@ if (!is_file(__DIR__.'/app/config/parameters.yml')) {
  */
 function execute_commands($commands, $output)
 {
+    $is_executable = is_executable('./app/console --version') ? true : false;
     foreach($commands as $command) {
+        if(!$is_executable && (strpos($command,'php ') === false))
+            $command = str_replace('./', 'php ', $command);
         $output->writeln(sprintf('<info>Executing : </info> %s', $command));
         $p = new \Symfony\Component\Process\Process($command);
         $p->setTimeout(null);
