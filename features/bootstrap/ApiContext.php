@@ -7,6 +7,7 @@
  */
 
 use \Behat\CommonContexts\WebApiContext;
+use Behat\Gherkin\Node\TableNode;
 
 /**
  * @author Romain Mouillard <romain.mouillard@gmail.com>
@@ -61,12 +62,55 @@ class ApiContext extends WebApiContext
         $responsePerPage = isset($data->per_page) ? $data->per_page : 0;
         $responsePage    = isset($data->page) ? $data->page : 0;
 
-
         if ($responsePage != $page) {
             throw new Exception(sprintf('The response should display page %s, page %s displayed', $page, $responsePage));
         }
         if ($responsePerPage != $perPage) {
             throw new Exception(sprintf('The response should display %s elements per page, %s displayed', $perPage, $responsePerPage));
+        }
+    }
+
+    /**
+     * @Then /^response pager data should be consistent$/
+     */
+    public function theResponsePagerDataShouldBeConsistent()
+    {
+        /** @var \Buzz\Message\Response $response */
+        $response = $this->getBrowser()->getLastResponse();
+
+        $responseContent     = $response->getContent();
+        $responseContentType = $response->getHeader('Content-Type');
+
+        if (strstr($responseContentType, 'text/xml')) {
+            $data = simplexml_load_string($responseContent);
+            $count = isset($data->entries) ? count($data->entries->entry) : 0;
+        } elseif (strstr($responseContentType, 'application/json')) {
+            $data = json_decode($responseContent);
+            $count = isset($data->entries) ? count($data->entries) : 0;
+        } else {
+            throw new Exception(sprintf('The response content should be json or xml to count number or elements'));
+        }
+
+        $perPage      = isset($data->per_page) ? $data->per_page : 0;
+        $totalElement = isset($data->total) ? $data->total : 0;
+        $lastPage     = isset($data->last_page) ? $data->last_page : 0;
+        $currentPage  = isset($data->page) ? $data->page : 0;
+
+        if ($lastPage != ceil($totalElement / $perPage)) {
+            throw new Exception(sprintf('The pager per_page value is inconsistent'));
+        }
+
+        if ($totalElement < ($currentPage * $perPage)) {
+            $expectedCount = $totalElement - (($currentPage-1) * $perPage);
+            if ($currentPage != $lastPage) {
+                throw new Exception(sprintf('The pager last page is inconsistent. Current page %s seems to be the last, but last page is %s', $currentPage, $lastPage));
+            }
+        } else {
+            $expectedCount = $perPage;
+        }
+
+        if ($count != $expectedCount) {
+            throw new Exception(sprintf('The number of results provided by the pager is inconsistent. Got %s results, expected %s', $count, $expectedCount));
         }
     }
 
@@ -160,17 +204,6 @@ class ApiContext extends WebApiContext
         if (!is_null($message) && (sizeof($messages) == 0 || !in_array($message, $messages))) {
             throw new Exception(sprintf('Field %s should have "%s" validation error, but only got following errors: %s.', $field, $message, implode(PHP_EOL, $messages)));
         }
-
-//        "errors":{"children":{"title":{"errors":["Cette valeur ne doit pas \u00eatre vide."]},"slug":[],"abstract":[],"rawContent":[],"cont
-
-//        errors>
-//                  <form name="">
-//                    <errors/>
-//                    <form name="title">
-//                      <errors>
-//                        <entry><![CDATA[Cette valeur ne doit pas être vide.]]></entry>
-//                      </errors>
-//                    </form>
     }
 
     /**
@@ -178,7 +211,85 @@ class ApiContext extends WebApiContext
      */
     public function theFieldShouldBeInError($field, $message)
     {
-        return $this->theValidationForFieldShouldFail($field, $message);
+        $this->theValidationForFieldShouldFail($field, $message);
+    }
+
+    /**
+     * @Given /^I have a Post identified by "(.*)" with values:$/
+     */
+    public function iHaveAPostIdentifiedByWithValues($identifier, TableNode $values)
+    {
+        return $this->iHaveAPostIdentifiedBy($identifier, $values);
+    }
+
+    /**
+     * @Given /^I have a Post identified by "(.*)"$/
+     */
+    public function iHaveAPostIdentifiedBy($identifier, TableNode $values = null)
+    {
+        if (is_null($values)) {
+            $values = new TableNode(<<<TABLE
+      | title                 | My post title       |
+      | slug                  | my-post-slug        |
+      | abstract              | My abstract content |
+      | rawContent            | My raw content      |
+      | contentFormatter      | markdown            |
+      | enabled               | 1                   |
+      | commentsEnabled       | 1                   |
+      | commentsDefaultStatus | 1                   |
+      | author                | 1                   |
+TABLE
+            );
+        }
+
+        return array(
+            new \Behat\Behat\Context\Step\When('I send a POST request to "/api/news/posts.xml" with values:', $values),
+            new \Behat\Behat\Context\Step\Then('the response code should be 200'),
+            new \Behat\Behat\Context\Step\Then('response should contain "xml" object'),
+            new \Behat\Behat\Context\Step\Then('response should contain "created_at"'),
+            new \Behat\Behat\Context\Step\Then(sprintf('store the XML response identifier as "%s"', $identifier)),
+        );
+    }
+
+    /**
+     * @Given /^I have a Comment identified by "(.*)" on Post "(.*)" with values:$/
+     */
+    public function iHaveACommentIdentifiedByWithValues($identifier, $postIdentifier, TableNode $values)
+    {
+        return $this->iHaveCommentIdentifiedBy($identifier, $postIdentifier, $values);
+    }
+
+    /**
+     * @Given /^I have a Comment identified by "(.*)" on Post "(.*)"$/
+     */
+    public function iHaveCommentIdentifiedBy($identifier, $postIdentifier, TableNode $values = null)
+    {
+        if (is_null($values)) {
+            $values = new TableNode(<<<TABLE
+      | name    | New comment name       |
+      | email   | new@email.org          |
+      | url     | http://www.new-url.com |
+      | message | My new comment message |
+      | status  | 1                      |
+TABLE
+            );
+        }
+
+        /** @var FeatureContext $mainContext */
+        $mainContext = $this->getMainContext();
+        if (!$mainContext->hasIdentifier($postIdentifier)) {
+            throw new Exception(sprintf('There is no post identified by "%s"', $postIdentifier));
+        }
+
+        $postId = $mainContext->getIdentifier($postIdentifier);
+
+        return array(
+            new \Behat\Behat\Context\Step\When(sprintf('I send a POST request to "/api/news/posts/%d/comments.xml" with values:', $postId), $values),
+            new \Behat\Behat\Context\Step\Then('the response code should be 200'),
+            new \Behat\Behat\Context\Step\Then('response should contain "xml" object'),
+            new \Behat\Behat\Context\Step\Then('response should contain "created_at"'),
+            new \Behat\Behat\Context\Step\Then(sprintf('store the XML response identifier as "%s"', $identifier)),
+        );
     }
 }
  

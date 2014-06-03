@@ -227,44 +227,6 @@ class FeatureContext extends BehatContext
     }
 
     /**
-     * @Given /^I have a Post identified by "(.*)" with values:$/
-     */
-    public function iHaveAPostIdentifiedByWithValues($identifier, TableNode $values)
-    {
-        return $this->iHaveAPostIdentifiedBy($identifier, $values);
-    }
-
-    /**
-     * @Given /^I have a Post identified by "(.*)"$/
-     */
-    public function iHaveAPostIdentifiedBy($identifier, TableNode $values = null)
-    {
-        if (is_null($values)) {
-            $values = new TableNode(<<<TABLE
-      | title                 | My post title       |
-      | slug                  | my-post-slug        |
-      | abstract              | My abstract content |
-      | rawContent            | My raw content      |
-      | contentFormatter      | markdown            |
-      | enabled               | 1                   |
-      | commentsEnabled       | 1                   |
-      | commentsDefaultStatus | 1                   |
-      | author                | 1                   |
-TABLE
-            );
-        }
-
-        return array(
-            new \Behat\Behat\Context\Step\When('I send a POST request to "/api/news/posts.xml" with values:', $values),
-            new \Behat\Behat\Context\Step\Then('the response code should be 200'),
-            new \Behat\Behat\Context\Step\Then('response should contain "xml" object'),
-            new \Behat\Behat\Context\Step\Then('response should contain "created_at"'),
-            new \Behat\Behat\Context\Step\Then(sprintf('store the XML response identifier as "%s"', $identifier)),
-        );
-    }
-
-
-    /**
      * Returns URL with last identifier stored in context
      *
      * @param string $url
@@ -284,5 +246,29 @@ TABLE
         }
 
         return $url;
+    }
+
+    /**
+     * Return if the specified identifier has be stored
+     *
+     * @param string $name Identifier name
+     *
+     * @return bool
+     */
+    public function hasIdentifier($name)
+    {
+        return isset($this->identifiers[$name]);
+    }
+
+    /**
+     * Retrieve the specified stored identifier, or null if not found
+     *
+     * @param string $name Identifier name
+     *
+     * @return mixed|null
+     */
+    public function getIdentifier($name)
+    {
+        return $this->hasIdentifier($name) ? $this->identifiers[$name] : null;
     }
 }

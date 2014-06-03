@@ -8,19 +8,19 @@ Feature: Check the Post controller calls for NewsBundle
     Given I am authenticating as "admin" with "admin" password
 
   # GET
+  @current
   Scenario Outline: Retrieves the list of posts (paginated) based on criteria
     When I send a GET request to "<resource>"
     Then the response code should be <status_code>
     And response should contain "<type>" object
     And response pager should display page <page_number> with <per_page> elements
-    And response pager should contain <count> elements
-    And response pager first element should contain "<message>"
+    And response pager data should be consistent
     And response should contain "<tag>"
   Examples:
-    | resource                                     | status_code | type | page_number | per_page | count | message                          | tag     |
-    | /api/news/posts.xml                          | 200         | xml  | 1           | 10       | 10    |                                  |         |
-    | /api/news/posts.xml?tag=web2                 | 200         | xml  | 1           | 10       | 10    | Eos enim nihil unde ut ea.       | web2    |
-    | /api/news/posts.json?page=2&count=5&tag=web2 | 200         | json | 2           | 5        | 5     | Nemo et vero occaecati nesciunt. | web2    |
+    | resource                                     | status_code | type | page_number | per_page | tag     |
+    | /api/news/posts.xml                          | 200         | xml  | 1           | 10       |         |
+    | /api/news/posts.xml?tag=web2                 | 200         | xml  | 1           | 10       | web2    |
+    | /api/news/posts.json?page=2&count=5&tag=web2 | 200         | json | 2           | 5        | web2    |
 
 
   Scenario Outline: Retrieves a specific post
@@ -54,6 +54,7 @@ Feature: Check the Post controller calls for NewsBundle
     And response should contain "<title>"
     And response should contain "<slug>"
     And response should contain "<message>"
+    And response should contain "publication_date_start"
   Examples:
     | resource             | status_code | type | title                | slug                | content                    | raw_content           | message           |
     | /api/news/posts.xml  | 200         | xml  | My post title        | my-post-slug        | My abstract content        | My raw content        | created_at        |
@@ -72,21 +73,17 @@ Feature: Check the Post controller calls for NewsBundle
     Then the response code should be 400
     And response should contain "<type>" object
     And response should contain "Validation Failed"
-    And the validation for "<field>" should fail with "Cette valeur ne doit pas être vide."
+    And the validation for "<field>" should fail with "<error>"
   Examples:
-    | resource             | type | title    | slug         | content             | raw_content    | content_formatter | enabled | comments_enabled | comments_default_status | field                 |
-    | /api/news/posts.json | json |          | my-post-slug | My abstract content | My raw content | markdown          | 1       | 1                | 1                       | title                 |
-    | /api/news/posts.xml  | xml  |          | my-post-slug | My abstract content | My raw content | markdown          | 1       | 1                | 1                       | title                 |
-    | /api/news/posts.xml  | xml  | My title | my-post-slug |                     | My raw content | markdown          | 1       | 1                | 1                       | abstract              |
-    | /api/news/posts.xml  | xml  | My title | my-post-slug | My abstract content |                | markdown          | 1       | 1                | 1                       | rawContent            |
-    | /api/news/posts.xml  | xml  |          | my-post-slug | My abstract content | My raw content | markdown          | 1       | 1                | 1                       | title                 |
-    | /api/news/posts.xml  | xml  | My title | my-post-slug | My abstract content | My raw content | markdown          | 1       | 1                |                         | commentsDefaultStatus |
-    # The following examples dont failed since required emptied fields have default values (keep like this?)
-    #| /api/news/posts.xml  | xml  | My title | my-post-slug | My abstract content | My raw content | markdown          |         | 1                | 1                       | enabled               |
-    #| /api/news/posts.xml  | xml  | My title | my-post-slug | My abstract content | My raw content | markdown          | 1       |                  | 1                       | commentsEnabled       |
-    # WIP https://github.com/sonata-project/SonataNewsBundle/issues/197
-    #| /api/news/posts.xml  | xml  | My title | my-post-slug | My abstract content | My raw content |                   | 1       | 1                | 1                       | contentFormatter      |
-    #| /api/news/posts.xml  | xml  | My title |              | My abstract content | My raw content | markdown          | 1       | 1                | 1                       | slug                  |
+    | resource             | type | title    | slug         | content             | raw_content    | content_formatter | enabled | comments_enabled | comments_default_status | field                 | error                               |
+    | /api/news/posts.json | json |          | my-post-slug | My abstract content | My raw content | markdown          | 1       | 1                | 1                       | title                 | Cette valeur ne doit pas être vide. |
+    | /api/news/posts.xml  | xml  |          | my-post-slug | My abstract content | My raw content | markdown          | 1       | 1                | 1                       | title                 | Cette valeur ne doit pas être vide. |
+    | /api/news/posts.xml  | xml  | My title | my-post-slug |                     | My raw content | markdown          | 1       | 1                | 1                       | abstract              | Cette valeur ne doit pas être vide. |
+    | /api/news/posts.xml  | xml  | My title | my-post-slug | My abstract content |                | markdown          | 1       | 1                | 1                       | rawContent            | Cette valeur ne doit pas être vide. |
+    | /api/news/posts.xml  | xml  |          | my-post-slug | My abstract content | My raw content | markdown          | 1       | 1                | 1                       | title                 | Cette valeur ne doit pas être vide. |
+    | /api/news/posts.xml  | xml  | My title | my-post-slug | My abstract content | My raw content | markdown          | 1       | 1                |                         | commentsDefaultStatus | Cette valeur ne doit pas être vide. |
+    | /api/news/posts.xml  | xml  | My title | my-post-slug | My abstract content | My raw content |                   | 1       | 1                | 1                       | contentFormatter      | The formatter is not valid          |
+    | /api/news/posts.xml  | xml  | My title |              | My abstract content | My raw content | markdown          | 1       | 1                | 1                       | slug                  | Cette valeur ne doit pas être vide. |
 
 
   # PUT
@@ -117,6 +114,7 @@ Feature: Check the Post controller calls for NewsBundle
     And response should contain "<slug>"
     And response should contain "<content>"
     And response should contain "<raw_content>"
+    And response should contain "publication_date_start"
   Examples:
     | resource                    | status_code | type | title           | slug            | content         | raw_content         |
     | /api/news/posts/<post>.xml  | 200         | xml  | Cats love dogs  | cats-love-dogs  | Cats love dogs  | Cats raw love dogs  |
@@ -136,21 +134,17 @@ Feature: Check the Post controller calls for NewsBundle
     Then the response code should be 400
     And response should contain "<type>" object
     And response should contain "Validation Failed"
-    And the validation for "<field>" should fail with "Cette valeur ne doit pas être vide."
+    And the validation for "<field>" should fail with "<error>"
   Examples:
-    | resource             | type | title    | slug         | content             | raw_content    | content_formatter | enabled | comments_enabled | comments_default_status | field                 |
-    | /api/news/posts/<post>.json | json |          | my-post-slug | My abstract content | My raw content | markdown          | 1       | 1                | 1                       | title                 |
-    | /api/news/posts/<post>.xml  | xml  |          | my-post-slug | My abstract content | My raw content | markdown          | 1       | 1                | 1                       | title                 |
-    | /api/news/posts/<post>.xml  | xml  | My title | my-post-slug |                     | My raw content | markdown          | 1       | 1                | 1                       | abstract              |
-    | /api/news/posts/<post>.xml  | xml  | My title | my-post-slug | My abstract content |                | markdown          | 1       | 1                | 1                       | rawContent            |
-    | /api/news/posts/<post>.xml  | xml  |          | my-post-slug | My abstract content | My raw content | markdown          | 1       | 1                | 1                       | title                 |
-    | /api/news/posts/<post>.xml  | xml  | My title | my-post-slug | My abstract content | My raw content | markdown          | 1       | 1                |                         | commentsDefaultStatus |
-    # The following examples dont failed since required emptied fields have default values (keep like this?)
-    #| /api/news/posts/<post>.xml  | xml  | My title | my-post-slug | My abstract content | My raw content | markdown          |         | 1                | 1                       | enabled               |
-    #| /api/news/posts/<post>.xml  | xml  | My title | my-post-slug | My abstract content | My raw content | markdown          | 1       |                  | 1                       | commentsEnabled       |
-    # WIP https://github.com/sonata-project/SonataNewsBundle/issues/197
-    #| /api/news/posts/<post>.xml  | xml  | My title | my-post-slug | My abstract content | My raw content |                   | 1       | 1                | 1                       | contentFormatter      |
-    #| /api/news/posts/<post>.xml  | xml  | My title |              | My abstract content | My raw content | markdown          | 1       | 1                | 1                       | slug                  |
+    | resource                    | type | title    | slug         | content             | raw_content    | content_formatter | enabled | comments_enabled | comments_default_status | field                 | error                               |
+    | /api/news/posts/<post>.json | json |          | my-post-slug | My abstract content | My raw content | markdown          | 1       | 1                | 1                       | title                 | Cette valeur ne doit pas être vide. |
+    | /api/news/posts/<post>.xml  | xml  |          | my-post-slug | My abstract content | My raw content | markdown          | 1       | 1                | 1                       | title                 | Cette valeur ne doit pas être vide. |
+    | /api/news/posts/<post>.xml  | xml  | My title | my-post-slug |                     | My raw content | markdown          | 1       | 1                | 1                       | abstract              | Cette valeur ne doit pas être vide. |
+    | /api/news/posts/<post>.xml  | xml  | My title | my-post-slug | My abstract content |                | markdown          | 1       | 1                | 1                       | rawContent            | Cette valeur ne doit pas être vide. |
+    | /api/news/posts/<post>.xml  | xml  |          | my-post-slug | My abstract content | My raw content | markdown          | 1       | 1                | 1                       | title                 | Cette valeur ne doit pas être vide. |
+    | /api/news/posts/<post>.xml  | xml  | My title | my-post-slug | My abstract content | My raw content | markdown          | 1       | 1                |                         | commentsDefaultStatus | Cette valeur ne doit pas être vide. |
+    | /api/news/posts/<post>.xml  | xml  | My title | my-post-slug | My abstract content | My raw content |                   | 1       | 1                | 1                       | contentFormatter      | The formatter is not valid          |
+    | /api/news/posts/<post>.xml  | xml  | My title |              | My abstract content | My raw content | markdown          | 1       | 1                | 1                       | slug                  | Cette valeur ne doit pas être vide. |
 
   Scenario: Updates a post which does not exist returns not found
     When I send a PUT request to "/api/news/posts/999999999.json" with values:
