@@ -91,20 +91,20 @@ Feature: Check the Comment controller calls for NewsBundle
     And response should contain "Validation Failed"
     And the validation for "<field>" should fail with "<error>"
   Examples:
-    | resource                             | type | name | message         | email         | status | field   | error                                            |
-    | /api/news/posts/<post>/comments.xml  | xml  |      | Unknown content | mail@mail.com | 1      | name    | Cette valeur ne doit pas être vide.              |
-    | /api/news/posts/<post>/comments.json | json | Jess |                 | mail@mail.com | 1      | message | Cette valeur ne doit pas être vide.              |
-    | /api/news/posts/<post>/comments.json | json | Jess | My content      | mail@mail.com | 99     | status  | Cette valeur doit être inférieure ou égale à 2.  |
-    | /api/news/posts/<post>/comments.json | json | Jess | My content      | mail          | 1      | email   | Cette valeur n'est pas une adresse email valide. |
+    | resource                             | type | name | message         | email         | status | field   | error                                    |
+    | /api/news/posts/<post>/comments.xml  | xml  |      | Unknown content | mail@mail.com | 1      | name    | This value should not be blank.          |
+    | /api/news/posts/<post>/comments.json | json | Jess |                 | mail@mail.com | 1      | message | This value should not be blank.          |
+    | /api/news/posts/<post>/comments.json | json | Jess | My content      | mail@mail.com | 99     | status  | This value should be 2 or less.          |
+    | /api/news/posts/<post>/comments.json | json | Jess | My content      | mail          | 1      | email   | This value is not a valid email address. |
 
   # PUT
   Scenario Outline: Updates a comment
     Given I have a Post identified by "post"
     Given I have a Comment identified by "comment" on Post "post" with values:
-      | name    | First author name    |
+      | name    | First author name      |
       | email   | new@email.org          |
       | url     | http://www.new-url.com |
-      | message | My comment message |
+      | message | My comment message     |
       | status  | 1                      |
     When I send a PUT request to "<resource>" using identifier with values:
       | name    | <name>    |
@@ -127,10 +127,10 @@ Feature: Check the Comment controller calls for NewsBundle
   Scenario Outline: I can't update a comment with invalid values
     Given I have a Post identified by "post"
     Given I have a Comment identified by "comment" on Post "post" with values:
-      | name    | First author name    |
+      | name    | First author name      |
       | email   | new@email.org          |
       | url     | http://www.new-url.com |
-      | message | My comment message |
+      | message | My comment message     |
       | status  | 1                      |
     When I send a PUT request to "<resource>" using identifier with values:
       | name    | <name>    |
@@ -144,113 +144,35 @@ Feature: Check the Comment controller calls for NewsBundle
     And response should contain "Validation Failed"
     And the validation for "<field>" should fail with "<error>"
   Examples:
-    | resource                          | type | name | mail          | url                | message         | status | post_id | field   | error                                            |
-    | /api/news/comments/<comment>.xml  | xml  |      | mail@mail.com | http://www.url.com | Unknown content | 1      | <post>  | name    | Cette valeur ne doit pas être vide.              |
-    | /api/news/comments/<comment>.json | json | Jess | mail@mail.com | http://www.url.com |                 | 1      | <post>  | message | Cette valeur ne doit pas être vide.              |
-    | /api/news/comments/<comment>.json | json | Jess | mail@mail.com | http://www.url.com | My content      | 99     | <post>  | status  | Cette valeur doit être inférieure ou égale à 2.  |
-    | /api/news/comments/<comment>.json | json | Jess | mail@mail.com | http://www.url.com | My content      | 1      | 999999  | post    | Cette valeur n'est pas valide.                   |
-    | /api/news/comments/<comment>.json | json | Jess | mail          | http://www.url.com | My content      | 1      | <post>  | email   | Cette valeur n'est pas une adresse email valide. |
+    | resource                          | type | name | mail          | url                | message         | status | post_id | field   | error                                    |
+    | /api/news/comments/<comment>.xml  | xml  |      | mail@mail.com | http://www.url.com | Unknown content | 1      | <post>  | name    | This value should not be blank.          |
+    | /api/news/comments/<comment>.json | json | Jess | mail@mail.com | http://www.url.com |                 | 1      | <post>  | message | This value should not be blank.          |
+    | /api/news/comments/<comment>.json | json | Jess | mail@mail.com | http://www.url.com | My content      | 99     | <post>  | status  | This value should be 2 or less.          |
+    | /api/news/comments/<comment>.json | json | Jess | mail@mail.com | http://www.url.com | My content      | 1      | 999999  | post    | This value is not valid.                 |
+    | /api/news/comments/<comment>.json | json | Jess | mail          | http://www.url.com | My content      | 1      | <post>  | email   | This value is not a valid email address. |
 
+  Scenario: I can't update a comment that does not exists
+    When I send a PUT request to "/api/news/comments/999999999.json" with values:
+      | name    | Jess               |
+      | email   | mail@mail.com      |
+      | url     | http://www.url.com |
+      | message | My content         |
+      | status  | 1                  |
+      | post    | 1                  |
+    Then the response code should be 404
+    And response should contain "Comment (999999999) not found"
 
   # DELETE
-
-
-#    When I send a POST request to "<resource>" using identifier with values:
-#      | name    | <name>    |
-#      | email   | <email>   |
-#      | url     | <url>     |
-#      | status  | <status>  |
-#      | message | <content> |
-#    Then the response code should be <status_code>
-#    And response should contain "<type>" object
-#    And response should contain "<message>"
-#  Examples:
-#    | resource                             | status_code | type | name | email         | url                       | status | content                    | message    |
-#    | /api/news/posts/<post>/comments.xml  | 200         | xml  | Grou | grou@mail.com | http://sonata-project.org | 1      | Grou content               | created_at |
-#    | /api/news/posts/<post>/comments.json | 200         | json | Jess | jess@mail.com | http://www.jess.org       | 2      | Jess commented here!       | created_at |
-#    | /api/news/posts/<post>/comments.json | 200         | json | Jess |               |                           |        | Comment with less content! | created_at |
-
-
-#  Scenario Outline: Adds a comment to a post with wrong parameters should trigger validation errors
-#    When I send a POST request to "<resource>" using identifier with values:
-#      | name    | <name>    |
-#      | email   | <email>   |
-#      | url     | <url>     |
-#      | message | <content> |
-#    Then the response code should be <status_code>
-#    And response should contain "<type>" object
-#    And response should contain "<message>"
-#  Examples:
-#    | resource                             | status_code | type | name | email         | url                       | content              | message    |
-#    | /api/news/posts/<post>/comments.xml  | 200         | xml  | Grou | grou@mail.com | http://sonata-project.org | Grou content         | created_at |
-#    | /api/news/posts/<post>/comments.json | 200         | json | Jess | jess@mail.com | http://www.jess.org       | Jess commented here! | created_at |
-
-#  Scenario: Comment full workflow
-#    When I send a POST request to "/api/news/posts.xml" with values:
-#      | title                 | My post title       |
-#      | slug                  | my-post-slug        |
-#      | abstract              | My abstract content |
-#      | rawContent            | My raw content      |
-#      | contentFormatter      | markdown            |
-#      | enabled               | 1                   |
-#      | commentsEnabled       | 1                   |
-#      | commentsDefaultStatus | 1                   |
-#      | author                | 1                   |
-#    Then the response code should be 200
-#    And response should contain "xml" object
-#    And response should contain "created_at"
-#    And store the XML response identifier as "post_id"
-#
-#    # POST (comment)
-#
-#    When I send a POST request to "/api/news/posts/<post_id>/comments.xml" using last identifier with values:
-#      | name    | grou                      |
-#      | email   | em@il.com                 |
-#      | url     | http://sonata-project.org |
-#      | message | grou                      |
-#    Then the response code should be 200
-#    And response should contain "xml" object
-#    And response should contain "created_at"
-#    And store the XML response identifier as "comment_id"
-#
-#    When I send a GET request to "/api/news/comments/<comment_id>.xml" using last identifier:
-#    Then the response code should be 200
-#    And response should contain "xml" object
-#    And response should contain "grou"
-#    And response should contain "em@il.com"
-#    And response should contain "sonata-project.org"
-#
-#    # PUT
-#
-#    When I send a PUT request to "/api/news/comments/<comment_id>.xml" using last identifier with values:
-#      | name    | New comment name       |
-#      | email   | new@email.org          |
-#      | url     | http://www.new-url.com |
-#      | message | My new comment message |
-#      | status  | 1                      |
-#      | post    | <post_id>              |
-#    Then the response code should be 200
-#    And response should contain "xml" object
-#    And response should contain "New comment name"
-#    And response should contain "new@email.org"
-#    And response should contain "www.new-url.com"
-#    And response should contain "My new comment message"
-#
-#    When I send a GET request to "/api/news/comments/<comment_id>.xml" using last identifier:
-#    Then the response code should be 200
-#    And response should contain "xml" object
-#    And response should contain "New comment name"
-#    And response should contain "new@email.org"
-#    And response should contain "www.new-url.com"
-#    And response should contain "My new comment message"
-#
-#    # DELETE
-#
-#    When I send a DELETE request to "/api/news/comments/<comment_id>.xml" using last identifier:
-#    Then the response code should be 200
-#    And response should contain "xml" object
-#    And response should contain "true"
-#
-#    When I send a GET request to "/api/news/comments/<comment_id>.xml" using last identifier:
-#    Then the response code should be 404
-#    And response should contain "xml" object
+  @current
+  Scenario Outline: Deletes a comment
+    Given I have a Post identified by "post"
+    Given I have a Comment identified by "comment" on Post "post"
+    When I send a DELETE request to "<resource>" using identifier
+    Then the response code should be <status_code>
+    And response should contain "<type>" object
+    And response should contain "<message>"
+  Examples:
+    | resource                          | status_code | type | message                 |
+    | /api/news/comments/<comment>.xml  | 200         | xml  | true                    |
+    | /api/news/comments/<comment>.json | 200         | json | true                    |
+    | /api/news/comments/404.json       | 404         | json | Comment (404) not found |
