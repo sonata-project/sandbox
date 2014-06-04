@@ -8,12 +8,138 @@
 
 use \Behat\CommonContexts\WebApiContext;
 use Behat\Gherkin\Node\TableNode;
+use Buzz\Browser;
 
 /**
  * @author Romain Mouillard <romain.mouillard@gmail.com>
  */
 class ApiContext extends WebApiContext
 {
+    /**
+     * @var array
+     */
+    private $identifiers = array();
+
+    /**
+     * @var string
+     */
+    private $baseUrl;
+
+    /**
+     * {@inheritdoc}
+     */
+    public function __construct($baseUrl, Browser $browser = null)
+    {
+        $this->baseUrl = $baseUrl;
+
+        parent::__construct($baseUrl, $browser);
+    }
+
+    /**
+     * Sends HTTP request to specific URL using latest identifier.
+     *
+     * @param string $method request method
+     * @param string $url    relative url
+     *
+     * @When /^(?:I )?send a ([A-Z]+) request to "([^"]+)" using (?:last )?identifier:?$/
+     */
+    public function iSendARequestUsingLastIdentifier($method, $url)
+    {
+        $this->sendRequestUsingLastIdentifier($method, $url);
+    }
+
+    /**
+     * Sends HTTP request to specific URL with field values from Table and using latest identifier.
+     *
+     * @param string    $method request method
+     * @param string    $url    relative url
+     * @param TableNode $post   table of post values
+     *
+     * @When /^(?:I )?send a ([A-Z]+) request to "([^"]+)" using (?:last )?identifier with values:$/
+     */
+    public function iSendARequestWithValuesUsingLastIdentifier($method, $url, TableNode $post)
+    {
+        $this->sendRequestUsingLastIdentifier($method, $url, $post);
+    }
+
+    /**
+     * Sends a request using last identifier
+     *
+     * @param string    $method request method
+     * @param string    $url    relative url
+     * @param TableNode $post   table of post values
+     */
+    protected function sendRequestUsingLastIdentifier($method, $url, TableNode $post = null)
+    {
+        $url    = $this->baseUrl.'/'.ltrim($this->replaceIdentifiers($url), '/');
+        $fields = array();
+
+        if ($post) {
+            foreach ($post->getRowsHash() as $key => $val) {
+                if (preg_match('/^<(.*)>$/', $val)) {
+                    $alias = str_replace(array('<', '>'), null, $val);
+                    $val = isset($this->identifiers[$alias]) ? $this->identifiers[$alias] : $val;
+                }
+
+                $fields[$key] = $val;
+            }
+        }
+
+        /** @var \Buzz\Message\Request $request */
+        $request = $this->getBrowser()->getLastRequest();
+        $headers = $request->getHeaders();
+        $url = str_replace('//api', '/api', $url);
+
+        $this->getBrowser()->submit($url, $fields, $method, $headers);
+    }
+
+    /**
+     * @Then /^store the XML response identifier as "(.*)"$/
+     */
+    public function storeTheResponseIdentifier($alias)
+    {
+        /** @var \Buzz\Message\Response $response */
+        $response = $this->getBrowser()->getLastResponse();
+        $responseContent = $response->getContent();
+
+        $data = simplexml_load_string($responseContent);
+
+        if (false === $data) {
+            throw new Exception(sprintf('Response was not XML : "%s"', $responseContent));
+        }
+
+        $identifier = $data->attributes()->id;
+
+        if (null === $identifier) {
+            $data = current($data);
+            $identifier = $data->attributes()->id;
+        }
+
+        $this->identifiers[$alias] = current($identifier);
+    }
+
+    /**
+     * Returns URL with last identifier stored in context
+     *
+     * @param string $url
+     *
+     * @return string
+     */
+    protected function replaceIdentifiers($url)
+    {
+        preg_match_all('/<(.*)>/U', $url, $matches);
+
+        if (isset($matches[1])) {
+            foreach ($matches[1] as $alias) {
+                if (isset($this->identifiers[$alias])) {
+                    $url = str_replace(sprintf('<%s>', $alias), $this->identifiers[$alias], $url);
+                }
+            }
+        }
+
+        return $url;
+    }
+
     /**
      * @Then /^response pager should contain ([0-9]+) elements$/
      */
@@ -276,12 +402,11 @@ TABLE
         }
 
         /** @var FeatureContext $mainContext */
-        $mainContext = $this->getMainContext();
-        if (!$mainContext->hasIdentifier($postIdentifier)) {
+        if (!isset($this->identifiers[$postIdentifier])) {
             throw new Exception(sprintf('There is no post identified by "%s"', $postIdentifier));
         }
 
-        $postId = $mainContext->getIdentifier($postIdentifier);
+        $postId = $this->identifiers[$postIdentifier];
 
         return array(
             new \Behat\Behat\Context\Step\When(sprintf('I send a POST request to "/api/news/posts/%d/comments.xml" with values:', $postId), $values),
