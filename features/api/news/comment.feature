@@ -5,6 +5,7 @@ Feature: Check the Comment controller calls for NewsBundle
     Given I am authenticating as "admin" with "admin" password
 
   # GET
+  @ok @list
   Scenario Outline: Retrieves the comments of specified post
     When I send a GET request to "<resource>"
     Then the response code should be <status_code>
@@ -18,23 +19,27 @@ Feature: Check the Comment controller calls for NewsBundle
     | /api/news/posts/11/comments.json?page=2&count=1 | 200         | json | 2           | 1        |
     | /api/news/posts/11/comments.json?count=1        | 200         | json | 1           | 1        |
 
+  @ko @list
   Scenario: Retrieves the comments of specified post which does not exists
     When I send a GET request to "/api/news/posts/999999999/comments.json"
     Then the response code should be 404
     And response should contain "Post (999999999) not found"
 
   Scenario Outline: Retrieves a specific comment
-    When I send a GET request to "<resource>"
+    Given I have a Post identified by "post"
+    Given I have a Comment identified by "comment" on Post "post"
+    When I send a GET request to "<resource>" using identifier
     Then the response code should be <status_code>
     And response should contain "<type>" object
     And response should contain "<author>"
     And response should contain "<message>"
   Examples:
-    | resource                  | status_code | type | author                  | message                                 |
-    | /api/news/comments/1.json | 200         | json | Ms. Sarina Hackett      | Velit aperiam culpa ut velit officia    |
-    | /api/news/comments/2.xml  | 200         | xml  | Miss Sophie Murazik PhD | Beatae dignissimos possimus dignissimos |
+    | resource                          | status_code | type | author           | message                |
+    | /api/news/comments/<comment>.json | 200         | json | New comment name | My new comment message |
+    | /api/news/comments/<comment>.xml  | 200         | xml  | New comment name | My new comment message |
 
   # POST
+  @ok @new
   Scenario Outline: Adds a comment to a post
     Given I have a Post identified by "post"
     When I send a POST request to "<resource>" using identifier with values:
@@ -52,6 +57,7 @@ Feature: Check the Comment controller calls for NewsBundle
     | /api/news/posts/<post>/comments.json | 200         | json | Jess | jess@mail.com | http://www.jess.org       | 2      | Jess commented here!       | created_at |
     | /api/news/posts/<post>/comments.json | 200         | json | Jess |               |                           |        | Comment with less content! | created_at |
 
+  @ko @new
   Scenario: I can't add a comment on a missing post
     Given I have a Post identified by "post"
     When I send a POST request to "/api/news/posts/999999999/comments.xml" with values:
@@ -79,6 +85,7 @@ Feature: Check the Comment controller calls for NewsBundle
     And response should contain "xml" object
     And response should contain "not commentable"
 
+  @ko @new @validation
   Scenario Outline: I can't add a comment with invalid values
     Given I have a Post identified by "post"
     When I send a POST request to "<resource>" using identifier with values:
@@ -98,6 +105,7 @@ Feature: Check the Comment controller calls for NewsBundle
     | /api/news/posts/<post>/comments.json | json | Jess | My content      | mail          | 1      | email   | This value is not a valid email address. |
 
   # PUT
+  @ok @udpate
   Scenario Outline: Updates a comment
     Given I have a Post identified by "post"
     Given I have a Comment identified by "comment" on Post "post" with values:
@@ -124,6 +132,7 @@ Feature: Check the Comment controller calls for NewsBundle
     | /api/news/comments/<comment>.json | json | Grou | grou@email.org | http://www.grou.com | Grou was here | 2      | <post>  |
     | /api/news/comments/<comment>.xml  | xml  | Jess | jess@email.org | http://www.jess.com | Jess was here | 1      | <post>  |
 
+  @ko @update @validation
   Scenario Outline: I can't update a comment with invalid values
     Given I have a Post identified by "post"
     Given I have a Comment identified by "comment" on Post "post" with values:
@@ -151,6 +160,7 @@ Feature: Check the Comment controller calls for NewsBundle
     | /api/news/comments/<comment>.json | json | Jess | mail@mail.com | http://www.url.com | My content      | 1      | 999999  | post    | This value is not valid.                 |
     | /api/news/comments/<comment>.json | json | Jess | mail          | http://www.url.com | My content      | 1      | <post>  | email   | This value is not a valid email address. |
 
+  @ko @update
   Scenario: I can't update a comment that does not exists
     When I send a PUT request to "/api/news/comments/999999999.json" with values:
       | name    | Jess               |
@@ -163,7 +173,7 @@ Feature: Check the Comment controller calls for NewsBundle
     And response should contain "Comment (999999999) not found"
 
   # DELETE
-  @current
+  @ok @delete
   Scenario Outline: Deletes a comment
     Given I have a Post identified by "post"
     Given I have a Comment identified by "comment" on Post "post"
