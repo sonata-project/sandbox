@@ -11,4 +11,4 @@ sonata_user_admin:
 
 sonata_media_pixlr:
     resource: '@SonataMediaBundle/Resources/config/routing/pixlr.xml'
-    prefix:   /admin/media
+    prefix:   /media
