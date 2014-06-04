@@ -10,7 +10,7 @@
     -->
     <entity
         name="Application\Sonata\PageBundle\Entity\Block"
-        table="page__bloc"
+        table="page__block"
         repository-class="Doctrine\ORM\EntityRepository">
 
         <id name="id" type="integer" column="id">
