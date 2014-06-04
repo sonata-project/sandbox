@@ -8,7 +8,6 @@ Feature: Check the Post controller calls for NewsBundle
     Given I am authenticating as "admin" with "admin" password
 
   # GET
-  @current
   Scenario Outline: Retrieves the list of posts (paginated) based on criteria
     When I send a GET request to "<resource>"
     Then the response code should be <status_code>
@@ -75,16 +74,15 @@ Feature: Check the Post controller calls for NewsBundle
     And response should contain "Validation Failed"
     And the validation for "<field>" should fail with "<error>"
   Examples:
-    | resource             | type | title    | slug         | content             | raw_content    | content_formatter | enabled | comments_enabled | comments_default_status | field                 | error                               |
-    | /api/news/posts.json | json |          | my-post-slug | My abstract content | My raw content | markdown          | 1       | 1                | 1                       | title                 | Cette valeur ne doit pas être vide. |
-    | /api/news/posts.xml  | xml  |          | my-post-slug | My abstract content | My raw content | markdown          | 1       | 1                | 1                       | title                 | Cette valeur ne doit pas être vide. |
-    | /api/news/posts.xml  | xml  | My title | my-post-slug |                     | My raw content | markdown          | 1       | 1                | 1                       | abstract              | Cette valeur ne doit pas être vide. |
-    | /api/news/posts.xml  | xml  | My title | my-post-slug | My abstract content |                | markdown          | 1       | 1                | 1                       | rawContent            | Cette valeur ne doit pas être vide. |
-    | /api/news/posts.xml  | xml  |          | my-post-slug | My abstract content | My raw content | markdown          | 1       | 1                | 1                       | title                 | Cette valeur ne doit pas être vide. |
-    | /api/news/posts.xml  | xml  | My title | my-post-slug | My abstract content | My raw content | markdown          | 1       | 1                |                         | commentsDefaultStatus | Cette valeur ne doit pas être vide. |
-    | /api/news/posts.xml  | xml  | My title | my-post-slug | My abstract content | My raw content |                   | 1       | 1                | 1                       | contentFormatter      | The formatter is not valid          |
-    | /api/news/posts.xml  | xml  | My title |              | My abstract content | My raw content | markdown          | 1       | 1                | 1                       | slug                  | Cette valeur ne doit pas être vide. |
-
+    | resource             | type | title    | slug         | content             | raw_content    | content_formatter | enabled | comments_enabled | comments_default_status | field                 | error                           |
+    | /api/news/posts.json | json |          | my-post-slug | My abstract content | My raw content | markdown          | 1       | 1                | 1                       | title                 | This value should not be blank. |
+    | /api/news/posts.xml  | xml  |          | my-post-slug | My abstract content | My raw content | markdown          | 1       | 1                | 1                       | title                 | This value should not be blank. |
+    | /api/news/posts.xml  | xml  | My title | my-post-slug |                     | My raw content | markdown          | 1       | 1                | 1                       | abstract              | This value should not be blank. |
+    | /api/news/posts.xml  | xml  | My title | my-post-slug | My abstract content |                | markdown          | 1       | 1                | 1                       | rawContent            | This value should not be blank. |
+    | /api/news/posts.xml  | xml  |          | my-post-slug | My abstract content | My raw content | markdown          | 1       | 1                | 1                       | title                 | This value should not be blank. |
+    | /api/news/posts.xml  | xml  | My title | my-post-slug | My abstract content | My raw content | markdown          | 1       | 1                |                         | commentsDefaultStatus | This value should not be blank. |
+    | /api/news/posts.xml  | xml  | My title | my-post-slug | My abstract content | My raw content |                   | 1       | 1                | 1                       | contentFormatter      | The formatter is not valid      |
+    | /api/news/posts.xml  | xml  | My title |              | My abstract content | My raw content | markdown          | 1       | 1                | 1                       | slug                  | This value should not be blank. |
 
   # PUT
   Scenario Outline: Updates a post
@@ -137,14 +135,14 @@ Feature: Check the Post controller calls for NewsBundle
     And the validation for "<field>" should fail with "<error>"
   Examples:
     | resource                    | type | title    | slug         | content             | raw_content    | content_formatter | enabled | comments_enabled | comments_default_status | field                 | error                               |
-    | /api/news/posts/<post>.json | json |          | my-post-slug | My abstract content | My raw content | markdown          | 1       | 1                | 1                       | title                 | Cette valeur ne doit pas être vide. |
-    | /api/news/posts/<post>.xml  | xml  |          | my-post-slug | My abstract content | My raw content | markdown          | 1       | 1                | 1                       | title                 | Cette valeur ne doit pas être vide. |
-    | /api/news/posts/<post>.xml  | xml  | My title | my-post-slug |                     | My raw content | markdown          | 1       | 1                | 1                       | abstract              | Cette valeur ne doit pas être vide. |
-    | /api/news/posts/<post>.xml  | xml  | My title | my-post-slug | My abstract content |                | markdown          | 1       | 1                | 1                       | rawContent            | Cette valeur ne doit pas être vide. |
-    | /api/news/posts/<post>.xml  | xml  |          | my-post-slug | My abstract content | My raw content | markdown          | 1       | 1                | 1                       | title                 | Cette valeur ne doit pas être vide. |
-    | /api/news/posts/<post>.xml  | xml  | My title | my-post-slug | My abstract content | My raw content | markdown          | 1       | 1                |                         | commentsDefaultStatus | Cette valeur ne doit pas être vide. |
+    | /api/news/posts/<post>.json | json |          | my-post-slug | My abstract content | My raw content | markdown          | 1       | 1                | 1                       | title                 | This value should not be blank. |
+    | /api/news/posts/<post>.xml  | xml  |          | my-post-slug | My abstract content | My raw content | markdown          | 1       | 1                | 1                       | title                 | This value should not be blank. |
+    | /api/news/posts/<post>.xml  | xml  | My title | my-post-slug |                     | My raw content | markdown          | 1       | 1                | 1                       | abstract              | This value should not be blank. |
+    | /api/news/posts/<post>.xml  | xml  | My title | my-post-slug | My abstract content |                | markdown          | 1       | 1                | 1                       | rawContent            | This value should not be blank. |
+    | /api/news/posts/<post>.xml  | xml  |          | my-post-slug | My abstract content | My raw content | markdown          | 1       | 1                | 1                       | title                 | This value should not be blank. |
+    | /api/news/posts/<post>.xml  | xml  | My title | my-post-slug | My abstract content | My raw content | markdown          | 1       | 1                |                         | commentsDefaultStatus | This value should not be blank. |
     | /api/news/posts/<post>.xml  | xml  | My title | my-post-slug | My abstract content | My raw content |                   | 1       | 1                | 1                       | contentFormatter      | The formatter is not valid          |
-    | /api/news/posts/<post>.xml  | xml  | My title |              | My abstract content | My raw content | markdown          | 1       | 1                | 1                       | slug                  | Cette valeur ne doit pas être vide. |
+    | /api/news/posts/<post>.xml  | xml  | My title |              | My abstract content | My raw content | markdown          | 1       | 1                | 1                       | slug                  | This value should not be blank. |
 
   Scenario: Updates a post which does not exist returns not found
     When I send a PUT request to "/api/news/posts/999999999.json" with values:
