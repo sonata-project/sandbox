@@ -89,4 +89,4 @@ wget https://getcomposer.org/composer.phar
 # get the code and load fixtures
 DATABASE_NAME=sonata DATABASE_USER=travis DATABASE_PASSWORD=sonata DATABASE_HOST=localhost php composer.phar install --dev --prefer-source
 php composer.phar dump-autoload -o
-php load_data.php
+php bin/load_data.php
