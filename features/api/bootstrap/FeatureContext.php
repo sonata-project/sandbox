@@ -12,7 +12,6 @@
 use Behat\Behat\Context\BehatContext;
 use Behat\CommonContexts\WebApiContext;
 use Behat\Gherkin\Node\TableNode;
-use Buzz\Browser;
 
 /**
  * Behat context dedicated to test Sonata API
