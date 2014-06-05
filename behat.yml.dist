@@ -11,8 +11,14 @@ default:
             base_url:  'http://demo.sonata-project.org/'
 
     filters:
-        tags: "~@skipped"
+        tags: "~@skipped&&~@api"
 
+api:
+    paths:
+        features:  features/api
+        bootstrap: %behat.paths.features%/bootstrap
+    filters:
+        tags: "~@skipped&&@api"
 wip:
     filters:
         tags: "@skipped"
