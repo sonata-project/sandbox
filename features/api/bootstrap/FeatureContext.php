@@ -1,19 +1,25 @@
 <?php
-/**
- * ApiContext class
- * This file is part of Sonata Sandbox project.
+
+/*
+ * This file is part of the Sonata project.
  *
- * @since 19/05/2014
+ * (c) Sonata Project <https://github.com/sonata-project/SonataClassificationBundle/>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
-use \Behat\CommonContexts\WebApiContext;
+use Behat\Behat\Context\BehatContext;
+use Behat\CommonContexts\WebApiContext;
 use Behat\Gherkin\Node\TableNode;
 use Buzz\Browser;
 
 /**
+ * Behat context dedicated to test Sonata API
+ *
  * @author Romain Mouillard <romain.mouillard@gmail.com>
  */
-class ApiContext extends WebApiContext
+class FeatureContext extends BehatContext
 {
     /**
      * @var array
@@ -28,11 +34,11 @@ class ApiContext extends WebApiContext
     /**
      * {@inheritdoc}
      */
-    public function __construct($baseUrl, Browser $browser = null)
+    public function __construct(array $parameters)
     {
-        $this->baseUrl = $baseUrl;
+        $this->baseUrl = $parameters['base_url'];
 
-        parent::__construct($baseUrl, $browser);
+        $this->useContext('api', new WebApiContext($this->baseUrl));
     }
 
     /**
@@ -86,11 +92,11 @@ class ApiContext extends WebApiContext
         }
 
         /** @var \Buzz\Message\Request $request */
-        $request = $this->getBrowser()->getLastRequest();
+        $request = $this->getSubcontext('api')->getBrowser()->getLastRequest();
         $headers = $request->getHeaders();
         $url = str_replace('//api', '/api', $url);
 
-        $this->getBrowser()->submit($url, $fields, $method, $headers);
+        $this->getSubcontext('api')->getBrowser()->submit($url, $fields, $method, $headers);
     }
 
     /**
@@ -99,7 +105,7 @@ class ApiContext extends WebApiContext
     public function storeTheResponseIdentifier($alias)
     {
         /** @var \Buzz\Message\Response $response */
-        $response = $this->getBrowser()->getLastResponse();
+        $response = $this->getSubcontext('api')->getBrowser()->getLastResponse();
         $responseContent = $response->getContent();
 
         $data = simplexml_load_string($responseContent);
@@ -146,7 +152,7 @@ class ApiContext extends WebApiContext
     public function theResponseShouldContainsNumberOfElements($count)
     {
         /** @var \Buzz\Message\Response $response */
-        $response = $this->getBrowser()->getLastResponse();
+        $response = $this->getSubcontext('api')->getBrowser()->getLastResponse();
 
         $responseContent     = $response->getContent();
         $responseContentType = $response->getHeader('Content-Type');
@@ -172,7 +178,7 @@ class ApiContext extends WebApiContext
     public function theResponseShouldDisplayExpectedPageAndElementsCount($page, $perPage)
     {
         /** @var \Buzz\Message\Response $response */
-        $response = $this->getBrowser()->getLastResponse();
+        $response = $this->getSubcontext('api')->getBrowser()->getLastResponse();
 
         $responseContent     = $response->getContent();
         $responseContentType = $response->getHeader('Content-Type');
@@ -202,7 +208,7 @@ class ApiContext extends WebApiContext
     public function theResponsePagerDataShouldBeConsistent()
     {
         /** @var \Buzz\Message\Response $response */
-        $response = $this->getBrowser()->getLastResponse();
+        $response = $this->getSubcontext('api')->getBrowser()->getLastResponse();
 
         $responseContent     = $response->getContent();
         $responseContentType = $response->getHeader('Content-Type');
@@ -250,7 +256,7 @@ class ApiContext extends WebApiContext
         }
 
         /** @var \Buzz\Message\Response $response */
-        $response = $this->getBrowser()->getLastResponse();
+        $response = $this->getSubcontext('api')->getBrowser()->getLastResponse();
 
         $responseContent     = $response->getContent();
         $responseContentType = $response->getHeader('Content-Type');
@@ -288,7 +294,7 @@ class ApiContext extends WebApiContext
     public function theValidationForFieldShouldFail($field, $message = null)
     {
         /** @var \Buzz\Message\Response $response */
-        $response = $this->getBrowser()->getLastResponse();
+        $response = $this->getSubcontext('api')->getBrowser()->getLastResponse();
 
         $responseContent     = $response->getContent();
         $responseContentType = $response->getHeader('Content-Type');
@@ -415,6 +421,48 @@ TABLE
             new \Behat\Behat\Context\Step\Then('response should contain "created_at"'),
             new \Behat\Behat\Context\Step\Then(sprintf('store the XML response identifier as "%s"', $identifier)),
         );
+    }
+
+    /**
+     * @Given /^response should contain "([jJ][sS][oO][nN]|[xX][mM][lL])" object$/
+     */
+    public function theResponseShouldContainObject($objectType)
+    {
+        $responseContent = $this->getSubcontext('api')->getBrowser()->getLastResponse()->getContent();
+
+        $objectType = strtolower($objectType);
+
+        switch($objectType) {
+            case 'xml':
+                if (false === simplexml_load_string($responseContent)) {
+                    throw new Exception(sprintf('Response was not xml : "%s"', $responseContent));
+                }
+                break;
+            case 'json':
+                if (null === json_decode($responseContent)) {
+                    throw new Exception(sprintf('Response was not json : "%s"', $responseContent));
+                }
+                break;
+        }
+    }
+
+    /**
+     * @Given /^response should be a binary$/
+     */
+    public function theResponseShouldBeABinary()
+    {
+        /** @var \Behat\CommonContexts\WebApiContext $context */
+        $context = $this->getSubcontext('api');
+        /** @var \Guzzle\Http\Message\Response $response */
+        $response = $context->getBrowser()->getLastResponse();
+
+        if ("bytes" !== $response->getHeader('Accept-Ranges')) {
+            throw new Exception(sprintf('Response Accept-Ranges header not bytes: "%s"', $response->getHeader('Accept-Ranges')));
+        }
+
+        if (false === strpos($response->getHeader('Content-Disposition'), 'attachment')) {
+            throw new Exception(sprintf('Response Content-Disposition header not attachment: "%s"', $response->getHeader('Content-Disposition')));
+        }
     }
 }
  
