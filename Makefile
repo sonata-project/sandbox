@@ -20,7 +20,7 @@ test:
 
 test-all:
 	./bin/qa_client_ci.sh
-	bin/behat -f progress
+	./bin/qa_behat.sh
 
 check:
 	php app/check.php

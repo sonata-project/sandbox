@@ -1,8 +1,15 @@
 <?php
 
-use Behat\Behat\Context\BehatContext;
+/*
+ * This file is part of the Sonata project.
+ *
+ * (c) Sonata Project <https://github.com/sonata-project/SonataClassificationBundle/>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
-use Behat\Gherkin\Node\TableNode;
+use Behat\Behat\Context\BehatContext;
 
 /**
  * Features context.
@@ -25,7 +32,6 @@ class FeatureContext extends BehatContext
         $this->baseUrl = $parameters['base_url'];
 
         $this->useContext('browser', new \BrowserContext($parameters));
-        $this->useContext('api',     new \ApiContext($parameters['base_url']));
     }
 
     /**
@@ -100,45 +106,5 @@ class FeatureContext extends BehatContext
     }
 
 
-    /**
-     * @Given /^response should contain "([jJ][sS][oO][nN]|[xX][mM][lL])" object$/
-     */
-    public function theResponseShouldContainObject($objectType)
-    {
-        $responseContent = $this->getSubcontext('api')->getBrowser()->getLastResponse()->getContent();
 
-        $objectType = strtolower($objectType);
-
-        switch($objectType) {
-            case 'xml':
-                if (false === simplexml_load_string($responseContent)) {
-                    throw new Exception(sprintf('Response was not xml : "%s"', $responseContent));
-                }
-                break;
-            case 'json':
-                if (null === json_decode($responseContent)) {
-                    throw new Exception(sprintf('Response was not json : "%s"', $responseContent));
-                }
-                break;
-        }
-    }
-
-    /**
-     * @Given /^response should be a binary$/
-     */
-    public function theResponseShouldBeABinary()
-    {
-        /** @var \Behat\CommonContexts\WebApiContext $context */
-        $context = $this->getSubcontext('api');
-        /** @var \Guzzle\Http\Message\Response $response */
-        $response = $context->getBrowser()->getLastResponse();
-
-        if ("bytes" !== $response->getHeader('Accept-Ranges')) {
-            throw new Exception(sprintf('Response Accept-Ranges header not bytes: "%s"', $response->getHeader('Accept-Ranges')));
-        }
-
-        if (false === strpos($response->getHeader('Content-Disposition'), 'attachment')) {
-            throw new Exception(sprintf('Response Content-Disposition header not attachment: "%s"', $response->getHeader('Content-Disposition')));
-        }
-    }
 }
