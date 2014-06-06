@@ -66,7 +66,7 @@ To run the Behat tests, copy the default configuration file and adjust the base_
 
 You can now run the tests suite using the following command
 
-    php bin/behat
+    bin/qa_behat.sh
 
 To get more informations about Behat, feel free to check [the official documentation][link_behat].
 
