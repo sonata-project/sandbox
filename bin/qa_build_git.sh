@@ -100,11 +100,7 @@ git reset --hard
 git clean -f
 
 git checkout $SOURCE_BRANCH
-
-if [ $? -ne 0 ]; then
-    echo "ERR: Fail to switch to the source branch: ${SOURCE_BRANCH}"
-    exit 1
-fi
+exit_on_error "Fail to switch to the source branch: ${SOURCE_BRANCH}" $?
 
 # 3.1 switch/create to the branch
 git checkout -b $TARGET_BRANCH
@@ -114,10 +110,7 @@ if [ $? -ne 0 ]; then
 
     git checkout $TARGET_BRANCH
 
-    if [ $? -ne 0 ]; then
-        echo "ERR: Fail to checkout the branch: {$TARGET_BRANCH}"
-        exit 1
-    fi
+    exit_on_error "ERR: Fail to checkout the branch: {$TARGET_BRANCH}" $?
 fi
 
 # 3.2 create the tar command to retrieve and ignore some file and copy to the target folder

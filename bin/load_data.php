@@ -82,7 +82,7 @@ $success = execute_commands(array(
     $bin . ' ./app/console doctrine:database:drop --force',
     $bin . ' ./app/console doctrine:database:create',
     $bin . ' ./app/console doctrine:schema:update --force',
-    $bin . '  -d memory_limit=1024M -d max_execution_time=600 ./app/console doctrine:fixtures:load --verbose --env=dev',
+    $bin . '  -d memory_limit=1024M -d max_execution_time=600 ./app/console doctrine:fixtures:load --verbose --env=dev --no-debug',
     $bin . ' ./app/console sonata:news:sync-comments-count',
     $bin . ' ./app/console sonata:page:update-core-routes --site=all --no-debug',
     $bin . ' ./app/console sonata:page:create-snapshots --site=all --no-debug',
