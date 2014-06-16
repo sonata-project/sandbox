@@ -35,6 +35,7 @@ if (!is_file(__DIR__.'/app/config/parameters.yml')) {
  *
  * @return boolean
  */
+
 function execute_commands($commands, $output)
 {
     foreach($commands as $command) {
@@ -62,7 +63,7 @@ $fs->mkdir(sprintf('%s/web/uploads/media', $rootDir));
 
 $fs->copy(__DIR__.'/src/Sonata/Bundle/DemoBundle/DataFixtures/data/robots.txt', __DIR__.'/web/app/robots.txt', true);
 
-$success = execute_commands(array(
+$commands = array(
     'rm -rf ./app/cache/*',
 
     './app/console cache:warmup --env=prod --no-debug',
@@ -76,8 +77,18 @@ $success = execute_commands(array(
     './app/console assets:install --symlink web',
     './app/console sonata:admin:setup-acl',
 
-    'php -d memory_limit=1024M ./app/console sonata:admin:generate-object-acl'
-), $output);
+    'php -d memory_limit=1024M ./app/console sonata:admin:generate-object-acl',
+);
+
+if (!execute_commands(array('./app/console'), $output)) {
+    foreach ($commands as $key => $command) {
+        if (strpos($command,'php ') === false) {
+            $commands[$key] = str_replace('./', 'php ', $command);
+        }
+    } 
+}
+
+$success = execute_commands($commands, $output);
 
 if (!$success) {
     $output->writeln('<info>An error occurs when running a command!</info>');
