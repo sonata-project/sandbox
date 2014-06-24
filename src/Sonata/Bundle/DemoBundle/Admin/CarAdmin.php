@@ -16,6 +16,7 @@ use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
+use Sonata\Bundle\DemoBundle\Entity\Inspection;
 
 /**
  * @author Thomas Rabaix <thomas.rabaix@sonata-project.org>
@@ -72,6 +73,13 @@ class CarAdmin extends Admin
             ->add('name')
             ->add('engine', 'sonata_type_model_list')
             ->add('rescueEngine')
+            ->add('inspections', 'sonata_type_collection', array(
+                    'by_reference'       => false,
+                    'cascade_validation' => true,
+                ), array(
+                    'edit' => 'inline',
+                    'inline' => 'table'
+                ))
             ->add('createdAt')
             ->add('color', 'sonata_type_model_list')
         ;

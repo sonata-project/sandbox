@@ -12,14 +12,7 @@
 require_once __DIR__ . '/../app/bootstrap.php.cache';
 require_once __DIR__ . '/../app/AppKernel.php';
 
-//use Symfony\Component\HttpFoundation\Request;
-
-// if you want to use the SonataPageBundle with multisite
-// using different relative paths, you must change the request
-// object to use the SiteRequest
-use Sonata\PageBundle\Request\SiteRequest as Request;
-
-$request = Request::createFromGlobals();
+$request = Sonata\PageBundle\Request\RequestFactory::createFromGlobals('host_with_path');
 
 $kernel = new AppKernel('prod', false);
 

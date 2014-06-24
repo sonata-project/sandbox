@@ -13,31 +13,6 @@ Sonata Standard Edition comes pre-configured with the following bundles:
 * Sonata Feature Bundles: Page, Media, News, User, Block, Timeline
 * Api Bundles: FOSRestBundle, BazingaHateoasBundle, NelmioApiDocBundle and JMSSerializerBundle
 
-### Front, Admin and API Controllers
-
-The sandbox handles multiple kernels:
-
-* ``AdminKernel`` for ``/admin/*`` urls
-* ``ApiKernel`` for ``/api/*`` urls
-* ``FrontKernel`` for all others urls
-
-The current implementation tries to follow the default folder structure of a standard symfony distribution. However, there are a few minor things to know:
-
-* ``cache`` folders are named as ``APPNAME_ENVNAME`` and located in ``PROJECT_FOLDER/cache``.
-* ``logs`` files are named as ``APPNAME_ENVNAME.log`` and located in ``PROJECT_LOG/logs``.
-* the configuration files are located in ``apps/KERNEL_NAME``.
-* new bundles can be added to the BaseKernel if they are required on all subkernels.
-* the ``./apps/console`` command behaves as the original one but with the ``AdminKernel`` as all bundles are almost available with this kernel.
-* the ``./sonata`` command works as the ``app/console`` however the first argument must be the app name.
-* a new ``kernel.conf_dir`` parameter is now available
-
-The separation has been done to improve performance on the routing side and to avoid loading too much services on the main front controller.
-
-### Sessions
-
-Sessions are stored in the ``PROJECT_FOLDER/cache/sessions`` folder. Sessions are shared accross the AdminKernel and the FrontKernel, the ``security.yml`` also share the same settings with the ``context`` options.
-
-
 Installation
 ------------
 

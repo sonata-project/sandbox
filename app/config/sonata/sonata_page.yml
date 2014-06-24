@@ -117,8 +117,8 @@ sonata_page:
             token:    add an unique token here # default is a random value
             version:  3                        # version 3 is the default on debian wheezy ...
             servers:
-                - %sonata_page.varnish.command% # you need to adapt this line to work with your configuration
-
+                # you need to ajust this configuration to match your varnish configuration
+                - %sonata_page.varnish.command%
         ssi:
             token:    add an unique token here # default is a random value
 
