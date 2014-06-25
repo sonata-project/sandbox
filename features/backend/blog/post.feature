@@ -27,24 +27,32 @@ Scenario: Add a new post
 
 Scenario: Edit a post
   When I am connected with "admin" and "admin" on "admin/sonata/news/post/list"
+  And I fill in "filter_title_value" with "toto"
+  And I press "Filter"
   And I follow "toto"
   And I press "Update"
   Then I should see "Item \"toto\" has been successfully updated."
 
 Scenario: View revision of a post
   When I am connected with "admin" and "admin" on "admin/sonata/news/post/list"
+  And I fill in "filter_title_value" with "toto"
+  And I press "Filter"
   And I follow "toto"
   And I follow "Revisions"
   Then the response status code should be 200
 
 Scenario: View the last revision of a post
   When I am connected with "admin" and "admin" on "admin/sonata/news/post/list"
+  And I fill in "filter_title_value" with "toto"
+  And I press "Filter"
   And I follow "toto"
   And I follow "Show"
   Then the response status code should be 200
 
 Scenario: Set ACL of a post
   When I am connected with "admin" and "admin" on "admin/sonata/news/post/list"
+  And I fill in "filter_title_value" with "toto"
+  And I press "Filter"
   And I follow "toto"
   And I follow "ACL"
   And I check "form_2VIEW"
@@ -63,6 +71,8 @@ Scenario: Set ACL of a post
 
 Scenario: Update ACL of a post
   When I am connected with "admin" and "admin" on "admin/sonata/news/post/list"
+  And I fill in "filter_title_value" with "toto"
+  And I press "Filter"
   And I follow "toto"
   And I follow "ACL"
   And I check "form_2DELETE"
