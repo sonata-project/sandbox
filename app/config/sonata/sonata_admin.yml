@@ -138,7 +138,6 @@ sonata_admin:
             - assetic/sonata_formatter_js.js
             - bundles/sonataformatter/vendor/ckeditor/ckeditor.js
 
-
 #            - bundles/sonataadmin/vendor/jquery/dist/jquery.min.js
 #            - bundles/sonataadmin/vendor/jqueryui/ui/jquery.ui.core.js
 #            - bundles/sonataadmin/vendor/jqueryui/ui/jquery.ui.widget.js
@@ -168,7 +167,7 @@ sonata_admin:
 #            - bundles/sonataadmin/vendor/jqueryui/ui/jquery.ui.effect-slide.js
 #            - bundles/sonataadmin/vendor/jqueryui/ui/jquery.ui.effect-transfer.js
 #            - bundles/sonataadmin/vendor/jqueryui/ui/jquery.ui.menu.js
-#            - sonataadmin/vendor/jqueryui/ui/jquery.ui.position.js
+#            - bundles/sonataadmin/vendor/jqueryui/ui/jquery.ui.position.js
 #            - bundles/sonataadmin/vendor/jqueryui/ui/jquery.ui.progressbar.js
 #            - bundles/sonataadmin/vendor/jqueryui/ui/jquery.ui.slider.js
 #            - bundles/sonataadmin/vendor/jqueryui/ui/jquery.ui.spinner.js
@@ -188,5 +187,3 @@ sonata_admin:
 #            - bundles/sonataformatter/markitup/sets/markdown/set.js
 #            - bundles/sonataformatter/markitup/sets/html/set.js
 #            - bundles/sonataformatter/markitup/sets/textile/set.js
-
-
