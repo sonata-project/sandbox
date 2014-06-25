@@ -20,6 +20,7 @@ Scenario: Add a new comment
   And I fill in "f155592a220e_name" with "toto"
   And I fill in "f155592a220e_email" with "toto@ekino.com"
   And I fill in "f155592a220e_message" with "comment"
+  And I fill in "f155592a220e_post" with "1"
   And I press "Create"
   Then I should see "Item \"toto\" has been successfully created."
 
