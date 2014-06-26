@@ -1,6 +1,6 @@
 @backend @login
 Feature: Check login
-    In order to log into the administration panel 
+    In order to log into the administration panel
     As an authenticated user
     I need to have an account
 
@@ -21,7 +21,7 @@ Feature: Check login
 
         Examples:
             | username |    password    | message |
-            |   admin  |    test    | Bad credentials |
+            |   admin  |    test    | Invalid username or password |
             |   admin  |    admin   | Welcome   |
 
     Scenario: Check user logout action
