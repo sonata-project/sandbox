@@ -64,7 +64,8 @@ Feature: Checkout process
     And I check "basket_tac"
     And I press "Process to payment"
     Then the response should contain "Confirmation payment valid"
-    And the response should contain "Your basket (0)"
+    When I go to "shop/basket"
+    And the response should contain "Your basket is empty."
 
   @200 @checkout @loggedin @order
   Scenario: Ensure to see order
@@ -107,7 +108,8 @@ Feature: Checkout process
     And I press "Process to payment"
     Then the response should contain "Confirmation payment valid"
     And the response should contain "Check your order"
-    And the response should contain "Your basket (0)"
+    When I go to "shop/basket"
+    And the response should contain "Your basket is empty."
 
   @200 @checkout @loggedin @order @invoice
   Scenario: Ensure to see an invoice
