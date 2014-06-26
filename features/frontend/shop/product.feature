@@ -23,9 +23,9 @@ Feature: Products
 
     Examples:
       | identifier | quantity | price   | stock |
-      |    501     |     1    | 35.988  | 1927  |
-      |    501     |     3    | 107.964 | 1927  |
-      |    501     |     10   | 359.88  | 1927  |
+      |    502     |     1    | 35.988  | 50  |
+      |    502     |     3    | 107.964 | 50  |
+      |    502     |     10   | 359.88  | 50  |
       |    503     |     1    | 35.988   | 50  |
 
   @product @200 @quantity @variation @ok
