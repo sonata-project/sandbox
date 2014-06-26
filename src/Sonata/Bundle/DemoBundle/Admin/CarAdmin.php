@@ -86,7 +86,12 @@ class CarAdmin extends Admin
     {
         $object = parent::getNewInstance();
 
-        $object->addInspection(new Inspection());
+
+        $inspection = new Inspection();
+        $inspection->setDate(new \DateTime());
+        $inspection->setComment("Initial inpection");
+
+        $object->addInspection($inspection);
 
         return $object;
     }

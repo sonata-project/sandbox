@@ -40,6 +40,7 @@ class InspectionAdmin extends Admin
     {
         $list
             ->addIdentifier('date')
+            ->add('comment')
             ->add('car')
         ;
     }
@@ -53,6 +54,8 @@ class InspectionAdmin extends Admin
             $formMapper->add('car', null, array('constraints' => new Assert\NotNull()));
         }
 
-        $formMapper->add('date', null, array('widget' => 'single_text'));
+        $formMapper
+            ->add('date', null, array('widget' => 'single_text'))
+            ->add('comment');
     }
 }
