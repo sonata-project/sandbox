@@ -39,6 +39,13 @@ class Inspection
      */
     protected $date;
 
+    /**
+     * @ORM\Column(type="text")
+     * @Assert\NotBlank
+     * @Assert\NotNull
+     */
+    protected $comment;
+
     public function getId()
     {
         return $this->id;
@@ -75,6 +82,23 @@ class Inspection
     public function getDate()
     {
         return $this->date;
+    }
+
+
+    /**
+     * @param mixed $comment
+     */
+    public function setComment($comment)
+    {
+        $this->comment = $comment;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getComment()
+    {
+        return $this->comment;
     }
 
     /**

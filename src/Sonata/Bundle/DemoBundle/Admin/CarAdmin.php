@@ -84,4 +84,20 @@ class CarAdmin extends Admin
             ->add('color', 'sonata_type_model_list')
         ;
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getNewInstance()
+    {
+        $object = parent::getNewInstance();
+
+        $inspection = new Inspection();
+        $inspection->setDate(new \DateTime());
+        $inspection->setComment("Initial inpection");
+
+        $object->addInspection($inspection);
+
+        return $object;
+    }
 }
