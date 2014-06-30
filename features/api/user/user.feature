@@ -16,9 +16,9 @@ Feature: Check the User controller calls for UserBundle
     And response should contain "<account_2>"
 
   Examples:
-    | resource| status_code | format | account_1 | account_2 |
-    | /api/user/users.json | 200 | json | admin | secure |
-    | /api/user/users.xml  | 200 | xml  | admin | secure |
+    | resource                       | status_code | format | account_1 | account_2 |
+    | /api/user/users.json?count=500 | 200         | json   | admin     | secure    |
+    | /api/user/users.xml?count=500  | 200         | xml    | admin     | secure    |
 
   # POST
 

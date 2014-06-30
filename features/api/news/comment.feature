@@ -120,7 +120,6 @@ Feature: Check the Comment controller calls for NewsBundle
       | url     | <url>     |
       | message | <message> |
       | status  | <status>  |
-      | post    | <post_id> |
     Then the response code should be 200
     And response should contain "<type>" object
     And response should contain "<name>"
@@ -128,9 +127,9 @@ Feature: Check the Comment controller calls for NewsBundle
     And response should contain "<message>"
     And response should contain "<status>"
   Examples:
-    | resource                          | type | name | mail           | url                 | message       | status | post_id |
-    | /api/news/comments/<comment>.json | json | Grou | grou@email.org | http://www.grou.com | Grou was here | 2      | <post>  |
-    | /api/news/comments/<comment>.xml  | xml  | Jess | jess@email.org | http://www.jess.com | Jess was here | 1      | <post>  |
+    | resource                                       | type | name | mail           | url                 | message       | status |
+    | /api/news/posts/<post>/comments/<comment>.json | json | Grou | grou@email.org | http://www.grou.com | Grou was here | 2      |
+    | /api/news/posts/<post>/comments/<comment>.xml  | xml  | Jess | jess@email.org | http://www.jess.com | Jess was here | 1      |
 
   @ko @update @validation
   Scenario Outline: I can't update a comment with invalid values
@@ -147,30 +146,31 @@ Feature: Check the Comment controller calls for NewsBundle
       | url     | <url>     |
       | message | <message> |
       | status  | <status>  |
-      | post    | <post_id> |
     Then the response code should be 400
     And response should contain "<type>" object
     And response should contain "Validation Failed"
     And the validation for "<field>" should fail with "<error>"
   Examples:
-    | resource                          | type | name | mail          | url                | message         | status | post_id | field   | error                                    |
-    | /api/news/comments/<comment>.xml  | xml  |      | mail@mail.com | http://www.url.com | Unknown content | 1      | <post>  | name    | This value should not be blank.          |
-    | /api/news/comments/<comment>.json | json | Jess | mail@mail.com | http://www.url.com |                 | 1      | <post>  | message | This value should not be blank.          |
-    | /api/news/comments/<comment>.json | json | Jess | mail@mail.com | http://www.url.com | My content      | 99     | <post>  | status  | This value should be 2 or less.          |
-    | /api/news/comments/<comment>.json | json | Jess | mail@mail.com | http://www.url.com | My content      | 1      | 999999  | post    | This value is not valid.                 |
-    | /api/news/comments/<comment>.json | json | Jess | mail          | http://www.url.com | My content      | 1      | <post>  | email   | This value is not a valid email address. |
+    | resource                                       | type | name | mail          | url                | message         | status | field   | error                                    |
+    | /api/news/posts/<post>/comments/<comment>.xml  | xml  |      | mail@mail.com | http://www.url.com | Unknown content | 1      | name    | This value should not be blank.          |
+    | /api/news/posts/<post>/comments/<comment>.json | json | Jess | mail@mail.com | http://www.url.com |                 | 1      | message | This value should not be blank.          |
+    | /api/news/posts/<post>/comments/<comment>.json | json | Jess | mail@mail.com | http://www.url.com | My content      | 99     | status  | This value should be 2 or less.          |
+    | /api/news/posts/<post>/comments/<comment>.json | json | Jess | mail          | http://www.url.com | My content      | 1      | email   | This value is not a valid email address. |
 
   @ko @update
-  Scenario: I can't update a comment that does not exists
-    When I send a PUT request to "/api/news/comments/999999999.json" with values:
+  Scenario Outline: I can't update a comment that does not exists
+    Given I have a Post identified by "post"
+    When I send a PUT request to "<resource>" using identifier with values:
       | name    | Jess               |
       | email   | mail@mail.com      |
       | url     | http://www.url.com |
       | message | My content         |
       | status  | 1                  |
-      | post    | 1                  |
     Then the response code should be 404
     And response should contain "Comment (999999999) not found"
+  Examples:
+    | resource                                       |
+    | /api/news/posts/<post>/comments/999999999.json |
 
   # DELETE
   @ok @delete
