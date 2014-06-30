@@ -62,7 +62,7 @@
 
         "sonata-project/timeline-bundle": "~2.2@dev",
         "sonata-project/classification-bundle": "~2.2@dev",
-        "sonata-project/ecommerce": "~2.3@dev",
+        "sonata-project/ecommerce": "dev-develop",
         "sonata-project/comment-bundle": "~2.2@dev",
 
         "friendsofsymfony/comment-bundle": "~2.0@dev",
