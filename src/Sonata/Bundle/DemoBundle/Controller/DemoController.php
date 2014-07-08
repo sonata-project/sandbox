@@ -143,7 +143,7 @@ class DemoController extends Controller
     /**
      * @return \Sonata\SeoBundle\Seo\SeoPageInterface
      */
-    public function getSeoPage()
+    private function getSeoPage()
     {
         return $this->get('sonata.seo.page');
     }
