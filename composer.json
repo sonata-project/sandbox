@@ -42,6 +42,7 @@
         "knplabs/knp-menu-bundle": "1.1.x-dev",
         "knplabs/knp-markdown-bundle": "1.2.*@dev",
 
+        "sonata-project/datagrid-bundle": "2.2.*@dev",
         "sonata-project/easy-extends-bundle": "~2.1",
         "sonata-project/seo-bundle": "~1",
         "sonata-project/doctrine-extensions": "~1",
