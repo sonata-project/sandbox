@@ -33,6 +33,14 @@ installation, it is possible to use environment variables to configure this file
 
     DATABASE_NAME=sonata DATABASE_USER=root DATABASE_PASSWORD="" php composer.phar create-project sonata-project/sandbox:dev-2.3-develop
 
+Prepare
+-------
+
+    cd sandbox
+    php app/console doctrine:database:create
+    php app/console doctrine:schema:create
+    php app/console fos:user:create --super-admin admin admin@domain.com SECRETPASSWORD
+
 Run
 ---
 
@@ -40,7 +48,9 @@ If you are running PHP5.4, you can use the built in server to start the demo:
 
     php -S localhost:9090 -t web/app
 
-Now open your browser and go to http://localhost:9090/
+Now open your browser and go to http://localhost:9090/admin
+
+and use your user and password defined previously
 
 Tests
 -----
