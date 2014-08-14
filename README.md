@@ -32,6 +32,10 @@ The installation process used Incenteev's ParameterHandler to handle parameters.
 installation, it is possible to use environment variables to configure this file:
 
     DATABASE_NAME=sonata DATABASE_USER=root DATABASE_PASSWORD="" php composer.phar create-project sonata-project/sandbox:dev-2.3-develop
+    
+You might experience some timeout issues with composer, as the ``create-project`` start different scripts, you can increase the default composer value with the ``COMPOSER_PROCESS_TIMEOUT`` env variable:
+
+    COMPOSER_PROCESS_TIMEOUT=600 php composer.phar create-project sonata-project/sandbox:dev-2.3-develop
 
 Reset the data
 --------------
