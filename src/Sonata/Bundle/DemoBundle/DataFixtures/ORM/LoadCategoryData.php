@@ -53,10 +53,21 @@ class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterfac
      */
     public function load(ObjectManager $manager)
     {
+        $productContext = $this->getReference('context_product_catalog');
+
+        $rootProduct = $this->getCategoryManager()->create();
+        $rootProduct->setName('Root Products');
+        $rootProduct->setSlug('products');
+        $rootProduct->setEnabled(true);
+        $rootProduct->setContext($productContext);
+
+        $this->getCategoryManager()->save($rootProduct);
+
         // Travels category
         $travels = $this->getCategoryManager()->create();
         $travels->setName('Travels');
         $travels->setSlug('travels');
+        $travels->setParent($rootProduct);
         $travels->setDescription('Discover our travels');
         $travels->setEnabled(true);
         $this->getCategoryManager()->save($travels);
@@ -178,6 +189,7 @@ class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterfac
         $goodies->setSlug('goodies');
         $goodies->setDescription('Some goodies related to Sonata and Symfony world.');
         $goodies->setEnabled(true);
+        $goodies->setParent($rootProduct);
         $this->getCategoryManager()->save($goodies);
         $this->setReference('goodies_category', $goodies);
 
@@ -217,6 +229,7 @@ class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterfac
         $dummy->setSlug('dummy');
         $dummy->setDescription('Dummy category with many dummy products');
         $dummy->setEnabled(true);
+        $dummy->setParent($rootProduct);
         $this->getCategoryManager()->save($dummy);
 
         $this->setReference('dummy_category', $dummy);

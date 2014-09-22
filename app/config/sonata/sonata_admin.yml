@@ -78,6 +78,7 @@ sonata_admin:
                     - sonata.classification.admin.category
                     - sonata.classification.admin.tag
                     - sonata.classification.admin.collection
+                    - sonata.classification.admin.context
 
             sonata.admin.group.site_builder:
                 label:           Site Builder
@@ -131,6 +132,7 @@ sonata_admin:
 #            - bundles/sonataadmin/vendor/x-editable/dist/bootstrap3-editable/css/bootstrap-editable.css
 #            - bundles/sonataadmin/css/styles.css
 #            - bundles/sonataadmin/css/layout.css
+#            - bundles/sonataadmin/css/tree.css
 
         javascripts:
             - assetic/sonata_admin_js.js

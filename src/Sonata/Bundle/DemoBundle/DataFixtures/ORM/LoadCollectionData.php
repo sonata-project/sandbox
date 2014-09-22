@@ -41,7 +41,7 @@ class LoadCollectionData extends AbstractFixture implements OrderedFixtureInterf
     }
 
     /**
-     * Returns the Sonata MediaManager.
+     * Returns the Sonata CollectionManager.
      *
      * @return \Sonata\CoreBundle\Model\ManagerInterface
      */
@@ -55,12 +55,15 @@ class LoadCollectionData extends AbstractFixture implements OrderedFixtureInterf
      */
     public function load(ObjectManager $manager)
     {
+        $productContext = $this->getReference('context_product_catalog');
+
         // PHP Fan collection
         $php = $this->getCollectionManager()->create();
         $php->setName("PHP Fan");
         $php->setSlug("php-fan");
         $php->setDescription("Everything a PHP Fan needs.");
         $php->setEnabled(true);
+        $php->setContext($productContext);
         $this->getCollectionManager()->save($php);
 
         $this->setReference('php_collection', $php);
@@ -71,6 +74,7 @@ class LoadCollectionData extends AbstractFixture implements OrderedFixtureInterf
         $travel->setSlug("travels");
         $travel->setDescription("Every travels you want");
         $travel->setEnabled(true);
+        $travel->setContext($productContext);
         $this->getCollectionManager()->save($travel);
 
         $this->setReference('travel_collection', $travel);
@@ -81,6 +85,7 @@ class LoadCollectionData extends AbstractFixture implements OrderedFixtureInterf
         $dummy->setSlug("Dummys");
         $dummy->setDescription("Every dummys you want");
         $dummy->setEnabled(true);
+        $dummy->setContext($productContext);
         $this->getCollectionManager()->save($dummy);
 
         $this->setReference('dummy_collection', $dummy);
