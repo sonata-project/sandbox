@@ -97,7 +97,7 @@ class CarAdmin extends Admin
     public function getNewInstance()
     {
         $object = parent::getNewInstance();
-        
+
         $inspection = new Inspection();
         $inspection->setDate(new \DateTime());
         $inspection->setComment("Initial inpection");
