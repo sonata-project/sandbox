@@ -87,14 +87,14 @@ assetic:
 
         sonata_admin_js:
             inputs:
-                - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/jquery/dist/jquery.js
+                - %kernel.root_dir%/../web/bundles/sonatacore/vendor/jquery/dist/jquery.js
                 - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/jquery.scrollTo/jquery.scrollTo.js
 #                - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js
                 - %kernel.root_dir%/../web/bundles/sonatacore/vendor/moment/min/moment.min.js
-                - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/bootstrap/dist/js/bootstrap.js
+                - %kernel.root_dir%/../web/bundles/sonatacore/vendor/bootstrap/dist/js/bootstrap.js
                 - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/x-editable/dist/bootstrap3-editable/js/bootstrap-editable.js
                 - %kernel.root_dir%/../web/bundles/sonatacore/vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js
-                - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/select2/select2.js
+                - %kernel.root_dir%/../web/bundles/sonatacore/vendor/select2/select2.js
                 - %kernel.root_dir%/../web/bundles/sonataadmin/jquery/jquery.form.js
                 - %kernel.root_dir%/../web/bundles/sonataadmin/jquery/jquery.confirmExit.js
                 - %kernel.root_dir%/../web/bundles/sonataadmin/App.js
@@ -106,13 +106,13 @@ assetic:
 
         sonata_admin_css:
             inputs:
-                - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/bootstrap/dist/css/bootstrap.min.css
-                - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/AdminLTE/css/font-awesome.min.css
-                - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/AdminLTE/css/ionicons.min.css
+                - %kernel.root_dir%/../web/bundles/sonatacore/vendor/bootstrap/dist/css/bootstrap.min.css
+                - %kernel.root_dir%/../web/bundles/sonatacore/vendor/components-font-awesome/css/font-awesome.min.css
+                - %kernel.root_dir%/../web/bundles/sonatacore/vendor/ionicons/css/ionicons.min.css
                 - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/AdminLTE/css/AdminLTE.css
                 - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/jqueryui/themes/flick/jquery-ui.min.css
-                - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/select2/select2.css
-                - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/select2/select2-bootstrap.css
+                - %kernel.root_dir%/../web/bundles/sonatacore/vendor/select2/select2.css
+                - %kernel.root_dir%/../web/bundles/sonatacore/vendor/select2/select2-bootstrap.css
                 - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/x-editable/dist/bootstrap3-editable/css/bootstrap-editable.css
                 - %kernel.root_dir%/../web/bundles/sonatacore/vendor/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css
                 - %kernel.root_dir%/../web/bundles/sonataadmin/css/styles.css
@@ -125,11 +125,11 @@ assetic:
 
         sonata_front_js:
             inputs:
-                - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/jquery/dist/jquery.js
-                - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/bootstrap/dist/js/bootstrap.js
+                - %kernel.root_dir%/../web/bundles/sonatacore/vendor/jquery/dist/jquery.js
+                - %kernel.root_dir%/../web/bundles/sonatacore/vendor/bootstrap/dist/js/bootstrap.js
                 - %kernel.root_dir%/../web/bundles/sonataproduct/js/product.js
                 - %kernel.root_dir%/../web/bundles/sonatacore/js/base.js
-                - %kernel.root_dir%/../web/bundles/sonatacore/select2/select2.min.js
+                - %kernel.root_dir%/../web/bundles/sonatacore/vendor/select2/select2.min.js
                 - %kernel.root_dir%/../web/bundles/sonatademo/js/demo.js
 
             filters:
@@ -137,8 +137,8 @@ assetic:
 
         sonata_front_css:
             inputs:
-                - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/bootstrap/dist/css/bootstrap.min.css
-                - %kernel.root_dir%/../web/bundles/sonatacore/select2/select2.css
+                - %kernel.root_dir%/../web/bundles/sonatacore/vendor/bootstrap/dist/css/bootstrap.min.css
+                - %kernel.root_dir%/../web/bundles/sonatacore/vendor/select2/select2.css
                 - %kernel.root_dir%/../web/bundles/mopabootstrap/css/datepicker.css
                 - %kernel.root_dir%/../web/bundles/sonatademo/css/demo.css
 

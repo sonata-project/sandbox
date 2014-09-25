@@ -127,8 +127,8 @@ sonata_admin:
 #            - bundles/sonataadmin/vendor/AdminLTE/css/ionicons.min.css
 #            - bundles/sonataadmin/vendor/AdminLTE/css/AdminLTE.css
 #            - bundles/sonataadmin/vendor/jqueryui/themes/flick/jquery-ui.min.css
-#            - bundles/sonataadmin/vendor/select2/select2.css
-#            - bundles/sonataadmin/vendor/select2/select2-bootstrap.css
+#            - bundles/sonatacore/vendor/select2/select2.css
+#            - bundles/sonatacore/vendor/select2/select2-bootstrap.css
 #            - bundles/sonataadmin/vendor/x-editable/dist/bootstrap3-editable/css/bootstrap-editable.css
 #            - bundles/sonataadmin/css/styles.css
 #            - bundles/sonataadmin/css/layout.css
@@ -182,9 +182,10 @@ sonata_admin:
 #            - bundles/sonataadmin/vendor/jquery.scrollTo/jquery.scrollTo.js
 #            - bundles/sonataadmin/vendor/bootstrap/dist/js/bootstrap.min.js
 #            - bundles/sonataadmin/vendor/x-editable/dist/bootstrap3-editable/js/bootstrap-editable.min.js
-#            - bundles/sonataadmin/vendor/select2/select2.min.js
+#            - bundles/sonatacore/vendor/select2/select2.min.js
 #            - bundles/sonataadmin/App.js
 #            - bundles/sonataadmin/Admin.js
+#            - bundles/sonataadmin/treeview.js
 #            - bundles/sonataformatter/vendor/ckeditor/ckeditor.js
 #            - bundles/sonataformatter/vendor/markitup-markitup/markitup/jquery.markitup.js
 #            - bundles/sonataformatter/markitup/sets/markdown/set.js
