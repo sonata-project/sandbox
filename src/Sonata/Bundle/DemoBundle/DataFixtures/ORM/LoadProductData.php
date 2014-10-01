@@ -49,15 +49,17 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
     {
         $productPool = $this->getProductPool();
 
+        $dummyCategory     = $this->getDummyCategory();
+
         // default media
         $defaultMedia = $this->getMediaManager()->create();
         $defaultMedia->setBinaryContent(new \SplFileInfo(__DIR__.'/../data/files/sonata_logo.png'));
         $defaultMedia->setEnabled(true);
         $defaultMedia->setName('sonata_product_default_media');
         $defaultMedia->setDescription('Default Product media');
+        $defaultMedia->setCategory($dummyCategory);
         $this->getMediaManager()->save($defaultMedia, 'sonata_product_default', 'sonata.media.provider.image');
 
-        $dummyCategory     = $this->getDummyCategory();
         $goodiesCategory   = $this->getGoodiesCategory();
         $travelsCategory   = $this->getTravelsCategory();
         $plushesCategory   = $this->getPlushesCategory();
@@ -1129,6 +1131,8 @@ EOF
         $media->setDescription($description);
         $media->setAuthorName($author);
         $media->setCopyright($copyright);
+        $media->setCategory($this->getReference('products_category'));
+
 
         $mediaManager->save($media, 'sonata_product', 'sonata.media.provider.image');
 
@@ -1160,6 +1164,7 @@ EOF
             $media->setName('Switzerland');
             $media->setAuthorName('Sylvain Deloux');
             $media->setCopyright('CC BY-NC-SA 4.0');
+            $media->setCategory($this->getReference('products_category'));
 
             $this->getMediaManager()->save($media, 'sonata_product', 'sonata.media.provider.image');
 
@@ -1201,6 +1206,7 @@ EOF
             $media->setName('Paris');
             $media->setAuthorName('Gilles Rosenbaum');
             $media->setCopyright('CC BY-NC-SA 4.0');
+            $media->setCategory($this->getReference('products_category'));
 
             $this->getMediaManager()->save($media, 'sonata_product', 'sonata.media.provider.image');
 
@@ -1223,7 +1229,8 @@ EOF
             $media->setDescription('Paris');
             $media->setName('Paris');
             $media->setAuthorName('Hugo Briand');
-            $media->setCopyright("Je soussigné Hugo Briand donne l'autorisation à Sonata-Project d'utiliser mes photos comme bon lui semblera");
+            $media->setCopyright('CC BY-NC-SA 4.0');
+            $media->setCategory($this->getReference('products_category'));
 
             $this->getMediaManager()->save($media, 'sonata_product', 'sonata.media.provider.image');
 
@@ -1265,6 +1272,7 @@ EOF
             $media->setName('Canada');
             $media->setAuthorName('Gilles Rosenbaum');
             $media->setCopyright('CC BY-NC-SA 4.0');
+            $media->setCategory($this->getReference('products_category'));
 
             $this->getMediaManager()->save($media, 'sonata_product', 'sonata.media.provider.image');
 
@@ -1287,7 +1295,8 @@ EOF
             $media->setDescription('Canada');
             $media->setName('Canada');
             $media->setAuthorName('Hugo Briand');
-            $media->setCopyright("Je soussigné Hugo Briand donne l'autorisation à Sonata-Project d'utiliser mes photos comme bon lui semblera");
+            $media->setCopyright('CC BY-NC-SA 4.0');
+            $media->setCategory($this->getReference('products_category'));
 
             $this->getMediaManager()->save($media, 'sonata_product', 'sonata.media.provider.image');
 
@@ -1329,6 +1338,7 @@ EOF
             $media->setName('Japan');
             $media->setAuthorName('Maha Kanas');
             $media->setCopyright("CC BY-NC-SA 4.0");
+            $media->setCategory($this->getReference('products_category'));
 
             $this->getMediaManager()->save($media, 'sonata_product', 'sonata.media.provider.image');
 

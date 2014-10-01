@@ -27,7 +27,7 @@ class LoadNewsData extends AbstractFixture implements ContainerAwareInterface, O
 
     function getOrder()
     {
-        return 3;
+        return 4;
     }
 
     public function setContainer(ContainerInterface $container = null)

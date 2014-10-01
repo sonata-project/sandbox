@@ -60,6 +60,7 @@ class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterfac
         $rootProduct->setSlug('products');
         $rootProduct->setEnabled(true);
         $rootProduct->setContext($productContext);
+        $this->setReference('products_category', $rootProduct);
 
         $this->getCategoryManager()->save($rootProduct);
 
@@ -252,6 +253,6 @@ class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterfac
      */
     public function getOrder()
     {
-        return 11;
+        return 2;
     }
 }
