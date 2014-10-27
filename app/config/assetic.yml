@@ -127,16 +127,16 @@ assetic:
                 - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/bootstrap/dist/js/bootstrap.js
                 - %kernel.root_dir%/../web/bundles/sonataproduct/js/product.js
                 - %kernel.root_dir%/../web/bundles/sonatacore/js/base.js
-                - %kernel.root_dir%/../web/bundles/sonatacore/select2/select2.min.js
+                - %kernel.root_dir%/../web/bundles/sonatacore/vendor/select2/select2.min.js
                 - %kernel.root_dir%/../web/bundles/sonatademo/js/demo.js
 
             filters:
                 - yui_js
 
-        sonata_front_css:
+        sonata_front_css:s
             inputs:
                 - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/bootstrap/dist/css/bootstrap.min.css
-                - %kernel.root_dir%/../web/bundles/sonatacore/select2/select2.css
+                - %kernel.root_dir%/../web/bundles/sonatacore/vendor/select2/select2.css
                 - %kernel.root_dir%/../web/bundles/mopabootstrap/css/datepicker.css
                 - %kernel.root_dir%/../web/bundles/sonatademo/css/demo.css
 
