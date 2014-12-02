@@ -64,7 +64,7 @@ class FeatureContext extends BehatContext
     {
         $data = json_decode($this->getSubcontext("browser")->getSession()->getPage()->getContent(), true);
 
-        if ((float) $price !== $data['price']) {
+        if ((float) $price != $data['price']) {
             throw new Exception("The price was not ".$price.", it was ".$data['price']);
         }
     }
