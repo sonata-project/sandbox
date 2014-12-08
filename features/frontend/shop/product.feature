@@ -22,11 +22,11 @@ Feature: Products
     And the stock is <stock>
 
     Examples:
-      | identifier | quantity | price  | stock |
-      |    1017    |     1    |  1980  | 40    |
-      |    1017    |     2    |  3960  | 40    |
-      |    1017    |     10   | 19800  | 40    |
-      |    1039    |     2    |  880   | 85    |
+      | identifier | quantity | price   | stock |
+      |    502     |     1    | 35.988  | 50    |
+      |    502     |     3    | 107.964 | 50    |
+      |    502     |     10   | 359.88  | 50    |
+      |    503     |     1    | 35.988  | 50    |
 
   @product @200 @quantity @variation @ok
   Scenario Outline: Check the variation choice form redirection AJAX call
