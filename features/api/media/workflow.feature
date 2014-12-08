@@ -40,7 +40,7 @@ Feature: Check the API for MediaBundle
       | enabled        | 1                                          |
       | copyright      | My Copyright                               |
       | authorName     | Myself                                     |
-      | context        | My Context                                 |
+      | context        | default                                    |
       | cdnIsFlushable | 1                                          |
       | binaryContent  | http://www.youtube.com/watch?v=3Daw0vxENCU |
     Then the response code should be 200
