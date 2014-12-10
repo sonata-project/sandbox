@@ -13,9 +13,9 @@ Feature: Check the API for MediaBundle
     And response should contain "<message>"
 
     Examples:
-      | resource| status_code | format | message |
-      | /api/media/media.json | 200 | json | IMG_3008.jpg |
-      | /api/media/media.xml  | 200 | xml  | switzerland_2012-05-19_006.jpg |
+      | resource              | status_code | format | message                        |
+      | /api/media/media.json | 200         | json   | IMG_3008.jpg                   |
+      | /api/media/media.xml  | 200         | xml    | switzerland_2012-05-19_006.jpg |
 
   @api @media @unique
   Scenario Outline: Retrieve a specific media information by unique id
@@ -36,10 +36,10 @@ Feature: Check the API for MediaBundle
     And response should be a binary
 
     Examples:
-      | resource| status_code |
-      | /api/media/media/1/binaries/reference.json  | 200 |
-      | /api/media/media/1/binaries/reference.xml   | 200 |
-      | /api/media/media/1/binaries/reference.html  | 200 |
+      | resource                                    | status_code |
+      | /api/media/media/1/binaries/reference.json  | 200         |
+      | /api/media/media/1/binaries/reference.xml   | 200         |
+      | /api/media/media/1/binaries/reference.html  | 200         |
 
   @api @media @url @format @ok
   Scenario Outline: Return available urls for each media

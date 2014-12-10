@@ -35,6 +35,7 @@ Feature: Check the API for ClassificationBundle
       | description | My description |
       | enabled     | 1              |
       | position    | 1              |
+      | context     | default        |
     Then the response code should be 200
     And response should contain "xml" object
     And response should contain "created_at"

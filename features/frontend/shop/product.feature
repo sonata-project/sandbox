@@ -23,31 +23,35 @@ Feature: Products
 
     Examples:
       | identifier | quantity | price   | stock |
-      |    502     |     1    | 35.988  | 50  |
-      |    502     |     3    | 107.964 | 50  |
-      |    502     |     10   | 359.88  | 50  |
-      |    503     |     1    | 35.988   | 50  |
+      |    502     |     1    | 35.988  | 50    |
+      |    502     |     3    | 107.964 | 50    |
+      |    502     |     10   | 359.88  | 50    |
+      |    503     |     1    | 35.988  | 50    |
 
   @product @200 @quantity @variation @ok
   Scenario Outline: Check the variation choice form redirection AJAX call
     Given I am an XHR request
-    When I go to "shop/product/travel-quebec-tour/513/variation?sonata_product_variation_choices%5Btravellers%5D=<travellers>&sonata_product_variation_choices%5BtravelDays%5D=<traveldays>"
+    When I go to "shop/product/<url>/<identifier>/variation?sonata_product_variation_choices%5Btravellers%5D=<travellers>&sonata_product_variation_choices%5BtravelDays%5D=<traveldays>"
     Then the response status code should be 200
     And the response is JSON
-    And the variation_url is "<url>"
+    And the variation_url is "<variation_url>"
 
     Examples:
-      | travellers | traveldays | url                                    |
-      |      1     |     0      | /shop/product/travel-quebec-tour-7/515 |
-      |      2     |     0      | /shop/product/travel-quebec-tour-9/516 |
+      |          url         | identifier |  travellers | traveldays |                  variation_url          |
+      | travel-quebec-tour-7 |    1029    |      0      |     0      | /shop/product/travel-quebec-tour-5/1027 |
+      | travel-quebec-tour-5 |    1027    |      1      |     0      | /shop/product/travel-quebec-tour-7/1029 |
 
   @product @200 @quantity @variation @ko
-  Scenario: Check the variation choice form redirection AJAX call error
+  Scenario Outline: Check the variation choice form redirection AJAX call error
     Given I am an XHR request
-    When I go to "shop/product/travel-quebec-tour/513/variation?sonata_product_variation_choices%5Btravellers%5D=1&sonata_product_variation_choices%5BtravelDays%5D=1"
+    When I go to "shop/product/travel-quebec-tour/<url>/variation?sonata_product_variation_choices%5Btravellers%5D=<travellers>&sonata_product_variation_choices%5BtravelDays%5D=<traveldays>"
     Then the response status code should be 200
     And the response is JSON
     And the error is "Sorry, the product you're looking for is unavailable."
+
+    Examples:
+      | url  |  travellers | traveldays |
+      | 1025 |      1      |     1      |
 
   @product @200 @catalog @ok
   Scenario: Check products & catalog page status code
@@ -87,10 +91,14 @@ Feature: Products
       | Travels  | Switzerland tour  | Switzerland tour for small group  |
 
   @product @200 @stock
-  Scenario: Browse an "out of stock" product
-    When I go to "shop/product/php-t-shirt/505"
+  Scenario Outline: Browse an "out of stock" product
+    When I go to "shop/product/php-t-shirt/<id>"
     Then the response status code should be 200
     And I should see "Warning : this product is currently out of stock !"
+
+    Examples:
+    |  id   |
+    | 1009  |
 
   @product @404
   Scenario: Browse a "disabled" product
@@ -98,10 +106,14 @@ Feature: Products
     Then the response status code should be 404
 
   @product @200
-  Scenario: Browse a product without a picture
-    When I go to "shop/product/maximum-air-sonata-ultimate-edition/507"
+  Scenario Outline: Browse a product without a picture
+    When I go to "shop/product/maximum-air-sonata-ultimate-edition/<id>"
     Then the response status code should be 200
     And I should see "Get this ULTIMATE edition"
+
+  Examples:
+    |  id   |
+    | 1013  |
 
   @product @404
   Scenario Outline: Check a non displayed product when the master product is disabled
@@ -114,10 +126,14 @@ Feature: Products
       | 512        | 404        |
 
   @product @200
-  Scenario: Check display of the master product when having an active child
-    When I go to "shop/product/travel-quebec-tour/513"
+  Scenario Outline: Check display of the master product when having an active child
+    When I go to "shop/product/travel-quebec-tour/<id>"
     Then the response status code should be 200
     And I should see "Quebec tour for small group"
+
+    Examples:
+      |     id     |
+      |   1025     |
 
   @product @404
   Scenario Outline: Check a non displayed product when having no active child

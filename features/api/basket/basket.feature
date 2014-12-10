@@ -94,7 +94,7 @@ Feature: Check the API for BasketBundle
 
     Given I am authenticating as "admin" with "admin" password
     When I send a PUT request to "/api/ecommerce/baskets/<basket_id>/basketelements/<element_id>.xml" using last identifier with values:
-      | productId | 2 |
+      | productId | 3 |
       | quantity  | 6 |
       | position  | 1 |
     Then the response code should be 200

@@ -455,10 +455,6 @@ TABLE
         /** @var \Guzzle\Http\Message\Response $response */
         $response = $context->getBrowser()->getLastResponse();
 
-        if ("bytes" !== $response->getHeader('Accept-Ranges')) {
-            throw new Exception(sprintf('Response Accept-Ranges header not bytes: "%s"', $response->getHeader('Accept-Ranges')));
-        }
-
         if (false === strpos($response->getHeader('Content-Disposition'), 'attachment')) {
             throw new Exception(sprintf('Response Content-Disposition header not attachment: "%s"', $response->getHeader('Content-Disposition')));
         }
