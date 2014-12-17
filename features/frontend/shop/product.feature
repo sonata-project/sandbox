@@ -38,8 +38,8 @@ Feature: Products
 
     Examples:
       |          url         | identifier |  travellers | traveldays |                  variation_url          |
-      | travel-quebec-tour-7 |    1029    |      0      |     0      | /shop/product/travel-quebec-tour-5/1027 |
-      | travel-quebec-tour-5 |    1027    |      1      |     0      | /shop/product/travel-quebec-tour-7/1029 |
+      | travel-quebec-tour-7 |    515     |      0      |     0      | /shop/product/travel-quebec-tour-5/514  |
+      | travel-quebec-tour-5 |    514     |      1      |     0      | /shop/product/travel-quebec-tour-7/515  |
 
   @product @200 @quantity @variation @ko
   Scenario Outline: Check the variation choice form redirection AJAX call error
@@ -51,7 +51,7 @@ Feature: Products
 
     Examples:
       | url  |  travellers | traveldays |
-      | 1025 |      1      |     1      |
+      | 513  |      1      |     1      |
 
   @product @200 @catalog @ok
   Scenario: Check products & catalog page status code
@@ -98,7 +98,7 @@ Feature: Products
 
     Examples:
     |  id   |
-    | 1009  |
+    |  505  |
 
   @product @404
   Scenario: Browse a "disabled" product
@@ -113,7 +113,7 @@ Feature: Products
 
   Examples:
     |  id   |
-    | 1013  |
+    |  507  |
 
   @product @404
   Scenario Outline: Check a non displayed product when the master product is disabled
@@ -133,7 +133,7 @@ Feature: Products
 
     Examples:
       |     id     |
-      |   1025     |
+      |    513     |
 
   @product @404
   Scenario Outline: Check a non displayed product when having no active child

@@ -41,21 +41,25 @@ Scenario: View revisions of a tag
 
 Scenario: Export JSON data
   When I am connected with "admin" and "admin" on "admin/sonata/classification/tag/list"
+  And I press "Download"
   And I follow "JSON"
   Then the response status code should be 200
 
 Scenario: Export CSV data
   When I am connected with "admin" and "admin" on "admin/sonata/classification/tag/list"
+  And I press "Download"
   And I follow "CSV"
   Then the response status code should be 200
 
 Scenario: Export XML data
   When I am connected with "admin" and "admin" on "admin/sonata/classification/tag/list"
+  And I press "Download"
   And I follow "XML"
   Then the response status code should be 200
 
 Scenario: Export XLS data
   When I am connected with "admin" and "admin" on "admin/sonata/classification/tag/list"
+  And I press "Download"
   And I follow "XLS"
   Then the response status code should be 200
 
