@@ -83,7 +83,6 @@ Feature: Check the Comment controller calls for NewsBundle
       | message | Nath commented a forbidden post |
     Then the response code should be 403
     And response should contain "xml" object
-    And response should contain "not commentable"
 
   @ko @new @validation
   Scenario Outline: I can't add a comment with invalid values

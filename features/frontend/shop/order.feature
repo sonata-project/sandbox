@@ -21,7 +21,7 @@ Feature: Order
     And I should see "<vat>"
     And I should see "<total_vat>"
     Then I go to "shop/basket/step/delivery/address"
-    Then I go to "shop/user/address/edit/<idAddress>"
+    Then I follow link "Edit" with class "btn btn-primary btn-xs pull-right"
     Then I fill in "sonata_customer_address_countryCode" with "FR"
     Then I press "Save your address"
     And I should see "Your address has been successfully saved!"
@@ -70,7 +70,7 @@ Feature: Order
     And I should see "<total_vat>"
 
     Examples:
-        | category | product        | quantity | price_vat | price_total_vat | vat    | total_no_vat | total_vat | idAddress |
-        | Plushes  | Blue PHP plush |     3    |  35,99    |     107,96      | 17,99  |    89,97     |   107,96  |    59     |
-        | Mugs     | PHP mug        |     5    |  9,99     |     49,95       | 9,99   |    39,96     |   49,95   |    59     |
-        | Mugs     | PHP mug        |     8    |  9,99     |     79,92       | 15,98  |    63,94     |   79,92   |    59     |
+        | category | product        | quantity | price_vat | price_total_vat | vat    | total_no_vat | total_vat |
+        | Plushes  | Blue PHP plush |     3    |  35,99    |     107,96      | 17,99  |    89,97     |   107,96  |
+        | Mugs     | PHP mug        |     5    |  9,99     |     49,95       | 9,99   |    39,96     |   49,95   |
+        | Mugs     | PHP mug        |     8    |  9,99     |     79,92       | 15,98  |    63,94     |   79,92   |

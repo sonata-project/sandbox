@@ -35,6 +35,8 @@ Scenario: Edit a category
 
 Scenario: View history of a category
   When I am connected with "admin" and "admin" on "admin/sonata/classification/category/list"
+  And I follow link "Filters" with class "dropdown-toggle sonata-ba-action"
+  And I follow link "Name" with class "sonata-toggle-filter sonata-ba-action"
   And I fill in "filter_name_value" with "toto"
   And I press "Filter"
   And I follow "toto"
@@ -43,26 +45,36 @@ Scenario: View history of a category
 
 Scenario: Export JSON data
   When I am connected with "admin" and "admin" on "admin/sonata/classification/category/list"
+  And I follow link "List" with class "btn btn-default"
+  And I press "Download"
   And I follow "JSON"
   Then the response status code should be 200
 
 Scenario: Export CSV data
   When I am connected with "admin" and "admin" on "admin/sonata/classification/category/list"
+  And I follow link "List" with class "btn btn-default"
+  And I press "Download"
   And I follow "CSV"
   Then the response status code should be 200
 
 Scenario: Export XML data
   When I am connected with "admin" and "admin" on "admin/sonata/classification/category/list"
+  And I follow link "List" with class "btn btn-default"
+  And I press "Download"
   And I follow "XML"
   Then the response status code should be 200
 
 Scenario: Export XLS data
   When I am connected with "admin" and "admin" on "admin/sonata/classification/category/list"
+  And I follow link "List" with class "btn btn-default"
+  And I press "Download"
   And I follow "XLS"
   Then the response status code should be 200
 
 Scenario: Delete a category
   When I am connected with "admin" and "admin" on "admin/sonata/classification/category/list"
+  And I follow link "Filters" with class "dropdown-toggle sonata-ba-action"
+  And I follow link "Name" with class "sonata-toggle-filter sonata-ba-action"
   And I fill in "filter_name_value" with "toto"
   And I press "Filter"
   And I follow "toto"

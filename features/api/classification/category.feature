@@ -13,8 +13,8 @@ Feature: Check the API for ClassificationBundle
     When I send a GET request to "/api/classification/categories.xml"
     Then the response code should be 200
     And response should contain "xml" object
-    And response should contain "Quebec"
-    And response should contain "Switzerland"
+    And response should contain "Japan"
+    And response should contain "North America"
 
   # POST
 

@@ -55,23 +55,28 @@ Scenario: Filter medias
 
 Scenario: Edit a media
   When I am connected with "admin" and "admin" on "admin/sonata/media/media/list"
-  And I fill in "filter_name_value" with "Switzerland"
+  And I fill in "filter_context_value" with "product_catalog"
   And I press "Filter"
-  And I follow "Switzerland"
+  And I follow link "Travels" with class "sonata-tree__item__edit"
+  And I follow "Switzerland Travel"
   And I press "Update"
-  Then I should see "Item \"Switzerland\" has been successfully updated."
+  Then I should see "Item \"Switzerland Travel\" has been successfully updated."
 
 Scenario: View a media
   When I am connected with "admin" and "admin" on "admin/sonata/media/media/list"
-  And I fill in "filter_name_value" with "Canada"
+  And I fill in "filter_context_value" with "product_catalog"
   And I press "Filter"
-  And I follow "Canada"
-  Then I should see "Canada"
+  And I follow link "Travels" with class "sonata-tree__item__edit"
+  And I follow "Quebec Travel"
+  Then I should see "Quebec Travel"
   Then I should see "Preview"
 
 Scenario: View revisions of a media
   When I am connected with "admin" and "admin" on "admin/sonata/media/media/list"
-  And I follow "Canada"
+  And I fill in "filter_context_value" with "product_catalog"
+  And I press "Filter"
+  And I follow link "Travels" with class "sonata-tree__item__edit"
+  And I follow "Quebec Travel"
   And I follow "Revisions"
   Then the response status code should be 200
 
@@ -84,11 +89,26 @@ Scenario: Add a Media, then delete it immediately
   And I press "Yes, delete"
   Then I should see "has been deleted successfully."
 
-Scenario: Try to delete an undeletable Media
+Scenario: Delete dailymotion video
   When I am connected with "admin" and "admin" on "admin/sonata/media/media/list"
-  And I fill in "filter_name_value" with "Paris"
-  And I press "Filter"
-  And I follow "Paris"
+  And I follow "L'Oiseau Rebelle"
   And I follow link "Delete" with class "btn btn-danger"
   And I press "Yes, delete"
-  Then I should see "An Error has occurred during deletion of item \"Paris\"."
+  Then I should see "Item \"L'Oiseau Rebelle\" has been deleted successfully."
+
+Scenario: Delete youtube video
+  When I am connected with "admin" and "admin" on "admin/sonata/media/media/list"
+  And I follow "Best of Our Wokrs from June to December 2011"
+  And I follow link "Delete" with class "btn btn-danger"
+  And I press "Yes, delete"
+  Then I should see "Item \"Best of Our Wokrs from June to December 2011\" has been deleted successfully."
+
+Scenario: Try to delete an undeletable Media
+  When I am connected with "admin" and "admin" on "admin/sonata/media/media/list"
+  And I fill in "filter_context_value" with "product_catalog"
+  And I press "Filter"
+  And I follow link "Paris" with class "sonata-tree__item__edit"
+  And I follow "Paris 1"
+  And I follow link "Delete" with class "btn btn-danger"
+  And I press "Yes, delete"
+  Then I should see "An Error has occurred during deletion of item \"Paris 1\"."

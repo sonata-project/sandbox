@@ -14,9 +14,9 @@ Feature: Check the Group controller calls for UserBundle
     And response should contain "<format>" object
 
     Examples:
-      | resource| status_code | format |
-      | /api/user/groups.json | 200 | json |
-      | /api/user/groups.xml  | 200 | xml  |
+      | resource              | status_code | format |
+      | /api/user/groups.json |    200      | json   |
+      | /api/user/groups.xml  |    200      | xml    |
 
   # POST
 
