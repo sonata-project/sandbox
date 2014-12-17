@@ -1281,7 +1281,7 @@ EOF
             $media->setEnabled(true);
             $media->setDescription('Canada');
             $media->setName('Canada');
-            $media->setAuthorName('Gilles Rosenbaumbim');
+            $media->setAuthorName('Gilles Rosenbaum');
             $media->setCopyright('CC BY-NC-SA 4.0');
             $media->setCategory($this->getReference('travels_quebec_category'));
             $media->setContext('product_catalog');
