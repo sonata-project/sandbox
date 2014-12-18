@@ -100,6 +100,7 @@ assetic:
                 - %kernel.root_dir%/../web/bundles/sonataadmin/App.js
                 - %kernel.root_dir%/../web/bundles/sonataadmin/Admin.js
                 - %kernel.root_dir%/../web/bundles/sonataadmin/treeview.js
+                - %kernel.root_dir%/../web/bundles/sonatapage/sonata-page.back.js
 
             filters:
                 - yui_js
@@ -118,6 +119,7 @@ assetic:
                 - %kernel.root_dir%/../web/bundles/sonataadmin/css/styles.css
                 - %kernel.root_dir%/../web/bundles/sonataadmin/css/layout.css
                 - %kernel.root_dir%/../web/bundles/sonataadmin/css/tree.css
+                - %kernel.root_dir%/../web/bundles/sonatapage/sonata-page.back.css
 
             filters:
                 - cssrewrite

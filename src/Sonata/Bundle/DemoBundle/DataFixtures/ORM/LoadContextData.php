@@ -69,6 +69,7 @@ class LoadContextData extends AbstractFixture implements OrderedFixtureInterface
         $productContext->setId('product_catalog');
         $productContext->setName('Product Catalog');
         $productContext->setEnabled(true);
+
         $contextManager->save($productContext);
 
         $this->setReference('context_product_catalog', $productContext);

@@ -47,6 +47,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
      */
     public function load(ObjectManager $manager)
     {
+
         $productPool = $this->getProductPool();
 
         $dummyCategory     = $this->getDummyCategory();
@@ -93,9 +94,12 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
             $dummy->setVatRate(20);
             $dummy->setEnabled(true);
             $manager->persist($dummy);
+
             $this->setReference('dummy_product_'.$i, $dummy);
 
             $dummy->setImage($dummyMedia);
+
+
             $this->addProductToCategory($dummy, $dummyCategory, $manager);
             $this->addProductToCollection($dummy, $dummyCollection, $manager);
             $this->addProductDeliveries($dummy, $manager);
@@ -130,7 +134,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
 Original PHP plush based on Vincent Pontier PHP logo.
 Reference - http://www.flickr.com/photos/fullo/4703273699/in/pool-35237093722@N01/
 EOF
-, $bluePhpPlush, 'Francesco Fullone', 'CC BY-NC-SA 2.0', 'plushes_goodies_category');
+            , $bluePhpPlush, 'Francesco Fullone', 'CC BY-NC-SA 2.0', 'plushes_goodies_category');
         $this->addProductToCategory($bluePhpPlush, $plushesCategory, $manager);
         $this->addProductToCategory($bluePhpPlush, $goodiesCategory, $manager);
         $this->addProductDeliveries($bluePhpPlush, $manager);
@@ -1132,7 +1136,6 @@ EOF
         $media->setAuthorName($author);
         $media->setCopyright($copyright);
         $media->setCategory($this->getReference($categoryReference));
-
 
         $mediaManager->save($media, 'product_catalog', 'sonata.media.provider.image');
 

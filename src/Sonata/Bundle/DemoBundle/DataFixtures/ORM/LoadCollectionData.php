@@ -98,6 +98,6 @@ class LoadCollectionData extends AbstractFixture implements OrderedFixtureInterf
      */
     public function getOrder()
     {
-        return 10;
+        return 2;
     }
 }

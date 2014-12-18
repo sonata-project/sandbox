@@ -53,6 +53,18 @@ class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterfac
      */
     public function load(ObjectManager $manager)
     {
+        $defaultContext = $this->getReference('context_default');
+
+        $defaultCategory = $this->getCategoryManager()->create();
+        $defaultCategory->setName('Default Category');
+        $defaultCategory->setSlug('products');
+        $defaultCategory->setEnabled(true);
+        $defaultCategory->setContext($defaultContext);
+
+        $this->setReference('root_default_category', $defaultCategory);
+
+        $this->getCategoryManager()->save($defaultCategory);
+
         $productContext = $this->getReference('context_product_catalog');
 
         $rootProduct = $this->getCategoryManager()->create();
@@ -61,6 +73,8 @@ class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterfac
         $rootProduct->setEnabled(true);
         $rootProduct->setContext($productContext);
         $this->setReference('products_category', $rootProduct);
+
+        $this->setReference('root_products_category', $rootProduct);
 
         $this->getCategoryManager()->save($rootProduct);
 
