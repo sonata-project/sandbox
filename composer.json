@@ -90,7 +90,9 @@
         "behat/mink-goutte-driver": "~1.0",
         "behat/mink": "~1.5",
         "behat/mink-browserkit-driver": "~1.1",
-        "behat/mink-selenium2-driver": "~1.1"
+        "behat/mink-selenium2-driver": "~1.1",
+        "matthiasnoback/symfony-config-test": "~0.4",
+        "matthiasnoback/symfony-dependency-injection-test": "~0.7"
     },
 
     "scripts": {
