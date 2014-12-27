@@ -87,7 +87,7 @@ sonata_page:
                      name: Top content
                  left_col:
                      name: Left content
-                 rigth_col:
+                 right_col:
                      name: Right content
                  content_bottom:
                      name: Bottom content
@@ -105,7 +105,7 @@ sonata_page:
                      H: header
                      T: content_top
                      L: left_col
-                     R: rigth_col
+                     R: right_col
                      B: content_bottom
                      F: footer
 
