@@ -36,7 +36,7 @@ class Builder extends ContainerAware
     {
         $isFooter = array_key_exists('is_footer', $options) ? $options['is_footer'] : false;
 
-        $shopCategories = $this->container->get('sonata.classification.manager.category')->findBy(array('enabled' => true, 'parent' => null));
+        $shopCategories = $this->container->get('sonata.classification.manager.category')->findBy(array('enabled' => true, 'name' => array('Travels', 'Goodies', 'Dummy')));
 
         $menuOptions = array_merge($options, array(
             'childrenAttributes' => array('class' => 'nav nav-pills'),
