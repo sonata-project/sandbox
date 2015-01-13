@@ -36,7 +36,7 @@ class Builder extends ContainerAware
     {
         $isFooter = array_key_exists('is_footer', $options) ? $options['is_footer'] : false;
 
-        $shopCategories = $this->container->get('sonata.classification.manager.category')->findBy(array('enabled' => true, 'parent' => null));
+        $shopCategories = $this->container->get('sonata.classification.manager.category')->getRootCategory('product_catalog');
 
         $menuOptions = array_merge($options, array(
             'childrenAttributes' => array('class' => 'nav nav-pills'),
@@ -46,7 +46,7 @@ class Builder extends ContainerAware
 
         $shopMenuParams = array('route' => 'sonata_catalog_index');
 
-        if (count($shopCategories) > 0 && !$isFooter) {
+        if (count($shopCategories->hasChildren()) > 0 && !$isFooter) {
             $shopMenuParams = array_merge($shopMenuParams, array(
                 'attributes' => array('class' => 'dropdown'),
                 'childrenAttributes' => array('class' => 'dropdown-menu'),
@@ -69,7 +69,7 @@ class Builder extends ContainerAware
 
         $menu->addChild('News', array('route' => 'sonata_news_home'));
 
-        foreach ($shopCategories as $category) {
+        foreach ($shopCategories->getChildren() as $category) {
             $shop->addChild($category->getName(), array(
                 'route' => 'sonata_catalog_category',
                 'routeParameters' => array(
