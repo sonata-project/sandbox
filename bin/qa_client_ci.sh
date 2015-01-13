@@ -40,7 +40,7 @@ run_test() {
             extra="--coverage-html build/coverage/`basename ${1}` --coverage-clover build/clover/`basename ${1}`.xml"
         fi
 
-        phpunit -c ${1} ${extra} --log-junit build/junit/`basename ${1}`.xml
+        bin/phpunit -c ${1} ${extra} --log-junit build/junit/`basename ${1}`.xml
 
         status=$?
 
