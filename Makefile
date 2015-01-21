@@ -32,11 +32,11 @@ composer-optimize:
 
 install:
 	composer install
-	/usr/local/node/node-v0.10.22/bin/bower install
+	bower install
 
 update:
 	composer update
-	/usr/local/node/node-v0.10.22/bin/bower update
+	bower update
 
 #doc:
 #	cd docs && sphinx-build -nW -b html -d _build/doctrees . _build/html
