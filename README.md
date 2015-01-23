@@ -22,22 +22,18 @@ Get composer:
 
     curl -s http://getcomposer.org/installer | php
 
-Run the following command for the 2.3 branch:
+Run the following command for the 2.4 develop branch:
 
-    php composer.phar create-project sonata-project/sandbox:2.3.x-dev
-
-Or to get the 2.3 develop branch:
-
-    php composer.phar create-project sonata-project/sandbox:dev-2.3-develop
+    php composer.phar create-project sonata-project/sandbox:dev-2.4-develop
 
 The installation process used Incenteev's ParameterHandler to handle parameters.yml configuration. With the current
 installation, it is possible to use environment variables to configure this file:
 
-    DATABASE_NAME=sonata DATABASE_USER=root DATABASE_PASSWORD="" php composer.phar create-project sonata-project/sandbox:dev-2.3-develop
+    DATABASE_NAME=sonata DATABASE_USER=root DATABASE_PASSWORD="" php composer.phar create-project sonata-project/sandbox:dev-2.4-develop
     
 You might experience some timeout issues with composer, as the ``create-project`` start different scripts, you can increase the default composer value with the ``COMPOSER_PROCESS_TIMEOUT`` env variable:
 
-    COMPOSER_PROCESS_TIMEOUT=600 php composer.phar create-project sonata-project/sandbox:dev-2.3-develop
+    COMPOSER_PROCESS_TIMEOUT=600 php composer.phar create-project sonata-project/sandbox:dev-2.4-develop
 
 Reset the data
 --------------
