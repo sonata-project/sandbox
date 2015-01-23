@@ -24,14 +24,14 @@ use Sonata\ClassificationBundle\Entity\BaseContext as BaseContext;
 class Context extends BaseContext
 {
     /**
-     * @var integer $id
+     * @var string $id
      */
     protected $id;
 
     /**
      * Get id
      *
-     * @return integer $id
+     * @return string $id
      */
     public function getId()
     {
