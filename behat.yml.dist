@@ -9,6 +9,7 @@ default:
     context:
         parameters:
             base_url:  'http://demo.sonata-project.org/'
+            files_path: .
 
     filters:
         tags: "~@skipped&&~@api"

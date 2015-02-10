@@ -31,11 +31,17 @@ class FeatureContext extends BehatContext
     private $baseUrl;
 
     /**
+     * @var string
+     */
+    private $filesPath;
+
+    /**
      * {@inheritdoc}
      */
     public function __construct(array $parameters)
     {
-        $this->baseUrl = $parameters['base_url'];
+        $this->baseUrl   = $parameters['base_url'];
+        $this->filesPath = $parameters['files_path'];
 
         $this->useContext('api', new WebApiContext($this->baseUrl));
     }
@@ -459,5 +465,67 @@ TABLE
             throw new Exception(sprintf('Response Content-Disposition header not attachment: "%s"', $response->getHeader('Content-Disposition')));
         }
     }
+
+    /**
+     * Send a request which body is the binary given by path
+     *
+     * @When /^(?:I )?send a ([A-Z]+) request to "([^"]*)" with the binary "([^"]*)"$/
+     */
+    public function iSendARequestWithTheBinary($method, $url, $path)
+    {
+        if ($this->filesPath) {
+            $fullPath = rtrim(realpath($this->filesPath), DIRECTORY_SEPARATOR).DIRECTORY_SEPARATOR.$path;
+            if (is_file($fullPath)) {
+                $path = $fullPath;
+            }
+        }
+
+        if (($content = file_get_contents($path)) === false) {
+            throw new \Exception(sprintf('Unable to get the content of the binary %s', $path));
+        }
+
+        $headers = array(
+            'Content-type'   => 'application/octet-stream',
+            'Content-Length' => filesize($path),
+            'Authorization'  => 'Basic YWRtaW46YWRtaW4=',
+        );
+
+        $this->sendRequestWithIdentifiers($method, $url, $headers, $content);
+    }
+
+    /**
+     * Send an http request after replacing url parameters by actual values
+     *
+     * @When /^(?:I )?send a ([A-Z]+) request containing identifier to "([^"]*)"$/
+     */
+    public function iSendAGetRequestContainingIdentifierTo($method, $url)
+    {
+        $headers = array(
+            'Authorization' => 'Basic YWRtaW46YWRtaW4=',
+        );
+
+        $this->sendRequestWithIdentifiers($method, $url, $headers);
+    }
+
+    /**
+     * @param string $method
+     * @param string $url
+     * @param array  $headers
+     * @param string $content
+     *
+     * @throws Exception
+     */
+    protected function sendRequestWithIdentifiers($method, $url, $headers = array(), $content = '')
+    {
+        if (!in_array($method, array('GET', 'PUT', 'POST', 'DELETE', 'PATCH'))) {
+            throw new \Exception(sprintf('Undefined method %s', $method));
+        }
+
+        $url = $this->baseUrl.$this->replaceIdentifiers($url);
+        $url = str_replace('//api', '/api', $url);
+
+        $this->getSubcontext('api')->getBrowser()->{strtolower($method)}($url, $headers, $content);
+    }
 }
+
  
