@@ -1,4 +1,4 @@
-@api @post @classification
+@api @post @classification @collection
 Feature: Check the API for ClassificationBundle
   I want to test the API calls about collection
 
@@ -12,8 +12,8 @@ Feature: Check the API for ClassificationBundle
     When I send a GET request to "/api/classification/collections.xml"
     Then the response code should be 200
     And response should contain "xml" object
-    And response should contain "PHP Fan"
-    And response should contain "Travels"
+    And response should contain "page"
+    And response should contain "entries"
 
   # POST
 
