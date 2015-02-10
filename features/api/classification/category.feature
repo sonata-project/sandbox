@@ -1,4 +1,4 @@
-@api @post @classification
+@api @post @classification @category
 Feature: Check the API for ClassificationBundle
   I want to test the API calls about category
 
@@ -8,13 +8,12 @@ Feature: Check the API for ClassificationBundle
 
   # GET
 
-  @api @post @classification @category
   Scenario: Get all categories
     When I send a GET request to "/api/classification/categories.xml"
     Then the response code should be 200
     And response should contain "xml" object
-    And response should contain "Japan"
-    And response should contain "North America"
+    And response should contain "page"
+    And response should contain "entries"
 
   # POST
 
