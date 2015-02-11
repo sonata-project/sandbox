@@ -15,6 +15,14 @@ Feature: Check the Page controller calls for PageBundle
 
   # POST
 
+  Scenario: Post new page (with errors)
+    When I send a POST request to "/api/page/pages.xml" with values:
+      | enabled     | 1         |
+    Then the response code should be 400
+    And response should contain "xml" object
+    And response should contain "Validation Failed"
+    And response should contain "This value should not be null"
+
   Scenario: Page full workflow
     When I send a POST request to "/api/page/pages.xml" with values:
       | name         | My other page       |
@@ -50,7 +58,7 @@ Feature: Check the Page controller calls for PageBundle
     And response should contain "xml" object
     Then response should contain "My new other page"
     And response should contain "My new other page title"
-    And response should contain "my-other-page"
+    And response should contain "my-new-other-page"
 
     When I send a GET request to "/api/page/pages/<page_id>.xml" using last identifier:
     Then the response code should be 200
