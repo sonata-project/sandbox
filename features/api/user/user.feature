@@ -96,6 +96,25 @@ Feature: Check the User controller calls for UserBundle
     And response should contain "xml" object
     And response should contain "already has group"
 
+    # DETACH GROUP
+
+    When I send a DELETE request to "/api/user/users/<user_id>/groups/<group_id>.xml" using last identifier:
+    Then the response code should be 200
+    And response should contain "xml" object
+    And response should contain "true"
+
+    When I send a DELETE request to "/api/user/users/<user_id>/groups/<group_id>.xml" using last identifier:
+    Then the response code should be 400
+    And response should contain "xml" object
+    And response should contain "has not group"
+
+    # DELETE GROUP
+
+    When I send a DELETE request to "/api/user/groups/<group_id>.xml" using last identifier:
+    Then the response code should be 200
+    And response should contain "xml" object
+    And response should contain "true"
+
     # DELETE
 
     When I send a DELETE request to "/api/user/users/<user_id>.xml" using last identifier:
