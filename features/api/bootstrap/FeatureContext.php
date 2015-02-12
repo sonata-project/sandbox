@@ -99,28 +99,43 @@ class FeatureContext extends BehatContext
     }
 
     /**
-     * @Then /^store the XML response identifier as "(.*)"$/
+     * @Then /^store the ([jJ][sS][oO][nN]|[xX][mM][lL]) response identifier as "(.*)"$/
      */
-    public function storeTheResponseIdentifier($alias)
+    public function storeTheResponseIdentifier($objectType, $alias)
     {
-        /** @var \Buzz\Message\Response $response */
-        $response = $this->getSubcontext('api')->getBrowser()->getLastResponse();
-        $responseContent = $response->getContent();
 
-        $data = simplexml_load_string($responseContent);
+        $responseContent = $this->getSubcontext('api')->getBrowser()->getLastResponse()->getContent();
 
-        if (false === $data) {
-            throw new Exception(sprintf('Response was not XML : "%s"', $responseContent));
+        $objectType = strtolower($objectType);
+
+        switch($objectType) {
+            case 'xml':
+                $data = simplexml_load_string($responseContent);
+
+                if (false === $data) {
+                    throw new Exception(sprintf('Response was not XML : "%s"', $responseContent));
+                }
+
+                $identifier = $data->attributes()->id;
+
+                if (null === $identifier) {
+                    $data = current($data);
+                    $identifier = $data->attributes()->id;
+                }
+
+                $this->identifiers[$alias] = current($identifier);
+                break;
+            case 'json':
+                $data = json_decode($responseContent);
+
+                if (false === $data) {
+                    throw new Exception(sprintf('Response was not json : "%s"', $responseContent));
+                }
+
+                $this->identifiers[$alias] = $data->id;
+
+                break;
         }
-
-        $identifier = $data->attributes()->id;
-
-        if (null === $identifier) {
-            $data = current($data);
-            $identifier = $data->attributes()->id;
-        }
-
-        $this->identifiers[$alias] = current($identifier);
     }
 
     /**
