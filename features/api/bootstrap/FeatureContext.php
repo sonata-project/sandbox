@@ -139,6 +139,48 @@ class FeatureContext extends BehatContext
     }
 
     /**
+     * Post and Put an basketelement return a basket. This method store the identifier of the first basketelement
+     * of the basket.
+     *
+     * @Then /^store the ([jJ][sS][oO][nN]|[xX][mM][lL]) response basketelement identifier as "(.*)"$/
+     */
+    public function storeTheResponseBasketelementIdentifier($objectType, $alias)
+    {
+
+        $responseContent = $this->getSubcontext('api')->getBrowser()->getLastResponse()->getContent();
+
+        $objectType = strtolower($objectType);
+
+        switch($objectType) {
+            case 'xml':
+                $data = simplexml_load_string($responseContent);
+
+                if (false === $data) {
+                    throw new Exception(sprintf('Response was not XML : "%s"', $responseContent));
+                }
+
+                $element = $data->basket_elements->entry;
+                $identifier = $element->attributes()->id;
+                $this->identifiers[$alias] = current($identifier);
+
+                break;
+            case 'json':
+                $data = json_decode($responseContent);
+
+                if (false === $data) {
+                    throw new Exception(sprintf('Response was not json : "%s"', $responseContent));
+                }
+
+                $aElements = $data->basket_elements;
+                $firstElement = array_shift($aElements);
+                $identifier = $firstElement->id;
+                $this->identifiers[$alias] = $identifier;
+
+                break;
+        }
+    }
+
+    /**
      * Returns URL with last identifier stored in context
      *
      * @param string $url
