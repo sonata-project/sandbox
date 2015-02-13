@@ -1,6 +1,5 @@
 @api @ecommerce @product
 Feature: Check the Product controller calls for ProductBundle
-  I want to test different API calls
 
   Background:
     Given I am authenticating as "admin" with "admin" password
@@ -12,12 +11,15 @@ Feature: Check the Product controller calls for ProductBundle
     When I send a GET request to "<resource>"
     Then the response code should be <status_code>
     And response should contain "<format>" object
-    And response should contain "<message>"
+    And response pager should display page <page_number> with <per_page> elements
+    And response pager data should be consistent
 
-    Examples:
-      | resource | status_code | format | message |
-      | /api/ecommerce/products.json | 200 | json | price_including_vat |
-      | /api/ecommerce/products.xml  | 200 | xml  | price_including_vat |
+  Examples:
+    | resource                                             | status_code  | format | page_number | per_page |
+    | /api/ecommerce/products.xml                          | 200          | xml    | 1           | 10       |
+    | /api/ecommerce/products.xml?page=1&count=5           | 200          | xml    | 1           | 5        |
+    | /api/ecommerce/products.json                         | 200          | json   | 1           | 10       |
+    | /api/ecommerce/products.json?page=1&count=5          | 200          | json   | 1           | 5        |
 
   @api @product @id
   Scenario Outline: Retrieve a specific product by an unique ID
@@ -30,6 +32,18 @@ Feature: Check the Product controller calls for ProductBundle
       | resource | status_code | format | message |
       | /api/ecommerce/products/1.json | 200 | json | price_including_vat |
       | /api/ecommerce/products/1.xml  | 200 | xml  | price_including_vat |
+
+  @api @product @unknown
+  Scenario Outline: Check unavailable unique product
+    When I send a GET request to "<resource>"
+    Then the response code should be <status_code>
+    And response should contain "<format>" object
+    And response should contain "<message>"
+
+  Examples:
+    | resource                                | status_code | format | message                       |
+    | /api/ecommerce/products/9999999999.json | 404         | json   | Product (9999999999) not found |
+    | /api/ecommerce/products/9999999999.xml  | 404         | xml    | Product (9999999999) not found |
 
   @api @product @categories @id @list
   Scenario Outline: Retrieve all categories for a specific product identified by an unique ID
@@ -118,8 +132,8 @@ Feature: Check the Product controller calls for ProductBundle
   # POST
 
   @api @product @new @ko
-  Scenario: Post new product with errors
-    When I send a POST request to "/api/ecommerce/sonata.ecommerce_demo.product.travel/products.xml" with values:
+  Scenario Outline: Post new product with errors
+    When I send a POST request to "/api/ecommerce/<provider>/products.<format>" with values:
       | sku               | TESTSKU0001     |
       | slug              | my-product-slug |
       | priceIncludingVat | 1               |
@@ -127,28 +141,54 @@ Feature: Check the Product controller calls for ProductBundle
       | vatRate           | 20              |
       | enabled           | 1               |
     Then the response code should be 400
-    And response should contain "xml" object
+    And response should contain "<format>" object
     And response should contain "Validation Failed"
     And response should contain "This value should not be null"
 
-  @api @product @workflow
-  Scenario: Product full workflow
-    When I send a POST request to "/api/ecommerce/sonata.ecommerce_demo.product.travel/products.xml" with values:
+  Examples:
+    | format  | provider                               |
+    | xml     | sonata.ecommerce_demo.product.travel   |
+    | json    | sonata.ecommerce_demo.product.travel   |
+
+  Scenario Outline: Post new product with bad provider
+    When I send a POST request to "/api/ecommerce/<provider>/products.<format>" with values:
       | sku               | TESTSKU0001     |
-      | name              | My product slug |
       | slug              | my-product-slug |
       | priceIncludingVat | 1               |
       | price             | 15.00           |
       | vatRate           | 20              |
       | enabled           | 1               |
-    Then the response code should be 200
-    And response should contain "xml" object
-    And response should contain "created_at"
-    And store the XML response identifier as "product_id"
+    Then the response code should be 500
+    And response should contain "<format>" object
+    And response should contain "The product `<provider>` does not exist!"
 
-    When I send a GET request to "/api/ecommerce/products/<product_id>.xml" using last identifier:
+  Examples:
+    | format  | provider                            |
+    | xml     | sonata.ecommerce_demo.product.bad   |
+    | json    | sonata.ecommerce_demo.product.bad   |
+
+  @api @product @workflow
+  Scenario Outline: Product full workflow
+    When I send a POST request to "/api/ecommerce/<provider>/products.<format>" with values:
+      | sku                       | TESTSKU0001           |
+      | name                      | My product slug       |
+      | slug                      | my-product-slug       |
+      | descriptionFormatter      | markdown              |
+      | rawDescription            | **description**       |
+      | shortDescriptionFormatter | markdown              |
+      | rawShortDescription       | **short description** |
+      | priceIncludingVat         | 1                     |
+      | price                     | 15.00                 |
+      | vatRate                   | 20                    |
+      | enabled                   | 1                     |
     Then the response code should be 200
-    And response should contain "xml" object
+    And response should contain "<format>" object
+    And response should contain "created_at"
+    And store the <format> response identifier as "product_id"
+
+    When I send a GET request to "/api/ecommerce/products/<product_id>.<format>" using last identifier:
+    Then the response code should be 200
+    And response should contain "<format>" object
     And response should contain "TESTSKU0001"
     And response should contain "My product slug"
     And response should contain "my-product-slug"
@@ -156,24 +196,28 @@ Feature: Check the Product controller calls for ProductBundle
 
     # PUT
 
-    When I send a PUT request to "/api/ecommerce/sonata.ecommerce_demo.product.travel/products/<product_id>.xml" using last identifier with values:
-      | sku               | TESTNEWSKU0001      |
-      | name              | My new product slug |
-      | slug              | my-new-product-slug |
-      | priceIncludingVat | 1                   |
-      | price             | 17.00               |
-      | vatRate           | 20                  |
-      | enabled           | 1                   |
+    When I send a PUT request to "/api/ecommerce/<provider>/products/<product_id>.<format>" using last identifier with values:
+      | sku                       | TESTNEWSKU0001            |
+      | name                      | My new product slug       |
+      | slug                      | my-new-product-slug       |
+      | descriptionFormatter      | markdown                  |
+      | rawDescription            | **new description**       |
+      | shortDescriptionFormatter | markdown                  |
+      | rawShortDescription       | **new short description** |
+      | priceIncludingVat         | 1                         |
+      | price                     | 17.00                     |
+      | vatRate                   | 20                        |
+      | enabled                   | 1                         |
     Then the response code should be 200
-    And response should contain "xml" object
+    And response should contain "<format>" object
     And response should contain "TESTNEWSKU0001"
     And response should contain "My new product slug"
     And response should contain "my-new-product-slug"
     And response should contain "17"
 
-    When I send a GET request to "/api/ecommerce/products/<product_id>.xml" using last identifier:
+    When I send a GET request to "/api/ecommerce/products/<product_id>.<format>" using last identifier:
     Then the response code should be 200
-    And response should contain "xml" object
+    And response should contain "<format>" object
     And response should contain "TESTNEWSKU0001"
     And response should contain "My new product slug"
     And response should contain "my-new-product-slug"
@@ -181,11 +225,16 @@ Feature: Check the Product controller calls for ProductBundle
 
     # DELETE
 
-    When I send a DELETE request to "/api/ecommerce/products/<product_id>.xml" using last identifier:
+    When I send a DELETE request to "/api/ecommerce/products/<product_id>.<format>" using last identifier:
     Then the response code should be 200
-    And response should contain "xml" object
+    And response should contain "<format>" object
     And response should contain "true"
 
-    When I send a GET request to "/api/ecommerce/products/<product_id>.xml" using last identifier:
+    When I send a GET request to "/api/ecommerce/products/<product_id>.<format>" using last identifier:
     Then the response code should be 404
-    And response should contain "xml" object
+    And response should contain "<format>" object
+
+  Examples:
+    | format  | provider                               |
+    | xml     | sonata.ecommerce_demo.product.travel   |
+    | json    | sonata.ecommerce_demo.product.travel   |
