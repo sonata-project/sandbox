@@ -7,7 +7,7 @@ Feature: Check the Group controller calls for UserBundle
 
   # GET
 
-  @api @user @group @list
+  @api @group @list
   Scenario Outline: Retrieve all available groups
     When I send a GET request to "<resource>"
     Then the response code should be 200
@@ -22,7 +22,7 @@ Feature: Check the Group controller calls for UserBundle
     | /api/user/groups.json                         | json   | 1           | 10       |
     | /api/user/groups.json?page=1&count=5          | json   | 1           | 5        |
 
-  @api @user @group @unknown
+  @api @group @unknown
   Scenario Outline: Get a specific group that not exists
     When I send a GET request to "/api/user/groups/99999999999.<format>"
     Then the response code should be 404

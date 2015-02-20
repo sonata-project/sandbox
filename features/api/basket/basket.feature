@@ -41,18 +41,20 @@ Feature: Check the Basket controller calls for BasketBundle
     When I send a POST request to "/api/ecommerce/baskets.<format>"
     Then the response code should be <status_code>
     And response should contain "<format>" object
+    And response should contain "This value should not be null"
 
   Examples:
     | format  | status_code   |
-    | xml     | 500           |
-    | json    | 500           |
+    | xml     | 400           |
+    | json    | 400           |
 
   @api @basket @workflow
   Scenario Outline: Basket full workflow
     When I send a POST request to "/api/ecommerce/baskets.<format>" with values:
-      | paymentMethodCode| DEBUG |
-      | currency         | EUR   |
-      | locale           | fr    |
+      | paymentMethodCode  | DEBUG |
+      | deliveryMethodCode | DEBUG |
+      | currency           | EUR   |
+      | locale             | fr    |
     Then the response code should be 200
     And response should contain "<format>" object
     And response should contain "cpt_element"
@@ -78,9 +80,10 @@ Feature: Check the Basket controller calls for BasketBundle
     # PUT (basket)
 
     When  I send a PUT request to "/api/ecommerce/baskets/<basket_id>.<format>" using last identifier with values:
-      | paymentMethodCode| PAYPAL |
-      | currency         | GBP    |
-      | locale           | uk     |
+      | paymentMethodCode   | PAYPAL |
+      | deliveryMethodCode  | free   |
+      | currency            | GBP    |
+      | locale              | uk     |
     Then the response code should be 200
     And response should contain "<format>" object
     And response should contain "cpt_element"
