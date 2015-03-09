@@ -1,3 +1,4 @@
+.DS_Store
 /behat.yml
 /app/cache/*
 /app/logs/*

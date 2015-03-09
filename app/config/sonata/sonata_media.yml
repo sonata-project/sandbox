@@ -2,6 +2,12 @@
 # more information can be found here http://sonata-project.org/bundles/media
 #
 sonata_media:
+    class:
+        media:             AppBundle\Entity\Media
+        gallery:           AppBundle\Entity\Gallery
+        gallery_has_media: AppBundle\Entity\GalleryHasMedia
+        category:          AppBundle\Entity\Category
+
     db_driver:       doctrine_orm # | doctrine_mongodb
     default_context: default
     contexts:
@@ -175,5 +181,4 @@ doctrine:
         entity_managers:
             default:
                 mappings:
-                    ApplicationSonataMediaBundle: ~
                     SonataMediaBundle: ~

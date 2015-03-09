@@ -1,4 +1,7 @@
 sonata_notification:
+    class:
+        message: AppBundle\Entity\Message
+
     backend: sonata.notification.backend.postpone
 #    backend: sonata.notification.backend.doctrine
 #    backend: sonata.notification.backend.rabbitmq
@@ -33,4 +36,3 @@ doctrine:
             default:
                 mappings:
                     SonataNotificationBundle: ~
-                    ApplicationSonataNotificationBundle: ~

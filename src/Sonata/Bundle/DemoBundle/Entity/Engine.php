@@ -38,8 +38,8 @@ class Engine
     protected $power;
 
     /**
-     * @var \Application\Sonata\MediaBundle\Entity\Media
-     * @ORM\ManyToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media", cascade={"persist"}, fetch="LAZY")
+     * @var \AppBundle\Entity\Media
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Media", cascade={"persist"}, fetch="LAZY")
      */
     protected $media;
 

@@ -11,13 +11,13 @@
 
 namespace Sonata\Bundle\DemoBundle\DataFixtures\ORM;
 
-use Application\Sonata\MediaBundle\Entity\GalleryHasMedia;
-use Application\Sonata\ProductBundle\Entity\Delivery;
-use Application\Sonata\ProductBundle\Entity\Goodie;
-use Application\Sonata\ProductBundle\Entity\Travel;
-use Application\Sonata\ProductBundle\Entity\Package;
-use Application\Sonata\ProductBundle\Entity\ProductCategory;
-use Application\Sonata\ProductBundle\Entity\ProductCollection;
+use AppBundle\Entity\GalleryHasMedia;
+use Sonata\Bundle\DemoBundle\Entity\Goodie;
+use AppBundle\Entity\Delivery;
+use Sonata\Bundle\DemoBundle\Entity\Travel;
+use AppBundle\Entity\Package;
+use AppBundle\Entity\ProductCategory;
+use AppBundle\Entity\ProductCollection;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;

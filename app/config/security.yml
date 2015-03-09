@@ -3,7 +3,7 @@ parameters:
 
 security:
     encoders:
-        "Application\Sonata\UserBundle\Entity\User":
+        "AppBundle\Entity\User":
             algorithm: sha512
             encode_as_base64: false
             iterations: 1

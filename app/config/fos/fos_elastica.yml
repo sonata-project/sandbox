@@ -36,7 +36,7 @@ fos_elastica:
                         updated_at:             { type: date }
 
                     persistence:
-                        model:                  Application\Sonata\NewsBundle\Entity\Post
+                        model:                  AppBundle\Entity\Post
                         provider:               ~
 
                 comment:
@@ -52,7 +52,7 @@ fos_elastica:
 
 
                     persistence:
-                        model:                  Application\Sonata\NewsBundle\Entity\Comment
+                        model:                  AppBundle\Entity\Comment
                         provider:               ~
 
                 # User Bundle
@@ -123,7 +123,7 @@ fos_elastica:
                         updated_at:             { type: date }
 
                     persistence:
-                        model:    Application\Sonata\MediaBundle\Entity\Media
+                        model:    AppBundle\Entity\Media
                         provider: ~
 
                 gallery:
@@ -136,7 +136,7 @@ fos_elastica:
                         created_at:             { type: date }
                         updated_at:             { type: date }
                     persistence:
-                        model:    Application\Sonata\MediaBundle\Entity\Gallery
+                        model:    AppBundle\Entity\Gallery
                         provider: ~
 
                 # Page Bundle
@@ -158,7 +158,7 @@ fos_elastica:
                         updated_at:             { type: date }
 
                     persistence:
-                        model:    Application\Sonata\PageBundle\Entity\Site
+                        model:    AppBundle\Entity\Site
                         provider: ~
 
                 page:
@@ -190,7 +190,7 @@ fos_elastica:
                         updated_at:             { type: date }
 
                     persistence:
-                        model:    Application\Sonata\PageBundle\Entity\Page
+                        model:    AppBundle\Entity\Page
                         provider: ~
 
 #                snapshot:
@@ -215,7 +215,7 @@ fos_elastica:
                         updated_at:             { type: date }
 
                     persistence:
-                        model:    Application\Sonata\PageBundle\Entity\Block
+                        model:    AppBundle\Entity\Block
                         provider: ~
 
                 snapshot:
@@ -240,7 +240,7 @@ fos_elastica:
                         updated_at:             { type: date }
 
                     persistence:
-                        model:    Application\Sonata\PageBundle\Entity\Snapshot
+                        model:    AppBundle\Entity\Snapshot
                         provider: ~
 
                 # Classification Bundle
@@ -255,7 +255,7 @@ fos_elastica:
                         updated_at:             { type: date }
 
                     persistence:
-                        model:    Application\Sonata\ClassificationBundle\Entity\Collection
+                        model:    AppBundle\Entity\Collection
                         provider: ~
 
                 tag:
@@ -268,7 +268,7 @@ fos_elastica:
                         updated_at:             { type: date }
 
                     persistence:
-                        model:    Application\Sonata\ClassificationBundle\Entity\Tag
+                        model:    AppBundle\Entity\Tag
                         provider: ~
 
                 category:
@@ -281,7 +281,7 @@ fos_elastica:
                         updated_at:             { type: date }
 
                     persistence:
-                        model:    Application\Sonata\ClassificationBundle\Entity\Category
+                        model:    AppBundle\Entity\Category
                         provider: ~
 
                 # Ecommerce Bundle
@@ -290,7 +290,7 @@ fos_elastica:
                     mappings:
                         name:     { boost: 5 }
                     persistence:
-                        model:    Application\Sonata\ProductBundle\Entity\Product
+                        model:    AppBundle\Entity\Product
                         provider: ~
 
                 order:
@@ -298,7 +298,7 @@ fos_elastica:
                     mappings:
                         name:     { boost: 5 }
                     persistence:
-                        model:    Application\Sonata\OrderBundle\Entity\Order
+                        model:    AppBundle\Entity\Order
                         provider: ~
 
                 invoice:
@@ -306,7 +306,7 @@ fos_elastica:
                     mappings:
                         name:     { boost: 5 }
                     persistence:
-                        model:    Application\Sonata\InvoiceBundle\Entity\Invoice
+                        model:    AppBundle\Entity\Invoice
                         provider: ~
 
                 transaction:
@@ -314,5 +314,5 @@ fos_elastica:
                     mappings:
                         name:     { boost: 5 }
                     persistence:
-                        model:    Application\Sonata\PaymentBundle\Entity\Transaction
+                        model:    AppBundle\Entity\Transaction
                         provider: ~

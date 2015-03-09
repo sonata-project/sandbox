@@ -34,6 +34,7 @@ imports:
     - { resource: sonata/sonata_news.yml }
     - { resource: sonata/sonata_user.yml }
     - { resource: sonata/sonata_notification.yml }
+    - { resource: sonata/sonata_classification.yml }
 
     # Sonata e-commerce bundles
     - { resource: sonata/sonata_price.yml }
@@ -63,7 +64,7 @@ framework:
 
     default_locale:          %locale%
     session:
-        save_path:           %kernel.root_dir%/cache/sessions
+        save_path:           /tmp
 
     fragments:               ~
     trusted_proxies:         ~

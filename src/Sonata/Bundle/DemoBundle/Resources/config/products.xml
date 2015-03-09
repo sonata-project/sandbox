@@ -9,22 +9,22 @@
         <!-- Goodies -->
 
         <service id="sonata.ecommerce_demo.product.goodie.manager" class="Sonata\ProductBundle\Entity\ProductManager">
-            <argument>Application\Sonata\ProductBundle\Entity\Goodie</argument>
+            <argument>Sonata\Bundle\DemoBundle\Entity\Goodie</argument>
             <argument type="service" id="doctrine" />
         </service>
 
-        <service id="sonata.ecommerce_demo.product.goodie.type" class="Application\Sonata\ProductBundle\Provider\GoodieProductProvider">
+        <service id="sonata.ecommerce_demo.product.goodie.type" class="Sonata\Bundle\DemoBundle\Provider\GoodieProductProvider">
             <argument type="service" id="serializer" />
         </service>
 
         <!-- Travel -->
 
         <service id="sonata.ecommerce_demo.product.travel.manager" class="Sonata\ProductBundle\Entity\ProductManager">
-            <argument>Application\Sonata\ProductBundle\Entity\Travel</argument>
+            <argument>Sonata\Bundle\DemoBundle\Entity\Travel</argument>
             <argument type="service" id="doctrine" />
         </service>
 
-        <service id="sonata.ecommerce_demo.product.travel.type" class="Application\Sonata\ProductBundle\Provider\TravelProductProvider">
+        <service id="sonata.ecommerce_demo.product.travel.type" class="Sonata\Bundle\DemoBundle\Provider\TravelProductProvider">
             <argument type="service" id="serializer" />
         </service>
 

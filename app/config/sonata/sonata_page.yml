@@ -11,6 +11,12 @@ cmf_routing:
             router.default: 100
 
 sonata_page:
+    class:
+        site:     AppBundle\Entity\Site
+        snapshot: AppBundle\Entity\Snapshot
+        page:     AppBundle\Entity\Page
+        block:    AppBundle\Entity\Block
+
     multisite:             host_with_path # host
     use_streamed_response: false # set the value to false in debug mode or if the reverse proxy does not handle streamed response
 
@@ -49,7 +55,7 @@ sonata_page:
     default_template: default
     templates:
         default:
-            path: 'ApplicationSonataPageBundle::demo_layout.html.twig'
+            path: 'AppBundle::demo_layout.html.twig'
             name: 'default'
             containers:
                  header:
@@ -78,7 +84,7 @@ sonata_page:
                      F: footer
 
         2columns:
-            path: 'ApplicationSonataPageBundle::demo_2columns_layout.html.twig'
+            path: 'AppBundle::demo_2columns_layout.html.twig'
             name: '2 columns layout'
             containers:
                  header:
@@ -133,5 +139,4 @@ doctrine:
         entity_managers:
             default:
                 mappings:
-                    ApplicationSonataPageBundle: ~
                     SonataPageBundle: ~

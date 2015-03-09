@@ -3,10 +3,10 @@ Feature: Check invoices administration in backend
 
   @200
   Scenario Outline: Check pages security depending on user credentials
-    Given I am on "admin/sonata/invoice/invoice/<page>"
+    Given I am on "admin/app/invoice/<page>"
     Then I should see "Authentication"
 
-    Given I am connected with "admin" and "admin" on "admin/sonata/invoice/invoice/<page>"
+    Given I am connected with "admin" and "admin" on "admin/app/invoice/<page>"
     Then I should see "Add new"
 
     Examples:

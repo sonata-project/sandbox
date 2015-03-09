@@ -1,8 +1,12 @@
 sonata_basket:
+    class:
+        basket:         AppBundle\Entity\Basket
+        basket_element: AppBundle\Entity\BasketElement
+        customer:       AppBundle\Entity\Customer
+
     builder:            sonata.basket.builder.standard
     factory:            sonata.basket.entity.factory
     loader:             sonata.basket.loader.standard
-
 
 # Enable Doctrine to map the provided entities
 doctrine:
@@ -10,5 +14,4 @@ doctrine:
         entity_managers:
             default:
                 mappings:
-                    ApplicationSonataBasketBundle: ~
                     SonataBasketBundle: ~

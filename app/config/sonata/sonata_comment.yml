@@ -4,5 +4,6 @@
 sonata_comment:
     manager_type: orm # can be 'orm' or 'mongodb'
     class:
-        comment: Application\Sonata\CommentBundle\Entity\Comment # This is an optional value
-        thread: Application\Sonata\CommentBundle\Entity\Thread   # This is an optional value
+        comment:  AppBundle\Entity\Comment # This is an optional value
+        thread:   AppBundle\Entity\Thread   # This is an optional value
+        category: AppBundle\Entity\Category   # This is an optional value

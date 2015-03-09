@@ -3,10 +3,10 @@ Feature: Check customers administration in backend
 
   @200
   Scenario Outline: Check pages security depending on user credentials
-    Given I am on "admin/sonata/customer/customer/<page>"
+    Given I am on "admin/app/customer/<page>"
     Then I should see "Authentication"
 
-    Given I am connected with "admin" and "admin" on "admin/sonata/customer/customer/<page>"
+    Given I am connected with "admin" and "admin" on "admin/app/customer/<page>"
     Then I should see "Add new"
 
     Examples:

@@ -1,4 +1,8 @@
 sonata_payment:
+    class:
+        transaction: AppBundle\Entity\Transaction
+        order:       AppBundle\Entity\Order
+
     methods:
         pass: ~
     services:
@@ -63,5 +67,4 @@ doctrine:
         entity_managers:
             default:
                 mappings:
-                    ApplicationSonataPaymentBundle: ~
                     SonataPaymentBundle: ~

@@ -30,5 +30,6 @@ class SonataDemoExtension extends Extension
         $loader->load('form.xml');
         $loader->load('admin.xml');
         $loader->load('products.xml');
+        $loader->load('delivery.xml');
     }
 }

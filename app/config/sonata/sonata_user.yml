@@ -8,11 +8,14 @@ doctrine:
             default:
                 mappings:
                     FOSUserBundle: ~
-                    ApplicationSonataUserBundle: ~
                     SonataUserBundle: ~
 
 # if you change the class configuration, please also alter the fos_user.yml file
 sonata_user:
+    class:
+        user:  AppBundle\Entity\User
+        group: AppBundle\Entity\Group
+
     security_acl:             false
     table:
         user_group:           fos_user_user_group
