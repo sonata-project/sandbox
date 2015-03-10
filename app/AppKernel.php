@@ -94,6 +94,7 @@ class AppKernel extends Kernel
             new Application\Sonata\CommentBundle\ApplicationSonataCommentBundle(),
 
             // SONATA CORE & HELPER BUNDLES
+            new Sonata\DatagridBundle\SonataDatagridBundle(),
             new Sonata\EasyExtendsBundle\SonataEasyExtendsBundle(),
             new Sonata\CoreBundle\SonataCoreBundle(),
             new Sonata\IntlBundle\SonataIntlBundle(),
@@ -109,7 +110,7 @@ class AppKernel extends Kernel
             new Sonata\DatagridBundle\SonataDatagridBundle(),
 
             // Search Integration
-            //new FOS\ElasticaBundle\FOSElasticaBundle(),
+            new FOS\ElasticaBundle\FOSElasticaBundle(),
 
             // CMF Integration
             new Symfony\Cmf\Bundle\RoutingBundle\CmfRoutingBundle(),

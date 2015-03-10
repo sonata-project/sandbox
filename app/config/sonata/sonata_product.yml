@@ -20,6 +20,8 @@ sonata_product:
             media_prefix: 'http://demo.sonata-project.org'
             media_format: 'reference'
 
+    search:
+        provider: sonata.product.search.provider.elastica
 
 
 # Enable Doctrine to map the provided entities
