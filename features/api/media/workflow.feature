@@ -78,3 +78,41 @@ Feature: Check the API for MediaBundle
     When I send a GET request to "/api/media/media/<media_id>.xml" using last identifier:
     Then the response code should be 404
     And response should contain "xml" object
+
+
+  Scenario: Media binary workflow
+    When I send a POST request to "/api/media/providers/sonata.media.provider.image/media.xml" with values:
+      | name           | My image media                             |
+      | description    | My description                             |
+      | enabled        | 1                                          |
+      | copyright      | My Copyright                               |
+      | authorName     | Myself                                     |
+      | context        | default                                    |
+      | cdnIsFlushable | 1                                          |
+      | contentType    | image/jpeg                                 |
+    Then the response code should be 200
+    And store the XML response identifier as "image_media_id"
+
+    When I send a GET request to "/api/media/media/<image_media_id>.xml" using last identifier:
+    Then the response code should be 200
+    And response should contain "xml" object
+    And response should contain "My image media"
+    And response should contain "missing_binary_content"
+
+
+    When I send a PUT request to "/api/media/media/<image_media_id>/binary/content.xml" with the binary "features/fixtures/sonata.jpg"
+    Then the response code should be 200
+    And response should contain "xml" object
+    And response should contain "My image media"
+    And response should not contain "missing_binary_content"
+
+    # DELETE
+
+    When I send a DELETE request containing identifier to "/api/media/media/<image_media_id>.xml"
+    Then the response code should be 200
+    And response should contain "xml" object
+    Then response should contain "true"
+
+    When I send a GET request containing identifier to "/api/media/media/<image_media_id>.xml"
+    Then the response code should be 404
+    And response should contain "xml" object
