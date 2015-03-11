@@ -1,0 +1,32 @@
+<div class="panel panel-success">
+    <div class="panel-heading">
+        <h2 class="panel-title">{{ 'title_user_registration'|trans({}, 'SonataUserBundle') }}</h2>
+    </div>
+    <div class="panel-body">
+        <form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST" class="fos_user_registration_register form-horizontal">
+
+            <div class="form-group">
+                {{ form_label(form.username, null, {'label_attr': {'class': 'col-sm-4'}}) }}
+                {{ form_widget(form.username, {'horizontal_input_wrapper_class': 'col-sm-8', 'horizontal_label_class': 'col-sm-4'}) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_label(form.email, null, {'label_attr': {'class': 'col-sm-4'}}) }}
+                {{ form_widget(form.email, {'horizontal_input_wrapper_class': 'col-sm-8', 'horizontal_label_class': 'col-sm-4'}) }}
+            </div>
+
+            {% for passwordField in form.plainPassword %}
+                <div class="form-group">
+                    {{ form_label(passwordField, null, {'label_attr': {'class': 'col-sm-4'}}) }}
+                    {{ form_widget(passwordField, {'horizontal_input_wrapper_class': 'col-sm-8', 'horizontal_label_class': 'col-sm-4'}) }}
+                </div>
+            {% endfor %}
+
+            {{ form_rest(form) }}
+
+            <div class="form-actions">
+                <input type="submit" value="{{ 'registration.submit'|trans({}, 'FOSUserBundle') }}" class="btn btn-success pull-right" />
+            </div>
+        </form>
+    </div>
+</div>

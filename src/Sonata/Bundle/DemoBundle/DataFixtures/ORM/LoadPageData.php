@@ -265,8 +265,8 @@ CONTENT
         $contentTop->addChildren($text = $blockManager->create());
         $text->setType('sonata.block.service.text');
         $text->setSetting('content', <<<CONTENT
-<div class="col-md-3 welcome"><h2>Welcome</h2></div>
-<div class="col-md-9">
+<div class="col-sm-3 welcome"><h2>Welcome</h2></div>
+<div class="col-sm-9">
     <p>
         This page is a demo of the Sonata Sandbox available on <a href="https://github.com/sonata-project/sandbox">github</a>.
         This demo try to be interactive so you will be able to found out the different features provided by the Sonata's Bundle.
