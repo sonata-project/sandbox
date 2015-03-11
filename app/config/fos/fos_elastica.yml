@@ -292,6 +292,9 @@ fos_elastica:
                     persistence:
                         model:    Application\Sonata\ProductBundle\Entity\Product
                         provider: ~
+                        finder:   ~
+                        elastica_to_model_transformer:
+                            ignore_missing: true
 
                 order:
                     serializer:   { groups: ['sonata_search'] }
@@ -300,6 +303,8 @@ fos_elastica:
                     persistence:
                         model:    Application\Sonata\OrderBundle\Entity\Order
                         provider: ~
+                        elastica_to_model_transformer:
+                            ignore_missing: true
 
                 invoice:
                     serializer:   { groups: ['sonata_search'] }
@@ -308,6 +313,8 @@ fos_elastica:
                     persistence:
                         model:    Application\Sonata\InvoiceBundle\Entity\Invoice
                         provider: ~
+                        elastica_to_model_transformer:
+                            ignore_missing: true
 
                 transaction:
                     serializer:   { groups: ['sonata_search'] }
@@ -316,3 +323,5 @@ fos_elastica:
                     persistence:
                         model:    Application\Sonata\PaymentBundle\Entity\Transaction
                         provider: ~
+                        elastica_to_model_transformer:
+                            ignore_missing: true
