@@ -43,7 +43,7 @@
         "knplabs/knp-menu-bundle": "~2.0",
 
         "sonata-project/easy-extends-bundle": "~2.1@dev",
-        "sonata-project/seo-bundle": "~2.0@dev",
+        "sonata-project/seo-bundle": "~2.0",
         "sonata-project/doctrine-extensions": "~1@dev",
         "sonata-project/intl-bundle": "~2.2@dev",
         "sonata-project/admin-bundle": "~2.4@dev",
@@ -54,7 +54,7 @@
         "sonata-project/user-bundle": "~2.2@dev",
         "sonata-project/cache-bundle": "~2.1@dev",
         "sonata-project/cache": "~1.0@dev",
-        "sonata-project/page-bundle": "~2.3@dev",
+        "sonata-project/page-bundle": "~2.4@dev",
         "sonata-project/core-bundle": "~2.3@dev,>=2.3.1",
         "sonata-project/formatter-bundle": "~2.4@dev",
         "sonata-project/news-bundle": "~2.3@dev",
@@ -83,6 +83,7 @@
 
     "require-dev": {
         "phpunit/phpunit": "~4.2",
+        "symfony/phpunit-bridge": "2.7.*@dev",
         "guzzle/guzzle": "~3.0",
         "behat/behat": "~2.4",
         "behat/common-contexts": "1.2.*@dev",
