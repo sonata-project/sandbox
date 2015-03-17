@@ -75,8 +75,8 @@ $fs->mkdir(sprintf('%s/web/uploads/media', $rootDir));
 $fs->copy(__DIR__.'/../src/Sonata/Bundle/DemoBundle/DataFixtures/data/robots.txt', __DIR__.'/../web/app/robots.txt', true);
 
 $success = execute_commands(array(
+    $bin . ' ./bin/sonata-check.php',
     'rm -rf ./app/cache/*',
-
     $bin . ' ./app/console cache:warmup --env=prod --no-debug',
     $bin . ' ./app/console cache:create-cache-class --env=prod --no-debug',
     $bin . ' ./app/console doctrine:database:drop --force',
