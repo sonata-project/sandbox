@@ -131,6 +131,7 @@ sonata_admin:
 #            - bundles/sonataadmin/vendor/x-editable/dist/bootstrap3-editable/css/bootstrap-editable.css
 #            - bundles/sonataadmin/css/styles.css
 #            - bundles/sonataadmin/css/layout.css
+#            - bundles/sonatapage/sonata-page.back.min.css
 
         javascripts:
             - assetic/sonata_admin_js.js
@@ -187,3 +188,4 @@ sonata_admin:
 #            - bundles/sonataformatter/markitup/sets/markdown/set.js
 #            - bundles/sonataformatter/markitup/sets/html/set.js
 #            - bundles/sonataformatter/markitup/sets/textile/set.js
+#            - bundles/sonatapage/sonata-page.back.js

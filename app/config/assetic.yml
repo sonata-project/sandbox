@@ -99,6 +99,8 @@ assetic:
                 - %kernel.root_dir%/../web/bundles/sonataadmin/jquery/jquery.confirmExit.js
                 - %kernel.root_dir%/../web/bundles/sonataadmin/App.js
                 - %kernel.root_dir%/../web/bundles/sonataadmin/Admin.js
+                - %kernel.root_dir%/../web/bundles/sonatapage/sonata-page.back.js
+
 
             filters:
                 - yui_js
@@ -116,7 +118,7 @@ assetic:
                 - %kernel.root_dir%/../web/bundles/sonatacore/vendor/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css
                 - %kernel.root_dir%/../web/bundles/sonataadmin/css/styles.css
                 - %kernel.root_dir%/../web/bundles/sonataadmin/css/layout.css
-
+                - %kernel.root_dir%/../web/bundles/sonatapage/sonata-page.back.min.css
             filters:
                 - cssrewrite
                 - yui_css

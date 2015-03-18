@@ -13,8 +13,18 @@ Sonata Standard Edition comes pre-configured with the following bundles:
 * Sonata Feature Bundles: Page, Media, News, User, Block, Timeline
 * Api Bundles: FOSRestBundle, BazingaHateoasBundle, NelmioApiDocBundle and JMSSerializerBundle
 
-Installation
-------------
+Quick Installation
+------------------
+
+The Sonata Project provides a build of the Sonata Project sandbox to quickly start with the projet.
+
+    1. Retrieve the code: ``curl -L github https://github.com/sonata-project/sandbox-build/archive/master.tar.gz | tar xzv``
+    2. Configure default the ``parameters.yml`` file: ``cp app/config/parameters.yml.dist app/config/parameters.yml``
+    3. load the data: ``php bin/load_data.php``
+    4. You should should be ready to go ...
+
+Composer Installation
+---------------------
 
 Get composer:
 
@@ -32,7 +42,7 @@ The installation process used Incenteev's ParameterHandler to handle parameters.
 installation, it is possible to use environment variables to configure this file:
 
     DATABASE_NAME=sonata DATABASE_USER=root DATABASE_PASSWORD="" php composer.phar create-project sonata-project/sandbox:dev-2.3-develop
-    
+
 You might experience some timeout issues with composer, as the ``create-project`` start different scripts, you can increase the default composer value with the ``COMPOSER_PROCESS_TIMEOUT`` env variable:
 
     COMPOSER_PROCESS_TIMEOUT=600 php composer.phar create-project sonata-project/sandbox:dev-2.3-develop
