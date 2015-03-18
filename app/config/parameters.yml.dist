@@ -27,7 +27,7 @@ parameters:
     sonata_news.comment.email_from: no-reply@example.org
 
     # Sonata Media options
-    sonata_media.cdn.host:          http://demo.sonata-project.org/uploads/media
+    sonata_media.cdn.host:          /uploads/media
 
     # Sonata User Options
     sonata_user.google_authenticator.server:  demo.sonata-project.org
