@@ -66,5 +66,5 @@ assets-watch:
 build:
 	git stash
 	app/console assets:install web
-	bin/qa_build_git.sh . /home/vagrant/sonata-sandbox-build 2.4 2.3
+	bin/qa_build_git.sh . /home/vagrant/sonata-sandbox-build 2.4 2.4
 	git stash pop
