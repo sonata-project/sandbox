@@ -63,3 +63,6 @@ assets:
 assets-watch:
 	app/console assetic:dump --watch
 
+build:
+	app/console assets:install web
+	bin/qa_build_git.sh . /home/vagrant/sonata-sandbox-build-2-3 master master
