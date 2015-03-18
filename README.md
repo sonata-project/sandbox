@@ -47,8 +47,7 @@ You might experience some timeout issues with composer, as the ``create-project`
 
     COMPOSER_PROCESS_TIMEOUT=600 php composer.phar create-project sonata-project/sandbox:dev-2.3-develop
 
-Reset the data
---------------
+### Reset the data
 
 Fixtures are automatically loaded on the ``composer create-project`` step. If you'd like to reset your sandbox to the default fixtures (or you had an issue while installing and want to fill in the fixtures manually), you may run:
 
@@ -56,8 +55,7 @@ Fixtures are automatically loaded on the ``composer create-project`` step. If yo
 
 This will completely reset your database.
 
-Prepare
--------
+### Prepare
 
     cd sandbox
     php app/console doctrine:database:create
