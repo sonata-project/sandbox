@@ -123,7 +123,9 @@ rsync -av \
     --exclude=build \
     --exclude=puppet \
     --exclude=.idea \
+    --exclude=*.jar \
     --exclude=.build \
+    --exclude=.DS_Store \
     --exclude=web/uploads \
     --delete \
     $SOURCE_DIR/ $TARGET_DIR
