@@ -64,7 +64,7 @@ framework:
 
     default_locale:          %locale%
     session:
-        save_path:           /tmp
+        save_path:           %kernel.root_dir%/cache/sessions
 
     fragments:               ~
     trusted_proxies:         ~
