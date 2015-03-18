@@ -84,6 +84,12 @@ if (!class_exists('PDO')) {
     }
 }
 
+if (!function_exists('bcadd')) {
+    $checks[] = array('KO', "bcmath extension is not available");
+} else {
+    $checks[] = array('OK', "bcmath extension is available");
+}
+
 $error = false;
 
 echo <<<SONATA
