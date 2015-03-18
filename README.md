@@ -15,8 +15,18 @@ Sonata Standard Edition comes pre-configured with the following bundles:
 * Sonata Feature Bundles: Page, Media, News, User, Block, Timeline
 * Api Bundles: FOSRestBundle, BazingaHateoasBundle, NelmioApiDocBundle and JMSSerializerBundle
 
-Installation
-------------
+Quick Installation
+------------------
+
+The Sonata Project provides a build of the Sonata Project sandbox to quickly start with the projet.
+
+* Retrieve the code: ``curl -L github https://github.com/sonata-project/sandbox-build/archive/2.4.tar.gz | tar xzv``
+* Configure default the ``parameters.yml`` file: ``cp app/config/parameters.yml.dist app/config/parameters.yml``
+* load the data: ``php bin/load_data.php``
+* You should should be ready to go ...
+
+Composer Installation
+---------------------
 
 Get composer:
 
@@ -24,19 +34,16 @@ Get composer:
 
 Run the following command for the 2.4 develop branch:
 
-    php composer.phar create-project sonata-project/sandbox:dev-2.4-develop
+    php composer.phar create-project sonata-project/sandbox:2.4.x-dev
 
 The installation process used Incenteev's ParameterHandler to handle parameters.yml configuration. With the current
 installation, it is possible to use environment variables to configure this file:
 
     DATABASE_NAME=sonata DATABASE_USER=root DATABASE_PASSWORD="" php composer.phar create-project sonata-project/sandbox:dev-2.4-develop
-    
+
 You might experience some timeout issues with composer, as the ``create-project`` start different scripts, you can increase the default composer value with the ``COMPOSER_PROCESS_TIMEOUT`` env variable:
 
     COMPOSER_PROCESS_TIMEOUT=600 php composer.phar create-project sonata-project/sandbox:dev-2.4-develop
-
-Reset the data
---------------
 
 Fixtures are automatically loaded on the ``composer create-project`` step. If you'd like to reset your sandbox to the default fixtures (or you had an issue while installing and want to fill in the fixtures manually), you may run:
 
