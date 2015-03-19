@@ -90,18 +90,19 @@ if (!function_exists('bcadd')) {
     $checks[] = array('OK', "bcmath extension is available");
 }
 
+if (!function_exists('curl_init')) {
+    $checks[] = array('KO', "curl extension is not available");
+} else {
+    $checks[] = array('OK', "curl extension is available");
+}
+
+if (extension_loaded('xdebug') && ini_get('xdebug.max_nesting_level') < 255) {
+    $checks[] = array('KO', "xdebug.max_nesting_level is too low, please make sure the value is greater than 255");
+} else {
+    $checks[] = array('OK', "xdebug is not available");
+}
+
 $error = false;
-
-echo <<<SONATA
-                               __
-      _________   ____  ____ _/ /______
-     / ___/ __ \ / __ \/ __ / __/ __  /
-    (__  ) /_/ / / / / /_/ / /_/ /_/ /
-   /____/\____/_/ /_/\__,_/\__/\__,_/
-                 configuration check ...
-
-
-SONATA;
 
 foreach ($checks as $check) {
     echo sprintf("%s\t%s\n", $check[0], $check[1]);
