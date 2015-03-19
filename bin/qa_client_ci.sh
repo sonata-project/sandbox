@@ -40,12 +40,12 @@ run_test() {
             extra="--coverage-html build/coverage/`basename ${1}` --coverage-clover build/clover/`basename ${1}`.xml"
         fi
 
-        phpunit -c ${1} ${extra} --log-junit build/junit/`basename ${1}`.xml
+        php -d memory_limit=-1 bin/phpunit -c ${1} ${extra} --log-junit build/junit/`basename ${1}`.xml
 
         status=$?
 
         if [ $status -ne 0 ]; then
-            echo "Unit Test Suite has failed!"
+            echo "Unit Test Suite has failed: ${1}"
             error_code=1
         fi
     fi
