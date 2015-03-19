@@ -127,6 +127,7 @@ rsync -av \
     --exclude=.build \
     --exclude=.DS_Store \
     --exclude=web/uploads \
+    --exclude=web/sitemap* \
     --delete \
     $SOURCE_DIR/ $TARGET_DIR
 
