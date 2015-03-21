@@ -1,5 +1,5 @@
 #
-# more information can be found here http://sonata-project.org/bundles/formatter
+# more information can be found here https://sonata-project.org/bundles/formatter
 #
 sonata_formatter:
     formatters:
@@ -35,7 +35,7 @@ sonata_formatter:
             upload: 'SonataFormatterBundle:Ckeditor:upload.html.twig'
 
 # This section can be used to include the SonataMediaBundle with CKEDITOR
-#  => http://sonata-project.org/bundles/media/master/doc/reference/extra.html#ckeditor-integration
+#  => https://sonata-project.org/bundles/media/master/doc/reference/extra.html#ckeditor-integration
 #  there is also a configuration in the sonata_formatter section (see sonata_formatter.yml)
 ivory_ck_editor:
     default_config: default

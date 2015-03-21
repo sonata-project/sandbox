@@ -479,7 +479,7 @@ CONTENT
 
     <h3>Two-Step Verification</h3>
     The <strong>secure</strong> account is a demo of the Two-Step Verification provided by
-    the <a href="http://sonata-project.org/bundles/user/2-0/doc/reference/two_step_validation.html">Sonata User Bundle</a>
+    the <a href="https://sonata-project.org/bundles/user/2-0/doc/reference/two_step_validation.html">Sonata User Bundle</a>
 
     <br />
     <br />
@@ -666,7 +666,7 @@ CONTENT
               <img class="media-object" src="/bundles/sonatademo/images/sonata-logo.png">
             </a>
             <div class="media-body">
-              <h4 class="media-heading"><a href="http://sonata-project.org/bundles/admin">Admin</a></h4>
+              <h4 class="media-heading"><a href="https://sonata-project.org/bundles/admin">Admin</a></h4>
               The missing Symfony2 Admin Generator.
             </div>
           </div>
@@ -677,7 +677,7 @@ CONTENT
               <img class="media-object" src="/bundles/sonatademo/images/sonata-logo.png">
             </a>
             <div class="media-body">
-              <h4 class="media-heading"><a href="http://sonata-project.org/bundles/doctrine-orm-admin">Doctrine2 ORM Admin</a></h4>
+              <h4 class="media-heading"><a href="https://sonata-project.org/bundles/doctrine-orm-admin">Doctrine2 ORM Admin</a></h4>
               Integrates the Doctrine2 ORM into the Admin Bundle.
             </div>
           </div>
@@ -688,7 +688,7 @@ CONTENT
               <img class="media-object" src="/bundles/sonatademo/images/sonata-logo.png">
             </a>
             <div class="media-body">
-              <h4 class="media-heading"><a href="http://sonata-project.org/bundles/propel-admin">Propel Admin</a></h4>
+              <h4 class="media-heading"><a href="https://sonata-project.org/bundles/propel-admin">Propel Admin</a></h4>
               Integrates the Propel into the Admin Bundle.
             </div>
           </div>
@@ -710,7 +710,7 @@ CONTENT
               <img class="media-object" src="/bundles/sonatademo/images/sonata-logo.png">
             </a>
             <div class="media-body">
-              <h4 class="media-heading"><a href="http://sonata-project.org/bundles/core">Core</a></h4>
+              <h4 class="media-heading"><a href="https://sonata-project.org/bundles/core">Core</a></h4>
               Provides base classes used by Sonata's Bundles.
             </div>
           </div>
@@ -721,7 +721,7 @@ CONTENT
               <img class="media-object" src="/bundles/sonatademo/images/sonata-logo.png">
             </a>
             <div class="media-body">
-              <h4 class="media-heading"><a href="http://sonata-project.org/bundles/notification">Notification</a></h4>
+              <h4 class="media-heading"><a href="https://sonata-project.org/bundles/notification">Notification</a></h4>
               Message Queue Solution with Abstracted Backends.
             </div>
           </div>
@@ -732,7 +732,7 @@ CONTENT
               <img class="media-object" src="/bundles/sonatademo/images/sonata-logo.png">
             </a>
             <div class="media-body">
-              <h4 class="media-heading"><a href="http://sonata-project.org/bundles/formatter">Formatter</a></h4>
+              <h4 class="media-heading"><a href="https://sonata-project.org/bundles/formatter">Formatter</a></h4>
               Add text helpers.
             </div>
           </div>
@@ -743,7 +743,7 @@ CONTENT
               <img class="media-object" src="/bundles/sonatademo/images/sonata-logo.png">
             </a>
             <div class="media-body">
-              <h4 class="media-heading"><a href="http://sonata-project.org/bundles/intl">Internationalization (i18n)</a></h4>
+              <h4 class="media-heading"><a href="https://sonata-project.org/bundles/intl">Internationalization (i18n)</a></h4>
               Integrate the PHP Intl extension into a Symfony2 Project.
             </div>
           </div>
@@ -754,7 +754,7 @@ CONTENT
               <img class="media-object" src="/bundles/sonatademo/images/sonata-logo.png">
             </a>
             <div class="media-body">
-              <h4 class="media-heading"><a href="http://sonata-project.org/bundles/cache">Cache</a></h4>
+              <h4 class="media-heading"><a href="https://sonata-project.org/bundles/cache">Cache</a></h4>
               Cache handlers&nbsp;: ESI, Memcached, APC and more…
             </div>
           </div>
@@ -765,7 +765,7 @@ CONTENT
               <img class="media-object" src="/bundles/sonatademo/images/sonata-logo.png">
             </a>
             <div class="media-body">
-              <h4 class="media-heading"><a href="http://sonata-project.org/bundles/seo">SEO</a></h4>
+              <h4 class="media-heading"><a href="https://sonata-project.org/bundles/seo">SEO</a></h4>
               Integrates a shareable object to handle all SEO requirements&nbsp;: title, meta, Open Graph and more…
             </div>
           </div>
@@ -776,7 +776,7 @@ CONTENT
               <img class="media-object" src="/bundles/sonatademo/images/sonata-logo.png">
             </a>
             <div class="media-body">
-              <h4 class="media-heading"><a href="http://sonata-project.org/bundles/easy-extends">EasyExtends</a></h4>
+              <h4 class="media-heading"><a href="https://sonata-project.org/bundles/easy-extends">EasyExtends</a></h4>
               EasyExtends is a tool for generating a valid bundle structure from a Vendor Bundle.
             </div>
           </div>
@@ -801,7 +801,7 @@ CONTENT
               <img class="media-object" src="/bundles/sonatademo/images/sonata-logo.png">
             </a>
             <div class="media-body">
-              <h4 class="media-heading"><a href="http://sonata-project.org/bundles/ecommerce">Ecommerce</a></h4>
+              <h4 class="media-heading"><a href="https://sonata-project.org/bundles/ecommerce">Ecommerce</a></h4>
               Implements base tools for integrated e-commerce features
             </div>
           </div>
@@ -823,7 +823,7 @@ CONTENT
               <img class="media-object" src="/bundles/sonatademo/images/sonata-logo.png">
             </a>
             <div class="media-body">
-              <h4 class="media-heading"><a href="http://sonata-project.org/bundles/page">Page</a></h4>
+              <h4 class="media-heading"><a href="https://sonata-project.org/bundles/page">Page</a></h4>
               A Symfony2 friendly CMS.
             </div>
           </div>
@@ -834,7 +834,7 @@ CONTENT
               <img class="media-object" src="/bundles/sonatademo/images/sonata-logo.png">
             </a>
             <div class="media-body">
-              <h4 class="media-heading"><a href="http://sonata-project.org/bundles/media">Media</a></h4>
+              <h4 class="media-heading"><a href="https://sonata-project.org/bundles/media">Media</a></h4>
               Media management bundle on steroid for Symfony2.
             </div>
           </div>
@@ -845,7 +845,7 @@ CONTENT
               <img class="media-object" src="/bundles/sonatademo/images/sonata-logo.png">
             </a>
             <div class="media-body">
-              <h4 class="media-heading"><a href="http://sonata-project.org/bundles/news">News</a></h4>
+              <h4 class="media-heading"><a href="https://sonata-project.org/bundles/news">News</a></h4>
               A simple blog/news platform.
             </div>
           </div>
@@ -856,7 +856,7 @@ CONTENT
               <img class="media-object" src="/bundles/sonatademo/images/sonata-logo.png">
             </a>
             <div class="media-body">
-              <h4 class="media-heading"><a href="http://sonata-project.org/bundles/user">User</a></h4>
+              <h4 class="media-heading"><a href="https://sonata-project.org/bundles/user">User</a></h4>
               FOS/User integration.
             </div>
           </div>
@@ -867,7 +867,7 @@ CONTENT
               <img class="media-object" src="/bundles/sonatademo/images/sonata-logo.png">
             </a>
             <div class="media-body">
-              <h4 class="media-heading"><a href="http://sonata-project.org/bundles/block">Block</a></h4>
+              <h4 class="media-heading"><a href="https://sonata-project.org/bundles/block">Block</a></h4>
               Handle rendering of block element. A block is a small unit with its own logic and templates. A block can be inserted anywhere in a current template.
             </div>
           </div>
@@ -878,7 +878,7 @@ CONTENT
               <img class="media-object" src="/bundles/sonatademo/images/sonata-logo.png">
             </a>
             <div class="media-body">
-              <h4 class="media-heading"><a href="http://sonata-project.org/bundles/timeline">Timeline</a></h4>
+              <h4 class="media-heading"><a href="https://sonata-project.org/bundles/timeline">Timeline</a></h4>
               Integrates SpyTimelineBundle into Sonata's bundles.
             </div>
           </div>

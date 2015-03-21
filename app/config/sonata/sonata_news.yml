@@ -1,5 +1,5 @@
 #
-# more information can be found here http://sonata-project.org/bundles/news
+# more information can be found here https://sonata-project.org/bundles/news
 #
 sonata_news:
     class:
