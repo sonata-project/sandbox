@@ -1,4 +1,4 @@
-.PHONY: test test-all install update clean dev bower load assets optimize
+.PHONY: test test-all install update clean dev bower load assets optimize build
 
 help:
 	@echo "Please use \`make <target>' where <target> is one of"
@@ -14,6 +14,7 @@ help:
 	@echo "  assets     to install assets"
 	@echo "  optimize   to optimize sandbox"
 	@echo "  check      run default symfony check"
+	@echo "  build      push code to the build repository"
 
 test:
 	phpunit -c app
