@@ -84,7 +84,7 @@ if (!class_exists('PDO')) {
     }
 }
 
-if (!function_exists('bcadd')) {
+if (!function_exists('bcscale')) {
     $checks[] = array('KO', "bcmath extension is not available");
 } else {
     $checks[] = array('OK', "bcmath extension is available");
@@ -102,13 +102,13 @@ if (extension_loaded('xdebug') && ini_get('xdebug.max_nesting_level') < 255) {
     $checks[] = array('OK', "xdebug is not available");
 }
 
-$error = false;
+$error = 0;
 
 foreach ($checks as $check) {
     echo sprintf("%s\t%s\n", $check[0], $check[1]);
 
-    if ($check[0] == 'KO') {
-        $error = true;
+    if ($check[0] === 'KO') {
+        $error = 1;
     }
 }
 

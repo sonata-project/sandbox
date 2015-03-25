@@ -61,7 +61,7 @@ function execute_commands($commands, $output)
                $output->write($data, false, OutputInterface::OUTPUT_RAW);
             }
 
-            $output->writeln("You the error is coming from the sandbox,");
+            $output->writeln("If the error is coming from the sandbox,");
             $output->writeln("please report the issue to https://github.com/sonata-project/sandbox/issues");
             return false;
         }
