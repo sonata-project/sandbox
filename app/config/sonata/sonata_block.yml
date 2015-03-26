@@ -9,6 +9,8 @@ sonata_block:
         "SonataDemoBundle:Builder:mainMenu": "Main Menu"
 
     blocks:
+        sonata.admin.block.stats:
+            contexts:   [admin]
         sonata.admin.block.admin_list:
             contexts:   [admin]
         sonata.admin.block.search_result:

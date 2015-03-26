@@ -100,9 +100,9 @@ assetic:
                 - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/admin-lte/dist/js/app.min.js
                 - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/iCheck/icheck.min.js
                 - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/slimScroll/jquery.slimscroll.min.js
+                - %kernel.root_dir%/../web/bundles/sonatapage/sonata-page.back.js
                 - %kernel.root_dir%/../web/bundles/sonataadmin/Admin.js
                 - %kernel.root_dir%/../web/bundles/sonataadmin/treeview.js
-                - %kernel.root_dir%/../web/bundles/sonatapage/sonata-page.back.js
 
             filters:
                 - yui_js
