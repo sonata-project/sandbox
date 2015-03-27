@@ -1,0 +1,5 @@
+mysql:
+    root_password: root
+    user: sonata
+    password: sonata
+    database: sonata_sandbox

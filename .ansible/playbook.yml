@@ -1,0 +1,21 @@
+---
+- hosts: all
+  sudo: true
+  vars:
+    sonata_root: /var/www/sonata-sandbox/web
+    web_server: nginxphp
+    servername: sonata.local
+    timezone: UTC
+  vars_files:
+    - vars/mysql.yml
+    - vars/common.yml
+    - vars/nginxphp.yml
+  roles:
+    - init
+    - php5-cli
+    - nginx
+    - php5-fpm
+    - mysql
+    - composer
+    - phpcommon
+    - app
