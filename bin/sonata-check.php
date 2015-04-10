@@ -11,7 +11,7 @@
  */
 
 if (!is_file('composer.json')) {
-    throw new \RuntimeException('This script must be started from the project root folder');
+    throw new \RuntimeException('Can\'t find a composer.json file. Make sure to start this script from the project root folder');
 }
 
 $checks = array();
