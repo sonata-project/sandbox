@@ -24,11 +24,11 @@ $fs = new \Symfony\Component\Filesystem\Filesystem;
 $output = new \Symfony\Component\Console\Output\ConsoleOutput();
 
 // does the parent directory have a parameters.yml file
-if (is_file(__DIR__.'/../../parameters.demo.yml')) {
-    $fs->copy(__DIR__.'/../../parameters.demo.yml', __DIR__.'/../app/config/parameters.yml', true);
+if (is_file(__DIR__ . '/../../parameters.demo.yml')) {
+    $fs->copy(__DIR__ . '/../../parameters.demo.yml', __DIR__ . '/../app/config/parameters.yml', true);
 }
 
-if (!is_file(__DIR__.'/../app/config/parameters.yml')) {
+if (!is_file(__DIR__ . '/../app/config/parameters.yml')) {
     $output->writeln('<error>no default apps/config/parameters.yml file</error>');
 
     exit(1);
@@ -42,9 +42,8 @@ if (!is_file(__DIR__.'/../app/config/parameters.yml')) {
  */
 function execute_commands($commands, $output)
 {
-    foreach($commands as $command) {
-        list($command, $message) = $command;
-
+    foreach ($commands as $command) {
+        list($command, $message, $continue) = array_pad($command, 3, false);
 
         $output->write(sprintf(' - %\'.-70s', $message));
         $p = new \Symfony\Component\Process\Process($command);
@@ -56,9 +55,12 @@ function execute_commands($commands, $output)
 
         if (!$p->isSuccessful()) {
             $output->writeln('<error>KO</error>');
+            if ($continue) {
+                continue;
+            }
             $output->writeln(sprintf('<error>Fail to run: %s</error>', $command));
-            foreach($return as $data) {
-               $output->write($data, false, OutputInterface::OUTPUT_RAW);
+            foreach ($return as $data) {
+                $output->write($data, false, OutputInterface::OUTPUT_RAW);
             }
 
             $output->writeln("If the error is coming from the sandbox,");
@@ -87,23 +89,23 @@ $fs->remove(sprintf('%s/web/uploads/media', $rootDir));
 $fs->mkdir(sprintf('%s/web/uploads/media', $rootDir));
 
 // find out the default php runtime
-$bin = sprintf("%s -d memory_limit=1024M", defined('PHP_BINARY') ? PHP_BINARY: 'php');
+$bin = sprintf("%s -d memory_limit=1024M", defined('PHP_BINARY') ? PHP_BINARY : 'php');
 
 $success = execute_commands(array(
-    array($bin . ' ./bin/sonata-check.php','Checking Sonata Project\'s requirements'),
-    array($bin . ' ./app/console cache:warmup --env=prod --no-debug','Warming up the production cache'),
-    array($bin . ' ./app/console cache:create-cache-class --env=prod --no-debug','Creating the class cache'),
-    array($bin . ' ./app/console doctrine:database:drop --force','Dropping the database'),
-    array($bin . ' ./app/console doctrine:database:create','Creating the database'),
-    array($bin . ' ./app/console doctrine:schema:update --force','Creating the database\'s schema'),
-    array($bin . '  -d max_execution_time=600 ./app/console doctrine:fixtures:load --verbose --env=dev --no-debug','Loading fixtures'),
-    array($bin . ' ./app/console sonata:news:sync-comments-count','SonataNewsBundle: updating comments count'),
-    array($bin . ' ./app/console sonata:page:update-core-routes --site=all --no-debug','SonataPageBundle: updating core route'),
-    array($bin . ' ./app/console sonata:page:create-snapshots --site=all --no-debug','SonataPageBundle: creating snapshots from pages'),
-    array($bin . ' ./app/console assets:install --symlink web','Configure assets'),
-    array($bin . ' ./app/console sonata:admin:setup-acl','Security: setting up ACL'),
-    array($bin . ' ./app/console sonata:admin:generate-object-acl','Security: generating object ACL'),
-), $output);
+    array($bin . ' ./bin/sonata-check.php', 'Checking Sonata Project\'s requirements'),
+    array($bin . ' ./app/console cache:warmup --env=prod --no-debug', 'Warming up the production cache'),
+    array($bin . ' ./app/console cache:create-cache-class --env=prod --no-debug', 'Creating the class cache'),
+    array($bin . ' ./app/console doctrine:database:drop --force', 'Dropping the database', true),
+    array($bin . ' ./app/console doctrine:database:create', 'Creating the database'),
+    array($bin . ' ./app/console doctrine:schema:update --force', 'Creating the database\'s schema'),
+    array($bin . '  -d max_execution_time=600 ./app/console doctrine:fixtures:load --verbose --env=dev --no-debug', 'Loading fixtures'),
+    array($bin . ' ./app/console sonata:news:sync-comments-count', 'SonataNewsBundle: updating comments count'),
+    array($bin . ' ./app/console sonata:page:update-core-routes --site=all --no-debug', 'SonataPageBundle: updating core route'),
+    array($bin . ' ./app/console sonata:page:create-snapshots --site=all --no-debug', 'SonataPageBundle: creating snapshots from pages'),
+    array($bin . ' ./app/console assets:install --symlink web', 'Configure assets'),
+    array($bin . ' ./app/console sonata:admin:setup-acl', 'Security: setting up ACL'),
+    array($bin . ' ./app/console sonata:admin:generate-object-acl', 'Security: generating object ACL'),
+        ), $output);
 
 if (!$success) {
     $output->writeln('<info>An error occurs when running a command!</info>');
