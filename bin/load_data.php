@@ -45,18 +45,23 @@ function execute_commands($commands, $output)
     foreach($commands as $command) {
         list($command, $message, $allowFailure) = $command;
 
-
         $output->write(sprintf(' - %\'.-70s', $message));
-        $p = new \Symfony\Component\Process\Process($command);
-        $p->setTimeout(null);
         $return = array();
-        $p->run(function($type, $data) use (&$return) {
-            $return[] = $data;
-        });
+        if (is_callable($command)) {
+            $success = $command($output);
+        } else {
+            $p = new \Symfony\Component\Process\Process($command);
+            $p->setTimeout(null);
+            $p->run(function($type, $data) use (&$return) {
+                $return[] = $data;
+            });
 
-        if (!$p->isSuccessful() && !$allowFailure) {
+            $success = $p->isSuccessful();
+        }
+
+        if (!$success && !$allowFailure) {
             $output->writeln('<error>KO</error>');
-            $output->writeln(sprintf('<error>Fail to run: %s</error>', $command));
+            $output->writeln(sprintf('<error>Fail to run: %s</error>', is_callable($command) ? '[closure]' : $command));
             foreach($return as $data) {
                $output->write($data, false, OutputInterface::OUTPUT_RAW);
             }
@@ -65,7 +70,7 @@ function execute_commands($commands, $output)
             $output->writeln("please report the issue to https://github.com/sonata-project/sandbox/issues");
 
             return false;
-        } else if (!$p->isSuccessful()) {
+        } else if (!$success) {
             $output->writeln("<info>!!</info>");
         } else {
             $output->writeln("<info>OK</info>");
@@ -92,8 +97,22 @@ $fs->mkdir(sprintf('%s/web/uploads/media', $rootDir));
 // find out the default php runtime
 $bin = sprintf("%s -d memory_limit=-1", defined('PHP_BINARY') ? PHP_BINARY: 'php');
 
+
+if (extension_loaded('xdebug')) {
+    $output->writeln("<error>WARNING, xdebug is enabled in the cli, this can drastically slowing down all PHP scripts</error>");
+}
+
 $success = execute_commands(array(
     array($bin . ' ./bin/sonata-check.php','Checking Sonata Project\'s requirements', false),
+    array(function(OutputInterface $output) use ($fs) {
+        $fs->remove("app/cache/prod");
+        $fs->remove("app/cache/dev");
+
+        return true;
+    }, 'Deleting prod and dev cache folders', false),
+    array(function(OutputInterface $output) use ($fs) {
+        return $fs->exists("app/config/parameters.yml");
+    }, 'Check for app/config/parameters.yml file', false),
     array($bin . ' ./app/console cache:create-cache-class --env=prod --no-debug','Creating the class cache', false),
     array($bin . ' ./app/console doctrine:database:drop --force','Dropping the database', true),
     array($bin . ' ./app/console doctrine:database:create','Creating the database', false),
@@ -105,7 +124,6 @@ $success = execute_commands(array(
     array($bin . ' ./app/console assets:install --symlink web','Configure assets', false),
     array($bin . ' ./app/console sonata:admin:setup-acl','Security: setting up ACL', false),
     array($bin . ' ./app/console sonata:admin:generate-object-acl','Security: generating object ACL', false),
-    array($bin . ' ./app/console cache:warmup --env=prod --no-debug','Warming up the production cache', false),
 ), $output);
 
 if (!$success) {

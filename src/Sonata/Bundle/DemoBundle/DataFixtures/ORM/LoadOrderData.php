@@ -68,8 +68,6 @@ class LoadOrderData extends AbstractFixture implements ContainerAwareInterface, 
         $basket->setCurrency($currency);
         $basket->setProductPool($this->getProductPool());
 
-        $nbCustomers = 100;
-
         $products = array(
             $this->getReference('php_plush_blue_goodie_product'),
             $this->getReference('php_plush_green_goodie_product'),
@@ -94,6 +92,9 @@ class LoadOrderData extends AbstractFixture implements ContainerAwareInterface, 
             $this->getReference('travel_switzerland_large_product'),
             $this->getReference('travel_switzerland_extra_large_product'),
         );
+
+        $nbCustomers = $this->container->hasParameter("sonata.fixtures.customer.fake") ? (int)$this->container->getParameter("sonata.fixtures.customer.fake") : 20;
+
 
         for ($i = 1; $i <= $nbCustomers; $i++) {
             $customer = $this->generateCustomer($manager, $i);

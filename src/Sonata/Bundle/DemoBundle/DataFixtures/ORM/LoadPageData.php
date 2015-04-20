@@ -87,6 +87,14 @@ class LoadPageData extends AbstractFixture implements ContainerAwareInterface, O
 
     public function createSubSite()
     {
+        if (!$this->container->hasParameter('sonata.fixtures.page.create_subsite')) {
+            return;
+        }
+
+        if ($this->container->getParameter('sonata.fixtures.page.create_subsite') !== true) {
+            return;
+        }
+
         $site = $this->getSiteManager()->create();
 
         $site->setHost('localhost');
