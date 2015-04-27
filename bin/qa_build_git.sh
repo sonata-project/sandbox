@@ -76,8 +76,8 @@ if [ ! -z "$4" ]; then
     SOURCE_BRANCH="$4"
 fi
 
-SOURCE_DIR=`realpath $1`
-TARGET_DIR=`realpath $2`
+SOURCE_DIR=`readlink -f $1`
+TARGET_DIR=`readlink -f $2`
 TARGET_BRANCH=$3
 COMMIT=`cd $SOURCE_DIR && git rev-parse HEAD`
 
