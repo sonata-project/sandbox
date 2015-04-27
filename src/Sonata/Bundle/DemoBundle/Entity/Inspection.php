@@ -37,6 +37,7 @@ class Inspection
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User\User", cascade={"persist"}, fetch="EAGER")
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\NotNull
      **/
     protected $inspector;
 
