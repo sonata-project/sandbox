@@ -11,14 +11,13 @@
 
 namespace Sonata\Bundle\DemoBundle\DataFixtures\ORM;
 
-use Doctrine\Common\DataFixtures\FixtureInterface;
-use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
-use Doctrine\Common\DataFixtures\AbstractFixture;
 
 use Sonata\MediaBundle\Model\GalleryInterface;
 use Sonata\MediaBundle\Model\MediaInterface;
 
 use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
+use Doctrine\Common\DataFixtures\AbstractFixture;
 
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -118,7 +117,7 @@ class LoadMediaData extends AbstractFixture implements ContainerAwareInterface, 
      */
     public function addMedia(GalleryInterface $gallery, MediaInterface $media)
     {
-        $galleryHasMedia = new \AppBundle\Entity\GalleryHasMedia();
+        $galleryHasMedia = new \AppBundle\Entity\Media\GalleryHasMedia();
         $galleryHasMedia->setMedia($media);
         $galleryHasMedia->setPosition(count($gallery->getGalleryHasMedias()) + 1);
         $galleryHasMedia->setEnabled(true);

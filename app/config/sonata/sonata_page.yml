@@ -12,10 +12,10 @@ cmf_routing:
 
 sonata_page:
     class:
-        site:     AppBundle\Entity\Site
-        snapshot: AppBundle\Entity\Snapshot
-        page:     AppBundle\Entity\Page
-        block:    AppBundle\Entity\Block
+        site:     AppBundle\Entity\Page\Site
+        snapshot: AppBundle\Entity\Page\Snapshot
+        page:     AppBundle\Entity\Page\Page
+        block:    AppBundle\Entity\Page\Block
 
     multisite:             host_with_path # host
     use_streamed_response: false # set the value to false in debug mode or if the reverse proxy does not handle streamed response
@@ -60,6 +60,8 @@ sonata_page:
             containers:
                  header:
                      name: Header
+                     blocks:
+                        - sonata.block.service.text
                  content_top:
                      name: Top content
                  content:

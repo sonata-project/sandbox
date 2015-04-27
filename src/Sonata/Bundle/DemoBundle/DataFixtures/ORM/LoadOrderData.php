@@ -11,17 +11,17 @@
 
 namespace Sonata\Bundle\DemoBundle\DataFixtures\ORM;
 
-use AppBundle\Entity\Address;
-use AppBundle\Entity\Customer;
-use AppBundle\Entity\Invoice;
+use AppBundle\Entity\Commerce\Address;
+use AppBundle\Entity\Commerce\Customer;
+use AppBundle\Entity\Commerce\Invoice;
+use AppBundle\Entity\Commerce\OrderElement;
+use AppBundle\Entity\Commerce\Transaction;
+use AppBundle\Entity\Commerce\Order;
+use AppBundle\Entity\Commerce\Delivery;
+use AppBundle\Entity\User\User;
 use Sonata\Component\Basket\Basket;
 use Sonata\Component\Basket\BasketInterface;
 use Sonata\Component\Invoice\InvoiceInterface;
-use AppBundle\Entity\OrderElement;
-use AppBundle\Entity\Transaction;
-use AppBundle\Entity\User;
-use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
-use Doctrine\Common\DataFixtures\AbstractFixture;
 use Sonata\Component\Currency\Currency;
 use Sonata\Component\Order\OrderInterface;
 use Sonata\Component\Product\ProductDefinition;
@@ -32,8 +32,8 @@ use Sonata\PaymentBundle\Entity\BaseTransaction;
 use Sonata\ProductBundle\Entity\BaseProduct;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use AppBundle\Entity\Order;
-use AppBundle\Entity\Delivery;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
+use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Persistence\ObjectManager;
 use Faker\Generator;

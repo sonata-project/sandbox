@@ -26,6 +26,6 @@ class SonataMediaSyncCommandTest extends CommandTestCase
             'default'
         ));
 
-        $this->assertContains("Done.", $output);
+        $this->assertContains("Done (total ", $output);
     }
 }

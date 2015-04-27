@@ -11,24 +11,26 @@
 
 namespace Sonata\Bundle\DemoBundle\DataFixtures\ORM;
 
-use AppBundle\Entity\GalleryHasMedia;
+use AppBundle\Entity\Media\GalleryHasMedia;
+use AppBundle\Entity\Commerce\Delivery;
+use AppBundle\Entity\Commerce\Package;
+use AppBundle\Entity\Commerce\ProductCategory;
+use AppBundle\Entity\Commerce\ProductCollection;
+
 use Sonata\Bundle\DemoBundle\Entity\Goodie;
-use AppBundle\Entity\Delivery;
 use Sonata\Bundle\DemoBundle\Entity\Travel;
-use AppBundle\Entity\Package;
-use AppBundle\Entity\ProductCategory;
-use AppBundle\Entity\ProductCollection;
-use Doctrine\Common\DataFixtures\AbstractFixture;
-use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
-use Doctrine\Common\Persistence\ObjectManager;
 use Sonata\ClassificationBundle\Model\CategoryInterface;
 use Sonata\ClassificationBundle\Model\CollectionInterface;
 use Sonata\Component\Product\ProductInterface;
 use Sonata\MediaBundle\Model\GalleryInterface;
 use Sonata\MediaBundle\Model\MediaInterface;
+
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Finder\Finder;
+use Doctrine\Common\DataFixtures\AbstractFixture;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
+use Doctrine\Common\Persistence\ObjectManager;
 
 /**
  * Product fixtures loader.

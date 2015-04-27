@@ -1,10 +1,10 @@
 # Enable Doctrine to map the provided entities
 sonata_customer:
     class:
-        customer: AppBundle\Entity\Customer
-        address:  AppBundle\Entity\Address
-        order:    AppBundle\Entity\Order
-        user:     AppBundle\Entity\User
+        customer: AppBundle\Entity\Commerce\Customer
+        address:  AppBundle\Entity\Commerce\Address
+        order:    AppBundle\Entity\Commerce\Order
+        user:     AppBundle\Entity\User\User
 
 doctrine:
     orm:

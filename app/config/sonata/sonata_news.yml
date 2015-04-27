@@ -3,12 +3,12 @@
 #
 sonata_news:
     class:
-        post:       AppBundle\Entity\Post
-        comment:    AppBundle\Entity\PostComment
-        tag:        AppBundle\Entity\Tag
-        collection: AppBundle\Entity\Collection
-        user:       AppBundle\Entity\User
-        media:      AppBundle\Entity\Media
+        post:       AppBundle\Entity\News\Post
+        comment:    AppBundle\Entity\News\Comment
+        tag:        AppBundle\Entity\Classification\Tag
+        collection: AppBundle\Entity\Classification\Collection
+        user:       AppBundle\Entity\User\User
+        media:      AppBundle\Entity\Media\Media
 
     title:        %sonata_news.blog_title%
     link:         %sonata_news.blog_link%

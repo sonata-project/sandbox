@@ -10,7 +10,7 @@
 
 namespace Sonata\Bundle\DemoBundle\Entity;
 
-use AppBundle\Entity\Product;
+use AppBundle\Entity\Commerce\Product;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -21,16 +21,19 @@ use Doctrine\ORM\Mapping as ORM;
 class Travel extends Product
 {
     /**
+     * @ORM\Column(type="integer", name="travellers")
      * @var integer
      */
     protected $travellers;
 
     /**
+     * @ORM\Column(type="datetime", name="travel_date")
      * @var \DateTime
      */
     protected $travelDate;
 
     /**
+     * @ORM\Column(type="integer", name="travel_days")
      * @var integer
      */
     protected $travelDays;
@@ -38,7 +41,7 @@ class Travel extends Product
     /**
      * Sets travellers number
      *
-     * @ORM\Column(type="integer", name="travellers")
+     *
      * @param int $travellers
      */
     public function setTravellers($travellers)
@@ -59,7 +62,7 @@ class Travel extends Product
     /**
      * Sets travel date
      *
-     * @ORM\Column(type="DateTime", name="travel_date")
+     *
      * @param \DateTime $travelDate
      */
     public function setTravelDate($travelDate)
@@ -80,7 +83,7 @@ class Travel extends Product
     /**
      * Sets travel days number
      *
-     * @ORM\Column(type="integer", name="travel_days")
+     *
      * @param int $travelDays
      */
     public function setTravelDays($travelDays)

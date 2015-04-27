@@ -46,6 +46,13 @@ class Inspection
      */
     protected $comment;
 
+    /**
+     * @ORM\Column(type="integer")
+     * @Assert\NotBlank
+     * @Assert\NotNull
+     */
+    protected $status;
+
     public function getId()
     {
         return $this->id;
@@ -102,6 +109,22 @@ class Inspection
     }
 
     /**
+     * @return mixed
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * @param mixed $status
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+    }
+
+    /**
      * @return string
      */
     public function __toString()
@@ -109,4 +132,3 @@ class Inspection
         return $this->getDate() ? $this->getDate()->format('Y-m-d') : 'n/a';
     }
 }
-

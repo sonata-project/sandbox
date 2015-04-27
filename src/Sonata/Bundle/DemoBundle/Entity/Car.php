@@ -13,6 +13,7 @@ namespace Sonata\Bundle\DemoBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Sonata\MediaBundle\Model\MediaInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -20,9 +21,13 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\InheritanceType("SINGLE_TABLE")
  * @ORM\Table(name="test_car")
  * @ORM\DiscriminatorColumn(name="discr", type="string")
- * @ORM\DiscriminatorMap({"renault" = "Renault", "citroen" = "Citroen", "peugeot" = "Peugeot"})
+ * @ORM\DiscriminatorMap({
+ *     "renault" = "Renault",
+ *     "citroen" = "Citroen",
+ *     "peugeot" = "Peugeot"
+ * })
  */
-class Car
+abstract class Car
 {
     /**
      * @ORM\Id
@@ -67,6 +72,12 @@ class Car
      * @Assert\Valid
      */
     protected $inspections;
+
+    /**
+     * @var \AppBundle\Entity\Media\Media
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Media\Media", cascade={"persist"}, fetch="LAZY")
+     */
+    protected $media;
 
     public function __construct()
     {
@@ -200,9 +211,25 @@ class Car
      * @param Inspection $inspection
      * @return void
      */
-    public function removeInspection(Inspection $inspection)
+    public function removeInspection(Inspection $inspection = null)
     {
         $this->inspections->removeElement($inspection);
+    }
+
+    /**
+     * @return \AppBundle\Entity\Media\Media
+     */
+    public function getMedia()
+    {
+        return $this->media;
+    }
+
+    /**
+     * @param \AppBundle\Entity\Media\Media $media
+     */
+    public function setMedia(MediaInterface $media = null)
+    {
+        $this->media = $media;
     }
 
     /**

@@ -3,10 +3,10 @@ fos_user:
     firewall_name:  main
 
     # if you change the class configuration, please also alter the sonata_user.yml file
-    user_class:        AppBundle\Entity\User
+    user_class:        AppBundle\Entity\User\User
 
     group:
-        group_class:   AppBundle\Entity\Group
+        group_class:   AppBundle\Entity\User\Group
         group_manager: sonata.user.orm.group_manager
 
     service:

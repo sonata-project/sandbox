@@ -3,10 +3,10 @@
 #
 sonata_media:
     class:
-        media:             AppBundle\Entity\Media
-        gallery:           AppBundle\Entity\Gallery
-        gallery_has_media: AppBundle\Entity\GalleryHasMedia
-        category:          AppBundle\Entity\Category
+        media:             AppBundle\Entity\Media\Media
+        gallery:           AppBundle\Entity\Media\Gallery
+        gallery_has_media: AppBundle\Entity\Media\GalleryHasMedia
+        category:          AppBundle\Entity\Classification\Category
 
     db_driver:       doctrine_orm # | doctrine_mongodb
     default_context: default

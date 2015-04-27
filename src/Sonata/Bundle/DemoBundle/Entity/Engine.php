@@ -38,8 +38,8 @@ class Engine
     protected $power;
 
     /**
-     * @var \AppBundle\Entity\Media
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Media", cascade={"persist"}, fetch="LAZY")
+     * @var \AppBundle\Entity\Media\Media
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Media\Media", cascade={"persist"}, fetch="LAZY")
      */
     protected $media;
 

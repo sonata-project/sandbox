@@ -1,10 +1,10 @@
 # Enable Doctrine to map the provided entities
 sonata_invoice:
     class:
-        invoice:         AppBundle\Entity\Invoice
-        invoice_element: AppBundle\Entity\InvoiceElement
-        customer:        AppBundle\Entity\Customer
-        order_element:   AppBundle\Entity\OrderElement
+        invoice:         AppBundle\Entity\Commerce\Invoice
+        invoice_element: AppBundle\Entity\Commerce\InvoiceElement
+        customer:        AppBundle\Entity\Commerce\Customer
+        order_element:   AppBundle\Entity\Commerce\OrderElement
 
 doctrine:
     orm:

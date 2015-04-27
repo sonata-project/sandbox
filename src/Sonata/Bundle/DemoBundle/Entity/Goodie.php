@@ -10,7 +10,7 @@
 
 namespace Sonata\Bundle\DemoBundle\Entity;
 
-use AppBundle\Entity\Product;
+use AppBundle\Entity\Commerce\Product;
 
 use Doctrine\ORM\Mapping as ORM;
 

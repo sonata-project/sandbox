@@ -70,14 +70,18 @@ class CarAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper
-            ->with('General', array('class' => 'col-md-6'))
+            ->with('General', array('class' => 'col-md-5'))
                 ->add('name')
                 ->add('rescueEngine')
                 ->add('createdAt')
             ->end()
-            ->with('Options', array('class' => 'col-md-6'))
+            ->with('Options', array('class' => 'col-md-7'))
                 ->add('engine', 'sonata_type_model_list')
                 ->add('color', 'sonata_type_model_list')
+                ->add('media', 'sonata_media_type', array(
+                    'provider' => 'sonata.media.provider.image',
+                    'context'  => 'default'
+                ))
             ->end()
             ->with('inspections', array('class' => 'col-md-12'))
                 ->add('inspections', 'sonata_type_collection', array(
@@ -88,7 +92,6 @@ class CarAdmin extends Admin
                     'inline' => 'table'
                 ))
             ->end()
-
         ;
     }
 

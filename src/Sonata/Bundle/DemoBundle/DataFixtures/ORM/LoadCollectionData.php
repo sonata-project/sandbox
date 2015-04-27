@@ -11,7 +11,6 @@
 
 namespace Sonata\Bundle\DemoBundle\DataFixtures\ORM;
 
-use Application\Sonata\ProductBundle\Entity\Collection;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;

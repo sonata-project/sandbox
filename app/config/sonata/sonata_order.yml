@@ -1,9 +1,9 @@
 # Enable Doctrine to map the provided entities
 sonata_order:
     class:
-        order:         AppBundle\Entity\Order
-        order_element: AppBundle\Entity\OrderElement
-        customer:      AppBundle\Entity\Customer
+        order:         AppBundle\Entity\Commerce\Order
+        order_element: AppBundle\Entity\Commerce\OrderElement
+        customer:      AppBundle\Entity\Commerce\Customer
 
 doctrine:
     orm:

@@ -54,8 +54,22 @@ class InspectionAdmin extends Admin
             $formMapper->add('car', null, array('constraints' => new Assert\NotNull()));
         }
 
-        $formMapper
-            ->add('date', null, array('widget' => 'single_text'))
-            ->add('comment');
+        if ($this->hasSubject() && $this->getSubject()->getStatus() == 1) {
+            $choices = array(
+                1 => 'Current value is 1',
+                2 => 'switch to 2'
+            );
+        } else {
+            $choices = array(
+                2 => 'current value is 2',
+                1 => 'switch to 1'
+            );
+        }
+
+        $formMapper->add('status', 'choice', array('choices' => $choices));
+
+        $formMapper->add('comment', 'sonata_simple_formatter_type', array('format' => 'richhtml'));
+
+        $formMapper->add('date', null, array('widget' => 'single_text'));
     }
 }
