@@ -68,8 +68,13 @@ class InspectionAdmin extends Admin
 
         $formMapper->add('status', 'choice', array('choices' => $choices));
 
-        $formMapper->add('comment', 'sonata_simple_formatter_type', array('format' => 'richhtml'));
+        $formMapper->add('comment', 'sonata_simple_formatter_type', array(
+            'format' => 'richhtml'
+        ));
 
         $formMapper->add('date', null, array('widget' => 'single_text'));
+        $formMapper->add('inspector', 'sonata_type_model_autocomplete', array(
+            'property' => 'username'
+        ));
     }
 }

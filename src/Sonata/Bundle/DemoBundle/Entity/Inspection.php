@@ -13,6 +13,7 @@ namespace Sonata\Bundle\DemoBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use AppBundle\Entity\User\User;
 
 /**
  * @ORM\Entity
@@ -32,6 +33,12 @@ class Inspection
      * @ORM\JoinColumn(nullable=false)
      **/
     protected $car;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User\User", cascade={"persist"}, fetch="EAGER")
+     * @ORM\JoinColumn(nullable=false)
+     **/
+    protected $inspector;
 
     /**
      * @ORM\Column(type="date")
@@ -122,6 +129,22 @@ class Inspection
     public function setStatus($status)
     {
         $this->status = $status;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getInspector()
+    {
+        return $this->inspector;
+    }
+
+    /**
+     * @param mixed $inspector
+     */
+    public function setInspector(User $inspector = null)
+    {
+        $this->inspector = $inspector;
     }
 
     /**
