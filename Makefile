@@ -66,6 +66,7 @@ assets-watch:
 
 build:
 	rm -rf web/sitemap*xml
+	find . -name '*.DS_Store' -type f -delete
 	git stash
 	app/console assets:install web
 	bin/qa_build_git.sh . /home/vagrant/sonata-sandbox-build 2.4 2.4
