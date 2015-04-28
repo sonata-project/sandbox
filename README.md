@@ -20,7 +20,7 @@ Quick Installation
 
 The Sonata Project provides a build of the Sonata Project sandbox to quickly start with the projet.
 
-* Retrieve the code: ``curl -L github https://github.com/sonata-project/sandbox-build/archive/2.4.tar.gz | tar xzv``
+* Retrieve the code: ``curl -L https://github.com/sonata-project/sandbox-build/archive/2.4.tar.gz | tar xzv``
 * Configure default the ``parameters.yml`` file: ``cp app/config/parameters.yml.dist app/config/parameters.yml``
 * load the data: ``php bin/load_data.php``
 * You should should be ready to go ...
