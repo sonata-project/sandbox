@@ -17,7 +17,7 @@ help:
 	@echo "  build      push code to the build repository"
 
 test:
-	phpunit -c app
+	php -dmemory_limit=-1 phpunit -c app
 
 test-all:
 	./bin/qa_client_ci.sh
@@ -65,6 +65,7 @@ assets-watch:
 	app/console assetic:dump --watch
 
 build:
+	rm -rf web/sitemap*xml
 	git stash
 	app/console assets:install web
 	bin/qa_build_git.sh . /home/vagrant/sonata-sandbox-build 2.4 2.4

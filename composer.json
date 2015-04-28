@@ -11,6 +11,7 @@
     "minimum-stability": "stable",
 
     "require": {
+
         "php": ">=5.3.3",
 
         "twig/twig": "~1.12",
@@ -64,6 +65,7 @@
         "sonata-project/classification-bundle": "~2.2@dev",
         "sonata-project/ecommerce": "dev-develop",
         "sonata-project/comment-bundle": "~2.2@dev",
+        "sonata-project/sonata-composer": "dev-master",
 
         "friendsofsymfony/comment-bundle": "~2.0@dev",
 
