@@ -53,7 +53,7 @@ Feature: Check the Comment controller calls for NewsBundle
     And response should contain "<message>"
   Examples:
     | resource                             | status_code | type | name | email         | url                       | status | content                    | message    |
-    | /api/news/posts/<post>/comments.xml  | 200         | xml  | Grou | grou@mail.com | http://sonata-project.org | 1      | Grou content               | created_at |
+    | /api/news/posts/<post>/comments.xml  | 200         | xml  | Grou | grou@mail.com | https://sonata-project.org | 1      | Grou content               | created_at |
     | /api/news/posts/<post>/comments.json | 200         | json | Jess | jess@mail.com | http://www.jess.org       | 2      | Jess commented here!       | created_at |
     | /api/news/posts/<post>/comments.json | 200         | json | Jess |               |                           |        | Comment with less content! | created_at |
 
