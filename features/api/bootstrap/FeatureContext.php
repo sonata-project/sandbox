@@ -129,7 +129,7 @@ class FeatureContext extends BehatContext
                     $identifier = $data->attributes()->id;
                 }
 
-                $this->identifiers[$alias] = current($identifier);
+                $this->identifiers[$alias] = (string)$identifier;
                 break;
             case 'json':
                 $data = json_decode($responseContent);
@@ -285,17 +285,18 @@ class FeatureContext extends BehatContext
             throw new Exception(sprintf('The response content should be json or xml to count number or elements'));
         }
 
-        $perPage      = isset($data->per_page) ? $data->per_page : 0;
-        $totalElement = isset($data->total) ? $data->total : 0;
-        $lastPage     = isset($data->last_page) ? $data->last_page : 0;
-        $currentPage  = isset($data->page) ? $data->page : 0;
+        $perPage      = isset($data->per_page) ? (int)$data->per_page : 0;
+        $totalElement = isset($data->total) ? (int)$data->total : 0;
+        $lastPage     = isset($data->last_page) ? (int)$data->last_page : 0;
+        $currentPage  = isset($data->page) ? (int)$data->page : 0;
 
-        if ($lastPage != ceil($totalElement / $perPage)) {
+        if ($totalElement > 0 && $lastPage != ceil($totalElement / $perPage)) {
             throw new Exception(sprintf('The pager per_page value is inconsistent'));
         }
 
         if ($totalElement < ($currentPage * $perPage)) {
             $expectedCount = $totalElement - (($currentPage-1) * $perPage);
+
             if ($currentPage != $lastPage) {
                 throw new Exception(sprintf('The pager last page is inconsistent. Current page %s seems to be the last, but last page is %s', $currentPage, $lastPage));
             }
@@ -585,4 +586,3 @@ TABLE
     }
 }
 
- 
