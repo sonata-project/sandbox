@@ -8,12 +8,12 @@ class AppKernel extends Kernel
     /**
      * {@inheritdoc}
      */
-    public function init()
+    public function __construct($environment, $debug)
     {
         // Please read http://symfony.com/doc/2.0/book/installation.html#configuration-and-setup
         bcscale(3);
 
-        parent::init();
+        parent::__construct($environment, $debug);
     }
 
     /**
