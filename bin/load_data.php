@@ -82,13 +82,13 @@ function execute_commands($commands, $output)
 
 $output->writeln(<<<SONATA
                                        __
-               _________  ____  _____ / /______
+               _________  ____  _____ / / ______
               / ___/ __ \/ __ \/ __  / __/ __  /
              (__  ) /_/ / / / / /_/ / /_/ /_/ /
             /____/\____/_/ /_/\__,_/\__/\__,_/
-
 SONATA
 );
+$output->writeln("");
 $output->writeln("<info>Resetting demo, this can take a few minutes</info>");
 
 $fs->remove(sprintf('%s/web/uploads/media', $rootDir));
