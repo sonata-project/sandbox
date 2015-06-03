@@ -25,6 +25,32 @@ The Sonata Project provides a build of the Sonata Project sandbox to quickly sta
 * load the data: ``php bin/load_data.php``
 * You should should be ready to go ...
 
+Vagrant Installation
+--------------------
+
+The Sonata Project provides a Virtual Machine to help you start the sandbox easier on your own computer. This VM provides you all requirements to run sonata.
+
+** What's inside ? **
+    
+* nginx
+* php5-fpm, php5-curl, php5-gd, php5-intl, php5-cli ......
+* composer
+* mysql
+* git
+
+** Requirements **
+
+* [Vagrant][link_vagrant]
+* [VirtualBox][link_virtualbox]
+
+** Setup **
+
+* Retrieve the code: ``curl -L https://github.com/sonata-project/sandbox-build/archive/2.4.tar.gz | tar xzv``
+* Configure default the ``parameters.yml`` file: ``cp app/config/parameters.yml.dist app/config/parameters.yml``
+* Configure your host ``sudo nano /etc/hosts`` and add this line ``192.168.33.99   sonata.local``
+* vagrant up --provision (Vagrant is going to get the environnement, install it for you and load sonata sample data)
+* Open your browser [here][link_sonata]
+
 Composer Installation
 ---------------------
 
@@ -89,3 +115,6 @@ To run the Sonata test suites, you can run the command:
 Enjoy!
 
 [link_behat]: http://docs.behat.org "the official Behat documentation"
+[link_vagrant]: http://www.vagrantup.com/downloads.html "Download Vagrant"
+[link_virtualbox]: https://www.virtualbox.org/wiki/Downloads "Download VirtualBox"
+[link_sonata]: http://sonata.local "Sonata"
