@@ -4,21 +4,20 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
 
-    <route id="sonata_demo_media" pattern="/media">
+    <route id="sonata_demo_media" path="/media">
         <default key="_controller">SonataDemoBundle:Demo:media</default>
     </route>
 
-    <route id="sonata_demo_car" pattern="/car">
+    <route id="sonata_demo_car" path="/car">
         <default key="_controller">SonataDemoBundle:Demo:car</default>
     </route>
 
-    <route id="sonata_demo_car_rescue" pattern="/car-rescue-engine">
+    <route id="sonata_demo_car_rescue" path="/car-rescue-engine">
         <default key="_controller">SonataDemoBundle:Demo:carRescueEngine</default>
     </route>
 
-    <route id="sonata_demo_newsletter" pattern="/newsletter">
+    <route id="sonata_demo_newsletter" path="/newsletter" methods="POST">
         <default key="_controller">SonataDemoBundle:Demo:newsletter</default>
-        <requirement key="_method">POST</requirement>
     </route>
 
 </routes>
