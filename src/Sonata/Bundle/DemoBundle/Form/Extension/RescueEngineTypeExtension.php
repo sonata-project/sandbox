@@ -14,7 +14,7 @@ namespace Sonata\Bundle\DemoBundle\Form\Extension;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\AbstractTypeExtension;
 
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 use Sonata\Bundle\DemoBundle\Form\DataTransformer\EngineChoiceTransformer;
 
@@ -51,7 +51,7 @@ class RescueEngineTypeExtension extends AbstractTypeExtension
     /**
      * {@inheritdoc}
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'rescue_engines' => array(),

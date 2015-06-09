@@ -29,7 +29,7 @@ class DemoController extends Controller
         $form = $this->createForm(new CarType());
 
         if ($request->getMethod() == 'POST') {
-            $form->bind($request);
+            $form->submit($request);
         }
 
         ob_start();
@@ -65,7 +65,7 @@ class DemoController extends Controller
         ));
 
         if ($request->getMethod() == 'POST') {
-            $form->bind($request);
+            $form->submit($request);
         }
 
         ob_start();
@@ -106,7 +106,7 @@ class DemoController extends Controller
 
         // bind and transform the media's binary content into real content
         if ($request->getMethod() == 'POST') {
-            $form->bind($request);
+            $form->submit($request);
 
             $this->getSeoPage()
                 ->setTitle($media->getName())
