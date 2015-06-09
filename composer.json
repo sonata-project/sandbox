@@ -27,8 +27,6 @@
         "sensio/framework-extra-bundle": "~2.3",
         "sensio/generator-bundle": "~2.4",
 
-        "jms/security-extra-bundle": "~1.5",
-        "jms/di-extra-bundle": "~1.4",
         "jms/serializer-bundle": "~0.11",
 
         "doctrine/orm": "~2.4,<2.5",
