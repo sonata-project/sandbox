@@ -40,6 +40,10 @@ run_test() {
             extra="--coverage-html build/coverage/`basename ${1}` --coverage-clover build/clover/`basename ${1}`.xml"
         fi
 
+        echo "================================================================================"
+        echo "Running tests from ./${1}"
+        echo "--"
+
         php -d memory_limit=-1 bin/phpunit -c ${1} ${extra} --log-junit build/junit/`basename ${1}`.xml
 
         status=$?
