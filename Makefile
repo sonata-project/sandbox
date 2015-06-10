@@ -17,7 +17,7 @@ help:
 	@echo "  build      push code to the build repository"
 
 test:
-	php -dmemory_limit=-1 phpunit -c app
+	./bin/qa_client_ci.sh
 
 test-all:
 	./bin/qa_client_ci.sh
