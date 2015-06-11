@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+yes yes | pecl install apcu
+
 # tweak php configuration
 rm $HOME/.phpenv/versions/5.5.25/etc/conf.d/xdebug.ini
 echo "apc.shm_size=512M" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
@@ -60,3 +62,28 @@ wip:
     filters:
         tags: \"@skipped\"
 " > behat.yml
+
+# Tweak config_prod.yml
+
+echo "imports:
+    - { resource: config.yml }
+
+framework:
+    validation:
+        cache:                         apc
+
+doctrine:
+    orm:
+        entity_managers:
+            default:
+                metadata_cache_driver: apc
+                query_cache_driver:    apc
+                result_cache_driver:   apc
+
+monolog:
+    handlers:
+        main:
+            type:         stream
+            path:         %kernel.logs_dir%/%kernel.name%_%kernel.environment%.log
+            level:        debug
+" > app/config/config_prod.yml
