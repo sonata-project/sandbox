@@ -48,15 +48,15 @@ echo "default:
             files_path: .
 
     filters:
-        tags: "~@skipped&&~@api"
+        tags: \"~@skipped&&~@api\"
 
 api:
     paths:
         features:  features/api
         bootstrap: %behat.paths.features%/bootstrap
     filters:
-        tags: "~@skipped&&@api"
+        tags: \"~@skipped&&@api\"
 wip:
     filters:
-        tags: "@skipped"
+        tags: \"@skipped\"
 " > behat.yml
