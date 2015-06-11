@@ -87,3 +87,12 @@ monolog:
             path:         %kernel.logs_dir%/%kernel.name%_%kernel.environment%.log
             level:        debug
 " > app/config/config_prod.yml
+
+
+# Install spawn-fci to handle php-cgi process (no php-fpm available)
+curl http://download.lighttpd.net/spawn-fcgi/releases-1.6.x/spawn-fcgi-1.6.4.tar.gz | tar xvzf -
+cd spawn-fcgi-1.6.4/
+./configure && make
+
+cd ..
+
