@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-yes yes | pecl install apcu
+yes yes | pecl install channel://pecl.php.net/apcu-4.0.7
 
 # tweak php configuration
 rm $HOME/.phpenv/versions/5.5.25/etc/conf.d/xdebug.ini
