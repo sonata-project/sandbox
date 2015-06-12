@@ -117,13 +117,13 @@ $success = execute_commands(array(
     array($bin . ' ./app/console doctrine:database:drop --force','Dropping the database', true),
     array($bin . ' ./app/console doctrine:database:create','Creating the database', false),
     array($bin . ' ./app/console doctrine:schema:update --force','Creating the database\'s schema', false),
-    array($bin . '  -d max_execution_time=600 ./app/console doctrine:fixtures:load --verbose --env=dev --no-debug','Loading fixtures', false),
+    array($bin . '  -d max_execution_time=600 ./app/console doctrine:fixtures:load --verbose --env=dev --no-debug --no-interaction','Loading fixtures', false),
     array($bin . ' ./app/console sonata:news:sync-comments-count','Sonata - News: updating comments count', false),
     array($bin . ' ./app/console sonata:page:update-core-routes --site=all --no-debug','Sonata - Page: updating core route', false),
     array($bin . ' ./app/console sonata:page:create-snapshots --site=all --no-debug','Sonata - Page: creating snapshots from pages', false),
     array($bin . ' ./app/console assets:install --symlink web','Configure assets', false),
     array($bin . ' ./app/console sonata:admin:setup-acl','Security: setting up ACL', false),
-    array($bin . ' ./app/console sonata:admin:generate-object-acl','Security: generating object ACL', false),
+    array($bin . ' ./app/console sonata:admin:generate-object-acl --no-debug','Security: generating object ACL', false),
 ), $output);
 
 if (!$success) {
