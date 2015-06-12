@@ -43,24 +43,34 @@ if (!is_file(__DIR__.'/../app/config/parameters.yml')) {
 function execute_commands($commands, $output)
 {
     foreach($commands as $command) {
-        list($command, $message, $allowFailure) = $command;
+        list($command, $message, $allowFailure, $timeoutDuration) = $command;
 
         $output->write(sprintf(' - %\'.-70s', $message));
         $return = array();
         if (is_callable($command)) {
             $success = $command($output);
         } else {
-            $p = new \Symfony\Component\Process\Process($command);
-            $p->setTimeout(null);
-            $p->run(function($type, $data) use (&$return) {
-                $return[] = $data;
-            });
+            try {
+                $p = new \Symfony\Component\Process\Process($command);
+                $p->setTimeout($timeoutDuration);
+                $p->run(function($type, $data) use (&$return) {
+                    $return[] = $data;
+                });
 
-            $success = $p->isSuccessful();
+                $success = $p->isSuccessful();
+                $timeout = false;
+            } catch (\Symfony\Component\Process\Exception\ProcessTimedOutException $ex){
+                $success = false;
+                $timeout = true;
+            }
         }
 
         if (!$success && !$allowFailure) {
-            $output->writeln('<error>KO</error>');
+            if($timeout){
+                $output->writeln('<error>KO(timeout)</error>');
+            }else{
+                $output->writeln('<error>KO</error>');
+            }
             $output->writeln(sprintf('<error>Fail to run: %s</error>', is_callable($command) ? '[closure]' : $command));
             foreach($return as $data) {
                $output->write($data, false, OutputInterface::OUTPUT_RAW);
@@ -71,7 +81,11 @@ function execute_commands($commands, $output)
 
             return false;
         } else if (!$success) {
-            $output->writeln("<info>!!</info>");
+            if($timeout){
+                $output->writeln('<error>!!(timeout)</error>');
+            }else{
+                $output->writeln('<error>!!</error>');
+            }
         } else {
             $output->writeln("<info>OK</info>");
         }
@@ -103,27 +117,27 @@ if (extension_loaded('xdebug')) {
 }
 
 $success = execute_commands(array(
-    array($bin . ' ./bin/sonata-check.php','Checking Sonata Project\'s requirements', false),
+    array($bin . ' ./bin/sonata-check.php','Checking Sonata Project\'s requirements', false, null),
     array(function(OutputInterface $output) use ($fs) {
         $fs->remove("app/cache/prod");
         $fs->remove("app/cache/dev");
 
         return true;
-    }, 'Deleting prod and dev cache folders', false),
+    }, 'Deleting prod and dev cache folders', false, null),
     array(function(OutputInterface $output) use ($fs) {
         return $fs->exists("app/config/parameters.yml");
-    }, 'Check for app/config/parameters.yml file', false),
-    array($bin . ' ./app/console cache:create-cache-class --env=prod --no-debug','Creating the class cache', false),
-    array($bin . ' ./app/console doctrine:database:drop --force','Dropping the database', true),
-    array($bin . ' ./app/console doctrine:database:create','Creating the database', false),
-    array($bin . ' ./app/console doctrine:schema:update --force','Creating the database\'s schema', false),
-    array($bin . '  -d max_execution_time=600 ./app/console doctrine:fixtures:load --verbose --env=dev --no-debug','Loading fixtures', false),
-    array($bin . ' ./app/console sonata:news:sync-comments-count','Sonata - News: updating comments count', false),
-    array($bin . ' ./app/console sonata:page:update-core-routes --site=all --no-debug','Sonata - Page: updating core route', false),
-    array($bin . ' ./app/console sonata:page:create-snapshots --site=all --no-debug','Sonata - Page: creating snapshots from pages', false),
-    array($bin . ' ./app/console assets:install --symlink web','Configure assets', false),
-    array($bin . ' ./app/console sonata:admin:setup-acl','Security: setting up ACL', false),
-    array($bin . ' ./app/console sonata:admin:generate-object-acl','Security: generating object ACL', false),
+    }, 'Check for app/config/parameters.yml file', false, null),
+    array($bin . ' ./app/console cache:create-cache-class --env=prod --no-debug','Creating the class cache', false, null),
+    array($bin . ' ./app/console doctrine:database:drop --force','Dropping the database', true, null),
+    array($bin . ' ./app/console doctrine:database:create','Creating the database', false, null),
+    array($bin . ' ./app/console doctrine:schema:update --force','Creating the database\'s schema', false, null),
+    array($bin . ' ./app/console doctrine:fixtures:load --verbose --env=dev --no-debug --no-interaction','Loading fixtures', false, 600),
+    array($bin . ' ./app/console sonata:news:sync-comments-count','Sonata - News: updating comments count', false, null),
+    array($bin . ' ./app/console sonata:page:update-core-routes --site=all --no-debug','Sonata - Page: updating core route', false, null),
+    array($bin . ' ./app/console sonata:page:create-snapshots --site=all --no-debug','Sonata - Page: creating snapshots from pages', false, null),
+    array($bin . ' ./app/console assets:install --symlink web','Configure assets', false, null),
+    array($bin . ' ./app/console sonata:admin:setup-acl','Security: setting up ACL', false, null),
+    array($bin . ' ./app/console sonata:admin:generate-object-acl','Security: generating object ACL', false, null),
 ), $output);
 
 if (!$success) {
