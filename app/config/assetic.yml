@@ -93,7 +93,7 @@ assetic:
                 - %kernel.root_dir%/../web/bundles/sonatacore/vendor/moment/min/moment.min.js
                 - %kernel.root_dir%/../web/bundles/sonatacore/vendor/bootstrap/dist/js/bootstrap.js
                 - %kernel.root_dir%/../web/bundles/sonatacore/vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js
-                - %kernel.root_dir%/../web/bundles/sonataadmin/jquery/form/jquery.form.js
+                - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/jquery-form/jquery.form.js
                 - %kernel.root_dir%/../web/bundles/sonataadmin/jquery/jquery.confirmExit.js
                 - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/x-editable/dist/bootstrap3-editable/js/bootstrap-editable.js
                 - %kernel.root_dir%/../web/bundles/sonatacore/vendor/select2/select2.js
