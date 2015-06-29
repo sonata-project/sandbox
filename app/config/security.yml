@@ -37,7 +37,6 @@ security:
                 failure_path:   null
             logout:
                 path:           /admin/logout
-                target:         /admin/login
             anonymous:    true
 
         # This firewall is used to handle the public login area
