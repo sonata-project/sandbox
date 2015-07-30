@@ -31,7 +31,7 @@
         "doctrine/orm": "~2.4,<2.5",
         "doctrine/dbal": "~2.4,<2.5",
         "doctrine/doctrine-bundle": "~1.5",
-        "doctrine/doctrine-migrations-bundle": "~2.0@dev",
+        "doctrine/doctrine-migrations-bundle": "*@dev",
         "doctrine/migrations": "~1.0@dev",
         "doctrine/doctrine-fixtures-bundle": "~2.2",
         "doctrine/data-fixtures": "~1.0@dev",
