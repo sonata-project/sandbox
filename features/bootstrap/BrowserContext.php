@@ -18,6 +18,16 @@ use Behat\MinkExtension\Context\MinkContext;
 class BrowserContext extends MinkContext
 {
     /**
+     * @BeforeScenario
+     */
+    public static function setupFeature($event)
+    {
+        include_once realpath(__DIR__.'/../CiHelper.php');
+
+        CiHelper::run($event);
+    }
+
+    /**
      * @When /^I am connected with "([^"]*)" and "([^"]*)" on "([^"]*)" I should see "([^"]*)"$/
      *
      * @param string $login
@@ -42,8 +52,8 @@ class BrowserContext extends MinkContext
      */
     public function iAmConnectedWithOn($login, $rawPassword, $url)
     {
-        $this->visit('logout');
-        $this->visit('login');
+        $this->visit('/admin/logout');
+        $this->visit('/admin/login');
         $this->fillField('_username', $login);
         $this->fillField('_password', $rawPassword);
         $this->pressButton('Login');

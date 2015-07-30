@@ -92,11 +92,11 @@ doctrine:
 
         connections:
             default:
-                driver:   %database_driver%
-                dbname:   %database_name%
-                user:     %database_user%
-                host:     %database_host%
-                password: %database_password%
+                driver:   %database.driver%
+                dbname:   %database.name%
+                user:     %database.user%
+                host:     %database.host%
+                password: %database.password%
                 charset:  UTF8
 
         types:

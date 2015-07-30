@@ -22,38 +22,21 @@ Feature: Check the car admin module
     And I press "Create"
     Then I should see "Item \"Renault\" has been successfully created."
 
+  @keep
   Scenario: Edit a car
     When I am connected with "admin" and "admin" on "admin/sonata/demo/car/list"
     And I follow "toto"
     And I press "Update"
     Then I should see "Item \"Renault\" has been successfully updated."
 
+  @keep
   Scenario: Filter cars
     When I am connected with "admin" and "admin" on "admin/sonata/demo/car/list"
     And I fill in "filter_name_value" with "toto"
     And I press "Filter"
     Then I should see "name"
 
-  Scenario: Export JSON data
-    When I am connected with "admin" and "admin" on "admin/sonata/demo/car/list"
-    And I follow "JSON"
-    Then the response status code should be 200
-
-  Scenario: Export CSV data
-    When I am connected with "admin" and "admin" on "admin/sonata/demo/car/list"
-    And I follow "CSV"
-    Then the response status code should be 200
-
-  Scenario: Export XML data
-    When I am connected with "admin" and "admin" on "admin/sonata/demo/car/list"
-    And I follow "XML"
-    Then the response status code should be 200
-
-  Scenario: Export XLS data
-    When I am connected with "admin" and "admin" on "admin/sonata/demo/car/list"
-    And I follow "XLS"
-    Then the response status code should be 200
-
+  @keep
   Scenario: Delete a car
     When I am connected with "admin" and "admin" on "admin/sonata/demo/car/list"
     And I fill in "filter_name_value" with "toto"
@@ -62,3 +45,19 @@ Feature: Check the car admin module
     And I follow link "Delete" with class "btn btn-danger"
     And I press "Yes, delete"
     Then I should see "Item \"Renault\" has been deleted successfully."
+
+  Scenario: Export JSON data
+    When I am connected with "admin" and "admin" on "admin/sonata/demo/car/list"
+    And I should not see "JSON"
+
+  Scenario: Export CSV data
+    When I am connected with "admin" and "admin" on "admin/sonata/demo/car/list"
+    And I should not see "CSV"
+
+  Scenario: Export XML data
+    When I am connected with "admin" and "admin" on "admin/sonata/demo/car/list"
+    And I should not see "XML"
+
+  Scenario: Export XLS data
+    When I am connected with "admin" and "admin" on "admin/sonata/demo/car/list"
+    And I should not see "XLS"

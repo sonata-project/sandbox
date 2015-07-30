@@ -52,16 +52,16 @@ Feature: Check the Comment controller calls for NewsBundle
     And response should contain "<type>" object
     And response should contain "<message>"
   Examples:
-    | resource                             | status_code | type | name | email         | url                       | status | content                    | message    |
+    | resource                             | status_code | type | name | email         | url                        | status | content                    | message    |
     | /api/news/posts/<post>/comments.xml  | 200         | xml  | Grou | grou@mail.com | https://sonata-project.org | 1      | Grou content               | created_at |
-    | /api/news/posts/<post>/comments.json | 200         | json | Jess | jess@mail.com | http://www.jess.org       | 2      | Jess commented here!       | created_at |
-    | /api/news/posts/<post>/comments.json | 200         | json | Jess |               |                           |        | Comment with less content! | created_at |
+    | /api/news/posts/<post>/comments.json | 200         | json | Jess | jess@mail.com | http://www.jess.org        | 2      | Jess commented here!       | created_at |
+    | /api/news/posts/<post>/comments.json | 200         | json | Jess |               |                            |        | Comment with less content! | created_at |
 
   @ko @new
   Scenario: I can't add a comment on a missing post
     Given I have a Post identified by "post"
     When I send a POST request to "/api/news/posts/999999999/comments.xml" with values:
-      | name    | Nath    |
+      | name    | Nath                        |
       | message | Nath commented a ghost post |
     Then the response code should be 404
     And response should contain "xml" object
@@ -79,7 +79,7 @@ Feature: Check the Comment controller calls for NewsBundle
       | author                | 1                           |
       # commentsEnabled value is not specified, thus it is set to false
     When I send a POST request to "/api/news/posts/<post>/comments.xml" using identifier with values:
-      | name    | Nath    |
+      | name    | Nath                            |
       | message | Nath commented a forbidden post |
     Then the response code should be 403
     And response should contain "xml" object

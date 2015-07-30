@@ -106,7 +106,6 @@ Feature: Check the Basket controller calls for BasketBundle
     And response should contain "GBP"
 
     # POST (basket elements)
-
     When I send a POST request to "/api/ecommerce/baskets/<basket_id>/basketelements.<format>" using last identifier with values:
       | productId | 1 |
       | quantity  | 2 |

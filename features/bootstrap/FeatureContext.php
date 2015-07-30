@@ -17,11 +17,6 @@ use Behat\Behat\Context\BehatContext;
 class FeatureContext extends BehatContext
 {
     /**
-     * @var string
-     */
-    private $baseUrl;
-
-    /**
      * Initializes context.
      * Every scenario gets it's own context object.
      *
@@ -29,9 +24,17 @@ class FeatureContext extends BehatContext
      */
     public function __construct(array $parameters)
     {
-        $this->baseUrl = $parameters['base_url'];
-
         $this->useContext('browser', new \BrowserContext($parameters));
+    }
+
+    /**
+     * @BeforeScenario
+     */
+    public static function setupFeature($event)
+    {
+        include_once realpath(__DIR__.'/../CiHelper.php');
+
+        CiHelper::run($event);
     }
 
     /**
@@ -104,7 +107,4 @@ class FeatureContext extends BehatContext
             throw new Exception("The error was not ".$error.", it was ".$data['error']);
         }
     }
-
-
-
 }

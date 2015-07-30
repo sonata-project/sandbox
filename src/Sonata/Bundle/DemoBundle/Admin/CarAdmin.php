@@ -102,9 +102,16 @@ class CarAdmin extends Admin
     {
         $car = parent::getNewInstance();
 
+        $userAdmin = $this->getConfigurationPool()->getAdminByAdminCode('sonata.user.admin.user');
+
+        $user = $userAdmin->getModelManager()->findOneBy($userAdmin->getClass(), array(
+            'username' => 'admin'
+        ));
+
         $inspection = new Inspection();
         $inspection->setDate(new \DateTime());
         $inspection->setComment("Initial inspection");
+        $inspection->setInspector($user);
 
         $car->addInspection($inspection);
 
