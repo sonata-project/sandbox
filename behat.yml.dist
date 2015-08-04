@@ -1,14 +1,14 @@
 default:
     extensions:
         Behat\MinkExtension\Extension:
-            base_url:  'http://demo.sonata-project.org/'
+            base_url:  'http://sonata.local/'
             goutte:     ~
             #selenium2: ~
             files_path: .
 
     context:
         parameters:
-            base_url:  'http://demo.sonata-project.org/'
+            base_url:  'http://sonata.local/'
             files_path: .
 
     filters:

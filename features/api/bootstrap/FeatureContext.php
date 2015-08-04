@@ -47,6 +47,16 @@ class FeatureContext extends BehatContext
     }
 
     /**
+     * @BeforeScenario
+     */
+    public static function setupFeature($event)
+    {
+        include_once realpath(__DIR__.'/../../CiHelper.php');
+
+        CiHelper::run($event);
+    }
+
+    /**
      * Sends HTTP request to specific URL using latest identifier.
      *
      * @param string $method request method
@@ -152,7 +162,6 @@ class FeatureContext extends BehatContext
      */
     public function storeTheResponseBasketelementIdentifier($objectType, $alias)
     {
-
         $responseContent = $this->getSubcontext('api')->getBrowser()->getLastResponse()->getContent();
 
         $objectType = strtolower($objectType);

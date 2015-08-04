@@ -31,7 +31,7 @@ Feature: Check the API for MediaBundle
       | enabled     | 1              |
     Then the response code should be 404
     And response should contain "xml" object
-    And response should contain "unable to retrieve the provider named : `nonexisting`"
+    And response should contain "Unable to retrieve the provider named"
 
   Scenario: Media full workflow
     When I send a POST request to "/api/media/providers/sonata.media.provider.youtube/media.xml" with values:
@@ -58,7 +58,7 @@ Feature: Check the API for MediaBundle
     # PUT
 
     When I send a PUT request to "/api/media/media/<media_id>.xml" using last identifier with values:
-      | name        | My new media name |
+      | name | My new media name |
     Then the response code should be 200
     And response should contain "xml" object
     And response should contain "My new media name"
@@ -82,14 +82,14 @@ Feature: Check the API for MediaBundle
 
   Scenario: Media binary workflow
     When I send a POST request to "/api/media/providers/sonata.media.provider.image/media.xml" with values:
-      | name           | My image media                             |
-      | description    | My description                             |
-      | enabled        | 1                                          |
-      | copyright      | My Copyright                               |
-      | authorName     | Myself                                     |
-      | context        | default                                    |
-      | cdnIsFlushable | 1                                          |
-      | contentType    | image/jpeg                                 |
+      | name           | My image media |
+      | description    | My description |
+      | enabled        | 1              |
+      | copyright      | My Copyright   |
+      | authorName     | Myself         |
+      | context        | default        |
+      | cdnIsFlushable | 1              |
+      | contentType    | image/jpeg     |
     Then the response code should be 200
     And store the XML response identifier as "image_media_id"
 
@@ -100,7 +100,7 @@ Feature: Check the API for MediaBundle
     And response should contain "missing_binary_content"
 
 
-    When I send a PUT request to "/api/media/media/<image_media_id>/binary/content.xml" with the binary "features/fixtures/sonata.jpg"
+    When I send a PUT request to "/api/media/media/<image_media_id>/binary/content.xml" with the binary "project/features/fixtures/sonata.jpg"
     Then the response code should be 200
     And response should contain "xml" object
     And response should contain "My image media"

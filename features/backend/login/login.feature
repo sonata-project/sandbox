@@ -28,8 +28,8 @@ Feature: Check login
         Given I am connected with "admin" and "admin" on "admin/login"
         When I go to "admin/dashboard"
         And I follow "Logout"
-        Then I should see "Welcome"
-        And I should see "Sonata sandbox"
+        Then I should see "Authentication"
+        And I should see "Sonata Project"
 
     Scenario Outline: Check menu items present on the dashboard
         Given I am connected with "admin" and "admin" on "admin/dashboard"

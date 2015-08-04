@@ -117,17 +117,19 @@ Feature: Check the Product controller calls for ProductBundle
       | /api/ecommerce/products/1/productcollections.json | 200 | json | collection_id |
       | /api/ecommerce/products/1/productcollections.xml  | 200 | xml  | collection_id |
 
-  @api @product @variations @id @list
-  Scenario Outline: Retrieve all variations for a specific product identified by an unique ID
-    When I send a GET request to "<resource>"
-    Then the response code should be <status_code>
-    And response should contain "<format>" object
-    And response should contain "<message>"
+  # tests are not save as they rely on non unique id ...
+  #@api @product @variations @id @list
+  #Scenario Outline: Retrieve all variations for a specific product identified by an unique ID
+  #  When I send a GET request to "<resource>"
+  #  Then the response code should be <status_code>
+  #  Then print response
+  #  And response should contain "<format>" object
+  #  And response should contain "<message>"
 
-    Examples:
-      | resource | status_code | format | message |
-      | /api/ecommerce/products/524/variations.json | 200 | json | travellers |
-      | /api/ecommerce/products/524/variations.xml  | 200 | xml  | travellers |
+  #  Examples:
+  #    | resource | status_code | format | message |
+  #    | /api/ecommerce/products/524/variations.json | 200 | json | travellers |
+  #    | /api/ecommerce/products/524/variations.xml  | 200 | xml  | travellers |
 
   # POST
 
@@ -145,10 +147,10 @@ Feature: Check the Product controller calls for ProductBundle
     And response should contain "Validation Failed"
     And response should contain "This value should not be null"
 
-  Examples:
-    | format  | provider                               |
-    | xml     | sonata.ecommerce_demo.product.travel   |
-    | json    | sonata.ecommerce_demo.product.travel   |
+    Examples:
+      | format | provider                             |
+      | xml    | sonata.ecommerce_demo.product.travel |
+      | json   | sonata.ecommerce_demo.product.travel |
 
   Scenario Outline: Post new product with bad provider
     When I send a POST request to "/api/ecommerce/<provider>/products.<format>" with values:
@@ -158,14 +160,14 @@ Feature: Check the Product controller calls for ProductBundle
       | price             | 15.00           |
       | vatRate           | 20              |
       | enabled           | 1               |
-    Then the response code should be 500
+    Then the response code should be 404
     And response should contain "<format>" object
-    And response should contain "The product `<provider>` does not exist!"
+    And response should contain "The product definition `<provider>` does not exist!"
 
-  Examples:
-    | format  | provider                            |
-    | xml     | sonata.ecommerce_demo.product.bad   |
-    | json    | sonata.ecommerce_demo.product.bad   |
+    Examples:
+      | format  | provider                            |
+      | xml     | sonata.ecommerce_demo.product.bad   |
+      | json    | sonata.ecommerce_demo.product.bad   |
 
   @api @product @workflow
   Scenario Outline: Product full workflow
@@ -234,7 +236,7 @@ Feature: Check the Product controller calls for ProductBundle
     Then the response code should be 404
     And response should contain "<format>" object
 
-  Examples:
-    | format  | provider                               |
-    | xml     | sonata.ecommerce_demo.product.travel   |
-    | json    | sonata.ecommerce_demo.product.travel   |
+    Examples:
+      | format  | provider                               |
+      | xml     | sonata.ecommerce_demo.product.travel   |
+      | json    | sonata.ecommerce_demo.product.travel   |

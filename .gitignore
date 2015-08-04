@@ -13,3 +13,5 @@
 /web/vendor
 /web/assetic/*[0-9]*
 .vagrant
+.docker/*.tar
+.idea
