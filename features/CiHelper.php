@@ -3,11 +3,8 @@
 use Behat\Behat\Event\ScenarioEvent;
 
 if (!class_exists('CiHelper')) {
-
-
     class CiHelper
     {
-
         private static $lastContainerId;
 
         /**
@@ -15,7 +12,7 @@ if (!class_exists('CiHelper')) {
          */
         public static function isInternalCI()
         {
-            return getenv('SONATA_CI_PROXY_PORT_6666_TCP') ? true : false;
+            return getenv('SONATA_CI_MODE') ? true : false;
         }
 
         /**
@@ -23,9 +20,7 @@ if (!class_exists('CiHelper')) {
          */
         public static function getClient()
         {
-            $server = getenv('SONATA_CI_PROXY_PORT_6666_TCP');
-
-            $client = stream_socket_client($server, $errno, $errorMessage);
+            $client = stream_socket_client("tcp://localhost:6666", $errno, $errorMessage);
 
             if ($client === false) {
                 throw new UnexpectedValueException("Failed to connect: $errorMessage");
