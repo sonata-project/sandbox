@@ -52,43 +52,45 @@ Feature: Check the post admin module
     And I follow "Show"
     Then the response status code should be 200
 
-  @keep
-  Scenario: Set ACL of a post
-    When I am connected with "admin" and "admin" on "admin/app/news-post/list"
-    And I fill in "filter_title_value" with "toto"
-    And I press "Filter"
-    And I follow "toto"
-    And I follow "ACL"
-    And I check "acl_roles_form_0_VIEW"
-    And I check "acl_roles_form_0_EDIT"
-    And I press "Update ACL"
-    Then I should see "ACL has been successfuly updated."
-    And the checkbox "acl_roles_form_0_VIEW" should be checked
-    And the checkbox "acl_roles_form_0_EDIT" should be checked
-    And the checkbox "acl_roles_form_0_DELETE" should not be checked
-    And the checkbox "acl_roles_form_0_UNDELETE" should not be checked
-    And the checkbox "acl_roles_form_0_OPERATOR" should not be checked
-    And the checkbox "acl_roles_form_0_MASTER" should not be checked
-    And the checkbox "acl_roles_form_0_OWNER" should not be checked
-
-  @keep
-  Scenario: Update ACL of a post
-    When I am connected with "admin" and "admin" on "admin/app/news-post/list"
-    And I fill in "filter_title_value" with "toto"
-    And I press "Filter"
-    And I follow "toto"
-    And I follow "ACL"
-    And I check "acl_roles_form_0_DELETE"
-    And I uncheck "acl_roles_form_0_EDIT"
-    And I press "Update ACL"
-    Then I should see "ACL has been successfuly updated."
-    And the checkbox "acl_roles_form_0_VIEW" should be checked
-    And the checkbox "acl_roles_form_0_EDIT" should not be checked
-    And the checkbox "acl_roles_form_0_DELETE" should be checked
-    And the checkbox "acl_roles_form_0_UNDELETE" should not be checked
-    And the checkbox "acl_roles_form_0_OPERATOR" should not be checked
-    And the checkbox "acl_roles_form_0_MASTER" should not be checked
-    And the checkbox "acl_roles_form_0_OWNER" should not be checked
+# Need to improve performance and ACL edition, which is not usable for large users dataset
+#
+#  @keep
+#  Scenario: Set ACL of a post
+#    When I am connected with "admin" and "admin" on "admin/app/news-post/list"
+#    And I fill in "filter_title_value" with "toto"
+#    And I press "Filter"
+#    And I follow "toto"
+#    And I follow "ACL"
+#    And I check "acl_roles_form_0_VIEW"
+#    And I check "acl_roles_form_0_EDIT"
+#    And I press "Update ACL"
+#    Then I should see "ACL has been successfuly updated."
+#    And the checkbox "acl_roles_form_0_VIEW" should be checked
+#    And the checkbox "acl_roles_form_0_EDIT" should be checked
+#    And the checkbox "acl_roles_form_0_DELETE" should not be checked
+#    And the checkbox "acl_roles_form_0_UNDELETE" should not be checked
+#    And the checkbox "acl_roles_form_0_OPERATOR" should not be checked
+#    And the checkbox "acl_roles_form_0_MASTER" should not be checked
+#    And the checkbox "acl_roles_form_0_OWNER" should not be checked
+#
+#  @keep
+#  Scenario: Update ACL of a post
+#    When I am connected with "admin" and "admin" on "admin/app/news-post/list"
+#    And I fill in "filter_title_value" with "toto"
+#    And I press "Filter"
+#    And I follow "toto"
+#    And I follow "ACL"
+#    And I check "acl_roles_form_0_DELETE"
+#    And I uncheck "acl_roles_form_0_EDIT"
+#    And I press "Update ACL"
+#    Then I should see "ACL has been successfuly updated."
+#    And the checkbox "acl_roles_form_0_VIEW" should be checked
+#    And the checkbox "acl_roles_form_0_EDIT" should not be checked
+#    And the checkbox "acl_roles_form_0_DELETE" should be checked
+#    And the checkbox "acl_roles_form_0_UNDELETE" should not be checked
+#    And the checkbox "acl_roles_form_0_OPERATOR" should not be checked
+#    And the checkbox "acl_roles_form_0_MASTER" should not be checked
+#    And the checkbox "acl_roles_form_0_OWNER" should not be checked
 
   @keep
   Scenario: Filter posts
