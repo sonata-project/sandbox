@@ -120,7 +120,7 @@ sonata_admin:
             sonata.admin.group.classification:
                 label:           sonata_classification
                 label_catalogue: SonataClassificationBundle
-                icon:            '<i class="fa fa-sitemap"></i>'
+                icon:            '<i class="fa fa-tags"></i>'
                 items:
                     - sonata.classification.admin.category
                     - sonata.classification.admin.tag
