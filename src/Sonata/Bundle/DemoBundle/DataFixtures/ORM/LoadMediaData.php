@@ -41,7 +41,7 @@ class LoadMediaData extends AbstractFixture implements ContainerAwareInterface, 
     {
         $gallery = $this->getGalleryManager()->create();
 
-        $manager = $this->getMediaManager();
+        $mediaManager = $this->getMediaManager();
         $faker = $this->getFaker();
 
         $canada = Finder::create()->name('IMG_3587*.jpg')->in(__DIR__.'/../data/files/gilles-canada');
@@ -50,7 +50,7 @@ class LoadMediaData extends AbstractFixture implements ContainerAwareInterface, 
 
         $i = 0;
         foreach ($canada as $file) {
-            $media = $manager->create();
+            $media = $mediaManager->create();
             $media->setBinaryContent($file);
             $media->setEnabled(true);
             $media->setName('Canada');
@@ -61,13 +61,13 @@ class LoadMediaData extends AbstractFixture implements ContainerAwareInterface, 
 
             $this->addReference('sonata-media-'.($i++), $media);
 
-            $manager->save($media, 'default', 'sonata.media.provider.image');
+            $mediaManager->save($media, 'default', 'sonata.media.provider.image');
 
             $this->addMedia($gallery, $media);
         }
 
         foreach ($paris as $file) {
-            $media = $manager->create();
+            $media = $mediaManager->create();
             $media->setBinaryContent($file);
             $media->setEnabled(true);
             $media->setName('Paris');
@@ -78,13 +78,13 @@ class LoadMediaData extends AbstractFixture implements ContainerAwareInterface, 
 
             $this->addReference('sonata-media-'.($i++), $media);
 
-            $manager->save($media, 'default', 'sonata.media.provider.image');
+            $mediaManager->save($media, 'default', 'sonata.media.provider.image');
 
             $this->addMedia($gallery, $media);
         }
 
         foreach ($switzerland as $file) {
-            $media = $manager->create();
+            $media = $mediaManager->create();
             $media->setBinaryContent($file);
             $media->setEnabled(true);
             $media->setName('Switzerland');
@@ -95,7 +95,7 @@ class LoadMediaData extends AbstractFixture implements ContainerAwareInterface, 
 
             $this->addReference('sonata-media-'.($i++), $media);
 
-            $manager->save($media, 'default', 'sonata.media.provider.image');
+            $mediaManager->save($media, 'default', 'sonata.media.provider.image');
 
             $this->addMedia($gallery, $media);
         }
