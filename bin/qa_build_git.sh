@@ -70,14 +70,20 @@ if [ ! -d "$2" ]; then
     exit 1
 fi
 
+if [ -z "$3" ]; then
+    echo "ERR: you need to provide the target branch"
+    display_help
+    exit 1
+fi
+
 
 SOURCE_BRANCH="master"
 if [ ! -z "$4" ]; then
     SOURCE_BRANCH="$4"
 fi
 
-SOURCE_DIR=`realpath $1`
-TARGET_DIR=`realpath $2`
+SOURCE_DIR=`readlink -f $1`
+TARGET_DIR=`readlink -f $2`
 TARGET_BRANCH=$3
 COMMIT=`cd $SOURCE_DIR && git rev-parse HEAD`
 
@@ -100,7 +106,14 @@ git reset --hard
 git clean -f
 
 git checkout $SOURCE_BRANCH
-exit_on_error "Fail to switch to the source branch: ${SOURCE_BRANCH}" $?
+
+# empty/fresh repository
+if [ $? -ne 0 ]; then
+    echo "WARN: Fail to switch to the source branch: {$SOURCE_BRANCH}"
+
+    git checkout -b $SOURCE_BRANCH
+    exit_on_error "Fail to create the source branch: ${SOURCE_BRANCH}" $?
+fi
 
 # 3.1 switch/create to the branch
 git checkout -b $TARGET_BRANCH
@@ -109,8 +122,10 @@ if [ $? -ne 0 ]; then
     echo "WARN: Fail to create a new branch: {$TARGET_BRANCH}"
 
     git checkout $TARGET_BRANCH
-
     exit_on_error "ERR: Fail to checkout the branch: {$TARGET_BRANCH}" $?
+
+    git pull --rebase origin $TARGET_BRANCH
+    exit_on_error "ERR: Fail to pull the branch: {$TARGET_BRANCH}" $?
 fi
 
 # 3.2 create the tar command to retrieve and ignore some file and copy to the target folder
@@ -123,7 +138,9 @@ rsync -av \
     --exclude=build \
     --exclude=puppet \
     --exclude=.idea \
+    --exclude=*.jar \
     --exclude=.build \
+    --exclude=.DS_Store \
     --exclude=web/uploads \
     --delete \
     $SOURCE_DIR/ $TARGET_DIR
