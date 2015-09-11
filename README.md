@@ -1,8 +1,6 @@
 Sonata Standard Edition
 =======================
 
-[ ![Codeship Status for sonata-project/sandbox](https://codeship.com/projects/bfc74350-f0e4-0132-4ad2-26a134238f96/status?branch=2.4-develop)](https://codeship.com/projects/84753)
-
 What's inside?
 --------------
 
