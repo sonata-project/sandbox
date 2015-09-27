@@ -4,10 +4,12 @@ imports:
 framework:
     test: ~
     session:
-        storage_id: session.storage.filesystem
+        storage_id: session.storage.mock_file
+    profiler:
+        collect: false
 
 web_profiler:
-    toolbar:             false
+    toolbar: false
     intercept_redirects: false
 
 swiftmailer:
