@@ -160,7 +160,7 @@ class LoadPageData extends AbstractFixture implements ContainerAwareInterface, O
             'code' => 'content_top',
         )));
 
-        $content->setName('The content_top container');
+        $content->setName('Top content');
 
         // add the breadcrumb
         $content->addChildren($breadcrumb = $blockManager->create());
@@ -221,7 +221,7 @@ CONTENT
             'page' => $terms,
             'code' => 'content_top',
         )));
-        $content->setName('The content_top container');
+        $content->setName('Top content');
 
         // add the breadcrumb
         $content->addChildren($breadcrumb = $blockManager->create());
@@ -263,7 +263,7 @@ CONTENT
             'code' => 'content_top',
         )));
 
-        $contentTop->setName('The container top container');
+        $contentTop->setName('Top content');
 
         $blockManager->save($contentTop);
 
@@ -295,7 +295,7 @@ CONTENT
             'page' => $homepage,
             'code' => 'content',
         )));
-        $content->setName('The content container');
+        $content->setName('Main content');
         $blockManager->save($content);
 
         // Add media gallery block
@@ -325,7 +325,7 @@ CONTENT
         ), function ($container) {
             $container->setSetting('layout', '{{ CONTENT }}');
         }));
-        $bottom->setName('The bottom content container');
+        $bottom->setName('Bottom content');
 
         // Add homepage newsletter container
         $bottom->addChildren($bottomNewsletter = $blockInteractor->createNewContainer(array(
@@ -438,7 +438,7 @@ CONTENT
             'code' => 'content_top',
         )));
 
-        $content->setName('The content_top container');
+        $content->setName('Top content');
 
         // add the breadcrumb
         $content->addChildren($breadcrumb = $blockManager->create());
@@ -933,6 +933,8 @@ CONTENT
             'code'    => 'content_top',
         )));
 
+        $block->setName('Top content');
+
         // add the breadcrumb
         $block->addChildren($breadcrumb = $blockManager->create());
         $breadcrumb->setType('sonata.page.block.breadcrumb');
@@ -973,6 +975,8 @@ CONTENT
             'code'    => 'content_top',
         )));
 
+        $block->setName('Top content');
+
         // add the breadcrumb
         $block->addChildren($breadcrumb = $blockManager->create());
         $breadcrumb->setType('sonata.page.block.breadcrumb');
@@ -1012,6 +1016,8 @@ CONTENT
             'page'    => $page,
             'code'    => 'content_top',
         )));
+
+        $block->setName('Top content');
 
         // add the breadcrumb
         $block->addChildren($breadcrumb = $blockManager->create());
@@ -1054,7 +1060,7 @@ CONTENT
             'code' => 'header',
         )));
 
-        $header->setName('The header container');
+        $header->setName('Header');
 
         $header->addChildren($text = $blockManager->create());
 
@@ -1119,7 +1125,7 @@ CONTENT
             $container->setSetting('layout', '<div class="row page-footer well">{{ CONTENT }}</div>');
         }));
 
-        $footer->setName('The footer container');
+        $footer->setName('Footer');
 
         // Footer : add 3 children block containers (left, center, right)
         $footer->addChildren($footerLeft = $blockInteractor->createNewContainer(array(
