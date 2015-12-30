@@ -3,12 +3,12 @@ parameters:
 
 security:
     encoders:
-        "Application\Sonata\UserBundle\Entity\User":
+        Application\Sonata\UserBundle\Entity\User:
             algorithm: sha512
             encode_as_base64: false
             iterations: 1
 
-        "Symfony\Component\Security\Core\User\User": plaintext
+        Symfony\Component\Security\Core\User\User: plaintext
 
     role_hierarchy:
         ROLE_ADMIN:       ROLE_USER
