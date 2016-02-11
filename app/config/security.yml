@@ -75,6 +75,7 @@ security:
                 invalidate_session: false
                 handlers: ['sonata.page.cms_manager_selector', 'sonata.basket.factory']
             anonymous:    true
+            switch_user: true
 
     access_control:
         # URL of FOSUserBundle which need to be available to anonymous users
