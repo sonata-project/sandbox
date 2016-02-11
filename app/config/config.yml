@@ -47,33 +47,32 @@ imports:
     - { resource: sonata/sonata_basket.yml }
 
 framework:
-    #esi:                   ~
-    translator:
-        fallback:           en
-    secret:                 %secret%
+    #esi:             ~
+    translator:      { fallbacks: ["%locale%"] }
+    secret:          "%secret%"
     router:
-        resource:           "%kernel.root_dir%/config/routing.yml"
+        resource: "%kernel.root_dir%/config/routing.yml"
         strict_requirements: ~
-    form:                    true
-    csrf_protection:         true
-    validation:
-        enable_annotations:  true
+    form:            ~
+    csrf_protection: ~
+    validation:      { enable_annotations: true }
+    #serializer:      { enable_annotations: true }
     templating:
-        engines:             ['twig']
-        #assets_version:      SomeVersionScheme
-
-    default_locale:          %locale%
+        engines: ['twig']
+        #assets_version: SomeVersionScheme
+    default_locale:  "%locale%"
+    trusted_hosts:   ~
+    trusted_proxies: ~
     session:
-        save_path:           %kernel.root_dir%/cache/sessions
-
-    fragments:               ~
-    trusted_proxies:         ~
-    http_method_override:    true
+        # handler_id set to null will use default session handler from php.ini
+        handler_id:  ~
+    fragments:       ~
+    http_method_override: true
 
 # Twig Configuration
 twig:
-    debug:            %kernel.debug%
-    strict_variables: %kernel.debug%
+    debug:            "%kernel.debug%"
+    strict_variables: "%kernel.debug%"
 
     base_template_class: Sonata\CacheBundle\Twig\TwigTemplate14
 
@@ -92,11 +91,11 @@ doctrine:
 
         connections:
             default:
-                driver:   %database.driver%
-                dbname:   %database.name%
-                user:     %database.user%
-                host:     %database.host%
-                password: %database.password%
+                driver:   "%database_driver%"
+                dbname:   "%database_name%"
+                user:     "%database_user%"
+                host:     "%database_host%"
+                password: "%database_password%"
                 charset:  UTF8
 
         types:
@@ -104,21 +103,19 @@ doctrine:
             currency: Sonata\Component\Currency\CurrencyDoctrineType
 
     orm:
-        auto_generate_proxy_classes: %kernel.debug%
-        default_entity_manager: default
-
-        entity_managers:
-            default:
-                auto_mapping: true
-                mappings: ~
+        auto_generate_proxy_classes: "%kernel.debug%"
+        naming_strategy: doctrine.orm.naming_strategy.underscore
+        auto_mapping: true
 
 # Swiftmailer Configuration
 swiftmailer:
-    transport: %mailer_transport%
-    host:      %mailer_host%
-    username:  %mailer_user%
-    password:  %mailer_password%
+    transport: "%mailer_transport%"
+    host:      "%mailer_host%"
+    username:  "%mailer_user%"
+    password:  "%mailer_password%"
+    spool:     { type: memory }
 
+# JMS Serializer Configuration
 jms_serializer:
     metadata:
         directories:
