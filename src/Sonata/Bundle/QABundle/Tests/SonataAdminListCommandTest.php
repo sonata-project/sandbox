@@ -16,7 +16,7 @@ class SonataAdminListCommandTest extends CommandTestCase
     public function testListing()
     {
         $client = self::createClient();
-        $output = $this->runCommand($client, "sonata:admin:list");
+        $output = $this->runCommand($client, 'sonata:admin:list');
 
         $this->assertNotNull($output);
 

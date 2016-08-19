@@ -13,7 +13,6 @@ namespace Sonata\Bundle\DemoBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class CarType extends AbstractType
@@ -27,7 +26,7 @@ class CarType extends AbstractType
             ->add('createdAt', 'datetime')
             ->add('name')
             ->add('engine', 'sonata_demo_form_type_engine', array(
-                'data_class' => 'Sonata\Bundle\DemoBundle\Entity\Engine'
+                'data_class' => 'Sonata\Bundle\DemoBundle\Entity\Engine',
             ))
         ;
     }
@@ -47,7 +46,7 @@ class CarType extends AbstractType
     {
         $resolver->setDefaults(array(
             'data_class' => 'Sonata\Bundle\DemoBundle\Entity\Car',
-            'rescue_engines' => array()
+            'rescue_engines' => array(),
         ));
     }
 }

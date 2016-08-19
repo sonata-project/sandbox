@@ -57,7 +57,7 @@ class LoadOrderData extends AbstractFixture implements ContainerAwareInterface, 
     protected $orderElements;
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function load(ObjectManager $manager)
     {
@@ -93,10 +93,9 @@ class LoadOrderData extends AbstractFixture implements ContainerAwareInterface, 
             $this->getReference('travel_switzerland_extra_large_product'),
         );
 
-        $nbCustomers = $this->container->hasParameter("sonata.fixtures.customer.fake") ? (int)$this->container->getParameter("sonata.fixtures.customer.fake") : 20;
+        $nbCustomers = $this->container->hasParameter('sonata.fixtures.customer.fake') ? (int) $this->container->getParameter('sonata.fixtures.customer.fake') : 20;
 
-
-        for ($i = 1; $i <= $nbCustomers; $i++) {
+        for ($i = 1; $i <= $nbCustomers; ++$i) {
             $customer = $this->generateCustomer($manager, $i);
 
             $customerProducts = array();
@@ -112,7 +111,6 @@ class LoadOrderData extends AbstractFixture implements ContainerAwareInterface, 
             }
 
             $order = $this->createOrder($basket, $customer, $customerProducts, $manager, $i);
-
 
             $this->createTransaction($order, $manager);
 
@@ -140,8 +138,8 @@ class LoadOrderData extends AbstractFixture implements ContainerAwareInterface, 
     protected function createOrder(BasketInterface $basket, Customer $customer, array $products, ObjectManager $manager, $pos)
     {
         $orderElements = array();
-        $totalExcl     = 0;
-        $totalInc      = 0;
+        $totalExcl = 0;
+        $totalInc = 0;
 
         $order = new Order();
 
@@ -209,7 +207,7 @@ class LoadOrderData extends AbstractFixture implements ContainerAwareInterface, 
             $orderElements[] = $orderElement;
 
             $totalExcl += $orderElement->getUnitPrice(false);
-            $totalInc  += $orderElement->getUnitPrice(true);
+            $totalInc += $orderElement->getUnitPrice(true);
         }
 
         $order->setOrderElements($orderElements);
@@ -278,7 +276,7 @@ class LoadOrderData extends AbstractFixture implements ContainerAwareInterface, 
      * Generates a Customer with his addresses.
      *
      * @param ObjectManager $manager
-     * @param int $i Random number to avoid username collision
+     * @param int           $i       Random number to avoid username collision
      *
      * @return Customer
      */
@@ -362,8 +360,8 @@ class LoadOrderData extends AbstractFixture implements ContainerAwareInterface, 
         } else {
             /** @var \Sonata\UserBundle\Model\User $user */
             $user = new User();
-            $user->setUsername($i . '-' . $username);
-            $user->setUsernameCanonical($i . '-' . $username);
+            $user->setUsername($i.'-'.$username);
+            $user->setUsernameCanonical($i.'-'.$username);
             $user->setEmail($i.'_'.$email);
             $user->setEmailCanonical($email);
             $user->setPlainPassword('customer');
@@ -423,7 +421,7 @@ class LoadOrderData extends AbstractFixture implements ContainerAwareInterface, 
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function setContainer(ContainerInterface $container = null)
     {
@@ -431,7 +429,7 @@ class LoadOrderData extends AbstractFixture implements ContainerAwareInterface, 
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getOrder()
     {

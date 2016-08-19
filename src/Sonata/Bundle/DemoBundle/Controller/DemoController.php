@@ -13,7 +13,6 @@ namespace Sonata\Bundle\DemoBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sonata\Bundle\DemoBundle\Entity\MediaPreview;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Sonata\Bundle\DemoBundle\Form\Type\CarType;
 
@@ -39,7 +38,7 @@ class DemoController extends Controller
 
         return $this->render('SonataDemoBundle:Demo:car.html.twig', array(
             'form' => $form->createView(),
-            'dump' => $dump
+            'dump' => $dump,
         ));
     }
 
@@ -52,7 +51,7 @@ class DemoController extends Controller
     {
         $car = new \Sonata\Bundle\DemoBundle\Entity\Car();
         $car->setName('Poney Car');
-        $car->setCreatedAt(new \DateTime);
+        $car->setCreatedAt(new \DateTime());
 
         $rescueEngines = array(
             1 => new \Sonata\Bundle\DemoBundle\Entity\Engine('Rescue 1', 100),
@@ -61,7 +60,7 @@ class DemoController extends Controller
         );
 
         $form = $this->createForm('sonata_demo_form_type_car', $car, array(
-            'rescue_engines' => $rescueEngines
+            'rescue_engines' => $rescueEngines,
         ));
 
         if ($request->getMethod() == 'POST') {
@@ -73,10 +72,9 @@ class DemoController extends Controller
         $dump = ob_get_contents();
         ob_clean();
 
-
         return $this->render('SonataDemoBundle:Demo:car.html.twig', array(
             'form' => $form->createView(),
-            'dump' => $dump
+            'dump' => $dump,
         ));
     }
 
@@ -99,7 +97,7 @@ class DemoController extends Controller
         $builder = $this->createFormBuilder($mediaPreview);
         $builder->add('media', 'sonata_media_type', array(
              'provider' => 'sonata.media.provider.youtube',
-             'context'  => 'default'
+             'context' => 'default',
         ));
 
         $form = $builder->getForm();
@@ -117,12 +115,12 @@ class DemoController extends Controller
 
         return $this->render('SonataDemoBundle:Demo:media.html.twig', array(
             'form' => $form->createView(),
-            'media' => $mediaPreview->getMedia()
+            'media' => $mediaPreview->getMedia(),
         ));
     }
 
     /**
-     * Newsletter subscription action
+     * Newsletter subscription action.
      *
      * @param \Symfony\Component\HttpFoundation\Request $request
      *
@@ -136,7 +134,7 @@ class DemoController extends Controller
         $message = 'sonata.demo.block.newsletter.message';
 
         return $this->render('SonataDemoBundle:Block:newsletter_confirmation.html.twig', array(
-            'message' => $form->isValid() ? $message : null
+            'message' => $form->isValid() ? $message : null,
         ));
     }
 
@@ -148,4 +146,3 @@ class DemoController extends Controller
         return $this->get('sonata.seo.page');
     }
 }
-

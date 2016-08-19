@@ -17,12 +17,12 @@ class SonataNotificationStartCommandTest extends CommandTestCase
     {
         $client = self::createClient();
 
-        $output = $this->runCommand($client, "sonata:notification:start");
+        $output = $this->runCommand($client, 'sonata:notification:start');
 
-        $this->assertContains("done!", $output);
+        $this->assertContains('done!', $output);
 
         foreach (self::getConsumerList() as $def) {
-            list($name, ) = $def;
+            list($name) = $def;
 
             $this->assertContains($name, $output);
         }

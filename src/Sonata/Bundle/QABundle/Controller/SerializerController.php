@@ -18,9 +18,8 @@ use JMS\Serializer\SerializationContext;
 
 class SerializerController extends Controller
 {
-
     /**
-     * This make sure there is no regression to retrieve the current website in a sub request
+     * This make sure there is no regression to retrieve the current website in a sub request.
      *
      * reference: https://github.com/sonata-project/SonataPageBundle/pull/211
      *
@@ -32,7 +31,7 @@ class SerializerController extends Controller
     {
         $raw = array(
             'json' => 'no data available',
-            'xml'  => 'no data available',
+            'xml' => 'no data available',
         );
 
         if ($request->isMethod('POST')) {
@@ -57,18 +56,18 @@ class SerializerController extends Controller
             }
 
             $jsonSerializationContext = $serializationContext;
-            $xmlSerializationContext  = clone $serializationContext;
+            $xmlSerializationContext = clone $serializationContext;
 
             $raw = array(
                 'json' => $this->get('jms_serializer')->serialize($object, 'json', $jsonSerializationContext),
-                'xml'  => $this->get('jms_serializer')->serialize($object, 'xml',  $xmlSerializationContext),
+                'xml' => $this->get('jms_serializer')->serialize($object, 'xml',  $xmlSerializationContext),
             );
         }
 
         $metas = $this->getDoctrine()->getManager()->getMetadataFactory()->getAllMetadata();
 
         $classes = array();
-        foreach($metas as $name => $meta) {
+        foreach ($metas as $name => $meta) {
             if ($meta->reflClass->isAbstract()) {
                 continue;
             }
@@ -76,11 +75,9 @@ class SerializerController extends Controller
             $classes[] = $meta->name;
         }
 
-
-
         return $this->render('SonataQABundle:Serializer:serialize.html.twig', array(
             'classes' => $classes,
-            'raw'     => $raw
+            'raw' => $raw,
         ));
     }
 }

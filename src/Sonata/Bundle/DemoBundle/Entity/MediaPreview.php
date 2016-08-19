@@ -19,7 +19,6 @@ class MediaPreview
 
     /**
      * @param \Sonata\MediaBundle\Model\MediaInterface $media
-     * @return void
      */
     public function setMedia(MediaInterface $media)
     {
@@ -34,4 +33,3 @@ class MediaPreview
         return $this->media;
     }
 }
-

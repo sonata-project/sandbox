@@ -140,7 +140,7 @@ class Color implements DomainObjectInterface
      */
     public function getObjectIdentifier()
     {
-        return sprintf("%d-%d-%d-%d", $this->getR(), $this->getG(), $this->getB(), $this->getMaterial() ? $this->getMaterial()->getId() : null);
+        return sprintf('%d-%d-%d-%d', $this->getR(), $this->getG(), $this->getB(), $this->getMaterial() ? $this->getMaterial()->getId() : null);
     }
 
     /**
@@ -148,6 +148,6 @@ class Color implements DomainObjectInterface
      */
     public function __toString()
     {
-        return sprintf("#%03d%03d%03d - %s", $this->getR(), $this->getG(), $this->getB(), $this->getMaterial() ? $this->getMaterial()->getName() : null);
+        return sprintf('#%03d%03d%03d - %s', $this->getR(), $this->getG(), $this->getB(), $this->getMaterial() ? $this->getMaterial()->getName() : null);
     }
 }

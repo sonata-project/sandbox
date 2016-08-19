@@ -8,18 +8,15 @@
  * file that was distributed with this source code.
  */
 
-
 namespace Sonata\Bundle\DemoBundle\Model;
 
 use Sonata\Component\Delivery\BaseServiceDelivery;
 
-
 /**
- * Class TakeAwayDelivery
+ * Class TakeAwayDelivery.
  *
  * Custom delivery class example
  *
- * @package AppBundle\Model
  *
  * @author Hugo Briand <briand@ekino.com>
  */

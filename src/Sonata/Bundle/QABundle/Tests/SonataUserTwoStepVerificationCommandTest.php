@@ -20,19 +20,19 @@ class SonataUserTwoStepVerificationCommandTest extends CommandTestCase
     {
         $client = self::createClient();
 
-        $this->runCommand($client, "sonata:user:two-step-verification");
+        $this->runCommand($client, 'sonata:user:two-step-verification');
     }
 
     public function testReset()
     {
         $client = self::createClient();
 
-        $output = $this->runCommand($client, "sonata:user:two-step-verification --reset secure");
+        $output = $this->runCommand($client, 'sonata:user:two-step-verification --reset secure');
 
-        $this->assertContains("Url : https://chart.googleapis.com/", $output);
+        $this->assertContains('Url : https://chart.googleapis.com/', $output);
 
         $user = $client->getContainer()->get('fos_user.user_manager')->findUserBy(array(
-            'username' => 'secure'
+            'username' => 'secure',
         ));
 
         $this->assertContains($user->getTwoStepVerificationCode(), $output);
@@ -42,10 +42,10 @@ class SonataUserTwoStepVerificationCommandTest extends CommandTestCase
     {
         $client = self::createClient();
 
-        $output = $this->runCommand($client, "sonata:user:two-step-verification secure");
+        $output = $this->runCommand($client, 'sonata:user:two-step-verification secure');
 
         $code = $client->getContainer()->get('fos_user.user_manager')->findUserBy(array(
-            'username' => 'secure'
+            'username' => 'secure',
         ))->getTwoStepVerificationCode();
 
         $this->assertContains($code, $output);

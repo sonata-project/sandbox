@@ -14,9 +14,7 @@ namespace Sonata\Bundle\DemoBundle\DataFixtures\ORM;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\Persistence\ObjectManager;
-
 use Sonata\NewsBundle\Model\CommentInterface;
-
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -24,7 +22,7 @@ class LoadNewsData extends AbstractFixture implements ContainerAwareInterface, O
 {
     private $container;
 
-    function getOrder()
+    public function getOrder()
     {
         return 4;
     }
@@ -36,7 +34,7 @@ class LoadNewsData extends AbstractFixture implements ContainerAwareInterface, O
 
     public function load(ObjectManager $manager)
     {
-//        $userManager = $this->getUserManager();
+        //        $userManager = $this->getUserManager();
         $postManager = $this->getPostManager();
 
         $faker = $this->getFaker();
@@ -48,7 +46,7 @@ class LoadNewsData extends AbstractFixture implements ContainerAwareInterface, O
             'web2' => null,
         );
 
-        foreach($tags as $tagName => $null) {
+        foreach ($tags as $tagName => $null) {
             $tag = $this->getTagManager()->create();
             $tag->setEnabled(true);
             $tag->setName($tagName);
@@ -74,7 +72,7 @@ class LoadNewsData extends AbstractFixture implements ContainerAwareInterface, O
 
             $id = $this->getReference('sonata-media-0')->getId();
 
-            $raw =<<<RAW
+            $raw = <<<RAW
 ### Gist Formatter
 
 Now a specific gist from github
@@ -103,11 +101,11 @@ RAW
             $post->setContent($this->getPoolFormatter()->transform($post->getContentFormatter(), $post->getRawContent()));
             $post->setCommentsDefaultStatus(CommentInterface::STATUS_VALID);
 
-            foreach($tags as $tag) {
+            foreach ($tags as $tag) {
                 $post->addTags($tag);
             }
 
-            foreach(range(1, $faker->randomDigit + 2) as $commentId) {
+            foreach (range(1, $faker->randomDigit + 2) as $commentId) {
                 $comment = $this->getCommentManager()->create();
                 $comment->setEmail($faker->email);
                 $comment->setName($faker->name);

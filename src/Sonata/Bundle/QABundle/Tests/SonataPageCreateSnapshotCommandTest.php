@@ -13,13 +13,12 @@ namespace Sonata\Bundle\QABundle\Tests;
 
 class SonataPageCreateSnapshotCommandTest extends CommandTestCase
 {
-
     public function testRefresh()
     {
         $client = self::createClient();
 
-        $output = $this->runCommand($client, "sonata:page:create-snapshots --site=all");
+        $output = $this->runCommand($client, 'sonata:page:create-snapshots --site=all');
 
-        $this->assertContains("done!", $output);
+        $this->assertContains('done!', $output);
     }
 }

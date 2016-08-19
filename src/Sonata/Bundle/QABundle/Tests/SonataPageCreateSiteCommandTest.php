@@ -13,25 +13,24 @@ namespace Sonata\Bundle\QABundle\Tests;
 
 class SonataPageCreateSiteCommandTest extends CommandTestCase
 {
-
     public function testCreateSite()
     {
         $client = self::createClient();
 
-        $output = $this->runCommand($client, "sonata:page:create-site ".
-            " --no-confirmation=true".
-            " --enabled=true".
-            " --name=Test".
-            " --host=test.localhost".
-            " --enabledFrom=now".
-            " --enabledTo=now".
-            " --locale=fr_FR".
-            " --relativePath=/".
-            " --default=false".
-            " --no-interaction"
+        $output = $this->runCommand($client, 'sonata:page:create-site '.
+            ' --no-confirmation=true'.
+            ' --enabled=true'.
+            ' --name=Test'.
+            ' --host=test.localhost'.
+            ' --enabledFrom=now'.
+            ' --enabledTo=now'.
+            ' --locale=fr_FR'.
+            ' --relativePath=/'.
+            ' --default=false'.
+            ' --no-interaction'
         );
 
-        $this->assertContains("Creating website with the following information :", $output);
-        $this->assertContains("Site created !", $output);
+        $this->assertContains('Creating website with the following information :', $output);
+        $this->assertContains('Site created !', $output);
     }
 }

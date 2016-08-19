@@ -17,7 +17,7 @@ class SonataPageUpdateCoreRouteCommandTest extends CommandTestCase
     {
         $client = self::createClient();
 
-        $output = $this->runCommand($client, "sonata:page:update-core-routes");
+        $output = $this->runCommand($client, 'sonata:page:update-core-routes');
 
         $this->assertContains('Please provide an --site=SITE_ID', $output);
     }
@@ -28,10 +28,10 @@ class SonataPageUpdateCoreRouteCommandTest extends CommandTestCase
 
         $site = $client->getContainer()->get('sonata.page.manager.site')->findOneBy(array());
 
-        $output = $this->runCommand($client, sprintf("sonata:page:update-core-routes --site=%s", $site->getId()));
+        $output = $this->runCommand($client, sprintf('sonata:page:update-core-routes --site=%s', $site->getId()));
 
-        $this->assertContains("Updating core routes for site", $output);
-        $this->assertContains("done!", $output);
+        $this->assertContains('Updating core routes for site', $output);
+        $this->assertContains('done!', $output);
     }
 
     public function testUpdateSites()
@@ -40,7 +40,7 @@ class SonataPageUpdateCoreRouteCommandTest extends CommandTestCase
 
         $output = $this->runCommand($client, sprintf("sonata:page:update-core-routes --site=all --base-command='php %s'", $this->getConsoleLocation($client)));
 
-        $this->assertContains("Updating core routes for site", $output);
-        $this->assertContains("done!", $output);
+        $this->assertContains('Updating core routes for site', $output);
+        $this->assertContains('done!', $output);
     }
 }

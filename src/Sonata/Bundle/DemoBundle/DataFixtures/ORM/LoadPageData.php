@@ -14,10 +14,8 @@ namespace Sonata\Bundle\DemoBundle\DataFixtures\ORM;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\Persistence\ObjectManager;
-
 use Sonata\PageBundle\Model\SiteInterface;
 use Sonata\PageBundle\Model\PageInterface;
-
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -75,7 +73,7 @@ class LoadPageData extends AbstractFixture implements ContainerAwareInterface, O
         $site->setName('localhost');
         $site->setEnabledFrom(new \DateTime('now'));
         $site->setEnabledTo(new \DateTime('+10 years'));
-        $site->setRelativePath("");
+        $site->setRelativePath('');
         $site->setIsDefault(true);
 
         $this->getSiteManager()->save($site);
@@ -100,7 +98,7 @@ class LoadPageData extends AbstractFixture implements ContainerAwareInterface, O
         $site->setName('sub site');
         $site->setEnabledFrom(new \DateTime('now'));
         $site->setEnabledTo(new \DateTime('+10 years'));
-        $site->setRelativePath("/sub-site");
+        $site->setRelativePath('/sub-site');
         $site->setIsDefault(false);
 
         $this->getSiteManager()->save($site);
@@ -172,7 +170,7 @@ class LoadPageData extends AbstractFixture implements ContainerAwareInterface, O
         // add a block text
         $content->addChildren($text = $blockManager->create());
         $text->setType('sonata.block.service.text');
-        $text->setSetting('content', <<<CONTENT
+        $text->setSetting('content', <<<'CONTENT'
 
 <h1>Gallery List</h1>
 
@@ -270,7 +268,7 @@ CONTENT
         // add a block text
         $contentTop->addChildren($text = $blockManager->create());
         $text->setType('sonata.block.service.text');
-        $text->setSetting('content', <<<CONTENT
+        $text->setSetting('content', <<<'CONTENT'
 <div class="col-md-3 welcome"><h2>Welcome</h2></div>
 <div class="col-md-9">
     <p>
@@ -288,7 +286,6 @@ CONTENT
         $text->setPosition(1);
         $text->setEnabled(true);
         $text->setPage($homepage);
-
 
         $homepage->addBlocks($content = $blockInteractor->createNewContainer(array(
             'enabled' => true,
@@ -320,8 +317,8 @@ CONTENT
         // Add homepage bottom container
         $homepage->addBlocks($bottom = $blockInteractor->createNewContainer(array(
             'enabled' => true,
-            'page'    => $homepage,
-            'code'    => 'content_bottom',
+            'page' => $homepage,
+            'code' => 'content_bottom',
         ), function ($container) {
             $container->setSetting('layout', '{{ CONTENT }}');
         }));
@@ -330,8 +327,8 @@ CONTENT
         // Add homepage newsletter container
         $bottom->addChildren($bottomNewsletter = $blockInteractor->createNewContainer(array(
             'enabled' => true,
-            'page'    => $homepage,
-            'code'    => 'bottom_newsletter',
+            'page' => $homepage,
+            'code' => 'bottom_newsletter',
         ), function ($container) {
             $container->setSetting('layout', '<div class="block-newsletter col-sm-6 well">{{ CONTENT }}</div>');
         }));
@@ -345,8 +342,8 @@ CONTENT
         // Add homepage embed tweet container
         $bottom->addChildren($bottomEmbed = $blockInteractor->createNewContainer(array(
             'enabled' => true,
-            'page'    => $homepage,
-            'code'    => 'bottom_embed',
+            'page' => $homepage,
+            'code' => 'bottom_embed',
         ), function ($container) {
             $container->setSetting('layout', '<div class="col-sm-6">{{ CONTENT }}</div>');
         }));
@@ -355,8 +352,8 @@ CONTENT
         $embedded->setType('sonata.seo.block.twitter.embed');
         $embedded->setPosition(1);
         $embedded->setEnabled(true);
-        $embedded->setSetting('tweet', "https://twitter.com/dunglas/statuses/438337742565826560");
-        $embedded->setSetting('lang', "en");
+        $embedded->setSetting('tweet', 'https://twitter.com/dunglas/statuses/438337742565826560');
+        $embedded->setSetting('lang', 'en');
         $embedded->setPage($homepage);
 
         $pageManager->save($homepage);
@@ -455,7 +452,7 @@ CONTENT
      */
     public function createUserPage(SiteInterface $site)
     {
-        $this->createTextContentPage($site, 'user', 'Admin', <<<CONTENT
+        $this->createTextContentPage($site, 'user', 'Admin', <<<'CONTENT'
 <div>
 
     <h3>Available accounts</h3>
@@ -506,7 +503,7 @@ CONTENT
      */
     public function createApiPage(SiteInterface $site)
     {
-        $this->createTextContentPage($site, 'api-landing', 'API', <<<CONTENT
+        $this->createTextContentPage($site, 'api-landing', 'API', <<<'CONTENT'
 <div>
 
     <h3>Available account</h3>
@@ -534,7 +531,7 @@ CONTENT
      */
     public function createLegalNotesPage(SiteInterface $site)
     {
-        $this->createTextContentPage($site, 'legal-notes', 'Legal notes', <<<CONTENT
+        $this->createTextContentPage($site, 'legal-notes', 'Legal notes', <<<'CONTENT'
 <p>The Sonata framework is built with many great open source libraries / tools.</p>
 <section>
     <h3>Backend</h3>
@@ -568,15 +565,13 @@ CONTENT
     }
 
     /**
-     * Creates the "Who we are" content page (link available in footer)
+     * Creates the "Who we are" content page (link available in footer).
      *
      * @param SiteInterface $site
-     *
-     * @return void
      */
     public function createWhoWeArePage(SiteInterface $site)
     {
-        $this->createTextContentPage($site, 'who-we-are', 'Who we are', <<<CONTENT
+        $this->createTextContentPage($site, 'who-we-are', 'Who we are', <<<'CONTENT'
 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut quis sapien gravida, eleifend diam id, vehicula erat. Aenean ultrices facilisis tellus. Vivamus vitae molestie diam. Donec quis mi porttitor, lobortis ipsum quis, fermentum dui. Donec nec nibh nec risus porttitor pretium et et lorem. Nullam mauris sapien, rutrum sed neque et, convallis ullamcorper lacus. Nullam vehicula a lectus vel suscipit. Nam gravida faucibus fermentum.</p>
 <p>Pellentesque dapibus eu nisi quis adipiscing. Phasellus adipiscing turpis nunc, sed interdum ante porta eu. Ut tempus, purus posuere molestie cursus, quam nisi fermentum est, dictum gravida nulla turpis vel nunc. Maecenas eget sem quam. Nam condimentum mi id lectus venenatis, sit amet semper purus convallis. Nunc ullamcorper magna mi, non adipiscing velit semper quis. Duis vel justo libero. Suspendisse laoreet hendrerit augue cursus congue. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;</p>
 <p>Nullam dignissim sapien vestibulum erat lobortis, sed imperdiet elit varius. Fusce nisi eros, feugiat commodo scelerisque a, lacinia et quam. In neque risus, dignissim non magna non, ultricies faucibus elit. Vivamus in facilisis enim, porttitor volutpat justo. Praesent placerat feugiat nibh et fermentum. Vivamus eu fermentum metus. Sed mattis volutpat quam a suscipit. Donec blandit sagittis est, ac tristique arcu venenatis sed. Fusce vel libero id lectus aliquet sollicitudin. Fusce ultrices porta est, non pellentesque lorem accumsan eget. Fusce id libero sit amet nulla venenatis dapibus. Maecenas fermentum tellus eu magna mollis gravida. Nam non nibh magna.</p>
@@ -585,15 +580,13 @@ CONTENT
     }
 
     /**
-     * Creates the "Client testimonials" content page (link available in footer)
+     * Creates the "Client testimonials" content page (link available in footer).
      *
      * @param SiteInterface $site
-     *
-     * @return void
      */
     public function createClientTestimonialsPage(SiteInterface $site)
     {
-        $this->createTextContentPage($site, 'client-testimonials', 'Client testimonials', <<<CONTENT
+        $this->createTextContentPage($site, 'client-testimonials', 'Client testimonials', <<<'CONTENT'
 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut quis sapien gravida, eleifend diam id, vehicula erat. Aenean ultrices facilisis tellus. Vivamus vitae molestie diam. Donec quis mi porttitor, lobortis ipsum quis, fermentum dui. Donec nec nibh nec risus porttitor pretium et et lorem. Nullam mauris sapien, rutrum sed neque et, convallis ullamcorper lacus. Nullam vehicula a lectus vel suscipit. Nam gravida faucibus fermentum.</p>
 <p>Pellentesque dapibus eu nisi quis adipiscing. Phasellus adipiscing turpis nunc, sed interdum ante porta eu. Ut tempus, purus posuere molestie cursus, quam nisi fermentum est, dictum gravida nulla turpis vel nunc. Maecenas eget sem quam. Nam condimentum mi id lectus venenatis, sit amet semper purus convallis. Nunc ullamcorper magna mi, non adipiscing velit semper quis. Duis vel justo libero. Suspendisse laoreet hendrerit augue cursus congue. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;</p>
 <p>Nullam dignissim sapien vestibulum erat lobortis, sed imperdiet elit varius. Fusce nisi eros, feugiat commodo scelerisque a, lacinia et quam. In neque risus, dignissim non magna non, ultricies faucibus elit. Vivamus in facilisis enim, porttitor volutpat justo. Praesent placerat feugiat nibh et fermentum. Vivamus eu fermentum metus. Sed mattis volutpat quam a suscipit. Donec blandit sagittis est, ac tristique arcu venenatis sed. Fusce vel libero id lectus aliquet sollicitudin. Fusce ultrices porta est, non pellentesque lorem accumsan eget. Fusce id libero sit amet nulla venenatis dapibus. Maecenas fermentum tellus eu magna mollis gravida. Nam non nibh magna.</p>
@@ -602,15 +595,13 @@ CONTENT
     }
 
     /**
-     * Creates the "Press" content page (link available in footer)
+     * Creates the "Press" content page (link available in footer).
      *
      * @param SiteInterface $site
-     *
-     * @return void
      */
     public function createPressPage(SiteInterface $site)
     {
-        $this->createTextContentPage($site, 'press', 'Press', <<<CONTENT
+        $this->createTextContentPage($site, 'press', 'Press', <<<'CONTENT'
 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut quis sapien gravida, eleifend diam id, vehicula erat. Aenean ultrices facilisis tellus. Vivamus vitae molestie diam. Donec quis mi porttitor, lobortis ipsum quis, fermentum dui. Donec nec nibh nec risus porttitor pretium et et lorem. Nullam mauris sapien, rutrum sed neque et, convallis ullamcorper lacus. Nullam vehicula a lectus vel suscipit. Nam gravida faucibus fermentum.</p>
 <p>Pellentesque dapibus eu nisi quis adipiscing. Phasellus adipiscing turpis nunc, sed interdum ante porta eu. Ut tempus, purus posuere molestie cursus, quam nisi fermentum est, dictum gravida nulla turpis vel nunc. Maecenas eget sem quam. Nam condimentum mi id lectus venenatis, sit amet semper purus convallis. Nunc ullamcorper magna mi, non adipiscing velit semper quis. Duis vel justo libero. Suspendisse laoreet hendrerit augue cursus congue. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;</p>
 <p>Nullam dignissim sapien vestibulum erat lobortis, sed imperdiet elit varius. Fusce nisi eros, feugiat commodo scelerisque a, lacinia et quam. In neque risus, dignissim non magna non, ultricies faucibus elit. Vivamus in facilisis enim, porttitor volutpat justo. Praesent placerat feugiat nibh et fermentum. Vivamus eu fermentum metus. Sed mattis volutpat quam a suscipit. Donec blandit sagittis est, ac tristique arcu venenatis sed. Fusce vel libero id lectus aliquet sollicitudin. Fusce ultrices porta est, non pellentesque lorem accumsan eget. Fusce id libero sit amet nulla venenatis dapibus. Maecenas fermentum tellus eu magna mollis gravida. Nam non nibh magna.</p>
@@ -619,15 +610,13 @@ CONTENT
     }
 
     /**
-     * Creates the "FAQ" content page (link available in footer)
+     * Creates the "FAQ" content page (link available in footer).
      *
      * @param SiteInterface $site
-     *
-     * @return void
      */
     public function createFAQPage(SiteInterface $site)
     {
-        $this->createTextContentPage($site, 'faq', 'FAQ', <<<CONTENT
+        $this->createTextContentPage($site, 'faq', 'FAQ', <<<'CONTENT'
 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut quis sapien gravida, eleifend diam id, vehicula erat. Aenean ultrices facilisis tellus. Vivamus vitae molestie diam. Donec quis mi porttitor, lobortis ipsum quis, fermentum dui. Donec nec nibh nec risus porttitor pretium et et lorem. Nullam mauris sapien, rutrum sed neque et, convallis ullamcorper lacus. Nullam vehicula a lectus vel suscipit. Nam gravida faucibus fermentum.</p>
 <p>Pellentesque dapibus eu nisi quis adipiscing. Phasellus adipiscing turpis nunc, sed interdum ante porta eu. Ut tempus, purus posuere molestie cursus, quam nisi fermentum est, dictum gravida nulla turpis vel nunc. Maecenas eget sem quam. Nam condimentum mi id lectus venenatis, sit amet semper purus convallis. Nunc ullamcorper magna mi, non adipiscing velit semper quis. Duis vel justo libero. Suspendisse laoreet hendrerit augue cursus congue. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;</p>
 <p>Nullam dignissim sapien vestibulum erat lobortis, sed imperdiet elit varius. Fusce nisi eros, feugiat commodo scelerisque a, lacinia et quam. In neque risus, dignissim non magna non, ultricies faucibus elit. Vivamus in facilisis enim, porttitor volutpat justo. Praesent placerat feugiat nibh et fermentum. Vivamus eu fermentum metus. Sed mattis volutpat quam a suscipit. Donec blandit sagittis est, ac tristique arcu venenatis sed. Fusce vel libero id lectus aliquet sollicitudin. Fusce ultrices porta est, non pellentesque lorem accumsan eget. Fusce id libero sit amet nulla venenatis dapibus. Maecenas fermentum tellus eu magna mollis gravida. Nam non nibh magna.</p>
@@ -636,15 +625,13 @@ CONTENT
     }
 
     /**
-     * Creates the "Contact us" content page (link available in footer)
+     * Creates the "Contact us" content page (link available in footer).
      *
      * @param SiteInterface $site
-     *
-     * @return void
      */
     public function createContactUsPage(SiteInterface $site)
     {
-        $this->createTextContentPage($site, 'contact-us', 'Contact us', <<<CONTENT
+        $this->createTextContentPage($site, 'contact-us', 'Contact us', <<<'CONTENT'
 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut quis sapien gravida, eleifend diam id, vehicula erat. Aenean ultrices facilisis tellus. Vivamus vitae molestie diam. Donec quis mi porttitor, lobortis ipsum quis, fermentum dui. Donec nec nibh nec risus porttitor pretium et et lorem. Nullam mauris sapien, rutrum sed neque et, convallis ullamcorper lacus. Nullam vehicula a lectus vel suscipit. Nam gravida faucibus fermentum.</p>
 <p>Pellentesque dapibus eu nisi quis adipiscing. Phasellus adipiscing turpis nunc, sed interdum ante porta eu. Ut tempus, purus posuere molestie cursus, quam nisi fermentum est, dictum gravida nulla turpis vel nunc. Maecenas eget sem quam. Nam condimentum mi id lectus venenatis, sit amet semper purus convallis. Nunc ullamcorper magna mi, non adipiscing velit semper quis. Duis vel justo libero. Suspendisse laoreet hendrerit augue cursus congue. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;</p>
 <p>Nullam dignissim sapien vestibulum erat lobortis, sed imperdiet elit varius. Fusce nisi eros, feugiat commodo scelerisque a, lacinia et quam. In neque risus, dignissim non magna non, ultricies faucibus elit. Vivamus in facilisis enim, porttitor volutpat justo. Praesent placerat feugiat nibh et fermentum. Vivamus eu fermentum metus. Sed mattis volutpat quam a suscipit. Donec blandit sagittis est, ac tristique arcu venenatis sed. Fusce vel libero id lectus aliquet sollicitudin. Fusce ultrices porta est, non pellentesque lorem accumsan eget. Fusce id libero sit amet nulla venenatis dapibus. Maecenas fermentum tellus eu magna mollis gravida. Nam non nibh magna.</p>
@@ -654,7 +641,7 @@ CONTENT
 
     public function createBundlesPage(SiteInterface $site)
     {
-        $this->createTextContentPage($site, 'bundles', 'Sonata Bundles', <<<CONTENT
+        $this->createTextContentPage($site, 'bundles', 'Sonata Bundles', <<<'CONTENT'
 <div class="row">
 <div class="col-md-6">
 
@@ -899,14 +886,12 @@ CONTENT
     }
 
     /**
-     * Creates simple content pages
+     * Creates simple content pages.
      *
      * @param SiteInterface $site    A Site entity instance
      * @param string        $url     A page URL
      * @param string        $title   A page title
      * @param string        $content A text content
-     *
-     * @return void
      */
     public function createTextContentPage(SiteInterface $site, $url, $title, $content)
     {
@@ -929,8 +914,8 @@ CONTENT
 
         $page->addBlocks($block = $blockInteractor->createNewContainer(array(
             'enabled' => true,
-            'page'    => $page,
-            'code'    => 'content_top',
+            'page' => $page,
+            'code' => 'content_top',
         )));
 
         // add the breadcrumb
@@ -969,8 +954,8 @@ CONTENT
 
         $page->addBlocks($block = $blockInteractor->createNewContainer(array(
             'enabled' => true,
-            'page'    => $page,
-            'code'    => 'content_top',
+            'page' => $page,
+            'code' => 'content_top',
         )));
 
         // add the breadcrumb
@@ -1009,8 +994,8 @@ CONTENT
 
         $page->addBlocks($block = $blockInteractor->createNewContainer(array(
             'enabled' => true,
-            'page'    => $page,
-            'code'    => 'content_top',
+            'page' => $page,
+            'code' => 'content_top',
         )));
 
         // add the breadcrumb
@@ -1105,7 +1090,7 @@ CONTENT
         $headerMenu->addChildren($menu = $blockManager->create());
 
         $menu->setType('sonata.block.service.menu');
-        $menu->setSetting('menu_name', "SonataDemoBundle:Builder:mainMenu");
+        $menu->setSetting('menu_name', 'SonataDemoBundle:Builder:mainMenu');
         $menu->setSetting('safe_labels', true);
         $menu->setPosition(3);
         $menu->setEnabled(true);
@@ -1113,8 +1098,8 @@ CONTENT
 
         $global->addBlocks($footer = $blockInteractor->createNewContainer(array(
             'enabled' => true,
-            'page'    => $global,
-            'code'    => 'footer'
+            'page' => $global,
+            'code' => 'footer',
         ), function ($container) {
             $container->setSetting('layout', '<div class="row page-footer well">{{ CONTENT }}</div>');
         }));
@@ -1124,32 +1109,32 @@ CONTENT
         // Footer : add 3 children block containers (left, center, right)
         $footer->addChildren($footerLeft = $blockInteractor->createNewContainer(array(
             'enabled' => true,
-            'page'    => $global,
-            'code'    => 'content'
+            'page' => $global,
+            'code' => 'content',
         ), function ($container) {
             $container->setSetting('layout', '<div class="col-sm-3">{{ CONTENT }}</div>');
         }));
 
         $footer->addChildren($footerLinksLeft = $blockInteractor->createNewContainer(array(
             'enabled' => true,
-            'page'    => $global,
-            'code'    => 'content',
+            'page' => $global,
+            'code' => 'content',
         ), function ($container) {
             $container->setSetting('layout', '<div class="col-sm-2 col-sm-offset-3">{{ CONTENT }}</div>');
         }));
 
         $footer->addChildren($footerLinksCenter = $blockInteractor->createNewContainer(array(
             'enabled' => true,
-            'page'    => $global,
-            'code'    => 'content'
+            'page' => $global,
+            'code' => 'content',
         ), function ($container) {
             $container->setSetting('layout', '<div class="col-sm-2">{{ CONTENT }}</div>');
         }));
 
         $footer->addChildren($footerLinksRight = $blockInteractor->createNewContainer(array(
             'enabled' => true,
-            'page'    => $global,
-            'code'    => 'content'
+            'page' => $global,
+            'code' => 'content',
         ), function ($container) {
             $container->setSetting('layout', '<div class="col-sm-2">{{ CONTENT }}</div>');
         }));
@@ -1168,7 +1153,7 @@ CONTENT
         $footerLinksLeft->addChildren($text = $blockManager->create());
 
         $text->setType('sonata.block.service.text');
-        $text->setSetting('content', <<<CONTENT
+        $text->setSetting('content', <<<'CONTENT'
 <h4>PRODUCT</h4>
 <ul class="links">
     <li><a href="/bundles">Sonata</a></li>
@@ -1186,7 +1171,7 @@ CONTENT
         $footerLinksCenter->addChildren($text = $blockManager->create());
 
         $text->setType('sonata.block.service.text');
-        $text->setSetting('content', <<<CONTENT
+        $text->setSetting('content', <<<'CONTENT'
 <h4>ABOUT</h4>
 <ul class="links">
     <li><a href="http://www.sonata-project.org/about" target="_blank">About Sonata</a></li>
@@ -1204,7 +1189,7 @@ CONTENT
         $footerLinksRight->addChildren($text = $blockManager->create());
 
         $text->setType('sonata.block.service.text');
-        $text->setSetting('content', <<<CONTENT
+        $text->setSetting('content', <<<'CONTENT'
 <h4>COMMUNITY</h4>
 <ul class="links">
     <li><a href="/blog">Blog</a></li>

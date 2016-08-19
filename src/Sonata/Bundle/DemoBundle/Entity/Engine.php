@@ -47,7 +47,7 @@ class Engine
      * @param string $name
      * @param string $power
      */
-    public function  __construct($name = null, $power = null)
+    public function __construct($name = null, $power = null)
     {
         $this->name = $name;
         $this->power = $power;
@@ -60,7 +60,6 @@ class Engine
 
     /**
      * @param $name
-     * @return void
      */
     public function setName($name)
     {
@@ -77,7 +76,6 @@ class Engine
 
     /**
      * @param $power
-     * @return void
      */
     public function setPower($power)
     {
@@ -116,4 +114,3 @@ class Engine
         return $this->media;
     }
 }
-

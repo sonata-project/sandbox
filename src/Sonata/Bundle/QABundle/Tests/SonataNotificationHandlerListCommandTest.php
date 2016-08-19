@@ -17,9 +17,9 @@ class SonataNotificationHandlerListCommandTest extends CommandTestCase
     {
         $client = self::createClient();
 
-        $output = $this->runCommand($client, "sonata:notification:list-handler");
+        $output = $this->runCommand($client, 'sonata:notification:list-handler');
 
-        $this->assertContains("done!", $output);
+        $this->assertContains('done!', $output);
 
         foreach (self::getConsumerList() as $def) {
             list($name, $id) = $def;

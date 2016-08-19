@@ -13,7 +13,6 @@ namespace Sonata\Bundle\QABundle\Tests;
 
 class SonataMediaSyncCommandTest extends CommandTestCase
 {
-
     /**
      * @dataProvider getMediaList
      */
@@ -21,11 +20,11 @@ class SonataMediaSyncCommandTest extends CommandTestCase
     {
         $client = self::createClient();
 
-        $output = $this->runCommand($client, sprintf("sonata:media:sync-thumbnails %s %s",
+        $output = $this->runCommand($client, sprintf('sonata:media:sync-thumbnails %s %s',
             $id,
             'default'
         ));
 
-        $this->assertContains("Done (total ", $output);
+        $this->assertContains('Done (total ', $output);
     }
 }

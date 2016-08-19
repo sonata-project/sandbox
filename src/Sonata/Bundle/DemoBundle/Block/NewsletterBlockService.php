@@ -8,7 +8,6 @@
  * file that was distributed with this source code.
  */
 
-
 namespace Sonata\Bundle\DemoBundle\Block;
 
 use Sonata\AdminBundle\Form\FormMapper;
@@ -23,7 +22,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Class NewsletterBlockService
+ * Class NewsletterBlockService.
  *
  * Renders a fake newsletter block for the sandbox
  *
@@ -37,7 +36,7 @@ class NewsletterBlockService extends BaseBlockService
     protected $form;
 
     /**
-     * Constructor
+     * Constructor.
      *
      * @param string               $name        A block name
      * @param EngineInterface      $templating  Twig engine service
@@ -57,9 +56,9 @@ class NewsletterBlockService extends BaseBlockService
     public function execute(BlockContextInterface $blockContext, Response $response = null)
     {
         return $this->renderPrivateResponse($blockContext->getTemplate(), array(
-            'block'   => $blockContext->getBlock(),
+            'block' => $blockContext->getBlock(),
             'context' => $blockContext,
-            'form'    => $this->form->createView(),
+            'form' => $this->form->createView(),
         ));
     }
 
@@ -85,7 +84,7 @@ class NewsletterBlockService extends BaseBlockService
     {
         $resolver->setDefaults(array(
             'template' => 'SonataDemoBundle:Block:newsletter.html.twig',
-            'ttl'      => 0
+            'ttl' => 0,
         ));
     }
 

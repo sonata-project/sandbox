@@ -16,7 +16,6 @@ use AppBundle\Entity\Commerce\Delivery;
 use AppBundle\Entity\Commerce\Package;
 use AppBundle\Entity\Commerce\ProductCategory;
 use AppBundle\Entity\Commerce\ProductCollection;
-
 use Sonata\Bundle\DemoBundle\Entity\Goodie;
 use Sonata\Bundle\DemoBundle\Entity\Travel;
 use Sonata\ClassificationBundle\Model\CategoryInterface;
@@ -24,7 +23,6 @@ use Sonata\ClassificationBundle\Model\CollectionInterface;
 use Sonata\Component\Product\ProductInterface;
 use Sonata\MediaBundle\Model\GalleryInterface;
 use Sonata\MediaBundle\Model\MediaInterface;
-
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Finder\Finder;
@@ -45,14 +43,13 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
     protected $container;
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function load(ObjectManager $manager)
     {
-
         $productPool = $this->getProductPool();
 
-        $dummyCategory     = $this->getDummyCategory();
+        $dummyCategory = $this->getDummyCategory();
 
         // default media
         $defaultMedia = $this->getMediaManager()->create();
@@ -63,12 +60,12 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $defaultMedia->setCategory($dummyCategory);
         $this->getMediaManager()->save($defaultMedia, 'product_catalog_default', 'sonata.media.provider.image');
 
-        $goodiesCategory   = $this->getGoodiesCategory();
-        $travelsCategory   = $this->getTravelsCategory();
-        $plushesCategory   = $this->getPlushesCategory();
-        $mugCategory       = $this->getMugCategory();
-        $clothesCategory   = $this->getClothesCategory();
-        $shoesCategory     = $this->getShoesCategory();
+        $goodiesCategory = $this->getGoodiesCategory();
+        $travelsCategory = $this->getTravelsCategory();
+        $plushesCategory = $this->getPlushesCategory();
+        $mugCategory = $this->getMugCategory();
+        $clothesCategory = $this->getClothesCategory();
+        $shoesCategory = $this->getShoesCategory();
 
         $phpCollection = $this->getPhpCollection();
         $travelCollection = $this->getTravelCollection();
@@ -76,8 +73,8 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
 
         $dummyMedia = $this->createMedia(__DIR__.'/../data/files/sonata_logo.png', 'Dummy', 'Dummy product', null, null, 'dummy_category');
 
-        if ($this->container->hasParameter("sonata.fixtures.product.fake")) {
-            for ($i = 1; $i < (int)$this->container->getParameter("sonata.fixtures.product.fake"); $i++) {
+        if ($this->container->hasParameter('sonata.fixtures.product.fake')) {
+            for ($i = 1; $i < (int) $this->container->getParameter('sonata.fixtures.product.fake'); ++$i) {
                 // Goodies products
                 $dummy = new Goodie();
                 $dummy->setSku('dummy_'.$i);
@@ -90,8 +87,8 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
                 $dummy->setRawShortDescription('<p>Dummy product. We use it to test our catalog capabilities.</p>');
                 $dummy->setDescriptionFormatter('richhtml');
                 $dummy->setShortDescriptionFormatter('richhtml');
-                $dummy->setPrice(rand(0, 2*$i));
-                $dummy->setStock(rand(1, 100*$i));
+                $dummy->setPrice(rand(0, 2 * $i));
+                $dummy->setStock(rand(1, 100 * $i));
                 $dummy->setVatRate(20);
                 $dummy->setEnabled(true);
                 $manager->persist($dummy);
@@ -99,7 +96,6 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
                 $this->setReference('dummy_product_'.$i, $dummy);
 
                 $dummy->setImage($dummyMedia);
-
 
                 $this->addProductToCategory($dummy, $dummyCategory, $manager);
                 $this->addProductToCollection($dummy, $dummyCollection, $manager);
@@ -132,7 +128,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $this->setReference('php_plush_blue_goodie_product', $bluePhpPlush);
 
         $this->addMediaToProduct(__DIR__.'/../data/files/elephpant_blue.jpg', 'Blue PHP elePHPant',
-            <<<EOF
+            <<<'EOF'
 Original PHP plush based on Vincent Pontier PHP logo.
 Reference - http://www.flickr.com/photos/fullo/4703273699/in/pool-35237093722@N01/
 EOF
@@ -163,7 +159,7 @@ EOF
         $this->setReference('php_plush_green_goodie_product', $greenPhpPlush);
 
         $this->addMediaToProduct(__DIR__.'/../data/files/elephpant_green.jpg', 'Green PHP elePHPant',
-            <<<EOF
+            <<<'EOF'
 Green PHP plush based on Vincent Pontier PHP logo.
 Reference - http://www.flickr.com/photos/ztec/9204770134/in/photostream/
 EOF
@@ -194,7 +190,7 @@ EOF
         $this->setReference('php_plush_orange_goodie_product', $orangePhpPlush);
 
         $this->addMediaToProduct(__DIR__.'/../data/files/elephpant_orange.jpg', 'Orange PHP elePHPant',
-            <<<EOF
+            <<<'EOF'
 Orange PHP Plush based on Vincent Pontier PHP logo.
 Reference - http://www.kickstarter.com/projects/eliw/php-architect-orange-elephpant
 EOF
@@ -232,7 +228,6 @@ EOF
         $this->addProductToCollection($phpMug, $phpCollection, $manager);
         $this->addPackageToProduct($phpMug, $manager);
 
-
         // PHP T-Shirt
         $phpTeeShirt = new Goodie();
         $phpTeeShirt->setSku('PHP_TSHIRT');
@@ -260,7 +255,6 @@ EOF
         $this->addProductToCollection($phpTeeShirt, $phpCollection, $manager);
         $this->addPackageToProduct($phpTeeShirt, $manager);
 
-
         // PHP Maximum Air Sonata
         $maximumAir = new Goodie();
         $maximumAir->setSku('MAXIMUM_AIR_SONATA');
@@ -286,7 +280,6 @@ EOF
         $this->addProductDeliveries($maximumAir, $manager);
         $this->addProductToCollection($maximumAir, $phpCollection, $manager);
         $this->addPackageToProduct($maximumAir, $manager);
-
 
         // PHP Maximum Air Sonata Ultimate Edition
         $maximumAirUlt = new Goodie();
@@ -320,7 +313,7 @@ EOF
         $japanTravel->setName('Japan tour');
         $japanTravel->setSlug('travel-japan-tour');
         $japanTravel->setDescription(
-            <<<EOF
+            <<<'EOF'
 <p>Tokyo (東京 Tōkyō?, "Eastern Capital") (Japanese: [toːkʲoː], English /ˈtoʊki.oʊ/), officially Tokyo Metropolis (東京都 Tōkyō-to?),[4] is one of the 47 prefectures of Japan.[5] Tokyo is the capital of Japan, the centre of the Greater Tokyo Area, and the largest metropolitan area in the world.[6] It is the seat of the Japanese government and the Imperial Palace, and the home of the Japanese Imperial Family. Tokyo is in the Kantō region on the southeastern side of the main island Honshu and includes the Izu Islands and Ogasawara Islands.[7] Tokyo Metropolis was formed in 1943 from the merger of the former Tokyo Prefecture (東京府 Tōkyō-fu?) and the city of Tokyo (東京市 Tōkyō-shi?).</p>
 
 <p>Tokyo is often referred to and thought of as a city, but is officially known as a "metropolitan prefecture", which differs from a city. The Tokyo metropolitan government administers the 23 Special Wards of Tokyo (each governed as an individual city), which cover the area that was formerly the City of Tokyo before it merged and became the subsequent metropolitan prefecture in 1943. The metropolitan government also administers 39 municipalities in the western part of the prefecture and the two outlying island chains. The population of the special wards is over 9 million people, with the total population of the prefecture exceeding 13 million. The prefecture is part of the world's most populous metropolitan area with upwards of 35 million people and the world's largest urban agglomeration economy with a GDP of US$1.479 trillion at purchasing power parity, ahead of the New York metropolitan area in 2008. The city hosts 51 of the Fortune Global 500 companies, the highest number of any city.[8]</p>
@@ -334,7 +327,7 @@ EOF
 
         );
         $japanTravel->setRawDescription(
-            <<<EOF
+            <<<'EOF'
 <p>Tokyo (東京 Tōkyō?, "Eastern Capital") (Japanese: [toːkʲoː], English /ˈtoʊki.oʊ/), officially Tokyo Metropolis (東京都 Tōkyō-to?),[4] is one of the 47 prefectures of Japan.[5] Tokyo is the capital of Japan, the centre of the Greater Tokyo Area, and the largest metropolitan area in the world.[6] It is the seat of the Japanese government and the Imperial Palace, and the home of the Japanese Imperial Family. Tokyo is in the Kantō region on the southeastern side of the main island Honshu and includes the Izu Islands and Ogasawara Islands.[7] Tokyo Metropolis was formed in 1943 from the merger of the former Tokyo Prefecture (東京府 Tōkyō-fu?) and the city of Tokyo (東京市 Tōkyō-shi?).</p>
 
 <p>Tokyo is often referred to and thought of as a city, but is officially known as a "metropolitan prefecture", which differs from a city. The Tokyo metropolitan government administers the 23 Special Wards of Tokyo (each governed as an individual city), which cover the area that was formerly the City of Tokyo before it merged and became the subsequent metropolitan prefecture in 1943. The metropolitan government also administers 39 municipalities in the western part of the prefecture and the two outlying island chains. The population of the special wards is over 9 million people, with the total population of the prefecture exceeding 13 million. The prefecture is part of the world's most populous metropolitan area with upwards of 35 million people and the world's largest urban agglomeration economy with a GDP of US$1.479 trillion at purchasing power parity, ahead of the New York metropolitan area in 2008. The city hosts 51 of the Fortune Global 500 companies, the highest number of any city.[8]</p>
@@ -349,7 +342,7 @@ EOF
         );
         $japanTravel->setPriceIncludingVat(false);
         $japanTravel->setShortDescription(
-            <<<EOF
+            <<<'EOF'
 <p>Tokyo (東京 Tōkyō?, "Eastern Capital") (Japanese: [toːkʲoː], English /ˈtoʊki.oʊ/), officially Tokyo Metropolis (東京都 Tōkyō-to?),[4] is one of the 47 prefectures of Japan.</p><p>[5] Tokyo is the capital of Japan, the centre of the Greater Tokyo Area, and the largest metropolitan area in the world.</p><p>[6] It is the seat of the Japanese government and the Imperial Palace, and the home of the Japanese Imperial Family.</p>
 
 <p>References <a href="http://en.wikipedia.org/wiki/Tokyo" target="_blank">Wikipedia.org [en]</a></p>
@@ -357,7 +350,7 @@ EOF
 
         );
         $japanTravel->setRawShortDescription(
-            <<<EOF
+            <<<'EOF'
 <p>Tokyo (東京 Tōkyō?, "Eastern Capital") (Japanese: [toːkʲoː], English /ˈtoʊki.oʊ/), officially Tokyo Metropolis (東京都 Tōkyō-to?),[4] is one of the 47 prefectures of Japan.</p><p>[5] Tokyo is the capital of Japan, the centre of the Greater Tokyo Area, and the largest metropolitan area in the world.</p><p>[6] It is the seat of the Japanese government and the Imperial Palace, and the home of the Japanese Imperial Family.</p>
 
 <p>References <a href="http://en.wikipedia.org/wiki/Tokyo" target="_blank">Wikipedia.org [en]</a></p>
@@ -452,7 +445,7 @@ EOF
         $quebecTravel->setName('Quebec tour');
         $quebecTravel->setSlug('travel-quebec-tour');
         $quebecTravel->setDescription(
-            <<<EOF
+            <<<'EOF'
 <p>Quebec (Listeni/kwɨˈbɛk/ or /kɨˈbɛk/; French: Québec [kebɛk] ( listen))[7] is a province in east-central Canada.[8][9] It is the only Canadian province that has a predominantly French-speaking population, and the only one to have French as its sole provincial official language.</p>
 
 <p>Quebec is Canada's largest province by area and its second-largest administrative division; only the territory of Nunavut is larger. It is bordered to the west by the province of Ontario, James Bay and Hudson Bay, to the north by Hudson Strait and Ungava Bay, to the east by the Gulf of Saint Lawrence and the provinces of Newfoundland and Labrador and New Brunswick. It is bordered on the south by the US states of Maine, New Hampshire, Vermont, and New York. It also shares maritime borders with Nunavut, Prince Edward Island, and Nova Scotia.</p>
@@ -466,7 +459,7 @@ EOF
 
         );
         $quebecTravel->setRawDescription(
-            <<<EOF
+            <<<'EOF'
 <p>Quebec (Listeni/kwɨˈbɛk/ or /kɨˈbɛk/; French: Québec [kebɛk] ( listen))[7] is a province in east-central Canada.[8][9] It is the only Canadian province that has a predominantly French-speaking population, and the only one to have French as its sole provincial official language.</p>
 
 <p>Quebec is Canada's largest province by area and its second-largest administrative division; only the territory of Nunavut is larger. It is bordered to the west by the province of Ontario, James Bay and Hudson Bay, to the north by Hudson Strait and Ungava Bay, to the east by the Gulf of Saint Lawrence and the provinces of Newfoundland and Labrador and New Brunswick. It is bordered on the south by the US states of Maine, New Hampshire, Vermont, and New York. It also shares maritime borders with Nunavut, Prince Edward Island, and Nova Scotia.</p>
@@ -481,7 +474,7 @@ EOF
         );
         $quebecTravel->setPriceIncludingVat(false);
         $quebecTravel->setShortDescription(
-            <<<EOF
+            <<<'EOF'
 <p>Quebec (Listeni/kwɨˈbɛk/ or /kɨˈbɛk/; French: Québec [kebɛk] ( listen))[7] is a province in east-central Canada.</p> <p>[8][9] It is the only Canadian province that has a predominantly French-speaking population, and the only one to have French as its sole provincial official language.</p>
 
 <p>References <a href="http://en.wikipedia.org/wiki/Quebec" target="_blank">Wikipedia.org [en]</a></p>
@@ -489,7 +482,7 @@ EOF
 
         );
         $quebecTravel->setRawShortDescription(
-            <<<EOF
+            <<<'EOF'
 <p>Quebec (Listeni/kwɨˈbɛk/ or /kɨˈbɛk/; French: Québec [kebɛk] ( listen))[7] is a province in east-central Canada.</p> <p>[8][9] It is the only Canadian province that has a predominantly French-speaking population, and the only one to have French as its sole provincial official language.</p>
 
 <p>References <a href="http://en.wikipedia.org/wiki/Quebec" target="_blank">Wikipedia.org [en]</a></p>
@@ -600,7 +593,7 @@ EOF
         $parisTravel->setName('Paris tour');
         $parisTravel->setSlug('travel-paris-tour');
         $parisTravel->setDescription(
-            <<<EOF
+            <<<'EOF'
 <p>Paris (English /ˈpærɪs/, Listeni/ˈpɛrɪs/; French: [paʁi] ( listen)) is the capital and most populous city of France. It is situated on the River Seine, in the north of the country, at the heart of the Île-de-France region. Within its administrative limits (the 20 arrondissements), the city had 2,234,105 inhabitants in 2009 while its metropolitan area is one of the largest population centres in Europe with more than 12 million inhabitants.</p>
 
 <p>An important settlement for more than two millennia, by the late 12th century Paris had become a walled cathedral city that was one of Europe's foremost centres of learning and the arts and the largest city in the Western world until the turn of the 18th century. Paris was the focal point for many important political events throughout its history, including the French Revolution. Today it is one of the world's leading business and cultural centres, and its influence in politics, education, entertainment, media, science, fashion and the arts all contribute to its status as one of the world's major cities. The city has one of the largest GDPs in the world, €607 billion (US$845 billion) as of 2011, and as a result of its high concentration of national and international political, cultural and scientific institutions is one of the world's leading tourist destinations. The Paris Region hosts the world headquarters of 30 of the Fortune Global 500 companies[6] in several business districts, notably La Défense, the largest dedicated business district in Europe.[7]</p>
@@ -612,7 +605,7 @@ EOF
 
         );
         $parisTravel->setRawDescription(
-            <<<EOF
+            <<<'EOF'
 <p>Paris (English /ˈpærɪs/, Listeni/ˈpɛrɪs/; French: [paʁi] ( listen)) is the capital and most populous city of France. It is situated on the River Seine, in the north of the country, at the heart of the Île-de-France region. Within its administrative limits (the 20 arrondissements), the city had 2,234,105 inhabitants in 2009 while its metropolitan area is one of the largest population centres in Europe with more than 12 million inhabitants.</p>
 
 <p>An important settlement for more than two millennia, by the late 12th century Paris had become a walled cathedral city that was one of Europe's foremost centres of learning and the arts and the largest city in the Western world until the turn of the 18th century. Paris was the focal point for many important political events throughout its history, including the French Revolution. Today it is one of the world's leading business and cultural centres, and its influence in politics, education, entertainment, media, science, fashion and the arts all contribute to its status as one of the world's major cities. The city has one of the largest GDPs in the world, €607 billion (US$845 billion) as of 2011, and as a result of its high concentration of national and international political, cultural and scientific institutions is one of the world's leading tourist destinations. The Paris Region hosts the world headquarters of 30 of the Fortune Global 500 companies[6] in several business districts, notably La Défense, the largest dedicated business district in Europe.[7]</p>
@@ -625,7 +618,7 @@ EOF
         );
         $parisTravel->setPriceIncludingVat(false);
         $parisTravel->setShortDescription(
-            <<<EOF
+            <<<'EOF'
 <p>Paris (English /ˈpærɪs/, Listeni/ˈpɛrɪs/; French: [paʁi] ( listen)) is the capital and most populous city of France. It is situated on the River Seine, in the north of the country, at the heart of the Île-de-France region. </p> <p> Within its administrative limits (the 20 arrondissements), the city had 2,234,105 inhabitants in 2009 while its metropolitan area is one of the largest population centres in Europe with more than 12 million inhabitants.</p>
 
 <p>References <a href="http://en.wikipedia.org/wiki/Paris" target="_blank">Wikipedia.org [en]</a></p>
@@ -633,7 +626,7 @@ EOF
 
         );
         $parisTravel->setRawShortDescription(
-            <<<EOF
+            <<<'EOF'
 <p>Paris (English /ˈpærɪs/, Listeni/ˈpɛrɪs/; French: [paʁi] ( listen)) is the capital and most populous city of France. It is situated on the River Seine, in the north of the country, at the heart of the Île-de-France region. </p> <p> Within its administrative limits (the 20 arrondissements), the city had 2,234,105 inhabitants in 2009 while its metropolitan area is one of the largest population centres in Europe with more than 12 million inhabitants.</p>
 
 <p>References <a href="http://en.wikipedia.org/wiki/Paris" target="_blank">Wikipedia.org [en]</a></p>
@@ -863,7 +856,7 @@ EOF
         $switzerlandTravel->setName('Switzerland tour');
         $switzerlandTravel->setSlug('travel-switzerland-tour');
         $switzerlandTravel->setDescription(
-            <<<EOF
+            <<<'EOF'
 <p>Switzerland (German: Schweiz[note 3] [ˈʃvaɪts]; French: Suisse [sɥis]; Italian: Svizzera [ˈzvittsera]; Romansh: Svizra [ˈʒviːtsrɐ] or [ˈʒviːtsʁːɐ]), officially the Swiss Confederation (Latin: Confoederatio Helvetica, hence its abbreviation CH), is a federal parliamentary republic consisting of 26 cantons, with Bern as the seat of the federal authorities. The country is situated in Western and Central Europe,[note 4] where it is bordered by Germany to the north, France to the west, Italy to the south, and Austria and Liechtenstein to the east. Switzerland is a landlocked country geographically divided between the Alps, the Swiss Plateau and the Jura, spanning an area of 41,285 km2 (15,940 sq mi). While the Alps occupy the greater part of the territory, the Swiss population of approximately 8 million people is concentrated mostly on the Plateau, where the largest cities are to be found. Among them are the two global cities and economic centres of Zürich and Geneva.
 
 <p>The establishment of the Swiss Confederation is traditionally dated to 1 August 1291, which is celebrated annually as Swiss National Day. It has a long history of armed neutrality—it has not been in a state of war internationally since 1815—and did not join the United Nations until 2002. It pursues, however, an active foreign policy and is frequently involved in peace-building processes around the world.[8] Switzerland is also the birthplace of the Red Cross and home to a large number of international organizations, including the second largest UN office. On the European level, it is a founding member of the European Free Trade Association and is part of the Schengen Area – although it is notably not a member of the European Union, nor the European Economic Area. Switzerland comprises four main linguistic and cultural regions: German, French, Italian and the Romansh-speaking valleys. Therefore the Swiss, although predominantly German-speaking, do not form a nation in the sense of a common ethnic or linguistic identity; rather, the strong sense of identity and community is founded on a common historical background, shared values such as federalism and direct democracy,[9] and Alpine symbolism.[10]
@@ -875,7 +868,7 @@ EOF
 
         );
         $switzerlandTravel->setRawDescription(
-            <<<EOF
+            <<<'EOF'
 <p>Switzerland (German: Schweiz[note 3] [ˈʃvaɪts]; French: Suisse [sɥis]; Italian: Svizzera [ˈzvittsera]; Romansh: Svizra [ˈʒviːtsrɐ] or [ˈʒviːtsʁːɐ]), officially the Swiss Confederation (Latin: Confoederatio Helvetica, hence its abbreviation CH), is a federal parliamentary republic consisting of 26 cantons, with Bern as the seat of the federal authorities. The country is situated in Western and Central Europe,[note 4] where it is bordered by Germany to the north, France to the west, Italy to the south, and Austria and Liechtenstein to the east. Switzerland is a landlocked country geographically divided between the Alps, the Swiss Plateau and the Jura, spanning an area of 41,285 km2 (15,940 sq mi). While the Alps occupy the greater part of the territory, the Swiss population of approximately 8 million people is concentrated mostly on the Plateau, where the largest cities are to be found. Among them are the two global cities and economic centres of Zürich and Geneva.
 
 <p>The establishment of the Swiss Confederation is traditionally dated to 1 August 1291, which is celebrated annually as Swiss National Day. It has a long history of armed neutrality—it has not been in a state of war internationally since 1815—and did not join the United Nations until 2002. It pursues, however, an active foreign policy and is frequently involved in peace-building processes around the world.[8] Switzerland is also the birthplace of the Red Cross and home to a large number of international organizations, including the second largest UN office. On the European level, it is a founding member of the European Free Trade Association and is part of the Schengen Area – although it is notably not a member of the European Union, nor the European Economic Area. Switzerland comprises four main linguistic and cultural regions: German, French, Italian and the Romansh-speaking valleys. Therefore the Swiss, although predominantly German-speaking, do not form a nation in the sense of a common ethnic or linguistic identity; rather, the strong sense of identity and community is founded on a common historical background, shared values such as federalism and direct democracy,[9] and Alpine symbolism.[10]
@@ -888,7 +881,7 @@ EOF
         );
         $switzerlandTravel->setPriceIncludingVat(false);
         $switzerlandTravel->setShortDescription(
-            <<<EOF
+            <<<'EOF'
 <p>
 Switzerland (German: Schweiz[note 3] [ˈʃvaɪts]; French: Suisse [sɥis]; Italian: Svizzera [ˈzvittsera]; Romansh: Svizra [ˈʒviːtsrɐ] or [ˈʒviːtsʁːɐ]), officially the Swiss Confederation (Latin: Confoederatio Helvetica, hence its abbreviation CH), is a federal parliamentary republic consisting of 26 cantons, with Bern as the seat of the federal authorities.</p>
 
@@ -897,7 +890,7 @@ EOF
 
         );
         $switzerlandTravel->setRawShortDescription(
-            <<<EOF
+            <<<'EOF'
 <p>
 Switzerland (German: Schweiz[note 3] [ˈʃvaɪts]; French: Suisse [sɥis]; Italian: Svizzera [ˈzvittsera]; Romansh: Svizra [ˈʒviːtsrɐ] or [ˈʒviːtsʁːɐ]), officially the Swiss Confederation (Latin: Confoederatio Helvetica, hence its abbreviation CH), is a federal parliamentary republic consisting of 26 cantons, with Bern as the seat of the federal authorities.</p>
 
@@ -991,7 +984,7 @@ EOF
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getOrder()
     {
@@ -1000,13 +993,13 @@ EOF
 
     protected function getLorem()
     {
-        return "
+        return '
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quae cum essent dicta, finem fecimus et ambulandi et disputandi. Duo Reges: constructio interrete. Itaque eos id agere, ut a se dolores, morbos, debilitates repellant. Quae cum dixisset paulumque institisset, Quid est? At iam decimum annum in spelunca iacet. Tibi hoc incredibile, quod beatissimum. Conferam avum tuum Drusum cum C. </p>
 
 <p>Si quicquam extra virtutem habeatur in bonis. Idemque diviserunt naturam hominis in animum et corpus. Aliter homines, aliter philosophos loqui putas oportere? Videmusne ut pueri ne verberibus quidem a contemplandis rebus perquirendisque deterreantur? Cur ipse Pythagoras et Aegyptum lustravit et Persarum magos adiit? Sed ille, ut dixi, vitiose. </p>
 
 <p>Atque his de rebus et splendida est eorum et illustris oratio. Ergo illi intellegunt quid Epicurus dicat, ego non intellego? Quamquam ab iis philosophiam et omnes ingenuas disciplinas habemus; Videamus animi partes, quarum est conspectus illustrior; Non est igitur summum malum dolor. </p>
-        ";
+        ';
     }
 
     /**
@@ -1101,7 +1094,7 @@ EOF
     }
 
     /**
-     * Creates a media and add it to given product instance
+     * Creates a media and add it to given product instance.
      *
      * @param string           $mediaFilename A media filename
      * @param string           $name          A media name to set on creation
@@ -1145,7 +1138,7 @@ EOF
     }
 
     /**
-     * Returns Switzerland gallery from a specified directory
+     * Returns Switzerland gallery from a specified directory.
      *
      * @param ProductInterface $product
      */
@@ -1176,7 +1169,7 @@ EOF
 
             $galleryHasMedia = new GalleryHasMedia();
             $galleryHasMedia->setMedia($media);
-            $galleryHasMedia->setPosition($pos+1);
+            $galleryHasMedia->setPosition($pos + 1);
             $galleryHasMedia->setEnabled(true);
 
             $gallery->addGalleryHasMedias($galleryHasMedia);
@@ -1188,7 +1181,7 @@ EOF
     }
 
     /**
-     * Returns Paris gallery from a specified directory
+     * Returns Paris gallery from a specified directory.
      *
      * @param ProductInterface $product
      */
@@ -1221,12 +1214,12 @@ EOF
 
             $galleryHasMedia = new GalleryHasMedia();
             $galleryHasMedia->setMedia($media);
-            $galleryHasMedia->setPosition($pos+1);
+            $galleryHasMedia->setPosition($pos + 1);
             $galleryHasMedia->setEnabled(true);
 
             $gallery->addGalleryHasMedias($galleryHasMedia);
 
-            $a++;
+            ++$a;
         }
 
         $files = Finder::create()
@@ -1250,12 +1243,12 @@ EOF
 
             $galleryHasMedia = new GalleryHasMedia();
             $galleryHasMedia->setMedia($media);
-            $galleryHasMedia->setPosition($pos+1);
+            $galleryHasMedia->setPosition($pos + 1);
             $galleryHasMedia->setEnabled(true);
 
             $gallery->addGalleryHasMedias($galleryHasMedia);
 
-            $b++;
+            ++$b;
         }
 
         $this->getGalleryManager()->update($gallery);
@@ -1264,7 +1257,7 @@ EOF
     }
 
     /**
-     * Returns Canada gallery from a specified directory
+     * Returns Canada gallery from a specified directory.
      *
      * @param ProductInterface $product
      */
@@ -1295,7 +1288,7 @@ EOF
 
             $galleryHasMedia = new GalleryHasMedia();
             $galleryHasMedia->setMedia($media);
-            $galleryHasMedia->setPosition($pos+1);
+            $galleryHasMedia->setPosition($pos + 1);
             $galleryHasMedia->setEnabled(true);
 
             $gallery->addGalleryHasMedias($galleryHasMedia);
@@ -1320,7 +1313,7 @@ EOF
 
             $galleryHasMedia = new GalleryHasMedia();
             $galleryHasMedia->setMedia($media);
-            $galleryHasMedia->setPosition($pos+1);
+            $galleryHasMedia->setPosition($pos + 1);
             $galleryHasMedia->setEnabled(true);
 
             $gallery->addGalleryHasMedias($galleryHasMedia);
@@ -1332,7 +1325,7 @@ EOF
     }
 
     /**
-     * Returns Japan gallery from a specified directory
+     * Returns Japan gallery from a specified directory.
      *
      * @param ProductInterface $product
      */
@@ -1355,7 +1348,7 @@ EOF
             $media->setDescription('Japan');
             $media->setName('Japan');
             $media->setAuthorName('Maha Kanas');
-            $media->setCopyright("CC BY-NC-SA 4.0");
+            $media->setCopyright('CC BY-NC-SA 4.0');
             $media->setCategory($this->getReference('travels_japan_category'));
             $media->setContext('product_catalog');
 
@@ -1363,7 +1356,7 @@ EOF
 
             $galleryHasMedia = new GalleryHasMedia();
             $galleryHasMedia->setMedia($media);
-            $galleryHasMedia->setPosition($pos+1);
+            $galleryHasMedia->setPosition($pos + 1);
             $galleryHasMedia->setEnabled(true);
 
             $gallery->addGalleryHasMedias($galleryHasMedia);
@@ -1381,7 +1374,7 @@ EOF
      */
     protected function getGalleryForProduct(ProductInterface $product)
     {
-        $galleryReference = sprintf("gallery_%s", $product->getSku());
+        $galleryReference = sprintf('gallery_%s', $product->getSku());
 
         if ($this->hasReference($galleryReference)) {
             return $this->getReference($galleryReference);
@@ -1510,7 +1503,7 @@ EOF
     }
 
     /**
-     * Returns the PHP collection
+     * Returns the PHP collection.
      *
      * @return CollectionInterface
      */
@@ -1520,7 +1513,7 @@ EOF
     }
 
     /**
-     * Returns the Travel collection
+     * Returns the Travel collection.
      *
      * @return CollectionInterface
      */
@@ -1530,7 +1523,7 @@ EOF
     }
 
     /**
-     * Returns the Dummy collection
+     * Returns the Dummy collection.
      *
      * @return CollectionInterface
      */
@@ -1568,7 +1561,7 @@ EOF
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function setContainer(ContainerInterface $container = null)
     {
@@ -1576,10 +1569,10 @@ EOF
     }
 
     /**
-     * Returns a new travel variation entity
+     * Returns a new travel variation entity.
      *
      * @param \Sonata\Component\Product\ProductProviderInterface $provider
-     * @param \Sonata\Component\Product\ProductInterface $parent
+     * @param \Sonata\Component\Product\ProductInterface         $parent
      *
      * @return Travel
      */

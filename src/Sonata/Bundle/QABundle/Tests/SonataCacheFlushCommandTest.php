@@ -19,7 +19,7 @@ class SonataCacheFlushCommandTest extends CommandTestCase
     public function testFlushException()
     {
         $client = self::createClient();
-        $this->runCommand($client, "sonata:cache:flush");
+        $this->runCommand($client, 'sonata:cache:flush');
     }
 
     /**
@@ -31,6 +31,6 @@ class SonataCacheFlushCommandTest extends CommandTestCase
     public function testFlush($id, $keys)
     {
         $client = self::createClient();
-        $this->runCommand($client, sprintf("sonata:cache:flush --cache=%s --keys=%s", $id, $keys));
+        $this->runCommand($client, sprintf('sonata:cache:flush --cache=%s --keys=%s', $id, $keys));
     }
 }

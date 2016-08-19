@@ -16,7 +16,7 @@ class ListCommandTest extends CommandTestCase
     public function testDefaultDoesNotInstall()
     {
         $client = self::createClient();
-        $output = $this->runCommand($client, "");
+        $output = $this->runCommand($client, '');
 
         $this->assertNotNull($output);
     }

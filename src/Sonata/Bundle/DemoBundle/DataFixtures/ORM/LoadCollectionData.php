@@ -18,9 +18,8 @@ use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Class LoadCollectionData
+ * Class LoadCollectionData.
  *
- * @package Sonata\Bundle\EcommerceDemoBundle\DataFixtures\ORM
  *
  * @author  Hugo Briand <briand@ekino.com>
  */
@@ -50,7 +49,7 @@ class LoadCollectionData extends AbstractFixture implements OrderedFixtureInterf
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function load(ObjectManager $manager)
     {
@@ -58,9 +57,9 @@ class LoadCollectionData extends AbstractFixture implements OrderedFixtureInterf
 
         // PHP Fan collection
         $php = $this->getCollectionManager()->create();
-        $php->setName("PHP Fan");
-        $php->setSlug("php-fan");
-        $php->setDescription("Everything a PHP Fan needs.");
+        $php->setName('PHP Fan');
+        $php->setSlug('php-fan');
+        $php->setDescription('Everything a PHP Fan needs.');
         $php->setEnabled(true);
         $php->setContext($productContext);
         $this->getCollectionManager()->save($php);
@@ -69,9 +68,9 @@ class LoadCollectionData extends AbstractFixture implements OrderedFixtureInterf
 
         // Travels collection
         $travel = $this->getCollectionManager()->create();
-        $travel->setName("Travels");
-        $travel->setSlug("travels");
-        $travel->setDescription("Every travels you want");
+        $travel->setName('Travels');
+        $travel->setSlug('travels');
+        $travel->setDescription('Every travels you want');
         $travel->setEnabled(true);
         $travel->setContext($productContext);
         $this->getCollectionManager()->save($travel);
@@ -80,9 +79,9 @@ class LoadCollectionData extends AbstractFixture implements OrderedFixtureInterf
 
         // Dummy collection
         $dummy = $this->getCollectionManager()->create();
-        $dummy->setName("Dummys");
-        $dummy->setSlug("Dummys");
-        $dummy->setDescription("Every dummys you want");
+        $dummy->setName('Dummys');
+        $dummy->setSlug('Dummys');
+        $dummy->setDescription('Every dummys you want');
         $dummy->setEnabled(true);
         $dummy->setContext($productContext);
         $this->getCollectionManager()->save($dummy);
@@ -93,7 +92,7 @@ class LoadCollectionData extends AbstractFixture implements OrderedFixtureInterf
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getOrder()
     {

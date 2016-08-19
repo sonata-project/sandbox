@@ -25,7 +25,7 @@ use Symfony\Bundle\FrameworkBundle\Client;
 abstract class CommandTestCase extends WebTestCase
 {
     /**
-     * Runs a command and returns it output
+     * Runs a command and returns it output.
      */
     public function runCommand(Client $client, $command, $exceptionOnExitCode = true)
     {
@@ -59,15 +59,15 @@ abstract class CommandTestCase extends WebTestCase
      */
     public function getConsoleLocation(Client $client)
     {
-        return sprintf("%s/console", $client->getContainer()->getParameter('kernel.root_dir'));
+        return sprintf('%s/console', $client->getContainer()->getParameter('kernel.root_dir'));
     }
 
     /**
-     * Return declared admin
+     * Return declared admin.
      *
      * @return array
      */
-    static public function getAdminList()
+    public static function getAdminList()
     {
         return array(
             array('sonata.user.admin.user',                   'AppBundle\\Entity\\User\\User'),
@@ -101,14 +101,14 @@ abstract class CommandTestCase extends WebTestCase
     }
 
     /**
-     * Returns declared caches
+     * Returns declared caches.
      *
      * @return array
      */
-    static public function getCacheList()
+    public static function getCacheList()
     {
         return array(
-            array('sonata.page.cache.esi', '{}' ),
+            array('sonata.page.cache.esi', '{}'),
             array('sonata.page.cache.ssi', '{}'),
             array('sonata.page.cache.js_sync', '{}'),
             array('sonata.page.cache.js_async', '{}'),
@@ -117,44 +117,44 @@ abstract class CommandTestCase extends WebTestCase
     }
 
     /**
-     * Returns declared blocks
+     * Returns declared blocks.
      *
      * @return array
      */
-    static public function getBlockList()
+    public static function getBlockList()
     {
         return array(
-            array('sonata.page.block.container', ),
-            array('sonata.page.block.children_pages', ),
-            array('sonata.media.block.media', ),
-            array('sonata.media.block.feature_media', ),
-            array('sonata.media.block.gallery', ),
-            array('sonata.admin.block.admin_list', ),
-            array('sonata.admin_doctrine_orm.block.audit', ),
-            array('sonata.formatter.block.formatter', ),
-            array('sonata.block.service.empty', ),
-            array('sonata.block.service.text', ),
-            array('sonata.block.service.rss', ),
-            array('sonata.block.service.menu', ),
-            array('sonata.timeline.block.timeline', ),
-            array('sonata.customer.block.recent_customers', ),
-            array('sonata.basket.block.nb_items', ),
-            array('sonata.news.block.recent_posts', ),
-            array('sonata.news.block.recent_comments', ),
-            array('sonata.user.block.menu', ),
-            array('sonata.user.block.account', ),
-            array('sonata.basket.block.nb_items', ),
-            array('sonata.order.block.recent_orders', ),
-            array('sonata.product.block.recent_products', ),
+            array('sonata.page.block.container'),
+            array('sonata.page.block.children_pages'),
+            array('sonata.media.block.media'),
+            array('sonata.media.block.feature_media'),
+            array('sonata.media.block.gallery'),
+            array('sonata.admin.block.admin_list'),
+            array('sonata.admin_doctrine_orm.block.audit'),
+            array('sonata.formatter.block.formatter'),
+            array('sonata.block.service.empty'),
+            array('sonata.block.service.text'),
+            array('sonata.block.service.rss'),
+            array('sonata.block.service.menu'),
+            array('sonata.timeline.block.timeline'),
+            array('sonata.customer.block.recent_customers'),
+            array('sonata.basket.block.nb_items'),
+            array('sonata.news.block.recent_posts'),
+            array('sonata.news.block.recent_comments'),
+            array('sonata.user.block.menu'),
+            array('sonata.user.block.account'),
+            array('sonata.basket.block.nb_items'),
+            array('sonata.order.block.recent_orders'),
+            array('sonata.product.block.recent_products'),
         );
     }
 
     /**
-     * Returns declared Media
+     * Returns declared Media.
      *
      * @return array
      */
-    static public function getMediaList()
+    public static function getMediaList()
     {
         return array(
             array('sonata.media.provider.image'),
@@ -166,11 +166,11 @@ abstract class CommandTestCase extends WebTestCase
     }
 
     /**
-     * Returns declared consumer
+     * Returns declared consumer.
      *
      * @return array
      */
-    static public function getConsumerList()
+    public static function getConsumerList()
     {
         return array(
             array('sonata.page.create_snapshots', 'sonata.page.notification.create_snapshots'),

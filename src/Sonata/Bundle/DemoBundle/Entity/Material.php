@@ -60,6 +60,6 @@ class Material
      */
     public function __toString()
     {
-        return  $this->getName() ?: "n/a";
+        return  $this->getName() ?: 'n/a';
     }
 }

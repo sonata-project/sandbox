@@ -16,9 +16,9 @@ class SonataCacheFlushAllCommandTest extends CommandTestCase
     public function testFlushAll()
     {
         $client = self::createClient();
-        $output = $this->runCommand($client, "sonata:cache:flush-all", false);
+        $output = $this->runCommand($client, 'sonata:cache:flush-all', false);
 
         $this->assertNotNull($output);
-        $this->assertNotContains("FAILED!", $output);
+        $this->assertNotContains('FAILED!', $output);
     }
 }

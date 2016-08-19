@@ -20,7 +20,7 @@ class SonataPageDumpCommandTest extends CommandTestCase
     {
         $client = self::createClient();
 
-        $this->runCommand($client, "sonata:page:dump-page");
+        $this->runCommand($client, 'sonata:page:dump-page');
     }
 
     /**
@@ -30,7 +30,7 @@ class SonataPageDumpCommandTest extends CommandTestCase
     {
         $client = self::createClient();
 
-        $this->runCommand($client, "sonata:page:dump-page sonata.page.manager.page 1");
+        $this->runCommand($client, 'sonata:page:dump-page sonata.page.manager.page 1');
     }
 
     /**
@@ -40,7 +40,7 @@ class SonataPageDumpCommandTest extends CommandTestCase
     {
         $client = self::createClient();
 
-        $this->runCommand($client, "sonata:page:dump-page sonata.page.cms.page 9999999");
+        $this->runCommand($client, 'sonata:page:dump-page sonata.page.cms.page 9999999');
     }
 
     public function testDump()
@@ -49,7 +49,7 @@ class SonataPageDumpCommandTest extends CommandTestCase
 
         $page = $client->getContainer()->get('sonata.page.manager.page')->findOneBy(array());
 
-        $output = $this->runCommand($client, sprintf("sonata:page:dump-page sonata.page.cms.page %d", $page->getId()));
+        $output = $this->runCommand($client, sprintf('sonata:page:dump-page sonata.page.cms.page %d', $page->getId()));
 
         $this->assertContains('Kind', $output);
         $this->assertContains('Blocks', $output);

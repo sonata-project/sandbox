@@ -19,7 +19,7 @@ class SonataAdminExplainCommandTest extends CommandTestCase
     public function testExplainException()
     {
         $client = self::createClient();
-        $output = $this->runCommand($client, "sonata:admin:explain");
+        $output = $this->runCommand($client, 'sonata:admin:explain');
     }
 
     /**
@@ -29,8 +29,8 @@ class SonataAdminExplainCommandTest extends CommandTestCase
     {
         $client = self::createClient();
 
-        $output = $this->runCommand($client, sprintf("sonata:admin:explain %s", $id));
+        $output = $this->runCommand($client, sprintf('sonata:admin:explain %s', $id));
 
-        $this->assertNotNull($output, sprintf("Fail to assert admin id: %s with class: %s", $id, $class));
+        $this->assertNotNull($output, sprintf('Fail to assert admin id: %s with class: %s', $id, $class));
     }
 }

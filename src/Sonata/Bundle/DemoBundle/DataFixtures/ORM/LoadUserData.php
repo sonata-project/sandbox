@@ -11,11 +11,9 @@
 
 namespace Sonata\Bundle\DemoBundle\DataFixtures\ORM;
 
-use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\Persistence\ObjectManager;
-
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -23,7 +21,7 @@ class LoadUserData extends AbstractFixture implements ContainerAwareInterface, O
 {
     private $container;
 
-    function getOrder()
+    public function getOrder()
     {
         return 1;
     }
@@ -64,7 +62,7 @@ class LoadUserData extends AbstractFixture implements ContainerAwareInterface, O
 
         foreach (range(1, 20) as $id) {
             $user = $manager->createUser();
-            $user->setUsername($faker->userName . $id);
+            $user->setUsername($faker->userName.$id);
             $user->setEmail($faker->safeEmail);
             $user->setPlainPassword($faker->randomNumber());
             $user->setEnabled(true);
