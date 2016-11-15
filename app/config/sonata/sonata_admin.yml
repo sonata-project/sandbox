@@ -142,7 +142,6 @@ sonata_admin:
                 items:
                     - sonata.user.admin.user
                     - sonata.user.admin.group
-                    - sonata.page.admin.site
                     - sonata.notification.admin.message
 
             sonata.admin.group.demo:
