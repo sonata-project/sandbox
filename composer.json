@@ -50,7 +50,7 @@
         "sonata-project/admin-bundle": "~2.2",
         "sonata-project/doctrine-orm-admin-bundle": "~2.2",
         "sonata-project/notification-bundle": "~2.2",
-        "sonata-project/block-bundle": "~2.2",
+        "sonata-project/block-bundle": "~2.3",
         "sonata-project/media-bundle": "~2.2",
         "sonata-project/user-bundle": "~2.2",
         "sonata-project/cache-bundle": "~2.1",
