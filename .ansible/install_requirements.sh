@@ -42,7 +42,7 @@ if [ ! -d /var/www/sonata-sandbox ]; then
 fi
 
 if [ ! -d /var/www/sonata-sandbox/vendor ]; then
-    composer install
+    cd /var/www/sonata-sandbox && composer install
 fi
 
 if [ ! -f /var/www/sonata-sandbox/app/config/parameters.yml ]; then
