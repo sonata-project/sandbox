@@ -26,7 +26,7 @@ class Peugeot extends Car
     protected $id;
 
     /**
-     * @return integer
+     * @return int
      */
     public function getId()
     {

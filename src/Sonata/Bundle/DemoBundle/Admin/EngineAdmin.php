@@ -67,8 +67,7 @@ class EngineAdmin extends Admin
             ->add('power')
             ->add('media', 'sonata_media_type', array(
                  'provider' => 'sonata.media.provider.youtube',
-                 'context'  => 'default'
+                 'context' => 'default',
             ));
-        ;
     }
 }

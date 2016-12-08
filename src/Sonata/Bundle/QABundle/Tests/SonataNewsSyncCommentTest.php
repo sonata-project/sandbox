@@ -13,13 +13,12 @@ namespace Sonata\Bundle\QABundle\Tests;
 
 class SonataNewsSyncCommentTest extends CommandTestCase
 {
-
     public function testRefresh()
     {
         $client = self::createClient();
 
-        $output = $this->runCommand($client, "sonata:news:sync-comments-count");
+        $output = $this->runCommand($client, 'sonata:news:sync-comments-count');
 
-        $this->assertContains("done!", $output);
+        $this->assertContains('done!', $output);
     }
 }

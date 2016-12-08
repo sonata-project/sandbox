@@ -18,9 +18,8 @@ use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Class LoadCollectionData
+ * Class LoadCollectionData.
  *
- * @package Sonata\Bundle\EcommerceDemoBundle\DataFixtures\ORM
  *
  * @author  Hugo Briand <briand@ekino.com>
  */
@@ -50,7 +49,7 @@ class LoadContextData extends AbstractFixture implements OrderedFixtureInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function load(ObjectManager $manager)
     {
@@ -83,7 +82,7 @@ class LoadContextData extends AbstractFixture implements OrderedFixtureInterface
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getOrder()
     {

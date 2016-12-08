@@ -64,6 +64,12 @@ assets:
 assets-watch:
 	app/console assetic:dump --watch
 
+format:
+	php-cs-fixer fix src
+	rm -rf app/cache/*
+	php-cs-fixer fix app
+
+
 build:
 	rm -rf web/sitemap*xml
 	find . -name '*.DS_Store' -type f -delete

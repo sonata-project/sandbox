@@ -57,24 +57,24 @@ class InspectionAdmin extends Admin
         if ($this->hasSubject() && $this->getSubject()->getStatus() == 1) {
             $choices = array(
                 1 => 'Current value is 1',
-                2 => 'switch to 2'
+                2 => 'switch to 2',
             );
         } else {
             $choices = array(
                 2 => 'current value is 2',
-                1 => 'switch to 1'
+                1 => 'switch to 1',
             );
         }
 
         $formMapper->add('status', 'choice', array('choices' => $choices));
 
         $formMapper->add('comment', 'sonata_simple_formatter_type', array(
-            'format' => 'richhtml'
+            'format' => 'richhtml',
         ));
 
         $formMapper->add('date', null, array('widget' => 'single_text'));
         $formMapper->add('inspector', 'sonata_type_model_autocomplete', array(
-            'property' => 'username'
+            'property' => 'username',
         ));
     }
 }

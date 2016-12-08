@@ -19,7 +19,7 @@ class SonataMediaAddCommandTest extends CommandTestCase
     public function testException()
     {
         $client = self::createClient();
-        $this->runCommand($client, "sonata:media:add");
+        $this->runCommand($client, 'sonata:media:add');
     }
 
     public function testMediaAdd()
@@ -27,14 +27,13 @@ class SonataMediaAddCommandTest extends CommandTestCase
         $client = self::createClient();
         $baseFolder = $client->getContainer()->getParameter('kernel.root_dir');
 
-        $output = $this->runCommand($client, sprintf("sonata:media:add %s %s %s",
+        $output = $this->runCommand($client, sprintf('sonata:media:add %s %s %s',
             'sonata.media.provider.image',
             'product_catalog',
-            sprintf("%s/../src/Sonata/Bundle/DemoBundle/DataFixtures/data/files/IMG_0003.JPG", $baseFolder)
+            sprintf('%s/../src/Sonata/Bundle/DemoBundle/DataFixtures/data/files/IMG_0003.JPG', $baseFolder)
         ));
 
-        $this->assertContains("Add a new media - context: product_catalog, provider: sonata.media.provider.image, content: ", $output);
-        $this->assertContains("done!", $output);
+        $this->assertContains('Add a new media - context: product_catalog, provider: sonata.media.provider.image, content: ', $output);
+        $this->assertContains('done!', $output);
     }
 }
-

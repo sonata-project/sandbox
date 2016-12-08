@@ -15,7 +15,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 /**
- * Class NewsletterType
+ * Class NewsletterType.
  *
  * This is the newsletter subscription/unsubscription form type
  *
@@ -31,8 +31,8 @@ class NewsletterType extends AbstractType
         $formBuilder
             ->add('email', 'email', array(
                 'attr' => array(
-                    'placeholder' => "Email"
-                )
+                    'placeholder' => 'Email',
+                ),
             ))
         ;
     }

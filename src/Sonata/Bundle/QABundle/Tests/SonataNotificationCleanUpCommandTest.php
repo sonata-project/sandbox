@@ -17,8 +17,8 @@ class SonataNotificationCleanUpCommandTest extends CommandTestCase
     {
         $client = self::createClient();
 
-        $output = $this->runCommand($client, "sonata:notification:cleanup");
+        $output = $this->runCommand($client, 'sonata:notification:cleanup');
 
-        $this->assertContains("done!", $output);
+        $this->assertContains('done!', $output);
     }
 }

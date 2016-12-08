@@ -13,13 +13,12 @@ namespace Sonata\Bundle\QABundle\Tests;
 
 class SonataPageCleanSnapshotCommandTest extends CommandTestCase
 {
-
     public function testRefresh()
     {
         $client = self::createClient();
 
-        $output = $this->runCommand($client, sprintf("sonata:page:cleanup-snapshots --site=all --base-console=%s", $this->getConsoleLocation($client)));
+        $output = $this->runCommand($client, sprintf('sonata:page:cleanup-snapshots --site=all --base-console=%s', $this->getConsoleLocation($client)));
 
-        $this->assertContains("done!", $output);
+        $this->assertContains('done!', $output);
     }
 }

@@ -20,7 +20,7 @@ class SonataPageRenderBlockCommandTest extends CommandTestCase
     {
         $client = self::createClient();
 
-        $this->runCommand($client, "sonata:page:render-block");
+        $this->runCommand($client, 'sonata:page:render-block');
     }
 
     /**
@@ -30,7 +30,7 @@ class SonataPageRenderBlockCommandTest extends CommandTestCase
     {
         $client = self::createClient();
 
-        $this->runCommand($client, "sonata:page:render-block sonata.page.manager.page 1 1");
+        $this->runCommand($client, 'sonata:page:render-block sonata.page.manager.page 1 1');
     }
 
     /**
@@ -40,7 +40,7 @@ class SonataPageRenderBlockCommandTest extends CommandTestCase
     {
         $client = self::createClient();
 
-        $this->runCommand($client, "sonata:page:render-block sonata.page.cms.page 9999999 99999999");
+        $this->runCommand($client, 'sonata:page:render-block sonata.page.cms.page 9999999 99999999');
     }
 
     public function testDump()
@@ -49,10 +49,10 @@ class SonataPageRenderBlockCommandTest extends CommandTestCase
 
         $page = $client->getContainer()->get('sonata.page.manager.page')->findOneBy(array());
         $block = $client->getContainer()->get('sonata.page.manager.block')->findOneBy(array(
-            'page' => $page->getId()
+            'page' => $page->getId(),
         ));
 
-        $output = $this->runCommand($client, sprintf("sonata:page:render-block sonata.page.cms.page %d %d", $page->getId(), $block->getId()));
+        $output = $this->runCommand($client, sprintf('sonata:page:render-block sonata.page.cms.page %d %d', $page->getId(), $block->getId()));
 
         $this->assertContains('BlockContext Information', $output);
         $this->assertContains('Response Output', $output);

@@ -11,7 +11,6 @@
 namespace Sonata\Bundle\DemoBundle\Entity;
 
 use AppBundle\Entity\Commerce\Product;
-
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -20,5 +19,4 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Goodie extends Product
 {
-
 }

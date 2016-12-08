@@ -94,7 +94,6 @@ abstract class Car
 
     /**
      * @param \DateTime $createdAt
-     * @return void
      */
     public function setCreatedAt(\DateTime $createdAt)
     {
@@ -111,7 +110,6 @@ abstract class Car
 
     /**
      * @param Engine $engine
-     * @return void
      */
     public function setEngine(Engine $engine)
     {
@@ -128,7 +126,6 @@ abstract class Car
 
     /**
      * @param $name
-     * @return void
      */
     public function setName($name)
     {
@@ -145,7 +142,6 @@ abstract class Car
 
     /**
      * @param Engine $rescueEngine
-     * @return void
      */
     public function setRescueEngine(Engine $rescueEngine)
     {
@@ -198,7 +194,6 @@ abstract class Car
 
     /**
      * @param Inspection $inspection
-     * @return void
      */
     public function addInspection(Inspection $inspection)
     {
@@ -209,7 +204,6 @@ abstract class Car
 
     /**
      * @param Inspection $inspection
-     * @return void
      */
     public function removeInspection(Inspection $inspection = null)
     {

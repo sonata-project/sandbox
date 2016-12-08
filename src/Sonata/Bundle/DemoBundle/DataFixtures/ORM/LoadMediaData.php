@@ -11,14 +11,11 @@
 
 namespace Sonata\Bundle\DemoBundle\DataFixtures\ORM;
 
-
 use Sonata\MediaBundle\Model\GalleryInterface;
 use Sonata\MediaBundle\Model\MediaInterface;
-
 use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\DataFixtures\AbstractFixture;
-
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Finder\Finder;
@@ -27,7 +24,7 @@ class LoadMediaData extends AbstractFixture implements ContainerAwareInterface, 
 {
     private $container;
 
-    function getOrder()
+    public function getOrder()
     {
         return 3;
     }
@@ -73,7 +70,7 @@ class LoadMediaData extends AbstractFixture implements ContainerAwareInterface, 
             $media->setName('Paris');
             $media->setDescription('Paris');
             $media->setAuthorName('Hugo Briand');
-            $media->setCopyright("CC BY-NC-SA 4.0");
+            $media->setCopyright('CC BY-NC-SA 4.0');
             $media->setCategory($this->getReference('travels_paris_category'));
 
             $this->addReference('sonata-media-'.($i++), $media);
@@ -112,8 +109,7 @@ class LoadMediaData extends AbstractFixture implements ContainerAwareInterface, 
 
     /**
      * @param \Sonata\MediaBundle\Model\GalleryInterface $gallery
-     * @param \Sonata\MediaBundle\Model\MediaInterface $media
-     * @return void
+     * @param \Sonata\MediaBundle\Model\MediaInterface   $media
      */
     public function addMedia(GalleryInterface $gallery, MediaInterface $media)
     {

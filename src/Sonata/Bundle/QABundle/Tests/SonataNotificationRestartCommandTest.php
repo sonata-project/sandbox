@@ -17,8 +17,8 @@ class SonataNotificationRestartCommandTest extends CommandTestCase
     {
         $client = self::createClient();
 
-        $output = $this->runCommand($client, "sonata:notification:restart");
+        $output = $this->runCommand($client, 'sonata:notification:restart');
 
-        $this->assertContains("Nothing to restart, bye.", $output);
+        $this->assertContains('Nothing to restart, bye.', $output);
     }
 }

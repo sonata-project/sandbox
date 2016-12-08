@@ -17,9 +17,8 @@ use Symfony\Component\HttpFoundation\Response;
 
 class PageController extends Controller
 {
-
     /**
-     * This make sure there is no regression to retrieve the current website in a sub request
+     * This make sure there is no regression to retrieve the current website in a sub request.
      *
      * reference: https://github.com/sonata-project/SonataPageBundle/pull/211
      *
@@ -28,7 +27,7 @@ class PageController extends Controller
     public function controllerHelperAction()
     {
         return $this->render('SonataQABundle:Page:controllerHelper.html.twig', array(
-            'site' => $this->get('sonata.page.site.selector')->retrieve()
+            'site' => $this->get('sonata.page.site.selector')->retrieve(),
         ));
     }
 
@@ -39,7 +38,7 @@ class PageController extends Controller
     {
         $site = $this->get('sonata.page.site.selector')->retrieve();
 
-        return new Response(sprintf("<pre>The sub request current site name is: %s (url: %s)</pre> <br /><pre>%s</pre>",
+        return new Response(sprintf('<pre>The sub request current site name is: %s (url: %s)</pre> <br /><pre>%s</pre>',
             $site->getName(),
             $this->generateUrl('sonata_page_bundle_inner_controller'),
             $request

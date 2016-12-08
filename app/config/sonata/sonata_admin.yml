@@ -191,29 +191,29 @@ sonata_admin:
 
         javascripts:
             - assetic/sonata_admin_js.js
-#            - bundles/sonataadmin/Admin.js
-#            - bundles/sonataadmin/treeview.js
             - assetic/sonata_jqueryui_js.js
             - assetic/sonata_formatter_js.js
             - bundles/sonataformatter/vendor/ckeditor/ckeditor.js
 
             # Default admin assets
 #            - bundles/sonatacore/vendor/jquery/dist/jquery.min.js
+#            - bundles/sonataadmin/Admin.js
+#            - bundles/sonataadmin/treeview.js
 #            - bundles/sonataadmin/vendor/jquery.scrollTo/jquery.scrollTo.min.js
 #            - bundles/sonatacore/vendor/moment/min/moment.min.js
 #            - bundles/sonatacore/vendor/bootstrap/dist/js/bootstrap.min.js
 #            - bundles/sonatacore/vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js
 #            - bundles/sonataadmin/vendor/jqueryui/ui/minified/jquery-ui.min.js
 #            - bundles/sonataadmin/vendor/jqueryui/ui/minified/i18n/jquery-ui-i18n.min.js
-#            - bundles/sonataadmin/jquery/jquery.form.js
+#            - bundles/sonataadmin/vendor/jquery-form/jquery.form.js
 #            - bundles/sonataadmin/jquery/jquery.confirmExit.js
 #            - bundles/sonataadmin/vendor/x-editable/dist/bootstrap3-editable/js/bootstrap-editable.min.js
 #            - bundles/sonatacore/vendor/select2/select2.min.js
 #            - bundles/sonataadmin/vendor/admin-lte/dist/js/app.min.js
 #            - bundles/sonataadmin/vendor/iCheck/icheck.min.js
 #            - bundles/sonataadmin/vendor/slimScroll/jquery.slimscroll.min.js
-#            - bundles/sonataadmin/Admin.js
-#            - bundles/sonataadmin/treeview.js
+#            - bundles/sonataadmin/vendor/waypoints/lib/jquery.waypoints.js
+#            - bundles/sonataadmin/vendor/waypoints/lib/shortcuts/sticky.js
 
             # Formatter assets
 #            - bundles/sonataformatter/vendor/markitup-markitup/markitup/jquery.markitup.js
@@ -223,4 +223,3 @@ sonata_admin:
 
             # Page assets
 #            - bundles/sonatapage/sonata-page.back.js
-

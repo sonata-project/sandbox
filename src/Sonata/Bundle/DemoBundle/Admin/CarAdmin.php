@@ -80,16 +80,16 @@ class CarAdmin extends Admin
                 ->add('color', 'sonata_type_model_list')
                 ->add('media', 'sonata_media_type', array(
                     'provider' => 'sonata.media.provider.image',
-                    'context'  => 'default'
+                    'context' => 'default',
                 ))
             ->end()
             ->with('inspections', array('class' => 'col-md-12'))
                 ->add('inspections', 'sonata_type_collection', array(
-                    'by_reference'       => false,
+                    'by_reference' => false,
                     'cascade_validation' => true,
                 ), array(
                     'edit' => 'inline',
-                    'inline' => 'table'
+                    'inline' => 'table',
                 ))
             ->end()
         ;
@@ -105,12 +105,12 @@ class CarAdmin extends Admin
         $userAdmin = $this->getConfigurationPool()->getAdminByAdminCode('sonata.user.admin.user');
 
         $user = $userAdmin->getModelManager()->findOneBy($userAdmin->getClass(), array(
-            'username' => 'admin'
+            'username' => 'admin',
         ));
 
         $inspection = new Inspection();
         $inspection->setDate(new \DateTime());
-        $inspection->setComment("Initial inspection");
+        $inspection->setComment('Initial inspection');
         $inspection->setInspector($user);
 
         $car->addInspection($inspection);

@@ -19,7 +19,7 @@ class SonataEasyExtendsDumpMappingCommandTest extends CommandTestCase
     public function testDumpException()
     {
         $client = self::createClient();
-        $this->runCommand($client, "sonata:easy-extends:dump-mapping");
+        $this->runCommand($client, 'sonata:easy-extends:dump-mapping');
     }
 
     /**
@@ -31,6 +31,6 @@ class SonataEasyExtendsDumpMappingCommandTest extends CommandTestCase
     public function testDumpInformation($id, $class)
     {
         $client = self::createClient();
-        $this->runCommand($client, sprintf("sonata:easy-extends:dump-mapping default \"%s\"", str_replace('\\', '\\\\', $class)));
+        $this->runCommand($client, sprintf('sonata:easy-extends:dump-mapping default "%s"', str_replace('\\', '\\\\', $class)));
     }
 }

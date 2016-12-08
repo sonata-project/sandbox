@@ -19,5 +19,4 @@ mink:
     sahi:
         host:     x.local
 
-
 behat: ~

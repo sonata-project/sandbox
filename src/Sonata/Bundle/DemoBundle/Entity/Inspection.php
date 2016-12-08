@@ -84,7 +84,6 @@ class Inspection
 
     /**
      * @param $date
-     * @return void
      */
     public function setDate($date)
     {
@@ -98,7 +97,6 @@ class Inspection
     {
         return $this->date;
     }
-
 
     /**
      * @param mixed $comment

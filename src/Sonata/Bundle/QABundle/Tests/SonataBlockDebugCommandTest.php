@@ -16,12 +16,12 @@ class SonataBlockDebugCommandTest extends CommandTestCase
     public function testFlushAll()
     {
         $client = self::createClient();
-        $output = $this->runCommand($client, "sonata:block:debug");
+        $output = $this->runCommand($client, 'sonata:block:debug');
 
         $this->assertNotNull($output);
 
         foreach (self::getBlockList() as $def) {
-            list($id, ) = $def;
+            list($id) = $def;
 
             $this->assertContains($id, $output);
         }

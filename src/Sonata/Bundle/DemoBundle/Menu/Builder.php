@@ -8,24 +8,21 @@
  * file that was distributed with this source code.
  */
 
-
 namespace Sonata\Bundle\DemoBundle\Menu;
 
 use Knp\Menu\FactoryInterface;
 use Symfony\Component\DependencyInjection\ContainerAware;
 
-
 /**
- * Class Builder
+ * Class Builder.
  *
- * @package Sonata\Bundle\DemoBundle\Menu
  *
  * @author Hugo Briand <briand@ekino.com>
  */
 class Builder extends ContainerAware
 {
     /**
-     * Creates the header menu
+     * Creates the header menu.
      *
      * @param FactoryInterface $factory
      * @param array            $options
@@ -54,14 +51,14 @@ class Builder extends ContainerAware
                 'label' => 'Products <b class="caret caret-menu"></b>',
                 'extras' => array(
                     'safe_label' => true,
-                )
+                ),
             ));
         }
 
         if ($isFooter) {
             $shopMenuParams = array_merge($shopMenuParams, array(
                 'attributes' => array('class' => 'span2'),
-                "childrenAttributes" => array('class' => 'nav')
+                'childrenAttributes' => array('class' => 'nav'),
             ));
         }
 
@@ -73,25 +70,25 @@ class Builder extends ContainerAware
             $shop->addChild($category->getName(), array(
                 'route' => 'sonata_catalog_category',
                 'routeParameters' => array(
-                    'category_id'   => $category->getId(),
-                    'category_slug' => $category->getSlug()),
+                    'category_id' => $category->getId(),
+                    'category_slug' => $category->getSlug(), ),
                 )
             );
         }
 
         $dropdownExtrasOptions = $isFooter ? array(
-            'uri' => "#",
+            'uri' => '#',
             'attributes' => array('class' => 'span2'),
             'childrenAttributes' => array('class' => 'nav'),
         ) : array(
-            'uri' => "#",
+            'uri' => '#',
             'attributes' => array('class' => 'dropdown'),
             'childrenAttributes' => array('class' => 'dropdown-menu'),
             'linkAttributes' => array('class' => 'dropdown-toggle', 'data-toggle' => 'dropdown', 'data-target' => '#'),
             'label' => 'Solutions <b class="caret caret-menu"></b>',
             'extras' => array(
                 'safe_label' => true,
-            )
+            ),
         );
         $extras = $factory->createItem('Discover', $dropdownExtrasOptions);
 
@@ -105,8 +102,8 @@ class Builder extends ContainerAware
         $menu->addChild('Admin', array(
             'route' => 'page_slug',
             'routeParameters' => array(
-                'path' => '/user'
-            )
+                'path' => '/user',
+            ),
         ));
 
         if ($isFooter) {
@@ -114,7 +111,7 @@ class Builder extends ContainerAware
                 'route' => 'page_slug',
                 'routeParameters' => array(
                     'path' => '/legal-notes',
-                )
+                ),
             ));
         }
 
