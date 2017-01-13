@@ -10,7 +10,7 @@
  */
 
 if (!is_file('composer.json')) {
-    throw new \RuntimeException('This script must be started from the project root folder');
+    throw new \RuntimeException('Can't find a composer.json file. Make sure to start this script from the project root folder');
 }
 
 $rootDir = __DIR__ . '/..';
@@ -71,8 +71,6 @@ $output->writeln("<info>Resetting demo</info>");
 
 $fs->remove(sprintf('%s/web/uploads/media', $rootDir));
 $fs->mkdir(sprintf('%s/web/uploads/media', $rootDir));
-
-$fs->copy(__DIR__.'/../src/Sonata/Bundle/DemoBundle/DataFixtures/data/robots.txt', __DIR__.'/../web/app/robots.txt', true);
 
 $success = execute_commands(array(
     'rm -rf ./app/cache/*',
