@@ -1,5 +1,5 @@
 ---
-    php_ppa: php5-5.6
+    php_ppa: php
     doc_root: /vagrant
     sys_packages: ["vim","git","htop","iotop","imagemagick", "openjdk-7-jre"]
     dist: precise
