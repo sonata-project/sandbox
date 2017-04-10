@@ -32,10 +32,12 @@ Get composer:
 
 Run the following command for the 2.3 branch:
 
+    export COMPOSER_PROCESS_TIMEOUT=1200
     php composer.phar create-project sonata-project/sandbox:2.3.x-dev
 
 Or to get the 2.3 develop branch:
 
+    export COMPOSER_PROCESS_TIMEOUT=1200
     php composer.phar create-project sonata-project/sandbox:dev-2.3-develop
 
 The installation process used Incenteev's ParameterHandler to handle parameters.yml configuration. With the current
