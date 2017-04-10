@@ -65,7 +65,7 @@
 
         "friendsofsymfony/comment-bundle": "~2.0@dev",
 
-        "dflydev/markdown": "~1.0",
+        "michelf/php-markdown": "1.4.1",
         "simplethings/entity-audit-bundle": "~0.5",
         "willdurand/faker-bundle": "~1.0",
 
@@ -73,7 +73,7 @@
         "twbs/bootstrap": "v3.0.0",
 
         "stof/doctrine-extensions-bundle": "~1.1",
-        "stephpy/TimelineBundle": "~2.0@dev",
+        "stephpy/timeline-bundle": "2.2.*@dev",
         "stephpy/timeline": "~1.0@dev",
 
         "incenteev/composer-parameter-handler": "~2.0"
