@@ -44,7 +44,7 @@ Get composer:
 
 Run the following command for the 2.4 develop branch:
 
-    php composer.phar create-project sonata-project/sandbox:2.4.x-dev
+    php composer.phar create-project sonata-project/sandbox:dev-2.4-develop
 
 The installation process used Incenteev's ParameterHandler to handle parameters.yml configuration. With the current
 installation, it is possible to use environment variables to configure this file:
