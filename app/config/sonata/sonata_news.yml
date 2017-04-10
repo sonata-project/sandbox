@@ -26,3 +26,10 @@ doctrine:
                 mappings:
                     ApplicationSonataNewsBundle: ~
                     SonataNewsBundle: ~
+
+sonata_classification:
+    class:
+        collection:     Application\Sonata\ClassificationBundle\Entity\Collection
+        tag:            Application\Sonata\ClassificationBundle\Entity\Tag
+        category:       Application\Sonata\ClassificationBundle\Entity\Category
+                    
