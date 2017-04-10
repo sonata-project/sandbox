@@ -76,7 +76,8 @@
         "stephpy/TimelineBundle": "~2.0@dev",
         "stephpy/timeline": "~1.0@dev",
 
-        "incenteev/composer-parameter-handler": "~2.0"
+        "incenteev/composer-parameter-handler": "~2.0",
+        "sonata-project/markitup-bundle": "~2.1"
     },
 
     "require-dev": {
