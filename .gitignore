@@ -10,4 +10,5 @@ composer.lock
 vendor
 .idea
 nbproject
-composer.phar
+bin
+*.phar
