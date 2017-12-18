@@ -26,10 +26,9 @@
         "knplabs/gaufrette": "~0.1.6",
         "knplabs/knp-menu-bundle": "dev-master",
         "mopa/bootstrap-bundle": "v3.0.0-beta3",
-        "nelmio/api-doc-bundle": "dev-master",
         "sensio/distribution-bundle": "~4.0",
-        "sensio/framework-extra-bundle": "^3.0.2",
-        "simplethings/entity-audit-bundle": "~0.5",
+        "sensio/framework-extra-bundle": "3.0.2",
+        "simplethings/entity-audit-bundle": "~0.7",
         "sonata-project/admin-bundle": "~3.4",
         "sonata-project/block-bundle": "~3.1",
         "sonata-project/cache": "~1.0",
@@ -80,7 +79,7 @@
         "matthiasnoback/symfony-config-test": "~0.4",
         "matthiasnoback/symfony-dependency-injection-test": "~0.7",
         "phpunit/phpunit": "~4.2",
-        "sensio/generator-bundle": "~2.4",
+        "sensio/generator-bundle": "~3.1.7",
         "symfony/phpunit-bridge": "2.7.*@dev"
     },
 
