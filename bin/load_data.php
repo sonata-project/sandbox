@@ -15,7 +15,7 @@ if (!is_file('composer.json')) {
 
 $rootDir = __DIR__ . '/..';
 
-require_once __DIR__ . '/../app/bootstrap.php.cache';
+require_once __DIR__ . '/../vendor/autoload.php';
 
 use Symfony\Component\Console\Output\OutputInterface;
 

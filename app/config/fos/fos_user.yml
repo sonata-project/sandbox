@@ -11,3 +11,8 @@ fos_user:
 
     service:
         user_manager: sonata.user.orm.user_manager
+
+    # This is required so I just copied from reference
+    from_email:
+        address:        webmaster@example.com
+        sender_name:    Admin

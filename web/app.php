@@ -9,9 +9,7 @@
  * file that was distributed with this source code.
  */
 
-require_once __DIR__ . '/../app/bootstrap.php.cache';
-require_once __DIR__ . '/../app/AppKernel.php';
-
+require_once __DIR__ . '/../vendor/autoload.php';
 
 $request = Sonata\PageBundle\Request\RequestFactory::createFromGlobals('host_with_path');
 

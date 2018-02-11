@@ -37,7 +37,7 @@ sonata_page:
         service:  sonata.page.cache.invalidation.simple
         recorder: sonata.page.cache.recorder
         classes:
-            "Application\Sonata\PageBundle\Entity\Block": getId
+            Application\Sonata\PageBundle\Entity\Block: getId
 
     assets:
         stylesheets:
