@@ -1,6 +1,5 @@
 <?php
 
-use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Config\Loader\LoaderInterface;
 
@@ -11,14 +10,8 @@ class AppKernel extends Kernel
      */
     public function boot()
     {
+        bcscale(3);
         parent::boot();
-
-        bcscale(3);
-    }
-
-    protected function build (ContainerBuilder $container)
-    {
-        bcscale(3);
     }
 
     /**

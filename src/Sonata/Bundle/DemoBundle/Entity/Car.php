@@ -20,7 +20,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\InheritanceType("SINGLE_TABLE")
  * @ORM\Table(name="test_car")
  * @ORM\DiscriminatorColumn(name="discr", type="string")
- * @ORM\DiscriminatorMap({"renault" = "Renault", "citroen" = "Citroen", "peugeot" = "Peugeot"})
+ * @ORM\DiscriminatorMap({"car" = "Car", "renault" = "Renault", "citroen" = "Citroen", "peugeot" = "Peugeot"})
  */
 class Car
 {
