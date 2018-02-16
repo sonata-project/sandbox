@@ -24,7 +24,6 @@
         "php": "^7.2.0",
         "ext-bcmath" : "*",
 
-
         "symfony/symfony": "~3.4",
         "symfony/assetic-bundle": "^2.8.2",
         "symfony/swiftmailer-bundle": "^3.1.6",
@@ -35,8 +34,6 @@
         "sensio/framework-extra-bundle": "^5.1.5",
         "sensio/generator-bundle": "^3.1.7",
 
-        "jms/security-extra-bundle": "^1.6.1",
-        "jms/di-extra-bundle": "^1.9.1",
         "jms/serializer-bundle": "^1.5.0",
 
         "doctrine/doctrine-bundle": "^1.8.1",
@@ -102,37 +99,27 @@
             "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
             "Mopa\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrap",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets"
         ],
         "post-update-cmd": [
             "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
             "Mopa\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrap",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets"
         ],
         "post-create-project-cmd": [
             "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
             "Mopa\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrap",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
-            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
             "php bin/load_data.php"
         ]
-    },
-
-    "config": {
-        "bin-dir": "bin"
     },
 
     "extra": {
         "symfony-app-dir": "app",
         "symfony-web-dir": "web",
         "symfony-assets-install": "symlink",
-        "branch-alias": {
-            "dev-master": "2.3.x-dev"
-        },
         "incenteev-parameters": [{
             "file": "app/config/parameters.yml",
             "env-map": {
