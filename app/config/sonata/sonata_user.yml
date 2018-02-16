@@ -27,6 +27,10 @@ sonata_user:
 
     manager_type:             orm
 
+    class:
+        group:                Application\Sonata\UserBundle\Entity\Group
+        user:                 Application\Sonata\UserBundle\Entity\User
+
     profile: # These options are missing from https://sonata-project.org/bundles/user/master/doc/reference/advanced_configuration.html. TODO
 #        dashboard:
 #            blocks:
