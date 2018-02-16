@@ -27,7 +27,7 @@ sonata_user:
 
     manager_type:             orm
 
-    profile: # These options are missing from https://sonata-project.org/bundles/user/master/doc/reference/advanced_configuration.html
+    profile: # These options are missing from https://sonata-project.org/bundles/user/master/doc/reference/advanced_configuration.html. TODO
 #        dashboard:
 #            blocks:
 #                - { position: left, type: sonata.block.service.text, settings: { content: "<h2>Welcome!</h2> <p>This is a sample user profile dashboard, feel free to override it in the configuration! Want to make this text dynamic? For instance display the user's name? Create a dedicated block and edit the configuration!</p>"} }

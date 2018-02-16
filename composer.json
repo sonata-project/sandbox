@@ -13,6 +13,13 @@
 
     "minimum-stability": "stable",
 
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/Xymanek/ecommerce"
+        }
+    ],
+
     "require": {
         "php": "^7.2.0",
         "ext-bcmath" : "*",
@@ -56,7 +63,7 @@
         "sonata-project/exporter": "^1.8.0",
         "sonata-project/timeline-bundle": "^3.3.0",
         "sonata-project/classification-bundle": "^3.6.1",
-        "sonata-project/ecommerce": "3.x-dev",
+        "sonata-project/ecommerce": "dev-testing",
         "sonata-project/comment-bundle": "^3.1.0",
         "sonata-project/google-authenticator": "^2.0",
 
