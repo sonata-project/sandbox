@@ -22,7 +22,7 @@ sonata_user:
         parameters:           { path: / }
 
     google_authenticator:
-        server:               %sonata_user.google_authenticator.server%
+        server:               '%sonata_user.google_authenticator.server%'
         enabled:              true
 
     manager_type:             orm
