@@ -77,7 +77,9 @@
     },
 
     "require-dev": {
+        "phing/phing": "^2.16",
         "phpunit/phpunit": "~4.2",
+
         "behat/behat": "^3.4.3",
         "behat/common-contexts": "^1.2.0",
         "behat/mink-extension": "^2.3.0",
