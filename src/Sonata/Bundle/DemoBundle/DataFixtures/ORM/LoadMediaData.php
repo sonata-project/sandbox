@@ -11,10 +11,12 @@
 
 namespace Sonata\Bundle\DemoBundle\DataFixtures\ORM;
 
+use Application\Sonata\ClassificationBundle\Entity\Category;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 
+use Sonata\ClassificationBundle\Model\ContextInterface;
 use Sonata\MediaBundle\Model\GalleryInterface;
 use Sonata\MediaBundle\Model\MediaInterface;
 
@@ -58,10 +60,12 @@ class LoadMediaData extends AbstractFixture implements ContainerAwareInterface, 
             $media->setDescription('Canada');
             $media->setAuthorName('Gilles Rosenbaum');
             $media->setCopyright('CC BY-NC-SA 4.0');
+            $media->setContext('default');
+            $media->setProviderName('sonata.media.provider.image');
 
             $this->addReference('sonata-media-'.($i++), $media);
 
-            $manager->save($media, 'default', 'sonata.media.provider.image');
+            $manager->save($media);
 
             $this->addMedia($gallery, $media);
         }
@@ -74,10 +78,12 @@ class LoadMediaData extends AbstractFixture implements ContainerAwareInterface, 
             $media->setDescription('Paris');
             $media->setAuthorName('Hugo Briand');
             $media->setCopyright("CC BY-NC-SA 4.0");
+            $media->setContext('default');
+            $media->setProviderName('sonata.media.provider.image');
 
             $this->addReference('sonata-media-'.($i++), $media);
 
-            $manager->save($media, 'default', 'sonata.media.provider.image');
+            $manager->save($media);
 
             $this->addMedia($gallery, $media);
         }
@@ -90,10 +96,12 @@ class LoadMediaData extends AbstractFixture implements ContainerAwareInterface, 
             $media->setDescription('Switzerland');
             $media->setAuthorName('Sylvain Deloux');
             $media->setCopyright('CC BY-NC-SA 4.0');
+            $media->setContext('default');
+            $media->setProviderName('sonata.media.provider.image');
 
             $this->addReference('sonata-media-'.($i++), $media);
 
-            $manager->save($media, 'default', 'sonata.media.provider.image');
+            $manager->save($media);
 
             $this->addMedia($gallery, $media);
         }
@@ -105,7 +113,7 @@ class LoadMediaData extends AbstractFixture implements ContainerAwareInterface, 
 
         $this->getGalleryManager()->update($gallery);
 
-        $this->addReference('media-gallery', $gallery);
+        //$this->addReference('media-gallery', $gallery);
     }
 
     /**

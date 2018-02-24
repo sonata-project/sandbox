@@ -292,15 +292,15 @@ CONTENT
         $content->setName('The content container');
         $blockManager->save($content);
 
-        // Add media gallery block. FixMe: depends on LoadMediaData
-        /*$content->addChildren($gallery = $blockManager->create());
+        // Add media gallery block.
+        $content->addChildren($gallery = $blockManager->create());
         $gallery->setType('sonata.media.block.gallery');
-        $gallery->setSetting('galleryId', $this->getReference('media-gallery')->getId());
+        //$gallery->setSetting('galleryId', $this->getReference('media-gallery')->getId());
         $gallery->setSetting('context', 'default');
         $gallery->setSetting('format', 'big');
         $gallery->setPosition(1);
         $gallery->setEnabled(true);
-        $gallery->setPage($homepage);*/
+        $gallery->setPage($homepage);
 
         // Add recent products block
         $content->addChildren($newProductsBlock = $blockManager->create());

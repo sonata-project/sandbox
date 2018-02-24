@@ -81,10 +81,10 @@ class LoadOrderData extends AbstractFixture implements ContainerAwareInterface, 
             $this->getReference('travel_quebec_medium_product'),
             $this->getReference('travel_quebec_large_product'),
             $this->getReference('travel_quebec_extra_large_product'),
-            //$this->getReference('travel_london_small_product'),
-            //$this->getReference('travel_london_medium_product'),
-            //$this->getReference('travel_london_large_product'),
-            //$this->getReference('travel_london_extra_large_product'),
+            $this->getReference('travel_london_small_product'),
+            $this->getReference('travel_london_medium_product'),
+            $this->getReference('travel_london_large_product'),
+            $this->getReference('travel_london_extra_large_product'),
             $this->getReference('travel_paris_small_product'),
             $this->getReference('travel_paris_medium_product'),
             $this->getReference('travel_paris_large_product'),
@@ -188,7 +188,7 @@ class LoadOrderData extends AbstractFixture implements ContainerAwareInterface, 
         // Delivery
         $order->setDeliveryMethod('free'); // @todo : change Delivery method integration
         $order->setDeliveryCost(rand(5, 40));
-        $order->setDeliveryVat(20);
+        $order->setDeliveryVat('20');
         $order->setDeliveryStatus(array_rand(Delivery::getStatusList()));
 
         $currency = new Currency();
