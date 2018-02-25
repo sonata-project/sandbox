@@ -295,7 +295,7 @@ CONTENT
         // Add media gallery block.
         $content->addChildren($gallery = $blockManager->create());
         $gallery->setType('sonata.media.block.gallery');
-        //$gallery->setSetting('galleryId', $this->getReference('media-gallery')->getId());
+        $gallery->setSetting('galleryId', $this->getReference('media-gallery')->getId());
         $gallery->setSetting('context', 'default');
         $gallery->setSetting('format', 'big');
         $gallery->setPosition(1);

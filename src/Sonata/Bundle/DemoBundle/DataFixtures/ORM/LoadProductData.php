@@ -1129,8 +1129,10 @@ EOF
         $media->setDescription($description);
         $media->setAuthorName($author);
         $media->setCopyright($copyright);
+        $media->setContext('sonata_product');
+        $media->setProviderName('sonata.media.provider.image');
 
-        $mediaManager->save($media, 'sonata_product', 'sonata.media.provider.image');
+        $mediaManager->save($media);
 
         return $media;
     }
@@ -1161,8 +1163,10 @@ EOF
             $media->setName('Switzerland');
             $media->setAuthorName('Sylvain Deloux');
             $media->setCopyright('CC BY-NC-SA 4.0');
+            $media->setContext('sonata_product');
+            $media->setProviderName('sonata.media.provider.image');
 
-            $this->getMediaManager()->save($media, 'sonata_product', 'sonata.media.provider.image');
+            $this->getMediaManager()->save($media);
 
             $galleryHasMedia = new GalleryHasMedia();
             $galleryHasMedia->setMedia($media);
@@ -1203,8 +1207,10 @@ EOF
             $media->setName('Paris');
             $media->setAuthorName('Gilles Rosenbaum');
             $media->setCopyright('CC BY-NC-SA 4.0');
+            $media->setContext('sonata_product');
+            $media->setProviderName('sonata.media.provider.image');
 
-            $this->getMediaManager()->save($media, 'sonata_product', 'sonata.media.provider.image');
+            $this->getMediaManager()->save($media);
 
             $galleryHasMedia = new GalleryHasMedia();
             $galleryHasMedia->setMedia($media);
@@ -1227,8 +1233,10 @@ EOF
             $media->setName('Paris');
             $media->setAuthorName('Hugo Briand');
             $media->setCopyright("Je soussigné Hugo Briand donne l'autorisation à Sonata-Project d'utiliser mes photos comme bon lui semblera");
+            $media->setContext('sonata_product');
+            $media->setProviderName('sonata.media.provider.image');
 
-            $this->getMediaManager()->save($media, 'sonata_product', 'sonata.media.provider.image');
+            $this->getMediaManager()->save($media);
 
             $galleryHasMedia = new GalleryHasMedia();
             $galleryHasMedia->setMedia($media);
@@ -1269,8 +1277,10 @@ EOF
             $media->setName('Canada');
             $media->setAuthorName('Gilles Rosenbaum');
             $media->setCopyright('CC BY-NC-SA 4.0');
+            $media->setContext('sonata_product');
+            $media->setProviderName('sonata.media.provider.image');
 
-            $this->getMediaManager()->save($media, 'sonata_product', 'sonata.media.provider.image');
+            $this->getMediaManager()->save($media);
 
             $galleryHasMedia = new GalleryHasMedia();
             $galleryHasMedia->setMedia($media);
@@ -1293,8 +1303,10 @@ EOF
             $media->setName('Canada');
             $media->setAuthorName('Hugo Briand');
             $media->setCopyright("Je soussigné Hugo Briand donne l'autorisation à Sonata-Project d'utiliser mes photos comme bon lui semblera");
+            $media->setContext('sonata_product');
+            $media->setProviderName('sonata.media.provider.image');
 
-            $this->getMediaManager()->save($media, 'sonata_product', 'sonata.media.provider.image');
+            $this->getMediaManager()->save($media);
 
             $galleryHasMedia = new GalleryHasMedia();
             $galleryHasMedia->setMedia($media);
@@ -1335,8 +1347,10 @@ EOF
             $media->setName('Japan');
             $media->setAuthorName('Maha Kanas');
             $media->setCopyright("CC BY-NC-SA 4.0");
+            $media->setContext('sonata_product');
+            $media->setProviderName('sonata.media.provider.image');
 
-            $this->getMediaManager()->save($media, 'sonata_product', 'sonata.media.provider.image');
+            $this->getMediaManager()->save($media);
 
             $galleryHasMedia = new GalleryHasMedia();
             $galleryHasMedia->setMedia($media);

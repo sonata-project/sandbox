@@ -113,7 +113,7 @@ class LoadMediaData extends AbstractFixture implements ContainerAwareInterface, 
 
         $this->getGalleryManager()->update($gallery);
 
-        //$this->addReference('media-gallery', $gallery);
+        $this->addReference('media-gallery', $gallery);
     }
 
     /**
