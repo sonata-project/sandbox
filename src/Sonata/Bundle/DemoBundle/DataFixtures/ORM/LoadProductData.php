@@ -55,7 +55,9 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $defaultMedia->setEnabled(true);
         $defaultMedia->setName('sonata_product_default_media');
         $defaultMedia->setDescription('Default Product media');
-        $this->getMediaManager()->save($defaultMedia, 'sonata_product_default', 'sonata.media.provider.image');
+        $defaultMedia->setContext('sonata_product');
+        $defaultMedia->setProviderName('sonata.media.provider.image');
+        $this->getMediaManager()->save($defaultMedia);
 
         $dummyCategory     = $this->getDummyCategory();
         $goodiesCategory   = $this->getGoodiesCategory();

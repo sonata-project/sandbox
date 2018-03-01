@@ -11,23 +11,24 @@
 
 namespace Sonata\Bundle\DemoBundle\DataFixtures\ORM;
 
-use Application\Sonata\ClassificationBundle\Entity\Category;
-use Doctrine\Common\DataFixtures\FixtureInterface;
+use Application\Sonata\MediaBundle\Entity\GalleryHasMedia;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\DataFixtures\AbstractFixture;
-
-use Sonata\ClassificationBundle\Model\ContextInterface;
 use Sonata\MediaBundle\Model\GalleryInterface;
 use Sonata\MediaBundle\Model\MediaInterface;
-
 use Doctrine\Common\Persistence\ObjectManager;
-
+use Symfony\Component\Console\Input\ArgvInput;
+use Symfony\Component\Console\Output\ConsoleOutput;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Finder\Finder;
+use Sonata\MediaBundle\Command\FixMediaContextCommand;
 
 class LoadMediaData extends AbstractFixture implements ContainerAwareInterface, OrderedFixtureInterface
 {
+    /**
+     * @var ContainerInterface
+     */
     private $container;
 
     function getOrder()
@@ -42,6 +43,10 @@ class LoadMediaData extends AbstractFixture implements ContainerAwareInterface, 
 
     public function load(ObjectManager $manager)
     {
+        $this->container
+            ->get(FixMediaContextCommand::class)
+            ->run(new ArgvInput(), new ConsoleOutput());
+
         $gallery = $this->getGalleryManager()->create();
 
         $manager = $this->getMediaManager();
@@ -123,7 +128,7 @@ class LoadMediaData extends AbstractFixture implements ContainerAwareInterface, 
      */
     public function addMedia(GalleryInterface $gallery, MediaInterface $media)
     {
-        $galleryHasMedia = new \Application\Sonata\MediaBundle\Entity\GalleryHasMedia();
+        $galleryHasMedia = new GalleryHasMedia();
         $galleryHasMedia->setMedia($media);
         $galleryHasMedia->setPosition(count($gallery->getGalleryHasMedias()) + 1);
         $galleryHasMedia->setEnabled(true);
