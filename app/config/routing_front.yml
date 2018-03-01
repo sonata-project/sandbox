@@ -6,23 +6,24 @@ sonata_qa:
     resource: "@SonataQABundle/Resources/config/routing/qa.xml"
 
 sonata_user_security:
-    resource: "@SonataUserBundle/Resources/config/routing/sonata_security_1.xml"
+    resource: "@SonataUserBundle/Resources/config/routing/admin_security.xml"
 
 sonata_user_resetting:
-    resource: "@SonataUserBundle/Resources/config/routing/sonata_resetting_1.xml"
+    resource: "@SonataUserBundle/Resources/config/routing/admin_resetting.xml"
     prefix: /resetting
 
-sonata_user_profile:
-    resource: "@SonataUserBundle/Resources/config/routing/sonata_profile_1.xml"
-    prefix: /profile
+# Routing files missing, TODO
+#sonata_user_profile:
+#    resource: "@SonataUserBundle/Resources/config/routing/sonata_profile_1.xml"
+#    prefix: /profile
 
-sonata_user_register:
-    resource: "@SonataUserBundle/Resources/config/routing/sonata_registration_1.xml"
-    prefix: /register
+#sonata_user_register:
+#    resource: "@SonataUserBundle/Resources/config/routing/sonata_registration_1.xml"
+#    prefix: /register
 
-sonata_user_change_password:
-    resource: "@SonataUserBundle/Resources/config/routing/sonata_change_password_1.xml"
-    prefix: /profile
+#sonata_user_change_password:
+#    resource: "@SonataUserBundle/Resources/config/routing/sonata_change_password_1.xml"
+#    prefix: /profile
 
 sonata_cache_cache:
     resource: '@SonataCacheBundle/Resources/config/routing/cache.xml'
@@ -45,31 +46,31 @@ sonata_media_media:
     prefix: /media
 
 sonata_customer:
-    resource: @SonataCustomerBundle/Resources/config/routing/customer.xml
+    resource: '@SonataCustomerBundle/Resources/config/routing/customer.xml'
     prefix: /shop/user
 
 sonata_basket:
-    resource: @SonataBasketBundle/Resources/config/routing/basket.xml
+    resource: '@SonataBasketBundle/Resources/config/routing/basket.xml'
     prefix: /shop/basket
 
 sonata_order:
-    resource: @SonataOrderBundle/Resources/config/routing/order.xml
+    resource: '@SonataOrderBundle/Resources/config/routing/order.xml'
     prefix: /shop/user/order
 
 sonata_product_catalog:
-    resource: @SonataProductBundle/Resources/config/routing/catalog.xml
+    resource: '@SonataProductBundle/Resources/config/routing/catalog.xml'
     prefix: /shop/catalog
 
 sonata_product:
-    resource: @SonataProductBundle/Resources/config/routing/product.xml
+    resource: '@SonataProductBundle/Resources/config/routing/product.xml'
     prefix: /shop/product
 
 sonata_payment:
-    resource: @SonataPaymentBundle/Resources/config/routing/payment.xml
+    resource: '@SonataPaymentBundle/Resources/config/routing/payment.xml'
     prefix: /shop/payment
 
 sonata_invoice:
-    resource: @SonataInvoiceBundle/Resources/config/routing/invoice.xml
+    resource: '@SonataInvoiceBundle/Resources/config/routing/invoice.xml'
     prefix: /shop/user/invoice
 
 blog:

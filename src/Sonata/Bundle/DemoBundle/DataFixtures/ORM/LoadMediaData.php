@@ -11,21 +11,24 @@
 
 namespace Sonata\Bundle\DemoBundle\DataFixtures\ORM;
 
-use Doctrine\Common\DataFixtures\FixtureInterface;
+use Application\Sonata\MediaBundle\Entity\GalleryHasMedia;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\DataFixtures\AbstractFixture;
-
 use Sonata\MediaBundle\Model\GalleryInterface;
 use Sonata\MediaBundle\Model\MediaInterface;
-
 use Doctrine\Common\Persistence\ObjectManager;
-
+use Symfony\Component\Console\Input\ArgvInput;
+use Symfony\Component\Console\Output\ConsoleOutput;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Finder\Finder;
+use Sonata\MediaBundle\Command\FixMediaContextCommand;
 
 class LoadMediaData extends AbstractFixture implements ContainerAwareInterface, OrderedFixtureInterface
 {
+    /**
+     * @var ContainerInterface
+     */
     private $container;
 
     function getOrder()
@@ -40,6 +43,10 @@ class LoadMediaData extends AbstractFixture implements ContainerAwareInterface, 
 
     public function load(ObjectManager $manager)
     {
+        $this->container
+            ->get(FixMediaContextCommand::class)
+            ->run(new ArgvInput(), new ConsoleOutput());
+
         $gallery = $this->getGalleryManager()->create();
 
         $manager = $this->getMediaManager();
@@ -58,10 +65,12 @@ class LoadMediaData extends AbstractFixture implements ContainerAwareInterface, 
             $media->setDescription('Canada');
             $media->setAuthorName('Gilles Rosenbaum');
             $media->setCopyright('CC BY-NC-SA 4.0');
+            $media->setContext('default');
+            $media->setProviderName('sonata.media.provider.image');
 
             $this->addReference('sonata-media-'.($i++), $media);
 
-            $manager->save($media, 'default', 'sonata.media.provider.image');
+            $manager->save($media);
 
             $this->addMedia($gallery, $media);
         }
@@ -74,10 +83,12 @@ class LoadMediaData extends AbstractFixture implements ContainerAwareInterface, 
             $media->setDescription('Paris');
             $media->setAuthorName('Hugo Briand');
             $media->setCopyright("CC BY-NC-SA 4.0");
+            $media->setContext('default');
+            $media->setProviderName('sonata.media.provider.image');
 
             $this->addReference('sonata-media-'.($i++), $media);
 
-            $manager->save($media, 'default', 'sonata.media.provider.image');
+            $manager->save($media);
 
             $this->addMedia($gallery, $media);
         }
@@ -90,10 +101,12 @@ class LoadMediaData extends AbstractFixture implements ContainerAwareInterface, 
             $media->setDescription('Switzerland');
             $media->setAuthorName('Sylvain Deloux');
             $media->setCopyright('CC BY-NC-SA 4.0');
+            $media->setContext('default');
+            $media->setProviderName('sonata.media.provider.image');
 
             $this->addReference('sonata-media-'.($i++), $media);
 
-            $manager->save($media, 'default', 'sonata.media.provider.image');
+            $manager->save($media);
 
             $this->addMedia($gallery, $media);
         }
@@ -115,7 +128,7 @@ class LoadMediaData extends AbstractFixture implements ContainerAwareInterface, 
      */
     public function addMedia(GalleryInterface $gallery, MediaInterface $media)
     {
-        $galleryHasMedia = new \Application\Sonata\MediaBundle\Entity\GalleryHasMedia();
+        $galleryHasMedia = new GalleryHasMedia();
         $galleryHasMedia->setMedia($media);
         $galleryHasMedia->setPosition(count($gallery->getGalleryHasMedias()) + 1);
         $galleryHasMedia->setEnabled(true);

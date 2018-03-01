@@ -37,7 +37,6 @@ class LoadNewsData extends AbstractFixture implements ContainerAwareInterface, O
 
     public function load(ObjectManager $manager)
     {
-//        $userManager = $this->getUserManager();
         $postManager = $this->getPostManager();
 
         $faker = $this->getFaker();
@@ -86,7 +85,7 @@ Now a specific gist from github
 
 Load a media from a <code>SonataMediaBundle</code> with a specific format
 
-<% media $id, 'big' %>
+<% media $id 'big' %>
 
 RAW
 ;

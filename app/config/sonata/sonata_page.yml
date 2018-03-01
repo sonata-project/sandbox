@@ -37,7 +37,7 @@ sonata_page:
         service:  sonata.page.cache.invalidation.simple
         recorder: sonata.page.cache.recorder
         classes:
-            "Application\Sonata\PageBundle\Entity\Block": getId
+            Application\Sonata\PageBundle\Entity\Block: getId
 
     assets:
         stylesheets:
@@ -118,7 +118,7 @@ sonata_page:
             version:  3                        # version 3 is the default on debian wheezy ...
             servers:
                 # you need to ajust this configuration to match your varnish configuration
-                - %sonata_page.varnish.command%
+                - '%sonata_page.varnish.command%'
         ssi:
             token:    add an unique token here # default is a random value
 

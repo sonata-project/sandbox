@@ -8,12 +8,10 @@ class AppKernel extends Kernel
     /**
      * {@inheritdoc}
      */
-    public function init()
+    public function boot()
     {
-        // Please read http://symfony.com/doc/2.0/book/installation.html#configuration-and-setup
         bcscale(3);
-
-        parent::init();
+        parent::boot();
     }
 
     /**
@@ -29,8 +27,6 @@ class AppKernel extends Kernel
             new Symfony\Bundle\MonologBundle\MonologBundle(),
             new Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
-            new JMS\AopBundle\JMSAopBundle(),
-            new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
 
             // DOCTRINE
@@ -44,7 +40,7 @@ class AppKernel extends Kernel
 
             // USER
             new FOS\UserBundle\FOSUserBundle(),
-            new Sonata\UserBundle\SonataUserBundle('FOSUserBundle'),
+            new Sonata\UserBundle\SonataUserBundle(),
             new Application\Sonata\UserBundle\ApplicationSonataUserBundle(),
 
             // PAGE
@@ -88,7 +84,7 @@ class AppKernel extends Kernel
             new Sonata\ProductBundle\SonataProductBundle(),
             new Application\Sonata\ProductBundle\ApplicationSonataProductBundle(),
             new Sonata\PriceBundle\SonataPriceBundle(),
-            new JMS\SerializerBundle\JMSSerializerBundle($this),
+            new JMS\SerializerBundle\JMSSerializerBundle(),
             new FOS\CommentBundle\FOSCommentBundle(),
             new Sonata\CommentBundle\SonataCommentBundle(),
             new Application\Sonata\CommentBundle\ApplicationSonataCommentBundle(),

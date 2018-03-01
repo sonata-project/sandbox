@@ -49,7 +49,7 @@ framework:
     #esi:                   ~
     translator:
         fallback:           en
-    secret:                 %secret%
+    secret:                 '%secret%'
     router:
         resource:           "%kernel.root_dir%/config/routing.yml"
         strict_requirements: ~
@@ -61,9 +61,9 @@ framework:
         engines:             ['twig']
         #assets_version:      SomeVersionScheme
 
-    default_locale:          %locale%
+    default_locale:          '%locale%'
     session:
-        save_path:           %kernel.root_dir%/cache/sessions
+        save_path:           '%kernel.root_dir%/cache/sessions'
 
     fragments:               ~
     trusted_proxies:         ~
@@ -71,16 +71,15 @@ framework:
 
 # Twig Configuration
 twig:
-    debug:            %kernel.debug%
-    strict_variables: %kernel.debug%
+    debug:            '%kernel.debug%'
+    strict_variables: '%kernel.debug%'
 
     base_template_class: Sonata\CacheBundle\Twig\TwigTemplate14
 
-    form:
-        resources:
-            - 'SonataFormatterBundle:Form:formatter.html.twig'
-            - 'SonataMediaBundle:Form:media_widgets.html.twig'
-            - 'SonataCoreBundle:Form:datepicker.html.twig'
+    form_themes:
+        - 'SonataFormatterBundle:Form:formatter.html.twig'
+        - 'SonataMediaBundle:Form:media_widgets.html.twig'
+        - 'SonataCoreBundle:Form:datepicker.html.twig'
 
     exception_controller: 'FOS\RestBundle\Controller\ExceptionController::showAction'
 
@@ -91,11 +90,11 @@ doctrine:
 
         connections:
             default:
-                driver:   %database_driver%
-                dbname:   %database_name%
-                user:     %database_user%
-                host:     %database_host%
-                password: %database_password%
+                driver:   '%database_driver%'
+                dbname:   '%database_name%'
+                user:     '%database_user%'
+                host:     '%database_host%'
+                password: '%database_password%'
                 charset:  UTF8
 
         types:
@@ -103,7 +102,7 @@ doctrine:
             currency: Sonata\Component\Currency\CurrencyDoctrineType
 
     orm:
-        auto_generate_proxy_classes: %kernel.debug%
+        auto_generate_proxy_classes: '%kernel.debug%'
         default_entity_manager: default
 
         entity_managers:
@@ -113,20 +112,20 @@ doctrine:
 
 # Swiftmailer Configuration
 swiftmailer:
-    transport: %mailer_transport%
-    host:      %mailer_host%
-    username:  %mailer_user%
-    password:  %mailer_password%
-
-jms_security_extra:
-    secure_all_services: false
+    transport: '%mailer_transport%'
+    host:      '%mailer_host%'
+    username:  '%mailer_user%'
+    password:  '%mailer_password%'
 
 jms_serializer:
     metadata:
         directories:
-            - { path: %kernel.root_dir%/../vendor/sonata-project/user-bundle/Resources/config/serializer/FOSUserBundle, namespace_prefix: 'FOS\UserBundle' }
-            - { path: %kernel.root_dir%/../vendor/sonata-project/ecommerce/src/BasketBundle/Resources/config/serializer/Component, namespace_prefix: 'Sonata\Component\Basket' }
-            - { path: %kernel.root_dir%/../vendor/sonata-project/datagrid-bundle/Resources/config/serializer, namespace_prefix: 'Sonata\DatagridBundle' }
+            - path: '%kernel.root_dir%/../vendor/sonata-project/user-bundle/Resources/config/serializer/FOSUserBundle'
+              namespace_prefix: 'FOS\UserBundle'
+            - path: '%kernel.root_dir%/../vendor/sonata-project/ecommerce/src/BasketBundle/Resources/config/serializer/Component'
+              namespace_prefix: 'Sonata\Component\Basket'
+            - path: '%kernel.root_dir%/../vendor/sonata-project/datagrid-bundle/Resources/config/serializer'
+              namespace_prefix: 'Sonata\DatagridBundle'
 
 # Assetic Configuration
 #assetic:
@@ -148,6 +147,6 @@ jms_serializer:
 nelmio_api_doc: ~
 
 sensio_framework_extra:
-    view:    { annotations: false }
+    view:    { annotations: true } # FOS\RestBundle\DependencyInjection\Compiler\ConfigurationCheckPass: You must enable the SensioFrameworkExtraBundle view annotations to use the ViewResponseListener
     router:  { annotations: true }
     request: { converters:  true }

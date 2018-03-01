@@ -17,8 +17,8 @@ sonata_admin:
         # permission related to the objects
         object_permissions: [VIEW, EDIT, DELETE, UNDELETE, OPERATOR, MASTER, OWNER]
 
-    title:      %sonata_admin.title%
-    title_logo: %sonata_admin.logo_title%
+    title:      '%sonata_admin.title%'
+    title_logo: '%sonata_admin.logo_title%'
     options:
         html5_validate: false # does not use html5 validation
         pager_links: 5 # pager max links to display

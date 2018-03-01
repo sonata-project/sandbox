@@ -292,7 +292,7 @@ CONTENT
         $content->setName('The content container');
         $blockManager->save($content);
 
-        // Add media gallery block
+        // Add media gallery block.
         $content->addChildren($gallery = $blockManager->create());
         $gallery->setType('sonata.media.block.gallery');
         $gallery->setSetting('galleryId', $this->getReference('media-gallery')->getId());

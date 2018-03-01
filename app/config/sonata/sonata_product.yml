@@ -14,8 +14,8 @@ sonata_product:
 
     seo:
         product:
-            site: '@sonataproject'
-            creator: '@th0masr'
+            site: '@sonataproject' # FixMe: This looks like service reference, is it intended so?
+            creator: '@th0masr' # FixMe: This looks like service reference, is it intended so?
             domain: 'http://demo.sonata-project.org'
             media_prefix: 'http://demo.sonata-project.org'
             media_format: 'reference'

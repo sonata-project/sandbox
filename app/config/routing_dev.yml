@@ -14,5 +14,5 @@ _profiler:
     prefix:   /_profiler
 
 sonata_payment_debug:
-    resource: @SonataPaymentBundle/Resources/config/routing/payment_debug.xml
+    resource: '@SonataPaymentBundle/Resources/config/routing/payment_debug.xml'
     prefix:   /shop/payment/debug
