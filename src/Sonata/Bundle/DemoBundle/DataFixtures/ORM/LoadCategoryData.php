@@ -48,17 +48,31 @@ class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterfac
         return $this->container->get('sonata.classification.manager.category');
     }
 
+
+    /**
+     * Returns the Sonata ContextManager.
+     *
+     * @return \Sonata\CoreBundle\Model\ManagerInterface
+     */
+    public function getContextManager()
+    {
+        return $this->container->get('sonata.classification.manager.context');
+    }
+
     /**
      * {@inheritDoc}
      */
     public function load(ObjectManager $manager)
     {
+        $context = $this->getContextManager()->find('default');
+
         // Travels category
         $travels = $this->getCategoryManager()->create();
         $travels->setName('Travels');
         $travels->setSlug('travels');
         $travels->setDescription('Discover our travels');
         $travels->setEnabled(true);
+        $travels->setContext($context);
         $this->getCategoryManager()->save($travels);
         $this->setReference('travels_category', $travels);
 
@@ -69,6 +83,7 @@ class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterfac
         $asia->setSlug('asia');
         $asia->setDescription('Want to travel in Asia? Check out our travels.');
         $asia->setEnabled(true);
+        $asia->setContext($context);
         $this->getCategoryManager()->save($asia);
         $this->setReference('travels_asia_category', $asia);
 
@@ -79,6 +94,7 @@ class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterfac
         $japan->setSlug('japan');
         $japan->setDescription('Want to travel in Japan? Check out our travels.');
         $japan->setEnabled(true);
+        $japan->setContext($context);
         $this->getCategoryManager()->save($japan);
         $this->setReference('travels_japan_category', $japan);
 
@@ -89,6 +105,7 @@ class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterfac
         $northAmerica->setSlug('north-america');
         $northAmerica->setDescription('Want to travel in North America? Check out our travels.');
         $northAmerica->setEnabled(true);
+        $northAmerica->setContext($context);
         $this->getCategoryManager()->save($northAmerica);
         $this->setReference('travels_north_america_category', $northAmerica);
 
@@ -99,6 +116,7 @@ class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterfac
         $canada->setSlug('canada');
         $canada->setDescription('Want to travel in Canada? Check out our travels.');
         $canada->setEnabled(true);
+        $canada->setContext($context);
         $this->getCategoryManager()->save($canada);
         $this->setReference('travels_canada_category', $canada);
 
@@ -109,6 +127,7 @@ class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterfac
         $quebec->setSlug('quebec');
         $quebec->setDescription('Want to travel in Quebec? Check out our travels.');
         $quebec->setEnabled(true);
+        $quebec->setContext($context);
         $this->getCategoryManager()->save($quebec);
         $this->setReference('travels_quebec_category', $quebec);
 
@@ -119,6 +138,7 @@ class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterfac
         $europe->setSlug('europe');
         $europe->setDescription('Want to travel in Europe? Check out our travels.');
         $europe->setEnabled(true);
+        $europe->setContext($context);
         $this->getCategoryManager()->save($europe);
         $this->setReference('travels_europe_category', $europe);
 
@@ -127,6 +147,7 @@ class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterfac
         $switzerland->setParent($europe);
         $switzerland->setName('Switzerland');
         $switzerland->setSlug('switzerland');
+        $switzerland->setContext($context);
         $switzerland->setDescription('Want to travel in Switzerland? Check out our travels.');
         $switzerland->setEnabled(true);
         $this->getCategoryManager()->save($switzerland);
@@ -139,6 +160,7 @@ class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterfac
         $france->setSlug('france');
         $france->setDescription('Want to travel in France? Check out our travels.');
         $france->setEnabled(true);
+        $france->setContext($context);
         $this->getCategoryManager()->save($france);
         $this->setReference('travels_france_category', $france);
 
@@ -149,6 +171,7 @@ class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterfac
         $paris->setSlug('paris');
         $paris->setDescription('Want to travel in Paris? Check out our travels.');
         $paris->setEnabled(true);
+        $paris->setContext($context);
         $this->getCategoryManager()->save($paris);
         $this->setReference('travels_paris_category', $paris);
 
@@ -157,6 +180,7 @@ class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterfac
         $greatBritain->setParent($travels);
         $greatBritain->setName('Great Britain');
         $greatBritain->setSlug('great-britain');
+        $greatBritain->setContext($context);
         $greatBritain->setDescription('Want to travel in Great Britain? Check out our travels.');
         $greatBritain->setEnabled(true);
         $this->getCategoryManager()->save($greatBritain);
@@ -169,6 +193,7 @@ class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterfac
         $london->setSlug('london');
         $london->setDescription('Want to travel in London? Check out our travels.');
         $london->setEnabled(true);
+        $london->setContext($context);
         $this->getCategoryManager()->save($london);
         $this->setReference('travels_london_category', $london);
 
@@ -178,6 +203,7 @@ class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterfac
         $goodies->setSlug('goodies');
         $goodies->setDescription('Some goodies related to Sonata and Symfony world.');
         $goodies->setEnabled(true);
+        $goodies->setContext($context);
         $this->getCategoryManager()->save($goodies);
         $this->setReference('goodies_category', $goodies);
 
@@ -187,6 +213,7 @@ class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterfac
         $plushes->setName('Plushes');
         $plushes->setSlug('plushes');
         $plushes->setDescription('Some plushes.');
+        $plushes->setContext($context);
         $plushes->setEnabled(true);
         $this->getCategoryManager()->save($plushes);
         $this->setReference('plushes_goodies_category', $plushes);
@@ -196,6 +223,7 @@ class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterfac
         $mugs->setParent($goodies);
         $mugs->setName('Mugs');
         $mugs->setSlug('mugs');
+        $mugs->setContext($context);
         $mugs->setDescription('Some mugs.');
         $mugs->setEnabled(true);
         $this->getCategoryManager()->save($mugs);
@@ -208,6 +236,7 @@ class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterfac
         $clothes->setSlug('clothes');
         $clothes->setDescription('Clothes for geeks.');
         $clothes->setEnabled(true);
+        $clothes->setContext($context);
         $this->getCategoryManager()->save($clothes);
         $this->setReference('sonata_clothes_category', $clothes);
 
@@ -217,6 +246,7 @@ class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterfac
         $dummy->setSlug('dummy');
         $dummy->setDescription('Dummy category with many dummy products');
         $dummy->setEnabled(true);
+        $dummy->setContext($context);
         $this->getCategoryManager()->save($dummy);
 
         $this->setReference('dummy_category', $dummy);
@@ -228,6 +258,7 @@ class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterfac
         $shoes->setSlug('shoes');
         $shoes->setDescription('Get the last coolest Sonata shoes (seriously)');
         $shoes->setEnabled(true);
+        $shoes->setContext($context);
         $this->getCategoryManager()->save($shoes);
         $this->setReference('sonata_shoes_category', $shoes);
 
