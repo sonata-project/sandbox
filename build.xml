@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="sonata-sandbox" default="initialize-project" basedir=".">
+    <target name="initialize-project">
+        <!-- TODO: check for existence of app/config/parameters.yml -->
+
+        <property name="app.uploadsDir" value="./web/uploads/media" />
+        <if>
+            <os family="windows" />
+            <then><property name="app.console" value="app\console.bat"/></then>
+            <else><property name="app.console" value="app/console" /></else>
+        </if>
+
+
+        <echo msg="Preparing ${app.uploadsDir} folder" />
+        <delete dir="${app.uploadsDir}" includeemptydirs="true" failonerror="false" />
+        <mkdir dir="${app.uploadsDir}" />
+
+        <echo msg="Removing any existing cache" />
+        <foreach param="dir" absparam="path" target="delete-dir">
+            <fileset dir="./app/cache">
+                <type type="dir" />
+                <depth max="0" min="0" />
+            </fileset>
+        </foreach>
+
+        <echo msg="Warming up cache for production environment" /> <!-- TODO: Is this even needed? -->
+        <SymfonyConsole console="${app.console}" command="cache:warmup" checkReturn="true">
+            <arg name="env" value="prod" />
+        </SymfonyConsole>
+
+        <echo msg="Preparing database" />
+        <SymfonyConsole console="${app.console}" command="doctrine:database:drop" checkReturn="true">
+            <arg name="force" />
+            <arg name="if-exists" />
+            <!-- TODO: Fallback to doctrine:schema:drop in case user doesn't have permissions to drop/create databases? -->
+        </SymfonyConsole>
+        <SymfonyConsole console="${app.console}" command="doctrine:database:create" checkReturn="true" />
+        <SymfonyConsole console="${app.console}" command="doctrine:schema:update" checkReturn="true">
+            <arg name="force" />
+            <arg name="dump-sql" />
+        </SymfonyConsole>
+        <SymfonyConsole console="${app.console}" command="doctrine:fixtures:load" checkReturn="true">
+            <arg name="verbose" />
+            <arg name="no-interaction" />
+        </SymfonyConsole>
+
+        <echo msg="Preparing sonata news and page bundles" />
+        <SymfonyConsole console="${app.console}" command="sonata:news:sync-comments-count" checkReturn="true" />
+        <SymfonyConsole console="${app.console}" command="sonata:page:update-core-routes" checkReturn="true">
+            <arg name="site" value="all" />
+        </SymfonyConsole>
+        <SymfonyConsole console="${app.console}" command="sonata:page:create-snapshots" checkReturn="true">
+            <arg name="site" value="all" />
+        </SymfonyConsole>
+
+        <echo msg="Preparing ACLs" />
+        <SymfonyConsole console="${app.console}" command="sonata:admin:setup-acl" checkReturn="true" />
+        <SymfonyConsole console="${app.console}" command="sonata:admin:generate-object-acl" checkReturn="true" />
+    </target>
+
+    <target name="delete-dir" hidden="true">
+        <delete dir="${path}" includeemptydirs="true" failonerror="true" />
+    </target>
+</project>

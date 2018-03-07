@@ -10,10 +10,10 @@ sonata_news:
         user:       AppBundle\Entity\User\User
         media:      AppBundle\Entity\Media\Media
 
-    title:        %sonata_news.blog_title%
-    link:         %sonata_news.blog_link%
-    description:  %sonata_news.blog_description%
-    salt:         %sonata_news.salt%
+    title:        '%sonata_news.blog_title%'
+    link:         '%sonata_news.blog_link%'
+    description:  '%sonata_news.blog_description%'
+    salt:         '%sonata_news.salt%'
 
     # permalink_generator: sonata.news.permalink.category # /party/new-year
     permalink_generator: sonata.news.permalink.date # /2011/12/31/new-year
@@ -21,8 +21,8 @@ sonata_news:
     # comment options
     comment:
         notification:
-            emails:   %sonata_news.comment.emails%
-            from:     %sonata_news.comment.email_from%
+            emails:   '%sonata_news.comment.emails%'
+            from:     '%sonata_news.comment.email_from%'
             template: 'SonataNewsBundle:Mail:comment_notification.txt.twig'
 
 

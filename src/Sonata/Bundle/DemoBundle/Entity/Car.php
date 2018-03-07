@@ -22,6 +22,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table(name="test_car")
  * @ORM\DiscriminatorColumn(name="discr", type="string")
  * @ORM\DiscriminatorMap({
+ *     "car" = "Car",
  *     "renault" = "Renault",
  *     "citroen" = "Citroen",
  *     "peugeot" = "Peugeot"
