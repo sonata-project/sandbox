@@ -69,5 +69,13 @@
 
             <tag name="doctrine.fixture.orm"/>
         </service>
+
+        <service class="Sonata\Bundle\DemoBundle\DataFixtures\ORM\LoadContextData" id="sonata_bundle_demo.data_fixtures_orm.load_context_data">
+            <call method="setContainer">
+                <argument id="service_container" type="service"/>
+            </call>
+
+            <tag name="doctrine.fixture.orm"/>
+        </service>
     </services>
 </container>

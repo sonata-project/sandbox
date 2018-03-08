@@ -79,10 +79,10 @@ class LoadOrderData extends AbstractFixture implements ContainerAwareInterface, 
             $this->getReference('travel_quebec_medium_product'),
             $this->getReference('travel_quebec_large_product'),
             $this->getReference('travel_quebec_extra_large_product'),
-            //$this->getReference('travel_london_small_product'),
-            //$this->getReference('travel_london_medium_product'),
-            //$this->getReference('travel_london_large_product'),
-            //$this->getReference('travel_london_extra_large_product'),
+            $this->getReference('travel_london_small_product'),
+            $this->getReference('travel_london_medium_product'),
+            $this->getReference('travel_london_large_product'),
+            $this->getReference('travel_london_extra_large_product'),
             $this->getReference('travel_paris_small_product'),
             $this->getReference('travel_paris_medium_product'),
             $this->getReference('travel_paris_large_product'),
@@ -433,6 +433,6 @@ class LoadOrderData extends AbstractFixture implements ContainerAwareInterface, 
      */
     public function getOrder()
     {
-        return 13;
+        return 9;
     }
 }

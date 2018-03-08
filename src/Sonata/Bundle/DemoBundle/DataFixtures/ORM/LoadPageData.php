@@ -25,7 +25,7 @@ class LoadPageData extends AbstractFixture implements ContainerAwareInterface, O
 
     public function getOrder()
     {
-        return 10;
+        return 8;
     }
 
     public function setContainer(ContainerInterface $container = null)
