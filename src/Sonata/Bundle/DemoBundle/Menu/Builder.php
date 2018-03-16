@@ -11,7 +11,8 @@
 namespace Sonata\Bundle\DemoBundle\Menu;
 
 use Knp\Menu\FactoryInterface;
-use Symfony\Component\DependencyInjection\ContainerAware;
+use Symfony\Component\DependencyInjection\ContainerAwareInterface;
+use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 
 /**
  * Class Builder.
@@ -19,8 +20,10 @@ use Symfony\Component\DependencyInjection\ContainerAware;
  *
  * @author Hugo Briand <briand@ekino.com>
  */
-class Builder extends ContainerAware
+class Builder implements ContainerAwareInterface
 {
+    use ContainerAwareTrait;
+
     /**
      * Creates the header menu.
      *
@@ -43,7 +46,7 @@ class Builder extends ContainerAware
 
         $shopMenuParams = array('route' => 'sonata_catalog_index');
 
-        if (count($shopCategories->hasChildren()) > 0 && !$isFooter) {
+        if ($shopCategories->hasChildren() && !$isFooter) {
             $shopMenuParams = array_merge($shopMenuParams, array(
                 'attributes' => array('class' => 'dropdown'),
                 'childrenAttributes' => array('class' => 'dropdown-menu'),

@@ -11,8 +11,17 @@
 
 namespace Sonata\Bundle\DemoBundle;
 
+use Sonata\Bundle\DemoBundle\Form\Type\NewsletterType;
+use Sonata\CoreBundle\Form\FormHelper;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 class SonataDemoBundle extends Bundle
 {
+    public function build (ContainerBuilder $container)
+    {
+        FormHelper::registerFormTypeMapping([
+            'sonata_demo_form_type_newsletter' => NewsletterType::class
+        ]);
+    }
 }

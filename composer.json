@@ -75,8 +75,9 @@
 
         "incenteev/composer-parameter-handler": "~2.0",
 
-        "nelmio/api-doc-bundle": "^3.1",
-        "friendsofsymfony/rest-bundle": "^2.3"
+        "nelmio/api-doc-bundle": "^2.13",
+        "friendsofsymfony/rest-bundle": "^2.3",
+        "guzzlehttp/guzzle": "^6.3"
     },
 
     "require-dev": {

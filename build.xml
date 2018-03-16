@@ -41,7 +41,7 @@
             <arg name="dump-sql" />
         </SymfonyConsole>
         <SymfonyConsole console="${app.console}" command="doctrine:fixtures:load" checkReturn="true">
-            <arg name="verbose" />
+            <!--<arg name="verbose" />-->
             <arg name="no-interaction" />
         </SymfonyConsole>
 
