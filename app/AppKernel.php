@@ -8,12 +8,10 @@ class AppKernel extends Kernel
     /**
      * {@inheritdoc}
      */
-    public function __construct($environment, $debug)
+    public function boot()
     {
-        // Please read http://symfony.com/doc/2.0/book/installation.html#configuration-and-setup
         bcscale(3);
-
-        parent::__construct($environment, $debug);
+        parent::boot();
     }
 
     /**
@@ -45,7 +43,7 @@ class AppKernel extends Kernel
 
             // SONATA FEATURE
             new FOS\UserBundle\FOSUserBundle(),
-            new Sonata\UserBundle\SonataUserBundle('FOSUserBundle'),
+            new Sonata\UserBundle\SonataUserBundle(),
             new Sonata\PageBundle\SonataPageBundle(),
             new Sonata\NewsBundle\SonataNewsBundle(),
             new Sonata\MediaBundle\SonataMediaBundle(),
@@ -72,7 +70,7 @@ class AppKernel extends Kernel
             new Sonata\PaymentBundle\SonataPaymentBundle(),
             new Sonata\ProductBundle\SonataProductBundle(),
             new Sonata\PriceBundle\SonataPriceBundle(),
-            new JMS\SerializerBundle\JMSSerializerBundle($this),
+            new JMS\SerializerBundle\JMSSerializerBundle(),
             new FOS\CommentBundle\FOSCommentBundle(),
             new Sonata\CommentBundle\SonataCommentBundle(),
 

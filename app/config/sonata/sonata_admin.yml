@@ -17,8 +17,8 @@ sonata_admin:
         # permission related to the objects
         object_permissions: [VIEW, EDIT, DELETE, UNDELETE, OPERATOR, MASTER, OWNER]
 
-    title:      %sonata_admin.title%
-    title_logo: %sonata_admin.logo_title%
+    title:      '%sonata_admin.title%'
+    title_logo: '%sonata_admin.logo_title%'
     options:
         html5_validate: false # does not use html5 validation
         pager_links: 5        # pager max links to display
@@ -91,9 +91,7 @@ sonata_admin:
             - { position: left, type: sonata.news.block.recent_comments, settings: { title: Recent Comments, number: 7, mode: admin }}
             - { position: right, type: sonata.order.block.recent_orders, settings: { title: Recent Orders, number: 5, mode: admin }}
             - { position: right, type: sonata.customer.block.recent_customers, settings: { title: Recent Customers, number: 5, mode: admin }}
-#            - { position: right, type: sonata.block.service.rss, settings: { title: Sonata Project's Feeds, url: https://sonata-project.org/blog/archive.rss, template: SonataAdminBundle:Block:block_rss_dashboard.html.twig }}
-
-
+            - { position: right, type: sonata.block.service.rss, settings: { title: Sonata Project's Feeds, url: http://sonata-project.org/blog/archive.rss, template: SonataAdminBundle:Block:block_rss_dashboard.html.twig }}
 
         groups:
             sonata.admin.group.content:
@@ -142,6 +140,7 @@ sonata_admin:
                 items:
                     - sonata.user.admin.user
                     - sonata.user.admin.group
+                    - sonata.page.admin.site
                     - sonata.notification.admin.message
 
             sonata.admin.group.demo:

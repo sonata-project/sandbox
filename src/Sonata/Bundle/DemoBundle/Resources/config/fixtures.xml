@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <defaults public="false" />
+
+        <service class="Sonata\Bundle\DemoBundle\DataFixtures\ORM\LoadCategoryData" id="sonata_bundle_demo.data_fixtures_orm.load_category_data">
+            <call method="setContainer">
+                <argument id="service_container" type="service"/>
+            </call>
+
+            <tag name="doctrine.fixture.orm"/>
+        </service>
+
+        <service class="Sonata\Bundle\DemoBundle\DataFixtures\ORM\LoadCollectionData" id="sonata_bundle_demo.data_fixtures_orm.load_collection_data">
+            <call method="setContainer">
+                <argument id="service_container" type="service"/>
+            </call>
+
+            <tag name="doctrine.fixture.orm"/>
+        </service>
+
+        <service class="Sonata\Bundle\DemoBundle\DataFixtures\ORM\LoadMediaData" id="sonata_bundle_demo.data_fixtures_orm.load_media_data">
+            <call method="setContainer">
+                <argument id="service_container" type="service"/>
+            </call>
+
+            <tag name="doctrine.fixture.orm"/>
+        </service>
+
+        <service class="Sonata\Bundle\DemoBundle\DataFixtures\ORM\LoadNewsData" id="sonata_bundle_demo.data_fixtures_orm.load_news_data">
+            <call method="setContainer">
+                <argument id="service_container" type="service"/>
+            </call>
+
+            <tag name="doctrine.fixture.orm"/>
+        </service>
+
+        <service class="Sonata\Bundle\DemoBundle\DataFixtures\ORM\LoadOrderData" id="sonata_bundle_demo.data_fixtures_orm.load_order_data">
+            <call method="setContainer">
+                <argument id="service_container" type="service"/>
+            </call>
+
+            <tag name="doctrine.fixture.orm"/>
+        </service>
+
+        <service class="Sonata\Bundle\DemoBundle\DataFixtures\ORM\LoadPageData" id="sonata_bundle_demo.data_fixtures_orm.load_page_data">
+            <call method="setContainer">
+                <argument id="service_container" type="service"/>
+            </call>
+
+            <tag name="doctrine.fixture.orm"/>
+        </service>
+
+        <service class="Sonata\Bundle\DemoBundle\DataFixtures\ORM\LoadProductData" id="sonata_bundle_demo.data_fixtures_orm.load_product_data">
+            <call method="setContainer">
+                <argument id="service_container" type="service"/>
+            </call>
+
+            <tag name="doctrine.fixture.orm"/>
+        </service>
+
+        <service class="Sonata\Bundle\DemoBundle\DataFixtures\ORM\LoadUserData" id="sonata_bundle_demo.data_fixtures_orm.load_user_data">
+            <call method="setContainer">
+                <argument id="service_container" type="service"/>
+            </call>
+
+            <tag name="doctrine.fixture.orm"/>
+        </service>
+
+        <service class="Sonata\Bundle\DemoBundle\DataFixtures\ORM\LoadContextData" id="sonata_bundle_demo.data_fixtures_orm.load_context_data">
+            <call method="setContainer">
+                <argument id="service_container" type="service"/>
+            </call>
+
+            <tag name="doctrine.fixture.orm"/>
+        </service>
+    </services>
+</container>

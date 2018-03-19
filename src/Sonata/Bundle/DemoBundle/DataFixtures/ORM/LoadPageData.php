@@ -25,7 +25,7 @@ class LoadPageData extends AbstractFixture implements ContainerAwareInterface, O
 
     public function getOrder()
     {
-        return 10;
+        return 8;
     }
 
     public function setContainer(ContainerInterface $container = null)
@@ -348,13 +348,14 @@ CONTENT
             $container->setSetting('layout', '<div class="col-sm-6">{{ CONTENT }}</div>');
         }));
         $bottomEmbed->setName('The bottom embedded tweet container');
-        $bottomEmbed->addChildren($embedded = $blockManager->create());
+        /*$bottomEmbed->addChildren($embedded = $blockManager->create());
         $embedded->setType('sonata.seo.block.twitter.embed');
         $embedded->setPosition(1);
         $embedded->setEnabled(true);
         $embedded->setSetting('tweet', 'https://twitter.com/dunglas/statuses/438337742565826560');
         $embedded->setSetting('lang', 'en');
-        $embedded->setPage($homepage);
+        $embedded->setPage($homepage);*/
+        // FixMe: does not work with latest version of guzzle (since they changed namespace)
 
         $pageManager->save($homepage);
     }

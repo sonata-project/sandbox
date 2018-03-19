@@ -6,23 +6,24 @@ sonata_qa:
     resource: "@SonataQABundle/Resources/config/routing/qa.xml"
 
 sonata_user_security:
-    resource: "@SonataUserBundle/Resources/config/routing/sonata_security_1.xml"
+    resource: "@SonataUserBundle/Resources/config/routing/admin_security.xml"
 
 sonata_user_resetting:
-    resource: "@SonataUserBundle/Resources/config/routing/sonata_resetting_1.xml"
+    resource: "@SonataUserBundle/Resources/config/routing/admin_resetting.xml"
     prefix: /resetting
 
-sonata_user_profile:
-    resource: "@SonataUserBundle/Resources/config/routing/sonata_profile_1.xml"
-    prefix: /profile
+# Routing files missing, TODO
+#sonata_user_profile:
+#    resource: "@SonataUserBundle/Resources/config/routing/sonata_profile_1.xml"
+#    prefix: /profile
 
-sonata_user_register:
-    resource: "@SonataUserBundle/Resources/config/routing/sonata_registration_1.xml"
-    prefix: /register
+#sonata_user_register:
+#    resource: "@SonataUserBundle/Resources/config/routing/sonata_registration_1.xml"
+#    prefix: /register
 
-sonata_user_change_password:
-    resource: "@SonataUserBundle/Resources/config/routing/sonata_change_password_1.xml"
-    prefix: /profile
+#sonata_user_change_password:
+#    resource: "@SonataUserBundle/Resources/config/routing/sonata_change_password_1.xml"
+#    prefix: /profile
 
 sonata_cache_cache:
     resource: '@SonataCacheBundle/Resources/config/routing/cache.xml'
@@ -78,6 +79,6 @@ blog:
 
 fos_comment:
     type: rest
-    resource: '@FOSCommentBundle/Resources/config/routing.yml'
+    resource: "@FOSCommentBundle/Resources/config/routing.yml"
     prefix: /comments
     defaults: { _format: html }

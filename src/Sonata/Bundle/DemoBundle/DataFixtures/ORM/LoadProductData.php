@@ -717,7 +717,7 @@ EOF
         $this->setReference('travel_paris_extra_large_product', $parisExtraLargeTravel);
 
         // London tour products
-        /*$londonTravel = new Travel();
+        $londonTravel = new Travel();
         $londonTravel->setSku('travel-london-tour');
         $londonTravel->setName('London tour');
         $londonTravel->setSlug('travel-london-tour');
@@ -788,10 +788,10 @@ EOF
         $this->addProductToCollection($londonTravel, $travelCollection, $manager);
         $this->addPackageToProduct($londonTravel, $manager);
 
-        $travelProvider = $productPool->getProvider($londonTravel);*/
+        $travelProvider = $productPool->getProvider($londonTravel);
 
         // London tour small group variation
-        /*$londonSmallTravel = $this->generateDefaultTravelVariation($travelProvider, $londonTravel);
+        $londonSmallTravel = $this->generateDefaultTravelVariation($travelProvider, $londonTravel);
         $londonSmallTravel->setName('London tour for small group');
         $londonSmallTravel->setSku('travel-london-tour-5');
         $londonSmallTravel->setSlug('travel-london-tour-5');
@@ -803,10 +803,10 @@ EOF
         $londonSmallTravel->setStock(85);
 
         $manager->persist($londonSmallTravel);
-        $this->setReference('travel_london_small_product', $londonSmallTravel);*/
+        $this->setReference('travel_london_small_product', $londonSmallTravel);
 
         // London tour medium group variation
-        /*$londonMediumTravel = $this->generateDefaultTravelVariation($travelProvider, $londonTravel);
+        $londonMediumTravel = $this->generateDefaultTravelVariation($travelProvider, $londonTravel);
         $londonMediumTravel->setName('London tour for medium group');
         $londonMediumTravel->setSku('travel-london-tour-7');
         $londonMediumTravel->setSlug('travel-london-tour-7');
@@ -818,10 +818,10 @@ EOF
         $londonMediumTravel->setStock(85);
 
         $manager->persist($londonMediumTravel);
-        $this->setReference('travel_london_medium_product', $londonMediumTravel);*/
+        $this->setReference('travel_london_medium_product', $londonMediumTravel);
 
         // London tour large group variation
-        /*$londonLargeTravel = $this->generateDefaultTravelVariation($travelProvider, $londonTravel);
+        $londonLargeTravel = $this->generateDefaultTravelVariation($travelProvider, $londonTravel);
         $londonLargeTravel->setName('London tour for large group');
         $londonLargeTravel->setSku('travel-london-tour-9');
         $londonLargeTravel->setSlug('travel-london-tour-9');
@@ -833,10 +833,10 @@ EOF
         $londonLargeTravel->setStock(85);
 
         $manager->persist($londonLargeTravel);
-        $this->setReference('travel_london_large_product', $londonLargeTravel);*/
+        $this->setReference('travel_london_large_product', $londonLargeTravel);
 
         // London tour extra-large group variation
-        /*$londonExtraLargeTravel = $this->generateDefaultTravelVariation($travelProvider, $londonTravel);
+        $londonExtraLargeTravel = $this->generateDefaultTravelVariation($travelProvider, $londonTravel);
         $londonExtraLargeTravel->setName('London tour for extra-large group');
         $londonExtraLargeTravel->setSku('travel-london-tour-12');
         $londonExtraLargeTravel->setSlug('travel-london-tour-12');
@@ -848,7 +848,7 @@ EOF
         $londonExtraLargeTravel->setStock(85);
 
         $manager->persist($londonExtraLargeTravel);
-        $this->setReference('travel_london_extra_large_product', $londonExtraLargeTravel);*/
+        $this->setReference('travel_london_extra_large_product', $londonExtraLargeTravel);
 
         // Switzerland tour products
         $switzerlandTravel = new Travel();
@@ -988,7 +988,7 @@ EOF
      */
     public function getOrder()
     {
-        return 12;
+        return 7;
     }
 
     protected function getLorem()
@@ -1154,7 +1154,8 @@ EOF
             ->name('*.jpg')
             ->in(__DIR__.'/../data/files/sylvain-switzerland');
 
-        foreach ($files as $pos => $file) {
+        $pos = 0;
+        foreach ($files as $file) {
             $media = $this->getMediaManager()->create();
             $media->setBinaryContent($file);
             $media->setEnabled(true);
@@ -1199,7 +1200,8 @@ EOF
 
         $a = 1;
 
-        foreach ($files as $pos => $file) {
+        $pos = 0;
+        foreach ($files as $file) {
             $media = $this->getMediaManager()->create();
             $media->setBinaryContent($file);
             $media->setEnabled(true);
@@ -1228,7 +1230,8 @@ EOF
 
         $b = 1;
 
-        foreach ($files as $pos => $file) {
+        $pos = 0;
+        foreach ($files as $file) {
             $media = $this->getMediaManager()->create();
             $media->setBinaryContent($file);
             $media->setEnabled(true);
@@ -1273,7 +1276,8 @@ EOF
             ->name('*.jpg')
             ->in(__DIR__.'/../data/files/gilles-canada');
 
-        foreach ($files as $pos => $file) {
+        $pos = 0;
+        foreach ($files as $file) {
             $media = $this->getMediaManager()->create();
             $media->setBinaryContent($file);
             $media->setEnabled(true);
@@ -1298,7 +1302,8 @@ EOF
             ->name('*.jpg')
             ->in(__DIR__.'/../data/files/hugo-canada');
 
-        foreach ($files as $pos => $file) {
+        $pos = 0;
+        foreach ($files as $file) {
             $media = $this->getMediaManager()->create();
             $media->setBinaryContent($file);
             $media->setEnabled(true);
@@ -1341,7 +1346,8 @@ EOF
             ->name('*.jpg')
             ->in(__DIR__.'/../data/files/maha-japan');
 
-        foreach ($files as $pos => $file) {
+        $pos = 0;
+        foreach ($files as $file) {
             $media = $this->getMediaManager()->create();
             $media->setBinaryContent($file);
             $media->setEnabled(true);

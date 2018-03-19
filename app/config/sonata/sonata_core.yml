@@ -1,4 +1,7 @@
 sonata_core:
+    form:
+        mapping:
+            enabled: true
     flashmessage:
         error:
             css_class: danger

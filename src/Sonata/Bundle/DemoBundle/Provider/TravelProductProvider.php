@@ -48,7 +48,7 @@ class TravelProductProvider extends BaseProductProvider
     /**
      * {@inheritdoc}
      */
-    public function buildEditForm(FormMapper $formMapper, $isVariation = false)
+    public function buildEditForm(FormMapper $formMapper, $isVariation = false) : void
     {
         parent::buildEditForm($formMapper, $isVariation);
 

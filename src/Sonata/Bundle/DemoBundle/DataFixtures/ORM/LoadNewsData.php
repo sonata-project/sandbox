@@ -24,7 +24,7 @@ class LoadNewsData extends AbstractFixture implements ContainerAwareInterface, O
 
     public function getOrder()
     {
-        return 4;
+        return 6;
     }
 
     public function setContainer(ContainerInterface $container = null)
@@ -77,7 +77,7 @@ class LoadNewsData extends AbstractFixture implements ContainerAwareInterface, O
 
 Now a specific gist from github
 
-<% gist '1552362', 'gistfile1.txt' %>
+<% gist '1552362' 'gistfile1.txt' %>
 
 ### Media Formatter
 

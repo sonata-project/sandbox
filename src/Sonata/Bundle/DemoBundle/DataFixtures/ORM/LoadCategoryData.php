@@ -16,7 +16,6 @@ use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-
 /**
  * Category fixtures loader.
  *
@@ -178,24 +177,24 @@ class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterfac
         $this->setReference('travels_paris_category', $paris);
 
         // Great britain category
-        /*$greatBritain = $this->getCategoryManager()->create();
+        $greatBritain = $this->getCategoryManager()->create();
         $greatBritain->setParent($travels);
         $greatBritain->setName('Great Britain');
         $greatBritain->setSlug('great-britain');
         $greatBritain->setDescription('Want to travel in Great Britain? Check out our travels.');
         $greatBritain->setEnabled(true);
         $this->getCategoryManager()->save($greatBritain);
-        $this->setReference('travels_great_britain_category', $greatBritain);*/
+        $this->setReference('travels_great_britain_category', $greatBritain);
 
         // London category
-        /*$london = $this->getCategoryManager()->create();
+        $london = $this->getCategoryManager()->create();
         $london->setParent($travels);
         $london->setName('London');
         $london->setSlug('london');
         $london->setDescription('Want to travel in London? Check out our travels.');
         $london->setEnabled(true);
         $this->getCategoryManager()->save($london);
-        $this->setReference('travels_london_category', $london);*/
+        $this->setReference('travels_london_category', $london);
 
         // Goodies category
         $goodies = $this->getCategoryManager()->create();
