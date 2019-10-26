@@ -64,4 +64,9 @@ class TravelProductProvider extends BaseProductProvider
 
         $formMapper->end();
     }
+
+    public function getTemplatesPath(): string
+    {
+        return '@SonataDemo\Travel';
+    }
 }

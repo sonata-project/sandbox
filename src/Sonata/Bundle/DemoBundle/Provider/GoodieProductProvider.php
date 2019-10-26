@@ -28,4 +28,9 @@ class GoodieProductProvider extends BaseProductProvider
     {
         return 'SonataDemoBundle:Goodie';
     }
+
+    public function getTemplatesPath(): string
+    {
+        return '@SonataDemo\Goodie';
+    }
 }
