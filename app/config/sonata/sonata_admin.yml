@@ -22,7 +22,7 @@ sonata_admin:
     options:
         html5_validate: false # does not use html5 validation
         pager_links: 5        # pager max links to display
-        use_bootlint: %kernel.debug%
+        use_bootlint: '%kernel.debug%'
 
     templates:
         # default global templates

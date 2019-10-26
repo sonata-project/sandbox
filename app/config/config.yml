@@ -98,7 +98,7 @@ doctrine:
                 charset:  UTF8
 
         types:
-            json:     Sonata\Doctrine\Types\JsonType
+            json:     Doctrine\DBAL\Types\JsonType
             currency: Sonata\Component\Currency\CurrencyDoctrineType
 
     orm:

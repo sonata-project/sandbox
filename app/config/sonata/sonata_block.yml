@@ -55,13 +55,9 @@ sonata_block:
         sonata.basket.block.nb_items:
             cache: sonata.page.cache.js_async
             contexts: [user]
-        sonata.basket.block.nb_items: # FixMe: Why is this duplicated?
-            cache: sonata.page.cache.js_async
-            contexts: [user]
 
         # TimelineBundle's Blocks
 
-        sonata.timeline.block.timeline:
         sonata.timeline.block.timeline:
             contexts:   [admin]
 
