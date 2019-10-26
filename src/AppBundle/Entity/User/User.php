@@ -9,6 +9,7 @@
  */
 namespace AppBundle\Entity\User;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Sonata\UserBundle\Entity\BaseUser as BaseUser;
 
 /**
@@ -25,6 +26,11 @@ class User extends BaseUser
      * @var int
      */
     protected $id;
+
+    /**
+     * @var ArrayCollection
+     */
+    protected $customers;
 
     /**
      * Get id.
