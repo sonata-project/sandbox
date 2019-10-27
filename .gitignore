@@ -2,9 +2,9 @@
 /app/cache/*
 /app/logs/*
 /app/*.cache
-/public/bundles
-/public/uploads
-/public/sitemap*.xml
+/web/bundles
+/web/uploads
+/web/sitemap*.xml
 /app/config/parameters*.yml
 /vendor
 /build
