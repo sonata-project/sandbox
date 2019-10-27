@@ -9,12 +9,12 @@
  * file that was distributed with this source code.
  */
 
-use Behat\Behat\Context\BehatContext;
+use Behat\Behat\Context\Context;
 
 /**
  * Features context.
  */
-class FeatureContext extends BehatContext
+class FeatureContext extends BrowserContext
 {
     /**
      * Initializes context.

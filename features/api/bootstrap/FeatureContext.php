@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-use Behat\Behat\Context\BehatContext;
+use Behat\Behat\Context\Context;
 use Behat\CommonContexts\WebApiContext;
 use Behat\Gherkin\Node\TableNode;
 
@@ -18,7 +18,7 @@ use Behat\Gherkin\Node\TableNode;
  *
  * @author Romain Mouillard <romain.mouillard@gmail.com>
  */
-class FeatureContext extends BehatContext
+class FeatureContext implements Context
 {
     /**
      * @var array

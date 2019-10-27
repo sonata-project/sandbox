@@ -1,25 +1,29 @@
 default:
     extensions:
-        Behat\MinkExtension\Extension:
-            base_url:  'http://sonata.local/'
+        Behat\MinkExtension:
+            base_url:  'http://127.0.0.1:8000/'
             goutte:     ~
             #selenium2: ~
             files_path: .
+    suites:
+        default:
+            context:
+                parameters:
+                    base_url:  'http://127.0.0.1:8000/'
+                    files_path: .
 
-    context:
-        parameters:
-            base_url:  'http://sonata.local/'
-            files_path: .
+            filters:
+                tags: "~@skipped&&~@api"
 
-    filters:
-        tags: "~@skipped&&~@api"
 
 api:
-    paths:
-        features:  features/api
-        bootstrap: %behat.paths.features%/bootstrap
-    filters:
-        tags: "~@skipped&&@api"
+    suites:
+        default:
+            paths:
+                features:  features/api
+                bootstrap: features/api/bootstrap
+            filters:
+                tags: "~@skipped&&@api"
 wip:
     filters:
         tags: "@skipped"
