@@ -2,6 +2,7 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: assetic.yml }
+    - { resource: services.yml }
 
     # Mopa Bootstrap
     - { resource: mopa/mopa_bootstrap.yml }
