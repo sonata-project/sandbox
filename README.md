@@ -13,58 +13,72 @@ Sonata Standard Edition comes pre-configured with the following bundles:
 * Sonata Feature Bundles: Page, Media, News, User, Block, Timeline
 * Api Bundles: FOSRestBundle, BazingaHateoasBundle, NelmioApiDocBundle and JMSSerializerBundle
 
-Quick Installation
-------------------
-
-The Sonata Project provides a build of the current sandbox to quickly start with the projet.
-
-    curl -L github https://github.com/sonata-project/sandbox-build/archive/2.4.tar.gz | tar xzv
-
-Once, you have the file, you can either use
-
-### Local Installation 
-
-* Configure default the ``parameters.yml`` file: ``cp app/config/parameters.yml.dist app/config/parameters.yml``
-* load the data: ``php bin/load_data.php``
-* You should should be ready to go ...
-
-### Vagrant Installation
-
-* vagrant up --provision --provider=virtualbox (Vagrant is going to get the environnement, install it for you and load sonata sample data)
-* Configure your host ``sudo nano /etc/hosts`` and add this line ``192.168.33.99   sonata.local``
-* Open your browser [here][link_sonata]
-
-
 Composer Installation
 ---------------------
-
 Get composer:
 
     curl -s http://getcomposer.org/installer | php
+    
+Run the following command for the 3.0 branch:
 
-Run the following command for the 2.4 develop branch:
-
-    php composer.phar create-project sonata-project/sandbox:2.4.x-dev
+    php composer.phar create-project sonata-project/sandbox:3.0
 
 The installation process used Incenteev's ParameterHandler to handle parameters.yml configuration. With the current
 installation, it is possible to use environment variables to configure this file:
 
-    DATABASE_NAME=sonata DATABASE_USER=root DATABASE_PASSWORD="" php composer.phar create-project sonata-project/sandbox:dev-2.4-develop
+    DATABASE_NAME=sonata DATABASE_USER=root DATABASE_PASSWORD="" php composer.phar create-project sonata-project/sandbox:3.0
 
 You might experience some timeout issues with composer, as the ``create-project`` start different scripts, you can increase the default composer value with the ``COMPOSER_PROCESS_TIMEOUT`` env variable:
 
-    COMPOSER_PROCESS_TIMEOUT=600 php composer.phar create-project sonata-project/sandbox:dev-2.4-develop
+    COMPOSER_PROCESS_TIMEOUT=600 php composer.phar create-project sonata-project/sandbox:3.0
 
-Fixtures are automatically loaded on the ``composer create-project`` step. If you'd like to reset your sandbox to the default fixtures (or you had an issue while installing and want to fill in the fixtures manually), you may run:
 
-    php bin/load_data.php
+Standard Installation
+---------------------
 
+ Download project files:
+
+    curl -L github https://github.com/sonata-project/sandbox/archive/3.0.tar.gz | tar xzv
+    rm sandbox-3.0 sandbox
+    cd sandbox
+    
+or
+
+    git clone https://github.com/sonata-project/sandbox.git
+    cd sandbox
+    git checkout 3.0
+    rm -r .git
+    
+Configure default the parameters.yml file: 
+
+    cp app/config/parameters.yml.dist app/config/parameters.yml
+        
+Download vendors:
+
+    php composer.phar update
+    
+Load fixtures:
+
+    vendor/bin/phing  
+    
+Reset sandbox
+-------------
+If you'd like to reset your sandbox to the default fixtures (or you had an issue while installing and want to fill in the fixtures manually), you may run:
+
+    vendor/bin/phing  
+    
 This will completely reset your database.
+
+Vagrant Installation
+--------------------
+* vagrant up --provision --provider=virtualbox (Vagrant is going to get the environnement, install it for you and load sonata sample data)
+* Configure your host ``sudo nano /etc/hosts`` and add this line ``192.168.33.99   sonata.local``
+* Open your browser [here][link_sonata]
 
 Run
 ---
 
-If you are running PHP5.4, you can use the built in server to start the demo:
+If you are running PHP7.2, you can use the built in server to start the demo:
 
     app/console server:run localhost:9090
 
