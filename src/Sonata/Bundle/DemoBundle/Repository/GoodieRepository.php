@@ -23,6 +23,6 @@ use Sonata\ProductBundle\Repository\BaseProductRepository;
  *
  * @author <yourname> <youremail>
  */
-class GoodieRepository extends BaseProductRepository
+final class GoodieRepository extends BaseProductRepository
 {
 }

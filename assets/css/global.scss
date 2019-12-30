@@ -1,0 +1,9 @@
+// customize some Bootstrap variables
+//$primary: darken(#428bca, 20%);
+
+// the ~ allows you to reference things in node_modules
+@import "~bootstrap";
+@import '~select2';
+@import './../../web/bundles/sonataadmin/vendor/iCheck/skins/square/blue.css';
+@import "./../css/demo.css";
+ @import './../../web/bundles/sonatacore/vendor/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css';

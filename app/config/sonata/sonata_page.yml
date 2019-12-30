@@ -45,17 +45,20 @@ sonata_page:
         classes:
             Application\Sonata\PageBundle\Entity\Block: getId
 
+    # use encore-webpack instead
+    # do not remove this lines to avoid load default value
     assets:
         stylesheets:
-            - assetic/sonata_front_css.css
-
         javascripts:
-            - assetic/sonata_front_js.js
+            - 'bundles/sonataproduct/js/product.js'
+            - 'bundles/sonatacore/js/base.js'
+            - 'bundles/sonatademo/js/demo.js'
+            - 'bundles/sonatapage/sonata-page.front.js'
 
     default_template: default
     templates:
         default:
-            path: 'AppBundle::demo_layout.html.twig'
+            path: '@App/demo_layout.html.twig'
             name: 'default'
             containers:
                  header:
@@ -86,7 +89,7 @@ sonata_page:
                      F: footer
 
         2columns:
-            path: 'AppBundle::demo_2columns_layout.html.twig'
+            path: '@App/demo_2columns_layout.html.twig'
             name: '2 columns layout'
             containers:
                  header:

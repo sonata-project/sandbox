@@ -3,7 +3,7 @@ fos_comment:
     class:
         model:
             comment: AppBundle\Entity\Comment\Comment
-            thread:   AppBundle\Entity\Comment\Thread
+            thread:  AppBundle\Entity\Comment\Thread
     form:
         comment:
             type: sonata_comment_comment

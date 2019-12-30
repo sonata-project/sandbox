@@ -16,24 +16,19 @@ Feature: Edit my profile
     And the response status code should be 200
 
   @profile @customer @edition
-  Scenario: Update my personal information
-    When I go to "/profile/edit-profile"
-    And I fill in "sonata_user_profile_form_gender" with "m"
-    And I fill in "sonata_user_profile_form_firstname" with "Thomas"
-    And I fill in "sonata_user_profile_form_lastname" with "Rabaix"
-    And I fill in "sonata_user_profile_form_dateOfBirth" with "1981-03-24"
-    And I fill in "sonata_user_profile_form_website" with "http://thomas.rabaix.net"
-    And I fill in "sonata_user_profile_form_biography" with "Sonata Core Dev"
-    And I fill in "sonata_user_profile_form_locale" with "fr"
-    And I fill in "sonata_user_profile_form_timezone" with "Europe/Paris"
-    And I press "Submit"
-    Then I should see "Your profile has been updated."
+  Scenario: Update my profile information
+    When I go to "/profile/edit"
+    And I fill in "fos_user_profile_form_username" with "johndoe"
+    And I fill in "fos_user_profile_form_email" with "johndoe@example.net"
+    And I fill in "fos_user_profile_form_current_password" with "johndoe"
+    And I press "Update"
+    Then I should see "The profile has been updated."
 
   @profile @customer @password
     Scenario: Change my password
-    When I go to "/profile/edit-profile"
+    When I go to "/profile/change-password"
     And I fill in "fos_user_change_password_form_current_password" with "johndoe"
-    And I fill in "fos_user_change_password_form_new_first" with "johndoe"
-    And I fill in "fos_user_change_password_form_new_second" with "johndoe"
+    And I fill in "fos_user_change_password_form_plainPassword_first" with "johndoe"
+    And I fill in "fos_user_change_password_form_plainPassword_second" with "johndoe"
     And I press "Change password"
-    Then I should see "The password has been changed"
+    Then I should see "The password has been changed."

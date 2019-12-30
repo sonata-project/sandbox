@@ -20,7 +20,7 @@ sonata_payment:
 #
 #                account:            your_paypal_account@fake.com
 #                cert_id:            fake
-#                paypal_cert_file:   %kernel.root_dir%/paypal_cert_pem_sandbox.txt
+#                paypal_cert_file:   "%kernel.root_dir%/paypal_cert_pem_sandbox.txt"
 #                url_action:         https://www.sandbox.paypal.com/cgi-bin/webscr
 #
 #                debug: true
@@ -31,8 +31,8 @@ sonata_payment:
 #
 #                method:             encryptViaBuffer # encryptViaFile || encryptViaBuffer
 #
-#                key_file:           %kernel.root_dir%/my-prvkey.pem
-#                cert_file:          %kernel.root_dir%/my-pubcert.pem
+#                key_file:           "%kernel.root_dir%/my-prvkey.pem"
+#                cert_file:          "%kernel.root_dir%/my-pubcert.pem"
 #
 #                openssl:            /opt/local/bin/openssl
         pass:

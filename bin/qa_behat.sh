@@ -10,17 +10,22 @@ if [ ! -d "build" ]; then
     mkdir build
 fi
 
-parameters=" -f progress,junit --out ,build/junit"
+#parameters=" -f pretty --out build/junit"
+parameters=" "
 
-echo "Running Behat default test suite"
-bin/behat -f progress $parameters
-statusDefault=$?
+echo "Running Behat frontend test suite"
+vendor/bin/behat --profile frontend -f progress $parameters
+statusFrontend=$?
+
+echo "Running Behat backend test suite"
+vendor/bin/behat --profile backend -f progress $parameters
+statusBackend=$?
 
 echo "Running Behat API test suite"
-bin/behat --profile api $parameters
+vendor/bin/behat --profile api -f progress $parameters
 statusApi=$?
 
-if [ $statusDefault -ne 0 ] || [ $statusApi -ne 0 ]; then
+if [ $statusFrontend -ne 0 ] || [ $statusBackend -ne 0 ] || [ $statusApi -ne 0 ]; then
    echo "Some Behat test suites have failed!"
    exit 1
 fi

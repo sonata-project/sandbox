@@ -23,6 +23,6 @@ use Sonata\ProductBundle\Repository\BaseProductRepository;
  *
  * @author <yourname> <youremail>
  */
-class TravelRepository extends BaseProductRepository
+final class TravelRepository extends BaseProductRepository
 {
 }

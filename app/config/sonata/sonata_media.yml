@@ -92,7 +92,7 @@ sonata_media:
 #           thumbnail: sonata.media.thumbnail.liip_imagine    # use the LiipImagineBundle to resize the image
 
     pixlr:
-        enabled:  true
+        enabled:  false
         referrer: Demo - Sonata Project
 
     resizer:

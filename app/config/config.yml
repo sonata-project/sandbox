@@ -1,7 +1,7 @@
 imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
-    - { resource: assetic.yml }
+    - { resource: services.yml }
 
     # Mopa Bootstrap
     - { resource: mopa/mopa_bootstrap.yml }
@@ -10,6 +10,7 @@ imports:
     - { resource: knp/knp_paginator.yml }
 
     # FriendOfSymfony Bundles
+    - { resource: fos/fos_ck_editor.yml }
     - { resource: fos/fos_comment.yml }
     - { resource: fos/fos_rest.yml }
     - { resource: fos/fos_user.yml }
@@ -80,6 +81,7 @@ twig:
         - 'SonataFormatterBundle:Form:formatter.html.twig'
         - 'SonataMediaBundle:Form:media_widgets.html.twig'
         - 'SonataCoreBundle:Form:datepicker.html.twig'
+        - '@FOSCKEditor/Form/ckeditor_widget.html.twig'
 
     exception_controller: 'FOS\RestBundle\Controller\ExceptionController::showAction'
 
@@ -98,7 +100,7 @@ doctrine:
                 charset:  UTF8
 
         types:
-            json:     Sonata\Doctrine\Types\JsonType
+            json:     Doctrine\DBAL\Types\JsonType
             currency: Sonata\Component\Currency\CurrencyDoctrineType
 
     orm:
@@ -118,29 +120,15 @@ swiftmailer:
 jms_serializer:
     metadata:
         directories:
-            - path: '%kernel.root_dir%/../vendor/sonata-project/user-bundle/Resources/config/serializer/FOSUserBundle'
-              namespace_prefix: 'FOS\UserBundle'
-            - path: '%kernel.root_dir%/../vendor/sonata-project/ecommerce/src/BasketBundle/Resources/config/serializer/Component'
-              namespace_prefix: 'Sonata\Component\Basket'
-            - path: '%kernel.root_dir%/../vendor/sonata-project/datagrid-bundle/Resources/config/serializer'
-              namespace_prefix: 'Sonata\DatagridBundle'
-
-# Assetic Configuration
-#assetic:
-#    debug:          %kernel.debug%
-#    use_controller: false
-#    filters:
-#        cssrewrite: ~
-#        # closure:
-#        #     jar: %kernel.root_dir%/java/compiler.jar
-#        # yui_css:
-#        #     jar: %kernel.root_dir%/java/yuicompressor-2.4.2.jar
-#
-#        # Comment out those lines if you wish to use the less version of bootstrap
-#        less:
-#            node: /usr/local/bin/node
-#            node_paths: [/usr/local/node/node-v0.10.22/lib/node_modules]
-#            apply_to: "\.less$"
+            -
+                path: '%kernel.root_dir%/../vendor/sonata-project/user-bundle/Resources/config/serializer/FOSUserBundle'
+                namespace_prefix: 'FOS\UserBundle'
+            -
+                path: '%kernel.root_dir%/../vendor/sonata-project/ecommerce/src/BasketBundle/Resources/config/serializer/Component'
+                namespace_prefix: 'Sonata\Component\Basket'
+            -
+                path: '%kernel.root_dir%/../vendor/sonata-project/datagrid-bundle/Resources/config/serializer'
+                namespace_prefix: 'Sonata\DatagridBundle'
 
 nelmio_api_doc: ~
 
@@ -148,3 +136,30 @@ sensio_framework_extra:
     view:    { annotations: true } # FOS\RestBundle\DependencyInjection\Compiler\ConfigurationCheckPass: You must enable the SensioFrameworkExtraBundle view annotations to use the ViewResponseListener
     router:  { annotations: true }
     request: { converters:  true }
+
+webpack_encore:
+    # The path where Encore is building the assets - i.e. Encore.setOutputPath()
+    output_path: '%kernel.project_dir%/web/build'
+      # If multiple builds are defined (as shown below), you can disable the default build:
+      # output_path: false
+
+      # if using Encore.enableIntegrityHashes() and need the crossorigin attribute (default: false, or use 'anonymous' or 'use-credentials')
+      # crossorigin: 'anonymous'
+
+      # preload all rendered script and link tags automatically via the http2 Link header
+      # preload: true
+
+      # Throw an exception if the entrypoints.json file is missing or an entry is missing from the data
+      # strict_mode: false
+
+      # if you have multiple builds:
+      # builds:
+      # pass "frontend" as the 3rg arg to the Twig functions
+      # {{ encore_entry_script_tags('entry1', null, 'frontend') }}
+
+    # frontend: '%kernel.project_dir%/public/frontend/build'
+
+    # Cache the entrypoints.json (rebuild Symfony's cache when entrypoints.json changes)
+    # Available in version 1.2
+    # Put in config/packages/prod/webpack_encore.yaml
+    # cache: true

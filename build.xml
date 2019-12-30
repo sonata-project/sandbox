@@ -5,12 +5,13 @@
         <!-- TODO: check for existence of app/config/parameters.yml -->
 
         <property name="app.uploadsDir" value="./web/uploads/media" />
+        <property name="app.console" value="bin/console" />
+
         <if>
             <os family="windows" />
-            <then><property name="app.console" value="app\console.bat"/></then>
-            <else><property name="app.console" value="app/console" /></else>
+            <then><property name="app.console" value="bin\console.bat"/></then>
+            <else><property name="app.console" value="bin/console" /></else>
         </if>
-
 
         <echo msg="Preparing ${app.uploadsDir} folder" />
         <delete dir="${app.uploadsDir}" includeemptydirs="true" failonerror="false" />
@@ -18,7 +19,7 @@
 
         <echo msg="Removing any existing cache" />
         <foreach param="dir" absparam="path" target="delete-dir">
-            <fileset dir="./app/cache">
+            <fileset dir="./var/cache">
                 <type type="dir" />
                 <depth max="0" min="0" />
             </fileset>
@@ -57,6 +58,10 @@
         <echo msg="Preparing ACLs" />
         <SymfonyConsole console="${app.console}" command="sonata:admin:setup-acl" checkReturn="true" />
         <SymfonyConsole console="${app.console}" command="sonata:admin:generate-object-acl" checkReturn="true" />
+
+        <!-- TODO: check for existence of yarn|npm -->
+        <echo msg="Generating assets" />
+        <SymfonyConsole console="yarn" command="encore dev" checkReturn="true" />
     </target>
 
     <target name="delete-dir" hidden="true">
