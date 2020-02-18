@@ -1,0 +1,63 @@
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+
+{% if provider.getOption('product_add_modal') %}
+    {% block product_javascript_init %}
+        <script src="{{ asset('bundles/sonatabasket/modal.js') }}" type="text/javascript"></script>
+    {% endblock %}
+
+    {% block product_add_basket_modal %}
+    <div class="row">
+        <div class="col-lg-12">
+            <div id="add_basket_modal_{{ product.id }}" class="modal fade"></div>
+        </div>
+    </div>
+    {% endblock %}
+{% endif %}
+
+
+{% block add_product_form_content %}
+    <div class="row">
+        <div class="col-lg-12">
+            <form id="form_add_basket" class="form-horizontal" action="{{ url('sonata_basket_add_product') }}" method="POST"{% if provider.getOption('product_add_modal') %} data-target="#add_basket_modal_{{ product.id }}"{% endif %}>
+
+                {% if sonata_product_stock(product) == 0 %}
+                    {% set quantityAttrs = {'min': 1, 'disabled': true} %}
+                {% else %}
+                    {% set quantityAttrs = {'min': 1} %}
+                {% endif %}
+
+                {{ form_row(form.quantity, {'label': 'form_label_quantity'|trans({}, 'SonataBasketBundle'), 'attr': quantityAttrs, 'horizontal_input_wrapper_class': 'col-lg-4', 'horizontal_label_class': 'control-label col-lg-8', 'render_required_asterisk': false}) }}
+
+                <div class="form-group">
+                    <div class="col-lg-6 col-xs-6">
+                        <span id="sonata_product_price" class="lead">
+                            {% block product_price_price %}
+                                {% if provider.hasEnabledVariations(product) %}
+                                    {{ cheapest_variation.price|number_format_currency(currency.label) }}
+                                {% else %}
+                                    {{ sonata_product_price(product, currency, true)|number_format_currency(currency.label) }}
+                                {% endif %}
+                            {% endblock %}
+                        </span>
+                    </div>
+                    <div class="col-lg-6 col-xs-6">
+                        <button type="submit" class="btn btn-primary btn-sm pull-right" id="sonata_add_basket_submit"{% if sonata_product_stock(product) == 0 %} disabled{% endif %}>
+                            <i class="glyphicon glyphicon-shopping-cart icon-white"></i> {% trans from 'SonataProductBundle' %}sonata.product.btn_add_to_basket{% endtrans %}
+                        </button>
+                    </div>
+                </div>
+
+                {{ form_rest(form) }}
+            </form>
+        </div>
+    </div>
+{% endblock %}

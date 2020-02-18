@@ -1,0 +1,35 @@
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+
+{% extends '@SonataAdmin/CRUD/base_edit.html.twig' %}
+
+{% block form %}
+
+    <h5>{{ 'product.title.create_variations'|trans([], 'SonataProductBundle') }}</h5>
+
+    {{ form_start(form, {'attr' : {'role': 'form', 'class': 'form-horizontal'}, 'action': admin.generateUrl('create'), 'method': 'post'}) }}
+        {% if form.vars.errors|length > 0 %}
+            <div class="sonata-ba-form-error">
+                {{ form_errors(form) }}
+            </div>
+        {% endif %}
+
+        <fieldset>
+            {{ form_rest(form) }}
+        </fieldset>
+
+        <div class="well well-small form-actions">
+            <input type="submit" class="btn btn-primary" value="{{ 'product.submit.create_variations'|trans({}, 'SonataProductBundle') }}"/>
+        </div>
+
+    {{ form_end(form) }}
+
+{% endblock %}

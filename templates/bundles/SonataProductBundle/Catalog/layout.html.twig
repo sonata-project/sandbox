@@ -1,0 +1,91 @@
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+
+{% sonata_template_box 'This is the catalog template. Feel free to override it.' %}
+
+{% block sonata_page_breadcrumb %}
+    <div class="row-fluid clearfix">
+        {% if category is defined %}
+            {{ sonata_block_render_event('breadcrumb', { 'context': 'catalog', 'category': category, 'current_uri': app.request.requestUri }) }}
+        {% elseif collection is defined %}
+            {{ sonata_block_render_event('breadcrumb', { 'context': 'catalog', 'collection': collection, 'current_uri': app.request.requestUri }) }}
+        {% endif %}
+    </div>
+{% endblock %}
+
+<div class="row">
+
+    <div class="col-sm-3">
+
+        {% block product_category %}
+            {{ sonata_block_render({'type': 'sonata.product.block.categories_menu', 'settings': {
+                'current_uri': app.request.requestUri,
+                'extra_cache_keys': {
+                    'block_id':    'sonata.product.block.categories_menu',
+                    'updated_at':  'now',
+                },
+                'ttl': 60
+            }}) }}
+        {% endblock %}
+
+        {#{% block product_filter %}#}
+            {#{% if provider %}#}
+                {#<div class="well" style="padding: 8px 0;">#}
+                    {#{{ sonata_block_render({'type': 'sonata.product.block.filters_menu'}, {'product_provider': provider, 'current_uri': app.request.requestUri}) }}#}
+                {#</div>#}
+            {#{% endif %}#}
+        {#{% endblock %}#}
+
+    </div>
+
+    <div class="col-sm-9">
+
+        {% if pager.count == 0 %}
+
+            {% block no_products %}
+                <div class="no-products-available">
+                    {% trans from 'SonataProductBundle' %}no_products_available{% endtrans %}
+                </div>
+            {% endblock %}
+
+        {% else %}
+
+            <div class="panel panel-default sonata-product-navigation-bar">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <h4 class="panel-title">
+                                {% block products_heading_title %}{%endblock%}                                
+                            </h4>
+                        </div>
+                        <div class="col-sm-9">
+                            {% include '@SonataProduct/Catalog/_pager.html.twig' %}
+                        </div>
+                    </div>
+                </div>
+
+                {% block products %}{% endblock %}
+
+                {% if pager.paginationData.pageCount > 1 %}
+                    <div class="panel-footer">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                {% include '@SonataProduct/Catalog/_pager.html.twig' %}
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            </div>
+        {% endif %}
+
+    </div>
+
+</div>

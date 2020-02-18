@@ -1,0 +1,34 @@
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+{% extends sonata_page.defaultTemplate %}
+
+{% block title %}{{ "title_page_not_found"|trans({}, 'SonataPageBundle') }}{% endblock %}
+
+{% block content %}
+    <div>
+        <h2>{{ "title_page_not_found"|trans({'pathInfo': pathInfo}, 'SonataPageBundle') }}</h2>
+
+        {% if creatable %}
+            <p>
+                <a href="{{ sonata_admin.url('sonata.page.admin.page', 'create', {'url': pathInfo, 'siteId': site.id}) }}"
+                   class="btn btn-primary"
+                >
+                    <i class="fa fa-plus" aria-hidden="true"></i>
+                    {{ "create_page"|trans({'pathInfo': pathInfo}, 'SonataPageBundle') }}
+                </a>
+            </p>
+        {% else %}
+            <p>
+                {{ "message_page_does_not_exist"|trans({'pathInfo': pathInfo}, 'SonataPageBundle') }}
+            </p>
+        {% endif %}
+    </div>
+{% endblock %}

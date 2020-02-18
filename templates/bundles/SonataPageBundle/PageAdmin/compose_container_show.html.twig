@@ -1,0 +1,33 @@
+<div class="page-composer__container__view block-view-{{ container.id }}"
+     data-block-id="{{ container.id }}"
+>
+    <h2 class="page-composer__container__view__header">{{ container.name }}</h2>
+
+    <span class="page-composer__container__view__notice">{{ 'notice'|trans({}, 'SonataPageBundle') }}</span>
+
+    <div class="page-composer__block-type-selector">
+        <label>{{ 'composer.block.add.type'|trans({}, 'SonataPageBundle') }}</label>
+        <select class="page-composer__block-type-selector__select" style="width: auto">
+            {% for blockServiceId, blockService in blockServices|filter(service => service.metadata is defined) %}
+                <option value="{{ blockServiceId }}">{{ blockService.metadata.title|trans({}, blockService.metadata.domain|default('SonataBlockBundle')) }}</option>
+            {% endfor %}
+            {% for blockServiceId, blockService in blockServices|filter(service => service.blockMetadata is defined and service.metadata is not defined) %}
+                <option value="{{ blockServiceId }}">{{ blockService.blockMetadata.title|trans({}, blockService.blockMetadata.domain|default('SonataBlockBundle')) }}</option>
+            {% endfor %}
+        </select>
+        <a class="btn btn-action btn-small page-composer__block-type-selector__confirm"
+           href="{{ admin.generateObjectUrl('sonata.page.admin.block.create', page, {'composer': true}) }}"
+        ><i class="fa fa-plus"></i></a>
+        <span class="page-composer__block-type-selector__loader">{{ 'loading'|trans({}, 'SonataPageBundle') }}</span>
+
+        <small class="page-composer__container__child-count pull-right">
+            {{ 'blocks'|trans({}, 'SonataPageBundle') }} <span class="badge">{{ container.children|length }}</span>
+        </small>
+    </div>
+
+    <ul class="page-composer__container__children">
+        {% for child in container.children %}
+            {% include '@SonataPage/BlockAdmin/compose_preview.html.twig' %}
+        {% endfor %}
+    </ul>
+</div>

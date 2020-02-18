@@ -1,0 +1,20 @@
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+
+{% extends '@SonataPage/BlockAdmin/edit.html.twig' %}
+
+{% block block %}
+    <p>
+        {{ form_label(form.settings.content) }} <br>
+        {{ form_widget(form.settings.content, {'attr': {'class' : 'title'}}) }}
+        {{ form_errors(form.settings.content) }}
+    </p>
+{% endblock %}

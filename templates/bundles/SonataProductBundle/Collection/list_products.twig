@@ -1,0 +1,22 @@
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+
+{% extends '@SonataProduct/Catalog/layout.html.twig' %}
+
+{% block products_heading_title %}
+    {{ collection.name }}
+{% endblock %}
+
+{% block products %}
+
+    {% include '@SonataProduct/Catalog/' ~ display_mode ~ '.html.twig' %}
+
+{% endblock %}

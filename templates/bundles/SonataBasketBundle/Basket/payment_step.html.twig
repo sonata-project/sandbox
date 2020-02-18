@@ -1,0 +1,59 @@
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+
+{% sonata_template_box 'This is the basket billing step template. Feel free to override it.' %}
+
+{% block sonata_flash_messages %}
+    {% include '@SonataCore/FlashMessage/render.html.twig' %}
+{% endblock %}
+
+{% include '@SonataBasket/Basket/stepper.html.twig' with {step: 'billing'} %}
+
+<form action="{{ url('sonata_basket_payment') }}" method="POST" >
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="panel-title">
+                        <h4>{{ 'sonata.basket.title_address_billing_step_basket'|trans({}, 'SonataBasketBundle') }}</h4>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    {{ sonata_address_render(basket.billingAddress) }}
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="panel-title">
+                        <h4>{{ 'sonata.basket.title_payment_method'|trans({}, 'SonataBasketBundle') }}</h4>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    {{ form_errors(form.paymentMethod) }}
+                    {{ form_widget(form.paymentMethod) }}
+                    {{ form_rest(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="well">
+                <a href="{{ url('sonata_basket_payment_address') }}" class="btn btn-default"><i class="glyphicon glyphicon-arrow-left"></i>&nbsp;{% trans from 'SonataBasketBundle' %}sonata.basket.link_previous_step{% endtrans %}</a>
+
+                <button type="submit" class="btn btn-primary pull-right">{{ 'sonata.basket.btn_update_payment_step'|trans({}, 'SonataBasketBundle') }}&nbsp;<i class="glyphicon glyphicon-arrow-right icon-white"></i></button>
+            </div>
+        </div>
+    </div>
+</form>

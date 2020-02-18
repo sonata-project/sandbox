@@ -1,0 +1,34 @@
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+
+{% extends '@SonataAdmin/CRUD/base_list_flat_inner_row.html.twig' %}
+
+{% block row %}
+
+    {% if object.getStatusCode() == 'valid' %}
+        <span class="label label-success">{{ object.getStatusCode() }}</span>
+    {% elseif object.getStatusCode() == 'invalid' %}
+        <span class="label label-danger">{{ object.getStatusCode() }}</span>
+    {% elseif object.getStatusCode() == 'moderate' %}
+        <span class="label label-warning">{{ object.getStatusCode() }}</span>
+    {% else %}
+        <span class="label">{{ object.getStatusCode() }}</span>
+    {% endif %}
+
+    {{ object|render_list_element(admin.list['name']) }} -
+    {{ object|render_list_element(admin.list['url']) }} -
+    {{ object|render_list_element(admin.list['email']) }} <br />
+
+    <small>
+        {{ object|render_list_element(admin.list['message']) }}
+    </small>
+
+{% endblock %}

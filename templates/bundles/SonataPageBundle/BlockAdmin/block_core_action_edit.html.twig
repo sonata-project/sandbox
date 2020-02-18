@@ -1,0 +1,32 @@
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+
+{% extends '@SonataPage/BlockAdmin/edit.html.twig' %}
+
+{% block block %}
+
+    <div>
+        {{ form_label(form.settings.action) }} <br>
+        {{ form_widget(form.settings.action, {'attr': {'class' : 'title'}}) }}
+        {{ form_errors(form.settings.action) }}
+    </div>
+
+    <h2>{{ 'title_parameters'|trans({}, 'SonataPageBundle') }}</h2>
+    <table>
+        {% for parameter in form.settings.parameters %}
+
+                <tr>
+                    <td>{{ form_label(parameter) }}</td>
+                    <td>{{ form_widget(parameter, {'attr': {'class' : 'title'}}) }} {{ form_errors(parameter) }}</td>
+                </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

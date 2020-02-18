@@ -1,0 +1,40 @@
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+
+{% extends '@SonataAdmin/CRUD/action.html.twig' %}
+
+{% block title %}{{ 'title_create_snapshots'|trans({}, 'SonataPageBundle') }}{% endblock %}
+
+{% block content %}
+    <div class="sonata-ba-delete">
+        <div class="box box-danger">
+            <div class="box-header">
+                <h4 class="box-title">{{ "message_create_snapshots"|trans({'%site%': object.name }, 'SonataPageBundle') }}</h4>
+            </div>
+            <div class="box-footer clearfix">
+                <form action="{{ admin.generateUrl('snapshots', {'id': object.id}) }}" method="POST">
+
+                    <button class="btn btn-danger" type="submit" name="create">
+                        <i class="fa fa-save"></i> {{ 'button_create_snapshots'|trans({}, 'SonataPageBundle') }}
+                    </button>
+
+                    {% if admin.hasRoute('list') and admin.isGranted('LIST') %}
+                        {{ 'or_list'|trans({}, 'SonataPageBundle') }}
+
+                        <a class="btn btn-success" href="{{ admin.generateUrl('list') }}">
+                            <i class="fa fa-th-list"></i> {{ 'link_action_list'|trans({}, 'SonataAdminBundle') }}
+                        </a>
+                    {% endif %}
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

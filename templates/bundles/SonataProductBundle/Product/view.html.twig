@@ -1,0 +1,174 @@
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+
+{% set variations_properties = variations_properties|default([]) %}
+
+{% block product_javascript_init %}
+    <script type="text/javascript">
+        jQuery(document).ready(function() {
+            Sonata.Product.init({
+                url: {
+                    infoStockPrice: '{{ path('sonata_product_price_stock', {'productId': product.id}) }}'
+                },
+                targets: {
+                    inputAddBasket:  $('#add_basket_quantity'),
+                    productPrice:    $('#sonata_product_price'),
+                    submitBasketBtn: $('#sonata_add_basket_submit'),
+                    addBasketError:  $('#sonata_add_basket_error')
+                }
+            });
+        });
+    </script>
+{% endblock %}
+
+{% block breadcrumb %}
+    <div class="clearfix">
+        {{ sonata_block_render_event('breadcrumb', { 'context': 'catalog', 'product': product, 'current_uri': app.request.requestUri }) }}
+    </div>
+{% endblock %}
+
+{% block product %}
+    {% include '@SonataCore/FlashMessage/render.html.twig' %}
+    <!-- Begin product display -->
+    <div class="row">
+        <div class="col-lg-12">
+            {% sonata_template_box 'This is the product view template. Feel free to override it.' %}
+        </div>
+    </div>
+    <div class="row" itemscope itemtype="http://schema.org/Product">
+        {% block product_left %}
+            <div class="col-md-8">
+                {% block product_carousel %}
+                    <div>
+                        {% if product.gallery and product.gallery.galleryHasMedias|length > 0 %}
+                            {% include "@SonataProduct/Product/carousel.html.twig" %}
+                        {% else %}
+                            {% thumbnail product.image, 'large' with {'itemprop':'image', 'class': 'img-rounded img-responsive', 'style': 'margin: 0 10px 10px 0;'} %}
+                        {% endif %}
+                    </div>
+                {% endblock %}
+            </div>
+        {% endblock %}
+        {% block product_right %}
+            <div class="col-md-4">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 itemprop="name" class="panel-title">{% block product_title %}{{ product.name }}{% endblock %}</h3>
+                    </div>
+
+                    {% block product_properties %}
+                        <ul class="list-group">
+                            {% block product_generic_properties %}
+                                <li class="list-group-item">
+                                    {% block product_unit_price %}
+                                        <small class="list-group-item-text">
+                                            {{ 'product_price'|trans({}, "SonataProductBundle") }}:&nbsp;
+                                            <span itemprop="price">{{ sonata_product_price(product, currency, true)|number_format_currency(currency.label) }}</span>
+                                        </small><br/>
+                                    {% endblock %}
+                                    {% block product_reference %}
+                                        <small class="list-group-item-text">
+                                            {{ 'product_reference'|trans({}, "SonataProductBundle") }}:&nbsp;
+                                            <span itemprop="sku">{{ product.sku }}</span>
+                                        </small>
+                                    {% endblock %}
+                                </li>
+                            {% endblock %}
+                            {% block product_collections %}
+                                {% if product.productCollections.count > 0 %}
+                                    <li class="list-group-item">
+                                    {{ 'list.label_product_collections'|trans({}, "SonataProductBundle") }}:&nbsp;
+                                        <ul class="list-group">
+                                            {% for productCollection in product.productCollections %}
+                                               <li class="list-group-item">
+                                                   <a href="{{ url('sonata_catalog_collection' , {'collection_id': productCollection.collection.id, 'collection_slug' : productCollection.collection.slug }) }}" > {{ productCollection.collection.name }} </a>
+                                               </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </li>
+                                {% endif %}
+                            {% endblock %}
+                            <li class="list-group-item">
+                                <span itemprop="description">
+                                    {% block product_description_short %}
+                                        {{ product.shortDescription|raw }}<br/>
+                                        <a href="#full-description">{% trans from "SonataProductBundle" %}product_full_description_link{% endtrans %}</a>
+                                    {% endblock %}
+                                </span>
+                            </li>
+                            {% block product_errors %}
+                                {% if not provider.hasVariations(product) and sonata_product_stock(product) == 0 %}
+                                    <li class="list-group-item">
+                                        <span class="text-danger">
+                                            {% trans from 'SonataProductBundle' %}product_out_of_stock{% endtrans %}
+                                        </span>
+                                    </li>
+                                {% endif %}
+                                <li class="list-group-item text-danger" id="sonata_add_basket_error" style="display:none;"></li>
+                            {% endblock %}
+                        </ul>
+                    {% endblock %}
+
+                    <div class="panel-footer">
+                        {% block  product_variations_form_block %}
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    {{ sonata_block_render({'type': 'sonata.product.block.variations_form'}, {'product': product, 'variations_properties': variations_properties, 'form_field_options': {'horizontal_input_wrapper_class': 'col-lg-4', 'horizontal_label_class': 'control-label col-lg-8', 'render_required_asterisk': false}}) }}
+                                </div>
+                            </div>
+                        {% endblock %}
+
+                        {% block product_delivery %}
+                            <div class="row">
+                                Block 'product_delivery' to override
+                            </div>
+                        {% endblock %}
+
+                        {% if product.isSalable %}
+                            <div itemprop="offers" class="row" itemscope itemtype="http://schema.org/Offer">
+                                <div class="col-lg-12">
+                                    {% block product_basket %}
+                                        {% include "@SonataBasket/Basket/add_product_form.html.twig" %}
+                                    {% endblock %}
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% endblock %}
+    </div>
+{% endblock %}
+
+{% block product_cross %}
+    <!-- Cross selling -->
+    <div>
+        {% block product_cross_selling %}
+            {% include "@SonataProduct/Product/view_similar.html.twig" %}
+        {% endblock %}
+    </div>
+    <!-- End Cross selling -->
+{% endblock %}
+
+{% block product_full_description %}
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title"><a id="full-description"></a>{% trans from "SonataProductBundle" %}product_full_description{% endtrans %}</h3>
+        </div>
+        <div class="panel-body">
+            {{ product.description|raw }}
+        </div>
+    </div>
+{% endblock %}
+
+{% block product_comments %}
+    {{ sonata_block_render_event('sonata.comment', {'id': 'front-product-' ~ product.id}) }}
+{% endblock %}

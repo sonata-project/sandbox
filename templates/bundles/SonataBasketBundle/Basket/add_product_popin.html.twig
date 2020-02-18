@@ -1,0 +1,61 @@
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <div class="row">
+                <div class="col-md-7 col-md-offset-3">
+                    <h4 class="modal-title">{% trans from 'SonataBasketBundle' %}sonata.basket.product.added{% endtrans %}</h4>
+                </div>
+            </div>
+        </div>
+        <div class="modal-body">
+            {% block product_details %}
+                <div class="row" itemtype="http://schema.org/Product">
+                    <div class="col-sm-6">
+                        {% block product_image %}{% thumbnail product.image, 'small' with {'itemprop':'image', 'class': 'img-rounded img-responsive'} %}{% endblock%}
+                    </div>
+
+                    <div class="col-sm-6">
+                        <h4 itemprop="name" style="margin-top: 0px;">{% block product_title %}{{ product.name }}{% endblock %}</h4>
+
+                        {% block product_sku %}
+                            <dl class="dl-horizontal" style="margin-bottom: 0;">
+                                <dt style="width: auto;">{{ 'sonata.product.sku'|trans([], 'SonataProductBundle') }}</dt>
+                                <dd style="margin-left: 110px; word-wrap: break-word;">{{ product.sku }}</dd>
+                            </dl>
+                        {% endblock %}
+
+                        {% block product_properties %}
+                            {{ render(controller(provider.baseControllerName ~ ':renderProperties', {product: product})) }}
+                        {% endblock %}
+
+                        <dl class="dl-horizontal" style="margin-bottom: 0;">
+                            <dt style="width: auto;">{{ 'header_basket_unit_price'|trans([], 'SonataBasketBundle') }}</dt>
+                            <dd style="margin-left: 110px;">{{ basketElement.getUnitPrice(true)|number_format_currency(currency.label, {}, {}, locale) }}</dd>
+
+                            <dt style="width: auto;">{{ 'header_basket_quantity'|trans([], 'SonataBasketBundle') }}</dt>
+                            <dd style="margin-left: 110px;">{{ quantity }}</dd>
+
+                            <dt style="width: auto;">{{ 'sonata_basket_total_price'|trans([], 'SonataBasketBundle') }}</dt>
+                            <dd style="margin-left: 110px;">{{ price|number_format_currency(currency.label, {}, {}, locale) }}</dd>
+                        </dl>
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <p>{{ product.rawShortDescription|raw }}</p>
+                </div>
+            {% endblock %}
+        </div>
+        <div class="modal-footer">
+            <div class="row-fluid">
+                <div class="col-md-4 col-md-offset-1">
+                    <a href="{{ url('sonata_product_view', {'productId': product.id, 'slug': product.slug}) }}" class="btn">&larr; Continue shopping</a>
+                </div>
+                <div class="col-md-4 col-md-offset-1">
+                    <a href="{{ url('sonata_basket_index') }}" class="btn btn-primary btn-large">Proceed to checkout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

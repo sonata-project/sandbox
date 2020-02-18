@@ -1,0 +1,87 @@
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+
+{% extends '@SonataAdmin/CRUD/base_list.html.twig' %}
+
+{% import _self as tree %}
+{% macro pages(pages, admin, rootPages) %}
+    <ul{% if rootPages %} class="page-tree"{% endif %}>
+        {% for page in pages if not page.internal and (not page.parent or not rootPages)%}
+            <li>
+                <div class="page-tree__item">
+                    {% if page.parent %}<i class="fa fa-caret-right"></i>{% endif %}
+                    <i class="fa page-tree__item__is-hybrid fa-{% if page.isHybrid %}gears{% else %}code{% endif %}"></i>
+                    <a class="page-tree__item__edit" href="{{ admin.generateObjectUrl('edit', page) }}">{{ page.name }}</a>
+                    <i class="text-muted">{{ page.url }}</i>
+                    <a class="label label-default pull-right" href="{{ admin.generateObjectUrl('compose', page) }}">{{ 'pages.compose_label'|trans({}, 'SonataPageBundle') }} <i class="fa fa-magic"></i></a>
+                    {% if page.edited %}<span class="label label-warning pull-right">{{ 'pages.edited_label'|trans({}, 'SonataPageBundle') }}</span>{% endif %}
+                </div>
+                {% import _self as macro %}
+                {% if page.children|length %}
+                    {{ macro.pages(page.children, admin, false) }}
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+{% endmacro %}
+
+{% block tab_menu %}
+    {% include '@SonataPage/PageAdmin/list_tab_menu.html.twig' with {
+        'mode':        'tree',
+        'action':      action,
+        'admin':       admin,
+        'currentSite': currentSite,
+    } only %}
+{% endblock %}
+
+{% block list_table %}
+    <div class="col-xs-12 col-md-12">
+        <div class="box box-primary">
+            <div class="box-header">
+                <h1 class="box-title">
+                    {{ 'pages.tree_site_label'|trans({}, 'SonataPageBundle') }}
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                            <strong class="text-info">
+                                {%- if sites and sites|length > 0 -%}
+                                    {% if currentSite %}
+                                        {{ currentSite.name }}
+                                    {% else %}
+                                        {{ 'pages.label_no_site_selected'|trans({}, 'SonataPageBundle') }}
+                                    {% endif %}
+                                {%- else -%}
+                                    {{ 'pages.label_no_sites'|trans({}, 'SonataPageBundle') }}
+                                {%- endif -%}
+                            </strong> <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            {% for site in sites %}
+                                <li>
+                                    <a href="{{ admin.generateUrl('tree', { 'site': site.id }) }}">
+                                        {% if currentSite and site.id == currentSite.id %}
+                                            <span class="pull-right">
+                                                <i class="fa fa-check"></i>
+                                            </span>
+                                        {% endif %}
+                                        {{ site.name }}
+                                    </a>
+                                </li>
+                            {% endfor%}
+                        </ul>
+                    </div>
+                </h1>
+            </div>
+            <div class="box-content">
+                {{ tree.pages(pages, admin, true) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

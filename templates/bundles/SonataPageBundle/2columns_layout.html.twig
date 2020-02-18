@@ -1,0 +1,32 @@
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+{% extends '@SonataPage/layout.html.twig' %}
+
+{% block page_content %}
+    {% if page is defined %}
+        <div class="col-md-6">
+            {% if page.name != 'global'%}
+                {{ sonata_page_render_container('left_col', 'global') }}
+            {% endif %}
+            {{ sonata_page_render_container('left_col', page) }}
+        </div>
+        <div class="col-md-6">
+            {% if page.name != 'global'%}
+                {{ sonata_page_render_container('right_col', 'global') }}
+            {% endif %}
+            {{ sonata_page_render_container('right_col', page) }}
+        </div>
+        <div style="clear: both"></div>
+    {% endif %}
+
+    {{ parent() }}
+
+{% endblock %}

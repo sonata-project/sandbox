@@ -1,0 +1,23 @@
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+
+{% extends '@SonataAdmin/standard_layout.html.twig' %}
+
+{% block sonata_admin_content %}
+    <div class="alert alert-info col-sm-6">
+        <h4>{% trans from 'SonataOrderBundle' %}sonata.order.invoice_generate_confirm_title{% endtrans %}</h4>
+        <p>{% trans from 'SonataOrderBundle' %}sonata.order.invoice_generate_confirm_message{% endtrans %}</p>
+        <p>
+            <a href="{{ path('admin_sonata_order_order_edit', {'id': id}) }}" class="btn btn-default"><i class="glyphicon glyphicon-arrow-left"></i>&nbsp;{% trans from 'SonataOrderBundle' %}sonata.order.invoice_generate_confirm_cancel{% endtrans %}</a>
+            <a href="{{ path('admin_sonata_order_order_generateInvoice', {'id': id, 'confirm': 'yes'}) }}" class="btn btn-success pull-right">{% trans from 'SonataOrderBundle' %}sonata.order.invoice_generate_confirm_confirm{% endtrans %}</a>
+        </p>
+    </div>
+{% endblock %}

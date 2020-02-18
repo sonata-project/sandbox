@@ -1,0 +1,97 @@
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+
+{#
+    Source: http://bootply.com/79859
+#}
+
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+        $('#productCarousel').carousel({
+            interval: false // Don't auto-switch images
+        });
+
+        // handles the carousel thumbnails
+        $('a[id^=carousel-selector-]').click( function(){
+            var id_selector = $(this).attr("id");
+            var id = id_selector.replace('carousel-selector-', '');
+            id = parseInt(id);
+            $('#productCarousel').carousel(id);
+            $('a[id^=carousel-selector-]').css('border', '1px solid #dddddd');
+            $(this).css('border', '1px solid #000000');
+        });
+
+        // when the carousel slides, auto update
+        $('#productCarousel').on('slid', function (e) {
+            var id = $('.item.active').data('slide-number');
+            id = parseInt(id);
+            $('a[id^=carousel-selector-]').css('border', '1px solid #dddddd');
+            $('#carousel-selector-'+id).css('border', '1px solid #000000');
+        });
+    });
+</script>
+
+<!-- main slider carousel -->
+<div class="row">
+    <div class="col-md-12" id="slider">
+
+        <div id="carousel-bounding-box">
+            <div id="productCarousel" class="carousel slide">
+                <!-- main slider carousel items -->
+                <div class="carousel-inner">
+                    <div class="active item" data-slide-number="0">
+                        {% media product.image, 'large' with {'class': 'img-responsive'} %}
+                    </div>
+
+                    {% for galMedia in product.gallery.galleryHasMedias %}
+                        <div class="item" data-slide-number="{{ loop.index }}">
+                            {% thumbnail galMedia.media, 'large' with {'class': 'img-responsive'} %}
+                        </div>
+                    {% endfor %}
+                </div>
+
+                <!-- main slider carousel nav controls -->
+                <a class="carousel-control left" href="#productCarousel" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+                <a class="carousel-control right" href="#productCarousel" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                </a>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!--/main slider carousel-->
+
+<div class="row">&nbsp;</div>
+
+<!-- thumb navigation carousel -->
+<div class="hidden-sm hidden-xs" id="slider-thumbs">
+    <!-- thumb navigation carousel items -->
+    <ul class="list-inline">
+        <li>
+            <a id="carousel-selector-0" class="img-thumbnail">
+                {% thumbnail product.image, 'preview' %}
+            </a>
+        </li>
+        {% for galMedia in product.gallery.galleryHasMedias %}
+            <li>
+                <a id="carousel-selector-{{ loop.index }}" class="img-thumbnail">
+                    {% thumbnail galMedia.media, 'preview' %}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+<!-- /thumb navigation carousel -->
+
+

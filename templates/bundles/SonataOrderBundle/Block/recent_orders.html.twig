@@ -1,0 +1,62 @@
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+{% extends sonata_block.templates.block_base %}
+
+{% block block %}
+
+    <div class="box box-primary">
+        {% if settings.title %}
+            <div class="box-header with-border">
+                <h3 class="box-title">
+                    <i class="fa fa-barcode"></i> {{ settings.title }}
+                </h3>
+            </div>
+        {% endif %}
+
+        <div class="box-body">
+            {% sonata_template_box 'This is the recent orders list block.' %}
+
+            {% if orders|length > 0 %}
+                <table class="sonata-order-block-order-container table table-condensed">
+                    {% for order in orders %}
+                        <tr>
+                            {% if context.getSetting('mode') == 'admin' and admin_pool is defined %}
+                                <td><a href="{{ admin_pool.getAdminByAdminCode('sonata.order.admin.order').generateUrl('edit', { 'id': order.id }) }}">{{ order.reference }}</a></td>
+                            {% else %}
+                                <td><a href="{{ url('sonata_order_view', { 'reference': order.reference }) }}">{{ order.reference }}</a></td>
+                            {% endif %}
+                            <td class="number">{{ order.totalInc|number_format_currency(order.currency.label) }}</td>
+                            <td><span class="label{{ order|sonata_status_class(null, 'danger') ? ' label-'~order|sonata_status_class(null, 'danger') : '' }}">{{ order.statusName|trans([], 'SonataOrderBundle') }}</span></td>
+                            <td>{{ order.createdAt|format_datetime(null, order.locale) }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            {% else %}
+                {% if context.getSetting('mode') == 'admin' %}
+                    <p>{{ 'no_order_found'|trans({}, 'SonataOrderBundle') }}</p>
+                {% else %}
+                    <p>{{ 'sonata.order.list.no_orders'|trans({}, 'SonataOrderBundle') }}</p>
+                {% endif %}
+            {% endif %}
+        </div>
+
+        {% if orders|length > 0 %}
+            <div class="box-footer">
+                {% if context.getSetting('mode') == 'admin' and admin_pool is defined %}
+                    <a href="{{ admin_pool.getAdminByAdminCode('sonata.order.admin.order').generateUrl('list') }}" class="btn btn-primary btn-block"><i class="fa fa-list"></i>&nbsp;{{ 'view_all_orders'|trans({}, 'SonataOrderBundle') }}</a>
+                {% else %}
+                    <a href="{{ url('sonata_order_index') }}" class="btn btn-primary btn-block"><i class="fa fa-list"></i>&nbsp;{{ 'view_all_orders'|trans({}, 'SonataOrderBundle') }}</a>
+                {% endif %}
+            </div>
+        {% endif %}
+    </div>
+
+{% endblock %}

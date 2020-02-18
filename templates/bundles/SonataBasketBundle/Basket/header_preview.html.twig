@@ -1,0 +1,19 @@
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+
+<div>
+    {% if basket.hasBasketElements %}
+        {% trans with {'price': basket.getTotal(true)|number_format_currency(basket.currency.label, {}, {}, basket.locale), 'count_item': basket.countBasketElements} from 'SonataBasketBundle' %}message_basket_elements_preview{% endtrans %}
+        <a href="{{ url('sonata_basket_index') }}">{% trans from 'SonataBasketBundle' %}view_basket{% endtrans %}</a>
+    {% else %}
+        {% trans from 'SonataBasketBundle' %}message_no_basket_elements{% endtrans %}
+    {% endif %}
+</div>

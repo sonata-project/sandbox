@@ -1,0 +1,38 @@
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+{% set title = block('title') is defined ? block('title') : 'Sonata Project - Internal Error' %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+
+        {% block page_stylesheets %}
+            <link rel="stylesheet" href="{{ asset('bundles/sonatacore/vendor/bootstrap/dist/css/bootstrap.css') }}" media="all" >
+            <link rel="stylesheet" href="{{ asset('bundles/sonatapage/sonata-page.front.css') }}" media="all" >
+        {% endblock %}
+
+        <title>{{ title }}</title>
+    </head>
+
+    <body class="sonata-bc">
+        <div class="container">
+            <div class="content">
+                <div class="page-header">
+                    <h1>{{ title }}</h1>
+                </div>
+
+                <div class="row">
+                    {% block content %}{% endblock %}
+                </div>
+            </div>
+        </div>
+   </body>
+</html>

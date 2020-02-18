@@ -1,0 +1,19 @@
+framework:
+    #esi:             ~
+    router:
+        resource: "%kernel.root_dir%/config/routing.yml"
+        strict_requirements: ~
+    form:            ~
+    csrf_protection: ~
+
+    serializer:      { enable_annotations: true }
+    templating:
+        engines: ['twig']
+        #assets_version: SomeVersionScheme
+
+    trusted_hosts:   ~
+    #trusted_proxies: ~
+
+    fragments:       ~
+    http_method_override: true
+

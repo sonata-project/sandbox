@@ -1,0 +1,19 @@
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+
+<dl>
+    {% for variation in variations %}
+        <dt>
+            <a href="{{ url('sonata_product_view', {'productId': variation.id, 'slug': variation.slug}) }}">{{ variation.name }}</a>
+        </dt>
+        <dd>{{ variation.price|number_format_currency(currency.label) }}</dd>
+    {% endfor %}
+</dl>

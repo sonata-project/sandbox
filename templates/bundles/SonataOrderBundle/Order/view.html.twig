@@ -1,0 +1,214 @@
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+
+{% extends sonata_customer.profileTemplate %}
+
+
+{% block sonata_profile_title %}{% trans from 'SonataOrderBundle' %}sonata.order.title_order{% endtrans %} - {{ order.reference }}{% endblock %}
+
+{% block sonata_profile_content %}
+    {% sonata_template_box 'This is the order view template. Feel free to override it.' %}
+
+    {% block sonata_order_title %}
+    <div class="row">
+        <div class="col-sm-3 col-sm-offset-9" style="margin-bottom:15px;">
+            <p>
+                <a href="{{ url('sonata_invoice_view', {'reference' : order.reference}) }}" class="btn btn-primary pull-right"><i class="glyphicon glyphicon-file icon-white"></i>&nbsp;{% trans from 'SonataOrderBundle' %}sonata.order.view_invoice{% endtrans %}</a>
+            </p>
+        </div>
+    </div>
+    {% endblock %}
+
+    {% block sonata_order_top %}
+    <div class="row">
+        {% block sonata_order_dates_statuses %}
+            <div class="col-sm-6">
+                {% block sonata_order_dates %}
+                    {% set date_time_size = constant('IntlDateFormatter::SHORT') %}
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <div class="panel-title">
+                                <h4 class="panel-title">{% trans from 'SonataOrderBundle' %}sonata.order.view.subtitle_dates{% endtrans %}</h4>
+                            </div>
+                        </div>
+
+                        <table class="table">
+                            <tr>
+                                <th>{% trans from 'SonataOrderBundle' %}sonata.order.view.created_at{% endtrans %}</th>
+                                <td>{{ order.createdAt|format_datetime(null, order.locale, null, date_time_size, date_time_size) }}</td>
+                            </tr>
+                            <tr>
+                                <th>{% trans from 'SonataOrderBundle' %}sonata.order.view.validated_at{% endtrans %}</th>
+                                <td>
+                                    {% if order.validatedAt %}
+                                        {{ order.validatedAt|format_datetime(null, order.locale, null, date_time_size, date_time_size) }}
+                                    {% else %}
+                                        /
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>{% trans from 'SonataOrderBundle' %}sonata.order.view.updated_at{% endtrans %}</th>
+                                <td>{{ order.updatedAt|format_datetime(null, order.locale, null, date_time_size, date_time_size) }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                {% endblock %}
+            </div>
+            <div class="col-sm-6">
+                {% block sonata_order_statuses %}
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <div class="panel-title">
+                                <h4 class="panel-title">{% trans from 'SonataOrderBundle' %}sonata.order.view.subtitle_statuses{% endtrans %}</h4>
+                            </div>
+                        </div>
+
+                        <table class="table">
+                            <tr>
+                                <th>{% trans from 'SonataOrderBundle' %}sonata.order.view.order_status{% endtrans %}</th>
+                                <td><span class="label{{ order|sonata_status_class(null, 'danger') ? ' label-'~order|sonata_status_class(null, 'danger') : '' }}">{{ order.statusName|trans({}, 'SonataOrderBundle') }}</span></td>
+                            </tr>
+                            <tr>
+                                <th>{% trans from 'SonataOrderBundle' %}sonata.order.view.payment_status{% endtrans %}</th>
+                                <td><span class="label{{ order|sonata_status_class('payment', 'danger') ? ' label-'~order|sonata_status_class('payment', 'danger') : '' }}">{{ order.paymentStatusName|trans({}, 'SonataPaymentBundle') }}</span></td>
+                            </tr>
+                            <tr>
+                                <th>{% trans from 'SonataOrderBundle' %}sonata.order.view.delivery_status{% endtrans %}</th>
+                                <td><span class="label{{ order|sonata_status_class('delivery', 'danger') ? ' label-'~order|sonata_status_class('delivery', 'danger') : '' }}">{{ order.deliveryStatusName|trans({}, 'SonataDeliveryBundle') }}</span></td>
+                            </tr>
+                        </table>
+                    </div>
+                {% endblock %}
+            </div>
+        {% endblock %}
+    </div>
+    <div class="row">
+        {% block sonata_order_top_right %}
+            <div class="col-sm-6">
+                {% block sonata_order_delivery %}
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <div class="panel-title">
+                                <h4 class="panel-title">{% trans from 'SonataOrderBundle' %}sonata.order.view.delivery_title{% endtrans %}</h4>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            {{ sonata_address_render(order.deliveryAsArray) }}
+                        </div>
+                    </div>
+                {% endblock %}
+            </div>
+            <div class="col-sm-6">
+                {% block sonata_order_billing %}
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <div class="panel-title">
+                                <h4 class="panel-title">{% trans from 'SonataOrderBundle' %}sonata.order.view.billing_title{% endtrans %}</h4>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            {{ sonata_address_render(order.billingAsArray) }}
+                        </div>
+                    </div>
+                {% endblock %}
+            </div>
+        {% endblock %}
+    </div>
+    {% endblock %}
+
+    {% block sonata_order_elements %}
+    <!-- Elements -->
+    <div class="clearfix">&nbsp;</div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h4 class="panel-title">{% trans from 'SonataOrderBundle' %}sonata.order.view.elements{% endtrans %}</h4>
+                </div>
+
+                <table class="table">
+
+                    {% block sonata_order_elements_header %}
+                        <thead>
+                            <tr>
+                                <th>&nbsp;</th>
+                                <th>{% trans from 'SonataOrderBundle' %}sonata.order.view.element.label{% endtrans %}</th>
+                                <th>{% trans from 'SonataOrderBundle' %}sonata.order.view.element.unit_price{% endtrans %}</th>
+                                <th>{% trans from 'SonataOrderBundle' %}sonata.order.view.element.quantity{% endtrans %}</th>
+                                <th>{% trans from 'SonataOrderBundle' %}sonata.order.view.total_inc{% endtrans %}</th>
+                            </tr>
+                        </thead>
+                    {% endblock %}
+
+                    <tbody>
+                        {% for element in order.orderElements %}
+                            <tr>
+                                {% block sonata_order_element %}
+                                    <td>
+                                        {% block product_thumbnail %}
+                                            {% thumbnail element.product.image, 'preview' with {'itemprop':'image', 'class': 'img-rounded img-responsive'} %}
+                                        {% endblock %}
+                                    </td>
+                                    <td><a href="{{ url('sonata_product_view', {'productId': element.productId, 'slug': element.product.slug}) }}">{{ element.designation }}</a></td>
+                                    <td class="number">{{ element.unitPrice(true)|number_format_currency(order.currency.label, {}, {}, order.locale) }}</td>
+                                    <td class="number">{{ element.quantity }}</td>
+                                    <td class="number">{{ element.total(true)|number_format_currency(order.currency.label, {}, {}, order.locale) }}</td>
+                                {% endblock %}
+                            </tr>
+                        {% endfor %}
+                        <tr>
+                            <td><span class="glyphicon glyphicon-plane" style="font-size:50px;">&nbsp;</span></td>
+                            <td>{% trans from 'SonataOrderBundle' %}sonata.order.view.delivery{% endtrans %}</td>
+                            <td class="number">{{ order.deliveryCost|number_format_currency(order.currency.label, {}, {}, order.locale) }}</td>
+                            <td class="number">1</td>
+                            <td class="number">{{ order.deliveryCost|number_format_currency(order.currency.label, {}, {}, order.locale) }}</td>
+                        </tr>
+                    </tbody>
+
+                    {% block sonata_order_elements_sumup %}
+                        <tfoot>
+                            <tr>
+                                <td colspan="3" rowspan="{{ 3 + order.getVatAmounts|length }}">&nbsp;</td>
+                                <th style="text-align: right">{% trans from 'SonataOrderBundle' %}sonata.order.view.total_excl{% endtrans %}</th>
+                                <td class="number"><b>{{ order.totalExcl|number_format_currency(order.currency.label, {}, {}, order.locale) }}</b></td>
+                            </tr>
+
+                            {% for item in order.getVatAmounts %}
+                                <tr>
+                                    <th style="text-align: right">{% trans from 'SonataOrderBundle' %}sonata_order_view_vat{% endtrans %} {{ item.rate|number_format(2) }}%</th>
+                                    <td class="number"><b>{{ item.amount|number_format_currency(order.currency.label, {}, {}, order.locale) }}</b></td>
+                                </tr>
+                            {% endfor %}
+
+                            <tr>
+                                <th style="text-align: right">{% trans from 'SonataOrderBundle' %}sonata.order.view.total_vat{% endtrans %}</th>
+                                <td class="number"><b>{{ order.vat|number_format_currency(order.currency.label, {}, {}, order.locale) }}</b></td>
+                            </tr>
+
+                            <tr>
+                                <th style="text-align: right">{% trans from 'SonataOrderBundle' %}sonata.order.view.total_inc{% endtrans %}</th>
+                                <td class="number"><b>{{ order.totalInc|number_format_currency(order.currency.label, {}, {}, order.locale) }}</b></td>
+                            </tr>
+                        </tfoot>
+                    {% endblock %}
+
+                </table>
+
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+
+    {% block sonata_order_footer %}
+    {% endblock %}
+
+{% endblock %}

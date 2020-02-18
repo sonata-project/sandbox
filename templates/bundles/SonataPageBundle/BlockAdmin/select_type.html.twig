@@ -1,0 +1,55 @@
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+
+{% extends '@SonataAdmin/CRUD/action.html.twig' %}
+
+{% block title %}{{ 'title_select_block_type'|trans({}, 'SonataPageBundle') }}{% endblock %}
+
+{% block content %}
+    <div class="box box-success">
+        <div class="box-header">
+            <h3 class="box-title">
+                {{ 'title_select_block_type'|trans({}, 'SonataPageBundle') }}
+            </h3>
+        </div>
+        <div class="box-body">
+            {% for code, service in services|filter(service => service.metadata is defined or service.blockMetadata is defined) %}
+                {% if service.metadata is defined %}
+                    {% set metadata = service.metadata %}
+                {% else %}
+                    {% set metadata = service.blockMetadata %}
+                {% endif %}
+                <div class="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                    <a  href="{{ admin.generateUrl('create', {'type': code}) }}"
+                        class="btn btn-app btn-block sonata-block-type"
+                        data-toggle="tooltip"
+                        data-placement="top"
+                        {% if metadata.description|length > 0 %}
+                            title="{{ metadata.description|trans({}, metadata.domain|default('SonataBlockBundle')) }}"
+                        {% endif %}
+                            >
+                        {% if not metadata.image %}
+                            <i class="{{ metadata.option('class') }}" ></i>
+                        {% else %}
+                            <img src="{{ asset(metadata.image) }}" style="max-height: 20px; max-width: 100px;"/>
+                            <br />
+                        {% endif %}
+                        <span>{{ metadata.title|trans({}, metadata.domain|default('SonataBlockBundle')) }}</span>
+                    </a>
+                </div>
+            {% else %}
+                <span class="alert alert-info">{{ 'no_type_available'|trans({}, 'SonataPageBundle') }}</span>
+            {% endfor %}
+
+            <div class="clearfix"></div>
+        </div>
+    </div>
+{% endblock %}

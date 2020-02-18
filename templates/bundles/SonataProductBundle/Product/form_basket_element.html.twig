@@ -1,0 +1,60 @@
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+
+<tr{% if formView.quantity.vars.errors|length > 0 %} class="danger unavailable"{% endif %}>
+    {% if formView.vars.errors|length > 0 %} {# global error the product is not active anymore #}
+        <td colspan="4">{% block product_error %}{{ "sonata.basket.message_product_not_available"|trans({}, 'SonataProductBundle')}}{% endblock %}</td>
+    {% else %}
+        <td>
+            {{ form_widget(formView.productId) }}
+            <div class="col-sm-4 hidden-xs">
+                {% block product_thumbnail %}
+                    {% thumbnail basketElement.product.image, 'preview' with {'itemprop':'image', 'class': 'img-rounded img-responsive'} %}
+                {% endblock %}
+            </div>
+            <div class="col-sm-8">
+                {% block product_name %}
+                    <strong><a href="{{ url('sonata_product_view', {'productId': basketElement.product.id, 'slug': basketElement.product.slug}) }}">{{ basketElement.name }}</a></strong>
+                {% endblock %}
+                {% block product_sku %}
+                    <p>{{ 'sonata.product.sku'|trans([], 'SonataProductBundle') }}: {{ basketElement.product.sku }}</p>
+                {% endblock %}
+                {% block product_variations %}{% endblock %}
+            </div>
+            {% if formView.quantity.vars.errors|length > 0 %}
+                <span class="has-error">{{ form_errors(formView.quantity) }}</span>
+            {% endif %}
+            {% block product_description %}{% endblock %}
+        </td>
+        <td class="number">
+            {% block product_unit_price %}
+                {{ basketElement.getUnitPrice(true)|number_format_currency(basket.currency.label, {}, {}, basket.locale) }}
+            {% endblock %}
+        </td>
+        <td>
+            {% block product_quantity %}
+                <div{% if formView.quantity.vars.errors|length > 0 %} class="has-error"{% endif %}>
+                    {{ form_widget(formView.quantity, {'attr': {'class': 'input-mini', 'min': 1}, 'horizontal_input_wrapper_class': ''}) }}
+                </div>
+            {% endblock %}
+        </td>
+        <td class="number">
+            {% block product_total_inc %}
+                {{ basketElement.getTotal(true)|number_format_currency(basket.currency.label, {}, {}, basket.locale) }}
+            {% endblock %}
+        </td>
+    {% endif %}
+    <td>
+        {% block product_delete %}
+            {{ form_widget(formView.delete, {'label_render': false, 'horizontal_input_wrapper_class': 'text-center'}) }}
+        {% endblock %}
+    </td>
+</tr>

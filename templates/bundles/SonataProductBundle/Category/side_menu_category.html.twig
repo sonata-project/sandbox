@@ -1,0 +1,29 @@
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+
+<ul>
+    {% for category in root_category.getChildren() %}
+        <li>
+            <a href="{{ url('sonata_catalog_index', {'category_slug': category.slug, 'category_id': category.id}) }}">{{ category.name }}</a>
+
+            {% if category.hasChildren and deep < depth%}
+
+                {{ render(controller('SonataProductBundle:Category:listSideMenuCategories', {
+                    'category': category,
+                    'deep' : deep,
+                    'depth': depth
+                })) }}
+
+            {% endif %}
+
+        </li>
+    {% endfor %}
+</ul>

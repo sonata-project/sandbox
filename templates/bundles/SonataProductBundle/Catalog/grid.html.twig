@@ -1,0 +1,28 @@
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+
+<div class="panel-body product-grid">
+
+    {% sonata_template_box 'This is the product grid list template. Feel free to override it.' %}
+
+    {% for product in pager %}
+
+        {% if not sonata_product_has_variations(product) or (sonata_product_has_variations(product) and sonata_product_has_enabled_variations(product)) %}
+
+            <div class="col-sm-4" itemscope itemtype="http://schema.org/Product">
+                {% include '@SonataProduct/Catalog/_product_grid.html.twig' %}
+            </div>
+
+        {% endif %}
+
+    {% endfor %}
+
+</div>

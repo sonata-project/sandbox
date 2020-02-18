@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>{% block title %}{% endblock %}</title>
+        <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+        <div>
+            <form method="post" action="{{ form_url }}" id="form1" name="form1">
+
+            {% for key,param in fields %}
+                <input type="hidden" name="{{ key }}" value="{{ param }}">
+            {% endfor %}
+
+                <input type="hidden" name="SHASign" value="{{ shasign }}">
+            </form>
+        </div>
+
+
+        <script type="text/javascript">
+            var form = document.getElementById('form1');
+
+            form.submit();
+        </script>
+
+    </body>
+</html>

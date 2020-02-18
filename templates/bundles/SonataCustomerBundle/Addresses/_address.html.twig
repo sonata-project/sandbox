@@ -1,0 +1,23 @@
+{% spaceless %}
+{% block sonata_address_render %}
+    <div class="row">
+        <div class="col-sm-{% if showEdit %}8{% else %}12{% endif %}">
+            <address>
+                {% block sonata_address_name %}
+                    {% if showName %}<strong>{{ address.name }}</strong><br/>{% endif %}
+                {% endblock %}
+                {% block sonata_address_address %}
+                    {{ address.address|raw }}
+                {% endblock %}
+            </address>
+        </div>
+        {% block sonata_address_edit %}
+            {% if showEdit %}
+                <div class="col-sm-3">
+                    <a class="btn btn-primary btn-xs pull-right" href="{{ url('sonata_customer_address_edit', {'id' : address.id, 'context': context}) }}"><span class="glyphicon glyphicon-pencil">&nbsp;</span>{{ 'sonata_customer_address_edit'|trans({}, "SonataCustomerBundle") }}</a>
+                </div>
+            {% endif %}
+        {% endblock %}
+    </div>
+{% endblock %}
+{% endspaceless %}

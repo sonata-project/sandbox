@@ -1,0 +1,29 @@
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+{% block title %}{{ 'title_list_exceptions'|trans({}, 'SonataPageBundle')}}{% endblock %}
+
+{% block body %}
+    <div>
+        <h2>{{ 'title_list_exceptions'|trans([], 'SonataPageBundle') }}</h2>
+
+        <ul>
+            {% if httpErrorCodes %}
+                {% for code, page in httpErrorCodes %}
+                    <li>
+                        <a href="{{ path('sonata_page_exceptions_edit', {'code': code}) }}">
+                            {{ 'manage_exception'|trans({'%code%': code}, 'SonataPageBundle') }}
+                        </a>
+                    </li>
+                {% endfor %}
+            {% endif %}
+        </ul>
+    </div>
+{% endblock%}

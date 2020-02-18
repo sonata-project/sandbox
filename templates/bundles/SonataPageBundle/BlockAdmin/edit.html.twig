@@ -1,0 +1,38 @@
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+
+{% extends base_template %}
+
+{% block form %}
+    <form action="{{ admin.generateUrl('update', {'id' : object.id}) }}" method="POST">
+        <p>
+             {% block information %}
+                {{ object.type }}
+             {% endblock %}
+        </p>
+
+        <p>
+            {{ form_label(form.enabled) }}
+            {{ form_widget(form.enabled) }}
+            {{ form_errors(form.enabled) }}
+        </p>
+
+        <div>
+            {% block block %}
+                Custom block settings ...
+            {% endblock %}
+        </div>
+
+        <input type="submit" value="{{ 'button_save'|trans({}, 'SonataPageBundle') }}">
+
+        {{ form_rest(form) }}
+    </form>
+{% endblock %}

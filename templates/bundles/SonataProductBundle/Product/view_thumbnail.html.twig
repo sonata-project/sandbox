@@ -1,0 +1,44 @@
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+
+{% spaceless %}
+
+    {% set link = url('sonata_product_view', {'productId': product.id, 'slug': product.slug}) %}
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h5 itemprop="name" class="panel-title truncate"><a href="{{ link }}">{{ product.name }}</a></h5>
+        </div>
+        <div class="panel-body">
+            {% if product.image %}
+                <a href="{{ link }}">{% media product.image, 'small' with {'itemprop': 'image', 'class': 'img-responsive', 'width': null, 'height': null} %}</a>
+            {% else %}
+                {# default product picture goes here #}
+            {% endif %}
+        </div>
+        <div class="panel-footer">
+            <span class="text-left">
+                {% include "@SonataBasket/Basket/add_product_form_button.html.twig" %}
+            </span>
+            <span itemprop="price" class="text-right">
+                {% if not sonata_product_has_variations(product) %}
+                    {{ sonata_product_price(product, currency, true)|number_format_currency(currency.label) }}
+                {% else %}
+                    {% trans from 'SonataProductBundle' %}product_variation_min_price{% endtrans %}
+
+                    {% set cheapest_variation = sonata_product_cheapest_variation(product) %}
+                    {{ sonata_product_price(cheapest_variation, currency, true)|number_format_currency(currency.label) }}
+                {% endif %}
+            </span>
+        </div>
+    </div>
+
+{% endspaceless %}

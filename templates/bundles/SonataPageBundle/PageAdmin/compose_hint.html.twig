@@ -1,0 +1,44 @@
+<div class="alert alert-warning">
+    <strong>Warning!</strong> Before using the composer option, you need to configure the template layout.
+    <br>The configuration must be done in the <code>sonata_page.templates</code> section.<br>
+
+    <br>
+    See a complete exemple here:
+
+<pre>
+sonata_page:
+    # [...]
+    templates:
+        default:
+            path: '@ApplicationSonataPage/demo_layout.html.twig'
+            name: 'default'
+            containers:
+                header:
+                    name: Header
+                content_top:
+                    name: Top content
+                content:
+                    name: Main content
+                content_bottom:
+                    name: Bottom content
+                footer:
+                    name: Footer
+            matrix:
+                layout: |
+                    HHHHHHHH
+                    TTTTBBBB
+                    TTTTBBBB
+                    TTTTBBBB
+                    TTTTBBBB
+                    CCCCCCCC
+                    CCCCCCCC
+                    FFFFFFFF
+
+                mapping:
+                    H: header
+                    T: content_top
+                    C: content
+                    B: content_bottom
+                    F: footer
+</pre>
+</div>

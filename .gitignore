@@ -1,14 +1,38 @@
-/.php_cs.cache
-/behat.yml
-/app/cache/*
-/app/logs/*
-/app/*.cache
+###> symfony/framework-bundle ###
+/app/config/parameters*.yml
+/var/cache/*
+/var/logs/*
+/vendor
 /web/bundles
 /web/uploads
 /web/sitemap*.xml
-/app/config/parameters*.yml
-/vendor
+###< symfony/framework-bundle ###
+
+### Behat
+/behat.yml
 /build
+
+### Composer
 /composer.lock
-/web/vendor
-/web/assetic
+
+###> symfony/webpack-encore-bundle ###
+/node_modules/
+/web/build
+npm-debug.log
+yarn-error.log
+
+###< symfony/webpack-encore-bundle ###
+
+/.vagrant/
+/.idea/
+/.php_cs.cache
+/composer.json
+###> symfony/phpunit-bridge ###
+.phpunit
+.phpunit.result.cache
+/phpunit.xml
+###< symfony/phpunit-bridge ###
+
+###> symfony/web-server-bundle ###
+/.web-server-pid
+###< symfony/web-server-bundle ###

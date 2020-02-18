@@ -1,0 +1,103 @@
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+
+{% block sonata_flash_messages %}
+    {% include '@SonataCore/FlashMessage/render.html.twig' %}
+{% endblock %}
+
+{% sonata_template_box 'This is the basket page template. Feel free to override it.' %}
+
+{% include '@SonataBasket/Basket/stepper.html.twig' with {step: 'basket'} %}
+
+{% if basket.hasBasketElements %}
+
+    {{ form_errors(form) }}
+
+    <form action="{{ url('sonata_basket_update') }}" method="POST" novalidate="novalidate">
+
+        <table class="table basket">
+
+            <thead>
+                <tr>
+                    <th class="col-sm-6">{% trans from 'SonataBasketBundle'%}header_basket_information{% endtrans %}</th>
+                    <th>{% trans from 'SonataBasketBundle'%}header_basket_unit_price{% endtrans %}</th>
+                    <th class="col-sm-1">{% trans from 'SonataBasketBundle'%}header_basket_quantity{% endtrans %}</th>
+                    <th>{% trans from 'SonataBasketBundle'%}header_basket_total_inc{% endtrans %}</th>
+                    <th>{% trans from 'SonataBasketBundle'%}header_basket_delete{% endtrans %}</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {# call each product controller to render its own view #}
+                {% for basketElement in basket.getBasketElements %}
+                    {{ render(controller('SonataProductBundle:Product:renderFormBasketElement', {
+                        'formView':       form.basketElements.children[basketElement.position],
+                        'basketElement':  basketElement,
+                        'basket':         basket
+                    })) }}
+                {% endfor %}
+
+                {# mark the widget as rendered ... TODO: create a custom widget type ...#}
+                {% set dummy = form.basketElements.setrendered %}
+            </tbody>
+
+            <tfoot>
+                <tr>
+                    <td colspan="3" rowspan="{{ 3 + basket.getVatAmounts|length }}"></td>
+                    <th style="text-align: right">{% trans from 'SonataBasketBundle'%}footer_basket_total_excl{% endtrans %}</th>
+                    <td colspan="2" class="number"><b>{{ basket.getTotal(false)|number_format_currency(basket.currency.label, {}, {}, basket.locale) }}</b></td>
+                </tr>
+
+                {% for item in basket.getVatAmounts %}
+                    <tr>
+                        <th style="text-align: right">{{ 'footer_basket_vat'|trans({}, 'SonataBasketBundle') }} {{ item.rate }}%</th>
+                        <td colspan="2" class="number"><b>{{ item.amount|number_format_currency(basket.currency.label, {}, {}, basket.locale) }}</b></td>
+                    </tr>
+                {% endfor %}
+
+                <tr>
+                    <th style="text-align: right">{% trans from 'SonataBasketBundle'%}footer_basket_total_vat{% endtrans %}</th>
+                    <td colspan="2" class="number"><b>{{ basket.getVatAmount()|number_format_currency(basket.currency.label, {}, {}, basket.locale) }}</b></td>
+                </tr>
+
+                <tr>
+                    <th style="text-align: right">{% trans from 'SonataBasketBundle'%}footer_basket_total_inc{% endtrans %}</th>
+                    <td colspan="2" class="number"><b>{{ basket.getTotal(true)|number_format_currency(basket.currency.label, {}, {}, basket.locale) }}</b></td>
+                </tr>
+            </tfoot>
+
+        </table>
+
+        <div class="well">
+            <button type="submit" class="btn btn-success"><i class="glyphicon glyphicon-refresh icon-white"></i>&nbsp;{% trans from 'SonataBasketBundle' %}sonata.basket.btn_update_basket{% endtrans %}</button>
+
+            <a href="{{ url('sonata_basket_delivery_address') }}" class="btn btn-primary pull-right sonata-basket-nextstep"{% if form.vars.errors is not empty %} disabled{% endif %}>{% trans from 'SonataBasketBundle' %}sonata.basket.link_next_step{% endtrans %}&nbsp;<i class="glyphicon glyphicon-arrow-right icon-white"></i></a>
+        </div>
+
+        {{ form_rest(form) }}
+    </form>
+
+    {% set single_basket_element = basket.basketElements|last %}
+    {{ sonata_block_render({'type': 'sonata.product.block.similar_products', 'settings': {'number': 4, 'base_product_id': single_basket_element.productId}}) }}
+
+{% else %}
+
+    <div class="well" style="text-align: center; padding: 40px; margin: 20px;">
+        <p>
+            {% trans from 'SonataBasketBundle' %}sonata.basket.message_basket_is_empty{% endtrans %}.
+            <br />
+            <a href="{{ path('sonata_catalog_index') }}">{% trans from 'SonataBasketBundle' %}sonata.basket.message_basket_go_back_shopping{% endtrans %}</a>.
+        </p>
+    </div>
+
+    {{ sonata_block_render({'type': 'sonata.product.block.recent_products', 'settings': {'number': 4}}) }}
+
+{% endif %}

@@ -1,0 +1,46 @@
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+
+{% extends '@SonataAdmin/CRUD/action.html.twig' %}
+
+{% block title %}{{ 'title_select_site'|trans({}, 'SonataPageBundle') }}{% endblock %}
+
+{% block actions %}
+
+{% endblock %}
+
+{% block content %}
+
+    <h2>{{ 'title_message_create_page'|trans({}, 'SonataPageBundle') }}</h2>
+
+    <p>
+    {{ 'message_create_page'|trans({}, 'SonataPageBundle')}}
+    </p>
+
+    {% if sites|length > 0 %}
+        <ul>
+            {% for site in sites %}
+                <li>
+                    {% if current and site.id == current.id %}
+                        <i class="fa fa-check"></i>
+                    {% endif %}
+
+                    <a href="{{ admin.generateUrl('create', {'siteId': site.id, 'uniqid': admin.uniqid}) }}">
+                    {{ site.name }}
+                    </a>
+                    - {{ site.url }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        {{ 'pages.label_no_sites'|trans({}, 'SonataPageBundle') }}
+    {% endif %}
+{% endblock %}

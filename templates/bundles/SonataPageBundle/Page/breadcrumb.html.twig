@@ -1,0 +1,43 @@
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+{%- macro label(page) -%}
+    {% if page.title %}
+        {{ page.title }}
+    {% else %}
+        {{ page.name|trans({}, 'SonataPageBundle') }}
+    {% endif %}
+{%- endmacro -%}
+
+{% import _self as helper %}
+
+{% if breadcrumbs %}
+    <ul {% for attrname, attrvalue in options.container_attr %}{{ attrname }}="{{ attrvalue }}" {% endfor %}>
+        {% for breadcrumb in breadcrumbs %}
+            <li {% for attrname, attrvalue in options.elements_attr %}{{ attrname }}="{{ attrvalue }}" {% endfor %}>
+                {% if not breadcrumb.isdynamic %}
+                    <a href="{{ path(breadcrumb) }}" title="{{ helper.label(breadcrumb) }}">{{ helper.label(breadcrumb) }}</a>{{ options.separator|raw }}
+                {% else %}
+                    {{ helper.label(breadcrumb) }}{{ options.separator|raw }}
+                {% endif %}
+            </li>
+        {% endfor %}
+
+        {% set li_attrs_class = options.elements_attr.class|default('') ~ ' ' ~ options.current_class %}
+        {% set li_attrs = options.elements_attr|merge({'class': li_attrs_class}) %}
+        <li {% for attrname, attrvalue in li_attrs %}{{ attrname }}="{{ attrvalue }}" {% endfor %}>
+            {% if not page.isdynamic %}
+                <a href="{{ path(page) }}" title="{{ helper.label(page) }}">{{ helper.label(page) }}</a>{{ options.last_separator|raw }}
+            {% else %}
+                {{ helper.label(page) }}{{ options.last_separator|raw }}
+            {% endif %}
+        </li>
+    </ul>
+{% endif %}

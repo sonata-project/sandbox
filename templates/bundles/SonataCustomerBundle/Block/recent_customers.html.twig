@@ -1,0 +1,52 @@
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+{% extends sonata_block.templates.block_base %}
+
+{% block block %}
+
+    <div class="box box-primary">
+        {% if settings.title %}
+            <div class="box-header with-border">
+                <h3 class="box-title">
+                    <i class="fa fa-user"></i> {{ settings.title }}
+                </h3>
+            </div>
+        {% endif %}
+
+        <div class="box-body">
+            {% if customers|length > 0 %}
+                <div class="sonata-customer-block-customer-container list-group">
+                    {% for customer in customers %}
+                        <a class="list-group-item"
+                           href="
+                            {% if context.getSetting('mode') == 'admin' and admin_pool is defined %}
+                                {{ admin_pool.getAdminByAdminCode('sonata.customer.admin.customer').generateUrl('edit', { 'id': customer.id }) }}
+                            {% else %}
+                                {{ url('sonata_customer_view', { 'id': customer.id }) }}
+                            {% endif %}
+                            ">
+                            {{ customer }} - {{ customer.createdAt|format_datetime() }}
+                        </a>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p>{{ 'no_customer_found'|trans({}, 'SonataCustomerBundle') }}</p>
+            {% endif %}
+        </div>
+
+        <div class="box-footer">
+            {% if context.getSetting('mode') == 'admin' and admin_pool is defined  %}
+                <a href="{{ admin_pool.getAdminByAdminCode('sonata.customer.admin.customer').generateUrl('list') }}" class="btn btn-primary btn-block"><i class="fa fa-list"></i>&nbsp;{{ 'view_all_customers'|trans({}, 'SonataCustomerBundle') }}</a>
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock %}

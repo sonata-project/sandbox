@@ -1,0 +1,56 @@
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+
+{% extends '@SonataAdmin/CRUD/base_list_field.html.twig' %}
+
+{% block field %}
+    <div class="col-sm-2 centered">
+        <div class="text-center">
+            {% if object.image and admin.isGranted('VIEW', object.image) %}
+                {% if admin.isGranted('EDIT', object) and admin.hasRoute('edit') %}
+                    <a href="{{ admin.generateUrl('edit', {'id' : object|sonata_urlsafeid }) }}">{% thumbnail object.image, 'admin' with {'width': 90} %}</a>
+                {% else %}
+                    {% thumbnail object.image, 'admin' with {'width': 90} %}
+                {% endif %}
+            {% else %}
+                <i class="fa fa-chain-broken fa-3x"></i>
+            {% endif %}
+        </div>
+    </div>
+    <div class="col-sm-10">
+        <span class="badge pull-right">{{ object.commentsCount }}</span>
+        {% if admin.isGranted('EDIT', object) and admin.hasRoute('edit') %}
+            <a href="{{ admin.generateUrl('edit', {'id' : object|sonata_urlsafeid }) }}"><strong>{{ object.title }}</strong></a>
+        {% else %}
+            <strong>{{ object.title }}</strong>
+        {% endif %}
+
+        {% if object.author %}
+            ~ {{ object.author.username }}
+        {% endif %}
+        <br />
+
+        {{ object.abstract|truncate(150) }}
+
+        <br />
+        {% if object.collection %}
+            {{ object.collection.name }}
+        {% endif %}
+
+        {% if object.collection and object.tags|length > 0 %}
+            ~
+        {% endif %}
+
+        {% for tag in object.tags %}
+            {{ tag.name }}{% if not loop.last %}, {% endif %}
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% autoescape false %}
+{{ 'mail_title_comment_notification'|trans({
+    '%post_title%'     : post.title,
+    '%blog_title%'     : blog.title,
+    '%comment_message%': comment.message,
+    '%comment_email%'  : comment.email,
+    '%comment_url%'    : comment.url,
+    '%comment_name%'   : comment.name,
+    '%post_url%'       : url('sonata_news_view', { 'permalink': blog.permalinkGenerator.generate(post)}, true),
+    '%comment_invalid_link%' : url('sonata_news_comment_moderation', {'commentId': comment.id, 'hash': hash, 'status': 0}, true),
+    '%comment_valid_link%' : url('sonata_news_comment_moderation', {'commentId': comment.id, 'hash': hash, 'status': 1}, true)
+    }, 'SonataNewsBundle')}}
+{% endautoescape %}

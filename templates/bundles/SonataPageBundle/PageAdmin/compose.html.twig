@@ -1,0 +1,109 @@
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+
+{% extends '@SonataAdmin/CRUD/action.html.twig' %}
+
+{% block title %}
+    {{ "title_edit"|trans({'%name%': admin.toString(object)|truncate(15) }, 'SonataAdminBundle') }}
+{% endblock %}
+
+{% block navbar_title %}
+    {{ block('title') }}
+{% endblock %}
+
+{% block body_attributes %}class="sonata-bc skin-black fixed page-composer-page sonata-ba-no-side-menu"{% endblock %}
+
+{% block content %}
+    <div class="page-composer">
+        <h2>{{ 'page.compose_page'|trans({}, 'SonataPageBundle') }} "{{ page.name }}" <small>[{{ 'page.compose_template_label'|trans({}, 'SonataPageBundle') }}: <b>{{ template.name }}</b>]</small></h2>
+
+        {% if containers|length == 0 %}
+            {% include '@SonataPage/PageAdmin/compose_hint.html.twig' %}
+        {% else %}
+            <div class="row row-fluid">
+                <div class="col-md-4 span4">
+                    <div class="page-composer__page-preview" data-page-composer='{{ {
+                        pageId: page.id,
+                        csrfTokens: csrfTokens,
+                        translations: {
+                            cancel: 'cancel'|trans({}, 'SonataPageBundle'),
+                            yes: 'yes'|trans({}, 'SonataPageBundle'),
+                            composer_remove_confirm: 'composer.remove.confirm'|trans({}, 'SonataPageBundle'),
+                            composer_preview_error: 'page.composer_preview_error'|trans({}, 'SonataPageBundle'),
+                            composer_update_saving: 'page.composer_update_saving'|trans({}, 'SonataPageBundle'),
+                            composer_update_saved: 'page.composer_update_saved'|trans({}, 'SonataPageBundle'),
+                            composer_update_error: 'page.composer_update_error'|trans({}, 'SonataPageBundle'),
+                            composer_status_error: 'page.composer_status_error'|trans({}, 'SonataPageBundle')
+                        },
+                        routes: {
+                            save_blocks_positions: admin_pool.getAdminByAdminCode('sonata.page.admin.block').generateUrl('savePosition', { 'id': page.id }),
+                            block_switch_parent:   admin_pool.getAdminByAdminCode('sonata.page.admin.block').generateUrl('switchParent'),
+                            block_preview:         admin_pool.getAdminByAdminCode('sonata.page.admin.block').generateUrl('composePreview', { 'block_id': 'BLOCK_ID' })
+                        }
+                    }|json_encode()|raw }}'>
+                        <div class="page-composer__page-preview__containers">
+                            {% for container in containers %}
+                                {% if container.block is defined and container.block %}
+                                    <a class="page-composer__page-preview__container block-preview-{{ container.block.id }}"
+                                       data-block-id="{{ container.block.id }}"
+                                       data-block-whitelist="{{ container.area.blocks|join(',') }}"
+                                       style="top:{{ container.area.placement.y }}%;right:{{ container.area.placement.right }}%;bottom:{{ container.area.placement.bottom }}%;left:{{ container.area.placement.x }}%"
+                                       href="{{ admin.generateUrl('compose_container_show', { 'id': container.block.id }) }}"
+                                    >
+                                        <div class="page-composer__page-preview__container__content">
+                                            <strong>{{ container.block.name|default(container.area.name) }}</strong><br>
+                                            <small><span class="child-count">{{ container.block.children|length }}</span> {% transchoice container.block.children|length from 'SonataPageBundle' %}page.compose_blocks_label{% endtranschoice %}</small>
+                                            <span class="page-composer__page-preview__add-block">
+                                                <i class="fa fa-circle-o"></i>
+                                                <i class="fa fa-dot-circle-o"></i>
+                                            </span>
+                                            <span class="drop-indicator">
+                                                <span class="fa fa-download"></span>
+                                            </span>
+                                        </div>
+                                    </a>
+                                {% else %}
+                                    <div class="page-composer__page-preview__container--no-block"
+                                         style="top:{{ container.area.placement.y }}%;right:{{ container.area.placement.right }}%;bottom:{{ container.area.placement.bottom }}%;left:{{ container.area.placement.x }}%"
+                                    >
+                                        <div class="page-composer__page-preview__container__content">
+                                            <strong>{{ container.area.name }}</strong>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    {% if orphanContainers|length > 0 %}
+                        <div class="page-composer__orphan-containers">
+                            <h3 class="page-composer__orphan-containers__header">{{ 'page.orphan_containers'|trans({}, 'SonataPageBundle') }}</h3>
+                            <ul>
+                                {% for orphanContainer in orphanContainers %}
+                                    <li>
+                                        <a href="{{ admin.generateUrl('compose_container_show', { 'id': orphanContainer.id }) }}" data-block-id="{{ orphanContainer.id }}" class="page-composer__orphan-container block-preview-{{ orphanContainer.id }}">
+                                            <strong>{{ orphanContainer.name|default(orphanContainer.type) }}</strong><br>
+                                            <small><span class="child-count">{{ orphanContainer.children|length }}</span> {% transchoice orphanContainer.children|length from 'SonataPageBundle' %}page.compose_blocks_label{% endtranschoice %}</small>
+                                        </a>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="col-md-8 span8">
+                    <div class="page-composer__dyn-content">
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

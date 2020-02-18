@@ -1,0 +1,67 @@
+{% extends sonata_block.templates.block_base %}
+
+{% block block %}
+    <div class="panel panel-default {{ settings.class }}">
+        {% if settings.title is not empty %}
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    {% if settings.icon %}
+                        <i class="{{ settings.icon }}" aria-hidden="true"></i>
+                    {% endif %}
+                    {% if settings.translation_domain %}
+                        {{ settings.title|trans({}, settings.translation_domain) }}
+                    {% else %}
+                        {{ settings.title }}
+                    {% endif %}
+                </h4>
+            </div>
+        {% endif %}
+
+        <div class="panel-body">
+            <h4>{{ 'title_content_pages'|trans({}, 'SonataPageBundle') }}</h4>
+
+            <div class="list-group">
+                {% for page in elements %}
+                    {% if settings.mode == 'admin' and sonata_admin is defined %}
+                        <a href="{{ sonata_admin.url('sonata.page.admin.page', 'compose', { 'id': page.id }) }}" class="list-group-item">
+                            {% if page.enabled %}
+                                <span class="label label-success pull-right">{{ 'label_page_enabled'|trans({}, 'SonataPageBundle') }}</span>
+                            {% else %}
+                                <span class="label label-danger pull-right">{{ 'label_page_disabled'|trans({}, 'SonataPageBundle') }}</span>
+                            {% endif %}
+                            {{ page.name }}
+                        </a>
+                    {% else %}
+                        <a href="{{ path('page_slug', { 'path': page.url }) }}" class="list-group-item">
+                            {{ page.name }}
+                        </a>
+                    {% endif %}
+                {% else %}
+                    <li>{{ 'no_pages_found'|trans({}, 'SonataPageBundle') }}</li>
+                {% endfor %}
+            </div>
+
+            {% if settings.mode == 'admin' and sonata_admin is defined %}
+                <h4>{{ 'title_system_pages'|trans({}, 'SonataPageBundle') }}</h4>
+                <div class="list-group">
+                    {% for page in systemElements %}
+                        <a href="{{ sonata_admin.url('sonata.page.admin.page', 'compose', { 'id': page.id }) }}" class="list-group-item">
+                            {% if page.enabled %}
+                                <span class="label label-success pull-right">{{ 'label_page_enabled'|trans({}, 'SonataPageBundle') }}</span>
+                            {% else %}
+                                <span class="label label-danger pull-right">{{ 'label_page_disabled'|trans({}, 'SonataPageBundle') }}</span>
+                            {% endif %}
+                            {{ page.name }}
+                        </a>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            {% if settings.mode == 'admin' and sonata_admin is defined %}
+                <a href="{{ sonata_admin.url('sonata.page.admin.page', 'list', {filter:{hybrid:{value:'cms' }}}) }}" class="btn btn-primary btn-block">
+                    <i class="fa fa-list"></i> {{ 'view_all_pages'|trans({}, 'SonataPageBundle') }}
+                </a>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

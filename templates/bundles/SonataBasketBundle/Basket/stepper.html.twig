@@ -1,0 +1,37 @@
+{% block stepper_stylesheet %}
+    <link rel="stylesheet" href="{{ asset('bundles/sonatabasket/css/stepper.css') }}" type="text/css" media="all" />
+{% endblock %}
+
+{% block stepper_content %}
+    <ul class="stepper hidden-xs">
+        <li{% if 'basket' == step %} class="active"{% endif %}>
+            <div class="img-circle">1</div>
+            <p>{{ 'basket_stepper_basket_title'|trans({}, 'SonataBasketBundle') }}</p>
+            <hr />
+        </li>
+
+        <li{% if 'identification' == step %} class="active"{% endif %}>
+            <div class="img-circle">2</div>
+            <p>{{ 'basket_stepper_identification_title'|trans({}, 'SonataBasketBundle') }}</p>
+            <hr />
+        </li>
+
+        <li{% if 'delivery' == step %} class="active"{% endif %}>
+            <div class="img-circle">3</div>
+            <p>{{ 'basket_stepper_delivery_title'|trans({}, 'SonataBasketBundle') }}</p>
+            <hr />
+        </li>
+
+        <li{% if 'billing' == step %} class="active"{% endif %}>
+            <div class="img-circle">4</div>
+            <p>{{ 'basket_stepper_billing_title'|trans({}, 'SonataBasketBundle') }}</p>
+            <hr />
+        </li>
+
+        <li{% if 'checkout' == step %} class="active"{% endif %}>
+            <div class="img-circle">5</div>
+            <p>{{ 'basket_stepper_checkout_title'|trans({}, 'SonataBasketBundle') }}</p>
+            <hr />
+        </li>
+    </ul>
+{% endblock %}

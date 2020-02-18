@@ -1,0 +1,171 @@
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+
+{% sonata_template_box 'This is the basket final review template. Feel free to override it.' %}
+
+{% include '@SonataBasket/Basket/stepper.html.twig' with {step: 'checkout'} %}
+
+<table class="table basket">
+
+    <thead>
+        <tr>
+            <th class="col-sm-2">&nbsp;</th>
+            <th class="col-sm-4">{% trans from 'SonataBasketBundle'%}header_basket_information{% endtrans %}</th>
+            <th class="col-sm-2">{% trans from 'SonataBasketBundle'%}header_basket_unit_price{% endtrans %}</th>
+            <th class="col-sm-2">{% trans from 'SonataBasketBundle'%}header_basket_quantity{% endtrans %}</th>
+            <th>{% trans from 'SonataBasketBundle'%}header_basket_total_inc{% endtrans %}</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {# call each product controller to render its own view #}
+        {% for basketElement in basket.BasketElements %}
+            {{ render(controller('SonataProductBundle:Product:renderFinalReviewBasketElement', {
+                'basketElement' : basketElement,
+                'basket':         basket
+            })) }}
+        {% endfor %}
+
+        <tr>
+            <td><span class="glyphicon glyphicon-plane" style="font-size:50px;">&nbsp;</span></td>
+            <td>
+                <b>{{ 'sonata.basket.label_delivery_charge'|trans({}, 'SonataBasketBundle') }}</b>
+            </td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td class="number">{{ basket.getDeliveryPrice(true)|number_format_currency(basket.currency.label, {}, {}, basket.locale) }}</td>
+        </tr>
+    </tbody>
+
+    <tfoot>
+        <tr>
+            <td colspan="3" rowspan="{{ 3 + basket.getVatAmounts|length }}"></td>
+            <th style="text-align: right">{{ 'sonata.basket.total_wo_vat'|trans({}, 'SonataBasketBundle') }}</th>
+            <td class="number"><b>{{ basket.getTotal(false)|number_format_currency(basket.currency.label, {}, {}, basket.locale) }}</b></td>
+        </tr>
+
+        {% for item in basket.getVatAmounts %}
+            <tr>
+                <th style="text-align: right">{{ 'footer_basket_vat'|trans({}, 'SonataBasketBundle') }} {{ item.rate }}%</th>
+                <td class="number"><b>{{ item.amount|number_format_currency(basket.currency.label, {}, {}, basket.locale) }}</b></td>
+            </tr>
+        {% endfor %}
+
+        <tr>
+            <th style="text-align: right">{{ 'sonata.basket.total_vat'|trans({}, 'SonataBasketBundle') }}</th>
+            <td class="number"><b>{{ basket.getVatAmount()|number_format_currency(basket.currency.label, {}, {}, basket.locale) }}</b></td>
+        </tr>
+
+        <tr>
+            <th style="text-align: right">{{ 'sonata.basket.total_w_vat'|trans({}, 'SonataBasketBundle') }}</th>
+            <td class="number"><b>{{ basket.getTotal(true)|number_format_currency(basket.currency.label, {}, {}, basket.locale) }}</b></td>
+        </tr>
+    </tfoot>
+
+</table>
+
+<div class="row">
+    <!-- Delivery address -->
+    <div class="col-sm-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    {{ 'sonata.basket.title_address_delivery_step_basket'|trans({}, 'SonataBasketBundle') }}
+                </div>
+            </div>
+            <div class="panel-body">
+                {% if basket.deliverymethod.isAddressRequired() %}
+                    <address>
+                        <strong>{{  basket.deliveryaddress.name }}</strong><br/>
+                        {{ basket.deliveryaddress.getFullAddress("<br />")|raw }}
+                    </address>
+                {% else %}
+                    <i>{{ 'sonata.basket.title_delivery_address_not_required'|trans({}, 'SonataBasketBundle') }}</i>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Payment address -->
+    <div class="col-sm-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    {{ 'sonata.basket.title_address_billing_step_basket'|trans({}, 'SonataBasketBundle') }}
+                </div>
+            </div>
+            <div class="panel-body">
+                <address>
+                    <strong>{{  basket.billingaddress.name }}</strong><br/>
+                    {{  basket.billingaddress.getFullAddress("<br />")|raw }}
+                </address>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <!-- Delivery information -->
+    <div class="col-sm-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    {{ 'sonata.basket.title_delivery_method'|trans({}, 'SonataBasketBundle') }}
+                </div>
+            </div>
+            <div class="panel-body">
+                {{ basket.deliverymethod.name }}
+            </div>
+        </div>
+    </div>
+
+    <!-- Payment information -->
+    <div class="col-sm-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    {{ 'sonata.basket.title_payment_method'|trans({}, 'SonataBasketBundle') }}
+                </div>
+            </div>
+            <div class="panel-body">
+                {{ basket.paymentmethod.name }}
+            </div>
+        </div>
+    </div>
+</div>
+
+<form action="{{ url('sonata_basket_final') }}" method="POST" onsubmit="ctrlForm(this)">
+    <div class="alert alert-info text-center">
+        <h4>
+            <a href="{{ path('sonata_payment_terms') }}" target="_blank">{{ 'sonata.basket.link_terms_and_condition'|trans({}, 'SonataBasketBundle') }}</a>
+        </h4>
+        <label for="basket_tac">
+            <input type="checkbox" name="tac" id="basket_tac"/>
+            {{ 'sonata.basket.label_terms_and_condition'|trans({}, 'SonataBasketBundle') }}
+        </label>
+
+        <div>
+            <input type="submit" value="{{ 'sonata.basket.label_process_to_payment'|trans({}, 'SonataBasketBundle') }}" class="btn btn-primary" />
+        </div>
+    </div>
+</form>
+
+<script>
+    function ctrlForm(form) {
+        if (!form.tac.checked) {
+            alert("{{ 'sonata.basket.label_confirm_tac'|trans({}, 'SonataBasketBundle') }}");
+
+            return false;
+        }
+
+        return true;
+    }
+</script>

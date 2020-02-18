@@ -1,0 +1,11 @@
+{{ knp_menu_render(admin.sidemenu(action), {'currentClass' : 'active'}, 'list') }}
+<p>
+    <div class="btn-group">
+        <a type="button" class="btn {% if mode == 'list' %}btn-info active{% else %}btn-default{% endif %}" href="{{ admin.generateUrl('list', { 'filter': { 'site': { 'value': currentSite.id|default('') }}}) }}">
+            <i class="fa fa-list"></i> {{ 'pages.list_mode'|trans({}, 'SonataPageBundle') }}
+        </a>
+        <a type="button" class="btn {% if mode == 'tree' %}btn-info active{% else %}btn-default{% endif %}" href="{{ admin.generateUrl('tree') }}">
+            <i class="fa fa-sitemap"></i> {{ 'pages.tree_mode'|trans({}, 'SonataPageBundle') }}
+        </a>
+    </div>
+</p>

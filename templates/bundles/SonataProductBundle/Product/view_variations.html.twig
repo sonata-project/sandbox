@@ -1,0 +1,22 @@
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+
+<h2>{% trans from 'SonataProductBundle' %}title_list_variations{% endtrans %}</h2>
+
+{% if product.variations.count == 0 %}
+    {% trans from 'SonataProductBundle' %}no_variations_available{% endtrans %}
+{% else %}
+    <ul>
+        {% for variation in product.enabledVariations %}
+            <li><a href="{{ url('sonata_product_view', {'productId': variation.id, 'slug': variation.slug}) }}">{{ variation.name }}</a></li>
+        {% endfor %}
+    </ul>
+{% endif %}

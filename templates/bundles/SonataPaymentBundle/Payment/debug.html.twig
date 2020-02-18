@@ -1,0 +1,49 @@
+<h1>{{ 'debug_payment_title'|trans([], 'SonataPaymentBundle') }}</h1>
+
+<div class="alert alert-danger">
+    <strong>{{ 'debug_payment_alert_title'|trans([], 'SonataPaymentBundle') }}</strong>
+    {{ 'debug_payment_alert_text'|trans([], 'SonataPaymentBundle') }}
+</div>
+
+<p>{{ 'debug_payment_help'|trans([], 'SonataPaymentBundle')|raw }}</p>
+
+<div class="form-actions" align="center">
+    <a href="{{ url('sonata_payment_debug_process', {'check': check, 'reference': order.reference, 'action': 'accept'}) }}" class="btn btn-success"><i class="icon-ok-circle icon-white"></i> {{ 'debug_payment_ok_action'|trans([], 'SonataPaymentBundle') }}</a>
+    <a href="{{ url('sonata_payment_debug_process', {'check': check, 'reference': order.reference, 'action': 'refuse'}) }}" class="btn btn-danger"><i class="icon-remove-circle icon-white"></i> {{ 'debug_payment_ko_action'|trans([], 'SonataPaymentBundle') }}</a>
+    <a href="{{ url('sonata_payment_debug_process', {'check': check, 'reference': order.reference, 'action': 'cancel'}) }}" class="btn btn-default"><i class="icon-ban-circle icon-white"></i> {{ 'debug_payment_cancel_action'|trans([], 'SonataPaymentBundle') }}</a>
+</div>
+
+<h2>{{ 'debug_payment_data_title'|trans([], 'SonataPaymentBundle') }}</h2>
+
+<p>{{ 'debug_payment_data_header'|trans([], 'SonataPaymentBundle') }}</p>
+
+<table class="table table-bordered table-striped">
+    <tr>
+        <th>{{ 'debug_payment_id'|trans([], 'SonataPaymentBundle') }}</th>
+        <td>{{ order.id }}</td>
+    </tr>
+    <tr>
+        <th>{{ 'debug_payment_reference'|trans([], 'SonataPaymentBundle') }}</th>
+        <td>{{ order.reference }}</td>
+    </tr>
+    <tr>
+        <th>{{ 'debug_payment_status'|trans([], 'SonataPaymentBundle') }}</th>
+        <td><span class="label{{ order|sonata_status_class(null, 'important') ? ' label-'~order|sonata_status_class(null, 'important') : '' }}">{{ order.statusName|trans([], 'SonataOrderBundle') }}</span></td>
+    </tr>
+    <tr>
+        <th>{{ 'debug_payment_payment_status'|trans([], 'SonataPaymentBundle') }}</th>
+        <td><span class="label{{ order|sonata_status_class('payment', 'important') ? ' label-'~order|sonata_status_class('payment', 'important') : '' }}">{{ order.paymentStatusName|trans({}, 'SonataPaymentBundle') }}</span></td>
+    </tr>
+    <tr>
+        <th>{{ 'debug_payment_delivery_status'|trans([], 'SonataPaymentBundle') }}</th>
+        <td><span class="label{{ order|sonata_status_class('delivery', 'important') ? ' label-'~order|sonata_status_class('delivery', 'important') : '' }}">{{ order.deliveryStatusName|trans({}, 'SonataDeliveryBundle') }}</span></td>
+    </tr>
+    <tr>
+        <th>{{ 'debug_payment_payment_method'|trans([], 'SonataPaymentBundle') }}</th>
+        <td>{{ order.paymentMethod }}</td>
+    </tr>
+    <tr>
+        <th>{{ 'debug_payment_delivery_method'|trans([], 'SonataPaymentBundle') }}</th>
+        <td>{{ order.deliveryMethod }}</td>
+    </tr>
+</table>
