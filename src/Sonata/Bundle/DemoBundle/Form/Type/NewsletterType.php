@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Sonata\Bundle\DemoBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 /**
@@ -23,12 +24,12 @@ use Symfony\Component\Form\FormBuilderInterface;
  *
  * @author Vincent Composieux <vincent.composieux@gmail.com>
  */
-class NewsletterType extends AbstractType
+final class NewsletterType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $formBuilder, array $options)
+    public function buildForm(FormBuilderInterface $formBuilder, array $options): void
     {
         $formBuilder
-            ->add('email', 'email', [
+            ->add('email', EmailType::class, [
                 'attr' => [
                     'placeholder' => 'Email',
                 ],
@@ -36,7 +37,7 @@ class NewsletterType extends AbstractType
         ;
     }
 
-    public function getName()
+    public function getName(): string
     {
         return 'sonata_demo_form_type_newsletter';
     }

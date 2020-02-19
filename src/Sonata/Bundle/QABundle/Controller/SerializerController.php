@@ -75,7 +75,7 @@ class SerializerController extends Controller
             $classes[] = $meta->name;
         }
 
-        return $this->render('SonataQABundle:Serializer:serialize.html.twig', [
+        return $this->render('@SonataQA/Serializer/serialize.html.twig', [
             'classes' => $classes,
             'raw' => $raw,
         ]);

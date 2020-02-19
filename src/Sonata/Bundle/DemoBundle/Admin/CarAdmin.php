@@ -13,19 +13,24 @@ declare(strict_types=1);
 
 namespace Sonata\Bundle\DemoBundle\Admin;
 
-use Sonata\AdminBundle\Admin\Admin;
+use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\AdminBundle\Form\Type\ModelListType;
 use Sonata\AdminBundle\Show\ShowMapper;
+use Sonata\Bundle\DemoBundle\Entity\Car;
 use Sonata\Bundle\DemoBundle\Entity\Inspection;
+use Sonata\Form\Type\CollectionType;
+use Sonata\MediaBundle\Form\Type\MediaType;
+use Symfony\Component\Validator\Constraints\Valid;
 
 /**
  * @author Thomas Rabaix <thomas.rabaix@sonata-project.org>
  */
-class CarAdmin extends Admin
+final class CarAdmin extends AbstractAdmin
 {
-    public function getNewInstance()
+    public function getNewInstance(): Car
     {
         $car = parent::getNewInstance();
 
@@ -45,7 +50,7 @@ class CarAdmin extends Admin
         return $car;
     }
 
-    protected function configureShowFields(ShowMapper $showMapper)
+    protected function configureShowFields(ShowMapper $showMapper): void
     {
         $showMapper
             ->add('name')
@@ -55,7 +60,7 @@ class CarAdmin extends Admin
         ;
     }
 
-    protected function configureListFields(ListMapper $listMapper)
+    protected function configureListFields(ListMapper $listMapper): void
     {
         $listMapper
             ->addIdentifier('name')
@@ -66,7 +71,7 @@ class CarAdmin extends Admin
         ;
     }
 
-    protected function configureDatagridFilters(DatagridMapper $datagridMapper)
+    protected function configureDatagridFilters(DatagridMapper $datagridMapper): void
     {
         $datagridMapper
             ->add('name')
@@ -77,7 +82,7 @@ class CarAdmin extends Admin
         ;
     }
 
-    protected function configureFormFields(FormMapper $formMapper)
+    protected function configureFormFields(FormMapper $formMapper): void
     {
         $formMapper
             ->with('General', ['class' => 'col-md-5'])
@@ -86,17 +91,17 @@ class CarAdmin extends Admin
                 ->add('createdAt')
             ->end()
             ->with('Options', ['class' => 'col-md-7'])
-                ->add('engine', 'sonata_type_model_list')
-                ->add('color', 'sonata_type_model_list')
-                ->add('media', 'sonata_media_type', [
+                ->add('engine', ModelListType::class)
+                ->add('color', ModelListType::class)
+                ->add('media', MediaType::class, [
                     'provider' => 'sonata.media.provider.image',
                     'context' => 'default',
                 ])
             ->end()
             ->with('inspections', ['class' => 'col-md-12'])
-                ->add('inspections', 'sonata_type_collection', [
+                ->add('inspections', CollectionType::class, [
                     'by_reference' => false,
-                    'cascade_validation' => true,
+                    'constraints' => new Valid(),
                 ], [
                     'edit' => 'inline',
                     'inline' => 'table',

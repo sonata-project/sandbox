@@ -74,22 +74,25 @@ class LoadNewsData extends AbstractFixture implements ContainerAwareInterface, O
 
             $id = $this->getReference('sonata-media-0')->getId();
 
-            $raw = <<<RAW
-### Gist Formatter
+            //TODO: fix raw
+            $raw = '';
+            /*
+                        $raw = <<<RAW
+            ### Gist Formatter
 
-Now a specific gist from github
+            Now a specific gist from github
 
-<% gist '1552362' 'gistfile1.txt' %>
+            <% gist '1552362' 'gistfile1.txt' %>
 
-### Media Formatter
+            ### Media Formatter
 
-Load a media from a <code>SonataMediaBundle</code> with a specific format
+            Load a media from a <code>SonataMediaBundle</code> with a specific format
 
-<% media $id, 'big' %>
+            <% media $id, 'big' %>
 
-RAW
-;
-
+            RAW
+            ;
+            */
             $raw .= sprintf("### %s\n\n%s\n\n### %s\n\n%s",
                 $faker->sentence(random_int(3, 6)),
                 $faker->text(1000),

@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Sonata\Bundle\DemoBundle\Provider;
 
+use Sonata\Bundle\DemoBundle\Controller\GoodieController;
 use Sonata\ProductBundle\Model\BaseProductProvider;
 
 /**
@@ -27,8 +28,13 @@ use Sonata\ProductBundle\Model\BaseProductProvider;
  */
 class GoodieProductProvider extends BaseProductProvider
 {
-    public function getBaseControllerName()
+    public function getBaseControllerName(): string
     {
-        return 'SonataDemoBundle:Goodie';
+        return GoodieController::class;
+    }
+
+    public function getTemplatesPath(): string
+    {
+        return '@SonataDemo\Goodie';
     }
 }

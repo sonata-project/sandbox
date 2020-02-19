@@ -9,19 +9,24 @@
     <div>
         {{ dump|raw }}
     </div>
-
-    <h3>Form Version</h3>
-
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Form Version</h3>
+        </div>
+        <div class="panel-body">
+            <form method="POST" class="form-horizontal">
+                {{ form_rest(form) }}
+                <div class="form-actions">
+                    <input type="submit" class="btn btn-primary pull-right" />
+                </div>
+            </form>
+        </div>
+    </div>
     <div>
-        <form method="POST">
-            {{ form_rest(form) }}
-            <input type="submit" />
-        </form>
     </div>
 {% endblock %}
 
 
 {% block _sonata_demo_form_type_car_rescueEngine_label %}
     {{ block('form_label') }}
-    sfsdfsd
 {% endblock %}

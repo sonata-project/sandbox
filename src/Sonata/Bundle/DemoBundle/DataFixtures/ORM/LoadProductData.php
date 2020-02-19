@@ -52,7 +52,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
 
         // default media
         $defaultMedia = $this->getMediaManager()->create();
-        $defaultMedia->setBinaryContent(new \SplFileInfo(__DIR__.'/../data/files/sonata_logo.png'));
+        $defaultMedia->setBinaryContent(__DIR__.'/../data/files/sonata_logo.png');
         $defaultMedia->setEnabled(true);
         $defaultMedia->setName('product_catalog_default_media');
         $defaultMedia->setDescription('Default Product media');
@@ -1134,7 +1134,7 @@ EOF
         $file = new \SplFileInfo($mediaFilename);
 
         $media = $mediaManager->create();
-        $media->setBinaryContent($file);
+        $media->setBinaryContent($mediaFilename);
         $media->setEnabled(true);
         $media->setName($name);
         $media->setDescription($description);
@@ -1165,7 +1165,7 @@ EOF
         $pos = 0;
         foreach ($files as $file) {
             $media = $this->getMediaManager()->create();
-            $media->setBinaryContent($file);
+            $media->setBinaryContent(__DIR__.'/../data/files/sylvain-switzerland/'.$file->getRelativePathname());
             $media->setEnabled(true);
             $media->setDescription('Switzerland');
             $media->setName('Switzerland');
@@ -1209,7 +1209,7 @@ EOF
         $pos = 0;
         foreach ($files as $file) {
             $media = $this->getMediaManager()->create();
-            $media->setBinaryContent($file);
+            $media->setBinaryContent(__DIR__.'/../data/files/gilles-paris/'.$file->getRelativePathname());
             $media->setEnabled(true);
             $media->setDescription('Paris');
             $media->setName(sprintf('Paris %s', $a));
@@ -1239,7 +1239,7 @@ EOF
         $pos = 0;
         foreach ($files as $file) {
             $media = $this->getMediaManager()->create();
-            $media->setBinaryContent($file);
+            $media->setBinaryContent(__DIR__.'/../data/files/hugo-paris/'.$file->getRelativePathname());
             $media->setEnabled(true);
             $media->setDescription('Paris');
             $media->setName(sprintf('Paris %s', $b));
@@ -1283,7 +1283,7 @@ EOF
         $pos = 0;
         foreach ($files as $file) {
             $media = $this->getMediaManager()->create();
-            $media->setBinaryContent($file);
+            $media->setBinaryContent(__DIR__.'/../data/files/gilles-canada/'.$file->getRelativePathname());
             $media->setEnabled(true);
             $media->setDescription('Canada');
             $media->setName('Canada');
@@ -1309,7 +1309,7 @@ EOF
         $pos = 0;
         foreach ($files as $file) {
             $media = $this->getMediaManager()->create();
-            $media->setBinaryContent($file);
+            $media->setBinaryContent(__DIR__.'/../data/files/hugo-canada/'.$file->getRelativePathname());
             $media->setEnabled(true);
             $media->setDescription('Canada');
             $media->setName('Canada');
@@ -1351,7 +1351,7 @@ EOF
         $pos = 0;
         foreach ($files as $file) {
             $media = $this->getMediaManager()->create();
-            $media->setBinaryContent($file);
+            $media->setBinaryContent(__DIR__.'/../data/files/maha-japan/'.$file->getRelativePathname());
             $media->setEnabled(true);
             $media->setDescription('Japan');
             $media->setName('Japan');

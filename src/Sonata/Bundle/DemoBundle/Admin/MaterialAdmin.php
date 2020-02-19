@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Sonata\Bundle\DemoBundle\Admin;
 
-use Sonata\AdminBundle\Admin\Admin;
+use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
@@ -22,9 +22,9 @@ use Sonata\AdminBundle\Show\ShowMapper;
 /**
  * @author Thomas Rabaix <thomas.rabaix@sonata-project.org>
  */
-class MaterialAdmin extends Admin
+final class MaterialAdmin extends AbstractAdmin
 {
-    protected function configureShowFields(ShowMapper $showMapper)
+    protected function configureShowFields(ShowMapper $showMapper): void
     {
         $showMapper
             ->add('id')
@@ -32,7 +32,7 @@ class MaterialAdmin extends Admin
         ;
     }
 
-    protected function configureListFields(ListMapper $listMapper)
+    protected function configureListFields(ListMapper $listMapper): void
     {
         $listMapper
             ->addIdentifier('id')
@@ -40,7 +40,7 @@ class MaterialAdmin extends Admin
         ;
     }
 
-    protected function configureDatagridFilters(DatagridMapper $datagridMapper)
+    protected function configureDatagridFilters(DatagridMapper $datagridMapper): void
     {
         $datagridMapper
             ->add('id')
@@ -48,7 +48,7 @@ class MaterialAdmin extends Admin
         ;
     }
 
-    protected function configureFormFields(FormMapper $formMapper)
+    protected function configureFormFields(FormMapper $formMapper): void
     {
         $formMapper
             ->add('name')

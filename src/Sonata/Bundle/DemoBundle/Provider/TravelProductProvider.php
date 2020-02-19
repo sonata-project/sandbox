@@ -15,6 +15,7 @@ namespace Sonata\Bundle\DemoBundle\Provider;
 
 use JMS\Serializer\SerializerInterface;
 use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\Bundle\DemoBundle\Controller\TravelController;
 use Sonata\ProductBundle\Model\BaseProductProvider;
 
 /**
@@ -37,9 +38,9 @@ class TravelProductProvider extends BaseProductProvider
         ]);
     }
 
-    public function getBaseControllerName()
+    public function getBaseControllerName(): string
     {
-        return 'SonataDemoBundle:Travel';
+        return TravelController::class;
     }
 
     public function buildEditForm(FormMapper $formMapper, $isVariation = false): void
@@ -57,5 +58,10 @@ class TravelProductProvider extends BaseProductProvider
         }
 
         $formMapper->end();
+    }
+
+    public function getTemplatesPath(): string
+    {
+        return '@SonataDemo\Travel';
     }
 }
