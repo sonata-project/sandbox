@@ -1,7 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -12,9 +14,9 @@
 namespace Sonata\Bundle\DemoBundle\Admin;
 
 use Sonata\AdminBundle\Admin\Admin;
-use Sonata\AdminBundle\Form\FormMapper;
-use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
+use Sonata\AdminBundle\Datagrid\ListMapper;
+use Sonata\AdminBundle\Form\FormMapper;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -22,9 +24,6 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class InspectionAdmin extends Admin
 {
-    /**
-     * {@inheritdoc}
-     */
     protected function configureDatagridFilters(DatagridMapper $filter)
     {
         $filter
@@ -33,9 +32,6 @@ class InspectionAdmin extends Admin
         ;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function configureListFields(ListMapper $list)
     {
         $list
@@ -45,36 +41,33 @@ class InspectionAdmin extends Admin
         ;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     protected function configureFormFields(FormMapper $formMapper)
     {
         if (!$this->hasParentFieldDescription()) {
-            $formMapper->add('car', null, array('constraints' => new Assert\NotNull()));
+            $formMapper->add('car', null, ['constraints' => new Assert\NotNull()]);
         }
 
-        if ($this->hasSubject() && $this->getSubject()->getStatus() == 1) {
-            $choices = array(
+        if ($this->hasSubject() && 1 === $this->getSubject()->getStatus()) {
+            $choices = [
                 1 => 'Current value is 1',
                 2 => 'switch to 2',
-            );
+            ];
         } else {
-            $choices = array(
+            $choices = [
                 2 => 'current value is 2',
                 1 => 'switch to 1',
-            );
+            ];
         }
 
-        $formMapper->add('status', 'choice', array('choices' => $choices));
+        $formMapper->add('status', 'choice', ['choices' => $choices]);
 
-        $formMapper->add('comment', 'sonata_simple_formatter_type', array(
+        $formMapper->add('comment', 'sonata_simple_formatter_type', [
             'format' => 'richhtml',
-        ));
+        ]);
 
-        $formMapper->add('date', null, array('widget' => 'single_text'));
-        $formMapper->add('inspector', 'sonata_type_model_autocomplete', array(
+        $formMapper->add('date', null, ['widget' => 'single_text']);
+        $formMapper->add('inspector', 'sonata_type_model_autocomplete', [
             'property' => 'username',
-        ));
+        ]);
     }
 }

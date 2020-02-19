@@ -1,7 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -26,7 +28,7 @@ class SonataPageUpdateCoreRouteCommandTest extends CommandTestCase
     {
         $client = self::createClient();
 
-        $site = $client->getContainer()->get('sonata.page.manager.site')->findOneBy(array());
+        $site = $client->getContainer()->get('sonata.page.manager.site')->findOneBy([]);
 
         $output = $this->runCommand($client, sprintf('sonata:page:update-core-routes --site=%s', $site->getId()));
 

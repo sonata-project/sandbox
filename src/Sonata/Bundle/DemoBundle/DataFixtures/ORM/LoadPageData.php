@@ -1,7 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -11,11 +13,11 @@
 
 namespace Sonata\Bundle\DemoBundle\DataFixtures\ORM;
 
-use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\DataFixtures\AbstractFixture;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use Sonata\PageBundle\Model\SiteInterface;
 use Sonata\PageBundle\Model\PageInterface;
+use Sonata\PageBundle\Model\SiteInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -87,7 +89,7 @@ class LoadPageData extends AbstractFixture implements ContainerAwareInterface, O
             return;
         }
 
-        if ($this->container->getParameter('sonata.fixtures.page.create_subsite') !== true) {
+        if (true !== $this->container->getParameter('sonata.fixtures.page.create_subsite')) {
             return;
         }
 
@@ -106,9 +108,6 @@ class LoadPageData extends AbstractFixture implements ContainerAwareInterface, O
         return $site;
     }
 
-    /**
-     * @param SiteInterface $site
-     */
     public function createBlogIndex(SiteInterface $site)
     {
         $pageManager = $this->getPageManager();
@@ -129,9 +128,6 @@ class LoadPageData extends AbstractFixture implements ContainerAwareInterface, O
         $pageManager->save($blogIndex);
     }
 
-    /**
-     * @param SiteInterface $site
-     */
     public function createGalleryIndex(SiteInterface $site)
     {
         $pageManager = $this->getPageManager();
@@ -152,11 +148,11 @@ class LoadPageData extends AbstractFixture implements ContainerAwareInterface, O
         $galleryIndex->setSite($site);
 
         // CREATE A HEADER BLOCK
-        $galleryIndex->addBlocks($content = $blockInteractor->createNewContainer(array(
+        $galleryIndex->addBlocks($content = $blockInteractor->createNewContainer([
             'enabled' => true,
             'page' => $galleryIndex,
             'code' => 'content_top',
-        )));
+        ]));
 
         $content->setName('The content_top container');
 
@@ -191,9 +187,6 @@ CONTENT
         $pageManager->save($galleryIndex);
     }
 
-    /**
-     * @param SiteInterface $site
-     */
     public function createTermsPage(SiteInterface $site)
     {
         $pageManager = $this->getPageManager();
@@ -214,11 +207,11 @@ CONTENT
         $terms->setSite($site);
 
         // CREATE A HEADER BLOCK
-        $terms->addBlocks($content = $blockInteractor->createNewContainer(array(
+        $terms->addBlocks($content = $blockInteractor->createNewContainer([
             'enabled' => true,
             'page' => $terms,
             'code' => 'content_top',
-        )));
+        ]));
         $content->setName('The content_top container');
 
         // add the breadcrumb
@@ -231,9 +224,6 @@ CONTENT
         $pageManager->save($terms);
     }
 
-    /**
-     * @param SiteInterface $site
-     */
     public function createHomePage(SiteInterface $site)
     {
         $pageManager = $this->getPageManager();
@@ -255,11 +245,11 @@ CONTENT
         $pageManager->save($homepage);
 
         // CREATE A HEADER BLOCK
-        $homepage->addBlocks($contentTop = $blockInteractor->createNewContainer(array(
+        $homepage->addBlocks($contentTop = $blockInteractor->createNewContainer([
             'enabled' => true,
             'page' => $homepage,
             'code' => 'content_top',
-        )));
+        ]));
 
         $contentTop->setName('The container top container');
 
@@ -287,11 +277,11 @@ CONTENT
         $text->setEnabled(true);
         $text->setPage($homepage);
 
-        $homepage->addBlocks($content = $blockInteractor->createNewContainer(array(
+        $homepage->addBlocks($content = $blockInteractor->createNewContainer([
             'enabled' => true,
             'page' => $homepage,
             'code' => 'content',
-        )));
+        ]));
         $content->setName('The content container');
         $blockManager->save($content);
 
@@ -315,21 +305,21 @@ CONTENT
         $newProductsBlock->setPage($homepage);
 
         // Add homepage bottom container
-        $homepage->addBlocks($bottom = $blockInteractor->createNewContainer(array(
+        $homepage->addBlocks($bottom = $blockInteractor->createNewContainer([
             'enabled' => true,
             'page' => $homepage,
             'code' => 'content_bottom',
-        ), function ($container) {
+        ], static function ($container) {
             $container->setSetting('layout', '{{ CONTENT }}');
         }));
         $bottom->setName('The bottom content container');
 
         // Add homepage newsletter container
-        $bottom->addChildren($bottomNewsletter = $blockInteractor->createNewContainer(array(
+        $bottom->addChildren($bottomNewsletter = $blockInteractor->createNewContainer([
             'enabled' => true,
             'page' => $homepage,
             'code' => 'bottom_newsletter',
-        ), function ($container) {
+        ], static function ($container) {
             $container->setSetting('layout', '<div class="block-newsletter col-sm-6 well">{{ CONTENT }}</div>');
         }));
         $bottomNewsletter->setName('The bottom newsetter container');
@@ -340,11 +330,11 @@ CONTENT
         $newsletter->setPage($homepage);
 
         // Add homepage embed tweet container
-        $bottom->addChildren($bottomEmbed = $blockInteractor->createNewContainer(array(
+        $bottom->addChildren($bottomEmbed = $blockInteractor->createNewContainer([
             'enabled' => true,
             'page' => $homepage,
             'code' => 'bottom_embed',
-        ), function ($container) {
+        ], static function ($container) {
             $container->setSetting('layout', '<div class="col-sm-6">{{ CONTENT }}</div>');
         }));
         $bottomEmbed->setName('The bottom embedded tweet container');
@@ -360,9 +350,6 @@ CONTENT
         $pageManager->save($homepage);
     }
 
-    /**
-     * @param SiteInterface $site
-     */
     public function createProductPage(SiteInterface $site)
     {
         $pageManager = $this->getPageManager();
@@ -384,9 +371,6 @@ CONTENT
         $pageManager->save($category);
     }
 
-    /**
-     * @param SiteInterface $site
-     */
     public function createBasketPage(SiteInterface $site)
     {
         $pageManager = $this->getPageManager();
@@ -407,9 +391,6 @@ CONTENT
         $pageManager->save($basket);
     }
 
-    /**
-     * @param SiteInterface $site
-     */
     public function createMediaPage(SiteInterface $site)
     {
         $pageManager = $this->getPageManager();
@@ -430,11 +411,11 @@ CONTENT
         $media->setParent($this->getReference('page-homepage'));
 
         // CREATE A HEADER BLOCK
-        $media->addBlocks($content = $blockInteractor->createNewContainer(array(
+        $media->addBlocks($content = $blockInteractor->createNewContainer([
             'enabled' => true,
             'page' => $media,
             'code' => 'content_top',
-        )));
+        ]));
 
         $content->setName('The content_top container');
 
@@ -448,9 +429,6 @@ CONTENT
         $pageManager->save($media);
     }
 
-    /**
-     * @param SiteInterface $site
-     */
     public function createUserPage(SiteInterface $site)
     {
         $this->createTextContentPage($site, 'user', 'Admin', <<<'CONTENT'
@@ -499,9 +477,6 @@ CONTENT
         );
     }
 
-    /**
-     * @param SiteInterface $site
-     */
     public function createApiPage(SiteInterface $site)
     {
         $this->createTextContentPage($site, 'api-landing', 'API', <<<'CONTENT'
@@ -527,9 +502,6 @@ CONTENT
         );
     }
 
-    /**
-     * @param SiteInterface $site
-     */
     public function createLegalNotesPage(SiteInterface $site)
     {
         $this->createTextContentPage($site, 'legal-notes', 'Legal notes', <<<'CONTENT'
@@ -567,8 +539,6 @@ CONTENT
 
     /**
      * Creates the "Who we are" content page (link available in footer).
-     *
-     * @param SiteInterface $site
      */
     public function createWhoWeArePage(SiteInterface $site)
     {
@@ -582,8 +552,6 @@ CONTENT
 
     /**
      * Creates the "Client testimonials" content page (link available in footer).
-     *
-     * @param SiteInterface $site
      */
     public function createClientTestimonialsPage(SiteInterface $site)
     {
@@ -597,8 +565,6 @@ CONTENT
 
     /**
      * Creates the "Press" content page (link available in footer).
-     *
-     * @param SiteInterface $site
      */
     public function createPressPage(SiteInterface $site)
     {
@@ -612,8 +578,6 @@ CONTENT
 
     /**
      * Creates the "FAQ" content page (link available in footer).
-     *
-     * @param SiteInterface $site
      */
     public function createFAQPage(SiteInterface $site)
     {
@@ -627,8 +591,6 @@ CONTENT
 
     /**
      * Creates the "Contact us" content page (link available in footer).
-     *
-     * @param SiteInterface $site
      */
     public function createContactUsPage(SiteInterface $site)
     {
@@ -913,11 +875,11 @@ CONTENT
         $page->setSite($site);
         $page->setParent($this->getReference('page-homepage'));
 
-        $page->addBlocks($block = $blockInteractor->createNewContainer(array(
+        $page->addBlocks($block = $blockInteractor->createNewContainer([
             'enabled' => true,
             'page' => $page,
             'code' => 'content_top',
-        )));
+        ]));
 
         // add the breadcrumb
         $block->addChildren($breadcrumb = $blockManager->create());
@@ -953,11 +915,11 @@ CONTENT
         $page->setRouteName('_page_internal_error_not_found');
         $page->setSite($site);
 
-        $page->addBlocks($block = $blockInteractor->createNewContainer(array(
+        $page->addBlocks($block = $blockInteractor->createNewContainer([
             'enabled' => true,
             'page' => $page,
             'code' => 'content_top',
-        )));
+        ]));
 
         // add the breadcrumb
         $block->addChildren($breadcrumb = $blockManager->create());
@@ -993,11 +955,11 @@ CONTENT
         $page->setRouteName('_page_internal_error_fatal');
         $page->setSite($site);
 
-        $page->addBlocks($block = $blockInteractor->createNewContainer(array(
+        $page->addBlocks($block = $blockInteractor->createNewContainer([
             'enabled' => true,
             'page' => $page,
             'code' => 'content_top',
-        )));
+        ]));
 
         // add the breadcrumb
         $block->addChildren($breadcrumb = $blockManager->create());
@@ -1017,9 +979,6 @@ CONTENT
         $pageManager->save($page);
     }
 
-    /**
-     * @param SiteInterface $site
-     */
     public function createGlobalPage(SiteInterface $site)
     {
         $pageManager = $this->getPageManager();
@@ -1034,11 +993,11 @@ CONTENT
         $pageManager->save($global);
 
         // CREATE A HEADER BLOCK
-        $global->addBlocks($header = $blockInteractor->createNewContainer(array(
+        $global->addBlocks($header = $blockInteractor->createNewContainer([
             'enabled' => true,
             'page' => $global,
             'code' => 'header',
-        )));
+        ]));
 
         $header->setName('The header container');
 
@@ -1050,11 +1009,11 @@ CONTENT
         $text->setEnabled(true);
         $text->setPage($global);
 
-        $global->addBlocks($headerTop = $blockInteractor->createNewContainer(array(
+        $global->addBlocks($headerTop = $blockInteractor->createNewContainer([
             'enabled' => true,
             'page' => $global,
             'code' => 'header-top',
-        ), function ($container) {
+        ], static function ($container) {
             $container->setSetting('layout', '<div class="pull-right">{{ CONTENT }}</div>');
         }));
 
@@ -1076,11 +1035,11 @@ CONTENT
         $basket->setEnabled(true);
         $basket->setPage($global);
 
-        $global->addBlocks($headerMenu = $blockInteractor->createNewContainer(array(
+        $global->addBlocks($headerMenu = $blockInteractor->createNewContainer([
             'enabled' => true,
             'page' => $global,
             'code' => 'header-menu',
-        )));
+        ]));
 
         $headerMenu->setPosition(2);
 
@@ -1097,46 +1056,46 @@ CONTENT
         $menu->setEnabled(true);
         $menu->setPage($global);
 
-        $global->addBlocks($footer = $blockInteractor->createNewContainer(array(
+        $global->addBlocks($footer = $blockInteractor->createNewContainer([
             'enabled' => true,
             'page' => $global,
             'code' => 'footer',
-        ), function ($container) {
+        ], static function ($container) {
             $container->setSetting('layout', '<div class="row page-footer well">{{ CONTENT }}</div>');
         }));
 
         $footer->setName('The footer container');
 
         // Footer : add 3 children block containers (left, center, right)
-        $footer->addChildren($footerLeft = $blockInteractor->createNewContainer(array(
+        $footer->addChildren($footerLeft = $blockInteractor->createNewContainer([
             'enabled' => true,
             'page' => $global,
             'code' => 'content',
-        ), function ($container) {
+        ], static function ($container) {
             $container->setSetting('layout', '<div class="col-sm-3">{{ CONTENT }}</div>');
         }));
 
-        $footer->addChildren($footerLinksLeft = $blockInteractor->createNewContainer(array(
+        $footer->addChildren($footerLinksLeft = $blockInteractor->createNewContainer([
             'enabled' => true,
             'page' => $global,
             'code' => 'content',
-        ), function ($container) {
+        ], static function ($container) {
             $container->setSetting('layout', '<div class="col-sm-2 col-sm-offset-3">{{ CONTENT }}</div>');
         }));
 
-        $footer->addChildren($footerLinksCenter = $blockInteractor->createNewContainer(array(
+        $footer->addChildren($footerLinksCenter = $blockInteractor->createNewContainer([
             'enabled' => true,
             'page' => $global,
             'code' => 'content',
-        ), function ($container) {
+        ], static function ($container) {
             $container->setSetting('layout', '<div class="col-sm-2">{{ CONTENT }}</div>');
         }));
 
-        $footer->addChildren($footerLinksRight = $blockInteractor->createNewContainer(array(
+        $footer->addChildren($footerLinksRight = $blockInteractor->createNewContainer([
             'enabled' => true,
             'page' => $global,
             'code' => 'content',
-        ), function ($container) {
+        ], static function ($container) {
             $container->setSetting('layout', '<div class="col-sm-2">{{ CONTENT }}</div>');
         }));
 

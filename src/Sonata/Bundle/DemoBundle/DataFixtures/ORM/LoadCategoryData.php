@@ -1,7 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -16,6 +18,7 @@ use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+
 /**
  * Category fixtures loader.
  *
@@ -46,9 +49,6 @@ class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterfac
         return $this->container->get('sonata.classification.manager.category');
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function load(ObjectManager $manager)
     {
         $defaultContext = $this->getReference('context_default');
@@ -260,9 +260,6 @@ class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterfac
         $manager->flush();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getOrder()
     {
         return 2;

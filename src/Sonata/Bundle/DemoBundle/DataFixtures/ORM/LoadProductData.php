@@ -1,7 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -11,11 +13,14 @@
 
 namespace Sonata\Bundle\DemoBundle\DataFixtures\ORM;
 
-use AppBundle\Entity\Media\GalleryHasMedia;
 use AppBundle\Entity\Commerce\Delivery;
 use AppBundle\Entity\Commerce\Package;
 use AppBundle\Entity\Commerce\ProductCategory;
 use AppBundle\Entity\Commerce\ProductCollection;
+use AppBundle\Entity\Media\GalleryHasMedia;
+use Doctrine\Common\DataFixtures\AbstractFixture;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
+use Doctrine\Common\Persistence\ObjectManager;
 use Sonata\Bundle\DemoBundle\Entity\Goodie;
 use Sonata\Bundle\DemoBundle\Entity\Travel;
 use Sonata\ClassificationBundle\Model\CategoryInterface;
@@ -26,9 +31,6 @@ use Sonata\MediaBundle\Model\MediaInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Finder\Finder;
-use Doctrine\Common\DataFixtures\AbstractFixture;
-use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
-use Doctrine\Common\Persistence\ObjectManager;
 
 /**
  * Product fixtures loader.
@@ -42,9 +44,6 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
      */
     protected $container;
 
-    /**
-     * {@inheritdoc}
-     */
     public function load(ObjectManager $manager)
     {
         $productPool = $this->getProductPool();
@@ -87,8 +86,8 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
                 $dummy->setRawShortDescription('<p>Dummy product. We use it to test our catalog capabilities.</p>');
                 $dummy->setDescriptionFormatter('richhtml');
                 $dummy->setShortDescriptionFormatter('richhtml');
-                $dummy->setPrice(rand(0, 2 * $i));
-                $dummy->setStock(rand(1, 100 * $i));
+                $dummy->setPrice(random_int(0, 2 * $i));
+                $dummy->setStock(random_int(1, 100 * $i));
                 $dummy->setVatRate(20);
                 $dummy->setEnabled(true);
                 $manager->persist($dummy);
@@ -983,12 +982,32 @@ EOF
         $manager->flush();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getOrder()
     {
         return 7;
+    }
+
+    /**
+     * Returns the Sonata MediaManager.
+     *
+     * @return \Sonata\MediaBundle\Model\MediaManagerInterface
+     */
+    public function getMediaManager()
+    {
+        return $this->container->get('sonata.media.manager.media');
+    }
+
+    /**
+     * @return \Sonata\MediaBundle\Model\GalleryManagerInterface
+     */
+    public function getGalleryManager()
+    {
+        return $this->container->get('sonata.media.manager.gallery');
+    }
+
+    public function setContainer(ContainerInterface $container = null)
+    {
+        $this->container = $container;
     }
 
     protected function getLorem()
@@ -1005,10 +1024,7 @@ EOF
     /**
      * Create a ProductCategory and adds given Product to given Category.
      *
-     * @param ProductInterface  $product
-     * @param CategoryInterface $category
-     * @param bool              $enabled
-     * @param ObjectManager     $manager
+     * @param bool $enabled
      */
     protected function addProductToCategory(ProductInterface $product, CategoryInterface $category, ObjectManager $manager, $enabled = true)
     {
@@ -1030,10 +1046,7 @@ EOF
     /**
      * Create a ProductCollection and adds given Product to given Collection.
      *
-     * @param ProductInterface    $product
-     * @param CollectionInterface $collection
-     * @param bool                $enabled
-     * @param ObjectManager       $manager
+     * @param bool $enabled
      */
     protected function addProductToCollection(ProductInterface $product, CollectionInterface $collection, ObjectManager $manager, $enabled = true)
     {
@@ -1050,9 +1063,6 @@ EOF
 
     /**
      * Create and add deliveries for a given Product.
-     *
-     * @param ProductInterface $product
-     * @param ObjectManager    $manager
      */
     protected function addProductDeliveries(ProductInterface $product, ObjectManager $manager)
     {
@@ -1078,7 +1088,7 @@ EOF
         $delivery->setCountryCode('FR');
         $delivery->setCode('chronopost');
         $delivery->setEnabled(true);
-        $delivery->setPerItem(rand(15, 30));
+        $delivery->setPerItem(random_int(15, 30));
         $delivery->setProduct($product);
         $product->addDelivery($delivery);
         $manager->persist($delivery);
@@ -1087,7 +1097,7 @@ EOF
         $delivery->setCountryCode('GB');
         $delivery->setCode('ups');
         $delivery->setEnabled(true);
-        $delivery->setPerItem(rand(15, 30));
+        $delivery->setPerItem(random_int(15, 30));
         $delivery->setProduct($product);
         $product->addDelivery($delivery);
         $manager->persist($delivery);
@@ -1139,8 +1149,6 @@ EOF
 
     /**
      * Returns Switzerland gallery from a specified directory.
-     *
-     * @param ProductInterface $product
      */
     protected function addSwitzerlandGallery(ProductInterface $product)
     {
@@ -1183,8 +1191,6 @@ EOF
 
     /**
      * Returns Paris gallery from a specified directory.
-     *
-     * @param ProductInterface $product
      */
     protected function addParisGallery(ProductInterface $product)
     {
@@ -1261,8 +1267,6 @@ EOF
 
     /**
      * Returns Canada gallery from a specified directory.
-     *
-     * @param ProductInterface $product
      */
     protected function addCanadaGallery(ProductInterface $product)
     {
@@ -1331,8 +1335,6 @@ EOF
 
     /**
      * Returns Japan gallery from a specified directory.
-     *
-     * @param ProductInterface $product
      */
     protected function addJapanGallery(ProductInterface $product)
     {
@@ -1374,8 +1376,6 @@ EOF
     }
 
     /**
-     * @param ProductInterface $product
-     *
      * @return object|\Sonata\MediaBundle\Model\MediaInterface
      */
     protected function getGalleryForProduct(ProductInterface $product)
@@ -1402,33 +1402,25 @@ EOF
         return $gallery;
     }
 
-    /**
-     * @param MediaInterface   $media
-     * @param GalleryInterface $gallery
-     */
     protected function addMediaToGallery(MediaInterface $media, GalleryInterface $gallery)
     {
         $galleryHasMedia = new GalleryHasMedia();
         $galleryHasMedia->setMedia($media);
-        $galleryHasMedia->setPosition(count($gallery->getGalleryHasMedias()) + 1);
+        $galleryHasMedia->setPosition(\count($gallery->getGalleryHasMedias()) + 1);
         $galleryHasMedia->setEnabled(true);
 
         $gallery->addGalleryHasMedias($galleryHasMedia);
     }
 
-    /**
-     * @param ProductInterface $product
-     * @param ObjectManager    $manager
-     */
     protected function addPackageToProduct(ProductInterface $product, ObjectManager $manager)
     {
         $package = new Package();
 
         $package->setProduct($product);
-        $package->setWidth(rand(1, 50));
-        $package->setHeight(rand(1, 50));
-        $package->setLength(rand(1, 50));
-        $package->setWeight(rand(1, 50));
+        $package->setWidth(random_int(1, 50));
+        $package->setHeight(random_int(1, 50));
+        $package->setLength(random_int(1, 50));
+        $package->setWeight(random_int(1, 50));
         $package->setEnabled(true);
         $package->setCreatedAt(new \DateTime());
         $package->setUpdatedAt(new \DateTime());
@@ -1539,16 +1531,6 @@ EOF
     }
 
     /**
-     * Returns the Sonata MediaManager.
-     *
-     * @return \Sonata\MediaBundle\Model\MediaManagerInterface
-     */
-    public function getMediaManager()
-    {
-        return $this->container->get('sonata.media.manager.media');
-    }
-
-    /**
      * Return the Product Pool.
      *
      * @return \Sonata\Component\Product\Pool
@@ -1556,22 +1538,6 @@ EOF
     protected function getProductPool()
     {
         return $this->container->get('sonata.product.pool');
-    }
-
-    /**
-     * @return \Sonata\MediaBundle\Model\GalleryManagerInterface
-     */
-    public function getGalleryManager()
-    {
-        return $this->container->get('sonata.media.manager.gallery');
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setContainer(ContainerInterface $container = null)
-    {
-        $this->container = $container;
     }
 
     /**

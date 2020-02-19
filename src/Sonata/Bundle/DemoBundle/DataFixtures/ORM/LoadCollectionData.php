@@ -1,7 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -19,7 +21,6 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Class LoadCollectionData.
- *
  *
  * @author  Hugo Briand <briand@ekino.com>
  */
@@ -48,9 +49,6 @@ class LoadCollectionData extends AbstractFixture implements OrderedFixtureInterf
         return $this->container->get('sonata.classification.manager.collection');
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function load(ObjectManager $manager)
     {
         $productContext = $this->getReference('context_product_catalog');
@@ -91,9 +89,6 @@ class LoadCollectionData extends AbstractFixture implements OrderedFixtureInterf
         $manager->flush();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getOrder()
     {
         return 4;

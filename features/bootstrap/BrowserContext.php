@@ -1,9 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 /*
- * This file is part of the Sonata project.
+ * This file is part of the Sonata Project package.
  *
- * (c) Sonata Project <https://github.com/sonata-project/SonataClassificationBundle/>
+ * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -13,7 +15,7 @@ use Behat\Mink\Exception\ExpectationException;
 use Behat\MinkExtension\Context\MinkContext;
 
 /**
- * This context is intended for Browser interactions
+ * This context is intended for Browser interactions.
  */
 class BrowserContext extends MinkContext
 {
@@ -42,7 +44,7 @@ class BrowserContext extends MinkContext
     }
 
     /**
-     * First, force logout, then go to the login page, fill the informations and finally go to requested page
+     * First, force logout, then go to the login page, fill the informations and finally go to requested page.
      *
      * @Given /^I am connected with "([^"]*)" and "([^"]*)" on "([^"]*)"$/
      *
@@ -99,7 +101,7 @@ class BrowserContext extends MinkContext
     }
 
     /**
-     * Follow the first link found nested in a section selected with "class"
+     * Follow the first link found nested in a section selected with "class".
      *
      * @Given /^I follow the first link of section "([^"]*)"$/
      *
@@ -119,7 +121,7 @@ class BrowserContext extends MinkContext
     }
 
     /**
-     * Follow the first link found in the first li element found nested in a section selected with "class"
+     * Follow the first link found in the first li element found nested in a section selected with "class".
      *
      * @Given /^I follow the first listed link of section "([^"]*)"$/
      *
@@ -139,7 +141,7 @@ class BrowserContext extends MinkContext
     }
 
     /**
-     * Follow the last link found in the table element found nested in a section selected with "class"
+     * Follow the last link found in the table element found nested in a section selected with "class".
      *
      * @Given /^I follow the last listed link of section "([^"]*)"$/
      *
@@ -159,7 +161,7 @@ class BrowserContext extends MinkContext
     }
 
     /**
-     * Check the statuses of first order in array
+     * Check the statuses of first order in array.
      *
      * @Given /^I should see the first order of "([^"]*)" with statuses "([^"]*)", "([^"]*)", "([^"]*)"$/
      *
@@ -176,13 +178,13 @@ class BrowserContext extends MinkContext
             'xpath', sprintf("//table[@id='%s']/tr[2]", $orderTableClass)
         );
 
-        if (false === strpos($tableRow->getText(), sprintf("%s %s %s", $orderStatus, $paymentStatus, $deliveryStatus))) {
+        if (false === strpos($tableRow->getText(), sprintf('%s %s %s', $orderStatus, $paymentStatus, $deliveryStatus))) {
             throw new ExpectationException(sprintf('First order doesn\'t contain statuses %s %s and %s', $orderStatus, $paymentStatus, $deliveryStatus), $this->getSession());
         }
     }
 
     /**
-     * Follow first order link
+     * Follow first order link.
      *
      * @Given /^I follow first order of "([^"]*)"$/
      *

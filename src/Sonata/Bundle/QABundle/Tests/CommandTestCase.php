@@ -1,7 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -11,11 +13,11 @@
 
 namespace Sonata\Bundle\QABundle\Tests;
 
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Symfony\Bundle\FrameworkBundle\Client;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
+use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\Console\Input\StringInput;
 use Symfony\Component\Console\Output\StreamOutput;
-use Symfony\Bundle\FrameworkBundle\Client;
 
 /**
  * Base class for testing the CLI tools.
@@ -45,7 +47,7 @@ abstract class CommandTestCase extends WebTestCase
         }
         fclose($fp);
 
-        if ($exceptionOnExitCode && $return !== 0) {
+        if ($exceptionOnExitCode && 0 !== $return) {
             throw new \RuntimeException(sprintf('Return code is not 0: %s', $output));
         }
 
@@ -53,8 +55,6 @@ abstract class CommandTestCase extends WebTestCase
     }
 
     /**
-     * @param Client $client
-     *
      * @return string
      */
     public function getConsoleLocation(Client $client)
@@ -69,35 +69,35 @@ abstract class CommandTestCase extends WebTestCase
      */
     public static function getAdminList()
     {
-        return array(
-            array('sonata.user.admin.user',                   'AppBundle\\Entity\\User\\User'),
-            array('sonata.user.admin.group',                  'AppBundle\\Entity\\User\\Group'),
-            array('sonata.page.admin.page',                   'AppBundle\\Entity\\Page\\Page'),
-            array('sonata.page.admin.block',                  'AppBundle\\Entity\\Page\\Block'),
-            array('sonata.page.admin.snapshot',               'AppBundle\\Entity\\Page\\Snapshot'),
-            array('sonata.page.admin.site',                   'AppBundle\\Entity\\Page\\Site'),
-            array('sonata.news.admin.post',                   'AppBundle\\Entity\\News\\Post'),
-            array('sonata.news.admin.comment',                'AppBundle\\Entity\\News\\Comment'),
-            array('sonata.classification.admin.category',     'AppBundle\\Entity\\Classification\\Category'),
-            array('sonata.classification.admin.tag',          'AppBundle\\Entity\\Classification\\Tag'),
-            array('sonata.classification.admin.collection',   'AppBundle\\Entity\\Classification\\Collection'),
-            array('sonata.classification.admin.context',      'AppBundle\\Entity\\Classification\\Context'),
-            array('sonata.media.admin.media',                 'AppBundle\\Entity\\Media\\Media'),
-            array('sonata.media.admin.gallery',               'AppBundle\\Entity\\Media\\Gallery'),
-            array('sonata.media.admin.gallery_has_media',     'AppBundle\\Entity\\Media\\GalleryHasMedia'),
-            array('sonata.notification.admin.message',        'AppBundle\\Entity\\Notification\\Message'),
-            array('sonata.demo.admin.car',                    'Sonata\\Bundle\\DemoBundle\\Entity\\Car'),
-            array('sonata.demo.admin.engine',                 'Sonata\\Bundle\\DemoBundle\\Entity\\Engine'),
-            array('sonata.customer.admin.customer',           'AppBundle\\Entity\\Commerce\\Customer'),
-            array('sonata.customer.admin.address',            'AppBundle\\Entity\\Commerce\\Address'),
-            array('sonata.invoice.admin.invoice',             'AppBundle\\Entity\\Commerce\\Invoice'),
-            array('sonata.order.admin.order',                 'AppBundle\\Entity\\Commerce\\Order'),
-            array('sonata.order.admin.order_element',         'AppBundle\\Entity\\Commerce\\OrderElement'),
-            array('sonata.product.admin.product',             'AppBundle\\Entity\\Commerce\\Product'),
-            array('sonata.product.admin.product.category',    'AppBundle\\Entity\\Commerce\\ProductCategory'),
-            array('sonata.product.admin.product.collection',  'AppBundle\\Entity\\Commerce\\ProductCollection'),
-            array('sonata.product.admin.delivery',            'AppBundle\\Entity\\Commerce\\Delivery'),
-        );
+        return [
+            ['sonata.user.admin.user',                   'AppBundle\\Entity\\User\\User'],
+            ['sonata.user.admin.group',                  'AppBundle\\Entity\\User\\Group'],
+            ['sonata.page.admin.page',                   'AppBundle\\Entity\\Page\\Page'],
+            ['sonata.page.admin.block',                  'AppBundle\\Entity\\Page\\Block'],
+            ['sonata.page.admin.snapshot',               'AppBundle\\Entity\\Page\\Snapshot'],
+            ['sonata.page.admin.site',                   'AppBundle\\Entity\\Page\\Site'],
+            ['sonata.news.admin.post',                   'AppBundle\\Entity\\News\\Post'],
+            ['sonata.news.admin.comment',                'AppBundle\\Entity\\News\\Comment'],
+            ['sonata.classification.admin.category',     'AppBundle\\Entity\\Classification\\Category'],
+            ['sonata.classification.admin.tag',          'AppBundle\\Entity\\Classification\\Tag'],
+            ['sonata.classification.admin.collection',   'AppBundle\\Entity\\Classification\\Collection'],
+            ['sonata.classification.admin.context',      'AppBundle\\Entity\\Classification\\Context'],
+            ['sonata.media.admin.media',                 'AppBundle\\Entity\\Media\\Media'],
+            ['sonata.media.admin.gallery',               'AppBundle\\Entity\\Media\\Gallery'],
+            ['sonata.media.admin.gallery_has_media',     'AppBundle\\Entity\\Media\\GalleryHasMedia'],
+            ['sonata.notification.admin.message',        'AppBundle\\Entity\\Notification\\Message'],
+            ['sonata.demo.admin.car',                    'Sonata\\Bundle\\DemoBundle\\Entity\\Car'],
+            ['sonata.demo.admin.engine',                 'Sonata\\Bundle\\DemoBundle\\Entity\\Engine'],
+            ['sonata.customer.admin.customer',           'AppBundle\\Entity\\Commerce\\Customer'],
+            ['sonata.customer.admin.address',            'AppBundle\\Entity\\Commerce\\Address'],
+            ['sonata.invoice.admin.invoice',             'AppBundle\\Entity\\Commerce\\Invoice'],
+            ['sonata.order.admin.order',                 'AppBundle\\Entity\\Commerce\\Order'],
+            ['sonata.order.admin.order_element',         'AppBundle\\Entity\\Commerce\\OrderElement'],
+            ['sonata.product.admin.product',             'AppBundle\\Entity\\Commerce\\Product'],
+            ['sonata.product.admin.product.category',    'AppBundle\\Entity\\Commerce\\ProductCategory'],
+            ['sonata.product.admin.product.collection',  'AppBundle\\Entity\\Commerce\\ProductCollection'],
+            ['sonata.product.admin.delivery',            'AppBundle\\Entity\\Commerce\\Delivery'],
+        ];
     }
 
     /**
@@ -107,13 +107,13 @@ abstract class CommandTestCase extends WebTestCase
      */
     public static function getCacheList()
     {
-        return array(
-            array('sonata.page.cache.esi', '{}'),
-            array('sonata.page.cache.ssi', '{}'),
-            array('sonata.page.cache.js_sync', '{}'),
-            array('sonata.page.cache.js_async', '{}'),
-            array('sonata.cache.noop', '{}'),
-        );
+        return [
+            ['sonata.page.cache.esi', '{}'],
+            ['sonata.page.cache.ssi', '{}'],
+            ['sonata.page.cache.js_sync', '{}'],
+            ['sonata.page.cache.js_async', '{}'],
+            ['sonata.cache.noop', '{}'],
+        ];
     }
 
     /**
@@ -123,30 +123,30 @@ abstract class CommandTestCase extends WebTestCase
      */
     public static function getBlockList()
     {
-        return array(
-            array('sonata.page.block.container'),
-            array('sonata.page.block.children_pages'),
-            array('sonata.media.block.media'),
-            array('sonata.media.block.feature_media'),
-            array('sonata.media.block.gallery'),
-            array('sonata.admin.block.admin_list'),
-            array('sonata.admin_doctrine_orm.block.audit'),
-            array('sonata.formatter.block.formatter'),
-            array('sonata.block.service.empty'),
-            array('sonata.block.service.text'),
-            array('sonata.block.service.rss'),
-            array('sonata.block.service.menu'),
-            array('sonata.timeline.block.timeline'),
-            array('sonata.customer.block.recent_customers'),
-            array('sonata.basket.block.nb_items'),
-            array('sonata.news.block.recent_posts'),
-            array('sonata.news.block.recent_comments'),
-            array('sonata.user.block.menu'),
-            array('sonata.user.block.account'),
-            array('sonata.basket.block.nb_items'),
-            array('sonata.order.block.recent_orders'),
-            array('sonata.product.block.recent_products'),
-        );
+        return [
+            ['sonata.page.block.container'],
+            ['sonata.page.block.children_pages'],
+            ['sonata.media.block.media'],
+            ['sonata.media.block.feature_media'],
+            ['sonata.media.block.gallery'],
+            ['sonata.admin.block.admin_list'],
+            ['sonata.admin_doctrine_orm.block.audit'],
+            ['sonata.formatter.block.formatter'],
+            ['sonata.block.service.empty'],
+            ['sonata.block.service.text'],
+            ['sonata.block.service.rss'],
+            ['sonata.block.service.menu'],
+            ['sonata.timeline.block.timeline'],
+            ['sonata.customer.block.recent_customers'],
+            ['sonata.basket.block.nb_items'],
+            ['sonata.news.block.recent_posts'],
+            ['sonata.news.block.recent_comments'],
+            ['sonata.user.block.menu'],
+            ['sonata.user.block.account'],
+            ['sonata.basket.block.nb_items'],
+            ['sonata.order.block.recent_orders'],
+            ['sonata.product.block.recent_products'],
+        ];
     }
 
     /**
@@ -156,13 +156,13 @@ abstract class CommandTestCase extends WebTestCase
      */
     public static function getMediaList()
     {
-        return array(
-            array('sonata.media.provider.image'),
-            array('sonata.media.provider.file'),
-            array('sonata.media.provider.youtube'),
-            array('sonata.media.provider.dailymotion'),
-            array('sonata.media.provider.vimeo'),
-        );
+        return [
+            ['sonata.media.provider.image'],
+            ['sonata.media.provider.file'],
+            ['sonata.media.provider.youtube'],
+            ['sonata.media.provider.dailymotion'],
+            ['sonata.media.provider.vimeo'],
+        ];
     }
 
     /**
@@ -172,14 +172,14 @@ abstract class CommandTestCase extends WebTestCase
      */
     public static function getConsumerList()
     {
-        return array(
-            array('sonata.page.create_snapshots', 'sonata.page.notification.create_snapshots'),
-            array('sonata.page.create_snapshot', 'sonata.page.notification.create_snapshot'),
-            array('sonata.page.cleanup_snapshots', 'sonata.page.notification.cleanup_snapshots'),
-            array('sonata.page.cleanup_snapshot', 'sonata.page.notification.cleanup_snapshot'),
-            array('sonata.media.create_thumbnail', 'sonata.media.notification.create_thumbnail'),
-            array('mailer', 'sonata.notification.consumer.swift_mailer'),
-            array('logger', 'sonata.notification.consumer.logger'),
-        );
+        return [
+            ['sonata.page.create_snapshots', 'sonata.page.notification.create_snapshots'],
+            ['sonata.page.create_snapshot', 'sonata.page.notification.create_snapshot'],
+            ['sonata.page.cleanup_snapshots', 'sonata.page.notification.cleanup_snapshots'],
+            ['sonata.page.cleanup_snapshot', 'sonata.page.notification.cleanup_snapshot'],
+            ['sonata.media.create_thumbnail', 'sonata.media.notification.create_thumbnail'],
+            ['mailer', 'sonata.notification.consumer.swift_mailer'],
+            ['logger', 'sonata.notification.consumer.logger'],
+        ];
     }
 }

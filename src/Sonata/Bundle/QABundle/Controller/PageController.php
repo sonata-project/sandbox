@@ -1,7 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 /*
- * This file is part of the Sonata project.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -26,9 +28,9 @@ class PageController extends Controller
      */
     public function controllerHelperAction()
     {
-        return $this->render('SonataQABundle:Page:controllerHelper.html.twig', array(
+        return $this->render('SonataQABundle:Page:controllerHelper.html.twig', [
             'site' => $this->get('sonata.page.site.selector')->retrieve(),
-        ));
+        ]);
     }
 
     /**

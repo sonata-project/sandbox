@@ -1,6 +1,9 @@
 <?php
+
+declare(strict_types=1);
+
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -11,10 +14,10 @@
 namespace Sonata\Bundle\DemoBundle\Block;
 
 use Sonata\AdminBundle\Form\FormMapper;
-use Sonata\CoreBundle\Validator\ErrorElement;
 use Sonata\BlockBundle\Block\BaseBlockService;
 use Sonata\BlockBundle\Block\BlockContextInterface;
 use Sonata\BlockBundle\Model\BlockInterface;
+use Sonata\CoreBundle\Validator\ErrorElement;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormInterface;
@@ -50,47 +53,32 @@ class NewsletterBlockService extends BaseBlockService
         $this->form = $formFactory->create($formType);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function execute(BlockContextInterface $blockContext, Response $response = null)
     {
-        return $this->renderPrivateResponse($blockContext->getTemplate(), array(
+        return $this->renderPrivateResponse($blockContext->getTemplate(), [
             'block' => $blockContext->getBlock(),
             'context' => $blockContext,
             'form' => $this->form->createView(),
-        ));
+        ]);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function buildEditForm(FormMapper $form, BlockInterface $block)
     {
         // no options available
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function validateBlock(ErrorElement $errorElement, BlockInterface $block)
     {
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function configureSettings(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'template' => 'SonataDemoBundle:Block:newsletter.html.twig',
             'ttl' => 0,
-        ));
+        ]);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getName()
     {
         return 'Newsletter Block (fake)';

@@ -1,7 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 /*
- * This file is part of the Sonata project.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -32,6 +34,14 @@ class Material
     protected $name;
 
     /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return  $this->getName() ?: 'n/a';
+    }
+
+    /**
      * @return mixed
      */
     public function getId()
@@ -53,13 +63,5 @@ class Material
     public function getName()
     {
         return $this->name;
-    }
-
-    /**
-     * @return string
-     */
-    public function __toString()
-    {
-        return  $this->getName() ?: 'n/a';
     }
 }

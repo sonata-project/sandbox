@@ -1,7 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 /*
- * This file is part of the Sonata project.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -11,26 +13,23 @@
 
 namespace Sonata\Bundle\DemoBundle\Form\Extension;
 
-use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\AbstractTypeExtension;
-use Symfony\Component\OptionsResolver\OptionsResolver;
 use Sonata\Bundle\DemoBundle\Form\DataTransformer\EngineChoiceTransformer;
+use Symfony\Component\Form\AbstractTypeExtension;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class RescueEngineTypeExtension extends AbstractTypeExtension
 {
-    /**
-     * {@inheritdoc}
-     */
     public function buildForm(FormBuilderInterface $formBuilder, array $options)
     {
-        if (count($options['rescue_engines']) == 0) {
+        if (0 === \count($options['rescue_engines'])) {
             return;
         }
 
-        $rescueEngine = $formBuilder->create('rescueEngine', 'choice', array(
+        $rescueEngine = $formBuilder->create('rescueEngine', 'choice', [
             'data_class' => 'Sonata\Bundle\DemoBundle\Entity\Engine',
             'choices' => $this->getRescueEngines($options['rescue_engines']),
-        ));
+        ]);
 
         $rescueEngine->resetViewTransformers();
         $rescueEngine->addViewTransformer(new EngineChoiceTransformer($options['rescue_engines']));
@@ -38,31 +37,22 @@ class RescueEngineTypeExtension extends AbstractTypeExtension
         $formBuilder->add($rescueEngine);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getExtendedType()
     {
         return 'sonata_demo_form_type_car';
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
-            'rescue_engines' => array(),
+        $resolver->setDefaults([
+            'rescue_engines' => [],
             'data_class' => 'Sonata\Bundle\DemoBundle\Entity\Engine',
-        ));
+        ]);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     private function getRescueEngines(array $rescueEngines)
     {
-        $choices = array();
+        $choices = [];
 
         foreach ($rescueEngines as $pos => $engine) {
             $choices[$pos] = sprintf('%s - %s', $engine->getName(), $engine->getPower());

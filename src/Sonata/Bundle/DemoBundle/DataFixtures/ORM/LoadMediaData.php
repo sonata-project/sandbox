@@ -1,7 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -11,11 +13,11 @@
 
 namespace Sonata\Bundle\DemoBundle\DataFixtures\ORM;
 
+use Doctrine\Common\DataFixtures\AbstractFixture;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
+use Doctrine\Common\Persistence\ObjectManager;
 use Sonata\MediaBundle\Model\GalleryInterface;
 use Sonata\MediaBundle\Model\MediaInterface;
-use Doctrine\Common\Persistence\ObjectManager;
-use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
-use Doctrine\Common\DataFixtures\AbstractFixture;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Finder\Finder;
@@ -107,15 +109,11 @@ class LoadMediaData extends AbstractFixture implements ContainerAwareInterface, 
         $this->addReference('media-gallery', $gallery);
     }
 
-    /**
-     * @param \Sonata\MediaBundle\Model\GalleryInterface $gallery
-     * @param \Sonata\MediaBundle\Model\MediaInterface   $media
-     */
     public function addMedia(GalleryInterface $gallery, MediaInterface $media)
     {
         $galleryHasMedia = new \AppBundle\Entity\Media\GalleryHasMedia();
         $galleryHasMedia->setMedia($media);
-        $galleryHasMedia->setPosition(count($gallery->getGalleryHasMedias()) + 1);
+        $galleryHasMedia->setPosition(\count($gallery->getGalleryHasMedias()) + 1);
         $galleryHasMedia->setEnabled(true);
 
         $gallery->addGalleryHasMedias($galleryHasMedia);

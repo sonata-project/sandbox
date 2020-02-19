@@ -1,5 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
+/*
+ * This file is part of the Sonata Project package.
+ *
+ * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 use Behat\Behat\Event\ScenarioEvent;
 
 if (!class_exists('CiHelper')) {
@@ -20,9 +31,9 @@ if (!class_exists('CiHelper')) {
          */
         public static function getClient()
         {
-            $client = stream_socket_client("tcp://localhost:6666", $errno, $errorMessage);
+            $client = stream_socket_client('tcp://localhost:6666', $errno, $errorMessage);
 
-            if ($client === false) {
+            if (false === $client) {
                 throw new UnexpectedValueException("Failed to connect: $errorMessage");
             }
 
@@ -36,17 +47,17 @@ if (!class_exists('CiHelper')) {
          */
         public static function state($value = null)
         {
-            $stateFile = sprintf("/tmp/sonata_behat_test_%s.state", getmygid());
+            $stateFile = sprintf('/tmp/sonata_behat_test_%s.state', getmygid());
 
             if (!is_file($stateFile)) {
-                file_put_contents($stateFile, "0");
+                file_put_contents($stateFile, '0');
             }
 
-            if ($value === null) {
-                return file_get_contents($stateFile) === "0" ? false : true;
+            if (null === $value) {
+                return '0' === file_get_contents($stateFile) ? false : true;
             }
 
-            file_put_contents($stateFile, $value === true ? "1" : "0");
+            file_put_contents($stateFile, true === $value ? '1' : '0');
         }
 
         public static function StopDB($containerId)
@@ -61,8 +72,8 @@ if (!class_exists('CiHelper')) {
                 return;
             }
 
-    //        echo "\033[36m >  " . strtr("Stopping the DB instance ...", array("\n" => "\n >  ")) . "\033[0m\n";
-            fwrite($client, sprintf("STOP %s", $containerId));
+            //        echo "\033[36m >  " . strtr("Stopping the DB instance ...", array("\n" => "\n >  ")) . "\033[0m\n";
+            fwrite($client, sprintf('STOP %s', $containerId));
             fread($client, 3); // ACK
             fclose($client);
 
@@ -77,8 +88,8 @@ if (!class_exists('CiHelper')) {
                 return;
             }
 
-    //        echo "\033[36m >  " . strtr("Starting the DB instance ...", array("\n" => "\n >  ")) . "\033[0m\n";
-            fwrite($client, "START");
+            //        echo "\033[36m >  " . strtr("Starting the DB instance ...", array("\n" => "\n >  ")) . "\033[0m\n";
+            fwrite($client, 'START');
             $data = fread($client, 68); // ACK
             fclose($client);
 
@@ -90,19 +101,18 @@ if (!class_exists('CiHelper')) {
             return $containerId;
         }
 
-
         public static function run($event)
         {
             if (!self::isInternalCI()) {
                 return;
             }
 
-            if ($event instanceof ScenarioEvent && in_array("keep", $event->getScenario()->getOwnTags())) {
-                if (self::state() === false) {
+            if ($event instanceof ScenarioEvent && in_array('keep', $event->getScenario()->getOwnTags(), true)) {
+                if (false === self::state()) {
                     self::StartDB();
                 }
 
-    //            echo "\033[36m >  " . strtr("Keeping the DB instance ...", array("\n" => "\n >  ")) . "\033[0m\n";
+                //            echo "\033[36m >  " . strtr("Keeping the DB instance ...", array("\n" => "\n >  ")) . "\033[0m\n";
                 return;
             }
 

@@ -1,7 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 /*
- * This file is part of the Sonata project.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -18,10 +20,10 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 class SonataDemoBundle extends Bundle
 {
-    public function build (ContainerBuilder $container)
+    public function build(ContainerBuilder $container)
     {
         FormHelper::registerFormTypeMapping([
-            'sonata_demo_form_type_newsletter' => NewsletterType::class
+            'sonata_demo_form_type_newsletter' => NewsletterType::class,
         ]);
     }
 }

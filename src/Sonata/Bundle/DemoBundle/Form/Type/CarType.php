@@ -1,7 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 /*
- * This file is part of the Sonata project.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -17,36 +19,27 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class CarType extends AbstractType
 {
-    /**
-     * {@inheritdoc}
-     */
     public function buildForm(FormBuilderInterface $formBuilder, array $options)
     {
         $formBuilder
             ->add('createdAt', 'datetime')
             ->add('name')
-            ->add('engine', 'sonata_demo_form_type_engine', array(
+            ->add('engine', 'sonata_demo_form_type_engine', [
                 'data_class' => 'Sonata\Bundle\DemoBundle\Entity\Engine',
-            ))
+            ])
         ;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getName()
     {
         return 'sonata_demo_form_type_car';
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'data_class' => 'Sonata\Bundle\DemoBundle\Entity\Car',
-            'rescue_engines' => array(),
-        ));
+            'rescue_engines' => [],
+        ]);
     }
 }
