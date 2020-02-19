@@ -1,7 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 /*
- * This file is part of the Sonata project.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -86,6 +88,14 @@ abstract class Car
     }
 
     /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->getName() ?: 'n/a';
+    }
+
+    /**
      * @return int
      */
     public function getId()
@@ -93,9 +103,6 @@ abstract class Car
         return $this->id;
     }
 
-    /**
-     * @param \DateTime $createdAt
-     */
     public function setCreatedAt(\DateTime $createdAt)
     {
         $this->createdAt = $createdAt;
@@ -109,9 +116,6 @@ abstract class Car
         return $this->createdAt;
     }
 
-    /**
-     * @param Engine $engine
-     */
     public function setEngine(Engine $engine)
     {
         $this->engine = $engine;
@@ -141,9 +145,6 @@ abstract class Car
         return $this->name;
     }
 
-    /**
-     * @param Engine $rescueEngine
-     */
     public function setRescueEngine(Engine $rescueEngine)
     {
         $this->rescueEngine = $rescueEngine;
@@ -193,9 +194,6 @@ abstract class Car
         return $this->inspections;
     }
 
-    /**
-     * @param Inspection $inspection
-     */
     public function addInspection(Inspection $inspection)
     {
         $inspection->setCar($this);
@@ -225,13 +223,5 @@ abstract class Car
     public function setMedia(MediaInterface $media = null)
     {
         $this->media = $media;
-    }
-
-    /**
-     * @return string
-     */
-    public function __toString()
-    {
-        return $this->getName() ?: 'n/a';
     }
 }

@@ -1,7 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 /*
- * This file is part of the Sonata project.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -16,9 +18,6 @@ use Symfony\Component\Form\FormBuilderInterface;
 
 class EngineType extends AbstractType
 {
-    /**
-     * {@inheritdoc}
-     */
     public function buildForm(FormBuilderInterface $formBuilder, array $options)
     {
         $formBuilder
@@ -27,9 +26,6 @@ class EngineType extends AbstractType
         ;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getName()
     {
         return 'sonata_demo_form_type_engine';

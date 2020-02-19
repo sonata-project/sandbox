@@ -1,8 +1,9 @@
 <?php
 
+declare(strict_types=1);
 
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -14,32 +15,31 @@ if (!is_file('composer.json')) {
     throw new \RuntimeException('Can\'t find a composer.json file. Make sure to start this script from the project root folder');
 }
 
-$checks = array();
+$checks = [];
 if (extension_loaded('gd')) {
-    $checks[] = array('OK', 'gd is installed');
+    $checks[] = ['OK', 'gd is installed'];
 
     $info = gd_info();
 
     if ($info['JPEG Support']) {
-        $checks[] = array('OK', 'gd with jpg support is installed');
+        $checks[] = ['OK', 'gd with jpg support is installed'];
     } else {
-        $checks[] = array('KO', 'missing gd with jpg support');
+        $checks[] = ['KO', 'missing gd with jpg support'];
     }
 
     if ($info['PNG Support']) {
-        $checks[] = array('OK', 'gd with png support is installed');
+        $checks[] = ['OK', 'gd with png support is installed'];
     } else {
-        $checks[] = array('KO', 'missing png with jpg support');
+        $checks[] = ['KO', 'missing png with jpg support'];
     }
 } else {
-    $checks[] = array('KO', 'gd is not installed');
+    $checks[] = ['KO', 'gd is not installed'];
 }
 
-
 if (class_exists('Locale')) {
-    $checks[] = array('OK', "php-intl extension is installed");
+    $checks[] = ['OK', 'php-intl extension is installed'];
 } else {
-    $checks[] = array('KO', "Missing php-intl extension");
+    $checks[] = ['KO', 'Missing php-intl extension'];
 }
 
 if (is_file('app/check.php')) {
@@ -52,53 +52,52 @@ if (is_file('app/check.php')) {
 
     exec(sprintf('%s app/check.php', $bin), $output, $exit);
 
-    if ($exit === 1) {
-        $checks[] = array('KO', "Failed to valid Symfony2's requirements!");
+    if (1 === $exit) {
+        $checks[] = ['KO', "Failed to valid Symfony2's requirements!"];
 
         foreach ($output as $line) {
-            $checks[] = array(' ->', $line );
+            $checks[] = [' ->', $line];
         }
-
     } else {
-        $checks[] = array('OK', "Successfully valid Symfony2's requirements");
+        $checks[] = ['OK', "Successfully valid Symfony2's requirements"];
     }
 }
 
 if (!function_exists('mb_strlen')) {
-    $checks[] = array('KO', "Install and enable the <strong>mbstring</strong> extension.");
+    $checks[] = ['KO', 'Install and enable the <strong>mbstring</strong> extension.'];
 } else {
-    $checks[] = array('OK', 'mb_strlen() is available');
+    $checks[] = ['OK', 'mb_strlen() is available'];
 }
 
 if (!class_exists('PDO')) {
-    $checks[] = array('KO', 'PDO must be installed');
+    $checks[] = ['KO', 'PDO must be installed'];
 } else {
-    $checks[] = array('OK', "PDO is available");
+    $checks[] = ['OK', 'PDO is available'];
 
     $drivers = PDO::getAvailableDrivers();
 
-    if (!in_array("mysql", $drivers)) {
-        $checks[] = array('KO', "PDO mysql is not available");
+    if (!in_array('mysql', $drivers, true)) {
+        $checks[] = ['KO', 'PDO mysql is not available'];
     } else {
-        $checks[] = array('OK', "PDO mysql is available");
+        $checks[] = ['OK', 'PDO mysql is available'];
     }
 }
 
 if (!function_exists('bcscale')) {
-    $checks[] = array('KO', "bcmath extension is not available");
+    $checks[] = ['KO', 'bcmath extension is not available'];
 } else {
-    $checks[] = array('OK', "bcmath extension is available");
+    $checks[] = ['OK', 'bcmath extension is available'];
 }
 
 if (!function_exists('curl_init')) {
-    $checks[] = array('KO', "curl extension is not available");
+    $checks[] = ['KO', 'curl extension is not available'];
 } else {
-    $checks[] = array('OK', "curl extension is available");
+    $checks[] = ['OK', 'curl extension is available'];
 }
 
 // xdebug is optional
 if (extension_loaded('xdebug') && ini_get('xdebug.max_nesting_level') < 255) {
-    $checks[] = array('KO', "xdebug.max_nesting_level is too low, please make sure the value is greater than 255");
+    $checks[] = ['KO', 'xdebug.max_nesting_level is too low, please make sure the value is greater than 255'];
 }
 
 $error = 0;
@@ -106,7 +105,7 @@ $error = 0;
 foreach ($checks as $check) {
     echo sprintf("%s\t%s\n", $check[0], $check[1]);
 
-    if ($check[0] === 'KO') {
+    if ('KO' === $check[0]) {
         $error = 1;
     }
 }

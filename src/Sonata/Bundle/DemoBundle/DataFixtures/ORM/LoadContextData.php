@@ -1,7 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -19,7 +21,6 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Class LoadCollectionData.
- *
  *
  * @author  Hugo Briand <briand@ekino.com>
  */
@@ -48,9 +49,6 @@ class LoadContextData extends AbstractFixture implements OrderedFixtureInterface
         return $this->container->get('sonata.classification.manager.context');
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function load(ObjectManager $manager)
     {
         $contextManager = $this->getContextManager();
@@ -81,9 +79,6 @@ class LoadContextData extends AbstractFixture implements OrderedFixtureInterface
         $this->setReference('context_news', $newsContext);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getOrder()
     {
         return 1;

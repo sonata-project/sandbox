@@ -1,9 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 /*
- * This file is part of the Sonata project.
+ * This file is part of the Sonata Project package.
  *
- * (c) Sonata Project <https://github.com/sonata-project/SonataClassificationBundle/>
+ * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -14,7 +16,7 @@ use Behat\CommonContexts\WebApiContext;
 use Behat\Gherkin\Node\TableNode;
 
 /**
- * Behat context dedicated to test Sonata API
+ * Behat context dedicated to test Sonata API.
  *
  * @author Romain Mouillard <romain.mouillard@gmail.com>
  */
@@ -23,7 +25,7 @@ class FeatureContext extends BehatContext
     /**
      * @var array
      */
-    private $identifiers = array();
+    private $identifiers = [];
 
     /**
      * @var string
@@ -40,7 +42,7 @@ class FeatureContext extends BehatContext
      */
     public function __construct(array $parameters)
     {
-        $this->baseUrl   = $parameters['base_url'];
+        $this->baseUrl = $parameters['base_url'];
         $this->filesPath = $parameters['files_path'];
 
         $this->useContext('api', new WebApiContext($this->baseUrl));
@@ -84,47 +86,15 @@ class FeatureContext extends BehatContext
     }
 
     /**
-     * Sends a request using last identifier
-     *
-     * @param string    $method request method
-     * @param string    $url    relative url
-     * @param TableNode $post   table of post values
-     */
-    protected function sendRequestUsingLastIdentifier($method, $url, TableNode $post = null)
-    {
-        $url    = $this->baseUrl.'/'.ltrim($this->replaceIdentifiers($url), '/');
-        $fields = array();
-
-        if ($post) {
-            foreach ($post->getRowsHash() as $key => $val) {
-                if (preg_match('/^<(.*)>$/', $val)) {
-                    $alias = str_replace(array('<', '>'), null, $val);
-                    $val = isset($this->identifiers[$alias]) ? $this->identifiers[$alias] : $val;
-                }
-
-                $fields[$key] = $val;
-            }
-        }
-
-        /** @var \Buzz\Message\Request $request */
-        $request = $this->getSubcontext('api')->getBrowser()->getLastRequest();
-        $headers = $request->getHeaders();
-        $url = str_replace('//api', '/api', $url);
-
-        $this->getSubcontext('api')->getBrowser()->submit($url, $fields, $method, $headers);
-    }
-
-    /**
      * @Then /^store the ([jJ][sS][oO][nN]|[xX][mM][lL]) response identifier as "(.*)"$/
      */
     public function storeTheResponseIdentifier($objectType, $alias)
     {
-
         $responseContent = $this->getSubcontext('api')->getBrowser()->getLastResponse()->getContent();
 
         $objectType = strtolower($objectType);
 
-        switch($objectType) {
+        switch ($objectType) {
             case 'xml':
                 $data = simplexml_load_string($responseContent);
 
@@ -139,7 +109,7 @@ class FeatureContext extends BehatContext
                     $identifier = $data->attributes()->id;
                 }
 
-                $this->identifiers[$alias] = (string)$identifier;
+                $this->identifiers[$alias] = (string) $identifier;
                 break;
             case 'json':
                 $data = json_decode($responseContent);
@@ -166,7 +136,7 @@ class FeatureContext extends BehatContext
 
         $objectType = strtolower($objectType);
 
-        switch($objectType) {
+        switch ($objectType) {
             case 'xml':
                 $data = simplexml_load_string($responseContent);
 
@@ -196,28 +166,6 @@ class FeatureContext extends BehatContext
     }
 
     /**
-     * Returns URL with last identifier stored in context
-     *
-     * @param string $url
-     *
-     * @return string
-     */
-    protected function replaceIdentifiers($url)
-    {
-        preg_match_all('/<(.*)>/U', $url, $matches);
-
-        if (isset($matches[1])) {
-            foreach ($matches[1] as $alias) {
-                if (isset($this->identifiers[$alias])) {
-                    $url = str_replace(sprintf('<%s>', $alias), $this->identifiers[$alias], $url);
-                }
-            }
-        }
-
-        return $url;
-    }
-
-    /**
      * @Then /^response pager should contain ([0-9]+) elements$/
      */
     public function theResponseShouldContainsNumberOfElements($count)
@@ -225,7 +173,7 @@ class FeatureContext extends BehatContext
         /** @var \Buzz\Message\Response $response */
         $response = $this->getSubcontext('api')->getBrowser()->getLastResponse();
 
-        $responseContent     = $response->getContent();
+        $responseContent = $response->getContent();
         $responseContentType = $response->getHeader('Content-Type');
 
         if (strstr($responseContentType, 'text/xml')) {
@@ -238,7 +186,7 @@ class FeatureContext extends BehatContext
             throw new Exception(sprintf('The response content should be json or xml to count number or elements'));
         }
 
-        if ($found != $count) {
+        if ($found !== $count) {
             throw new Exception(sprintf('There should be %s elements, found %s', $count, $found));
         }
     }
@@ -251,7 +199,7 @@ class FeatureContext extends BehatContext
         /** @var \Buzz\Message\Response $response */
         $response = $this->getSubcontext('api')->getBrowser()->getLastResponse();
 
-        $responseContent     = $response->getContent();
+        $responseContent = $response->getContent();
         $responseContentType = $response->getHeader('Content-Type');
 
         if (strstr($responseContentType, 'text/xml')) {
@@ -263,12 +211,12 @@ class FeatureContext extends BehatContext
         }
 
         $responsePerPage = isset($data->per_page) ? $data->per_page : 0;
-        $responsePage    = isset($data->page) ? $data->page : 0;
+        $responsePage = isset($data->page) ? $data->page : 0;
 
-        if ($responsePage != $page) {
+        if ($responsePage !== $page) {
             throw new Exception(sprintf('The response should display page %s, page %s displayed', $page, $responsePage));
         }
-        if ($responsePerPage != $perPage) {
+        if ($responsePerPage !== $perPage) {
             throw new Exception(sprintf('The response should display %s elements per page, %s displayed', $perPage, $responsePerPage));
         }
     }
@@ -281,7 +229,7 @@ class FeatureContext extends BehatContext
         /** @var \Buzz\Message\Response $response */
         $response = $this->getSubcontext('api')->getBrowser()->getLastResponse();
 
-        $responseContent     = $response->getContent();
+        $responseContent = $response->getContent();
         $responseContentType = $response->getHeader('Content-Type');
 
         if (strstr($responseContentType, 'text/xml')) {
@@ -294,26 +242,26 @@ class FeatureContext extends BehatContext
             throw new Exception(sprintf('The response content should be json or xml to count number or elements'));
         }
 
-        $perPage      = isset($data->per_page) ? (int)$data->per_page : 0;
-        $totalElement = isset($data->total) ? (int)$data->total : 0;
-        $lastPage     = isset($data->last_page) ? (int)$data->last_page : 0;
-        $currentPage  = isset($data->page) ? (int)$data->page : 0;
+        $perPage = isset($data->per_page) ? (int) $data->per_page : 0;
+        $totalElement = isset($data->total) ? (int) $data->total : 0;
+        $lastPage = isset($data->last_page) ? (int) $data->last_page : 0;
+        $currentPage = isset($data->page) ? (int) $data->page : 0;
 
-        if ($totalElement > 0 && $lastPage != ceil($totalElement / $perPage)) {
+        if ($totalElement > 0 && $lastPage !== ceil($totalElement / $perPage)) {
             throw new Exception(sprintf('The pager per_page value is inconsistent'));
         }
 
         if ($totalElement < ($currentPage * $perPage)) {
-            $expectedCount = $totalElement - (($currentPage-1) * $perPage);
+            $expectedCount = $totalElement - (($currentPage - 1) * $perPage);
 
-            if ($currentPage != $lastPage) {
+            if ($currentPage !== $lastPage) {
                 throw new Exception(sprintf('The pager last page is inconsistent. Current page %s seems to be the last, but last page is %s', $currentPage, $lastPage));
             }
         } else {
             $expectedCount = $perPage;
         }
 
-        if ($count != $expectedCount) {
+        if ($count !== $expectedCount) {
             throw new Exception(sprintf('The number of results provided by the pager is inconsistent. Got %s results, expected %s', $count, $expectedCount));
         }
     }
@@ -330,22 +278,22 @@ class FeatureContext extends BehatContext
         /** @var \Buzz\Message\Response $response */
         $response = $this->getSubcontext('api')->getBrowser()->getLastResponse();
 
-        $responseContent     = $response->getContent();
+        $responseContent = $response->getContent();
         $responseContentType = $response->getHeader('Content-Type');
 
         if (strstr($responseContentType, 'text/xml')) {
-            $data         = simplexml_load_string($responseContent);
-            $firstElement = isset($data->entries) ? $data->entries->entry[0] : array();
+            $data = simplexml_load_string($responseContent);
+            $firstElement = isset($data->entries) ? $data->entries->entry[0] : [];
         } elseif (strstr($responseContentType, 'application/json')) {
-            $data         = json_decode($responseContent);
-            $firstElement = isset($data->entries) ? $data->entries[0] : array();
+            $data = json_decode($responseContent);
+            $firstElement = isset($data->entries) ? $data->entries[0] : [];
         } else {
             throw new Exception(sprintf('The response content should be json or xml to count number or elements'));
         }
 
         $found = false;
         foreach ($firstElement as $value) {
-            if (strpos($value, $message) !== false) {
+            if (false !== strpos($value, $message)) {
                 $found = true;
                 break;
             }
@@ -368,18 +316,18 @@ class FeatureContext extends BehatContext
         /** @var \Buzz\Message\Response $response */
         $response = $this->getSubcontext('api')->getBrowser()->getLastResponse();
 
-        $responseContent     = $response->getContent();
+        $responseContent = $response->getContent();
         $responseContentType = $response->getHeader('Content-Type');
 
-        $inError  = false;
-        $messages = array();
+        $inError = false;
+        $messages = [];
 
         if (strstr($responseContentType, 'text/xml')) {
             $data = simplexml_load_string($responseContent);
             if (is_object($data->errors->form)) {
                 /** @var SimpleXMLElement $child */
                 foreach ($data->errors->form->children() as $child) {
-                    if ($child->attributes() == $field) {
+                    if ($child->attributes() === $field) {
                         if ($child->count() > 0) {
                             $inError = true;
                             /** @var SimpleXMLElement $error */
@@ -391,10 +339,10 @@ class FeatureContext extends BehatContext
                 }
             }
         } elseif (strstr($responseContentType, 'application/json')) {
-            $data   = json_decode($responseContent);
-            $errors = isset($data->errors) ? $data->errors->children : array();
-            if (isset($errors->$field) && isset($errors->$field->errors)) {
-                $inError  = true;
+            $data = json_decode($responseContent);
+            $errors = isset($data->errors) ? $data->errors->children : [];
+            if (isset($errors->$field, $errors->$field->errors)) {
+                $inError = true;
                 $messages = $errors->$field->errors;
             }
         } else {
@@ -405,7 +353,7 @@ class FeatureContext extends BehatContext
             throw new Exception(sprintf('Field %s should have a validation error, some errors were raised but found none about this field.', $field));
         }
 
-        if (!is_null($message) && (sizeof($messages) == 0 || !in_array($message, $messages))) {
+        if (null !== $message && (0 === count($messages) || !in_array($message, $messages, true))) {
             throw new Exception(sprintf('Field %s should have "%s" validation error, but only got following errors: %s.', $field, $message, implode(PHP_EOL, $messages)));
         }
     }
@@ -431,7 +379,7 @@ class FeatureContext extends BehatContext
      */
     public function iHaveAPostIdentifiedBy($identifier, TableNode $values = null)
     {
-        if (is_null($values)) {
+        if (null === $values) {
             $values = new TableNode(<<<TABLE
       | title                 | My post title       |
       | slug                  | my-post-slug        |
@@ -446,13 +394,13 @@ TABLE
             );
         }
 
-        return array(
+        return [
             new \Behat\Behat\Context\Step\When('I send a POST request to "/api/news/posts.xml" with values:', $values),
             new \Behat\Behat\Context\Step\Then('the response code should be 200'),
             new \Behat\Behat\Context\Step\Then('response should contain "xml" object'),
             new \Behat\Behat\Context\Step\Then('response should contain "created_at"'),
             new \Behat\Behat\Context\Step\Then(sprintf('store the XML response identifier as "%s"', $identifier)),
-        );
+        ];
     }
 
     /**
@@ -468,7 +416,7 @@ TABLE
      */
     public function iHaveCommentIdentifiedBy($identifier, $postIdentifier, TableNode $values = null)
     {
-        if (is_null($values)) {
+        if (null === $values) {
             $values = new TableNode(<<<TABLE
       | name    | New comment name       |
       | email   | new@email.org          |
@@ -479,20 +427,20 @@ TABLE
             );
         }
 
-        /** @var FeatureContext $mainContext */
+        /* @var FeatureContext $mainContext */
         if (!isset($this->identifiers[$postIdentifier])) {
             throw new Exception(sprintf('There is no post identified by "%s"', $postIdentifier));
         }
 
         $postId = $this->identifiers[$postIdentifier];
 
-        return array(
+        return [
             new \Behat\Behat\Context\Step\When(sprintf('I send a POST request to "/api/news/posts/%d/comments.xml" with values:', $postId), $values),
             new \Behat\Behat\Context\Step\Then('the response code should be 200'),
             new \Behat\Behat\Context\Step\Then('response should contain "xml" object'),
             new \Behat\Behat\Context\Step\Then('response should contain "created_at"'),
             new \Behat\Behat\Context\Step\Then(sprintf('store the XML response identifier as "%s"', $identifier)),
-        );
+        ];
     }
 
     /**
@@ -504,7 +452,7 @@ TABLE
 
         $objectType = strtolower($objectType);
 
-        switch($objectType) {
+        switch ($objectType) {
             case 'xml':
                 if (false === simplexml_load_string($responseContent)) {
                     throw new Exception(sprintf('Response was not xml : "%s"', $responseContent));
@@ -534,7 +482,7 @@ TABLE
     }
 
     /**
-     * Send a request which body is the binary given by path
+     * Send a request which body is the binary given by path.
      *
      * @When /^(?:I )?send a ([A-Z]+) request to "([^"]*)" with the binary "([^"]*)"$/
      */
@@ -547,31 +495,84 @@ TABLE
             }
         }
 
-        if (($content = file_get_contents($path)) === false) {
+        if (false === ($content = file_get_contents($path))) {
             throw new \Exception(sprintf('Unable to get the content of the binary %s', $path));
         }
 
-        $headers = array(
-            'Content-type'   => 'application/octet-stream',
+        $headers = [
+            'Content-type' => 'application/octet-stream',
             'Content-Length' => filesize($path),
-            'Authorization'  => 'Basic YWRtaW46YWRtaW4=',
-        );
+            'Authorization' => 'Basic YWRtaW46YWRtaW4=',
+        ];
 
         $this->sendRequestWithIdentifiers($method, $url, $headers, $content);
     }
 
     /**
-     * Send an http request after replacing url parameters by actual values
+     * Send an http request after replacing url parameters by actual values.
      *
      * @When /^(?:I )?send a ([A-Z]+) request containing identifier to "([^"]*)"$/
      */
     public function iSendAGetRequestContainingIdentifierTo($method, $url)
     {
-        $headers = array(
+        $headers = [
             'Authorization' => 'Basic YWRtaW46YWRtaW4=',
-        );
+        ];
 
         $this->sendRequestWithIdentifiers($method, $url, $headers);
+    }
+
+    /**
+     * Sends a request using last identifier.
+     *
+     * @param string    $method request method
+     * @param string    $url    relative url
+     * @param TableNode $post   table of post values
+     */
+    protected function sendRequestUsingLastIdentifier($method, $url, TableNode $post = null)
+    {
+        $url = $this->baseUrl.'/'.ltrim($this->replaceIdentifiers($url), '/');
+        $fields = [];
+
+        if ($post) {
+            foreach ($post->getRowsHash() as $key => $val) {
+                if (preg_match('/^<(.*)>$/', $val)) {
+                    $alias = str_replace(['<', '>'], null, $val);
+                    $val = isset($this->identifiers[$alias]) ? $this->identifiers[$alias] : $val;
+                }
+
+                $fields[$key] = $val;
+            }
+        }
+
+        /** @var \Buzz\Message\Request $request */
+        $request = $this->getSubcontext('api')->getBrowser()->getLastRequest();
+        $headers = $request->getHeaders();
+        $url = str_replace('//api', '/api', $url);
+
+        $this->getSubcontext('api')->getBrowser()->submit($url, $fields, $method, $headers);
+    }
+
+    /**
+     * Returns URL with last identifier stored in context.
+     *
+     * @param string $url
+     *
+     * @return string
+     */
+    protected function replaceIdentifiers($url)
+    {
+        preg_match_all('/<(.*)>/U', $url, $matches);
+
+        if (isset($matches[1])) {
+            foreach ($matches[1] as $alias) {
+                if (isset($this->identifiers[$alias])) {
+                    $url = str_replace(sprintf('<%s>', $alias), $this->identifiers[$alias], $url);
+                }
+            }
+        }
+
+        return $url;
     }
 
     /**
@@ -582,9 +583,9 @@ TABLE
      *
      * @throws Exception
      */
-    protected function sendRequestWithIdentifiers($method, $url, $headers = array(), $content = '')
+    protected function sendRequestWithIdentifiers($method, $url, $headers = [], $content = '')
     {
-        if (!in_array($method, array('GET', 'PUT', 'POST', 'DELETE', 'PATCH'))) {
+        if (!in_array($method, ['GET', 'PUT', 'POST', 'DELETE', 'PATCH'], true)) {
             throw new \Exception(sprintf('Undefined method %s', $method));
         }
 
@@ -594,4 +595,3 @@ TABLE
         $this->getSubcontext('api')->getBrowser()->{strtolower($method)}($url, $headers, $content);
     }
 }
-

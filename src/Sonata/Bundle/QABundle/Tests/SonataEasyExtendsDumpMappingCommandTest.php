@@ -1,7 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -13,11 +15,10 @@ namespace Sonata\Bundle\QABundle\Tests;
 
 class SonataEasyExtendsDumpMappingCommandTest extends CommandTestCase
 {
-    /**
-     * @expectedException \InvalidArgumentException
-     */
     public function testDumpException()
     {
+        $this->expectException(\InvalidArgumentException::class);
+
         $client = self::createClient();
         $this->runCommand($client, 'sonata:easy-extends:dump-mapping');
     }

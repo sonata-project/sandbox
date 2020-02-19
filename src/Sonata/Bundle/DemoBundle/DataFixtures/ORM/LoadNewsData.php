@@ -1,7 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -11,8 +13,8 @@
 
 namespace Sonata\Bundle\DemoBundle\DataFixtures\ORM;
 
-use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\DataFixtures\AbstractFixture;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Sonata\NewsBundle\Model\CommentInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
@@ -39,12 +41,12 @@ class LoadNewsData extends AbstractFixture implements ContainerAwareInterface, O
 
         $faker = $this->getFaker();
 
-        $tags = array(
+        $tags = [
             'symfony' => null,
             'form' => null,
             'general' => null,
             'web2' => null,
-        );
+        ];
 
         foreach ($tags as $tagName => $null) {
             $tag = $this->getTagManager()->create();
@@ -89,9 +91,9 @@ RAW
 ;
 
             $raw .= sprintf("### %s\n\n%s\n\n### %s\n\n%s",
-                $faker->sentence(rand(3, 6)),
+                $faker->sentence(random_int(3, 6)),
                 $faker->text(1000),
-                $faker->sentence(rand(3, 6)),
+                $faker->sentence(random_int(3, 6)),
                 $faker->text(1000)
             );
 

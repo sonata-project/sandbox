@@ -1,7 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -13,31 +15,28 @@ namespace Sonata\Bundle\QABundle\Tests;
 
 class SonataPageRenderBlockCommandTest extends CommandTestCase
 {
-    /**
-     * @expectedException \RuntimeException
-     */
     public function testMissingArguments()
     {
+        $this->expectException(\RuntimeException::class);
+
         $client = self::createClient();
 
         $this->runCommand($client, 'sonata:page:render-block');
     }
 
-    /**
-     * @expectedException \RuntimeException
-     */
     public function testDumpInvalidService()
     {
+        $this->expectException(\RuntimeException::class);
+
         $client = self::createClient();
 
         $this->runCommand($client, 'sonata:page:render-block sonata.page.manager.page 1 1');
     }
 
-    /**
-     * @expectedException \Sonata\PageBundle\Exception\PageNotFoundException
-     */
     public function testDumpInvalidPageId()
     {
+        $this->expectException(\Sonata\PageBundle\Exception\PageNotFoundException::class);
+
         $client = self::createClient();
 
         $this->runCommand($client, 'sonata:page:render-block sonata.page.cms.page 9999999 99999999');
@@ -47,10 +46,10 @@ class SonataPageRenderBlockCommandTest extends CommandTestCase
     {
         $client = self::createClient();
 
-        $page = $client->getContainer()->get('sonata.page.manager.page')->findOneBy(array());
-        $block = $client->getContainer()->get('sonata.page.manager.block')->findOneBy(array(
+        $page = $client->getContainer()->get('sonata.page.manager.page')->findOneBy([]);
+        $block = $client->getContainer()->get('sonata.page.manager.block')->findOneBy([
             'page' => $page->getId(),
-        ));
+        ]);
 
         $output = $this->runCommand($client, sprintf('sonata:page:render-block sonata.page.cms.page %d %d', $page->getId(), $block->getId()));
 

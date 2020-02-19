@@ -1,7 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -13,11 +15,10 @@ namespace Sonata\Bundle\QABundle\Tests;
 
 class SonataSeoSitemapCommandTest extends CommandTestCase
 {
-    /**
-     * @expectedException \RuntimeException
-     */
     public function testMissingArguments()
     {
+        $this->expectException(\RuntimeException::class);
+
         $client = self::createClient();
 
         $output = $this->runCommand($client, 'sonata:seo:sitemap');

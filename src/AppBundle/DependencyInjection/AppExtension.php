@@ -1,6 +1,9 @@
 <?php
+
+declare(strict_types=1);
+
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -17,7 +20,6 @@ use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 
 /**
  * Class ApplicationSonataDeliveryExtension.
- *
  *
  * @author Hugo Briand <briand@ekino.com>
  */

@@ -1,6 +1,9 @@
 <?php
+
+declare(strict_types=1);
+
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -17,7 +20,6 @@ use Symfony\Component\DependencyInjection\ContainerAwareTrait;
 /**
  * Class Builder.
  *
- *
  * @author Hugo Briand <briand@ekino.com>
  */
 class Builder implements ContainerAwareInterface
@@ -27,95 +29,92 @@ class Builder implements ContainerAwareInterface
     /**
      * Creates the header menu.
      *
-     * @param FactoryInterface $factory
-     * @param array            $options
-     *
      * @return \Knp\Menu\ItemInterface
      */
     public function mainMenu(FactoryInterface $factory, array $options)
     {
-        $isFooter = array_key_exists('is_footer', $options) ? $options['is_footer'] : false;
+        $isFooter = \array_key_exists('is_footer', $options) ? $options['is_footer'] : false;
 
         $shopCategories = $this->container->get('sonata.classification.manager.category')->getRootCategory('product_catalog');
 
-        $menuOptions = array_merge($options, array(
-            'childrenAttributes' => array('class' => 'nav nav-pills'),
-        ));
+        $menuOptions = array_merge($options, [
+            'childrenAttributes' => ['class' => 'nav nav-pills'],
+        ]);
 
         $menu = $factory->createItem('main', $menuOptions);
 
-        $shopMenuParams = array('route' => 'sonata_catalog_index');
+        $shopMenuParams = ['route' => 'sonata_catalog_index'];
 
         if ($shopCategories->hasChildren() && !$isFooter) {
-            $shopMenuParams = array_merge($shopMenuParams, array(
-                'attributes' => array('class' => 'dropdown'),
-                'childrenAttributes' => array('class' => 'dropdown-menu'),
-                'linkAttributes' => array('class' => 'dropdown-toggle', 'data-toggle' => 'dropdown', 'data-target' => '#'),
+            $shopMenuParams = array_merge($shopMenuParams, [
+                'attributes' => ['class' => 'dropdown'],
+                'childrenAttributes' => ['class' => 'dropdown-menu'],
+                'linkAttributes' => ['class' => 'dropdown-toggle', 'data-toggle' => 'dropdown', 'data-target' => '#'],
                 'label' => 'Products <b class="caret caret-menu"></b>',
-                'extras' => array(
+                'extras' => [
                     'safe_label' => true,
-                ),
-            ));
+                ],
+            ]);
         }
 
         if ($isFooter) {
-            $shopMenuParams = array_merge($shopMenuParams, array(
-                'attributes' => array('class' => 'span2'),
-                'childrenAttributes' => array('class' => 'nav'),
-            ));
+            $shopMenuParams = array_merge($shopMenuParams, [
+                'attributes' => ['class' => 'span2'],
+                'childrenAttributes' => ['class' => 'nav'],
+            ]);
         }
 
         $shop = $menu->addChild('Shop', $shopMenuParams);
 
-        $menu->addChild('News', array('route' => 'sonata_news_home'));
+        $menu->addChild('News', ['route' => 'sonata_news_home']);
 
         foreach ($shopCategories->getChildren() as $category) {
-            $shop->addChild($category->getName(), array(
+            $shop->addChild($category->getName(), [
                 'route' => 'sonata_catalog_category',
-                'routeParameters' => array(
+                'routeParameters' => [
                     'category_id' => $category->getId(),
-                    'category_slug' => $category->getSlug(), ),
-                )
+                    'category_slug' => $category->getSlug(), ],
+                ]
             );
         }
 
-        $dropdownExtrasOptions = $isFooter ? array(
+        $dropdownExtrasOptions = $isFooter ? [
             'uri' => '#',
-            'attributes' => array('class' => 'span2'),
-            'childrenAttributes' => array('class' => 'nav'),
-        ) : array(
+            'attributes' => ['class' => 'span2'],
+            'childrenAttributes' => ['class' => 'nav'],
+        ] : [
             'uri' => '#',
-            'attributes' => array('class' => 'dropdown'),
-            'childrenAttributes' => array('class' => 'dropdown-menu'),
-            'linkAttributes' => array('class' => 'dropdown-toggle', 'data-toggle' => 'dropdown', 'data-target' => '#'),
+            'attributes' => ['class' => 'dropdown'],
+            'childrenAttributes' => ['class' => 'dropdown-menu'],
+            'linkAttributes' => ['class' => 'dropdown-toggle', 'data-toggle' => 'dropdown', 'data-target' => '#'],
             'label' => 'Solutions <b class="caret caret-menu"></b>',
-            'extras' => array(
+            'extras' => [
                 'safe_label' => true,
-            ),
-        );
+            ],
+        ];
         $extras = $factory->createItem('Discover', $dropdownExtrasOptions);
 
-        $extras->addChild('Bundles', array('route' => 'page_slug', 'routeParameters' => array('path' => '/bundles')));
-        $extras->addChild('Api', array('route' => 'page_slug', 'routeParameters' => array('path' => '/api-landing')));
-        $extras->addChild('Gallery', array('route' => 'sonata_media_gallery_index'));
-        $extras->addChild('Media & SEO', array('route' => 'sonata_demo_media'));
+        $extras->addChild('Bundles', ['route' => 'page_slug', 'routeParameters' => ['path' => '/bundles']]);
+        $extras->addChild('Api', ['route' => 'page_slug', 'routeParameters' => ['path' => '/api-landing']]);
+        $extras->addChild('Gallery', ['route' => 'sonata_media_gallery_index']);
+        $extras->addChild('Media & SEO', ['route' => 'sonata_demo_media']);
 
         $menu->addChild($extras);
 
-        $menu->addChild('Admin', array(
+        $menu->addChild('Admin', [
             'route' => 'page_slug',
-            'routeParameters' => array(
+            'routeParameters' => [
                 'path' => '/user',
-            ),
-        ));
+            ],
+        ]);
 
         if ($isFooter) {
-            $menu->addChild('Legal notes', array(
+            $menu->addChild('Legal notes', [
                 'route' => 'page_slug',
-                'routeParameters' => array(
+                'routeParameters' => [
                     'path' => '/legal-notes',
-                ),
-            ));
+                ],
+            ]);
         }
 
         return $menu;
@@ -123,6 +122,6 @@ class Builder implements ContainerAwareInterface
 
     public function footerMenu(FactoryInterface $factory, array $options)
     {
-        return $this->mainMenu($factory, array_merge($options, array('is_footer' => true)));
+        return $this->mainMenu($factory, array_merge($options, ['is_footer' => true]));
     }
 }

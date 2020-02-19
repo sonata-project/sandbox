@@ -1,9 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 /*
- * This file is part of the Sonata project.
+ * This file is part of the Sonata Project package.
  *
- * (c) Sonata Project <https://github.com/sonata-project/SonataClassificationBundle/>
+ * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -20,7 +22,7 @@ class FeatureContext extends BehatContext
      * Initializes context.
      * Every scenario gets it's own context object.
      *
-     * @param   array   $parameters     context parameters (set them up through behat.yml)
+     * @param array $parameters context parameters (set them up through behat.yml)
      */
     public function __construct(array $parameters)
     {
@@ -38,14 +40,13 @@ class FeatureContext extends BehatContext
     }
 
     /**
-     * Setup XHR headers
+     * Setup XHR headers.
      *
      * @Given /^I am an XHR request$/
-     *
      */
     public function iAmAnXHRRequest()
     {
-        $this->getSubcontext("browser")->getSession()->setRequestHeader("X-Requested-With", "XMLHttpRequest");
+        $this->getSubcontext('browser')->getSession()->setRequestHeader('X-Requested-With', 'XMLHttpRequest');
     }
 
     /**
@@ -53,10 +54,10 @@ class FeatureContext extends BehatContext
      */
     public function theResponseIsJson()
     {
-        $data = json_decode($this->getSubcontext("browser")->getSession()->getPage()->getContent());
+        $data = json_decode($this->getSubcontext('browser')->getSession()->getPage()->getContent());
 
         if (empty($data)) {
-            throw new Exception("Response was not JSON\n" . $this->getSubcontext("browser")->getSession()->getPage()->getContent());
+            throw new Exception("Response was not JSON\n".$this->getSubcontext('browser')->getSession()->getPage()->getContent());
         }
     }
 
@@ -65,10 +66,10 @@ class FeatureContext extends BehatContext
      */
     public function thePriceIs($price)
     {
-        $data = json_decode($this->getSubcontext("browser")->getSession()->getPage()->getContent(), true);
+        $data = json_decode($this->getSubcontext('browser')->getSession()->getPage()->getContent(), true);
 
         if ((float) $price !== (float) $data['price']) {
-            throw new Exception("The price was not ".$price.", it was ".$data['price']);
+            throw new Exception('The price was not '.$price.', it was '.$data['price']);
         }
     }
 
@@ -77,10 +78,10 @@ class FeatureContext extends BehatContext
      */
     public function theStockIs($stock)
     {
-        $data = json_decode($this->getSubcontext("browser")->getSession()->getPage()->getContent(), true);
+        $data = json_decode($this->getSubcontext('browser')->getSession()->getPage()->getContent(), true);
 
         if ((int) $stock !== $data['stock']) {
-            throw new Exception("The stock was not ".$stock.", it was ".$data['stock']);
+            throw new Exception('The stock was not '.$stock.', it was '.$data['stock']);
         }
     }
 
@@ -89,10 +90,10 @@ class FeatureContext extends BehatContext
      */
     public function theVariationUrlIs($variationUrl)
     {
-        $data = json_decode($this->getSubcontext("browser")->getSession()->getPage()->getContent(), true);
+        $data = json_decode($this->getSubcontext('browser')->getSession()->getPage()->getContent(), true);
 
         if ($variationUrl !== $data['variation_url']) {
-            throw new Exception("The variation_url was not ".$variationUrl.", it was ".$data['variation_url']);
+            throw new Exception('The variation_url was not '.$variationUrl.', it was '.$data['variation_url']);
         }
     }
 
@@ -101,10 +102,10 @@ class FeatureContext extends BehatContext
      */
     public function theErrorIs($error)
     {
-        $data = json_decode($this->getSubcontext("browser")->getSession()->getPage()->getContent(), true);
+        $data = json_decode($this->getSubcontext('browser')->getSession()->getPage()->getContent(), true);
 
         if ($error !== $data['error']) {
-            throw new Exception("The error was not ".$error.", it was ".$data['error']);
+            throw new Exception('The error was not '.$error.', it was '.$data['error']);
         }
     }
 }

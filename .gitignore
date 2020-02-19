@@ -1,3 +1,4 @@
+/.php_cs.cache
 /behat.yml
 /app/cache/*
 /app/logs/*

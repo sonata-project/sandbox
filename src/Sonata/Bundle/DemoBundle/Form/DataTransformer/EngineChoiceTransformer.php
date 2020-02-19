@@ -1,7 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 /*
- * This file is part of the Sonata project.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -17,21 +19,15 @@ class EngineChoiceTransformer implements DataTransformerInterface
 {
     protected $choices;
 
-    /**
-     * @param array $choices
-     */
     public function __construct(array $choices)
     {
         $this->choices = $choices;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function transform($value)
     {
         foreach ($this->choices as $pos => $choice) {
-            if ($value == $choice) {
+            if ($value === $choice) {
                 return $pos;
             }
         }
@@ -39,9 +35,6 @@ class EngineChoiceTransformer implements DataTransformerInterface
         return null;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function reverseTransform($value)
     {
         if (!$value) {

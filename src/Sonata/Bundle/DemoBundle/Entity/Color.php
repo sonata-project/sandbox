@@ -1,7 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 /*
- * This file is part of the Sonata project.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -52,6 +54,14 @@ class Color implements DomainObjectInterface
      * @ORM\Column(type="boolean")
      */
     protected $enabled;
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return sprintf('#%03d%03d%03d - %s', $this->getR(), $this->getG(), $this->getB(), $this->getMaterial() ? $this->getMaterial()->getName() : null);
+    }
 
     /**
      * @param mixed $enabled
@@ -141,13 +151,5 @@ class Color implements DomainObjectInterface
     public function getObjectIdentifier()
     {
         return sprintf('%d-%d-%d-%d', $this->getR(), $this->getG(), $this->getB(), $this->getMaterial() ? $this->getMaterial()->getId() : null);
-    }
-
-    /**
-     * @return string
-     */
-    public function __toString()
-    {
-        return sprintf('#%03d%03d%03d - %s', $this->getR(), $this->getG(), $this->getB(), $this->getMaterial() ? $this->getMaterial()->getName() : null);
     }
 }

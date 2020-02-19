@@ -1,7 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 /*
- * This file is part of the Sonata package.
+ * This file is part of the Sonata Project package.
  *
  * (c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
  *
@@ -13,16 +15,21 @@ namespace Sonata\Bundle\DemoBundle\DataFixtures\ORM;
 
 use AppBundle\Entity\Commerce\Address;
 use AppBundle\Entity\Commerce\Customer;
+use AppBundle\Entity\Commerce\Delivery;
 use AppBundle\Entity\Commerce\Invoice;
+use AppBundle\Entity\Commerce\Order;
 use AppBundle\Entity\Commerce\OrderElement;
 use AppBundle\Entity\Commerce\Transaction;
-use AppBundle\Entity\Commerce\Order;
-use AppBundle\Entity\Commerce\Delivery;
 use AppBundle\Entity\User\User;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\DataFixtures\AbstractFixture;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
+use Doctrine\Common\Persistence\ObjectManager;
+use Faker\Generator;
 use Sonata\Component\Basket\Basket;
 use Sonata\Component\Basket\BasketInterface;
-use Sonata\Component\Invoice\InvoiceInterface;
 use Sonata\Component\Currency\Currency;
+use Sonata\Component\Invoice\InvoiceInterface;
 use Sonata\Component\Order\OrderInterface;
 use Sonata\Component\Product\ProductDefinition;
 use Sonata\CustomerBundle\Entity\BaseAddress;
@@ -32,11 +39,6 @@ use Sonata\PaymentBundle\Entity\BaseTransaction;
 use Sonata\ProductBundle\Entity\BaseProduct;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
-use Doctrine\Common\DataFixtures\AbstractFixture;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Persistence\ObjectManager;
-use Faker\Generator;
 
 /**
  * Category fixtures loader.
@@ -56,9 +58,6 @@ class LoadOrderData extends AbstractFixture implements ContainerAwareInterface, 
      */
     protected $orderElements;
 
-    /**
-     * {@inheritdoc}
-     */
     public function load(ObjectManager $manager)
     {
         $currency = new Currency();
@@ -68,7 +67,7 @@ class LoadOrderData extends AbstractFixture implements ContainerAwareInterface, 
         $basket->setCurrency($currency);
         $basket->setProductPool($this->getProductPool());
 
-        $products = array(
+        $products = [
             $this->getReference('php_plush_blue_goodie_product'),
             $this->getReference('php_plush_green_goodie_product'),
             $this->getReference('travel_japan_small_product'),
@@ -91,23 +90,23 @@ class LoadOrderData extends AbstractFixture implements ContainerAwareInterface, 
             $this->getReference('travel_switzerland_medium_product'),
             $this->getReference('travel_switzerland_large_product'),
             $this->getReference('travel_switzerland_extra_large_product'),
-        );
+        ];
 
         $nbCustomers = $this->container->hasParameter('sonata.fixtures.customer.fake') ? (int) $this->container->getParameter('sonata.fixtures.customer.fake') : 20;
 
         for ($i = 1; $i <= $nbCustomers; ++$i) {
             $customer = $this->generateCustomer($manager, $i);
 
-            $customerProducts = array();
+            $customerProducts = [];
 
-            $orderProductsKeys = array_rand($products, rand(1, count($products)));
+            $orderProductsKeys = array_rand($products, random_int(1, \count($products)));
 
-            if (is_array($orderProductsKeys)) {
+            if (\is_array($orderProductsKeys)) {
                 foreach ($orderProductsKeys as $orderProductKey) {
                     $customerProducts[] = $products[$orderProductKey];
                 }
             } else {
-                $customerProducts = array($products[$orderProductsKeys]);
+                $customerProducts = [$products[$orderProductsKeys]];
             }
 
             $order = $this->createOrder($basket, $customer, $customerProducts, $manager, $i);
@@ -124,20 +123,26 @@ class LoadOrderData extends AbstractFixture implements ContainerAwareInterface, 
         $manager->flush();
     }
 
+    public function setContainer(ContainerInterface $container = null)
+    {
+        $this->container = $container;
+    }
+
+    public function getOrder()
+    {
+        return 9;
+    }
+
     /**
      * Creates a fake Order.
      *
-     * @param BasketInterface $basket
-     * @param Customer        $customer
-     * @param array           $products
-     * @param ObjectManager   $manager
-     * @param int             $pos
+     * @param int $pos
      *
      * @return OrderInterface
      */
     protected function createOrder(BasketInterface $basket, Customer $customer, array $products, ObjectManager $manager, $pos)
     {
-        $orderElements = array();
+        $orderElements = [];
         $totalExcl = 0;
         $totalInc = 0;
 
@@ -186,7 +191,7 @@ class LoadOrderData extends AbstractFixture implements ContainerAwareInterface, 
 
         // Delivery
         $order->setDeliveryMethod('free'); // @todo : change Delivery method integration
-        $order->setDeliveryCost(rand(5, 40));
+        $order->setDeliveryCost(random_int(5, 40));
         $order->setDeliveryVat(20);
         $order->setDeliveryStatus(array_rand(Delivery::getStatusList()));
 
@@ -217,7 +222,7 @@ class LoadOrderData extends AbstractFixture implements ContainerAwareInterface, 
 
         $order->setStatus(array_rand(BaseOrder::getStatusList()));
 
-        if (OrderInterface::STATUS_VALIDATED == $order->getStatus()) {
+        if (OrderInterface::STATUS_VALIDATED === $order->getStatus()) {
             $order->setValidatedAt(new \DateTime());
         }
 
@@ -255,9 +260,6 @@ class LoadOrderData extends AbstractFixture implements ContainerAwareInterface, 
 
     /**
      * Creates an Invoice for a given Order.
-     *
-     * @param OrderInterface $order
-     * @param ObjectManager  $manager
      */
     protected function createInvoice(OrderInterface $order, ObjectManager $manager)
     {
@@ -275,8 +277,7 @@ class LoadOrderData extends AbstractFixture implements ContainerAwareInterface, 
     /**
      * Generates a Customer with his addresses.
      *
-     * @param ObjectManager $manager
-     * @param int           $i       Random number to avoid username collision
+     * @param int $i Random number to avoid username collision
      *
      * @return Customer
      */
@@ -295,7 +296,7 @@ class LoadOrderData extends AbstractFixture implements ContainerAwareInterface, 
 
         // Customer
         $customer = new Customer();
-        $customer->setTitle(array_rand(array(BaseCustomer::TITLE_MLLE, BaseCustomer::TITLE_MME, BaseCustomer::TITLE_MR)));
+        $customer->setTitle(array_rand([BaseCustomer::TITLE_MLLE, BaseCustomer::TITLE_MME, BaseCustomer::TITLE_MR]));
         $customer->setFirstname($firstName);
         $customer->setLastname($lastName);
         $customer->setEmail($email);
@@ -418,21 +419,5 @@ class LoadOrderData extends AbstractFixture implements ContainerAwareInterface, 
     protected function getFaker()
     {
         return $this->container->get('faker.generator');
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setContainer(ContainerInterface $container = null)
-    {
-        $this->container = $container;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getOrder()
-    {
-        return 9;
     }
 }
