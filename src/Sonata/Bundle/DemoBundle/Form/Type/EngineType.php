@@ -14,19 +14,21 @@ declare(strict_types=1);
 namespace Sonata\Bundle\DemoBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 
-class EngineType extends AbstractType
+final class EngineType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $formBuilder, array $options)
+    public function buildForm(FormBuilderInterface $formBuilder, array $options): void
     {
         $formBuilder
-            ->add('name', 'text')
-            ->add('power', 'integer')
+            ->add('name', TextType::class)
+            ->add('power', IntegerType::class)
         ;
     }
 
-    public function getName()
+    public function getName(): string
     {
         return 'sonata_demo_form_type_engine';
     }

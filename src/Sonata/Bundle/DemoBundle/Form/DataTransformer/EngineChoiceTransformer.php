@@ -15,7 +15,7 @@ namespace Sonata\Bundle\DemoBundle\Form\DataTransformer;
 
 use Symfony\Component\Form\DataTransformerInterface;
 
-class EngineChoiceTransformer implements DataTransformerInterface
+final class EngineChoiceTransformer implements DataTransformerInterface
 {
     protected $choices;
 

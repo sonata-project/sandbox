@@ -50,7 +50,7 @@ class LoadMediaData extends AbstractFixture implements ContainerAwareInterface, 
         $i = 0;
         foreach ($canada as $file) {
             $media = $mediaManager->create();
-            $media->setBinaryContent($file);
+            $media->setBinaryContent(__DIR__.'/../data/files/gilles-canada/'.$file->getRelativePathname());
             $media->setEnabled(true);
             $media->setName('Canada');
             $media->setDescription('Canada');
@@ -67,7 +67,7 @@ class LoadMediaData extends AbstractFixture implements ContainerAwareInterface, 
 
         foreach ($paris as $file) {
             $media = $mediaManager->create();
-            $media->setBinaryContent($file);
+            $media->setBinaryContent(__DIR__.'/../data/files/hugo-paris/'.$file->getRelativePathname());
             $media->setEnabled(true);
             $media->setName('Paris');
             $media->setDescription('Paris');
@@ -84,7 +84,7 @@ class LoadMediaData extends AbstractFixture implements ContainerAwareInterface, 
 
         foreach ($switzerland as $file) {
             $media = $mediaManager->create();
-            $media->setBinaryContent($file);
+            $media->setBinaryContent(__DIR__.'/../data/files/sylvain-switzerland/'.$file->getRelativePathname());
             $media->setEnabled(true);
             $media->setName('Switzerland');
             $media->setDescription('Switzerland');

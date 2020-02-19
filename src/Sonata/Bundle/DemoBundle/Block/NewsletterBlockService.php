@@ -31,7 +31,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  *
  * @author Vincent Composieux <vincent.composieux@gmail.com>
  */
-class NewsletterBlockService extends BaseBlockService
+final class NewsletterBlockService extends BaseBlockService
 {
     /**
      * @var FormInterface
@@ -46,14 +46,14 @@ class NewsletterBlockService extends BaseBlockService
      * @param FormFactoryInterface $formFactory Symfony FormFactory service
      * @param string               $formType    Newsletter form type
      */
-    public function __construct($name, EngineInterface $templating, FormFactoryInterface $formFactory, $formType)
+    public function __construct(string $name, EngineInterface $templating, FormFactoryInterface $formFactory, $formType)
     {
         parent::__construct($name, $templating);
 
         $this->form = $formFactory->create($formType);
     }
 
-    public function execute(BlockContextInterface $blockContext, Response $response = null)
+    public function execute(BlockContextInterface $blockContext, Response $response = null): Response
     {
         return $this->renderPrivateResponse($blockContext->getTemplate(), [
             'block' => $blockContext->getBlock(),
@@ -62,24 +62,24 @@ class NewsletterBlockService extends BaseBlockService
         ]);
     }
 
-    public function buildEditForm(FormMapper $form, BlockInterface $block)
+    public function buildEditForm(FormMapper $form, BlockInterface $block): void
     {
         // no options available
     }
 
-    public function validateBlock(ErrorElement $errorElement, BlockInterface $block)
+    public function validateBlock(ErrorElement $errorElement, BlockInterface $block): void
     {
     }
 
-    public function configureSettings(OptionsResolver $resolver)
+    public function configureSettings(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'template' => 'SonataDemoBundle:Block:newsletter.html.twig',
+            'template' => '@SonataDemo/Block/newsletter.html.twig',
             'ttl' => 0,
         ]);
     }
 
-    public function getName()
+    public function getName(): string
     {
         return 'Newsletter Block (fake)';
     }

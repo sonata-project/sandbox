@@ -13,18 +13,19 @@ declare(strict_types=1);
 
 namespace Sonata\Bundle\DemoBundle\Admin;
 
-use Sonata\AdminBundle\Admin\Admin;
+use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
+use Sonata\MediaBundle\Form\Type\MediaType;
 
 /**
  * @author Thomas Rabaix <thomas.rabaix@sonata-project.org>
  */
-class EngineAdmin extends Admin
+final class EngineAdmin extends AbstractAdmin
 {
-    protected function configureShowFields(ShowMapper $showMapper)
+    protected function configureShowFields(ShowMapper $showMapper): void
     {
         $showMapper
             ->add('name')
@@ -33,7 +34,7 @@ class EngineAdmin extends Admin
         ;
     }
 
-    protected function configureListFields(ListMapper $listMapper)
+    protected function configureListFields(ListMapper $listMapper): void
     {
         $listMapper
             ->addIdentifier('name')
@@ -42,7 +43,7 @@ class EngineAdmin extends Admin
         ;
     }
 
-    protected function configureDatagridFilters(DatagridMapper $datagridMapper)
+    protected function configureDatagridFilters(DatagridMapper $datagridMapper): void
     {
         $datagridMapper
             ->add('name')
@@ -50,12 +51,12 @@ class EngineAdmin extends Admin
         ;
     }
 
-    protected function configureFormFields(FormMapper $formMapper)
+    protected function configureFormFields(FormMapper $formMapper): void
     {
         $formMapper
             ->add('name')
             ->add('power')
-            ->add('media', 'sonata_media_type', [
+            ->add('media', MediaType::class, [
                  'provider' => 'sonata.media.provider.youtube',
                  'context' => 'default',
             ]);

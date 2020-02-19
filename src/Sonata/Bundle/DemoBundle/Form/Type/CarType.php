@@ -13,32 +13,35 @@ declare(strict_types=1);
 
 namespace Sonata\Bundle\DemoBundle\Form\Type;
 
+use Sonata\Bundle\DemoBundle\Entity\Car;
+use Sonata\Bundle\DemoBundle\Entity\Engine;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class CarType extends AbstractType
+final class CarType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $formBuilder, array $options)
+    public function buildForm(FormBuilderInterface $formBuilder, array $options): void
     {
         $formBuilder
-            ->add('createdAt', 'datetime')
+            ->add('createdAt', DateTimeType::class)
             ->add('name')
-            ->add('engine', 'sonata_demo_form_type_engine', [
-                'data_class' => 'Sonata\Bundle\DemoBundle\Entity\Engine',
+            ->add('engine', EngineType::class, [
+                'data_class' => Engine::class,
             ])
         ;
     }
 
-    public function getName()
+    public function getName(): string
     {
         return 'sonata_demo_form_type_car';
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => 'Sonata\Bundle\DemoBundle\Entity\Car',
+            'data_class' => Car::class,
             'rescue_engines' => [],
         ]);
     }

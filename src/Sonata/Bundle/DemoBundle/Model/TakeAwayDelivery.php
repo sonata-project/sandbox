@@ -24,12 +24,12 @@ use Sonata\Component\Delivery\BaseServiceDelivery;
  */
 class TakeAwayDelivery extends BaseServiceDelivery
 {
-    public function isAddressRequired()
+    public function isAddressRequired(): bool
     {
         return false;
     }
 
-    public function getCode()
+    public function getCode(): string
     {
         return 'take_away';
     }
