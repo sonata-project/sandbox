@@ -1,0 +1,14 @@
+{#
+This file is part of the Sonata Project package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+#}
+
+{% extends sonata_customer.profileTemplate %}
+
+{% block sonata_profile_content %}
+    {% block fos_user_content %}{% endblock fos_user_content %}
+{% endblock %}

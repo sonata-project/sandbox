@@ -37,6 +37,7 @@ security:
         # This firewall is used to handle the admin login area
         # This part is handled by the Sonata User Bundle
         admin:
+            logout_on_user_change: true
             pattern:            /admin(.*)
             context:            user
             form_login:
@@ -61,6 +62,7 @@ security:
         # This firewall is used to handle the public login area
         # This part is handled by the FOS User Bundle
         main:
+            logout_on_user_change: true
             pattern:      .*
             context:        user
             form_login:
@@ -76,7 +78,8 @@ security:
                 invalidate_session: false
                 handlers: ['sonata.page.cms_manager_selector', 'sonata.basket.factory']
             anonymous:    true
-            switch_user: true
+            switch_user:
+                provider: fos_userbundle
 
     access_control:
         # URL of FOSUserBundle which need to be available to anonymous users
@@ -88,6 +91,9 @@ security:
         - { path: ^/admin/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin/logout$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin/login-check$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/resetting/request$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/resetting/send-email$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/resetting/check-email$, role: IS_AUTHENTICATED_ANONYMOUSLY }
 
         # Secured part of the site
         # This config requires being logged for the whole site and having the admin role for the admin part.

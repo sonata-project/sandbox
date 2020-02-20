@@ -1,0 +1,24 @@
+{#
+This file is part of the Sonata Project package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+#}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block subject %}
+    {%- autoescape false -%}
+        {{ 'registration.email.subject'|trans({'%username%': user.username, '%confirmationUrl%': confirmationUrl}) }}
+    {%- endautoescape -%}
+{% endblock %}
+
+{% block body_text %}
+    {% autoescape false %}
+        {{ 'registration.email.message'|trans({'%username%': user.username, '%confirmationUrl%': confirmationUrl}) }}
+    {% endautoescape %}
+{% endblock %}
+
+{% block body_html %}{% endblock %}

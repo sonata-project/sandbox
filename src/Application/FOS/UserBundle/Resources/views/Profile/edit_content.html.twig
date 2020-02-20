@@ -1,0 +1,25 @@
+{#
+This file is part of the Sonata Project package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+#}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">{{ 'title_user_account' | trans({}, 'SonataUserBundle')}}</h3>
+    </div>
+    <div class="panel-body">
+        {{ form_start(form, { 'action': path('fos_user_profile_edit'), 'attr': { 'class': 'fos_user_profile_edit form-horizontal' } }) }}
+            {{ form_widget(form) }}
+
+            <div class="form-actions">
+                <input type="submit" value="{{ 'profile.edit.submit'|trans }}" class="btn btn-primary pull-right" />
+            </div>
+        {{ form_end(form) }}
+    </div>
+</div>

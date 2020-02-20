@@ -12,6 +12,13 @@
             <argument type="service" id="form.factory" />
             <argument>sonata_demo_form_type_newsletter</argument>
         </service>
+
+        <service id="sonata.demo.block.account" class="Sonata\Bundle\DemoBundle\Block\AccountBlockService">
+            <tag name="sonata.block"/>
+            <argument>sonata.demo.block.account</argument>
+            <argument type="service" id="templating"/>
+            <argument type="service" id="security.token_storage"/>
+        </service>
     </services>
 
 </container>

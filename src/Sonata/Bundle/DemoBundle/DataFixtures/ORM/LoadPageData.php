@@ -1023,7 +1023,7 @@ CONTENT
 
         $headerTop->addChildren($account = $blockManager->create());
 
-        $account->setType('sonata.user.block.account');
+        $account->setType('sonata.demo.block.account');
         $account->setPosition(1);
         $account->setEnabled(true);
         $account->setPage($global);
