@@ -12,18 +12,24 @@ sonata_user_resetting:
     resource: "@SonataUserBundle/Resources/config/routing/admin_resetting.xml"
     prefix: /resetting
 
-# Routing files missing, TODO
-#sonata_user_profile:
-#    resource: "@SonataUserBundle/Resources/config/routing/sonata_profile_1.xml"
-#    prefix: /profile
+fos_user_security:
+    resource: "@FOSUserBundle/Resources/config/routing/security.xml"
 
-#sonata_user_register:
-#    resource: "@SonataUserBundle/Resources/config/routing/sonata_registration_1.xml"
-#    prefix: /register
+fos_user_profile:
+    resource: "@FOSUserBundle/Resources/config/routing/profile.xml"
+    prefix: /profile
 
-#sonata_user_change_password:
-#    resource: "@SonataUserBundle/Resources/config/routing/sonata_change_password_1.xml"
-#    prefix: /profile
+fos_user_register:
+    resource: "@FOSUserBundle/Resources/config/routing/registration.xml"
+    prefix: /register
+
+fos_user_resetting:
+    resource: "@FOSUserBundle/Resources/config/routing/resetting.xml"
+    prefix: /resetting
+
+fos_user_change_password:
+    resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
+    prefix: /profile
 
 sonata_cache_cache:
     resource: '@SonataCacheBundle/Resources/config/routing/cache.xml'

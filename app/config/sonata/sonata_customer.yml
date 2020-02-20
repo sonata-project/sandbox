@@ -1,5 +1,57 @@
 # Enable Doctrine to map the provided entities
 sonata_customer:
+    profile:
+        #template:     '@SonataCustomer/Profile/action.html.twig'
+        #menu_builder: 'sonata.customer.profile.menu_builder.default'
+        menu:
+            -
+                route: 'sonata_customer_dashboard'
+                label: 'link_list_dashboard'
+                domain: 'SonataCustomerBundle'
+                route_parameters: {}
+            -
+                route: 'fos_user_profile_edit'
+                label: 'link_edit_profile'
+                domain: 'SonataUserBundle'
+                route_parameters: {}
+            -
+                route: 'fos_user_change_password'
+                label: 'sonata_change_password_link'
+                domain: 'SonataUserBundle'
+                route_parameters: {}
+            -
+                route: 'sonata_customer_addresses'
+                label: 'link_list_addresses'
+                domain: 'SonataCustomerBundle'
+                route_parameters: {}
+            -
+                route:  'sonata_order_index'
+                label:  'order_list'
+                domain: 'SonataOrderBundle'
+                route_parameters: {}
+
+        blocks:
+            -
+                position: left
+                type: sonata.order.block.recent_orders
+                settings:
+                    title: Recent Orders
+                    number: 5
+                    mode: public
+            -
+                position: right
+                type: sonata.news.block.recent_posts
+                settings:
+                    title: Recent Posts
+                    number: 5
+                    mode: public
+            -
+                position: right
+                type: sonata.news.block.recent_comments
+                settings:
+                    title: Recent Comments
+                    number: 5
+                    mode: public
     class:
         customer: AppBundle\Entity\Commerce\Customer
         address:  AppBundle\Entity\Commerce\Address

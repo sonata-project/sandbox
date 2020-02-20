@@ -142,7 +142,7 @@ abstract class CommandTestCase extends WebTestCase
             ['sonata.news.block.recent_posts'],
             ['sonata.news.block.recent_comments'],
             ['sonata.user.block.menu'],
-            ['sonata.user.block.account'],
+            ['sonata.demo.block.account'],
             ['sonata.basket.block.nb_items'],
             ['sonata.order.block.recent_orders'],
             ['sonata.product.block.recent_products'],
