@@ -11,11 +11,11 @@
 
 #}
 
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h3>{{'title_leave_comment'|trans({}, 'SonataNewsBundle') }}</h3>
+<div class="card border-info">
+    <div class="card-header blue lighten-4">
+        {{'title_leave_comment'|trans({}, 'SonataNewsBundle') }}
     </div>
-    <div class="panel-body">
+    <div class="card-body">
         {{ form_start(form, { attr: { class: 'form-horizontal', role: 'form' } }) }}
             {{ form_widget(form) }}
             <div class="form-actions">

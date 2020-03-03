@@ -5,15 +5,13 @@
 
 {% block sonata_profile_content %}
 
-    {% sonata_template_box 'This is the customer addresses list template. Feel free to override it.' %}
-
     {% block sonata_flash_messages %}
         {% include '@SonataCore/FlashMessage/render.html.twig' with {domain: 'SonataCustomerBundle'} %}
     {% endblock %}
 
     {% block sonata_profile_address_actions %}
-        <div class="panel" style="height: 35px;">
-            <div class="pull-right btn-group">
+        <div class="card border-info" style="height: 35px;">
+            <div class="float-right btn-group">
                 <a class="btn btn-success" href="{{ url('sonata_customer_address_add') }}"><i class="glyphicon glyphicon-plus-sign icon-white"></i>&nbsp;{% trans from 'SonataCustomerBundle' %}sonata.address.list.add{% endtrans %}</a>
             </div>
         </div>
@@ -24,8 +22,10 @@
         {% for type,addressesByType in addresses %}
 
             {% block sonata_profile_address_typelist %}
-                <div class="panel panel-default">
-                    <div class="panel-heading"><h3 class="panel-title">{{ type|trans({}, 'SonataCustomerBundle') }}</h3></div>
+                <div class="card border-info">
+                    <div class="card-header blue lighten-4">
+                        {{ type|trans({}, 'SonataCustomerBundle') }}
+                    </div>
 
                     {% if addressesByType|length > 0 %}
                         <table class="table">
@@ -63,7 +63,7 @@
                             {% endfor %}
                         </table>
                     {% else %}
-                        <div class="panel-body">
+                        <div class="card-body">
                             {% trans from 'SonataCustomerBundle' %}sonata.address.list.no_addresses{% endtrans %}
                         </div>
                     {% endif %}

@@ -3,7 +3,10 @@
 
 // the ~ allows you to reference things in node_modules
 @import "~bootstrap";
+@import "~mdbootstrap/css/mdb.min.css";
 @import '~select2';
-@import './../../web/bundles/sonataadmin/vendor/iCheck/skins/square/blue.css';
+@import "~@fortawesome/fontawesome-free";
+@import "stepper.css";
+@import './../../public/bundles/sonataadmin/vendor/iCheck/skins/square/blue.css';
 @import "./../css/demo.css";
- @import './../../web/bundles/sonatacore/vendor/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css';
+@import './../../public/bundles/sonatacore/vendor/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css';

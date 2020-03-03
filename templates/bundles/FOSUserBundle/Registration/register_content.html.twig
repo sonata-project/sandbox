@@ -9,18 +9,17 @@ file that was distributed with this source code.
 
 {% trans_default_domain 'FOSUserBundle' %}
 
-<div class="panel panel-success">
-    <div class="panel-heading">
-        <h2 class="panel-title">{{ 'title_user_registration'|trans({}, 'SonataUserBundle') }}</h2>
+<div class="card border-success">
+    <div class="card-header bg-success">
+        {{ 'title_user_registration'|trans({}, 'SonataUserBundle') }}
     </div>
-    <div class="panel-body">
-
+    <div class="card-body">
         {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register form-horizontal'}}) }}
 
             {{ form_widget(form) }}
 
             <div class="form-actions">
-                <input type="submit" value="{{ 'registration.submit'|trans({}, 'FOSUserBundle') }}" class="btn btn-success pull-right" />
+                <input type="submit" value="{{ 'registration.submit'|trans({}, 'FOSUserBundle') }}" class="btn btn-success float-right" />
             </div>
 
         {{ form_end(form) }}

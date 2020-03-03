@@ -16,32 +16,47 @@ namespace Sonata\Bundle\DemoBundle\DataFixtures\ORM;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
+use Faker\Generator;
 use Sonata\MediaBundle\Model\GalleryInterface;
+use Sonata\MediaBundle\Model\GalleryManagerInterface;
 use Sonata\MediaBundle\Model\MediaInterface;
-use Symfony\Component\DependencyInjection\ContainerAwareInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
+use Sonata\MediaBundle\Model\MediaManagerInterface;
 use Symfony\Component\Finder\Finder;
 
-class LoadMediaData extends AbstractFixture implements ContainerAwareInterface, OrderedFixtureInterface
+class LoadMediaData extends AbstractFixture implements OrderedFixtureInterface
 {
-    private $container;
+    /**
+     * @var Faker\Generator
+     */
+    private $faker;
+
+    /**
+     * @var Sonata\MediaBundle\Model\GalleryManagerInterface
+     */
+    private $galeryManager;
+
+    /**
+     * @var Sonata\MediaBundle\Model\MediaManagerInterface
+     */
+    private $mediaManager;
+
+    public function __construct(Generator $faker, GalleryManagerInterface $galeryManager, MediaManagerInterface $mediaManager)
+    {
+        $this->faker = $faker;
+        $this->galeryManager = $galeryManager;
+        $this->mediaManager = $mediaManager;
+    }
 
     public function getOrder()
     {
         return 3;
     }
 
-    public function setContainer(ContainerInterface $container = null)
-    {
-        $this->container = $container;
-    }
-
     public function load(ObjectManager $manager)
     {
-        $gallery = $this->getGalleryManager()->create();
-
-        $mediaManager = $this->getMediaManager();
-        $faker = $this->getFaker();
+        $gallery = $this->galeryManager->create();
+        $mediaManager = $this->mediaManager;
+        $faker = $this->faker;
 
         $canada = Finder::create()->name('IMG_3587*.jpg')->in(__DIR__.'/../data/files/gilles-canada');
         $paris = Finder::create()->name('IMG_3008*.jpg')->in(__DIR__.'/../data/files/hugo-paris');
@@ -104,7 +119,7 @@ class LoadMediaData extends AbstractFixture implements ContainerAwareInterface, 
         $gallery->setDefaultFormat('small');
         $gallery->setContext('default');
 
-        $this->getGalleryManager()->update($gallery);
+        $this->galeryManager->update($gallery);
 
         $this->addReference('media-gallery', $gallery);
     }
@@ -117,29 +132,5 @@ class LoadMediaData extends AbstractFixture implements ContainerAwareInterface, 
         $galleryHasMedia->setEnabled(true);
 
         $gallery->addGalleryHasMedias($galleryHasMedia);
-    }
-
-    /**
-     * @return \Sonata\MediaBundle\Model\MediaManagerInterface
-     */
-    public function getMediaManager()
-    {
-        return $this->container->get('sonata.media.manager.media');
-    }
-
-    /**
-     * @return \Sonata\MediaBundle\Model\MediaManagerInterface
-     */
-    public function getGalleryManager()
-    {
-        return $this->container->get('sonata.media.manager.gallery');
-    }
-
-    /**
-     * @return \Faker\Generator
-     */
-    public function getFaker()
-    {
-        return $this->container->get('faker.generator');
     }
 }

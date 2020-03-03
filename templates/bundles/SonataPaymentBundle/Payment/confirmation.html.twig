@@ -9,8 +9,6 @@ file that was distributed with this source code.
 
 #}
 
-{% sonata_template_box 'This is the payment confirmation template. Feel free to override it.' %}
-
 <div class="sonata-payment-confirmation">
     {% if order.isvalidated %}
         <h1>{{ 'title_validation_confirmation_payment'|trans({}, 'SonataPaymentBundle') }}</h1>
@@ -40,6 +38,6 @@ file that was distributed with this source code.
     <div class="well">
         <a class="btn btn-default" href="{{ url('sonata_user_profile_show') }}"><i class="glyphicon glyphicon-home"></i>&nbsp;{{ 'message_view_user_profile'|trans({}, 'SonataPaymentBundle') }}</a>
 
-        <a class="btn btn-primary pull-right" href="{{ url('sonata_order_view', {'reference' : order.reference }) }}"><i class="glyphicon glyphicon-file icon-white"></i>&nbsp;{{ 'message_view_order_payment'|trans({}, 'SonataPaymentBundle') }}</a>
+        <a class="btn btn-primary float-right" href="{{ url('sonata_order_view', {'reference' : order.reference }) }}"><i class="glyphicon glyphicon-file icon-white"></i>&nbsp;{{ 'message_view_order_payment'|trans({}, 'SonataPaymentBundle') }}</a>
     </div>
 </div>

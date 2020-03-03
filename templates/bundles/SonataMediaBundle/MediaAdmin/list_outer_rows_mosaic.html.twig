@@ -12,11 +12,11 @@ file that was distributed with this source code.
 {% extends '@SonataAdmin/CRUD/list_outer_rows_mosaic.html.twig' %}
 
 {% block sonata_mosaic_default_view %}
-    <span class="mosaic-box-label label label-primary pull-right">{{ object.providerName|trans({}, 'SonataMediaBundle') }}</span>
+    <span class="mosaic-box-label label label-primary float-right">{{ object.providerName|trans({}, 'SonataMediaBundle') }}</span>
 {% endblock %}
 
 {% block sonata_mosaic_hover_view %}
-    <span class="mosaic-box-label label label-primary pull-right">{{ object.providerName|trans({}, 'SonataMediaBundle') }}</span>
+    <span class="mosaic-box-label label label-primary float-right">{{ object.providerName|trans({}, 'SonataMediaBundle') }}</span>
 
     {% if object.width %} {{ object.width }}{% if object.height %}x{{ object.height }}{% endif %}px{% endif %}
     {% if object.length > 0 %}

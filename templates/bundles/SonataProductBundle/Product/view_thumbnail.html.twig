@@ -13,18 +13,20 @@ file that was distributed with this source code.
 
     {% set link = url('sonata_product_view', {'productId': product.id, 'slug': product.slug}) %}
 
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h5 itemprop="name" class="panel-title truncate"><a href="{{ link }}">{{ product.name }}</a></h5>
+    <div class="card border-info">
+        <div class="card-header blue lighten-4" itemprop="name" class="truncate">
+            <a href="{{ link }}">{{ product.name }}</a>
         </div>
-        <div class="panel-body">
+
             {% if product.image %}
-                <a href="{{ link }}">{% media product.image, 'small' with {'itemprop': 'image', 'class': 'img-responsive', 'width': null, 'height': null} %}</a>
+                <a class="card-img-top" href="{{ link }}">
+                    {% media product.image, 'small' with {'itemprop': 'image', 'class': 'img-responsive', 'width': '100%', 'height': '130px'} %}
+                </a>
             {% else %}
                 {# default product picture goes here #}
             {% endif %}
-        </div>
-        <div class="panel-footer">
+
+        <div class="card-footer">
             <span class="text-left">
                 {% include "@SonataBasket/Basket/add_product_form_button.html.twig" %}
             </span>

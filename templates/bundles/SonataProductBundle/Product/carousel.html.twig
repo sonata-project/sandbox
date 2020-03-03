@@ -47,23 +47,25 @@ file that was distributed with this source code.
             <div id="productCarousel" class="carousel slide">
                 <!-- main slider carousel items -->
                 <div class="carousel-inner">
-                    <div class="active item" data-slide-number="0">
+                    <div class="active carousel-item" data-slide-number="0">
                         {% media product.image, 'large' with {'class': 'img-responsive'} %}
                     </div>
 
                     {% for galMedia in product.gallery.galleryHasMedias %}
-                        <div class="item" data-slide-number="{{ loop.index }}">
+                        <div class="carousel-item" data-slide-number="{{ loop.index }}">
                             {% thumbnail galMedia.media, 'large' with {'class': 'img-responsive'} %}
                         </div>
                     {% endfor %}
                 </div>
 
                 <!-- main slider carousel nav controls -->
-                <a class="carousel-control left" href="#productCarousel" data-slide="prev">
-                    <span class="glyphicon glyphicon-chevron-left"></span>
+                <a class="carousel-control-prev" href="#productCarousel" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
                 </a>
-                <a class="carousel-control right" href="#productCarousel" data-slide="next">
-                    <span class="glyphicon glyphicon-chevron-right"></span>
+                <a class="carousel-control-next" href="#productCarousel" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
                 </a>
             </div>
         </div>
@@ -77,16 +79,16 @@ file that was distributed with this source code.
 <!-- thumb navigation carousel -->
 <div class="hidden-sm hidden-xs" id="slider-thumbs">
     <!-- thumb navigation carousel items -->
-    <ul class="list-inline">
+    <ul class="list-group list-group-horizontal">
         <li>
-            <a id="carousel-selector-0" class="img-thumbnail">
-                {% thumbnail product.image, 'preview' %}
+            <a id="carousel-selector-0">
+                {% thumbnail product.image, 'preview' with {'class': 'img-thumbnail'} %}
             </a>
         </li>
         {% for galMedia in product.gallery.galleryHasMedias %}
             <li>
-                <a id="carousel-selector-{{ loop.index }}" class="img-thumbnail">
-                    {% thumbnail galMedia.media, 'preview' %}
+                <a id="carousel-selector-{{ loop.index }}">
+                    {% thumbnail galMedia.media, 'preview' with {'class': 'img-thumbnail'} %}
                 </a>
             </li>
         {% endfor %}

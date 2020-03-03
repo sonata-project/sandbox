@@ -31,14 +31,16 @@ use Sonata\Component\Basket\BasketInterface;
 use Sonata\Component\Currency\Currency;
 use Sonata\Component\Invoice\InvoiceInterface;
 use Sonata\Component\Order\OrderInterface;
+use Sonata\Component\Product\Pool;
 use Sonata\Component\Product\ProductDefinition;
+use Sonata\Component\Transformer\InvoiceTransformer;
 use Sonata\CustomerBundle\Entity\BaseAddress;
 use Sonata\CustomerBundle\Entity\BaseCustomer;
 use Sonata\OrderBundle\Entity\BaseOrder;
 use Sonata\PaymentBundle\Entity\BaseTransaction;
 use Sonata\ProductBundle\Entity\BaseProduct;
-use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\DependencyInjection\ParameterBag\ContainerBagInterface;
 
 /**
  * Category fixtures loader.
@@ -46,17 +48,45 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * @author Hugo Briand <briand@ekino.com>
  * @author Sylvain Deloux <sylvain.deloux@ekino.com>
  */
-class LoadOrderData extends AbstractFixture implements ContainerAwareInterface, OrderedFixtureInterface
+class LoadOrderData extends AbstractFixture implements OrderedFixtureInterface
 {
-    /**
-     * @var ContainerInterface
-     */
-    protected $container;
-
     /**
      * @var ArrayCollection
      */
     protected $orderElements;
+
+    /**
+     * @var \Faker\Generator
+     */
+    protected $faker;
+
+    /**
+     * @var \Sonata\Component\Transformer\InvoiceTransformer
+     */
+    protected $invoiceTransformer;
+
+    /**
+     * @var \Sonata\Component\Product\Pool
+     */
+    protected $productPool;
+
+    /**
+     * @var \Symfony\Component\DependencyInjection\ParameterBag\ContainerBagInterface
+     */
+    protected $parameterBag;
+
+    public function __construct(
+        Generator $faker,
+        InvoiceTransformer $invoiceTransformer,
+        Pool $productPool,
+        ContainerBagInterface $parameterBag
+    )
+    {
+        $this->faker = $faker;
+        $this->invoiceTransformer = $invoiceTransformer;
+        $this->productPool = $productPool;
+        $this->parameterBag = $parameterBag;
+    }
 
     public function load(ObjectManager $manager)
     {
@@ -65,7 +95,7 @@ class LoadOrderData extends AbstractFixture implements ContainerAwareInterface, 
 
         $basket = new Basket();
         $basket->setCurrency($currency);
-        $basket->setProductPool($this->getProductPool());
+        $basket->setProductPool($this->productPool);
 
         $products = [
             $this->getReference('php_plush_blue_goodie_product'),
@@ -92,7 +122,7 @@ class LoadOrderData extends AbstractFixture implements ContainerAwareInterface, 
             $this->getReference('travel_switzerland_extra_large_product'),
         ];
 
-        $nbCustomers = $this->container->hasParameter('sonata.fixtures.customer.fake') ? (int) $this->container->getParameter('sonata.fixtures.customer.fake') : 20;
+        $nbCustomers = $this->parameterBag->has('sonata.fixtures.customer.fake') ? (int) $this->parameterBag->get('sonata.fixtures.customer.fake') : 20;
 
         for ($i = 1; $i <= $nbCustomers; ++$i) {
             $customer = $this->generateCustomer($manager, $i);
@@ -241,8 +271,8 @@ class LoadOrderData extends AbstractFixture implements ContainerAwareInterface, 
      */
     protected function createOrderElement(BasketInterface $basket, BaseProduct $product)
     {
-        $productProvider = $this->getProductPool()->getProvider($product);
-        $productManager = $this->getProductPool()->getManager($product);
+        $productProvider = $this->productPool->getProvider($product);
+        $productManager = $this->productPool->getManager($product);
 
         $productDefinition = new ProductDefinition($productProvider, $productManager);
 
@@ -265,7 +295,7 @@ class LoadOrderData extends AbstractFixture implements ContainerAwareInterface, 
     {
         $invoice = new Invoice();
 
-        $this->getInvoiceTransformer()->transformFromOrder($order, $invoice);
+        $this->invoiceTransformer->transformFromOrder($order, $invoice);
 
         if ($order->isValidated()) {
             $invoice->setStatus(InvoiceInterface::STATUS_PAID);
@@ -283,7 +313,7 @@ class LoadOrderData extends AbstractFixture implements ContainerAwareInterface, 
      */
     protected function generateCustomer(ObjectManager $manager, $i)
     {
-        $faker = $this->getFaker();
+        $faker = $this->faker;
 
         $firstName = $faker->firstName();
         $lastName = $faker->lastName();
@@ -389,35 +419,5 @@ class LoadOrderData extends AbstractFixture implements ContainerAwareInterface, 
         $transaction->setPaymentCode($order->getPaymentMethod());
 
         $manager->persist($transaction);
-    }
-
-    /**
-     * Get Product Pool.
-     *
-     * @return \Sonata\Component\Product\Pool
-     */
-    protected function getProductPool()
-    {
-        return $this->container->get('sonata.product.pool');
-    }
-
-    /**
-     * Get Invoice Transformer.
-     *
-     * @return \Sonata\Component\Transformer\InvoiceTransformer
-     */
-    protected function getInvoiceTransformer()
-    {
-        return $this->container->get('sonata.payment.transformer.invoice');
-    }
-
-    /**
-     * Get Faker.
-     *
-     * @return Generator
-     */
-    protected function getFaker()
-    {
-        return $this->container->get('faker.generator');
     }
 }

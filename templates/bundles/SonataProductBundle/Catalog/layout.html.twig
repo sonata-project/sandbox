@@ -9,16 +9,14 @@ file that was distributed with this source code.
 
 #}
 
-{% sonata_template_box 'This is the catalog template. Feel free to override it.' %}
-
 {% block sonata_page_breadcrumb %}
-    <div class="row-fluid clearfix">
+    <nav aria-label="breadcrumb">
         {% if category is defined %}
             {{ sonata_block_render_event('breadcrumb', { 'context': 'catalog', 'category': category, 'current_uri': app.request.requestUri }) }}
         {% elseif collection is defined %}
             {{ sonata_block_render_event('breadcrumb', { 'context': 'catalog', 'collection': collection, 'current_uri': app.request.requestUri }) }}
         {% endif %}
-    </div>
+    </nav>
 {% endblock %}
 
 <div class="row">
@@ -58,11 +56,11 @@ file that was distributed with this source code.
 
         {% else %}
 
-            <div class="panel panel-default sonata-product-navigation-bar">
-                <div class="panel-heading">
+            <div class="card sonata-product-navigation-bar">
+                <div class="card-header blue lighten-4">
                     <div class="row">
                         <div class="col-sm-3">
-                            <h4 class="panel-title">
+                            <h4>
                                 {% block products_heading_title %}{%endblock%}                                
                             </h4>
                         </div>
@@ -75,7 +73,7 @@ file that was distributed with this source code.
                 {% block products %}{% endblock %}
 
                 {% if pager.paginationData.pageCount > 1 %}
-                    <div class="panel-footer">
+                    <div class="card-footer">
                         <div class="row">
                             <div class="col-sm-12">
                                 {% include '@SonataProduct/Catalog/_pager.html.twig' %}

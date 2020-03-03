@@ -11,17 +11,13 @@ file that was distributed with this source code.
 
 {% spaceless %}
 
-    <div class="panel panel-primary">
+    <div class="card card-primary">
 
-        <div class="panel-heading">
-            <h3 class="panel-title">{% trans from "SonataProductBundle" %}sonata.product.cross_selling.title{% endtrans %}</h3>
+        <div class="card-header blue lighten-4">
+            {% trans from "SonataProductBundle" %}sonata.product.cross_selling.title{% endtrans %}
         </div>
 
-        <div class="panel-body product-grid">
-            <div class="col-lg-12">
-                {% sonata_template_box 'This is the similar product view template. Feel free to override it.' %}
-            </div>
-
+        <div class="card-body product-grid">
             <div class="col-lg-12">
                 {{ sonata_block_render({'type': 'sonata.product.block.similar_products', 'settings': {'title': '', 'number': 4, 'base_product_id': product.id}}) }}
             </div>

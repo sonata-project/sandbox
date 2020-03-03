@@ -1,0 +1,27 @@
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+
+{% extends sonata_block.templates['block_container'] %}
+
+{# render container block #}
+{% block block %}
+    <div class="col-sm-12">
+        <div class="row">
+            {{ parent() }}
+        </div>
+        <div class="clearfix"></div>
+    </div>
+{% endblock %}
+{% block block_child_render %}
+    <div class="sonata_seo_social pull-left">
+        {{ parent() }}
+    </div>
+{% endblock %}

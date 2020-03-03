@@ -15,7 +15,6 @@ file that was distributed with this source code.
 {% block sonata_profile_title %}{% trans from 'SonataInvoiceBundle' %}sonata.invoice.title_invoice{% endtrans %} - {{ invoice.reference }}{% endblock %}
 
 {% block sonata_profile_content %}
-    {% sonata_template_box 'This is the invoice view template.' %}
 
     {% block content %}
 
@@ -24,13 +23,11 @@ file that was distributed with this source code.
             {% block sonata_invoice_top_left %}
                 <!-- Billing address -->
                 <div class="col-sm-6">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <div class="panel-title">
-                                <h4 class="panel-title">{% trans from 'SonataInvoiceBundle' %}sonata.invoice.subtitle_billing{% endtrans %}</h4>
-                            </div>
+                    <div class="card card-primary">
+                        <div class="card-header blue lighten-4">
+                            {% trans from 'SonataInvoiceBundle' %}sonata.invoice.subtitle_billing{% endtrans %}
                         </div>
-                        <div class="panel-body">
+                        <div class="card-body">
                             {{ sonata_address_render(invoice.billingAsArray) }}
                         </div>
                     </div>
@@ -42,11 +39,9 @@ file that was distributed with this source code.
                 {% set date_time_size = constant('IntlDateFormatter::SHORT') %}
 
                 <div class="col-sm-6">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <div class="panel-title">
-                                <h4 class="panel-title">{% trans from 'SonataInvoiceBundle' %}sonata.invoice.subtitle_references{% endtrans %}</h4>
-                            </div>
+                    <div class="card card-primary">
+                        <div class="card-header blue lighten-4">
+                            {% trans from 'SonataInvoiceBundle' %}sonata.invoice.subtitle_references{% endtrans %}
                         </div>
                         <table class="table">
                             <tr>
@@ -76,11 +71,9 @@ file that was distributed with this source code.
             <!-- Invoice elements -->
             <div class="row">
                 <div class="col-sm-12">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <div class="panel-title">
-                                <h4 class="panel-title">{% trans from 'SonataInvoiceBundle' %}sonata.invoice.elements.list.title{% endtrans %}</h4>
-                            </div>
+                    <div class="card card-primary">
+                        <div class="card-header blue lighten-4">
+                            {% trans from 'SonataInvoiceBundle' %}sonata.invoice.elements.list.title{% endtrans %}
                         </div>
 
                         <table class="table">

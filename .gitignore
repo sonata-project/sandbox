@@ -1,11 +1,11 @@
 ###> symfony/framework-bundle ###
 /app/config/parameters*.yml
 /var/cache/*
-/var/logs/*
+/var/log/*
 /vendor
-/web/bundles
-/web/uploads
-/web/sitemap*.xml
+/public/bundles
+/public/uploads
+/public/sitemap*.xml
 ###< symfony/framework-bundle ###
 
 ### Behat
@@ -17,7 +17,7 @@
 
 ###> symfony/webpack-encore-bundle ###
 /node_modules/
-/web/build
+/public/build
 npm-debug.log
 yarn-error.log
 

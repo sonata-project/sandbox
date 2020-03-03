@@ -21,8 +21,8 @@ file that was distributed with this source code.
                     <i class="fa page-tree__item__is-hybrid fa-{% if page.isHybrid %}gears{% else %}code{% endif %}"></i>
                     <a class="page-tree__item__edit" href="{{ admin.generateObjectUrl('edit', page) }}">{{ page.name }}</a>
                     <i class="text-muted">{{ page.url }}</i>
-                    <a class="label label-default pull-right" href="{{ admin.generateObjectUrl('compose', page) }}">{{ 'pages.compose_label'|trans({}, 'SonataPageBundle') }} <i class="fa fa-magic"></i></a>
-                    {% if page.edited %}<span class="label label-warning pull-right">{{ 'pages.edited_label'|trans({}, 'SonataPageBundle') }}</span>{% endif %}
+                    <a class="label label-default float-right" href="{{ admin.generateObjectUrl('compose', page) }}">{{ 'pages.compose_label'|trans({}, 'SonataPageBundle') }} <i class="fa fa-magic"></i></a>
+                    {% if page.edited %}<span class="label label-warning float-right">{{ 'pages.edited_label'|trans({}, 'SonataPageBundle') }}</span>{% endif %}
                 </div>
                 {% import _self as macro %}
                 {% if page.children|length %}
@@ -67,7 +67,7 @@ file that was distributed with this source code.
                                 <li>
                                     <a href="{{ admin.generateUrl('tree', { 'site': site.id }) }}">
                                         {% if currentSite and site.id == currentSite.id %}
-                                            <span class="pull-right">
+                                            <span class="float-right">
                                                 <i class="fa fa-check"></i>
                                             </span>
                                         {% endif %}

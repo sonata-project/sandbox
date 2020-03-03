@@ -1080,7 +1080,7 @@ CONTENT
             'page' => $global,
             'code' => 'content',
         ], static function ($container) {
-            $container->setSetting('layout', '<div class="col-sm-2 col-sm-offset-3">{{ CONTENT }}</div>');
+            $container->setSetting('layout', '<div class="col-sm-2 offset-sm-3">{{ CONTENT }}</div>');
         }));
 
         $footer->addChildren($footerLinksCenter = $blockInteractor->createNewContainer([

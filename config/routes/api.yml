@@ -8,10 +8,10 @@
 #    prefix:       /news
 #    resource:     "@SonataNewsBundle/Resources/config/routing/api.xml"
 
-sonata_api_media:
-    type:         rest
-    prefix:       /media
-    resource:     "@SonataMediaBundle/Resources/config/routing/api.xml"
+#sonata_api_media:
+#    type:         rest
+#    prefix:       /media
+#    resource:     "@SonataMediaBundle/Resources/config/routing/api.xml"
 
 #sonata_api_notification:
 #    type:         rest
@@ -38,10 +38,10 @@ sonata_api_media:
 #    prefix:       /ecommerce
 #    resource:     "@SonataCustomerBundle/Resources/config/routing/api.xml"
 
-sonata_api_ecommerce_basket:
-    type:         rest
-    prefix:       /ecommerce
-    resource:     "@SonataBasketBundle/Resources/config/routing/api.xml"
+#sonata_api_ecommerce_basket:
+#    type:         rest
+#    prefix:       /ecommerce
+#    resource:     "@SonataBasketBundle/Resources/config/routing/api.xml"
 
 #sonata_api_page:
 #    type:         rest

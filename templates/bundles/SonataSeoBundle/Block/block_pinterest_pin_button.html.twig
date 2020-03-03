@@ -1,0 +1,24 @@
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+{% extends sonata_block.templates.block_base %}
+
+{% block block %}
+    {% apply spaceless %}
+
+        <a href="//www.pinterest.com/pin/create/button/?url={{ settings.url }}&media={{ settings.image }}&description={{ settings.description }}"
+           data-pin-do="buttonPin"
+           {% if settings.size %}data-pin-height="{{ settings.size }}"{% endif %}
+           {% if 'round' == settings.shape %}data-pin-shape="{{ settings.shape }}"{% endif %}>
+            <img src="//assets.pinterest.com/images/pidgets/pinit_fg_en_rect_gray_20.png" />
+        </a>
+
+    {% endapply %}
+{% endblock %}

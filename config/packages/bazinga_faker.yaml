@@ -76,8 +76,8 @@ bazinga_faker:
                     method: randomNumber
                 locale:
                     method: languageCode
-                    
-                    
+
+
         AppBundle\Entity\Commerce\Invoice:
             number: 50
             custom_formatters:

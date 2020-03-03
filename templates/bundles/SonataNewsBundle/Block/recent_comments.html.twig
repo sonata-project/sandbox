@@ -11,10 +11,9 @@ file that was distributed with this source code.
 {% extends sonata_block.templates.block_base %}
 
 {% block block %}
-    <div class="panel panel-default {{ settings.class }}">
+    <div class="card {{ settings.class }}">
         {% if settings.title is not empty %}
-            <div class="panel-heading">
-                <h4 class="panel-title">
+            <div class="card-header blue lighten-4">
                     {% if settings.icon %}
                         <i class="{{ settings.icon }}" aria-hidden="true"></i>
                     {% endif %}
@@ -23,13 +22,10 @@ file that was distributed with this source code.
                     {% else %}
                         {{ settings.title }}
                     {% endif %}
-                </h4>
             </div>
         {% endif %}
 
-        <div class="panel-body">
-            {% sonata_template_box 'This is the recent posts comments block.' %}
-
+        <div class="card-body">
             <div class="list-group">
                 {% for comment in pager.getResults() %}
                     {% if context.getSetting('mode') == 'admin' and admin_pool is defined %}
@@ -63,7 +59,7 @@ file that was distributed with this source code.
             </div>
         </div>
 
-        <div class="panel-footer">
+        <div class="card-footer">
             {% if context.getSetting('mode') == 'admin' and admin_pool is defined %}
                 <a href="{{ admin_pool.getAdminByAdminCode('sonata.news.admin.comment').generateUrl('list') }}"
                    class="btn btn-primary btn-block"

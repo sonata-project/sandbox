@@ -1,0 +1,29 @@
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+{% extends sonata_block.templates.block_base %}
+
+{% block block %}
+{% apply spaceless %}
+
+    {% if settings.user %}
+
+        <a href="https://twitter.com/{{ settings.user }}" class="twitter-follow-button"
+            {% if not settings.show_username %}data-show-screen-name="false"{% endif %}
+            {% if settings.large_button %}data-size="large"{% endif %}
+            data-lang="{{ settings.language }}"
+            {% if settings.opt_out %}data-dnt="true"{% endif %}>
+            Follow @{{ settings.user }}
+        </a>
+
+    {% endif %}
+
+{% endapply %}
+{% endblock %}

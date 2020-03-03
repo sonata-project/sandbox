@@ -14,7 +14,7 @@
         {% block sonata_address_edit %}
             {% if showEdit %}
                 <div class="col-sm-3">
-                    <a class="btn btn-primary btn-xs pull-right" href="{{ url('sonata_customer_address_edit', {'id' : address.id, 'context': context}) }}"><span class="glyphicon glyphicon-pencil">&nbsp;</span>{{ 'sonata_customer_address_edit'|trans({}, "SonataCustomerBundle") }}</a>
+                    <a class="btn btn-primary btn-xs float-right" href="{{ url('sonata_customer_address_edit', {'id' : address.id, 'context': context}) }}"><span class="glyphicon glyphicon-pencil">&nbsp;</span>{{ 'sonata_customer_address_edit'|trans({}, "SonataCustomerBundle") }}</a>
                 </div>
             {% endif %}
         {% endblock %}

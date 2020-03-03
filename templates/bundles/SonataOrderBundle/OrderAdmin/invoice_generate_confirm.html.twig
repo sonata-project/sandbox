@@ -17,7 +17,7 @@ file that was distributed with this source code.
         <p>{% trans from 'SonataOrderBundle' %}sonata.order.invoice_generate_confirm_message{% endtrans %}</p>
         <p>
             <a href="{{ path('admin_sonata_order_order_edit', {'id': id}) }}" class="btn btn-default"><i class="glyphicon glyphicon-arrow-left"></i>&nbsp;{% trans from 'SonataOrderBundle' %}sonata.order.invoice_generate_confirm_cancel{% endtrans %}</a>
-            <a href="{{ path('admin_sonata_order_order_generateInvoice', {'id': id, 'confirm': 'yes'}) }}" class="btn btn-success pull-right">{% trans from 'SonataOrderBundle' %}sonata.order.invoice_generate_confirm_confirm{% endtrans %}</a>
+            <a href="{{ path('admin_sonata_order_order_generateInvoice', {'id': id, 'confirm': 'yes'}) }}" class="btn btn-success float-right">{% trans from 'SonataOrderBundle' %}sonata.order.invoice_generate_confirm_confirm{% endtrans %}</a>
         </p>
     </div>
 {% endblock %}

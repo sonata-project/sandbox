@@ -14,13 +14,11 @@ file that was distributed with this source code.
 
 {% block sonata_profile_content %}
 
-{% sonata_template_box 'This is the customer address creation template. Feel free to override it.' %}
-
 {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
     {{ form_errors(form) }}
     {{ form_rest(form) }}
     <div class="form-actions">
-        <button type="submit" class="btn btn-success pull-right">{{ 'sonata.customer.address.save'|trans({}, 'SonataCustomerBundle') }}</button>
+        <button type="submit" class="btn btn-success float-right">{{ 'sonata.customer.address.save'|trans({}, 'SonataCustomerBundle') }}</button>
     </div>
 {{ form_end(form) }}
 

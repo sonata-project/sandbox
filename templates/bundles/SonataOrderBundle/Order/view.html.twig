@@ -15,13 +15,12 @@ file that was distributed with this source code.
 {% block sonata_profile_title %}{% trans from 'SonataOrderBundle' %}sonata.order.title_order{% endtrans %} - {{ order.reference }}{% endblock %}
 
 {% block sonata_profile_content %}
-    {% sonata_template_box 'This is the order view template. Feel free to override it.' %}
 
     {% block sonata_order_title %}
     <div class="row">
         <div class="col-sm-3 col-sm-offset-9" style="margin-bottom:15px;">
             <p>
-                <a href="{{ url('sonata_invoice_view', {'reference' : order.reference}) }}" class="btn btn-primary pull-right"><i class="glyphicon glyphicon-file icon-white"></i>&nbsp;{% trans from 'SonataOrderBundle' %}sonata.order.view_invoice{% endtrans %}</a>
+                <a href="{{ url('sonata_invoice_view', {'reference' : order.reference}) }}" class="btn btn-primary float-right"><i class="glyphicon glyphicon-file icon-white"></i>&nbsp;{% trans from 'SonataOrderBundle' %}sonata.order.view_invoice{% endtrans %}</a>
             </p>
         </div>
     </div>
@@ -33,11 +32,9 @@ file that was distributed with this source code.
             <div class="col-sm-6">
                 {% block sonata_order_dates %}
                     {% set date_time_size = constant('IntlDateFormatter::SHORT') %}
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <div class="panel-title">
-                                <h4 class="panel-title">{% trans from 'SonataOrderBundle' %}sonata.order.view.subtitle_dates{% endtrans %}</h4>
-                            </div>
+                    <div class="card card-primary">
+                        <div class="card-header blue lighten-4">
+                            {% trans from 'SonataOrderBundle' %}sonata.order.view.subtitle_dates{% endtrans %}
                         </div>
 
                         <table class="table">
@@ -65,11 +62,9 @@ file that was distributed with this source code.
             </div>
             <div class="col-sm-6">
                 {% block sonata_order_statuses %}
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <div class="panel-title">
-                                <h4 class="panel-title">{% trans from 'SonataOrderBundle' %}sonata.order.view.subtitle_statuses{% endtrans %}</h4>
-                            </div>
+                    <div class="card card-primary">
+                        <div class="card-header blue lighten-4">
+                            {% trans from 'SonataOrderBundle' %}sonata.order.view.subtitle_statuses{% endtrans %}
                         </div>
 
                         <table class="table">
@@ -95,13 +90,11 @@ file that was distributed with this source code.
         {% block sonata_order_top_right %}
             <div class="col-sm-6">
                 {% block sonata_order_delivery %}
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <div class="panel-title">
-                                <h4 class="panel-title">{% trans from 'SonataOrderBundle' %}sonata.order.view.delivery_title{% endtrans %}</h4>
-                            </div>
+                    <div class="card card-primary">
+                        <div class="card-header blue lighten-4">
+                            {% trans from 'SonataOrderBundle' %}sonata.order.view.delivery_title{% endtrans %}
                         </div>
-                        <div class="panel-body">
+                        <div class="card-body">
                             {{ sonata_address_render(order.deliveryAsArray) }}
                         </div>
                     </div>
@@ -109,13 +102,11 @@ file that was distributed with this source code.
             </div>
             <div class="col-sm-6">
                 {% block sonata_order_billing %}
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <div class="panel-title">
-                                <h4 class="panel-title">{% trans from 'SonataOrderBundle' %}sonata.order.view.billing_title{% endtrans %}</h4>
-                            </div>
+                    <div class="card card-primary">
+                        <div class="card-header blue lighten-4">
+                            {% trans from 'SonataOrderBundle' %}sonata.order.view.billing_title{% endtrans %}
                         </div>
-                        <div class="panel-body">
+                        <div class="card-body">
                             {{ sonata_address_render(order.billingAsArray) }}
                         </div>
                     </div>
@@ -130,9 +121,9 @@ file that was distributed with this source code.
     <div class="clearfix">&nbsp;</div>
     <div class="row">
         <div class="col-sm-12">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h4 class="panel-title">{% trans from 'SonataOrderBundle' %}sonata.order.view.elements{% endtrans %}</h4>
+            <div class="card card-primary">
+                <div class="card-header blue lighten-4">
+                    {% trans from 'SonataOrderBundle' %}sonata.order.view.elements{% endtrans %}
                 </div>
 
                 <table class="table">

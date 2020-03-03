@@ -16,30 +16,74 @@ namespace Sonata\Bundle\DemoBundle\DataFixtures\ORM;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
+use Faker\Generator;
+use Sonata\ClassificationBundle\Model\CollectionManagerInterface;
+use Sonata\ClassificationBundle\Model\TagManagerInterface;
+use Sonata\FormatterBundle\Formatter\Pool;
 use Sonata\NewsBundle\Model\CommentInterface;
-use Symfony\Component\DependencyInjection\ContainerAwareInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
+use Sonata\NewsBundle\Model\CommentManagerInterface;
+use Sonata\NewsBundle\Model\PostManagerInterface;
 
-class LoadNewsData extends AbstractFixture implements ContainerAwareInterface, OrderedFixtureInterface
+class LoadNewsData extends AbstractFixture implements OrderedFixtureInterface
 {
-    private $container;
+    /**
+     * @return \Faker\Generator
+     */
+    private $faker;
+
+    /**
+     * @var \Sonata\ClassificationBundle\Model\CollectionManagerInterface
+     */
+    private $collectionManager;
+
+    /**
+     * @var \Sonata\NewsBundle\Model\CommentManagerInterface
+     */
+    private $commentManager;
+
+    /**
+     * @var \Sonata\FormatterBundle\Formatter\PoolInterface
+     */
+    private $formatterPool;
+
+    /**
+     * @var \Sonata\NewsBundle\Model\PostManagerInterface
+     */
+    private $postManager;
+
+    /**
+     * @var \Sonata\ClassificationBundle\Model\TagManagerInterface
+     */
+    private $tagManager;
+
+    public function __construct(
+        Generator $faker,
+        CollectionManagerInterface $collectionManager,
+        CommentManagerInterface $commentManager,
+        Pool $formatterPool,
+        PostManagerInterface $postManager,
+        TagManagerInterface $tagManager
+    )
+    {
+        $this->faker = $faker;
+        $this->collectionManager = $collectionManager;
+        $this->commentManager = $commentManager;
+        $this->formatterPool = $formatterPool;
+        $this->postManager = $postManager;
+        $this->tagManager = $tagManager;
+    }
 
     public function getOrder()
     {
         return 6;
     }
 
-    public function setContainer(ContainerInterface $container = null)
-    {
-        $this->container = $container;
-    }
-
     public function load(ObjectManager $manager)
     {
         //        $userManager = $this->getUserManager();
-        $postManager = $this->getPostManager();
+        $postManager = $this->postManager;
 
-        $faker = $this->getFaker();
+        $faker = $this->faker;
 
         $tags = [
             'symfony' => null,
@@ -49,21 +93,21 @@ class LoadNewsData extends AbstractFixture implements ContainerAwareInterface, O
         ];
 
         foreach ($tags as $tagName => $null) {
-            $tag = $this->getTagManager()->create();
+            $tag = $this->tagManager->create();
             $tag->setEnabled(true);
             $tag->setName($tagName);
 
             $tags[$tagName] = $tag;
-            $this->getTagManager()->save($tag);
+            $this->tagManager->save($tag);
         }
 
-        $collection = $this->getCollectionManager()->create();
+        $collection = $this->collectionManager->create();
         $collection->setEnabled(true);
         $collection->setName('General');
-        $this->getCollectionManager()->save($collection);
+        $this->collectionManager->save($collection);
 
         foreach (range(1, 20) as $id) {
-            $post = $postManager->create();
+            $post = $this->postManager->create();
             $post->setAuthor($this->getReference('user-johndoe'));
 
             $post->setCollection($collection);
@@ -103,7 +147,7 @@ class LoadNewsData extends AbstractFixture implements ContainerAwareInterface, O
             $post->setRawContent($raw);
             $post->setContentFormatter('markdown');
 
-            $post->setContent($this->getPoolFormatter()->transform($post->getContentFormatter(), $post->getRawContent()));
+            $post->setContent($this->formatterPool->transform($post->getContentFormatter(), $post->getRawContent()));
             $post->setCommentsDefaultStatus(CommentInterface::STATUS_VALID);
 
             foreach ($tags as $tag) {
@@ -111,7 +155,7 @@ class LoadNewsData extends AbstractFixture implements ContainerAwareInterface, O
             }
 
             foreach (range(1, $faker->randomDigit + 2) as $commentId) {
-                $comment = $this->getCommentManager()->create();
+                $comment = $this->commentManager->create();
                 $comment->setEmail($faker->email);
                 $comment->setName($faker->name);
                 $comment->setStatus(CommentInterface::STATUS_VALID);
@@ -123,50 +167,5 @@ class LoadNewsData extends AbstractFixture implements ContainerAwareInterface, O
 
             $postManager->save($post);
         }
-    }
-
-    public function getPoolFormatter()
-    {
-        return $this->container->get('sonata.formatter.pool');
-    }
-
-    /**
-     * @return \Sonata\CoreBundle\Model\ManagerInterface
-     */
-    public function getTagManager()
-    {
-        return $this->container->get('sonata.classification.manager.tag');
-    }
-
-    /**
-     * @return \Sonata\CoreBundle\Model\ManagerInterface
-     */
-    public function getCollectionManager()
-    {
-        return $this->container->get('sonata.classification.manager.collection');
-    }
-
-    /**
-     * @return \Sonata\NewsBundle\Model\PostManagerInterface
-     */
-    public function getPostManager()
-    {
-        return $this->container->get('sonata.news.manager.post');
-    }
-
-    /**
-     * @return \Sonata\NewsBundle\Model\CommentManagerInterface
-     */
-    public function getCommentManager()
-    {
-        return $this->container->get('sonata.news.manager.comment');
-    }
-
-    /**
-     * @return \Faker\Generator
-     */
-    public function getFaker()
-    {
-        return $this->container->get('faker.generator');
     }
 }

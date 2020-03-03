@@ -9,10 +9,9 @@ file that was distributed with this source code.
 
 #}
 
-<div class="panel-body product-grid">
+<div class="card-body product-grid">
 
-    {% sonata_template_box 'This is the product grid list template. Feel free to override it.' %}
-
+    <div class="row">
     {% for product in pager %}
 
         {% if not sonata_product_has_variations(product) or (sonata_product_has_variations(product) and sonata_product_has_enabled_variations(product)) %}
@@ -24,5 +23,6 @@ file that was distributed with this source code.
         {% endif %}
 
     {% endfor %}
+    </div>
 
 </div>

@@ -14,51 +14,61 @@ file that was distributed with this source code.
     <div class="container">
         <div class="content">
             <div class="row page-header">
-                {{ sonata_page_render_container('header', 'global') }}
+                <div class="col-12">
+                    {{ sonata_page_render_container('header', 'global') }}
+                </div>
             </div>
 
             {% block sonata_page_breadcrumb %}
                 <div class="row">
-                    {{ sonata_block_render_event('breadcrumb', { 'context': 'page', 'current_uri': app.request.requestUri }) }}
+                    <div class="col-12">
+                        {{ sonata_block_render_event('breadcrumb', { 'context': 'page', 'current_uri': app.request.requestUri }) }}
+                    </div>
                 </div>
             {% endblock %}
 
             {% if page is defined %}
                 <div class="row">
-                    {% if page.name != 'global'%}
-                        {{ sonata_page_render_container('content_top', 'global') }}
-                    {% endif %}
-                    {{ sonata_page_render_container('content_top', page) }}
+                    <div class="col-12">
+                        {% if page.name != 'global'%}
+                            {{ sonata_page_render_container('content_top', 'global') }}
+                        {% endif %}
+                        {{ sonata_page_render_container('content_top', page) }}
+                    </div>
                 </div>
             {% endif %}
 
             <div class="row">
-                {% block page_content %}
-                    {% if content is defined %}
-                        {{ content|raw }}
-                    {% else %}
-                        {% set content = block('content') is defined ? block('content') : '' %}
-                        {% if content|length > 0 %}
+                <div class="col-12">
+                    {% block page_content %}
+                        {% if content is defined %}
                             {{ content|raw }}
-                        {% elseif page is defined %}
-                            {{ sonata_page_render_container('content', page) }}
+                        {% else %}
+                            {% set content = block('content') is defined ? block('content') : '' %}
+                            {% if content|length > 0 %}
+                                {{ content|raw }}
+                            {% elseif page is defined %}
+                                {{ sonata_page_render_container('content', page) }}
+                            {% endif %}
                         {% endif %}
-                    {% endif %}
-                {% endblock %}
+                    {% endblock %}
+                </div>
             </div>
 
             {% if page is defined %}
                 <div class="row">
-                    {{ sonata_page_render_container('content_bottom', page) }}
+                    <div class="col-12">
+                        {{ sonata_page_render_container('content_bottom', page) }}
 
-                    {% if page.name != 'global'%}
-                        {{ sonata_page_render_container('content_bottom', 'global') }}
-                    {% endif %}
+                        {% if page.name != 'global'%}
+                            {{ sonata_page_render_container('content_bottom', 'global') }}
+                        {% endif %}
+                    </div>
                 </div>
             {% endif %}
         </div>
 
-        <footer class="row">
+        <footer>
             {{ sonata_page_render_container('footer', 'global') }}
         </footer>
     </div>

@@ -1,10 +1,9 @@
 {% extends sonata_block.templates.block_base %}
 
 {% block block %}
-    <div class="panel panel-default {{ settings.class }}">
+    <div class="card {{ settings.class }}">
         {% if settings.title is not empty %}
-            <div class="panel-heading">
-                <h4 class="panel-title">
+            <div class="card-header blue lighten-4">
                     {% if settings.icon %}
                         <i class="{{ settings.icon }}" aria-hidden="true"></i>
                     {% endif %}
@@ -13,11 +12,10 @@
                     {% else %}
                         {{ settings.title }}
                     {% endif %}
-                </h4>
             </div>
         {% endif %}
 
-        <div class="panel-body">
+        <div class="card-body">
             <h4>{{ 'title_content_pages'|trans({}, 'SonataPageBundle') }}</h4>
 
             <div class="list-group">
@@ -25,9 +23,9 @@
                     {% if settings.mode == 'admin' and sonata_admin is defined %}
                         <a href="{{ sonata_admin.url('sonata.page.admin.page', 'compose', { 'id': page.id }) }}" class="list-group-item">
                             {% if page.enabled %}
-                                <span class="label label-success pull-right">{{ 'label_page_enabled'|trans({}, 'SonataPageBundle') }}</span>
+                                <span class="label label-success float-right">{{ 'label_page_enabled'|trans({}, 'SonataPageBundle') }}</span>
                             {% else %}
-                                <span class="label label-danger pull-right">{{ 'label_page_disabled'|trans({}, 'SonataPageBundle') }}</span>
+                                <span class="label label-danger float-right">{{ 'label_page_disabled'|trans({}, 'SonataPageBundle') }}</span>
                             {% endif %}
                             {{ page.name }}
                         </a>
@@ -47,9 +45,9 @@
                     {% for page in systemElements %}
                         <a href="{{ sonata_admin.url('sonata.page.admin.page', 'compose', { 'id': page.id }) }}" class="list-group-item">
                             {% if page.enabled %}
-                                <span class="label label-success pull-right">{{ 'label_page_enabled'|trans({}, 'SonataPageBundle') }}</span>
+                                <span class="label label-success float-right">{{ 'label_page_enabled'|trans({}, 'SonataPageBundle') }}</span>
                             {% else %}
-                                <span class="label label-danger pull-right">{{ 'label_page_disabled'|trans({}, 'SonataPageBundle') }}</span>
+                                <span class="label label-danger float-right">{{ 'label_page_disabled'|trans({}, 'SonataPageBundle') }}</span>
                             {% endif %}
                             {{ page.name }}
                         </a>

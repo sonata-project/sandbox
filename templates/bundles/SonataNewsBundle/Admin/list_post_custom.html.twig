@@ -26,7 +26,7 @@ file that was distributed with this source code.
         </div>
     </div>
     <div class="col-sm-10">
-        <span class="badge pull-right">{{ object.commentsCount }}</span>
+        <span class="badge float-right">{{ object.commentsCount }}</span>
         {% if admin.isGranted('EDIT', object) and admin.hasRoute('edit') %}
             <a href="{{ admin.generateUrl('edit', {'id' : object|sonata_urlsafeid }) }}"><strong>{{ object.title }}</strong></a>
         {% else %}

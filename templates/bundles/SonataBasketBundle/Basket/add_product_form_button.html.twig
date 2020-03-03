@@ -15,19 +15,19 @@ file that was distributed with this source code.
 
 {% block add_product_form_content %}
     {% if sonata_product_has_variations(product) %}
-        <a class="btn btn-primary btn-sm pull-right" href="{{ url('sonata_product_view', {'productId': product.id, 'slug': product.slug}) }}">
+        <a class="btn btn-primary btn-sm float-right" href="{{ url('sonata_product_view', {'productId': product.id, 'slug': product.slug}) }}">
             <i class="glyphicon glyphicon-search icon-white"></i> {% trans from 'SonataProductBundle' %}sonata.product.btn_see{% endtrans %}
         </a>
     {% else %}
         {% if sonata_product_stock(product) == 0 %}
-            <a class="btn btn-primary btn-sm pull-right" href="{{ url('sonata_product_view', {'productId': product.id, 'slug': product.slug}) }}">
+            <a class="btn btn-primary btn-sm float-right" href="{{ url('sonata_product_view', {'productId': product.id, 'slug': product.slug}) }}">
                 <i class="glyphicon glyphicon-search icon-white"></i> {% trans from 'SonataProductBundle' %}sonata.product.btn_see{% endtrans %}
             </a>
         {% else %}
             {% set form = sonata_product_form_add_basket(product) %}
 
             <form id="form_add_basket_button_{{ product.id }}" class="form-horizontal" action="{{ url('sonata_basket_add_product') }}" method="POST"{% if provider.getOption('product_add_modal') %} data-target="#add_basket_modal_{{ product.id }}"{% endif %}>
-                <button type="submit" class="btn btn-primary btn-sm pull-right" id="sonata_add_basket_submit"{% if sonata_product_stock(product) == 0 %} disabled{% endif %}>
+                <button type="submit" class="btn btn-primary btn-sm float-right" id="sonata_add_basket_submit"{% if sonata_product_stock(product) == 0 %} disabled{% endif %}>
                     <i class="glyphicon glyphicon-shopping-cart icon-white"></i> {% trans from 'SonataProductBundle' %}sonata.product.btn_add{% endtrans %}
                 </button>
 

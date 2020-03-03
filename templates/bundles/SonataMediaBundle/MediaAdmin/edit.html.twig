@@ -46,7 +46,7 @@ file that was distributed with this source code.
                         <div class="box-header">
                             <h3 class="box-title">{{ 'title.media_preview'|trans({}, 'SonataMediaBundle') }}</h3>
                             {% if sonata_media.pixlr and sonata_media.pixlr.isEditable(object) %}
-                                <div class="box-tools pull-right">
+                                <div class="box-tools float-right">
                                     <button class="btn btn-sm btn-default pixlr-link"
                                             data-href="{{ path('sonata_media_pixlr_open_editor', { 'id': object|sonata_urlsafeid }) }}"
                                             data-toggle="modal"

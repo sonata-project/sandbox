@@ -1,11 +1,16 @@
 {
   "devDependencies": {
     "@symfony/webpack-encore": "^0.28.2",
-    "bootstrap": "3",
+    "bootstrap": "^4.4.1",
     "jquery": "^3.4.1",
     "node-sass": "^4.13.0",
     "popper.js": "^1.16.0",
     "sass-loader": "^7.0.1",
     "select2": "^4.0.12"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.12.1",
+    "chart.js": "^2.9.3",
+    "mdbootstrap": "^4.14.0"
   }
 }

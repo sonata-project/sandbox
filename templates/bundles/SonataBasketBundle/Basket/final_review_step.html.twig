@@ -9,8 +9,6 @@ file that was distributed with this source code.
 
 #}
 
-{% sonata_template_box 'This is the basket final review template. Feel free to override it.' %}
-
 {% include '@SonataBasket/Basket/stepper.html.twig' with {step: 'checkout'} %}
 
 <table class="table basket">
@@ -75,13 +73,11 @@ file that was distributed with this source code.
 <div class="row">
     <!-- Delivery address -->
     <div class="col-sm-6">
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <div class="panel-title">
-                    {{ 'sonata.basket.title_address_delivery_step_basket'|trans({}, 'SonataBasketBundle') }}
-                </div>
+        <div class="card card-primary">
+            <div class="card-header blue lighten-4">
+                {{ 'sonata.basket.title_address_delivery_step_basket'|trans({}, 'SonataBasketBundle') }}
             </div>
-            <div class="panel-body">
+            <div class="card-body">
                 {% if basket.deliverymethod.isAddressRequired() %}
                     <address>
                         <strong>{{  basket.deliveryaddress.name }}</strong><br/>
@@ -96,13 +92,11 @@ file that was distributed with this source code.
 
     <!-- Payment address -->
     <div class="col-sm-6">
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <div class="panel-title">
-                    {{ 'sonata.basket.title_address_billing_step_basket'|trans({}, 'SonataBasketBundle') }}
-                </div>
+        <div class="card card-primary">
+            <div class="card-header blue lighten-4">
+                {{ 'sonata.basket.title_address_billing_step_basket'|trans({}, 'SonataBasketBundle') }}
             </div>
-            <div class="panel-body">
+            <div class="card-body">
                 <address>
                     <strong>{{  basket.billingaddress.name }}</strong><br/>
                     {{  basket.billingaddress.getFullAddress("<br />")|raw }}
@@ -115,13 +109,11 @@ file that was distributed with this source code.
 <div class="row">
     <!-- Delivery information -->
     <div class="col-sm-6">
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <div class="panel-title">
-                    {{ 'sonata.basket.title_delivery_method'|trans({}, 'SonataBasketBundle') }}
-                </div>
+        <div class="card card-primary">
+            <div class="card-header blue lighten-4">
+                {{ 'sonata.basket.title_delivery_method'|trans({}, 'SonataBasketBundle') }}
             </div>
-            <div class="panel-body">
+            <div class="card-body">
                 {{ basket.deliverymethod.name }}
             </div>
         </div>
@@ -129,13 +121,11 @@ file that was distributed with this source code.
 
     <!-- Payment information -->
     <div class="col-sm-6">
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <div class="panel-title">
-                    {{ 'sonata.basket.title_payment_method'|trans({}, 'SonataBasketBundle') }}
-                </div>
+        <div class="card card-primary">
+            <div class="card-header blue lighten-4">
+                {{ 'sonata.basket.title_payment_method'|trans({}, 'SonataBasketBundle') }}
             </div>
-            <div class="panel-body">
+            <div class="card-body">
                 {{ basket.paymentmethod.name }}
             </div>
         </div>

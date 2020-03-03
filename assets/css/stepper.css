@@ -1,0 +1,61 @@
+/*
+ * Basket stepper
+ */
+
+ul.stepper {
+    list-style: none;
+    width: 100%;
+    height: 110px;
+    text-align: center;
+    color: #3a87ad;
+}
+
+ul.stepper li {
+    display: inline-block;
+    width: 135px;
+    height: 70px;
+}
+
+ul.stepper li hr {
+    margin: -53px 0px 0px 102px;
+    width: 70px;
+    border-top: 1px solid #3a87ad;
+}
+
+ul.stepper li div.img-circle {
+    background: #d9edf7;
+    width: 45px;
+    height: 45px;
+    margin: auto;
+    padding-top: 3px;
+    font-size: 2em;
+}
+
+ul.stepper li.active {
+    color: #428bca;
+}
+
+ul.stepper li.active div.img-circle {
+    background: #428bca;
+    color: #fff;
+}
+
+ul.stepper li.active hr {
+    border-top: 1px solid #cccccc;
+}
+
+ul.stepper li.active ~ li hr {
+    border-top: 1px solid #cccccc;
+}
+
+ul.stepper li.active ~ li {
+    color: #b0b0b0;
+}
+
+ul.stepper li.active ~ li div.img-circle {
+    background: #eeeeee;
+}
+
+ul.stepper li:last-child hr {
+    display: none;
+}

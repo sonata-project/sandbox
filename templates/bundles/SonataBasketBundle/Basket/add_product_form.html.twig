@@ -35,7 +35,7 @@ file that was distributed with this source code.
                     {% set quantityAttrs = {'min': 1} %}
                 {% endif %}
 
-                {{ form_row(form.quantity, {'label': 'form_label_quantity'|trans({}, 'SonataBasketBundle'), 'attr': quantityAttrs, 'horizontal_input_wrapper_class': 'col-lg-4', 'horizontal_label_class': 'control-label col-lg-8', 'render_required_asterisk': false}) }}
+                {{ form_row(form.quantity, {'label': 'form_label_quantity'|trans({}, 'SonataBasketBundle'), 'attr': quantityAttrs, 'horizontal_input_wrapper_class': 'col-lg-4', 'horizontal_label_class': 'control-label col-lg-8'}) }}
 
                 <div class="form-group">
                     <div class="col-lg-6 col-xs-6">
@@ -50,7 +50,7 @@ file that was distributed with this source code.
                         </span>
                     </div>
                     <div class="col-lg-6 col-xs-6">
-                        <button type="submit" class="btn btn-primary btn-sm pull-right" id="sonata_add_basket_submit"{% if sonata_product_stock(product) == 0 %} disabled{% endif %}>
+                        <button type="submit" class="btn btn-primary btn-sm float-right" id="sonata_add_basket_submit"{% if sonata_product_stock(product) == 0 %} disabled{% endif %}>
                             <i class="glyphicon glyphicon-shopping-cart icon-white"></i> {% trans from 'SonataProductBundle' %}sonata.product.btn_add_to_basket{% endtrans %}
                         </button>
                     </div>

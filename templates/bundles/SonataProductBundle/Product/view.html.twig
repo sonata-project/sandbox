@@ -38,11 +38,6 @@ file that was distributed with this source code.
 {% block product %}
     {% include '@SonataCore/FlashMessage/render.html.twig' %}
     <!-- Begin product display -->
-    <div class="row">
-        <div class="col-lg-12">
-            {% sonata_template_box 'This is the product view template. Feel free to override it.' %}
-        </div>
-    </div>
     <div class="row" itemscope itemtype="http://schema.org/Product">
         {% block product_left %}
             <div class="col-md-8">
@@ -59,9 +54,9 @@ file that was distributed with this source code.
         {% endblock %}
         {% block product_right %}
             <div class="col-md-4">
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <h3 itemprop="name" class="panel-title">{% block product_title %}{{ product.name }}{% endblock %}</h3>
+                <div class="card border-info">
+                    <div class="card-header blue lighten-4" itemprop="name">
+                        {% block product_title %}{{ product.name }}{% endblock %}
                     </div>
 
                     {% block product_properties %}
@@ -117,11 +112,11 @@ file that was distributed with this source code.
                         </ul>
                     {% endblock %}
 
-                    <div class="panel-footer">
+                    <div class="card-footer">
                         {% block  product_variations_form_block %}
                             <div class="row">
                                 <div class="col-lg-12">
-                                    {{ sonata_block_render({'type': 'sonata.product.block.variations_form'}, {'product': product, 'variations_properties': variations_properties, 'form_field_options': {'horizontal_input_wrapper_class': 'col-lg-4', 'horizontal_label_class': 'control-label col-lg-8', 'render_required_asterisk': false}}) }}
+                                    {{ sonata_block_render({'type': 'sonata.product.block.variations_form'}, {'product': product, 'variations_properties': variations_properties, 'form_field_options': {'horizontal_input_wrapper_class': 'col-lg-4', 'horizontal_label_class': 'control-label col-lg-8'}}) }}
                                 </div>
                             </div>
                         {% endblock %}
@@ -159,11 +154,11 @@ file that was distributed with this source code.
 {% endblock %}
 
 {% block product_full_description %}
-    <div class="panel panel-primary">
-        <div class="panel-heading">
-            <h3 class="panel-title"><a id="full-description"></a>{% trans from "SonataProductBundle" %}product_full_description{% endtrans %}</h3>
+    <div class="card card-primary">
+        <div class="card-header blue lighten-4">
+            <a id="full-description"></a>{% trans from "SonataProductBundle" %}product_full_description{% endtrans %}
         </div>
-        <div class="panel-body">
+        <div class="card-body">
             {{ product.description|raw }}
         </div>
     </div>
