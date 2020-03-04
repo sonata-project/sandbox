@@ -8,7 +8,7 @@ For the full copyright and license information, please view the LICENSE
 file that was distributed with this source code.
 
 #}
-{% extends '@SonataPage/layout.html.twig' %}
+{% extends '@App/layout.html.twig' %}
 
 {% block sonata_page_body_tag %}
     {{ parent() }}
@@ -23,8 +23,6 @@ file that was distributed with this source code.
     <script type="text/javascript">
         var basket_update_confirmation_message = '{{ 'sonata_basket_update_confirmation'|trans({}, 'SonataDemoBundle')|escape('js') }}';
     </script>
-
-    <script src="{{ asset('assetic/sonata_front_js.js') }}" type="text/javascript"></script>
 {% endblock %}
 
 {% block sonata_page_container %}
