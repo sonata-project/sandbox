@@ -30,6 +30,8 @@ class Collection extends BaseCollection
      */
     protected $id;
 
+    protected $productCollection;
+
     /**
      * Get id.
      *
