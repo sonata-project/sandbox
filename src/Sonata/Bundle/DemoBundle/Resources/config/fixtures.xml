@@ -23,25 +23,30 @@
         </service>
 
         <service class="Sonata\Bundle\DemoBundle\DataFixtures\ORM\LoadMediaData" id="sonata_bundle_demo.data_fixtures_orm.load_media_data">
-            <call method="setContainer">
-                <argument id="service_container" type="service"/>
-            </call>
+            <argument id="faker.generator" type="service"/>
+            <argument id="sonata.media.manager.gallery" type="service"/>
+            <argument id="sonata.media.manager.media" type="service"/>
 
             <tag name="doctrine.fixture.orm"/>
         </service>
 
         <service class="Sonata\Bundle\DemoBundle\DataFixtures\ORM\LoadNewsData" id="sonata_bundle_demo.data_fixtures_orm.load_news_data">
-            <call method="setContainer">
-                <argument id="service_container" type="service"/>
-            </call>
+            <argument id="faker.generator" type="service"/>
+            <argument id="sonata.classification.manager.collection" type="service"/>
+            <argument id="sonata.news.manager.comment" type="service"/>
+            <argument id="sonata.formatter.pool" type="service"/>
+            <argument id="sonata.news.manager.post" type="service"/>
+            <argument id="sonata.classification.manager.tag" type="service"/>
+
 
             <tag name="doctrine.fixture.orm"/>
         </service>
 
         <service class="Sonata\Bundle\DemoBundle\DataFixtures\ORM\LoadOrderData" id="sonata_bundle_demo.data_fixtures_orm.load_order_data">
-            <call method="setContainer">
-                <argument id="service_container" type="service"/>
-            </call>
+            <argument id="faker.generator" type="service"/>
+            <argument id="sonata.payment.transformer.invoice" type="service"/>
+            <argument id="sonata.product.pool" type="service"/>
+            <argument id="parameter_bag" type="service"/>
 
             <tag name="doctrine.fixture.orm"/>
         </service>
@@ -63,9 +68,8 @@
         </service>
 
         <service class="Sonata\Bundle\DemoBundle\DataFixtures\ORM\LoadUserData" id="sonata_bundle_demo.data_fixtures_orm.load_user_data">
-            <call method="setContainer">
-                <argument id="service_container" type="service"/>
-            </call>
+            <argument id="faker.generator" type="service"/>
+            <argument id="fos_user.user_manager" type="service"/>
 
             <tag name="doctrine.fixture.orm"/>
         </service>

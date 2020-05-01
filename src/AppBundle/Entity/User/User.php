@@ -30,6 +30,8 @@ class User extends BaseUser
      */
     protected $id;
 
+    protected $customers;
+
     /**
      * Get id.
      *

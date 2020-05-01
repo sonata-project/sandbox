@@ -16,6 +16,7 @@ namespace Sonata\Bundle\DemoBundle\Controller;
 use Sonata\Bundle\DemoBundle\Entity\Engine;
 use Sonata\Bundle\DemoBundle\Entity\MediaPreview;
 use Sonata\Bundle\DemoBundle\Entity\Peugeot;
+use Sonata\Bundle\DemoBundle\Form\Type\NewsletterType;
 use Sonata\MediaBundle\Form\Type\MediaType;
 use Sonata\SeoBundle\Seo\SeoPageInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -120,7 +121,7 @@ final class DemoController extends AbstractController
 
     public function newsletterAction(Request $request): Response
     {
-        $form = $this->createForm('sonata_demo_form_type_newsletter');
+        $form = $this->createForm(NewsletterType::class);
         $form->handleRequest($request);
 
         $message = 'sonata.demo.block.newsletter.message';

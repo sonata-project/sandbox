@@ -1,14 +1,25 @@
-/.php_cs.cache
+###> symfony/framework-bundle ###
+/.env.local
+/.env.local.php
+/.env.*.local
+/config/secrets/prod/prod.decrypt.private.php
+/public/bundles/
+/var/
+/vendor/
+/public/bundles
+/public/uploads
+/public/sitemap*.xml
+###< symfony/framework-bundle ###
+
+###> symfony/phpunit-bridge ###
+.phpunit
+.phpunit.result.cache
+/phpunit.xml
+###< symfony/phpunit-bridge ###
+
+### Behat
 /behat.yml
-/app/cache/*
-/app/logs/*
-/app/*.cache
-/web/bundles
-/web/uploads
-/web/sitemap*.xml
-/app/config/parameters*.yml
-/vendor
 /build
+
+### Composer
 /composer.lock
-/web/vendor
-/web/assetic

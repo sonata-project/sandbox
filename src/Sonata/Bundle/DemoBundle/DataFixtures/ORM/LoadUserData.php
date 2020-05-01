@@ -16,27 +16,36 @@ namespace Sonata\Bundle\DemoBundle\DataFixtures\ORM;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use Symfony\Component\DependencyInjection\ContainerAwareInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
+use Faker\Generator;
+use FOS\UserBundle\Model\UserManagerInterface;
 
-class LoadUserData extends AbstractFixture implements ContainerAwareInterface, OrderedFixtureInterface
+class LoadUserData extends AbstractFixture implements OrderedFixtureInterface
 {
-    private $container;
+    /**
+     * @var Generator
+     */
+    private $faker;
+
+    /**
+     * @var UserManagerInterface
+     */
+    private $userManager;
+
+    public function __construct(Generator $faker, UserManagerInterface $userManager)
+    {
+        $this->faker = $faker;
+        $this->userManager = $userManager;
+    }
 
     public function getOrder()
     {
         return 5;
     }
 
-    public function setContainer(ContainerInterface $container = null)
-    {
-        $this->container = $container;
-    }
-
     public function load(ObjectManager $manager)
     {
-        $manager = $this->getUserManager();
-        $faker = $this->getFaker();
+        $manager = $this->userManager;
+        $faker = $this->faker;
 
         $user = $manager->createUser();
         $user->setUsername('admin');
@@ -89,21 +98,5 @@ class LoadUserData extends AbstractFixture implements ContainerAwareInterface, O
         $user->setPlainPassword('behat_user');
 
         $manager->updateUser($user);
-    }
-
-    /**
-     * @return \FOS\UserBundle\Model\UserManagerInterface
-     */
-    public function getUserManager()
-    {
-        return $this->container->get('fos_user.user_manager');
-    }
-
-    /**
-     * @return \Faker\Generator
-     */
-    public function getFaker()
-    {
-        return $this->container->get('faker.generator');
     }
 }
