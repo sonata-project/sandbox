@@ -31,6 +31,11 @@ class Collection extends BaseCollection
     protected $id;
 
     /**
+     * @var ArrayCollection
+     */
+    protected $productCollection;
+
+    /**
      * Get id.
      *
      * @return int $id

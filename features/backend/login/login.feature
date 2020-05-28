@@ -16,12 +16,12 @@ Feature: Check login
         Given I am on "admin/login"
         And I fill in "_username" with "<username>"
         And I fill in "_password" with "<password>"
-        And I press "Login"
+        And I press "Log in"
         Then the response should contain "<message>"
 
         Examples:
             | username |    password    | message |
-            |   admin  |    test    | Bad credentials. |
+            |   admin  |    test    | Invalid credentials. |
             |   admin  |    admin   | Welcome   |
 
     Scenario: Check user logout action

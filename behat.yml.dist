@@ -1,25 +1,86 @@
 default:
+    suites:
+
+frontend:
+    suites:
+        frontend:
+            paths:    [ '%paths.base%/features/frontend' ]
+            contexts:
+                - FeatureContext:
+                      parameters:
+                          base_url:  'https://127.0.0.1:8000'
+                          files_path: .
+                - BrowserContext:
+            filters:
+                tags: "~@skipped&&~@api"
     extensions:
-        Behat\MinkExtension\Extension:
-            base_url:  'http://sonata.local/'
+        Behat\MinkExtension:
+            base_url:  'https://127.0.0.1:8000'
             goutte:     ~
-            #selenium2: ~
             files_path: .
 
-    context:
-        parameters:
-            base_url:  'http://sonata.local/'
+    formatters:
+        pretty: [build/pretty]
+
+
+backend:
+    suites:
+        backend:
+            paths:    [ '%paths.base%/features/backend' ]
+            contexts:
+                - FeatureContext:
+                      parameters:
+                          base_url:  'https://127.0.0.1:8000'
+                          files_path: .
+                - BrowserContext:
+            filters:
+                tags: "~@skipped&&~@api"
+
+    extensions:
+        Behat\MinkExtension:
+            base_url:  'https://127.0.0.1:8000'
+            goutte:     ~
             files_path: .
 
-    filters:
-        tags: "~@skipped&&~@api"
+    formatters:
+        pretty: [build/pretty]
+
 
 api:
-    paths:
-        features:  features/api
-        bootstrap: %behat.paths.features%/bootstrap
-    filters:
-        tags: "~@skipped&&@api"
+    extensions:
+        Behat\MinkExtension:
+            base_url:  'https://127.0.0.1:8000'
+            goutte:     ~
+            files_path: .
+    formatters:
+        pretty: [build/pretty]
+    suites:
+        default:
+            paths:    [ '%paths.base%/features/api' ]
+            contexts:
+                - BrowserContext:
+                - FeatureContext:
+                      parameters:
+                          base_url:  'https://127.0.0.1:8000'
+                          files_path: .
+                - ApiFeatureContext:
+                      parameters:
+                          base_url:  'https://127.0.0.1:8000'
+                          files_path: .
+                - WebApiContext:
+                      baseUrl:  'https://127.0.0.1:8000'
+
+
+            tags: "~@skipped&&@api"
+
 wip:
-    filters:
-        tags: "@skipped"
+    suites:
+        default:
+            contexts:
+                - BrowserContext:
+                - FeatureContext:
+                      parameters:
+                          base_url:  'https://127.0.0.1:8000'
+                          files_path: .
+            filters:
+                    tags: "@skipped"

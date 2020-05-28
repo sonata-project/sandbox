@@ -11,8 +11,8 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-use Behat\Behat\Context\BehatContext;
-use Behat\CommonContexts\WebApiContext;
+use Behat\Behat\Context\Context;
+use Behat\Behat\Hook\Scope\BeforeScenarioScope;
 use Behat\Gherkin\Node\TableNode;
 
 /**
@@ -20,7 +20,7 @@ use Behat\Gherkin\Node\TableNode;
  *
  * @author Romain Mouillard <romain.mouillard@gmail.com>
  */
-class FeatureContext extends BehatContext
+class ApiFeatureContext implements Context
 {
     /**
      * @var array
@@ -38,24 +38,36 @@ class FeatureContext extends BehatContext
     private $filesPath;
 
     /**
+     * @var WebApiContext
+     */
+    private $webApiContext;
+
+    /**
      * {@inheritdoc}
      */
     public function __construct(array $parameters)
     {
         $this->baseUrl = $parameters['base_url'];
         $this->filesPath = $parameters['files_path'];
-
-        $this->useContext('api', new WebApiContext($this->baseUrl));
     }
 
     /**
      * @BeforeScenario
      */
-    public static function setupFeature($event)
+    public function gatherContexts(BeforeScenarioScope $scope)
     {
-        include_once realpath(__DIR__.'/../../CiHelper.php');
+        $environment = $scope->getEnvironment();
+        $this->webApiContext = $environment->getContext(WebApiContext::class);
+    }
 
-        CiHelper::run($event);
+    /**
+     * @BeforeScenario
+     */
+    public static function setupFeature(BeforeScenarioScope $scope)
+    {
+        include_once realpath(__DIR__.'/../CiHelper.php');
+
+        CiHelper::run($scope);
     }
 
     /**
@@ -90,7 +102,7 @@ class FeatureContext extends BehatContext
      */
     public function storeTheResponseIdentifier($objectType, $alias)
     {
-        $responseContent = $this->getSubcontext('api')->getBrowser()->getLastResponse()->getContent();
+        $responseContent = $this->webApiContext->getBrowser()->getLastResponse()->getContent();
 
         $objectType = strtolower($objectType);
 
@@ -132,7 +144,7 @@ class FeatureContext extends BehatContext
      */
     public function storeTheResponseBasketelementIdentifier($objectType, $alias)
     {
-        $responseContent = $this->getSubcontext('api')->getBrowser()->getLastResponse()->getContent();
+        $responseContent = $this->webApiContext->getBrowser()->getLastResponse()->getContent();
 
         $objectType = strtolower($objectType);
 
@@ -171,7 +183,7 @@ class FeatureContext extends BehatContext
     public function theResponseShouldContainsNumberOfElements($count)
     {
         /** @var \Buzz\Message\Response $response */
-        $response = $this->getSubcontext('api')->getBrowser()->getLastResponse();
+        $response = $this->webApiContext->getBrowser()->getLastResponse();
 
         $responseContent = $response->getContent();
         $responseContentType = $response->getHeader('Content-Type');
@@ -197,7 +209,7 @@ class FeatureContext extends BehatContext
     public function theResponseShouldDisplayExpectedPageAndElementsCount($page, $perPage)
     {
         /** @var \Buzz\Message\Response $response */
-        $response = $this->getSubcontext('api')->getBrowser()->getLastResponse();
+        $response = $this->webApiContext->getBrowser()->getLastResponse();
 
         $responseContent = $response->getContent();
         $responseContentType = $response->getHeader('Content-Type');
@@ -227,7 +239,7 @@ class FeatureContext extends BehatContext
     public function theResponsePagerDataShouldBeConsistent()
     {
         /** @var \Buzz\Message\Response $response */
-        $response = $this->getSubcontext('api')->getBrowser()->getLastResponse();
+        $response = $this->webApiContext->getBrowser()->getLastResponse();
 
         $responseContent = $response->getContent();
         $responseContentType = $response->getHeader('Content-Type');
@@ -276,7 +288,7 @@ class FeatureContext extends BehatContext
         }
 
         /** @var \Buzz\Message\Response $response */
-        $response = $this->getSubcontext('api')->getBrowser()->getLastResponse();
+        $response = $this->webApiContext->getBrowser()->getLastResponse();
 
         $responseContent = $response->getContent();
         $responseContentType = $response->getHeader('Content-Type');
@@ -314,7 +326,7 @@ class FeatureContext extends BehatContext
     public function theValidationForFieldShouldFail($field, $message = null)
     {
         /** @var \Buzz\Message\Response $response */
-        $response = $this->getSubcontext('api')->getBrowser()->getLastResponse();
+        $response = $this->webApiContext->getBrowser()->getLastResponse();
 
         $responseContent = $response->getContent();
         $responseContentType = $response->getHeader('Content-Type');
@@ -448,7 +460,7 @@ TABLE
      */
     public function theResponseShouldContainObject($objectType)
     {
-        $responseContent = $this->getSubcontext('api')->getBrowser()->getLastResponse()->getContent();
+        $responseContent = $this->webApiContext->getBrowser()->getLastResponse()->getContent();
 
         $objectType = strtolower($objectType);
 
@@ -472,7 +484,7 @@ TABLE
     public function theResponseShouldBeABinary()
     {
         /** @var \Behat\CommonContexts\WebApiContext $context */
-        $context = $this->getSubcontext('api');
+        $context = $this->webApiContext;
         /** @var \Guzzle\Http\Message\Response $response */
         $response = $context->getBrowser()->getLastResponse();
 
@@ -546,11 +558,11 @@ TABLE
         }
 
         /** @var \Buzz\Message\Request $request */
-        $request = $this->getSubcontext('api')->getBrowser()->getLastRequest();
+        $request = $this->webApiContext->getBrowser()->getLastRequest();
         $headers = $request->getHeaders();
         $url = str_replace('//api', '/api', $url);
 
-        $this->getSubcontext('api')->getBrowser()->submit($url, $fields, $method, $headers);
+        $this->webApiContext->getBrowser()->submit($url, $fields, $method, $headers);
     }
 
     /**
@@ -592,6 +604,6 @@ TABLE
         $url = $this->baseUrl.$this->replaceIdentifiers($url);
         $url = str_replace('//api', '/api', $url);
 
-        $this->getSubcontext('api')->getBrowser()->{strtolower($method)}($url, $headers, $content);
+        $this->webApiContext->getBrowser()->{strtolower($method)}($url, $headers, $content);
     }
 }

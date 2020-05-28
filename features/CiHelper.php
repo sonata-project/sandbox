@@ -11,7 +11,7 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-use Behat\Behat\Event\ScenarioEvent;
+use Behat\Behat\Hook\Scope\BeforeScenarioScope;
 
 if (!class_exists('CiHelper')) {
     class CiHelper
@@ -101,13 +101,13 @@ if (!class_exists('CiHelper')) {
             return $containerId;
         }
 
-        public static function run($event)
+        public static function run(BeforeScenarioScope $scope)
         {
             if (!self::isInternalCI()) {
                 return;
             }
 
-            if ($event instanceof ScenarioEvent && in_array('keep', $event->getScenario()->getOwnTags(), true)) {
+            if ($scope->getFeature()->hasTag('keep')) {
                 if (false === self::state()) {
                     self::StartDB();
                 }

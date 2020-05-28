@@ -19,23 +19,23 @@ Feature: Check the media admin module
     When I am connected with "admin" and "admin" on "admin/app/media-media/create?provider=sonata.media.provider.youtube&context=default&uniqid=f155592a220e"
     And I fill in "f155592a220e_binaryContent" with "6jlTfnfmbqM"
     And I press "Create"
-    Then I should see "Item \"Best of Works - FullSIX Group - June to December 2011\" has been successfully created."
+    Then I should see "Item \"BEST OF 2011 | FULLSIX\" has been successfully created."
 
   @keep
   Scenario: Filter medias
     When I am connected with "admin" and "admin" on "admin/app/media-media/list"
-    And I fill in "filter_name_value" with "Best of Works - FullSIX Group - June to December 2011"
+    And I fill in "filter_name_value" with "BEST OF 2011 | FULLSIX"
     And I press "Filter"
     # truncated wording
-    Then I should see "Best of Works"
+    Then I should see "BEST OF 2011"
 
   @keep
   Scenario: Delete youtube video
     When I am connected with "admin" and "admin" on "admin/app/media-media/list"
-    And I follow "Best of Works - FullSIX Group - June to..."
+    And I follow "BEST OF 2011 | FULLSIX"
     And I follow link "Delete" with class "btn btn-danger"
     And I press "Yes, delete"
-    Then I should see "Item \"Best of Works - FullSIX Group - June to December 2011\" has been deleted successfully."
+    Then I should see "Item \"BEST OF 2011 | FULLSIX\" has been deleted successfully."
 
   Scenario: Add a new dailymotion video
     When I am connected with "admin" and "admin" on "admin/app/media-media/create?provider=sonata.media.provider.dailymotion&context=default&uniqid=f155592a220e"
