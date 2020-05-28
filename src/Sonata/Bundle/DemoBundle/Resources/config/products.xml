@@ -14,7 +14,7 @@
         </service>
 
         <service id="sonata.ecommerce_demo.product.goodie.type" class="Sonata\Bundle\DemoBundle\Provider\GoodieProductProvider">
-            <argument type="service" id="serializer" />
+            <argument type="service" id="jms_serializer" />
         </service>
 
         <!-- Travel -->
@@ -25,7 +25,7 @@
         </service>
 
         <service id="sonata.ecommerce_demo.product.travel.type" class="Sonata\Bundle\DemoBundle\Provider\TravelProductProvider">
-            <argument type="service" id="serializer" />
+            <argument type="service" id="jms_serializer" />
         </service>
 
     </services>

@@ -17,6 +17,7 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\BlockBundle\Block\BaseBlockService;
 use Sonata\BlockBundle\Block\BlockContextInterface;
 use Sonata\BlockBundle\Model\BlockInterface;
+use Sonata\Bundle\DemoBundle\Form\Type\NewsletterType;
 use Sonata\CoreBundle\Validator\ErrorElement;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\Form\FormFactoryInterface;
@@ -50,7 +51,7 @@ final class NewsletterBlockService extends BaseBlockService
     {
         parent::__construct($name, $templating);
 
-        $this->form = $formFactory->create($formType);
+        $this->form = $formFactory->create(NewsletterType::class);
     }
 
     public function execute(BlockContextInterface $blockContext, Response $response = null): Response

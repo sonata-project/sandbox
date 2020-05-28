@@ -27,12 +27,12 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class LoadContextData extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
 {
     /**
-     * @var \Symfony\Component\DependencyInjection\ContainerInterface
+     * @var ContainerInterface
      */
     protected $container;
 
     /**
-     * @param \Symfony\Component\DependencyInjection\ContainerInterface $container
+     * @param ContainerInterface $container
      */
     public function setContainer(ContainerInterface $container = null)
     {
@@ -42,7 +42,7 @@ class LoadContextData extends AbstractFixture implements OrderedFixtureInterface
     /**
      * Returns the Sonata ContextaManager.
      *
-     * @return \Sonata\CoreBundle\Model\ManagerInterface
+     * @return \Sonata\Doctrine\Model\ManagerInterface
      */
     public function getContextManager()
     {

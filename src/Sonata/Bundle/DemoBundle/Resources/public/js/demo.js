@@ -37,4 +37,14 @@ $(document).ready(function () {
             }
         });
     }
+
+    jQuery('input[type="checkbox"]:not(label.btn > input, [data-sonata-icheck="false"]), input[type="radio"]:not(label.btn > input, [data-sonata-icheck="false"])', jQuery.window)
+        .iCheck({
+            checkboxClass: 'icheckbox_square-blue',
+            radioClass: 'iradio_square-blue'
+        })
+        // See https://github.com/fronteed/iCheck/issues/244
+        .on('ifToggled', function (e) {
+            $(e.target).trigger('change');
+        });
 });
