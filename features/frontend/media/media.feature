@@ -33,6 +33,6 @@ Feature: Check the Media / Gallery frontend
         And I follow the first link of section "media sonata-media-gallery-media-item"
         And I fill in "username" with "admin"
         And I fill in "password" with "admin"
-        And I press "Login"
+        And I press "Log in"
         Then the response should contain "Content Type"
         And the response should contain "Width"

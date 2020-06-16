@@ -36,7 +36,7 @@ Feature: Edit addresses from my profile
     And I should see "<message>"
 
     Examples:
-      | name | type | firstname | lastname | address1 | postcode | city | countrycode | phone | message |
-      | Behat Delivery Address | Delivery | Jane | DOE | 6115 Dibbert PortsSibylshire | G4S-3GS | NEW YORK | US | +1 718-123456 | Your new address has been successfully added!
-      | Behat Contact Address | Contact | Gwen | INCONNUE | 128, Rue de la Muette | 75017 |PARIS | FR | +33 (0) 123456789 | Your new address has been successfully added!
-      | Behat Billing Address | Billing | Joe | UNBEKANNT | 256 Breisacherstraße | 81929 | MUNICH | DE | + 49 0800 89 1234 | Your new address has been successfully added!
+      | name                   | type     | firstname | lastname  | address1                      | postcode | city     | countrycode | phone             | message                                       |
+      | Behat Delivery Address | Delivery | Jane      | DOE       | 6115 Dibbert PortsSibylshire  | G4S-3GS  | NEW YORK | US          | +1 718-123456     | Your new address has been successfully added! |
+      | Behat Contact Address  | Contact  | Gwen      | INCONNUE  | 128, Rue de la Muette         | 75017    | PARIS    | FR          | +33 (0) 123456789 | Your new address has been successfully added! |
+      | Behat Billing Address  | Billing  | Joe       | UNBEKANNT | 256 Breisacherstraße          | 81929    | MUNICH   | DE          | + 49 0800 89 1234 | Your new address has been successfully added! |

@@ -58,7 +58,7 @@ class BrowserContext extends MinkContext
         $this->visit('/admin/login');
         $this->fillField('_username', $login);
         $this->fillField('_password', $rawPassword);
-        $this->pressButton('Login');
+        $this->pressButton('Log in');
 
         $this->visit($url);
     }

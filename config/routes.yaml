@@ -1,3 +1,10 @@
+# these 2 references : sonata_demo and sonata_qa can be safely removed
+sonata_demo:
+  resource: "@SonataDemoBundle/Resources/config/routing/demo.xml"
+
+sonata_qa:
+  resource: "@SonataQABundle/Resources/config/routing/qa.xml"
+
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
