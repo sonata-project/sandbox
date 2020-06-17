@@ -11,16 +11,16 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Sonata\Bundle\QABundle\Tests;
+namespace Tests\Sonata\Bundle\QABundle;
 
-class SonataPageCreateSnapshotCommandTest extends CommandTestCase
+class SonataNotificationRestartCommandTest extends CommandTestCase
 {
     public function testRefresh()
     {
         $client = self::createClient();
 
-        $output = $this->runCommand($client, 'sonata:page:create-snapshots --site=all');
+        $output = $this->runCommand($client, 'sonata:notification:restart');
 
-        $this->assertContains('done!', $output);
+        $this->assertStringContainsString('Nothing to restart, bye.', $output);
     }
 }

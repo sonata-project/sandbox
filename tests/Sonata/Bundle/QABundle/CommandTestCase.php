@@ -11,10 +11,10 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Sonata\Bundle\QABundle\Tests;
+namespace Tests\Sonata\Bundle\QABundle;
 
-use Symfony\Bundle\FrameworkBundle\Client;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
+use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\Console\Input\StringInput;
 use Symfony\Component\Console\Output\StreamOutput;
@@ -29,7 +29,7 @@ abstract class CommandTestCase extends WebTestCase
     /**
      * Runs a command and returns it output.
      */
-    public function runCommand(Client $client, $command, $exceptionOnExitCode = true)
+    public function runCommand(KernelBrowser $client, $command, $exceptionOnExitCode = true)
     {
         $application = new Application($client->getKernel());
         $application->setAutoExit(false);
@@ -57,7 +57,7 @@ abstract class CommandTestCase extends WebTestCase
     /**
      * @return string
      */
-    public function getConsoleLocation(Client $client)
+    public function getConsoleLocation(KernelBrowser $client)
     {
         return sprintf('%s/console', $client->getContainer()->getParameter('kernel.root_dir'));
     }

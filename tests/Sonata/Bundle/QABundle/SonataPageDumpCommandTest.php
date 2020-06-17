@@ -11,7 +11,7 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Sonata\Bundle\QABundle\Tests;
+namespace Tests\Sonata\Bundle\QABundle;
 
 class SonataPageDumpCommandTest extends CommandTestCase
 {
@@ -50,7 +50,7 @@ class SonataPageDumpCommandTest extends CommandTestCase
 
         $output = $this->runCommand($client, sprintf('sonata:page:dump-page sonata.page.cms.page %d', $page->getId()));
 
-        $this->assertContains('Kind', $output);
-        $this->assertContains('Blocks', $output);
+        $this->assertStringContainsString('Kind', $output);
+        $this->assertStringContainsString('Blocks', $output);
     }
 }

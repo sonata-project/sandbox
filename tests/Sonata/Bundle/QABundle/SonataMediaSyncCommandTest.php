@@ -11,9 +11,9 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Sonata\Bundle\QABundle\Tests;
+namespace Tests\Sonata\Bundle\QABundle;
 
-class SonataMediaRefreshMediaCommandTest extends CommandTestCase
+class SonataMediaSyncCommandTest extends CommandTestCase
 {
     /**
      * @dataProvider getMediaList
@@ -22,11 +22,11 @@ class SonataMediaRefreshMediaCommandTest extends CommandTestCase
     {
         $client = self::createClient();
 
-        $output = $this->runCommand($client, sprintf('sonata:media:refresh-metadata %s %s',
+        $output = $this->runCommand($client, sprintf('sonata:media:sync-thumbnails %s %s',
             $id,
             'default'
         ));
 
-        $this->assertContains('Done!', $output);
+        $this->assertStringContainsString('Done (total ', $output);
     }
 }

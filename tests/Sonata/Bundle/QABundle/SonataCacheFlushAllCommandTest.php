@@ -11,16 +11,16 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Sonata\Bundle\QABundle\Tests;
+namespace Tests\Sonata\Bundle\QABundle;
 
-class SonataNotificationRestartCommandTest extends CommandTestCase
+class SonataCacheFlushAllCommandTest extends CommandTestCase
 {
-    public function testRefresh()
+    public function testFlushAll()
     {
         $client = self::createClient();
+        $output = $this->runCommand($client, 'sonata:cache:flush-all', false);
 
-        $output = $this->runCommand($client, 'sonata:notification:restart');
-
-        $this->assertContains('Nothing to restart, bye.', $output);
+        $this->assertNotNull($output);
+        $this->assertStringNotContainsString('FAILED!', $output);
     }
 }

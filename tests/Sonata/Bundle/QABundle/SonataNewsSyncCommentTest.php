@@ -11,15 +11,16 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Sonata\Bundle\QABundle\Tests;
+namespace Tests\Sonata\Bundle\QABundle;
 
-class ListCommandTest extends CommandTestCase
+class SonataNewsSyncCommentTest extends CommandTestCase
 {
-    public function testDefaultDoesNotInstall()
+    public function testRefresh()
     {
         $client = self::createClient();
-        $output = $this->runCommand($client, '');
 
-        $this->assertNotNull($output);
+        $output = $this->runCommand($client, 'sonata:news:sync-comments-count');
+
+        $this->assertStringContainsString('done!', $output);
     }
 }

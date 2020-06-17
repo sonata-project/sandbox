@@ -11,7 +11,7 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Sonata\Bundle\QABundle\Tests;
+namespace Tests\Sonata\Bundle\QABundle;
 
 class SonataMediaAddCommandTest extends CommandTestCase
 {
@@ -34,7 +34,7 @@ class SonataMediaAddCommandTest extends CommandTestCase
             sprintf('%s/../src/Sonata/Bundle/DemoBundle/DataFixtures/data/files/IMG_0003.JPG', $baseFolder)
         ));
 
-        $this->assertContains('Add a new media - context: product_catalog, provider: sonata.media.provider.image, content: ', $output);
-        $this->assertContains('done!', $output);
+        $this->assertStringContainsString('Add a new media - context: product_catalog, provider: sonata.media.provider.image, content: ', $output);
+        $this->assertStringContainsString('done!', $output);
     }
 }

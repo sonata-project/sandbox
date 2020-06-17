@@ -44,7 +44,7 @@ run_test() {
         echo "Running tests from ./${1}"
         echo "--"
 
-        SYMFONY_DEPRECATIONS_HELPER=weak php -d memory_limit=-1 bin/phpunit -c ${1} ${extra} --log-junit build/junit/`basename ${1}`.xml
+        SYMFONY_DEPRECATIONS_HELPER=weak php -d memory_limit=-1 vendor/bin/phpunit -c ${1} ${extra} --log-junit build/junit/`basename ${1}`.xml
 
         status=$?
 

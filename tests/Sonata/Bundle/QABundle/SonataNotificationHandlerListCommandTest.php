@@ -11,22 +11,23 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Sonata\Bundle\QABundle\Tests;
+namespace Tests\Sonata\Bundle\QABundle;
 
-class SonataNotificationStartCommandTest extends CommandTestCase
+class SonataNotificationHandlerListCommandTest extends CommandTestCase
 {
     public function testRefresh()
     {
         $client = self::createClient();
 
-        $output = $this->runCommand($client, 'sonata:notification:start');
+        $output = $this->runCommand($client, 'sonata:notification:list-handler');
 
-        $this->assertContains('done!', $output);
+        $this->assertStringContainsString('done!', $output);
 
         foreach (self::getConsumerList() as $def) {
-            list($name) = $def;
+            list($name, $id) = $def;
 
-            $this->assertContains($name, $output);
+            $this->assertStringContainsString($name, $output);
+            $this->assertStringContainsString($id, $output);
         }
     }
 }
