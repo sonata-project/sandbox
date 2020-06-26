@@ -11,7 +11,7 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Sonata\Bundle\QABundle\Tests;
+namespace Tests\Sonata\Bundle\QABundle;
 
 class SonataPageCreateSiteCommandTest extends CommandTestCase
 {
@@ -32,7 +32,7 @@ class SonataPageCreateSiteCommandTest extends CommandTestCase
             ' --no-interaction'
         );
 
-        $this->assertContains('Creating website with the following information :', $output);
-        $this->assertContains('Site created !', $output);
+        $this->assertStringContainsString('Creating website with the following information :', $output);
+        $this->assertStringContainsString('Site created !', $output);
     }
 }

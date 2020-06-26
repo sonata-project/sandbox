@@ -11,7 +11,7 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Sonata\Bundle\QABundle\Tests;
+namespace Tests\Sonata\Bundle\QABundle;
 
 class SonataAdminListCommandTest extends CommandTestCase
 {
@@ -25,8 +25,8 @@ class SonataAdminListCommandTest extends CommandTestCase
         foreach (self::getAdminList() as $def) {
             list($id, $class) = $def;
 
-            $this->assertContains($id, $output);
-            $this->assertContains($class, $output);
+            $this->assertStringContainsString($id, $output);
+            $this->assertStringContainsString($class, $output);
         }
     }
 }

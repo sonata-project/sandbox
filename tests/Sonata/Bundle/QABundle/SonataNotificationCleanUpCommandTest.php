@@ -11,16 +11,16 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Sonata\Bundle\QABundle\Tests;
+namespace Tests\Sonata\Bundle\QABundle;
 
-class SonataPageCleanSnapshotCommandTest extends CommandTestCase
+class SonataNotificationCleanUpCommandTest extends CommandTestCase
 {
     public function testRefresh()
     {
         $client = self::createClient();
 
-        $output = $this->runCommand($client, sprintf('sonata:page:cleanup-snapshots --site=all --base-console=%s', $this->getConsoleLocation($client)));
+        $output = $this->runCommand($client, 'sonata:notification:cleanup');
 
-        $this->assertContains('done!', $output);
+        $this->assertStringContainsString('done!', $output);
     }
 }

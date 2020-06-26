@@ -11,7 +11,7 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Sonata\Bundle\QABundle\Tests;
+namespace Tests\Sonata\Bundle\QABundle;
 
 class SonataPageUpdateCoreRouteCommandTest extends CommandTestCase
 {
@@ -21,7 +21,7 @@ class SonataPageUpdateCoreRouteCommandTest extends CommandTestCase
 
         $output = $this->runCommand($client, 'sonata:page:update-core-routes');
 
-        $this->assertContains('Please provide an --site=SITE_ID', $output);
+        $this->assertStringContainsString('Please provide an --site=SITE_ID', $output);
     }
 
     public function testUpdateOneSite()
@@ -32,8 +32,8 @@ class SonataPageUpdateCoreRouteCommandTest extends CommandTestCase
 
         $output = $this->runCommand($client, sprintf('sonata:page:update-core-routes --site=%s', $site->getId()));
 
-        $this->assertContains('Updating core routes for site', $output);
-        $this->assertContains('done!', $output);
+        $this->assertStringContainsString('Updating core routes for site', $output);
+        $this->assertStringContainsString('done!', $output);
     }
 
     public function testUpdateSites()
@@ -42,7 +42,7 @@ class SonataPageUpdateCoreRouteCommandTest extends CommandTestCase
 
         $output = $this->runCommand($client, sprintf("sonata:page:update-core-routes --site=all --base-command='php %s'", $this->getConsoleLocation($client)));
 
-        $this->assertContains('Updating core routes for site', $output);
-        $this->assertContains('done!', $output);
+        $this->assertStringContainsString('Updating core routes for site', $output);
+        $this->assertStringContainsString('done!', $output);
     }
 }

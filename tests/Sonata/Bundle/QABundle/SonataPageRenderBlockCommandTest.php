@@ -11,7 +11,7 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Sonata\Bundle\QABundle\Tests;
+namespace Tests\Sonata\Bundle\QABundle;
 
 class SonataPageRenderBlockCommandTest extends CommandTestCase
 {
@@ -53,8 +53,8 @@ class SonataPageRenderBlockCommandTest extends CommandTestCase
 
         $output = $this->runCommand($client, sprintf('sonata:page:render-block sonata.page.cms.page %d %d', $page->getId(), $block->getId()));
 
-        $this->assertContains('BlockContext Information', $output);
-        $this->assertContains('Response Output', $output);
-        $this->assertContains("200\nOK", $output);
+        $this->assertStringContainsString('BlockContext Information', $output);
+        $this->assertStringContainsString('Response Output', $output);
+        $this->assertStringContainsString("200\nOK", $output);
     }
 }

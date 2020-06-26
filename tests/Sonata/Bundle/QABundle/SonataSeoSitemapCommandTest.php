@@ -11,7 +11,7 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace Sonata\Bundle\QABundle\Tests;
+namespace Tests\Sonata\Bundle\QABundle;
 
 class SonataSeoSitemapCommandTest extends CommandTestCase
 {
@@ -30,9 +30,9 @@ class SonataSeoSitemapCommandTest extends CommandTestCase
 
         $output = $this->runCommand($client, sprintf('sonata:seo:sitemap --baseurl=/fr %s/../web sonata.local', $client->getContainer()->getParameter('kernel.root_dir')));
 
-        $this->assertContains('done!', $output);
-        $this->assertContains('Generating sitemap - this can take a while', $output);
-        $this->assertContains('Moving temporary file to', $output);
+        $this->assertStringContainsString('done!', $output);
+        $this->assertStringContainsString('Generating sitemap - this can take a while', $output);
+        $this->assertStringContainsString('Moving temporary file to', $output);
 
         $baseFolder = $client->getContainer()->getParameter('kernel.root_dir');
 
