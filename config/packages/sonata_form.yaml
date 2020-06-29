@@ -1,0 +1,4 @@
+sonata_form:
+  form_type: standard
+  #serializer:
+  #  ['json', 'xml', 'yml']

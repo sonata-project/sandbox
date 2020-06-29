@@ -11,6 +11,7 @@ cmf_routing:
             router.default: 100
 
 sonata_page:
+    slugify_service: 'sonata.page.slugify.cocur'
     class:
         site:     AppBundle\Entity\Page\Site
         snapshot: AppBundle\Entity\Page\Snapshot

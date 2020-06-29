@@ -18,7 +18,7 @@ use Sonata\BlockBundle\Block\BaseBlockService;
 use Sonata\BlockBundle\Block\BlockContextInterface;
 use Sonata\BlockBundle\Model\BlockInterface;
 use Sonata\Bundle\DemoBundle\Form\Type\NewsletterType;
-use Sonata\CoreBundle\Validator\ErrorElement;
+use Sonata\Form\Validator\ErrorElement;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormInterface;
@@ -40,22 +40,28 @@ final class NewsletterBlockService extends BaseBlockService
     protected $form;
 
     /**
+     * @var FormFactoryInterface
+     */
+    protected $formFactory;
+
+    /**
      * Constructor.
      *
      * @param string               $name        A block name
      * @param EngineInterface      $templating  Twig engine service
      * @param FormFactoryInterface $formFactory Symfony FormFactory service
-     * @param string               $formType    Newsletter form type
      */
-    public function __construct(string $name, EngineInterface $templating, FormFactoryInterface $formFactory, $formType)
+    public function __construct(string $name, EngineInterface $templating, FormFactoryInterface $formFactory)
     {
         parent::__construct($name, $templating);
 
-        $this->form = $formFactory->create(NewsletterType::class);
+        $this->formFactory = $formFactory;
     }
 
     public function execute(BlockContextInterface $blockContext, Response $response = null): Response
     {
+        $this->form = $this->formFactory->create($blockContext->getSetting('form_type'));
+
         return $this->renderPrivateResponse($blockContext->getTemplate(), [
             'block' => $blockContext->getBlock(),
             'context' => $blockContext,
@@ -77,6 +83,7 @@ final class NewsletterBlockService extends BaseBlockService
         $resolver->setDefaults([
             'template' => '@SonataDemo/Block/newsletter.html.twig',
             'ttl' => 0,
+            'form_type' => NewsletterType::class,
         ]);
     }
 
