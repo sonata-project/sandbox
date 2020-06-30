@@ -16,6 +16,8 @@ namespace Sonata\Bundle\DemoBundle\Controller;
 use Sonata\Bundle\DemoBundle\Entity\Engine;
 use Sonata\Bundle\DemoBundle\Entity\MediaPreview;
 use Sonata\Bundle\DemoBundle\Entity\Peugeot;
+use Sonata\Bundle\DemoBundle\Form\Type\CarType;
+use Sonata\Bundle\DemoBundle\Form\Type\EngineType;
 use Sonata\Bundle\DemoBundle\Form\Type\NewsletterType;
 use Sonata\MediaBundle\Form\Type\MediaType;
 use Sonata\SeoBundle\Seo\SeoPageInterface;
@@ -27,7 +29,7 @@ final class DemoController extends AbstractController
 {
     public function carAction(Request $request): Response
     {
-        $form = $this->createForm('sonata_demo_form_type_engine');
+        $form = $this->createForm(EngineType::class);
 
         $form->handleRequest($request);
 
@@ -60,7 +62,7 @@ final class DemoController extends AbstractController
             3 => new Engine('Rescue 3', 150),
         ];
 
-        $form = $this->createForm('sonata_demo_form_type_car', $car, [
+        $form = $this->createForm(CarType::class, $car, [
             'rescue_engines' => $rescueEngines,
         ]);
 

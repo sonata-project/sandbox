@@ -13,21 +13,8 @@ declare(strict_types=1);
 
 namespace Sonata\Bundle\DemoBundle;
 
-use Sonata\Bundle\DemoBundle\Form\Type\CarType;
-use Sonata\Bundle\DemoBundle\Form\Type\EngineType;
-use Sonata\Bundle\DemoBundle\Form\Type\NewsletterType;
-use Sonata\CoreBundle\Form\FormHelper;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 final class SonataDemoBundle extends Bundle
 {
-    public function build(ContainerBuilder $container): void
-    {
-        FormHelper::registerFormTypeMapping([
-            'sonata_demo_form_type_car' => CarType::class,
-            'sonata_demo_form_type_engine' => EngineType::class,
-            'sonata_demo_form_type_newsletter' => NewsletterType::class,
-        ]);
-    }
 }

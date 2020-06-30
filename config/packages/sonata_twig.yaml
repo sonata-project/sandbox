@@ -1,0 +1,7 @@
+sonata_twig:
+  form_type: standard
+  flashmessage:
+    success:
+      css_class: 'custom_css_class_success'
+      types:
+        - { type: 'success' }
