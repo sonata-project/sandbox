@@ -1,9 +1,13 @@
 fos_rest:
     param_fetcher_listener: true
-    body_listener:          true
-    format_listener:        true
+    body_listener:
+        array_normalizer: fos_rest.normalizer.camel_keys
+        decoders:
+            json: fos_rest.decoder.json
+            xml: fos_rest.decoder.xml
+    format_listener: true
     view:
-        view_response_listener: force
+        view_response_listener: true
     body_converter:
         enabled: false
         validate: true

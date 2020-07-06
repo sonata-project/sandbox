@@ -2,12 +2,9 @@ jms_serializer:
     visitors:
         xml_serialization:
             format_output: '%kernel.debug%'
-#    metadata:
-#        auto_detection: false
-#        directories:
-#            any-name:
-#                namespace_prefix: "My\\FooBundle"
-#                path: "@MyFooBundle/Resources/config/serializer"
-#            another-name:
-#                namespace_prefix: "My\\BarBundle"
-#                path: "@MyBarBundle/Resources/config/serializer"
+    metadata:
+        directories:
+            #- { name: 'a', path: '%kernel.root_dir%/../vendor/sonata-project/user-bundle/Resources/config/serializer/FOSUserBundle', namespace_prefix: 'FOS\UserBundle' }
+            - { name: 'aa', path: '%kernel.root_dir%/../vendor/sonata-project/ecommerce/src/BasketBundle/Resources/config/serializer/Component', namespace_prefix: 'Sonata\Component\Basket' }
+            - { name: 'media', path: '%kernel.root_dir%/../vendor/sonata-project/media-bundle/src/Resources/config/serializer', namespace_prefix: 'Sonata\MediaBundle' }
+            #- { name: 'aaa', path: '%kernel.root_dir%/../vendor/sonata-project/datagrid-bundle/Resources/config/serializer', namespace_prefix: 'Sonata\DatagridBundle' }

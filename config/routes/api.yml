@@ -1,58 +1,43 @@
-#
-# TODO: Uncoment this file when RESTful API part will be fixed
-#
-
-#sonata_api_classification:
-#    type:         rest
-#    prefix:       /classification
-#    resource:     "@SonataClassificationBundle/Resources/config/routing/api.xml"
+sonata_api_classification:
+    prefix:       /api/classification
+    resource:     "@SonataClassificationBundle/Resources/config/routing/api.xml"
 
 #sonata_api_news:
-#    type:         rest
-#    prefix:       /news
+#    prefix:       /api/news
 #    resource:     "@SonataNewsBundle/Resources/config/routing/api.xml"
 
-#sonata_api_media:
-#    type:         rest
-#    prefix:       /media
-#    resource:     "@SonataMediaBundle/Resources/config/routing/api.xml"
+sonata_api_media:
+    prefix:       /api/media
+    resource:     "@SonataMediaBundle/Resources/config/routing/api.xml"
 
-#sonata_api_notification:
-#    type:         rest
-#    prefix:       /notification
-#    resource:     "@SonataNotificationBundle/Resources/config/routing/api.xml"
+sonata_api_notification:
+    prefix:       /api/notification
+    resource:     "@SonataNotificationBundle/Resources/config/routing/api.xml"
 
-#sonata_api_ecommerce_product:
-#    type:         rest
-#    prefix:       /ecommerce
-#    resource:     "@SonataProductBundle/Resources/config/routing/api.xml"
+sonata_api_ecommerce_product:
+    prefix:       /api/ecommerce
+    resource:     "@SonataProductBundle/Resources/config/routing/api.xml"
 
-#sonata_api_ecommerce_order:
-#    type:         rest
-#    prefix:       /ecommerce
-#    resource:     "@SonataOrderBundle/Resources/config/routing/api.xml"
+sonata_api_ecommerce_order:
+    prefix:       /api/ecommerce
+    resource:     "@SonataOrderBundle/Resources/config/routing/api.xml"
 
-#sonata_api_ecommerce_invoice:
-#    type:         rest
-#    prefix:       /ecommerce
-#    resource:     "@SonataInvoiceBundle/Resources/config/routing/api.xml"
+sonata_api_ecommerce_invoice:
+    prefix:       /api/ecommerce
+    resource:     "@SonataInvoiceBundle/Resources/config/routing/api.xml"
 
-#sonata_api_ecommerce_customer:
-#    type:         rest
-#    prefix:       /ecommerce
-#    resource:     "@SonataCustomerBundle/Resources/config/routing/api.xml"
+sonata_api_ecommerce_customer:
+    prefix:       /api/ecommerce
+    resource:     "@SonataCustomerBundle/Resources/config/routing/api.xml"
 
-#sonata_api_ecommerce_basket:
-#    type:         rest
-#    prefix:       /ecommerce
-#    resource:     "@SonataBasketBundle/Resources/config/routing/api.xml"
+sonata_api_ecommerce_basket:
+    prefix:       /api/ecommerce
+    resource:     "@SonataBasketBundle/Resources/config/routing/api.xml"
 
-#sonata_api_page:
-#    type:         rest
-#    prefix:       /page
-#    resource:     "@SonataPageBundle/Resources/config/routing/api.xml"
+sonata_api_page:
+    prefix:       /api/page
+    resource:     "@SonataPageBundle/Resources/config/routing/api.xml"
 
-#sonata_api_user:
-#    type:         rest
-#    prefix:       /user
-#    resource:     "@SonataUserBundle/Resources/config/routing/api.xml"
+sonata_api_user:
+    prefix:       /api/user
+    resource:     "@SonataUserBundle/Resources/config/routing/api.xml"
