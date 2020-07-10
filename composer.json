@@ -62,6 +62,7 @@
         "symfony/translation": "^4.4",
         "symfony/twig-bundle": "^4.4",
         "symfony/validator": "^4.4",
+        "symfony/webpack-encore-bundle": "^1.7",
         "twig/extra-bundle": "^3.0",
         "twig/twig": "^2.12.1",
         "willdurand/faker-bundle": "^1.3"
