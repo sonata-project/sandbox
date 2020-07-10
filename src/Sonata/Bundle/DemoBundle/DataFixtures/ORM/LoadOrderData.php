@@ -24,7 +24,7 @@ use AppBundle\Entity\User\User;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Persistence\ObjectManager;
 use Faker\Generator;
 use Sonata\Component\Basket\Basket;
 use Sonata\Component\Basket\BasketInterface;
@@ -39,7 +39,6 @@ use Sonata\CustomerBundle\Entity\BaseCustomer;
 use Sonata\OrderBundle\Entity\BaseOrder;
 use Sonata\PaymentBundle\Entity\BaseTransaction;
 use Sonata\ProductBundle\Entity\BaseProduct;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\DependencyInjection\ParameterBag\ContainerBagInterface;
 
 /**
@@ -85,6 +84,11 @@ class LoadOrderData extends AbstractFixture implements OrderedFixtureInterface
         $this->invoiceTransformer = $invoiceTransformer;
         $this->productPool = $productPool;
         $this->parameterBag = $parameterBag;
+    }
+
+    public function getOrder()
+    {
+        return 9;
     }
 
     public function load(ObjectManager $manager)
@@ -150,16 +154,6 @@ class LoadOrderData extends AbstractFixture implements OrderedFixtureInterface
         }
 
         $manager->flush();
-    }
-
-    public function setContainer(ContainerInterface $container = null)
-    {
-        $this->container = $container;
-    }
-
-    public function getOrder()
-    {
-        return 9;
     }
 
     /**
@@ -312,12 +306,10 @@ class LoadOrderData extends AbstractFixture implements OrderedFixtureInterface
      */
     protected function generateCustomer(ObjectManager $manager, $i)
     {
-        $faker = $this->faker;
-
-        $firstName = $faker->firstName();
-        $lastName = $faker->lastName();
-        $email = $faker->email();
-        $username = $faker->userName();
+        $firstName = $this->faker->firstName();
+        $lastName = $this->faker->lastName();
+        $email = $this->faker->email();
+        $username = $this->faker->userName();
 
         if (0 === $i % 50 && $this->hasReference('customer-johndoe')) {
             return $this->getReference('customer-johndoe');
@@ -329,11 +321,11 @@ class LoadOrderData extends AbstractFixture implements OrderedFixtureInterface
         $customer->setFirstname($firstName);
         $customer->setLastname($lastName);
         $customer->setEmail($email);
-        $customer->setBirthDate($faker->datetime());
-        $customer->getBirthPlace($faker->city());
-        $customer->setPhoneNumber($faker->phoneNumber());
-        $customer->setMobileNumber($faker->phoneNumber());
-        $customer->setFaxNumber($faker->phoneNumber());
+        $customer->setBirthDate($this->faker->datetime());
+        $customer->getBirthPlace($this->faker->city());
+        $customer->setPhoneNumber($this->faker->phoneNumber());
+        $customer->setMobileNumber($this->faker->phoneNumber());
+        $customer->setFaxNumber($this->faker->phoneNumber());
         $customer->setLocale('fr');
         $customer->setIsFake(true);
 
@@ -345,11 +337,11 @@ class LoadOrderData extends AbstractFixture implements OrderedFixtureInterface
         $customerBillingAddress->setName('My billing address');
         $customerBillingAddress->setFirstname($customer->getFirstname());
         $customerBillingAddress->setLastname($customer->getLastname());
-        $customerBillingAddress->setAddress1($faker->address());
-        $customerBillingAddress->setPostcode($faker->postcode());
-        $customerBillingAddress->setCity($faker->city());
-        $customerBillingAddress->setCountryCode(0 === $i % 50 ? 'FR' : $faker->countryCode());
-        $customerBillingAddress->setPhone($faker->phoneNumber());
+        $customerBillingAddress->setAddress1($this->faker->address());
+        $customerBillingAddress->setPostcode($this->faker->postcode());
+        $customerBillingAddress->setCity($this->faker->city());
+        $customerBillingAddress->setCountryCode(0 === $i % 50 ? 'FR' : $this->faker->countryCode());
+        $customerBillingAddress->setPhone($this->faker->phoneNumber());
 
         // Customer contact address
         $customerContactAddress = new Address();
@@ -359,10 +351,10 @@ class LoadOrderData extends AbstractFixture implements OrderedFixtureInterface
         $customerContactAddress->setName('My contact address');
         $customerContactAddress->setFirstname($customer->getFirstname());
         $customerContactAddress->setLastname($customer->getLastname());
-        $customerContactAddress->setAddress1($faker->address());
-        $customerContactAddress->setPostcode($faker->postcode());
-        $customerContactAddress->setCity($faker->city());
-        $customerContactAddress->setCountryCode(0 === $i % 50 ? 'FR' : $faker->countryCode());
+        $customerContactAddress->setAddress1($this->faker->address());
+        $customerContactAddress->setPostcode($this->faker->postcode());
+        $customerContactAddress->setCity($this->faker->city());
+        $customerContactAddress->setCountryCode(0 === $i % 50 ? 'FR' : $this->faker->countryCode());
         $customerContactAddress->setPhone($customer->getPhoneNumber());
 
         // Customer delivery address
@@ -373,11 +365,11 @@ class LoadOrderData extends AbstractFixture implements OrderedFixtureInterface
         $customerDeliveryAddress->setName('My delivery address');
         $customerDeliveryAddress->setFirstname($customer->getFirstname());
         $customerDeliveryAddress->setLastname($customer->getLastname());
-        $customerDeliveryAddress->setAddress1($faker->address());
-        $customerDeliveryAddress->setPostcode($faker->postcode());
-        $customerDeliveryAddress->setCity($faker->city());
-        $customerDeliveryAddress->setCountryCode(0 === $i % 50 ? 'FR' : $faker->countryCode());
-        $customerDeliveryAddress->setPhone($faker->phoneNumber());
+        $customerDeliveryAddress->setAddress1($this->faker->address());
+        $customerDeliveryAddress->setPostcode($this->faker->postcode());
+        $customerDeliveryAddress->setCity($this->faker->city());
+        $customerDeliveryAddress->setCountryCode(0 === $i % 50 ? 'FR' : $this->faker->countryCode());
+        $customerDeliveryAddress->setPhone($this->faker->phoneNumber());
 
         $customer->addAddress($customerBillingAddress);
         $customer->addAddress($customerContactAddress);

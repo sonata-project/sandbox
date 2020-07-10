@@ -20,16 +20,17 @@ use AppBundle\Entity\Commerce\ProductCollection;
 use AppBundle\Entity\Media\GalleryHasMedia;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Persistence\ObjectManager;
 use Sonata\Bundle\DemoBundle\Entity\Goodie;
 use Sonata\Bundle\DemoBundle\Entity\Travel;
 use Sonata\ClassificationBundle\Model\CategoryInterface;
 use Sonata\ClassificationBundle\Model\CollectionInterface;
+use Sonata\Component\Product\Pool;
 use Sonata\Component\Product\ProductInterface;
+use Sonata\MediaBundle\Entity\MediaManager;
 use Sonata\MediaBundle\Model\GalleryInterface;
+use Sonata\MediaBundle\Model\GalleryManagerInterface;
 use Sonata\MediaBundle\Model\MediaInterface;
-use Symfony\Component\DependencyInjection\ContainerAwareInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Finder\Finder;
 
 /**
@@ -37,27 +38,57 @@ use Symfony\Component\Finder\Finder;
  *
  * @author Sylvain Deloux <sylvain.deloux@ekino.com>
  */
-class LoadProductData extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
+class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
 {
     /**
-     * @var \Symfony\Component\DependencyInjection\ContainerInterface
+     * @var int
      */
-    protected $container;
+    protected $fakeProduct;
+
+    /**
+     * @var MediaManager
+     */
+    protected $mediaManager;
+
+    /**
+     * @var GalleryManagerInterface
+     */
+    protected $galleryManager;
+
+    /**
+     * @var Pool
+     */
+    protected $productPool;
+
+    public function __construct(
+        ?int $fakeProduct = 0,
+        MediaManager $mediaManager,
+        GalleryManagerInterface $galleryManager,
+        Pool $productPool
+    ) {
+        $this->fakeProduct = $fakeProduct;
+        $this->mediaManager = $mediaManager;
+        $this->galleryManager = $galleryManager;
+        $this->productPool = $productPool;
+    }
+
+    public function getOrder()
+    {
+        return 7;
+    }
 
     public function load(ObjectManager $manager)
     {
-        $productPool = $this->getProductPool();
-
         $dummyCategory = $this->getDummyCategory();
 
         // default media
-        $defaultMedia = $this->getMediaManager()->create();
+        $defaultMedia = $this->mediaManager->create();
         $defaultMedia->setBinaryContent(__DIR__.'/../data/files/sonata_logo.png');
         $defaultMedia->setEnabled(true);
         $defaultMedia->setName('product_catalog_default_media');
         $defaultMedia->setDescription('Default Product media');
         $defaultMedia->setCategory($dummyCategory);
-        $this->getMediaManager()->save($defaultMedia, 'product_catalog_default', 'sonata.media.provider.image');
+        $this->mediaManager->save($defaultMedia, 'product_catalog_default', 'sonata.media.provider.image');
 
         $goodiesCategory = $this->getGoodiesCategory();
         $travelsCategory = $this->getTravelsCategory();
@@ -72,38 +103,36 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
 
         $dummyMedia = $this->createMedia(__DIR__.'/../data/files/sonata_logo.png', 'Dummy', 'Dummy product', null, null, 'dummy_category');
 
-        if ($this->container->hasParameter('sonata.fixtures.product.fake')) {
-            for ($i = 1; $i < (int) $this->container->getParameter('sonata.fixtures.product.fake'); ++$i) {
-                // Goodies products
-                $dummy = new Goodie();
-                $dummy->setSku('dummy_'.$i);
-                $dummy->setName(sprintf('Dummy %d', $i));
-                $dummy->setSlug('dummy');
-                $dummy->setDescription('<p>Dummy product. We use it to test our catalog capabilities.</p>'.$this->getLorem());
-                $dummy->setRawDescription('<p>Dummy product. We use it to test our catalog capabilities.</p>'.$this->getLorem());
-                $dummy->setPriceIncludingVat(true);
-                $dummy->setShortDescription('<p>Dummy product. We use it to test our catalog capabilities.</p>');
-                $dummy->setRawShortDescription('<p>Dummy product. We use it to test our catalog capabilities.</p>');
-                $dummy->setDescriptionFormatter('richhtml');
-                $dummy->setShortDescriptionFormatter('richhtml');
-                $dummy->setPrice(random_int(0, 2 * $i));
-                $dummy->setStock(random_int(1, 100 * $i));
-                $dummy->setVatRate(20);
-                $dummy->setEnabled(true);
-                $manager->persist($dummy);
+        for ($i = 1; $i < (int) $this->fakeProduct; ++$i) {
+            // Goodies products
+            $dummy = new Goodie();
+            $dummy->setSku('dummy_'.$i);
+            $dummy->setName(sprintf('Dummy %d', $i));
+            $dummy->setSlug('dummy');
+            $dummy->setDescription('<p>Dummy product. We use it to test our catalog capabilities.</p>'.$this->getLorem());
+            $dummy->setRawDescription('<p>Dummy product. We use it to test our catalog capabilities.</p>'.$this->getLorem());
+            $dummy->setPriceIncludingVat(true);
+            $dummy->setShortDescription('<p>Dummy product. We use it to test our catalog capabilities.</p>');
+            $dummy->setRawShortDescription('<p>Dummy product. We use it to test our catalog capabilities.</p>');
+            $dummy->setDescriptionFormatter('richhtml');
+            $dummy->setShortDescriptionFormatter('richhtml');
+            $dummy->setPrice(random_int(0, 2 * $i));
+            $dummy->setStock(random_int(1, 100 * $i));
+            $dummy->setVatRate(20);
+            $dummy->setEnabled(true);
+            $manager->persist($dummy);
 
-                $this->setReference('dummy_product_'.$i, $dummy);
+            $this->setReference('dummy_product_'.$i, $dummy);
 
-                $dummy->setImage($dummyMedia);
+            $dummy->setImage($dummyMedia);
 
-                $this->addProductToCategory($dummy, $dummyCategory, $manager);
-                $this->addProductToCollection($dummy, $dummyCollection, $manager);
-                $this->addProductDeliveries($dummy, $manager);
-                $this->addPackageToProduct($dummy, $manager);
+            $this->addProductToCategory($dummy, $dummyCategory, $manager);
+            $this->addProductToCollection($dummy, $dummyCollection, $manager);
+            $this->addProductDeliveries($dummy, $manager);
+            $this->addPackageToProduct($dummy, $manager);
 
-                if (0 === ($i % 20)) {
-                    $manager->flush();
-                }
+            if (0 === ($i % 20)) {
+                $manager->flush();
             }
         }
 
@@ -376,7 +405,7 @@ EOF
         $this->addProductToCollection($japanTravel, $travelCollection, $manager);
         $this->addPackageToProduct($japanTravel, $manager);
 
-        $travelProvider = $productPool->getProvider($japanTravel);
+        $travelProvider = $this->productPool->getProvider($japanTravel);
 
         // Japan tour small group variation
         $japanSmallTravel = $this->generateDefaultTravelVariation($travelProvider, $japanTravel);
@@ -509,7 +538,7 @@ EOF
         $this->addProductToCollection($quebecTravel, $travelCollection, $manager);
         $this->addPackageToProduct($quebecTravel, $manager);
 
-        $travelProvider = $productPool->getProvider($quebecTravel);
+        $travelProvider = $this->productPool->getProvider($quebecTravel);
 
         // Quebec tour small group variation
         $quebecSmallTravel = $this->generateDefaultTravelVariation($travelProvider, $quebecTravel);
@@ -653,7 +682,7 @@ EOF
         $this->addProductToCollection($parisTravel, $travelCollection, $manager);
         $this->addPackageToProduct($parisTravel, $manager);
 
-        $travelProvider = $productPool->getProvider($parisTravel);
+        $travelProvider = $this->productPool->getProvider($parisTravel);
 
         // Paris tour small group variation
         $parisSmallTravel = $this->generateDefaultTravelVariation($travelProvider, $parisTravel);
@@ -787,7 +816,7 @@ EOF
         $this->addProductToCollection($londonTravel, $travelCollection, $manager);
         $this->addPackageToProduct($londonTravel, $manager);
 
-        $travelProvider = $productPool->getProvider($londonTravel);
+        $travelProvider = $this->productPool->getProvider($londonTravel);
 
         // London tour small group variation
         $londonSmallTravel = $this->generateDefaultTravelVariation($travelProvider, $londonTravel);
@@ -917,7 +946,7 @@ EOF
         $this->addProductToCollection($switzerlandTravel, $travelCollection, $manager);
         $this->addPackageToProduct($switzerlandTravel, $manager);
 
-        $travelProvider = $productPool->getProvider($switzerlandTravel);
+        $travelProvider = $this->productPool->getProvider($switzerlandTravel);
 
         // Switzerland tour small group variation
         $switzerlandSmallTravel = $this->generateDefaultTravelVariation($travelProvider, $switzerlandTravel);
@@ -980,34 +1009,6 @@ EOF
         $this->setReference('travel_switzerland_extra_large_product', $switzerlandExtraLargeTravel);
 
         $manager->flush();
-    }
-
-    public function getOrder()
-    {
-        return 7;
-    }
-
-    /**
-     * Returns the Sonata MediaManager.
-     *
-     * @return \Sonata\MediaBundle\Model\MediaManagerInterface
-     */
-    public function getMediaManager()
-    {
-        return $this->container->get('sonata.media.manager.media');
-    }
-
-    /**
-     * @return \Sonata\MediaBundle\Model\GalleryManagerInterface
-     */
-    public function getGalleryManager()
-    {
-        return $this->container->get('sonata.media.manager.gallery');
-    }
-
-    public function setContainer(ContainerInterface $container = null)
-    {
-        $this->container = $container;
     }
 
     protected function getLorem()
@@ -1129,11 +1130,9 @@ EOF
      */
     protected function createMedia($mediaFilename, $name, $description, $author = null, $copyright = null, $categoryReference = 'products_category')
     {
-        $mediaManager = $this->getMediaManager();
-
         $file = new \SplFileInfo($mediaFilename);
 
-        $media = $mediaManager->create();
+        $media = $this->mediaManager->create();
         $media->setBinaryContent($mediaFilename);
         $media->setEnabled(true);
         $media->setName($name);
@@ -1142,7 +1141,7 @@ EOF
         $media->setCopyright($copyright);
         $media->setCategory($this->getReference($categoryReference));
 
-        $mediaManager->save($media, 'product_catalog', 'sonata.media.provider.image');
+        $this->mediaManager->save($media, 'product_catalog', 'sonata.media.provider.image');
 
         return $media;
     }
@@ -1152,7 +1151,7 @@ EOF
      */
     protected function addSwitzerlandGallery(ProductInterface $product)
     {
-        $gallery = $this->getGalleryManager()->create();
+        $gallery = $this->galleryManager->create();
         $gallery->setName('Switzerland');
         $gallery->setContext('product_catalog');
         $gallery->setDefaultFormat('preview');
@@ -1164,7 +1163,7 @@ EOF
 
         $pos = 0;
         foreach ($files as $file) {
-            $media = $this->getMediaManager()->create();
+            $media = $this->mediaManager->create();
             $media->setBinaryContent(__DIR__.'/../data/files/sylvain-switzerland/'.$file->getRelativePathname());
             $media->setEnabled(true);
             $media->setDescription('Switzerland');
@@ -1174,7 +1173,7 @@ EOF
             $media->setCategory($this->getReference('travels_switzerland_category'));
             $media->setContext('product_catalog');
 
-            $this->getMediaManager()->save($media, 'product_catalog', 'sonata.media.provider.image');
+            $this->mediaManager->save($media, 'product_catalog', 'sonata.media.provider.image');
 
             $galleryHasMedia = new GalleryHasMedia();
             $galleryHasMedia->setMedia($media);
@@ -1184,7 +1183,7 @@ EOF
             $gallery->addGalleryHasMedias($galleryHasMedia);
         }
 
-        $this->getGalleryManager()->update($gallery);
+        $this->galleryManager->update($gallery);
 
         $product->setGallery($gallery);
     }
@@ -1194,7 +1193,7 @@ EOF
      */
     protected function addParisGallery(ProductInterface $product)
     {
-        $gallery = $this->getGalleryManager()->create();
+        $gallery = $this->galleryManager->create();
         $gallery->setName('Paris');
         $gallery->setContext('product_catalog');
         $gallery->setDefaultFormat('preview');
@@ -1208,7 +1207,7 @@ EOF
 
         $pos = 0;
         foreach ($files as $file) {
-            $media = $this->getMediaManager()->create();
+            $media = $this->mediaManager->create();
             $media->setBinaryContent(__DIR__.'/../data/files/gilles-paris/'.$file->getRelativePathname());
             $media->setEnabled(true);
             $media->setDescription('Paris');
@@ -1218,7 +1217,7 @@ EOF
             $media->setCategory($this->getReference('travels_paris_category'));
             $media->setContext('product_catalog');
 
-            $this->getMediaManager()->save($media, 'product_catalog', 'sonata.media.provider.image');
+            $this->mediaManager->save($media, 'product_catalog', 'sonata.media.provider.image');
 
             $galleryHasMedia = new GalleryHasMedia();
             $galleryHasMedia->setMedia($media);
@@ -1238,7 +1237,7 @@ EOF
 
         $pos = 0;
         foreach ($files as $file) {
-            $media = $this->getMediaManager()->create();
+            $media = $this->mediaManager->create();
             $media->setBinaryContent(__DIR__.'/../data/files/hugo-paris/'.$file->getRelativePathname());
             $media->setEnabled(true);
             $media->setDescription('Paris');
@@ -1248,7 +1247,7 @@ EOF
             $media->setCategory($this->getReference('travels_paris_category'));
             $media->setContext('product_catalog');
 
-            $this->getMediaManager()->save($media, 'product_catalog', 'sonata.media.provider.image');
+            $this->mediaManager->save($media, 'product_catalog', 'sonata.media.provider.image');
 
             $galleryHasMedia = new GalleryHasMedia();
             $galleryHasMedia->setMedia($media);
@@ -1260,7 +1259,7 @@ EOF
             ++$b;
         }
 
-        $this->getGalleryManager()->update($gallery);
+        $this->galleryManager->update($gallery);
 
         $product->setGallery($gallery);
     }
@@ -1270,7 +1269,7 @@ EOF
      */
     protected function addCanadaGallery(ProductInterface $product)
     {
-        $gallery = $this->getGalleryManager()->create();
+        $gallery = $this->galleryManager->create();
         $gallery->setName('Canada');
         $gallery->setContext('product_catalog');
         $gallery->setDefaultFormat('preview');
@@ -1282,7 +1281,7 @@ EOF
 
         $pos = 0;
         foreach ($files as $file) {
-            $media = $this->getMediaManager()->create();
+            $media = $this->mediaManager->create();
             $media->setBinaryContent(__DIR__.'/../data/files/gilles-canada/'.$file->getRelativePathname());
             $media->setEnabled(true);
             $media->setDescription('Canada');
@@ -1292,7 +1291,7 @@ EOF
             $media->setCategory($this->getReference('travels_quebec_category'));
             $media->setContext('product_catalog');
 
-            $this->getMediaManager()->save($media, 'product_catalog', 'sonata.media.provider.image');
+            $this->mediaManager->save($media, 'product_catalog', 'sonata.media.provider.image');
 
             $galleryHasMedia = new GalleryHasMedia();
             $galleryHasMedia->setMedia($media);
@@ -1308,7 +1307,7 @@ EOF
 
         $pos = 0;
         foreach ($files as $file) {
-            $media = $this->getMediaManager()->create();
+            $media = $this->mediaManager->create();
             $media->setBinaryContent(__DIR__.'/../data/files/hugo-canada/'.$file->getRelativePathname());
             $media->setEnabled(true);
             $media->setDescription('Canada');
@@ -1318,7 +1317,7 @@ EOF
             $media->setCategory($this->getReference('travels_quebec_category'));
             $media->setContext('product_catalog');
 
-            $this->getMediaManager()->save($media, 'product_catalog', 'sonata.media.provider.image');
+            $this->mediaManager->save($media, 'product_catalog', 'sonata.media.provider.image');
 
             $galleryHasMedia = new GalleryHasMedia();
             $galleryHasMedia->setMedia($media);
@@ -1328,7 +1327,7 @@ EOF
             $gallery->addGalleryHasMedias($galleryHasMedia);
         }
 
-        $this->getGalleryManager()->update($gallery);
+        $this->galleryManager->update($gallery);
 
         $product->setGallery($gallery);
     }
@@ -1338,7 +1337,7 @@ EOF
      */
     protected function addJapanGallery(ProductInterface $product)
     {
-        $gallery = $this->getGalleryManager()->create();
+        $gallery = $this->galleryManager->create();
         $gallery->setName('Japan');
         $gallery->setContext('product_catalog');
         $gallery->setDefaultFormat('preview');
@@ -1350,7 +1349,7 @@ EOF
 
         $pos = 0;
         foreach ($files as $file) {
-            $media = $this->getMediaManager()->create();
+            $media = $this->mediaManager->create();
             $media->setBinaryContent(__DIR__.'/../data/files/maha-japan/'.$file->getRelativePathname());
             $media->setEnabled(true);
             $media->setDescription('Japan');
@@ -1360,7 +1359,7 @@ EOF
             $media->setCategory($this->getReference('travels_japan_category'));
             $media->setContext('product_catalog');
 
-            $this->getMediaManager()->save($media, 'product_catalog', 'sonata.media.provider.image');
+            $this->mediaManager->save($media, 'product_catalog', 'sonata.media.provider.image');
 
             $galleryHasMedia = new GalleryHasMedia();
             $galleryHasMedia->setMedia($media);
@@ -1370,7 +1369,7 @@ EOF
             $gallery->addGalleryHasMedias($galleryHasMedia);
         }
 
-        $this->getGalleryManager()->update($gallery);
+        $this->galleryManager->update($gallery);
 
         $product->setGallery($gallery);
     }
@@ -1386,7 +1385,7 @@ EOF
             return $this->getReference($galleryReference);
         }
 
-        $gallery = $this->getGalleryManager()->create();
+        $gallery = $this->galleryManager->create();
 
         $gallery->setName($product->getSlug());
         $gallery->setEnabled(true);
@@ -1395,7 +1394,7 @@ EOF
 
         $this->setReference($galleryReference, $gallery);
 
-        $this->getGalleryManager()->update($gallery);
+        $this->galleryManager->update($gallery);
 
         $product->setGallery($gallery);
 
@@ -1528,16 +1527,6 @@ EOF
     protected function getDummyCollection()
     {
         return $this->getReference('dummy_collection');
-    }
-
-    /**
-     * Return the Product Pool.
-     *
-     * @return \Sonata\Component\Product\Pool
-     */
-    protected function getProductPool()
-    {
-        return $this->container->get('sonata.product.pool');
     }
 
     /**

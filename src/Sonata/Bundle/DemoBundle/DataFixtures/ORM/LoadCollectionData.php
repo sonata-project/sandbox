@@ -15,38 +15,29 @@ namespace Sonata\Bundle\DemoBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
-use Doctrine\Common\Persistence\ObjectManager;
-use Symfony\Component\DependencyInjection\ContainerAwareInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
+use Doctrine\Persistence\ObjectManager;
+use Sonata\ClassificationBundle\Model\CollectionManagerInterface;
 
 /**
  * Class LoadCollectionData.
  *
  * @author  Hugo Briand <briand@ekino.com>
  */
-class LoadCollectionData extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
+class LoadCollectionData extends AbstractFixture implements OrderedFixtureInterface
 {
     /**
-     * @var ContainerInterface
+     * @var CollectionManagerInterface
      */
-    protected $container;
+    protected $collectionManager;
 
-    /**
-     * @param ContainerInterface $container
-     */
-    public function setContainer(ContainerInterface $container = null)
+    public function __construct(CollectionManagerInterface $collectionManager)
     {
-        $this->container = $container;
+        $this->collectionManager = $collectionManager;
     }
 
-    /**
-     * Returns the Sonata CollectionManager.
-     *
-     * @return \Sonata\Doctrine\Model\ManagerInterface
-     */
-    public function getCollectionManager()
+    public function getOrder()
     {
-        return $this->container->get('sonata.classification.manager.collection');
+        return 4;
     }
 
     public function load(ObjectManager $manager)
@@ -54,43 +45,38 @@ class LoadCollectionData extends AbstractFixture implements OrderedFixtureInterf
         $productContext = $this->getReference('context_product_catalog');
 
         // PHP Fan collection
-        $php = $this->getCollectionManager()->create();
+        $php = $this->collectionManager->create();
         $php->setName('PHP Fan');
         $php->setSlug('php-fan');
         $php->setDescription('Everything a PHP Fan needs.');
         $php->setEnabled(true);
         $php->setContext($productContext);
-        $this->getCollectionManager()->save($php);
+        $this->collectionManager->save($php);
 
         $this->setReference('php_collection', $php);
 
         // Travels collection
-        $travel = $this->getCollectionManager()->create();
+        $travel = $this->collectionManager->create();
         $travel->setName('Travels');
         $travel->setSlug('travels');
         $travel->setDescription('Every travels you want');
         $travel->setEnabled(true);
         $travel->setContext($productContext);
-        $this->getCollectionManager()->save($travel);
+        $this->collectionManager->save($travel);
 
         $this->setReference('travel_collection', $travel);
 
         // Dummy collection
-        $dummy = $this->getCollectionManager()->create();
+        $dummy = $this->collectionManager->create();
         $dummy->setName('Dummys');
         $dummy->setSlug('Dummys');
         $dummy->setDescription('Every dummys you want');
         $dummy->setEnabled(true);
         $dummy->setContext($productContext);
-        $this->getCollectionManager()->save($dummy);
+        $this->collectionManager->save($dummy);
 
         $this->setReference('dummy_collection', $dummy);
 
         $manager->flush();
-    }
-
-    public function getOrder()
-    {
-        return 4;
     }
 }
