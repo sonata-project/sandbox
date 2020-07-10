@@ -2,84 +2,62 @@
 <container xmlns="http://symfony.com/schema/dic/services"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
-
     <services>
-        <defaults public="false" />
-
-        <service class="Sonata\Bundle\DemoBundle\DataFixtures\ORM\LoadCategoryData" id="sonata_bundle_demo.data_fixtures_orm.load_category_data">
-            <call method="setContainer">
-                <argument id="service_container" type="service"/>
-            </call>
-
+        <service id="sonata_bundle_demo.data_fixtures_orm.load_category_data" class="Sonata\Bundle\DemoBundle\DataFixtures\ORM\LoadCategoryData">
             <tag name="doctrine.fixture.orm"/>
+            <argument type="service" id="sonata.classification.manager.category"/>
         </service>
-
-        <service class="Sonata\Bundle\DemoBundle\DataFixtures\ORM\LoadCollectionData" id="sonata_bundle_demo.data_fixtures_orm.load_collection_data">
-            <call method="setContainer">
-                <argument id="service_container" type="service"/>
-            </call>
-
+        <service id="sonata_bundle_demo.data_fixtures_orm.load_collection_data" class="Sonata\Bundle\DemoBundle\DataFixtures\ORM\LoadCollectionData">
             <tag name="doctrine.fixture.orm"/>
+            <argument type="service" id="sonata.classification.manager.collection"/>
         </service>
-
-        <service class="Sonata\Bundle\DemoBundle\DataFixtures\ORM\LoadMediaData" id="sonata_bundle_demo.data_fixtures_orm.load_media_data">
-            <argument id="faker.generator" type="service"/>
-            <argument id="sonata.media.manager.gallery" type="service"/>
-            <argument id="sonata.media.manager.media" type="service"/>
-
+        <service id="sonata_bundle_demo.data_fixtures_orm.load_media_data" class="Sonata\Bundle\DemoBundle\DataFixtures\ORM\LoadMediaData">
             <tag name="doctrine.fixture.orm"/>
+            <argument type="service" id="faker.generator"/>
+            <argument type="service" id="sonata.media.manager.gallery"/>
+            <argument type="service" id="sonata.media.manager.media"/>
         </service>
-
-        <service class="Sonata\Bundle\DemoBundle\DataFixtures\ORM\LoadNewsData" id="sonata_bundle_demo.data_fixtures_orm.load_news_data">
-            <argument id="faker.generator" type="service"/>
-            <argument id="sonata.classification.manager.collection" type="service"/>
-            <argument id="sonata.news.manager.comment" type="service"/>
-            <argument id="sonata.formatter.pool" type="service"/>
-            <argument id="sonata.news.manager.post" type="service"/>
-            <argument id="sonata.classification.manager.tag" type="service"/>
-
-
+        <service id="sonata_bundle_demo.data_fixtures_orm.load_news_data" class="Sonata\Bundle\DemoBundle\DataFixtures\ORM\LoadNewsData">
             <tag name="doctrine.fixture.orm"/>
+            <argument type="service" id="faker.generator"/>
+            <argument type="service" id="sonata.classification.manager.collection"/>
+            <argument type="service" id="sonata.news.manager.comment"/>
+            <argument type="service" id="sonata.formatter.pool"/>
+            <argument type="service" id="sonata.news.manager.post"/>
+            <argument type="service" id="sonata.classification.manager.tag"/>
         </service>
-
-        <service class="Sonata\Bundle\DemoBundle\DataFixtures\ORM\LoadOrderData" id="sonata_bundle_demo.data_fixtures_orm.load_order_data">
-            <argument id="faker.generator" type="service"/>
-            <argument id="sonata.payment.transformer.invoice" type="service"/>
-            <argument id="sonata.product.pool" type="service"/>
-            <argument id="parameter_bag" type="service"/>
-
+        <service id="sonata_bundle_demo.data_fixtures_orm.load_order_data" class="Sonata\Bundle\DemoBundle\DataFixtures\ORM\LoadOrderData">
             <tag name="doctrine.fixture.orm"/>
+            <argument type="service" id="faker.generator" />
+            <argument type="service" id="sonata.payment.transformer.invoice"/>
+            <argument type="service" id="sonata.product.pool"/>
+            <argument type="service" id="parameter_bag"/>
         </service>
-
-        <service class="Sonata\Bundle\DemoBundle\DataFixtures\ORM\LoadPageData" id="sonata_bundle_demo.data_fixtures_orm.load_page_data">
-            <call method="setContainer">
-                <argument id="service_container" type="service"/>
-            </call>
-
+        <service id="sonata_bundle_demo.data_fixtures_orm.load_page_data" class="Sonata\Bundle\DemoBundle\DataFixtures\ORM\LoadPageData">
             <tag name="doctrine.fixture.orm"/>
+            <argument type="service" id="faker.generator"/>
+            <argument type="service" id="sonata.page.block_interactor"/>
+            <argument type="service" id="sonata.page.manager.block"/>
+            <argument type="service" id="sonata.page.manager.site"/>
+            <argument type="service" id="sonata.page.manager.page"/>
+            <argument type="service" id="twig"/>
+            <argument>%sonata.fixtures.page.create_subsite%</argument>
         </service>
-
-        <service class="Sonata\Bundle\DemoBundle\DataFixtures\ORM\LoadProductData" id="sonata_bundle_demo.data_fixtures_orm.load_product_data">
-            <call method="setContainer">
-                <argument id="service_container" type="service"/>
-            </call>
-
+        <service id="sonata_bundle_demo.data_fixtures_orm.load_product_data" class="Sonata\Bundle\DemoBundle\DataFixtures\ORM\LoadProductData">
             <tag name="doctrine.fixture.orm"/>
+            <argument>%sonata.fixtures.product.fake%</argument>
+            <argument type="service" id="sonata.media.manager.media"/>
+            <argument type="service" id="sonata.media.manager.gallery"/>
+            <argument type="service" id="sonata.product.pool"/>
         </service>
-
-        <service class="Sonata\Bundle\DemoBundle\DataFixtures\ORM\LoadUserData" id="sonata_bundle_demo.data_fixtures_orm.load_user_data">
-            <argument id="faker.generator" type="service"/>
-            <argument id="fos_user.user_manager" type="service"/>
-
+        <service id="sonata_bundle_demo.data_fixtures_orm.load_user_data" class="Sonata\Bundle\DemoBundle\DataFixtures\ORM\LoadUserData">
             <tag name="doctrine.fixture.orm"/>
+            <argument type="service" id="faker.generator"/>
+            <argument type="service" id="fos_user.user_manager"/>
         </service>
-
-        <service class="Sonata\Bundle\DemoBundle\DataFixtures\ORM\LoadContextData" id="sonata_bundle_demo.data_fixtures_orm.load_context_data">
-            <call method="setContainer">
-                <argument id="service_container" type="service"/>
-            </call>
-
+        <service id="sonata_bundle_demo.data_fixtures_orm.load_context_data" class="Sonata\Bundle\DemoBundle\DataFixtures\ORM\LoadContextData">
             <tag name="doctrine.fixture.orm"/>
+            <argument type="service" id="sonata.classification.manager.context"/>
         </service>
     </services>
 </container>

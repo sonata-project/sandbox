@@ -13,9 +13,10 @@ declare(strict_types=1);
 
 namespace Sonata\Bundle\DemoBundle\DataFixtures\ORM;
 
+use AppBundle\Entity\Media\GalleryHasMedia;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Persistence\ObjectManager;
 use Faker\Generator;
 use Sonata\MediaBundle\Model\GalleryInterface;
 use Sonata\MediaBundle\Model\GalleryManagerInterface;
@@ -33,17 +34,17 @@ class LoadMediaData extends AbstractFixture implements OrderedFixtureInterface
     /**
      * @var GalleryManagerInterface
      */
-    private $galeryManager;
+    private $galleryManager;
 
     /**
      * @var MediaManagerInterface
      */
     private $mediaManager;
 
-    public function __construct(Generator $faker, GalleryManagerInterface $galeryManager, MediaManagerInterface $mediaManager)
+    public function __construct(Generator $faker, GalleryManagerInterface $galleryManager, MediaManagerInterface $mediaManager)
     {
         $this->faker = $faker;
-        $this->galeryManager = $galeryManager;
+        $this->galleryManager = $galleryManager;
         $this->mediaManager = $mediaManager;
     }
 
@@ -54,9 +55,7 @@ class LoadMediaData extends AbstractFixture implements OrderedFixtureInterface
 
     public function load(ObjectManager $manager)
     {
-        $gallery = $this->galeryManager->create();
-        $mediaManager = $this->mediaManager;
-        $faker = $this->faker;
+        $gallery = $this->galleryManager->create();
 
         $canada = Finder::create()->name('IMG_3587*.jpg')->in(__DIR__.'/../data/files/gilles-canada');
         $paris = Finder::create()->name('IMG_3008*.jpg')->in(__DIR__.'/../data/files/hugo-paris');
@@ -64,7 +63,7 @@ class LoadMediaData extends AbstractFixture implements OrderedFixtureInterface
 
         $i = 0;
         foreach ($canada as $file) {
-            $media = $mediaManager->create();
+            $media = $this->mediaManager->create();
             $media->setBinaryContent(__DIR__.'/../data/files/gilles-canada/'.$file->getRelativePathname());
             $media->setEnabled(true);
             $media->setName('Canada');
@@ -75,13 +74,13 @@ class LoadMediaData extends AbstractFixture implements OrderedFixtureInterface
 
             $this->addReference('sonata-media-'.($i++), $media);
 
-            $mediaManager->save($media, 'default', 'sonata.media.provider.image');
+            $this->mediaManager->save($media, 'default', 'sonata.media.provider.image');
 
             $this->addMedia($gallery, $media);
         }
 
         foreach ($paris as $file) {
-            $media = $mediaManager->create();
+            $media = $this->mediaManager->create();
             $media->setBinaryContent(__DIR__.'/../data/files/hugo-paris/'.$file->getRelativePathname());
             $media->setEnabled(true);
             $media->setName('Paris');
@@ -92,13 +91,13 @@ class LoadMediaData extends AbstractFixture implements OrderedFixtureInterface
 
             $this->addReference('sonata-media-'.($i++), $media);
 
-            $mediaManager->save($media, 'default', 'sonata.media.provider.image');
+            $this->mediaManager->save($media, 'default', 'sonata.media.provider.image');
 
             $this->addMedia($gallery, $media);
         }
 
         foreach ($switzerland as $file) {
-            $media = $mediaManager->create();
+            $media = $this->mediaManager->create();
             $media->setBinaryContent(__DIR__.'/../data/files/sylvain-switzerland/'.$file->getRelativePathname());
             $media->setEnabled(true);
             $media->setName('Switzerland');
@@ -109,24 +108,24 @@ class LoadMediaData extends AbstractFixture implements OrderedFixtureInterface
 
             $this->addReference('sonata-media-'.($i++), $media);
 
-            $mediaManager->save($media, 'default', 'sonata.media.provider.image');
+            $this->mediaManager->save($media, 'default', 'sonata.media.provider.image');
 
             $this->addMedia($gallery, $media);
         }
 
         $gallery->setEnabled(true);
-        $gallery->setName($faker->sentence(4));
+        $gallery->setName($this->faker->sentence(4));
         $gallery->setDefaultFormat('small');
         $gallery->setContext('default');
 
-        $this->galeryManager->update($gallery);
+        $this->galleryManager->update($gallery);
 
         $this->addReference('media-gallery', $gallery);
     }
 
     public function addMedia(GalleryInterface $gallery, MediaInterface $media)
     {
-        $galleryHasMedia = new \AppBundle\Entity\Media\GalleryHasMedia();
+        $galleryHasMedia = new GalleryHasMedia();
         $galleryHasMedia->setMedia($media);
         $galleryHasMedia->setPosition(\count($gallery->getGalleryHasMedias()) + 1);
         $galleryHasMedia->setEnabled(true);

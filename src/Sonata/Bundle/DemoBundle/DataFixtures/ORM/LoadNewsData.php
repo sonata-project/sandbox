@@ -15,7 +15,7 @@ namespace Sonata\Bundle\DemoBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Persistence\ObjectManager;
 use Faker\Generator;
 use Sonata\ClassificationBundle\Model\CollectionManagerInterface;
 use Sonata\ClassificationBundle\Model\TagManagerInterface;
@@ -79,11 +79,6 @@ class LoadNewsData extends AbstractFixture implements OrderedFixtureInterface
 
     public function load(ObjectManager $manager)
     {
-        //        $userManager = $this->getUserManager();
-        $postManager = $this->postManager;
-
-        $faker = $this->faker;
-
         $tags = [
             'symfony' => null,
             'form' => null,
@@ -110,10 +105,10 @@ class LoadNewsData extends AbstractFixture implements OrderedFixtureInterface
             $post->setAuthor($this->getReference('user-johndoe'));
 
             $post->setCollection($collection);
-            $post->setAbstract($faker->sentence(30));
+            $post->setAbstract($this->faker->sentence(30));
             $post->setEnabled(true);
-            $post->setTitle($faker->sentence(6));
-            $post->setPublicationDateStart($faker->dateTimeBetween('-30 days', '-1 days'));
+            $post->setTitle($this->faker->sentence(6));
+            $post->setPublicationDateStart($this->faker->dateTimeBetween('-30 days', '-1 days'));
 
             $id = $this->getReference('sonata-media-0')->getId();
 
@@ -137,10 +132,10 @@ class LoadNewsData extends AbstractFixture implements OrderedFixtureInterface
             ;
             */
             $raw .= sprintf("### %s\n\n%s\n\n### %s\n\n%s",
-                $faker->sentence(random_int(3, 6)),
-                $faker->text(1000),
-                $faker->sentence(random_int(3, 6)),
-                $faker->text(1000)
+                $this->faker->sentence(random_int(3, 6)),
+                $this->faker->text(1000),
+                $this->faker->sentence(random_int(3, 6)),
+                $this->faker->text(1000)
             );
 
             $post->setRawContent($raw);
@@ -153,18 +148,18 @@ class LoadNewsData extends AbstractFixture implements OrderedFixtureInterface
                 $post->addTags($tag);
             }
 
-            foreach (range(1, $faker->randomDigit + 2) as $commentId) {
+            foreach (range(1, $this->faker->randomDigit + 2) as $commentId) {
                 $comment = $this->commentManager->create();
-                $comment->setEmail($faker->email);
-                $comment->setName($faker->name);
+                $comment->setEmail($this->faker->email);
+                $comment->setName($this->faker->name);
                 $comment->setStatus(CommentInterface::STATUS_VALID);
-                $comment->setMessage($faker->sentence(25));
-                $comment->setUrl($faker->url);
+                $comment->setMessage($this->faker->sentence(25));
+                $comment->setUrl($this->faker->url);
 
                 $post->addComments($comment);
             }
 
-            $postManager->save($post);
+            $this->postManager->save($post);
         }
     }
 }
