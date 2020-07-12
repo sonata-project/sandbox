@@ -1,7 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
         <service id="sonata_bundle_demo.data_fixtures_orm.load_category_data" class="Sonata\Bundle\DemoBundle\DataFixtures\ORM\LoadCategoryData">
             <tag name="doctrine.fixture.orm"/>
@@ -28,7 +26,7 @@
         </service>
         <service id="sonata_bundle_demo.data_fixtures_orm.load_order_data" class="Sonata\Bundle\DemoBundle\DataFixtures\ORM\LoadOrderData">
             <tag name="doctrine.fixture.orm"/>
-            <argument type="service" id="faker.generator" />
+            <argument type="service" id="faker.generator"/>
             <argument type="service" id="sonata.payment.transformer.invoice"/>
             <argument type="service" id="sonata.product.pool"/>
             <argument type="service" id="parameter_bag"/>
