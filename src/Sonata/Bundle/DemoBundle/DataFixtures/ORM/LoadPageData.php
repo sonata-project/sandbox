@@ -80,12 +80,12 @@ class LoadPageData extends AbstractFixture implements OrderedFixtureInterface
         $this->createSubsite = $createSubsite;
     }
 
-    public function getOrder()
+    public function getOrder(): int
     {
         return 8;
     }
 
-    public function load(ObjectManager $manager)
+    public function load(ObjectManager $manager): void
     {
         $site = $this->createSite();
         $this->createGlobalPage($site);
@@ -113,10 +113,7 @@ class LoadPageData extends AbstractFixture implements OrderedFixtureInterface
         $this->createSubSite();
     }
 
-    /**
-     * @return SiteInterface $site
-     */
-    public function createSite()
+    public function createSite(): SiteInterface
     {
         $site = $this->siteManager->create();
 
@@ -154,7 +151,7 @@ class LoadPageData extends AbstractFixture implements OrderedFixtureInterface
         return $site;
     }
 
-    public function createBlogIndex(SiteInterface $site)
+    public function createBlogIndex(SiteInterface $site): void
     {
         $blogIndex = $this->pageManager->create();
         $blogIndex->setSlug('blog');
@@ -172,7 +169,7 @@ class LoadPageData extends AbstractFixture implements OrderedFixtureInterface
         $this->pageManager->save($blogIndex);
     }
 
-    public function createGalleryIndex(SiteInterface $site)
+    public function createGalleryIndex(SiteInterface $site): void
     {
         $galleryIndex = $this->pageManager->create();
         $galleryIndex->setSlug('gallery');
@@ -215,7 +212,7 @@ class LoadPageData extends AbstractFixture implements OrderedFixtureInterface
         $this->pageManager->save($galleryIndex);
     }
 
-    public function createTermsPage(SiteInterface $site)
+    public function createTermsPage(SiteInterface $site): void
     {
         $terms = $this->pageManager->create();
         $terms->setSlug('shop-payment-terms-and-conditions');
@@ -248,7 +245,7 @@ class LoadPageData extends AbstractFixture implements OrderedFixtureInterface
         $this->pageManager->save($terms);
     }
 
-    public function createHomePage(SiteInterface $site)
+    public function createHomePage(SiteInterface $site): void
     {
         $this->addReference('page-homepage', $homepage = $this->pageManager->create());
         $homepage->setSlug('/');
@@ -356,7 +353,7 @@ class LoadPageData extends AbstractFixture implements OrderedFixtureInterface
         $this->pageManager->save($homepage);
     }
 
-    public function createProductPage(SiteInterface $site)
+    public function createProductPage(SiteInterface $site): void
     {
         $category = $this->pageManager->create();
 
@@ -375,7 +372,7 @@ class LoadPageData extends AbstractFixture implements OrderedFixtureInterface
         $this->pageManager->save($category);
     }
 
-    public function createBasketPage(SiteInterface $site)
+    public function createBasketPage(SiteInterface $site): void
     {
         $basket = $this->pageManager->create();
 
@@ -393,7 +390,7 @@ class LoadPageData extends AbstractFixture implements OrderedFixtureInterface
         $this->pageManager->save($basket);
     }
 
-    public function createMediaPage(SiteInterface $site)
+    public function createMediaPage(SiteInterface $site): void
     {
         $this->addReference('page-media', $media = $this->pageManager->create());
         $media->setSlug('/media');
@@ -435,7 +432,7 @@ class LoadPageData extends AbstractFixture implements OrderedFixtureInterface
      * @param string        $title   A page title
      * @param string        $content A text content
      */
-    public function createTextContentPage(SiteInterface $site, $url, $title, $content)
+    public function createTextContentPage(SiteInterface $site, string $url, string $title, string $content): void
     {
         $page = $this->pageManager->create();
         $page->setSlug(sprintf('/%s', $url));
@@ -474,7 +471,7 @@ class LoadPageData extends AbstractFixture implements OrderedFixtureInterface
         $this->pageManager->save($page);
     }
 
-    public function create404ErrorPage(SiteInterface $site)
+    public function create404ErrorPage(SiteInterface $site): void
     {
         $page = $this->pageManager->create();
         $page->setName('_page_internal_error_not_found');
@@ -510,7 +507,7 @@ class LoadPageData extends AbstractFixture implements OrderedFixtureInterface
         $this->pageManager->save($page);
     }
 
-    public function create500ErrorPage(SiteInterface $site)
+    public function create500ErrorPage(SiteInterface $site): void
     {
         $page = $this->pageManager->create();
         $page->setName('_page_internal_error_fatal');
@@ -546,7 +543,7 @@ class LoadPageData extends AbstractFixture implements OrderedFixtureInterface
         $this->pageManager->save($page);
     }
 
-    public function createGlobalPage(SiteInterface $site)
+    public function createGlobalPage(SiteInterface $site): void
     {
         $global = $this->pageManager->create();
         $global->setName('global');

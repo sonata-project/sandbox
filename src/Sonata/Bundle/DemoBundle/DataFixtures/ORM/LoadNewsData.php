@@ -20,6 +20,7 @@ use Faker\Generator;
 use Sonata\ClassificationBundle\Model\CollectionManagerInterface;
 use Sonata\ClassificationBundle\Model\TagManagerInterface;
 use Sonata\FormatterBundle\Formatter\Pool;
+use Sonata\FormatterBundle\Formatter\PoolInterface;
 use Sonata\NewsBundle\Model\CommentInterface;
 use Sonata\NewsBundle\Model\CommentManagerInterface;
 use Sonata\NewsBundle\Model\PostManagerInterface;
@@ -27,7 +28,7 @@ use Sonata\NewsBundle\Model\PostManagerInterface;
 class LoadNewsData extends AbstractFixture implements OrderedFixtureInterface
 {
     /**
-     * @return Generator
+     * @var Generator
      */
     private $faker;
 
@@ -42,7 +43,7 @@ class LoadNewsData extends AbstractFixture implements OrderedFixtureInterface
     private $commentManager;
 
     /**
-     * @var \Sonata\FormatterBundle\Formatter\PoolInterface
+     * @var PoolInterface
      */
     private $formatterPool;
 
@@ -72,12 +73,12 @@ class LoadNewsData extends AbstractFixture implements OrderedFixtureInterface
         $this->tagManager = $tagManager;
     }
 
-    public function getOrder()
+    public function getOrder(): int
     {
         return 6;
     }
 
-    public function load(ObjectManager $manager)
+    public function load(ObjectManager $manager): void
     {
         $tags = [
             'symfony' => null,

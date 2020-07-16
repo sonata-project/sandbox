@@ -27,7 +27,7 @@ use Symfony\Component\Finder\Finder;
 class LoadMediaData extends AbstractFixture implements OrderedFixtureInterface
 {
     /**
-     * @var Faker\Generator
+     * @var Generator
      */
     private $faker;
 
@@ -48,12 +48,12 @@ class LoadMediaData extends AbstractFixture implements OrderedFixtureInterface
         $this->mediaManager = $mediaManager;
     }
 
-    public function getOrder()
+    public function getOrder(): int
     {
         return 3;
     }
 
-    public function load(ObjectManager $manager)
+    public function load(ObjectManager $manager): void
     {
         $gallery = $this->galleryManager->create();
 
@@ -76,7 +76,7 @@ class LoadMediaData extends AbstractFixture implements OrderedFixtureInterface
 
             $this->mediaManager->save($media, 'default', 'sonata.media.provider.image');
 
-            $this->addMedia($gallery, $media);
+            $this->addMediaToGallery($media, $gallery);
         }
 
         foreach ($paris as $file) {
@@ -93,7 +93,7 @@ class LoadMediaData extends AbstractFixture implements OrderedFixtureInterface
 
             $this->mediaManager->save($media, 'default', 'sonata.media.provider.image');
 
-            $this->addMedia($gallery, $media);
+            $this->addMediaToGallery($media, $gallery);
         }
 
         foreach ($switzerland as $file) {
@@ -110,7 +110,7 @@ class LoadMediaData extends AbstractFixture implements OrderedFixtureInterface
 
             $this->mediaManager->save($media, 'default', 'sonata.media.provider.image');
 
-            $this->addMedia($gallery, $media);
+            $this->addMediaToGallery($media, $gallery);
         }
 
         $gallery->setEnabled(true);
@@ -123,7 +123,7 @@ class LoadMediaData extends AbstractFixture implements OrderedFixtureInterface
         $this->addReference('media-gallery', $gallery);
     }
 
-    public function addMedia(GalleryInterface $gallery, MediaInterface $media)
+    public function addMediaToGallery(MediaInterface $media, GalleryInterface $gallery): void
     {
         $galleryHasMedia = new GalleryHasMedia();
         $galleryHasMedia->setMedia($media);
