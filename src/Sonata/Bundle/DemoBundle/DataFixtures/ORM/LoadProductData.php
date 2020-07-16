@@ -27,6 +27,7 @@ use Sonata\ClassificationBundle\Model\CategoryInterface;
 use Sonata\ClassificationBundle\Model\CollectionInterface;
 use Sonata\Component\Product\Pool;
 use Sonata\Component\Product\ProductInterface;
+use Sonata\Component\Product\ProductProviderInterface;
 use Sonata\MediaBundle\Entity\MediaManager;
 use Sonata\MediaBundle\Model\GalleryInterface;
 use Sonata\MediaBundle\Model\GalleryManagerInterface;
@@ -61,7 +62,7 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
     protected $productPool;
 
     public function __construct(
-        ?int $fakeProduct = 0,
+        int $fakeProduct,
         MediaManager $mediaManager,
         GalleryManagerInterface $galleryManager,
         Pool $productPool
@@ -72,14 +73,14 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $this->productPool = $productPool;
     }
 
-    public function getOrder()
+    public function getOrder(): int
     {
         return 7;
     }
 
-    public function load(ObjectManager $manager)
+    public function load(ObjectManager $manager): void
     {
-        $dummyCategory = $this->getDummyCategory();
+        $dummyCategory = $this->getReference('dummy_category');
 
         // default media
         $defaultMedia = $this->mediaManager->create();
@@ -90,20 +91,20 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $defaultMedia->setCategory($dummyCategory);
         $this->mediaManager->save($defaultMedia, 'product_catalog_default', 'sonata.media.provider.image');
 
-        $goodiesCategory = $this->getGoodiesCategory();
-        $travelsCategory = $this->getTravelsCategory();
-        $plushesCategory = $this->getPlushesCategory();
-        $mugCategory = $this->getMugCategory();
-        $clothesCategory = $this->getClothesCategory();
-        $shoesCategory = $this->getShoesCategory();
+        $goodiesCategory = $this->getReference('goodies_category');
+        $travelsCategory = $this->getReference('travels_category');
+        $plushesCategory = $this->getReference('plushes_goodies_category');
+        $mugCategory = $this->getReference('sonata_mugs_category');
+        $clothesCategory = $this->getReference('sonata_clothes_category');
+        $shoesCategory = $this->getReference('sonata_shoes_category');
 
-        $phpCollection = $this->getPhpCollection();
-        $travelCollection = $this->getTravelCollection();
-        $dummyCollection = $this->getDummyCollection();
+        $phpCollection = $this->getReference('php_collection');
+        $travelCollection = $this->getReference('travel_collection');
+        $dummyCollection = $this->getReference('dummy_collection');
 
         $dummyMedia = $this->createMedia(__DIR__.'/../data/files/sonata_logo.png', 'Dummy', 'Dummy product', null, null, 'dummy_category');
 
-        for ($i = 1; $i < (int) $this->fakeProduct; ++$i) {
+        for ($i = 1; $i <= (int) $this->fakeProduct; ++$i) {
             // Goodies products
             $dummy = new Goodie();
             $dummy->setSku('dummy_'.$i);
@@ -1011,7 +1012,7 @@ EOF
         $manager->flush();
     }
 
-    protected function getLorem()
+    protected function getLorem(): string
     {
         return '
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quae cum essent dicta, finem fecimus et ambulandi et disputandi. Duo Reges: constructio interrete. Itaque eos id agere, ut a se dolores, morbos, debilitates repellant. Quae cum dixisset paulumque institisset, Quid est? At iam decimum annum in spelunca iacet. Tibi hoc incredibile, quod beatissimum. Conferam avum tuum Drusum cum C. </p>
@@ -1022,12 +1023,7 @@ EOF
         ';
     }
 
-    /**
-     * Create a ProductCategory and adds given Product to given Category.
-     *
-     * @param bool $enabled
-     */
-    protected function addProductToCategory(ProductInterface $product, CategoryInterface $category, ObjectManager $manager, $enabled = true)
+    protected function addProductToCategory(ProductInterface $product, CategoryInterface $category, ObjectManager $manager, bool $enabled = true): void
     {
         $productCategory = new ProductCategory();
 
@@ -1044,12 +1040,7 @@ EOF
         $manager->persist($productCategory);
     }
 
-    /**
-     * Create a ProductCollection and adds given Product to given Collection.
-     *
-     * @param bool $enabled
-     */
-    protected function addProductToCollection(ProductInterface $product, CollectionInterface $collection, ObjectManager $manager, $enabled = true)
+    protected function addProductToCollection(ProductInterface $product, CollectionInterface $collection, ObjectManager $manager, bool $enabled = true): void
     {
         $productCollection = new ProductCollection();
 
@@ -1062,10 +1053,7 @@ EOF
         $manager->persist($productCollection);
     }
 
-    /**
-     * Create and add deliveries for a given Product.
-     */
-    protected function addProductDeliveries(ProductInterface $product, ObjectManager $manager)
+    protected function addProductDeliveries(ProductInterface $product, ObjectManager $manager): void
     {
         $delivery = new Delivery();
         $delivery->setCountryCode('FR');
@@ -1109,29 +1097,34 @@ EOF
      *
      * @param string           $mediaFilename A media filename
      * @param string           $name          A media name to set on creation
-     * @param string           $description   A media description text
      * @param ProductInterface $product       A Product instance to add media
-     * @param string           $author        A media author text
-     * @param string           $copyright     A media copyright text
+     * @param string|null      $author        A media author text
+     * @param string|null      $copyright     A media copyright text
      */
-    protected function addMediaToProduct($mediaFilename, $name, $description, ProductInterface $product, $author = null, $copyright = null, $categoryReference = 'products_category')
+    protected function addMediaToProduct(
+        string $mediaFilename,
+        string $name,
+        string $description,
+        ProductInterface $product,
+        $author = null,
+        $copyright = null,
+        string $categoryReference = 'root_products_category'): void
     {
         $product->setImage($this->createMedia($mediaFilename, $name, $description, $author, $copyright, $categoryReference));
     }
 
     /**
-     * @param string $mediaFilename
-     * @param string $name
-     * @param string $description
-     * @param string $author
-     * @param string $copyright
-     *
-     * @return MediaInterface
+     * @param string|null $author
+     * @param string|null $copyright
      */
-    protected function createMedia($mediaFilename, $name, $description, $author = null, $copyright = null, $categoryReference = 'products_category')
+    protected function createMedia(
+        string $mediaFilename,
+        string $name,
+        string $description,
+        $author = null,
+        $copyright = null,
+        string $categoryReference = 'root_products_category'): MediaInterface
     {
-        $file = new \SplFileInfo($mediaFilename);
-
         $media = $this->mediaManager->create();
         $media->setBinaryContent($mediaFilename);
         $media->setEnabled(true);
@@ -1149,7 +1142,7 @@ EOF
     /**
      * Returns Switzerland gallery from a specified directory.
      */
-    protected function addSwitzerlandGallery(ProductInterface $product)
+    protected function addSwitzerlandGallery(ProductInterface $product): void
     {
         $gallery = $this->galleryManager->create();
         $gallery->setName('Switzerland');
@@ -1175,12 +1168,7 @@ EOF
 
             $this->mediaManager->save($media, 'product_catalog', 'sonata.media.provider.image');
 
-            $galleryHasMedia = new GalleryHasMedia();
-            $galleryHasMedia->setMedia($media);
-            $galleryHasMedia->setPosition($pos + 1);
-            $galleryHasMedia->setEnabled(true);
-
-            $gallery->addGalleryHasMedias($galleryHasMedia);
+            $this->addMediaToGallery($media, $gallery);
         }
 
         $this->galleryManager->update($gallery);
@@ -1191,7 +1179,7 @@ EOF
     /**
      * Returns Paris gallery from a specified directory.
      */
-    protected function addParisGallery(ProductInterface $product)
+    protected function addParisGallery(ProductInterface $product): void
     {
         $gallery = $this->galleryManager->create();
         $gallery->setName('Paris');
@@ -1219,12 +1207,7 @@ EOF
 
             $this->mediaManager->save($media, 'product_catalog', 'sonata.media.provider.image');
 
-            $galleryHasMedia = new GalleryHasMedia();
-            $galleryHasMedia->setMedia($media);
-            $galleryHasMedia->setPosition($pos + 1);
-            $galleryHasMedia->setEnabled(true);
-
-            $gallery->addGalleryHasMedias($galleryHasMedia);
+            $this->addMediaToGallery($media, $gallery);
 
             ++$a;
         }
@@ -1249,12 +1232,7 @@ EOF
 
             $this->mediaManager->save($media, 'product_catalog', 'sonata.media.provider.image');
 
-            $galleryHasMedia = new GalleryHasMedia();
-            $galleryHasMedia->setMedia($media);
-            $galleryHasMedia->setPosition($pos + 1);
-            $galleryHasMedia->setEnabled(true);
-
-            $gallery->addGalleryHasMedias($galleryHasMedia);
+            $this->addMediaToGallery($media, $gallery);
 
             ++$b;
         }
@@ -1267,7 +1245,7 @@ EOF
     /**
      * Returns Canada gallery from a specified directory.
      */
-    protected function addCanadaGallery(ProductInterface $product)
+    protected function addCanadaGallery(ProductInterface $product): void
     {
         $gallery = $this->galleryManager->create();
         $gallery->setName('Canada');
@@ -1293,12 +1271,7 @@ EOF
 
             $this->mediaManager->save($media, 'product_catalog', 'sonata.media.provider.image');
 
-            $galleryHasMedia = new GalleryHasMedia();
-            $galleryHasMedia->setMedia($media);
-            $galleryHasMedia->setPosition($pos + 1);
-            $galleryHasMedia->setEnabled(true);
-
-            $gallery->addGalleryHasMedias($galleryHasMedia);
+            $this->addMediaToGallery($media, $gallery);
         }
 
         $files = Finder::create()
@@ -1319,12 +1292,7 @@ EOF
 
             $this->mediaManager->save($media, 'product_catalog', 'sonata.media.provider.image');
 
-            $galleryHasMedia = new GalleryHasMedia();
-            $galleryHasMedia->setMedia($media);
-            $galleryHasMedia->setPosition($pos + 1);
-            $galleryHasMedia->setEnabled(true);
-
-            $gallery->addGalleryHasMedias($galleryHasMedia);
+            $this->addMediaToGallery($media, $gallery);
         }
 
         $this->galleryManager->update($gallery);
@@ -1335,7 +1303,7 @@ EOF
     /**
      * Returns Japan gallery from a specified directory.
      */
-    protected function addJapanGallery(ProductInterface $product)
+    protected function addJapanGallery(ProductInterface $product): void
     {
         $gallery = $this->galleryManager->create();
         $gallery->setName('Japan');
@@ -1361,12 +1329,7 @@ EOF
 
             $this->mediaManager->save($media, 'product_catalog', 'sonata.media.provider.image');
 
-            $galleryHasMedia = new GalleryHasMedia();
-            $galleryHasMedia->setMedia($media);
-            $galleryHasMedia->setPosition($pos + 1);
-            $galleryHasMedia->setEnabled(true);
-
-            $gallery->addGalleryHasMedias($galleryHasMedia);
+            $this->addMediaToGallery($media, $gallery);
         }
 
         $this->galleryManager->update($gallery);
@@ -1374,10 +1337,7 @@ EOF
         $product->setGallery($gallery);
     }
 
-    /**
-     * @return object|\Sonata\MediaBundle\Model\MediaInterface
-     */
-    protected function getGalleryForProduct(ProductInterface $product)
+    protected function getGalleryForProduct(ProductInterface $product): GalleryInterface
     {
         $galleryReference = sprintf('gallery_%s', $product->getSku());
 
@@ -1401,7 +1361,7 @@ EOF
         return $gallery;
     }
 
-    protected function addMediaToGallery(MediaInterface $media, GalleryInterface $gallery)
+    protected function addMediaToGallery(MediaInterface $media, GalleryInterface $gallery): void
     {
         $galleryHasMedia = new GalleryHasMedia();
         $galleryHasMedia->setMedia($media);
@@ -1411,7 +1371,7 @@ EOF
         $gallery->addGalleryHasMedias($galleryHasMedia);
     }
 
-    protected function addPackageToProduct(ProductInterface $product, ObjectManager $manager)
+    protected function addPackageToProduct(ProductInterface $product, ObjectManager $manager): void
     {
         $package = new Package();
 
@@ -1430,114 +1390,9 @@ EOF
     }
 
     /**
-     * Returns the Dummy category.
-     *
-     * @return CategoryInterface
-     */
-    protected function getDummyCategory()
-    {
-        return $this->getReference('dummy_category');
-    }
-
-    /**
-     * Returns the Goodies category.
-     *
-     * @return CategoryInterface
-     */
-    protected function getGoodiesCategory()
-    {
-        return $this->getReference('goodies_category');
-    }
-
-    /**
-     * Returns the Travels category.
-     *
-     * @return CategoryInterface
-     */
-    protected function getTravelsCategory()
-    {
-        return $this->getReference('travels_category');
-    }
-
-    /**
-     * Returns the plush sub-Category.
-     *
-     * @return CategoryInterface
-     */
-    protected function getPlushesCategory()
-    {
-        return $this->getReference('plushes_goodies_category');
-    }
-
-    /**
-     * Returns the mugs sub-Category.
-     *
-     * @return CategoryInterface
-     */
-    protected function getMugCategory()
-    {
-        return $this->getReference('sonata_mugs_category');
-    }
-
-    /**
-     * Returns the clothes sub-Category.
-     *
-     * @return CategoryInterface
-     */
-    protected function getClothesCategory()
-    {
-        return $this->getReference('sonata_clothes_category');
-    }
-
-    /**
-     * Returns the shoes sub-Category.
-     *
-     * @return CategoryInterface
-     */
-    protected function getShoesCategory()
-    {
-        return $this->getReference('sonata_shoes_category');
-    }
-
-    /**
-     * Returns the PHP collection.
-     *
-     * @return CollectionInterface
-     */
-    protected function getPhpCollection()
-    {
-        return $this->getReference('php_collection');
-    }
-
-    /**
-     * Returns the Travel collection.
-     *
-     * @return CollectionInterface
-     */
-    protected function getTravelCollection()
-    {
-        return $this->getReference('travel_collection');
-    }
-
-    /**
-     * Returns the Dummy collection.
-     *
-     * @return CollectionInterface
-     */
-    protected function getDummyCollection()
-    {
-        return $this->getReference('dummy_collection');
-    }
-
-    /**
      * Returns a new travel variation entity.
-     *
-     * @param \Sonata\Component\Product\ProductProviderInterface $provider
-     * @param \Sonata\Component\Product\ProductInterface         $parent
-     *
-     * @return Travel
      */
-    protected function generateDefaultTravelVariation($provider, $parent)
+    protected function generateDefaultTravelVariation(ProductProviderInterface $provider, ProductInterface $parent): Travel
     {
         $entity = $provider->createVariation($parent);
         $entity->setEnabled(true);

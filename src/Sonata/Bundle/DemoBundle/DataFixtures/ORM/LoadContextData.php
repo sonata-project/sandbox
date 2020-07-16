@@ -16,7 +16,8 @@ namespace Sonata\Bundle\DemoBundle\DataFixtures\ORM;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
-use Sonata\ClassificationBundle\Model\ContextManagerInterface;
+use Sonata\ClassificationBundle\Entity\ContextManager;
+use Sonata\ClassificationBundle\Model\Context;
 
 /**
  * Class LoadCollectionData.
@@ -26,45 +27,43 @@ use Sonata\ClassificationBundle\Model\ContextManagerInterface;
 class LoadContextData extends AbstractFixture implements OrderedFixtureInterface
 {
     /**
-     * @var ContextManagerInterface
+     * @var ContextManager
      */
     protected $contextManager;
 
-    public function __construct(ContextManagerInterface $contextManager)
+    public function __construct(ContextManager $contextManager)
     {
         $this->contextManager = $contextManager;
     }
 
-    public function getOrder()
+    public function getOrder(): int
     {
         return 1;
     }
 
-    public function load(ObjectManager $manager)
+    public function load(ObjectManager $manager): void
     {
-        $default = $this->contextManager->create();
-        $default->setId('default');
-        $default->setName('Default');
-        $default->setEnabled(true);
-        $this->contextManager->save($default);
-
+        $default = $this->createContext('default', 'Default');
         $this->setReference('context_default', $default);
 
-        $productContext = $this->contextManager->create();
-        $productContext->setId('product_catalog');
-        $productContext->setName('Product Catalog');
-        $productContext->setEnabled(true);
-
-        $this->contextManager->save($productContext);
-
+        $productContext = $this->createContext('product_catalog', 'Product Catalog');
         $this->setReference('context_product_catalog', $productContext);
 
-        $newsContext = $this->contextManager->create();
-        $newsContext->setId('news');
-        $newsContext->setName('News');
-        $newsContext->setEnabled(true);
-        $this->contextManager->save($newsContext);
-
+        $newsContext = $this->createContext('news', 'News');
         $this->setReference('context_news', $newsContext);
+
+        $this->contextManager->getObjectManager()->flush();
+    }
+
+    protected function createContext(string $id, string $name): Context
+    {
+        $context = $this->contextManager->create();
+        $context->setId($id);
+        $context->setName($name);
+        $context->setEnabled(true);
+
+        $this->contextManager->save($context, false);
+
+        return $context;
     }
 }

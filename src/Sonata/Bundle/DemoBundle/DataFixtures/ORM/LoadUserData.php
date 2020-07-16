@@ -18,6 +18,7 @@ use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Generator;
 use FOS\UserBundle\Model\UserManagerInterface;
+use Sonata\UserBundle\Model\User;
 
 class LoadUserData extends AbstractFixture implements OrderedFixtureInterface
 {
@@ -37,63 +38,45 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface
         $this->userManager = $userManager;
     }
 
-    public function getOrder()
+    public function getOrder(): int
     {
         return 5;
     }
 
-    public function load(ObjectManager $manager)
+    public function load(ObjectManager $manager): void
     {
-        $user = $this->userManager->createUser();
-        $user->setUsername('admin');
-        $user->setEmail($this->faker->safeEmail);
-        $user->setPlainPassword('admin');
-        $user->setEnabled(true);
-        $user->setSuperAdmin(true);
+        $this->createUser('admin', true, true);
 
-        $this->userManager->updateUser($user);
-
-        $user = $this->userManager->createUser();
-        $user->setUsername('secure');
-        $user->setEmail($this->faker->safeEmail);
-        $user->setPlainPassword('secure');
-        $user->setEnabled(true);
-        $user->setSuperAdmin(true);
+        $secureUser = $this->createUser('secure', true, true);
         // google chart qr code : https://www.google.com/chart?chs=200x200&chld=M|0&cht=qr&chl=otpauth://totp/secure@http://demo.sonata-project.org%3Fsecret%3D4YU4QGYPB63HDN2C
-        $user->setTwoStepVerificationCode('4YU4QGYPB63HDN2C');
+        $secureUser->setTwoStepVerificationCode('4YU4QGYPB63HDN2C');
+        $this->userManager->updateUser($secureUser);
 
-        $this->userManager->updateUser($user);
-
-        $this->addReference('user-admin', $user);
+        $this->addReference('user-admin', $secureUser);
 
         foreach (range(1, 20) as $id) {
-            $user = $this->userManager->createUser();
-            $user->setUsername($this->faker->userName.$id);
-            $user->setEmail($this->faker->safeEmail);
-            $user->setPlainPassword($this->faker->randomNumber());
-            $user->setEnabled(true);
-
-            $this->userManager->updateUser($user);
+            $this->createUser($this->faker->userName.$id);
         }
 
-        $user = $this->userManager->createUser();
-        $user->setUsername('johndoe');
-        $user->setEmail($this->faker->safeEmail);
-        $user->setPlainPassword('johndoe');
-        $user->setEnabled(true);
-        $user->setSuperAdmin(false);
-
-        $this->setReference('user-johndoe', $user);
-
-        $this->userManager->updateUser($user);
+        $johndoeUser = $this->createUser('johndoe');
+        $this->setReference('user-johndoe', $johndoeUser);
 
         // Behat testing purpose
+        $this->createUser('behat_user');
+        $this->createUser('behat_disabled', false);
+    }
+
+    protected function createUser(string $usernameAndPassword, bool $enabled = true, bool $isSuperAdmin = false): User
+    {
         $user = $this->userManager->createUser();
-        $user->setUsername('behat_user');
+        $user->setUsername($usernameAndPassword);
         $user->setEmail($this->faker->safeEmail);
-        $user->setEnabled(true);
-        $user->setPlainPassword('behat_user');
+        $user->setPlainPassword($usernameAndPassword);
+        $user->setEnabled($enabled);
+        $user->setSuperAdmin($isSuperAdmin);
 
         $this->userManager->updateUser($user);
+
+        return $user;
     }
 }

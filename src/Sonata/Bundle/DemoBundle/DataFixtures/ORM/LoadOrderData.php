@@ -18,7 +18,6 @@ use AppBundle\Entity\Commerce\Customer;
 use AppBundle\Entity\Commerce\Delivery;
 use AppBundle\Entity\Commerce\Invoice;
 use AppBundle\Entity\Commerce\Order;
-use AppBundle\Entity\Commerce\OrderElement;
 use AppBundle\Entity\Commerce\Transaction;
 use AppBundle\Entity\User\User;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -30,6 +29,7 @@ use Sonata\Component\Basket\Basket;
 use Sonata\Component\Basket\BasketInterface;
 use Sonata\Component\Currency\Currency;
 use Sonata\Component\Invoice\InvoiceInterface;
+use Sonata\Component\Order\OrderElementInterface;
 use Sonata\Component\Order\OrderInterface;
 use Sonata\Component\Product\Pool;
 use Sonata\Component\Product\ProductDefinition;
@@ -86,12 +86,12 @@ class LoadOrderData extends AbstractFixture implements OrderedFixtureInterface
         $this->parameterBag = $parameterBag;
     }
 
-    public function getOrder()
+    public function getOrder(): int
     {
         return 9;
     }
 
-    public function load(ObjectManager $manager)
+    public function load(ObjectManager $manager): void
     {
         $currency = new Currency();
         $currency->setLabel('EUR');
@@ -156,14 +156,7 @@ class LoadOrderData extends AbstractFixture implements OrderedFixtureInterface
         $manager->flush();
     }
 
-    /**
-     * Creates a fake Order.
-     *
-     * @param int $pos
-     *
-     * @return OrderInterface
-     */
-    protected function createOrder(BasketInterface $basket, Customer $customer, array $products, ObjectManager $manager, $pos)
+    protected function createOrder(BasketInterface $basket, Customer $customer, array $products, ObjectManager $manager, int $pos): Order
     {
         $orderElements = [];
         $totalExcl = 0;
@@ -254,15 +247,7 @@ class LoadOrderData extends AbstractFixture implements OrderedFixtureInterface
         return $order;
     }
 
-    /**
-     * Creates an OrderElement from a given Product.
-     *
-     * @param BasketInterface $basket  A basket instance
-     * @param BaseProduct     $product A product instance
-     *
-     * @return OrderElement
-     */
-    protected function createOrderElement(BasketInterface $basket, BaseProduct $product)
+    protected function createOrderElement(BasketInterface $basket, BaseProduct $product): OrderElementInterface
     {
         $productProvider = $this->productPool->getProvider($product);
         $productManager = $this->productPool->getManager($product);
@@ -281,10 +266,7 @@ class LoadOrderData extends AbstractFixture implements OrderedFixtureInterface
         return $orderElement;
     }
 
-    /**
-     * Creates an Invoice for a given Order.
-     */
-    protected function createInvoice(OrderInterface $order, ObjectManager $manager)
+    protected function createInvoice(OrderInterface $order, ObjectManager $manager): Invoice
     {
         $invoice = new Invoice();
 
@@ -295,16 +277,16 @@ class LoadOrderData extends AbstractFixture implements OrderedFixtureInterface
         }
 
         $manager->persist($invoice);
+
+        return $invoice;
     }
 
     /**
      * Generates a Customer with his addresses.
      *
      * @param int $i Random number to avoid username collision
-     *
-     * @return Customer
      */
-    protected function generateCustomer(ObjectManager $manager, $i)
+    protected function generateCustomer(ObjectManager $manager, int $i): Customer
     {
         $firstName = $this->faker->firstName();
         $lastName = $this->faker->lastName();
@@ -400,7 +382,7 @@ class LoadOrderData extends AbstractFixture implements OrderedFixtureInterface
         return $customer;
     }
 
-    protected function createTransaction(OrderInterface $order, ObjectManager $manager)
+    protected function createTransaction(OrderInterface $order, ObjectManager $manager): Transaction
     {
         $transaction = new Transaction();
 
@@ -410,5 +392,7 @@ class LoadOrderData extends AbstractFixture implements OrderedFixtureInterface
         $transaction->setPaymentCode($order->getPaymentMethod());
 
         $manager->persist($transaction);
+
+        return $transaction;
     }
 }
