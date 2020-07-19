@@ -31,8 +31,10 @@ use Sonata\Component\Product\ProductProviderInterface;
 use Sonata\MediaBundle\Entity\MediaManager;
 use Sonata\MediaBundle\Model\GalleryInterface;
 use Sonata\MediaBundle\Model\GalleryManagerInterface;
+use Sonata\MediaBundle\Model\Media;
 use Sonata\MediaBundle\Model\MediaInterface;
 use Symfony\Component\Finder\Finder;
+use Symfony\Component\HttpFoundation\File\File;
 
 /**
  * Product fixtures loader.
@@ -1114,19 +1116,20 @@ EOF
     }
 
     /**
-     * @param string|null $author
-     * @param string|null $copyright
+     * @param string|File $file File pathname or `Symfony\Component\HttpFoundation\File` object
+     *
+     * @return Media
      */
     protected function createMedia(
-        string $mediaFilename,
+        $file,
         string $name,
         string $description,
-        $author = null,
-        $copyright = null,
+        ?string $author = null,
+        ?string $copyright = null,
         string $categoryReference = 'root_products_category'): MediaInterface
     {
         $media = $this->mediaManager->create();
-        $media->setBinaryContent($mediaFilename);
+        $media->setBinaryContent($file);
         $media->setEnabled(true);
         $media->setName($name);
         $media->setDescription($description);
@@ -1157,7 +1160,7 @@ EOF
         $pos = 0;
         foreach ($files as $file) {
             $media = $this->mediaManager->create();
-            $media->setBinaryContent(__DIR__.'/../data/files/sylvain-switzerland/'.$file->getRelativePathname());
+            $media->setBinaryContent($file->getPathname());
             $media->setEnabled(true);
             $media->setDescription('Switzerland');
             $media->setName('Switzerland');
@@ -1196,7 +1199,7 @@ EOF
         $pos = 0;
         foreach ($files as $file) {
             $media = $this->mediaManager->create();
-            $media->setBinaryContent(__DIR__.'/../data/files/gilles-paris/'.$file->getRelativePathname());
+            $media->setBinaryContent($file->getPathname());
             $media->setEnabled(true);
             $media->setDescription('Paris');
             $media->setName(sprintf('Paris %s', $a));
@@ -1221,7 +1224,7 @@ EOF
         $pos = 0;
         foreach ($files as $file) {
             $media = $this->mediaManager->create();
-            $media->setBinaryContent(__DIR__.'/../data/files/hugo-paris/'.$file->getRelativePathname());
+            $media->setBinaryContent($file->getPathname());
             $media->setEnabled(true);
             $media->setDescription('Paris');
             $media->setName(sprintf('Paris %s', $b));
@@ -1260,7 +1263,7 @@ EOF
         $pos = 0;
         foreach ($files as $file) {
             $media = $this->mediaManager->create();
-            $media->setBinaryContent(__DIR__.'/../data/files/gilles-canada/'.$file->getRelativePathname());
+            $media->setBinaryContent($file->getPathname());
             $media->setEnabled(true);
             $media->setDescription('Canada');
             $media->setName('Canada');
@@ -1281,7 +1284,7 @@ EOF
         $pos = 0;
         foreach ($files as $file) {
             $media = $this->mediaManager->create();
-            $media->setBinaryContent(__DIR__.'/../data/files/hugo-canada/'.$file->getRelativePathname());
+            $media->setBinaryContent($file->getPathname());
             $media->setEnabled(true);
             $media->setDescription('Canada');
             $media->setName('Canada');
@@ -1318,7 +1321,7 @@ EOF
         $pos = 0;
         foreach ($files as $file) {
             $media = $this->mediaManager->create();
-            $media->setBinaryContent(__DIR__.'/../data/files/maha-japan/'.$file->getRelativePathname());
+            $media->setBinaryContent($file->getPathname());
             $media->setEnabled(true);
             $media->setDescription('Japan');
             $media->setName('Japan');
