@@ -25,7 +25,7 @@ class SonataBlockDebugCommandTest extends CommandTestCase
         foreach (self::getBlockList() as $def) {
             list($id) = $def;
 
-            $this->assertContains($id, $output);
+            $this->assertStringContainsString($id, $output);
         }
     }
 }

@@ -25,6 +25,7 @@ class SonataEasyExtendsDumpMappingCommandTest extends CommandTestCase
 
     /**
      * @dataProvider getAdminList
+     * @doesNotPerformAssertions
      *
      * @param $id
      * @param $class

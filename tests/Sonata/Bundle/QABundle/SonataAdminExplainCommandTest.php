@@ -20,7 +20,7 @@ class SonataAdminExplainCommandTest extends CommandTestCase
         $this->expectException(\RuntimeException::class);
 
         $client = self::createClient();
-        $output = $this->runCommand($client, 'sonata:admin:explain');
+        $this->runCommand($client, 'sonata:admin:explain');
     }
 
     /**

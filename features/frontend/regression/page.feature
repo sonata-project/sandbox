@@ -3,7 +3,7 @@ Feature: Make sure there is no regression
 
 Scenario: Make sure a subrequest can resolve the current selected website
   When I go to "/qa/page/controller-helper"
-  Then I should see "The sub request current site name is: localhost"
+  Then I should see "The sub request current site name is:"
 
 Scenario: Make sure a subrequest can resolve the current selected website
   When I go to "/sub-site/qa/page/controller-helper"
