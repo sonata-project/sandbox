@@ -4,73 +4,72 @@ default:
 frontend:
     suites:
         frontend:
-            paths:    [ '%paths.base%/features/frontend' ]
+            paths: ['%paths.base%/features/frontend']
             contexts:
                 - FeatureContext:
-                      parameters:
-                          base_url:  'https://127.0.0.1:8000'
-                          files_path: .
+                    parameters:
+                        base_url: 'https://nginx'
+                        files_path: .
                 - BrowserContext:
             filters:
                 tags: "~@skipped&&~@api"
     extensions:
         Behat\MinkExtension:
-            base_url:  'https://127.0.0.1:8000'
-            goutte:     ~
+            base_url: 'https://nginx'
+            goutte:
+                guzzle_parameters:
+                    verify: false
             files_path: .
-
     formatters:
         pretty: [build/pretty]
-
 
 backend:
     suites:
         backend:
-            paths:    [ '%paths.base%/features/backend' ]
+            paths: ['%paths.base%/features/backend']
             contexts:
                 - FeatureContext:
-                      parameters:
-                          base_url:  'https://127.0.0.1:8000'
-                          files_path: .
+                    parameters:
+                        base_url: 'https://nginx'
+                        files_path: .
                 - BrowserContext:
             filters:
                 tags: "~@skipped&&~@api"
-
     extensions:
         Behat\MinkExtension:
-            base_url:  'https://127.0.0.1:8000'
-            goutte:     ~
+            base_url: 'https://nginx'
+            goutte:
+                guzzle_parameters:
+                    verify: false
             files_path: .
-
     formatters:
         pretty: [build/pretty]
-
 
 api:
     extensions:
         Behat\MinkExtension:
-            base_url:  'https://127.0.0.1:8000'
-            goutte:     ~
+            base_url: 'https://nginx'
+            goutte:
+                guzzle_parameters:
+                    verify: false
             files_path: .
     formatters:
         pretty: [build/pretty]
     suites:
         default:
-            paths:    [ '%paths.base%/features/api' ]
+            paths: ['%paths.base%/features/api']
             contexts:
                 - BrowserContext:
                 - FeatureContext:
-                      parameters:
-                          base_url:  'https://127.0.0.1:8000'
-                          files_path: .
+                    parameters:
+                        base_url: 'https://nginx'
+                        files_path: .
                 - ApiFeatureContext:
-                      parameters:
-                          base_url:  'https://127.0.0.1:8000'
-                          files_path: .
+                    parameters:
+                        base_url: 'https://nginx'
+                        files_path: .
                 - WebApiContext:
-                      baseUrl:  'https://127.0.0.1:8000'
-
-
+                    baseUrl: 'https://nginx'
             tags: "~@skipped&&@api"
 
 wip:
@@ -79,8 +78,8 @@ wip:
             contexts:
                 - BrowserContext:
                 - FeatureContext:
-                      parameters:
-                          base_url:  'https://127.0.0.1:8000'
-                          files_path: .
+                    parameters:
+                        base_url: 'https://nginx'
+                        files_path: .
             filters:
-                    tags: "@skipped"
+                tags: "@skipped"
