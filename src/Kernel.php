@@ -28,7 +28,10 @@ class Kernel extends BaseKernel
 
     public function boot()
     {
-        bcscale(2);
+        bcscale(3);
+
+        // TODO: fix https://github.com/sonata-project/ecommerce/issues/668 and remove setLocale()
+        setlocale(LC_ALL, 'en_US.UTF-8');
 
         return parent::boot();
     }
