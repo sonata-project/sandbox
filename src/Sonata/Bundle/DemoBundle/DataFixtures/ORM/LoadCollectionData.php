@@ -15,82 +15,65 @@ namespace Sonata\Bundle\DemoBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
-use Doctrine\Common\Persistence\ObjectManager;
-use Symfony\Component\DependencyInjection\ContainerAwareInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
+use Doctrine\Persistence\ObjectManager;
+use Sonata\ClassificationBundle\Entity\CollectionManager;
+use Sonata\ClassificationBundle\Model\Collection;
 
 /**
  * Class LoadCollectionData.
  *
  * @author  Hugo Briand <briand@ekino.com>
  */
-class LoadCollectionData extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
+class LoadCollectionData extends AbstractFixture implements OrderedFixtureInterface
 {
     /**
-     * @var ContainerInterface
+     * @var CollectionManager
      */
-    protected $container;
+    protected $collectionManager;
 
-    /**
-     * @param ContainerInterface $container
-     */
-    public function setContainer(ContainerInterface $container = null)
+    public function __construct(CollectionManager $collectionManager)
     {
-        $this->container = $container;
+        $this->collectionManager = $collectionManager;
     }
 
-    /**
-     * Returns the Sonata CollectionManager.
-     *
-     * @return \Sonata\Doctrine\Model\ManagerInterface
-     */
-    public function getCollectionManager()
+    public function getOrder(): int
     {
-        return $this->container->get('sonata.classification.manager.collection');
+        return 4;
     }
 
-    public function load(ObjectManager $manager)
+    public function load(ObjectManager $manager): void
     {
         $productContext = $this->getReference('context_product_catalog');
 
-        // PHP Fan collection
-        $php = $this->getCollectionManager()->create();
-        $php->setName('PHP Fan');
-        $php->setSlug('php-fan');
-        $php->setDescription('Everything a PHP Fan needs.');
-        $php->setEnabled(true);
-        $php->setContext($productContext);
-        $this->getCollectionManager()->save($php);
-
+        // PHP Fan
+        $php = $this->createCollection('PHP Fan', 'php-fan', 'Everything a PHP Fan needs.', true, $productContext);
         $this->setReference('php_collection', $php);
 
         // Travels collection
-        $travel = $this->getCollectionManager()->create();
-        $travel->setName('Travels');
-        $travel->setSlug('travels');
-        $travel->setDescription('Every travels you want');
-        $travel->setEnabled(true);
-        $travel->setContext($productContext);
-        $this->getCollectionManager()->save($travel);
-
+        $travel = $this->createCollection('Travels', 'travels', 'Every travels you want.', true, $productContext);
         $this->setReference('travel_collection', $travel);
 
         // Dummy collection
-        $dummy = $this->getCollectionManager()->create();
-        $dummy->setName('Dummys');
-        $dummy->setSlug('Dummys');
-        $dummy->setDescription('Every dummys you want');
-        $dummy->setEnabled(true);
-        $dummy->setContext($productContext);
-        $this->getCollectionManager()->save($dummy);
-
+        $dummy = $this->createCollection('Dummys', 'dummys', 'Every dummys you want.', true, $productContext);
         $this->setReference('dummy_collection', $dummy);
 
-        $manager->flush();
+        // Disabled collection for testing purpose
+        $shoes = $this->createCollection('Shoes', '$shoes', 'Every shoes you want.', false, $productContext);
+        $this->setReference('shoes_collection', $shoes);
+
+        $this->collectionManager->getObjectManager()->flush();
     }
 
-    public function getOrder()
+    protected function createCollection(string $name, string $slug, string $description, bool $enabled, $context): Collection
     {
-        return 4;
+        $collection = $this->collectionManager->create();
+        $collection->setName($name);
+        $collection->setSlug($slug);
+        $collection->setDescription($description);
+        $collection->setEnabled($enabled);
+        $collection->setContext($context);
+        $this->collectionManager->save($collection, false);
+
+        return $collection;
     }
 }

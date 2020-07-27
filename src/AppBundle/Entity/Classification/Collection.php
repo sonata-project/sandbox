@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace AppBundle\Entity\Classification;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Sonata\ClassificationBundle\Entity\BaseCollection;
 
 /**

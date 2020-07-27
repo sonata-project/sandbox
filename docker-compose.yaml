@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+    app:
+        build: ./.docker/app
+        volumes:
+            - ./.docker/app/extra.ini:/usr/local/etc/php/conf.d/extra.ini
+            - ./.docker/app/www.conf:/usr/local/etc/php-fpm.d/www.conf
+            - .:/srv/app/:cached
+            - /srv/app/var/
+            - /srv/app/node_modules/
+        command: php-fpm --allow-to-run-as-root
+    nginx:
+        image: nginx:alpine
+        ports:
+            - 8080:80
+            - 8443:443
+        volumes:
+            - ./.docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+            - ./.docker/nginx/nginx.conf:/etc/nginx/nginx.conf
+            - ./.certs:/srv/app/.certs:ro,cached
+            - ./public:/srv/app/public:ro,cached
+            - ./vendor:/srv/app/vendor:ro,cached
+        depends_on:
+            - app
+    mysql:
+        image: mysql:5.7
+        environment:
+            MYSQL_DATABASE: sonata
+            MYSQL_USER: sonata
+            MYSQL_PASSWORD: sonata
+            MYSQL_ROOT_PASSWORD: root
+        ports:
+            - 8336:3306
+    mailhog:
+        image: mailhog/mailhog
+        ports:
+            - 8025:8025

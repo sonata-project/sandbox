@@ -15,72 +15,55 @@ namespace Sonata\Bundle\DemoBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
-use Doctrine\Common\Persistence\ObjectManager;
-use Symfony\Component\DependencyInjection\ContainerAwareInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
+use Doctrine\Persistence\ObjectManager;
+use Sonata\ClassificationBundle\Entity\ContextManager;
+use Sonata\ClassificationBundle\Model\Context;
 
 /**
  * Class LoadCollectionData.
  *
  * @author  Hugo Briand <briand@ekino.com>
  */
-class LoadContextData extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
+class LoadContextData extends AbstractFixture implements OrderedFixtureInterface
 {
     /**
-     * @var ContainerInterface
+     * @var ContextManager
      */
-    protected $container;
+    protected $contextManager;
 
-    /**
-     * @param ContainerInterface $container
-     */
-    public function setContainer(ContainerInterface $container = null)
+    public function __construct(ContextManager $contextManager)
     {
-        $this->container = $container;
+        $this->contextManager = $contextManager;
     }
 
-    /**
-     * Returns the Sonata ContextaManager.
-     *
-     * @return \Sonata\Doctrine\Model\ManagerInterface
-     */
-    public function getContextManager()
-    {
-        return $this->container->get('sonata.classification.manager.context');
-    }
-
-    public function load(ObjectManager $manager)
-    {
-        $contextManager = $this->getContextManager();
-
-        $default = $contextManager->create();
-        $default->setId('default');
-        $default->setName('Default');
-        $default->setEnabled(true);
-        $contextManager->save($default);
-
-        $this->setReference('context_default', $default);
-
-        $productContext = $contextManager->create();
-        $productContext->setId('product_catalog');
-        $productContext->setName('Product Catalog');
-        $productContext->setEnabled(true);
-
-        $contextManager->save($productContext);
-
-        $this->setReference('context_product_catalog', $productContext);
-
-        $newsContext = $contextManager->create();
-        $newsContext->setId('news');
-        $newsContext->setName('News');
-        $newsContext->setEnabled(true);
-        $contextManager->save($newsContext);
-
-        $this->setReference('context_news', $newsContext);
-    }
-
-    public function getOrder()
+    public function getOrder(): int
     {
         return 1;
+    }
+
+    public function load(ObjectManager $manager): void
+    {
+        $default = $this->createContext('default', 'Default');
+        $this->setReference('context_default', $default);
+
+        $productContext = $this->createContext('product_catalog', 'Product Catalog');
+        $this->setReference('context_product_catalog', $productContext);
+
+        $newsContext = $this->createContext('news', 'News');
+        $this->setReference('context_news', $newsContext);
+
+        $this->contextManager->getObjectManager()->flush();
+    }
+
+    protected function createContext(string $id, string $name): Context
+    {
+        $context = $this->contextManager->create();
+        $context->setId($id);
+        $context->setName($name);
+        $context->setEnabled(true);
+
+        $this->contextManager->save($context, false);
+
+        return $context;
     }
 }

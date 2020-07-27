@@ -18,18 +18,18 @@ use AppBundle\Entity\Commerce\Customer;
 use AppBundle\Entity\Commerce\Delivery;
 use AppBundle\Entity\Commerce\Invoice;
 use AppBundle\Entity\Commerce\Order;
-use AppBundle\Entity\Commerce\OrderElement;
 use AppBundle\Entity\Commerce\Transaction;
 use AppBundle\Entity\User\User;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Persistence\ObjectManager;
 use Faker\Generator;
 use Sonata\Component\Basket\Basket;
 use Sonata\Component\Basket\BasketInterface;
 use Sonata\Component\Currency\Currency;
 use Sonata\Component\Invoice\InvoiceInterface;
+use Sonata\Component\Order\OrderElementInterface;
 use Sonata\Component\Order\OrderInterface;
 use Sonata\Component\Product\Pool;
 use Sonata\Component\Product\ProductDefinition;
@@ -39,7 +39,6 @@ use Sonata\CustomerBundle\Entity\BaseCustomer;
 use Sonata\OrderBundle\Entity\BaseOrder;
 use Sonata\PaymentBundle\Entity\BaseTransaction;
 use Sonata\ProductBundle\Entity\BaseProduct;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\DependencyInjection\ParameterBag\ContainerBagInterface;
 
 /**
@@ -87,7 +86,12 @@ class LoadOrderData extends AbstractFixture implements OrderedFixtureInterface
         $this->parameterBag = $parameterBag;
     }
 
-    public function load(ObjectManager $manager)
+    public function getOrder(): int
+    {
+        return 9;
+    }
+
+    public function load(ObjectManager $manager): void
     {
         $currency = new Currency();
         $currency->setLabel('EUR');
@@ -96,30 +100,7 @@ class LoadOrderData extends AbstractFixture implements OrderedFixtureInterface
         $basket->setCurrency($currency);
         $basket->setProductPool($this->productPool);
 
-        $products = [
-            $this->getReference('php_plush_blue_goodie_product'),
-            $this->getReference('php_plush_green_goodie_product'),
-            $this->getReference('travel_japan_small_product'),
-            $this->getReference('travel_japan_medium_product'),
-            $this->getReference('travel_japan_large_product'),
-            $this->getReference('travel_japan_extra_large_product'),
-            $this->getReference('travel_quebec_small_product'),
-            $this->getReference('travel_quebec_medium_product'),
-            $this->getReference('travel_quebec_large_product'),
-            $this->getReference('travel_quebec_extra_large_product'),
-            $this->getReference('travel_london_small_product'),
-            $this->getReference('travel_london_medium_product'),
-            $this->getReference('travel_london_large_product'),
-            $this->getReference('travel_london_extra_large_product'),
-            $this->getReference('travel_paris_small_product'),
-            $this->getReference('travel_paris_medium_product'),
-            $this->getReference('travel_paris_large_product'),
-            $this->getReference('travel_paris_extra_large_product'),
-            $this->getReference('travel_switzerland_small_product'),
-            $this->getReference('travel_switzerland_medium_product'),
-            $this->getReference('travel_switzerland_large_product'),
-            $this->getReference('travel_switzerland_extra_large_product'),
-        ];
+        $products = $this->getProductList();
 
         $nbCustomers = $this->parameterBag->has('sonata.fixtures.customer.fake') ? (int) $this->parameterBag->get('sonata.fixtures.customer.fake') : 20;
 
@@ -152,24 +133,7 @@ class LoadOrderData extends AbstractFixture implements OrderedFixtureInterface
         $manager->flush();
     }
 
-    public function setContainer(ContainerInterface $container = null)
-    {
-        $this->container = $container;
-    }
-
-    public function getOrder()
-    {
-        return 9;
-    }
-
-    /**
-     * Creates a fake Order.
-     *
-     * @param int $pos
-     *
-     * @return OrderInterface
-     */
-    protected function createOrder(BasketInterface $basket, Customer $customer, array $products, ObjectManager $manager, $pos)
+    protected function createOrder(BasketInterface $basket, Customer $customer, array $products, ObjectManager $manager, int $pos): Order
     {
         $orderElements = [];
         $totalExcl = 0;
@@ -260,15 +224,7 @@ class LoadOrderData extends AbstractFixture implements OrderedFixtureInterface
         return $order;
     }
 
-    /**
-     * Creates an OrderElement from a given Product.
-     *
-     * @param BasketInterface $basket  A basket instance
-     * @param BaseProduct     $product A product instance
-     *
-     * @return OrderElement
-     */
-    protected function createOrderElement(BasketInterface $basket, BaseProduct $product)
+    protected function createOrderElement(BasketInterface $basket, BaseProduct $product): OrderElementInterface
     {
         $productProvider = $this->productPool->getProvider($product);
         $productManager = $this->productPool->getManager($product);
@@ -287,10 +243,7 @@ class LoadOrderData extends AbstractFixture implements OrderedFixtureInterface
         return $orderElement;
     }
 
-    /**
-     * Creates an Invoice for a given Order.
-     */
-    protected function createInvoice(OrderInterface $order, ObjectManager $manager)
+    protected function createInvoice(OrderInterface $order, ObjectManager $manager): Invoice
     {
         $invoice = new Invoice();
 
@@ -301,23 +254,21 @@ class LoadOrderData extends AbstractFixture implements OrderedFixtureInterface
         }
 
         $manager->persist($invoice);
+
+        return $invoice;
     }
 
     /**
      * Generates a Customer with his addresses.
      *
      * @param int $i Random number to avoid username collision
-     *
-     * @return Customer
      */
-    protected function generateCustomer(ObjectManager $manager, $i)
+    protected function generateCustomer(ObjectManager $manager, int $i): Customer
     {
-        $faker = $this->faker;
-
-        $firstName = $faker->firstName();
-        $lastName = $faker->lastName();
-        $email = $faker->email();
-        $username = $faker->userName();
+        $firstName = $this->faker->firstName();
+        $lastName = $this->faker->lastName();
+        $email = $this->faker->email();
+        $username = $this->faker->userName();
 
         if (0 === $i % 50 && $this->hasReference('customer-johndoe')) {
             return $this->getReference('customer-johndoe');
@@ -329,11 +280,11 @@ class LoadOrderData extends AbstractFixture implements OrderedFixtureInterface
         $customer->setFirstname($firstName);
         $customer->setLastname($lastName);
         $customer->setEmail($email);
-        $customer->setBirthDate($faker->datetime());
-        $customer->getBirthPlace($faker->city());
-        $customer->setPhoneNumber($faker->phoneNumber());
-        $customer->setMobileNumber($faker->phoneNumber());
-        $customer->setFaxNumber($faker->phoneNumber());
+        $customer->setBirthDate($this->faker->datetime());
+        $customer->getBirthPlace($this->faker->city());
+        $customer->setPhoneNumber($this->faker->phoneNumber());
+        $customer->setMobileNumber($this->faker->phoneNumber());
+        $customer->setFaxNumber($this->faker->phoneNumber());
         $customer->setLocale('fr');
         $customer->setIsFake(true);
 
@@ -345,11 +296,11 @@ class LoadOrderData extends AbstractFixture implements OrderedFixtureInterface
         $customerBillingAddress->setName('My billing address');
         $customerBillingAddress->setFirstname($customer->getFirstname());
         $customerBillingAddress->setLastname($customer->getLastname());
-        $customerBillingAddress->setAddress1($faker->address());
-        $customerBillingAddress->setPostcode($faker->postcode());
-        $customerBillingAddress->setCity($faker->city());
-        $customerBillingAddress->setCountryCode(0 === $i % 50 ? 'FR' : $faker->countryCode());
-        $customerBillingAddress->setPhone($faker->phoneNumber());
+        $customerBillingAddress->setAddress1($this->faker->address());
+        $customerBillingAddress->setPostcode($this->faker->postcode());
+        $customerBillingAddress->setCity($this->faker->city());
+        $customerBillingAddress->setCountryCode(0 === $i % 50 ? 'FR' : $this->faker->countryCode());
+        $customerBillingAddress->setPhone($this->faker->phoneNumber());
 
         // Customer contact address
         $customerContactAddress = new Address();
@@ -359,10 +310,10 @@ class LoadOrderData extends AbstractFixture implements OrderedFixtureInterface
         $customerContactAddress->setName('My contact address');
         $customerContactAddress->setFirstname($customer->getFirstname());
         $customerContactAddress->setLastname($customer->getLastname());
-        $customerContactAddress->setAddress1($faker->address());
-        $customerContactAddress->setPostcode($faker->postcode());
-        $customerContactAddress->setCity($faker->city());
-        $customerContactAddress->setCountryCode(0 === $i % 50 ? 'FR' : $faker->countryCode());
+        $customerContactAddress->setAddress1($this->faker->address());
+        $customerContactAddress->setPostcode($this->faker->postcode());
+        $customerContactAddress->setCity($this->faker->city());
+        $customerContactAddress->setCountryCode(0 === $i % 50 ? 'FR' : $this->faker->countryCode());
         $customerContactAddress->setPhone($customer->getPhoneNumber());
 
         // Customer delivery address
@@ -373,11 +324,11 @@ class LoadOrderData extends AbstractFixture implements OrderedFixtureInterface
         $customerDeliveryAddress->setName('My delivery address');
         $customerDeliveryAddress->setFirstname($customer->getFirstname());
         $customerDeliveryAddress->setLastname($customer->getLastname());
-        $customerDeliveryAddress->setAddress1($faker->address());
-        $customerDeliveryAddress->setPostcode($faker->postcode());
-        $customerDeliveryAddress->setCity($faker->city());
-        $customerDeliveryAddress->setCountryCode(0 === $i % 50 ? 'FR' : $faker->countryCode());
-        $customerDeliveryAddress->setPhone($faker->phoneNumber());
+        $customerDeliveryAddress->setAddress1($this->faker->address());
+        $customerDeliveryAddress->setPostcode($this->faker->postcode());
+        $customerDeliveryAddress->setCity($this->faker->city());
+        $customerDeliveryAddress->setCountryCode(0 === $i % 50 ? 'FR' : $this->faker->countryCode());
+        $customerDeliveryAddress->setPhone($this->faker->phoneNumber());
 
         $customer->addAddress($customerBillingAddress);
         $customer->addAddress($customerContactAddress);
@@ -408,7 +359,7 @@ class LoadOrderData extends AbstractFixture implements OrderedFixtureInterface
         return $customer;
     }
 
-    protected function createTransaction(OrderInterface $order, ObjectManager $manager)
+    protected function createTransaction(OrderInterface $order, ObjectManager $manager): Transaction
     {
         $transaction = new Transaction();
 
@@ -418,5 +369,35 @@ class LoadOrderData extends AbstractFixture implements OrderedFixtureInterface
         $transaction->setPaymentCode($order->getPaymentMethod());
 
         $manager->persist($transaction);
+
+        return $transaction;
+    }
+
+    protected function getProductList()
+    {
+        return [
+            $this->getReference('php_plush_blue_goodie_product'),
+            $this->getReference('php_plush_green_goodie_product'),
+            $this->getReference('travel_japan_small_product'),
+            $this->getReference('travel_japan_medium_product'),
+            $this->getReference('travel_japan_large_product'),
+            $this->getReference('travel_japan_extra_large_product'),
+            $this->getReference('travel_quebec_small_product'),
+            $this->getReference('travel_quebec_medium_product'),
+            $this->getReference('travel_quebec_large_product'),
+            $this->getReference('travel_quebec_extra_large_product'),
+            $this->getReference('travel_london_small_product'),
+            $this->getReference('travel_london_medium_product'),
+            $this->getReference('travel_london_large_product'),
+            $this->getReference('travel_london_extra_large_product'),
+            $this->getReference('travel_paris_small_product'),
+            $this->getReference('travel_paris_medium_product'),
+            $this->getReference('travel_paris_large_product'),
+            $this->getReference('travel_paris_extra_large_product'),
+            $this->getReference('travel_switzerland_small_product'),
+            $this->getReference('travel_switzerland_medium_product'),
+            $this->getReference('travel_switzerland_large_product'),
+            $this->getReference('travel_switzerland_extra_large_product'),
+        ];
     }
 }

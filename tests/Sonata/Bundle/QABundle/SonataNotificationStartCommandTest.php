@@ -15,6 +15,7 @@ namespace Tests\Sonata\Bundle\QABundle;
 
 class SonataNotificationStartCommandTest extends CommandTestCase
 {
+    /** @doesNotPerformAssertions */
     public function testRefresh()
     {
         $client = self::createClient();

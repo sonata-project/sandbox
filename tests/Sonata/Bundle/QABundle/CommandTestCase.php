@@ -18,6 +18,7 @@ use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\Console\Input\StringInput;
 use Symfony\Component\Console\Output\StreamOutput;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Base class for testing the CLI tools.
@@ -31,8 +32,11 @@ abstract class CommandTestCase extends WebTestCase
      */
     public function runCommand(KernelBrowser $client, $command, $exceptionOnExitCode = true)
     {
-        $application = new Application($client->getKernel());
+        $kernel = $client->getKernel();
+        $application = new Application($kernel);
         $application->setAutoExit(false);
+
+        $kernel->getContainer()->get('request_stack')->push(new Request());
 
         $input = new StringInput($command);
         $output = new StreamOutput($fp = tmpfile());
@@ -130,7 +134,7 @@ abstract class CommandTestCase extends WebTestCase
             ['sonata.media.block.feature_media'],
             ['sonata.media.block.gallery'],
             ['sonata.admin.block.admin_list'],
-            ['sonata.admin_doctrine_orm.block.audit'],
+            // ['sonata.admin_doctrine_orm.block.audit'],
             ['sonata.formatter.block.formatter'],
             ['sonata.block.service.empty'],
             ['sonata.block.service.text'],
@@ -141,7 +145,6 @@ abstract class CommandTestCase extends WebTestCase
             ['sonata.basket.block.nb_items'],
             ['sonata.news.block.recent_posts'],
             ['sonata.news.block.recent_comments'],
-            ['sonata.user.block.menu'],
             ['sonata.demo.block.account'],
             ['sonata.basket.block.nb_items'],
             ['sonata.order.block.recent_orders'],
