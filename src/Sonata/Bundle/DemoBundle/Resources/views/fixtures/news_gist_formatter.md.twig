@@ -9,4 +9,14 @@ file that was distributed with this source code.
 
 #}
 
-<div class="block-newsletter col-sm-6 well">{% verbatim %}{{ CONTENT }}{% endverbatim %}</div>
+### Gist Formatter
+
+Now a specific gist from github
+
+<% gist '1552362', 'gistfile1.txt' %>
+
+### Media Formatter
+
+Load a media from a <code>SonataMediaBundle</code> with a specific format
+
+<% media {{ id }}, 'big' %>

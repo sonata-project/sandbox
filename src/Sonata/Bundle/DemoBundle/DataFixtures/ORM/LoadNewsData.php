@@ -24,6 +24,7 @@ use Sonata\FormatterBundle\Formatter\PoolInterface;
 use Sonata\NewsBundle\Model\CommentInterface;
 use Sonata\NewsBundle\Model\CommentManagerInterface;
 use Sonata\NewsBundle\Model\PostManagerInterface;
+use Twig\Environment;
 
 class LoadNewsData extends AbstractFixture implements OrderedFixtureInterface
 {
@@ -57,13 +58,19 @@ class LoadNewsData extends AbstractFixture implements OrderedFixtureInterface
      */
     private $tagManager;
 
+    /**
+     * @var Environment
+     */
+    private $twig;
+
     public function __construct(
         Generator $faker,
         CollectionManagerInterface $collectionManager,
         CommentManagerInterface $commentManager,
         Pool $formatterPool,
         PostManagerInterface $postManager,
-        TagManagerInterface $tagManager
+        TagManagerInterface $tagManager,
+        Environment $twig
     ) {
         $this->faker = $faker;
         $this->collectionManager = $collectionManager;
@@ -71,6 +78,7 @@ class LoadNewsData extends AbstractFixture implements OrderedFixtureInterface
         $this->formatterPool = $formatterPool;
         $this->postManager = $postManager;
         $this->tagManager = $tagManager;
+        $this->twig = $twig;
     }
 
     public function getOrder(): int
@@ -113,25 +121,8 @@ class LoadNewsData extends AbstractFixture implements OrderedFixtureInterface
 
             $id = $this->getReference('sonata-media-0')->getId();
 
-            //TODO: fix raw
-            $raw = '';
-            /*
-                        $raw = <<<RAW
-            ### Gist Formatter
+            $raw = $this->twig->render('@SonataDemo/fixtures/news_gist_formatter.md.twig', ['id' => $id]);
 
-            Now a specific gist from github
-
-            <% gist '1552362' 'gistfile1.txt' %>
-
-            ### Media Formatter
-
-            Load a media from a <code>SonataMediaBundle</code> with a specific format
-
-            <% media $id, 'big' %>
-
-            RAW
-            ;
-            */
             $raw .= sprintf("### %s\n\n%s\n\n### %s\n\n%s",
                 $this->faker->sentence(random_int(3, 6)),
                 $this->faker->text(1000),

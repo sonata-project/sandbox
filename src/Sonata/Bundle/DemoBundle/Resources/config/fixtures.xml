@@ -23,6 +23,7 @@
             <argument type="service" id="sonata.formatter.pool"/>
             <argument type="service" id="sonata.news.manager.post"/>
             <argument type="service" id="sonata.classification.manager.tag"/>
+            <argument type="service" id="twig"/>
         </service>
         <service id="sonata_bundle_demo.data_fixtures_orm.load_order_data" class="Sonata\Bundle\DemoBundle\DataFixtures\ORM\LoadOrderData">
             <tag name="doctrine.fixture.orm"/>

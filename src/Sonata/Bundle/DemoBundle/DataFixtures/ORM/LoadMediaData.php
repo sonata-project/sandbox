@@ -18,11 +18,13 @@ use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Generator;
+use Sonata\ClassificationBundle\Model\Category;
 use Sonata\MediaBundle\Model\GalleryInterface;
 use Sonata\MediaBundle\Model\GalleryManagerInterface;
+use Sonata\MediaBundle\Model\Media;
 use Sonata\MediaBundle\Model\MediaInterface;
 use Sonata\MediaBundle\Model\MediaManagerInterface;
-use Symfony\Component\Finder\Finder;
+use Symfony\Component\HttpFoundation\File\File;
 
 class LoadMediaData extends AbstractFixture implements OrderedFixtureInterface
 {
@@ -55,81 +57,64 @@ class LoadMediaData extends AbstractFixture implements OrderedFixtureInterface
 
     public function load(ObjectManager $manager): void
     {
-        $gallery = $this->galleryManager->create();
+        $homepageGallery = $this->galleryManager->create();
 
-        $canada = Finder::create()->name('IMG_3587*.jpg')->in(__DIR__.'/../data/files/gilles-canada');
-        $paris = Finder::create()->name('IMG_3008*.jpg')->in(__DIR__.'/../data/files/hugo-paris');
-        $switzerland = Finder::create()->name('switzerland_2012-05-19_006.jpg')->in(__DIR__.'/../data/files/sylvain-switzerland');
+        $media = $this->createMedia('gilles-canada/IMG_3587.jpg', 'Canada', 'Gilles Rosenbaum', $this->getReference('travels_quebec_category'));
+        $this->addMediaToGallery($media, $homepageGallery);
+        $this->setReference('sonata-media-0', $media);
 
-        $i = 0;
-        foreach ($canada as $file) {
-            $media = $this->mediaManager->create();
-            $media->setBinaryContent(__DIR__.'/../data/files/gilles-canada/'.$file->getRelativePathname());
-            $media->setEnabled(true);
-            $media->setName('Canada');
-            $media->setDescription('Canada');
-            $media->setAuthorName('Gilles Rosenbaum');
-            $media->setCopyright('CC BY-NC-SA 4.0');
-            $media->setCategory($this->getReference('travels_quebec_category'));
+        $media = $this->createMedia('hugo-paris/IMG_3008.jpg', 'Paris', 'Hugo Briand', $this->getReference('travels_paris_category'));
+        $this->addMediaToGallery($media, $homepageGallery);
 
-            $this->addReference('sonata-media-'.($i++), $media);
+        $media = $this->createMedia('sylvain-switzerland/switzerland_2012-05-19_006.jpg', 'Switzerland', 'Sylvain Deloux', $this->getReference('travels_switzerland_category'));
+        $this->addMediaToGallery($media, $homepageGallery);
 
-            $this->mediaManager->save($media, 'default', 'sonata.media.provider.image');
+        // disabled media
+        $media = $this->createMedia('hugo-paris/IMG_2571.jpg', 'Paris 2', 'Hugo Briand', $this->getReference('travels_paris_category'), false);
+        $this->addMediaToGallery($media, $homepageGallery);
 
-            $this->addMediaToGallery($media, $gallery);
-        }
+        // disabled GalleryHasMedia
+        $media = $this->createMedia('hugo-paris/IMG_2577.jpg', 'Paris 3', 'Hugo Briand', $this->getReference('travels_paris_category'));
+        $this->addMediaToGallery($media, $homepageGallery, false);
 
-        foreach ($paris as $file) {
-            $media = $this->mediaManager->create();
-            $media->setBinaryContent(__DIR__.'/../data/files/hugo-paris/'.$file->getRelativePathname());
-            $media->setEnabled(true);
-            $media->setName('Paris');
-            $media->setDescription('Paris');
-            $media->setAuthorName('Hugo Briand');
-            $media->setCopyright('CC BY-NC-SA 4.0');
-            $media->setCategory($this->getReference('travels_paris_category'));
+        $homepageGallery->setEnabled(true);
+        $homepageGallery->setName('Homepage gallery');
+        $homepageGallery->setDefaultFormat('small');
+        $homepageGallery->setContext('default');
 
-            $this->addReference('sonata-media-'.($i++), $media);
+        $this->galleryManager->update($homepageGallery);
 
-            $this->mediaManager->save($media, 'default', 'sonata.media.provider.image');
-
-            $this->addMediaToGallery($media, $gallery);
-        }
-
-        foreach ($switzerland as $file) {
-            $media = $this->mediaManager->create();
-            $media->setBinaryContent(__DIR__.'/../data/files/sylvain-switzerland/'.$file->getRelativePathname());
-            $media->setEnabled(true);
-            $media->setName('Switzerland');
-            $media->setDescription('Switzerland');
-            $media->setAuthorName('Sylvain Deloux');
-            $media->setCopyright('CC BY-NC-SA 4.0');
-            $media->setCategory($this->getReference('travels_switzerland_category'));
-
-            $this->addReference('sonata-media-'.($i++), $media);
-
-            $this->mediaManager->save($media, 'default', 'sonata.media.provider.image');
-
-            $this->addMediaToGallery($media, $gallery);
-        }
-
-        $gallery->setEnabled(true);
-        $gallery->setName($this->faker->sentence(4));
-        $gallery->setDefaultFormat('small');
-        $gallery->setContext('default');
-
-        $this->galleryManager->update($gallery);
-
-        $this->addReference('media-gallery', $gallery);
+        $this->addReference('media-homepage-gallery', $homepageGallery);
     }
 
-    public function addMediaToGallery(MediaInterface $media, GalleryInterface $gallery): void
+    public function addMediaToGallery(MediaInterface $media, GalleryInterface $gallery, bool $enabled = true): void
     {
         $galleryHasMedia = new GalleryHasMedia();
         $galleryHasMedia->setMedia($media);
         $galleryHasMedia->setPosition(\count($gallery->getGalleryHasMedias()) + 1);
-        $galleryHasMedia->setEnabled(true);
+        $galleryHasMedia->setEnabled($enabled);
 
         $gallery->addGalleryHasMedias($galleryHasMedia);
+    }
+
+    /**
+     * @param string|File $file File pathname or `Symfony\Component\HttpFoundation\File` object
+     *
+     * @return Media
+     */
+    protected function createMedia($file, string $name, string $autor, Category $category, bool $enabled = true, string $copyright = 'CC BY-NC-SA 4.0')
+    {
+        $media = $this->mediaManager->create();
+        $media->setBinaryContent(__DIR__.'/../data/files/'.$file);
+        $media->setEnabled($enabled);
+        $media->setName($name);
+        $media->setDescription($name);
+        $media->setAuthorName($autor);
+        $media->setCopyright($copyright);
+        $media->setCategory($category);
+
+        $this->mediaManager->save($media, 'default', 'sonata.media.provider.image');
+
+        return $media;
     }
 }
