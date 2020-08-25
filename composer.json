@@ -86,7 +86,7 @@
         "phpstan/phpstan": "^0.12.32",
         "symfony/dotenv": "^4.4",
         "symfony/phpunit-bridge": "^5.1",
-        "symfony/stopwatch": "^4.4",
+        "symfony/stopwatch": "^5.1",
         "symfony/web-profiler-bundle": "^4.4"
     },
     "config": {
