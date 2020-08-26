@@ -30,7 +30,7 @@
         "sonata-project/doctrine-orm-admin-bundle": "^3.19",
         "sonata-project/easy-extends-bundle": "^2.4",
         "sonata-project/ecommerce": "^3.3",
-        "sonata-project/exporter": "^2.3",
+        "sonata-project/exporter": "^1.8 || ^2.3",
         "sonata-project/form-extensions": "^1.5",
         "sonata-project/formatter-bundle": "^4.2",
         "sonata-project/google-authenticator": "^2.0",
@@ -87,7 +87,7 @@
         "symfony/dotenv": "^4.4",
         "symfony/phpunit-bridge": "^5.1",
         "symfony/stopwatch": "^5.1",
-        "symfony/web-profiler-bundle": "^5.0"
+        "symfony/web-profiler-bundle": "^4.4 || ^5.0"
     },
     "config": {
         "preferred-install": {
