@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "be01919e89b5a2621a331956afb21560",
+    "content-hash": "3ec59306e57336491a3ef1970f18f54b",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -5444,50 +5444,48 @@
         },
         {
             "name": "sonata-project/exporter",
-            "version": "1.11.1",
+            "version": "2.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/exporter.git",
-                "reference": "a4925e3569fb3fa710fa7c6fecd85b6281c55f57"
+                "reference": "d2fb26e7a8c8bf86e5d7a2aed563375e28f6762e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/exporter/zipball/a4925e3569fb3fa710fa7c6fecd85b6281c55f57",
-                "reference": "a4925e3569fb3fa710fa7c6fecd85b6281c55f57",
+                "url": "https://api.github.com/repos/sonata-project/exporter/zipball/d2fb26e7a8c8bf86e5d7a2aed563375e28f6762e",
+                "reference": "d2fb26e7a8c8bf86e5d7a2aed563375e28f6762e",
                 "shasum": ""
             },
             "require": {
-                "php": "^5.6 || ^7.0"
+                "php": "^7.2"
             },
             "require-dev": {
                 "doctrine/dbal": "^2.5",
                 "doctrine/orm": "^2.4.5",
-                "matthiasnoback/symfony-config-test": "^2.0",
-                "matthiasnoback/symfony-dependency-injection-test": "^1.0",
+                "matthiasnoback/symfony-config-test": "^4.0",
+                "matthiasnoback/symfony-dependency-injection-test": "^4.0",
                 "propel/propel1": "^1.6",
-                "symfony/config": "^2.8 || ^3.2 || ^4.0",
-                "symfony/dependency-injection": "^2.8 || ^3.2 || ^4.0",
-                "symfony/http-foundation": "^2.8 || ^3.2 || ^4.0",
-                "symfony/http-kernel": "^2.8 || ^3.2 || ^4.0",
-                "symfony/phpunit-bridge": "^4.0",
-                "symfony/property-access": "^2.8 || ^3.2 || ^4.0",
-                "symfony/routing": "^2.8 || ^3.2 || ^4.0"
+                "symfony/config": "^3.4 || ^4.3 || ^5.0",
+                "symfony/dependency-injection": "^3.4 || ^4.3 || ^5.0",
+                "symfony/http-foundation": "^3.4 || ^4.3 || ^5.0",
+                "symfony/http-kernel": "^3.4 || ^4.3 || ^5.0",
+                "symfony/phpunit-bridge": "^4.3.8 || ^5.0",
+                "symfony/property-access": "^3.4 || ^4.3 || ^5.0",
+                "symfony/routing": "^3.4 || ^4.3 || ^5.0"
             },
             "suggest": {
-                "ext-curl": "*",
-                "propel/propel1": "^1.6",
+                "propel/propel1": "To export propel collections",
                 "symfony/property-access": "To be able to export from database entities",
                 "symfony/routing": "To be able to export the routes of a Symfony app"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.x-dev"
+                    "dev-master": "2.x-dev"
                 }
             },
             "autoload": {
                 "psr-4": {
-                    "Exporter\\": "aliases/",
                     "Sonata\\Exporter\\": "src/"
                 }
             },
@@ -5511,7 +5509,7 @@
                 "export",
                 "xls"
             ],
-            "time": "2019-04-17T21:05:17+00:00"
+            "time": "2020-07-14T21:36:10+00:00"
         },
         {
             "name": "sonata-project/form-extensions",
