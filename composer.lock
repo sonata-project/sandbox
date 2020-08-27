@@ -5743,39 +5743,35 @@
         },
         {
             "name": "sonata-project/intl-bundle",
-            "version": "2.7.0",
+            "version": "2.9.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataIntlBundle.git",
-                "reference": "222b9bf6ff14429e369e9b20bb9dec75a2ae2eda"
+                "reference": "86881b54996e3a5bdacfa92c6a0deedb7fd830eb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataIntlBundle/zipball/222b9bf6ff14429e369e9b20bb9dec75a2ae2eda",
-                "reference": "222b9bf6ff14429e369e9b20bb9dec75a2ae2eda",
+                "url": "https://api.github.com/repos/sonata-project/SonataIntlBundle/zipball/86881b54996e3a5bdacfa92c6a0deedb7fd830eb",
+                "reference": "86881b54996e3a5bdacfa92c6a0deedb7fd830eb",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.1",
-                "symfony/config": "^2.8 || ^3.2 || ^4.0",
-                "symfony/dependency-injection": "^2.8 || ^3.2 || ^4.0",
-                "symfony/http-foundation": "^2.8 || ^3.2 || ^4.0",
-                "symfony/http-kernel": "^2.8 || ^3.2 || ^4.0",
-                "symfony/intl": "^2.8 || ^3.2 || ^4.0",
-                "symfony/templating": "^2.8 || ^3.2 || ^4.0",
-                "twig/twig": "^2.9"
+                "php": "^7.2",
+                "symfony/config": "^4.4 || ^5.1",
+                "symfony/dependency-injection": "^4.4 || ^5.1",
+                "symfony/http-foundation": "^4.4 || ^5.1",
+                "symfony/http-kernel": "^4.4 || ^5.1",
+                "symfony/intl": "^4.4 || ^5.1",
+                "symfony/templating": "^4.4 || ^5.1",
+                "twig/twig": "^2.9 || ^3.0"
             },
             "conflict": {
-                "sonata-project/user-bundle": "<2.0 || >=5.0"
+                "sonata-project/user-bundle": "<3.6"
             },
             "require-dev": {
-                "matthiasnoback/symfony-dependency-injection-test": "^3.1",
-                "sonata-project/user-bundle": "^3.6 || ^4.0",
-                "symfony/phpunit-bridge": "^4.3",
-                "symfony/security-core": "^2.8 || ^3.2 || ^4.0"
-            },
-            "suggest": {
-                "sonata-project/user-bundle": "For user timezone detection"
+                "matthiasnoback/symfony-dependency-injection-test": "^4.0",
+                "symfony/phpunit-bridge": "^5.1",
+                "symfony/security-core": "^4.4 || ^5.1"
             },
             "type": "symfony-bundle",
             "extra": {
@@ -5811,7 +5807,7 @@
                 "sonata",
                 "time"
             ],
-            "time": "2019-08-08T19:27:06+00:00"
+            "time": "2020-08-09T21:46:43+00:00"
         },
         {
             "name": "sonata-project/media-bundle",
