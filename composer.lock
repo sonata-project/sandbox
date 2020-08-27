@@ -2560,16 +2560,16 @@
         },
         {
             "name": "jms/serializer",
-            "version": "3.8.0",
+            "version": "3.9.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/schmittjoh/serializer.git",
-                "reference": "13ead2c318da7965eafda9348bc70eadc872baac"
+                "reference": "4fe470c179ae8da9e243dd8fac6c0fc2302d9378"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/schmittjoh/serializer/zipball/13ead2c318da7965eafda9348bc70eadc872baac",
-                "reference": "13ead2c318da7965eafda9348bc70eadc872baac",
+                "url": "https://api.github.com/repos/schmittjoh/serializer/zipball/4fe470c179ae8da9e243dd8fac6c0fc2302d9378",
+                "reference": "4fe470c179ae8da9e243dd8fac6c0fc2302d9378",
                 "shasum": ""
             },
             "require": {
@@ -2606,7 +2606,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.8-dev"
+                    "dev-master": "3.9-dev"
                 }
             },
             "autoload": {
@@ -2643,7 +2643,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-06-28T11:22:30+00:00"
+            "time": "2020-08-26T07:23:26+00:00"
         },
         {
             "name": "jms/serializer-bundle",
@@ -5519,16 +5519,16 @@
         },
         {
             "name": "sonata-project/form-extensions",
-            "version": "1.5.0",
+            "version": "1.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/form-extensions.git",
-                "reference": "9483ff12bfef87fec53d19839d587b8c9861d453"
+                "reference": "0feec89e2770fb5ddd84eae14bfe45cf5437e1c8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/form-extensions/zipball/9483ff12bfef87fec53d19839d587b8c9861d453",
-                "reference": "9483ff12bfef87fec53d19839d587b8c9861d453",
+                "url": "https://api.github.com/repos/sonata-project/form-extensions/zipball/0feec89e2770fb5ddd84eae14bfe45cf5437e1c8",
+                "reference": "0feec89e2770fb5ddd84eae14bfe45cf5437e1c8",
                 "shasum": ""
             },
             "require": {
@@ -5595,7 +5595,7 @@
                 "form",
                 "symfony"
             ],
-            "time": "2020-06-27T08:34:10+00:00"
+            "time": "2020-08-05T19:56:22+00:00"
         },
         {
             "name": "sonata-project/formatter-bundle",
