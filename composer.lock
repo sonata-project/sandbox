@@ -2560,16 +2560,16 @@
         },
         {
             "name": "jms/serializer",
-            "version": "3.8.0",
+            "version": "3.9.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/schmittjoh/serializer.git",
-                "reference": "13ead2c318da7965eafda9348bc70eadc872baac"
+                "reference": "4fe470c179ae8da9e243dd8fac6c0fc2302d9378"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/schmittjoh/serializer/zipball/13ead2c318da7965eafda9348bc70eadc872baac",
-                "reference": "13ead2c318da7965eafda9348bc70eadc872baac",
+                "url": "https://api.github.com/repos/schmittjoh/serializer/zipball/4fe470c179ae8da9e243dd8fac6c0fc2302d9378",
+                "reference": "4fe470c179ae8da9e243dd8fac6c0fc2302d9378",
                 "shasum": ""
             },
             "require": {
@@ -2606,7 +2606,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.8-dev"
+                    "dev-master": "3.9-dev"
                 }
             },
             "autoload": {
@@ -2643,7 +2643,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-06-28T11:22:30+00:00"
+            "time": "2020-08-26T07:23:26+00:00"
         },
         {
             "name": "jms/serializer-bundle",
@@ -3319,41 +3319,41 @@
         },
         {
             "name": "laminas/laminas-eventmanager",
-            "version": "3.2.1",
+            "version": "3.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laminas/laminas-eventmanager.git",
-                "reference": "ce4dc0bdf3b14b7f9815775af9dfee80a63b4748"
+                "reference": "1940ccf30e058b2fd66f5a9d696f1b5e0027b082"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laminas/laminas-eventmanager/zipball/ce4dc0bdf3b14b7f9815775af9dfee80a63b4748",
-                "reference": "ce4dc0bdf3b14b7f9815775af9dfee80a63b4748",
+                "url": "https://api.github.com/repos/laminas/laminas-eventmanager/zipball/1940ccf30e058b2fd66f5a9d696f1b5e0027b082",
+                "reference": "1940ccf30e058b2fd66f5a9d696f1b5e0027b082",
                 "shasum": ""
             },
             "require": {
                 "laminas/laminas-zendframework-bridge": "^1.0",
-                "php": "^5.6 || ^7.0"
+                "php": "^7.3 || ^8.0"
             },
             "replace": {
-                "zendframework/zend-eventmanager": "self.version"
+                "zendframework/zend-eventmanager": "^3.2.1"
             },
             "require-dev": {
-                "athletic/athletic": "^0.1",
-                "container-interop/container-interop": "^1.1.0",
+                "container-interop/container-interop": "^1.1",
                 "laminas/laminas-coding-standard": "~1.0.0",
                 "laminas/laminas-stdlib": "^2.7.3 || ^3.0",
-                "phpunit/phpunit": "^5.7.27 || ^6.5.8 || ^7.1.2"
+                "phpbench/phpbench": "^0.17.1",
+                "phpunit/phpunit": "^8.5.8"
             },
             "suggest": {
-                "container-interop/container-interop": "^1.1.0, to use the lazy listeners feature",
+                "container-interop/container-interop": "^1.1, to use the lazy listeners feature",
                 "laminas/laminas-stdlib": "^2.7.3 || ^3.0, to use the FilterChain feature"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.2-dev",
-                    "dev-develop": "3.3-dev"
+                    "dev-master": "3.3.x-dev",
+                    "dev-develop": "3.4.x-dev"
                 }
             },
             "autoload": {
@@ -3373,7 +3373,13 @@
                 "events",
                 "laminas"
             ],
-            "time": "2019-12-31T16:44:52+00:00"
+            "funding": [
+                {
+                    "url": "https://funding.communitybridge.org/projects/laminas-project",
+                    "type": "community_bridge"
+                }
+            ],
+            "time": "2020-08-25T11:10:44+00:00"
         },
         {
             "name": "laminas/laminas-zendframework-bridge",
@@ -5513,16 +5519,16 @@
         },
         {
             "name": "sonata-project/form-extensions",
-            "version": "1.5.0",
+            "version": "1.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/form-extensions.git",
-                "reference": "9483ff12bfef87fec53d19839d587b8c9861d453"
+                "reference": "0feec89e2770fb5ddd84eae14bfe45cf5437e1c8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/form-extensions/zipball/9483ff12bfef87fec53d19839d587b8c9861d453",
-                "reference": "9483ff12bfef87fec53d19839d587b8c9861d453",
+                "url": "https://api.github.com/repos/sonata-project/form-extensions/zipball/0feec89e2770fb5ddd84eae14bfe45cf5437e1c8",
+                "reference": "0feec89e2770fb5ddd84eae14bfe45cf5437e1c8",
                 "shasum": ""
             },
             "require": {
@@ -5589,7 +5595,7 @@
                 "form",
                 "symfony"
             ],
-            "time": "2020-06-27T08:34:10+00:00"
+            "time": "2020-08-05T19:56:22+00:00"
         },
         {
             "name": "sonata-project/formatter-bundle",
