@@ -10,7 +10,7 @@
         "doctrine/annotations": "^1.10",
         "doctrine/doctrine-bundle": "^1.6",
         "doctrine/doctrine-fixtures-bundle": "^3.0.2",
-        "doctrine/doctrine-migrations-bundle": "^1.3.1",
+        "doctrine/doctrine-migrations-bundle": "^3.0.1",
         "doctrine/orm": "^2.5",
         "friendsofsymfony/rest-bundle": "^2.6",
         "guzzlehttp/guzzle": "^6.3",
@@ -86,7 +86,7 @@
         "phpstan/phpstan": "^0.12.32",
         "symfony/dotenv": "^4.4",
         "symfony/phpunit-bridge": "^5.1",
-        "symfony/stopwatch": "^5.1",
+        "symfony/stopwatch": "^4.4",
         "symfony/web-profiler-bundle": "^4.4"
     },
     "config": {
