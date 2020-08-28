@@ -21,5 +21,19 @@
 /behat.yml
 /build
 
+### Composer
+/composer.lock
+
+###> symfony/webpack-encore-bundle ###
+/node_modules/
+/public/build/
+npm-debug.log
+yarn-error.log
+/builds_configs/sonata_admin_adminlte2/node_modules/
+/builds_configs/sonata_admin_adminlte3/node_modules/
+/builds_configs/sonata_page_bootstrap_3/node_modules/
+/builds_configs/sonata_page_bootstrap_4/node_modules/
+###< symfony/webpack-encore-bundle ###
+
 ### Docker
 .certs
