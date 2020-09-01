@@ -13551,16 +13551,16 @@
         },
         {
             "name": "symfony/web-profiler-bundle",
-            "version": "v4.4.11",
+            "version": "v4.4.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/web-profiler-bundle.git",
-                "reference": "c946a250ac41542c481265d8e958d62cf5a172c9"
+                "reference": "9dbfc8cd80b6058310f3bd423c194f6da0c09116"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/web-profiler-bundle/zipball/c946a250ac41542c481265d8e958d62cf5a172c9",
-                "reference": "c946a250ac41542c481265d8e958d62cf5a172c9",
+                "url": "https://api.github.com/repos/symfony/web-profiler-bundle/zipball/9dbfc8cd80b6058310f3bd423c194f6da0c09116",
+                "reference": "9dbfc8cd80b6058310f3bd423c194f6da0c09116",
                 "shasum": ""
             },
             "require": {
@@ -13627,7 +13627,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-07-23T08:31:43+00:00"
+            "time": "2020-08-10T07:27:51+00:00"
         }
     ],
     "aliases": [],
