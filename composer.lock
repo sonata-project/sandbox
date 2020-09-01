@@ -7794,16 +7794,16 @@
         },
         {
             "name": "symfony/dependency-injection",
-            "version": "v4.4.11",
+            "version": "v4.4.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/dependency-injection.git",
-                "reference": "f33a28edd42708ed579377391b3a556bcd6a626d"
+                "reference": "54bbe10ed0aae7eb38484eb4656442c02509e0e0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/dependency-injection/zipball/f33a28edd42708ed579377391b3a556bcd6a626d",
-                "reference": "f33a28edd42708ed579377391b3a556bcd6a626d",
+                "url": "https://api.github.com/repos/symfony/dependency-injection/zipball/54bbe10ed0aae7eb38484eb4656442c02509e0e0",
+                "reference": "54bbe10ed0aae7eb38484eb4656442c02509e0e0",
                 "shasum": ""
             },
             "require": {
@@ -7877,7 +7877,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-07-23T08:31:43+00:00"
+            "time": "2020-08-17T09:56:45+00:00"
         },
         {
             "name": "symfony/doctrine-bridge",
