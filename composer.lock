@@ -7092,7 +7092,7 @@
         },
         {
             "name": "symfony/asset",
-            "version": "v4.4.11",
+            "version": "v4.4.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/asset.git",
