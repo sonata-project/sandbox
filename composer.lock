@@ -8135,16 +8135,16 @@
         },
         {
             "name": "symfony/event-dispatcher",
-            "version": "v4.4.11",
+            "version": "v4.4.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/event-dispatcher.git",
-                "reference": "6140fc7047dafc5abbe84ba16a34a86c0b0229b8"
+                "reference": "3e8ea5ccddd00556b86d69d42f99f1061a704030"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/6140fc7047dafc5abbe84ba16a34a86c0b0229b8",
-                "reference": "6140fc7047dafc5abbe84ba16a34a86c0b0229b8",
+                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/3e8ea5ccddd00556b86d69d42f99f1061a704030",
+                "reference": "3e8ea5ccddd00556b86d69d42f99f1061a704030",
                 "shasum": ""
             },
             "require": {
@@ -8215,7 +8215,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-06-18T17:59:13+00:00"
+            "time": "2020-08-13T14:18:44+00:00"
         },
         {
             "name": "symfony/event-dispatcher-contracts",
@@ -8550,16 +8550,16 @@
         },
         {
             "name": "symfony/form",
-            "version": "v4.4.11",
+            "version": "v4.4.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/form.git",
-                "reference": "f1cfe946a59e6139184c161dd64d6357dd59f2b0"
+                "reference": "6407cd34ff3ff8354966c2e444b8a34d96e87ac8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/form/zipball/f1cfe946a59e6139184c161dd64d6357dd59f2b0",
-                "reference": "f1cfe946a59e6139184c161dd64d6357dd59f2b0",
+                "url": "https://api.github.com/repos/symfony/form/zipball/6407cd34ff3ff8354966c2e444b8a34d96e87ac8",
+                "reference": "6407cd34ff3ff8354966c2e444b8a34d96e87ac8",
                 "shasum": ""
             },
             "require": {
@@ -8645,7 +8645,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-07-12T10:34:29+00:00"
+            "time": "2020-08-18T11:39:55+00:00"
         },
         {
             "name": "symfony/framework-bundle",
@@ -9040,16 +9040,16 @@
         },
         {
             "name": "symfony/intl",
-            "version": "v4.4.11",
+            "version": "v4.4.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/intl.git",
-                "reference": "312aa3f77e739cf4b8e12f1d54d9c88e09638dc7"
+                "reference": "18e708f12e3d3b64a35761ab191de6302b7de4f6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/intl/zipball/312aa3f77e739cf4b8e12f1d54d9c88e09638dc7",
-                "reference": "312aa3f77e739cf4b8e12f1d54d9c88e09638dc7",
+                "url": "https://api.github.com/repos/symfony/intl/zipball/18e708f12e3d3b64a35761ab191de6302b7de4f6",
+                "reference": "18e708f12e3d3b64a35761ab191de6302b7de4f6",
                 "shasum": ""
             },
             "require": {
@@ -9125,7 +9125,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-06-18T17:51:13+00:00"
+            "time": "2020-08-17T07:31:35+00:00"
         },
         {
             "name": "symfony/mime",
