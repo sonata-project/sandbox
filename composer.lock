@@ -7643,7 +7643,7 @@
         },
         {
             "name": "symfony/debug",
-            "version": "v4.4.12",
+            "version": "v4.4.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/debug.git",
