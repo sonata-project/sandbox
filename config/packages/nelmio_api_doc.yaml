@@ -2,8 +2,8 @@ nelmio_api_doc:
   documentation:
     #host: api.example.com
     info:
-      title: My App
-      description: This is an awesome app!
+      title: Sonata Sandbox
+      description: This is demo RestFul API!
       version: 1.0.0
 
   areas:

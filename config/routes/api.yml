@@ -1,43 +1,43 @@
 sonata_api_classification:
     prefix:       /api/classification
-    resource:     "@SonataClassificationBundle/Resources/config/routing/api.xml"
+    resource:     "@SonataClassificationBundle/Resources/config/routing/api_nelmio_v3.xml"
 
 #sonata_api_news:
 #    prefix:       /api/news
-#    resource:     "@SonataNewsBundle/Resources/config/routing/api.xml"
+#    resource:     "@SonataNewsBundle/Resources/config/routing/api_nelmio_v3.xml"
 
 sonata_api_media:
     prefix:       /api/media
-    resource:     "@SonataMediaBundle/Resources/config/routing/api.xml"
+    resource:     "@SonataMediaBundle/Resources/config/routing/api_nelmio_v3.xml"
 
 sonata_api_notification:
     prefix:       /api/notification
-    resource:     "@SonataNotificationBundle/Resources/config/routing/api.xml"
+    resource:     "@SonataNotificationBundle/Resources/config/routing/api_nelmio_v3.xml"
 
 sonata_api_ecommerce_product:
     prefix:       /api/ecommerce
-    resource:     "@SonataProductBundle/Resources/config/routing/api.xml"
+    resource:     "@SonataProductBundle/Resources/config/routing/api_nelmio_v3.xml"
 
 sonata_api_ecommerce_order:
     prefix:       /api/ecommerce
-    resource:     "@SonataOrderBundle/Resources/config/routing/api.xml"
+    resource:     "@SonataOrderBundle/Resources/config/routing/api_nelmio_v3.xml"
 
 sonata_api_ecommerce_invoice:
     prefix:       /api/ecommerce
-    resource:     "@SonataInvoiceBundle/Resources/config/routing/api.xml"
+    resource:     "@SonataInvoiceBundle/Resources/config/routing/api_nelmio_v3.xml"
 
 sonata_api_ecommerce_customer:
     prefix:       /api/ecommerce
-    resource:     "@SonataCustomerBundle/Resources/config/routing/api.xml"
+    resource:     "@SonataCustomerBundle/Resources/config/routing/api_nelmio_v3.xml"
 
 sonata_api_ecommerce_basket:
     prefix:       /api/ecommerce
-    resource:     "@SonataBasketBundle/Resources/config/routing/api.xml"
+    resource:     "@SonataBasketBundle/Resources/config/routing/api_nelmio_v3.xml"
 
 sonata_api_page:
     prefix:       /api/page
-    resource:     "@SonataPageBundle/Resources/config/routing/api.xml"
+    resource:     "@SonataPageBundle/Resources/config/routing/api_nelmio_v3.xml"
 
 sonata_api_user:
     prefix:       /api/user
-    resource:     "@SonataUserBundle/Resources/config/routing/api.xml"
+    resource:     "@SonataUserBundle/Resources/config/routing/api_nelmio_v3.xml"

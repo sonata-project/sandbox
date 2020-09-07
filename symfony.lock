@@ -123,6 +123,9 @@
     "egulias/email-validator": {
         "version": "2.1.18"
     },
+    "exsyst/swagger": {
+        "version": "v0.4.1"
+    },
     "fabpot/goutte": {
         "version": "v3.3.0"
     },
@@ -850,5 +853,8 @@
     },
     "zendframework/zenddiagnostics": {
         "version": "v1.6.0"
+    },
+    "zircote/swagger-php": {
+        "version": "2.0.16"
     }
 }
