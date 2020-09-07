@@ -14,11 +14,11 @@ declare(strict_types=1);
 namespace Sonata\Bundle\QABundle\Controller;
 
 use JMS\Serializer\SerializationContext;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class SerializerController extends Controller
+class SerializerController extends AbstractController
 {
     /**
      * This make sure there is no regression to retrieve the current website in a sub request.

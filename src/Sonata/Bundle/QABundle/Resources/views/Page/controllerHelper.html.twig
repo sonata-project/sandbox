@@ -1,3 +1,14 @@
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+
 <h1>Page Bundle</h1>
 
 <h2>Solving</h2>
@@ -8,8 +19,9 @@
 <h2>Rendering</h2>
 <h3>render_hinclude</h3>
 <pre>
-    {{ render_hinclude(controller('SonataQABundle:Page:internalController'))|e }}
+    {{ render_hinclude(controller('Sonata\\Bundle\\QABundle\\Controller\\PageController::internalControllerAction'))|e }}
 </pre>
 
 <h3>render</h3>
-{{ render(controller('SonataQABundle:Page:internalController')) }}
+
+{{ render(controller('Sonata\\Bundle\\QABundle\\Controller\\PageController::internalControllerAction')) }}
