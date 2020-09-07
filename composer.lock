@@ -10612,7 +10612,7 @@
         },
         {
             "name": "symfony/security-core",
-            "version": "v4.4.12",
+            "version": "v4.4.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/security-core.git",
@@ -10840,7 +10840,7 @@
         },
         {
             "name": "symfony/security-http",
-            "version": "v4.4.12",
+            "version": "v4.4.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/security-http.git",
