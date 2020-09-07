@@ -7403,16 +7403,16 @@
         },
         {
             "name": "symfony/class-loader",
-            "version": "v3.4.43",
+            "version": "v3.4.44",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/class-loader.git",
-                "reference": "e4636a4f23f157278a19e5db160c63de0da297d8"
+                "reference": "04a7e4c1bf7f156f3d9df930401eb2c6fe51fc72"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/class-loader/zipball/e4636a4f23f157278a19e5db160c63de0da297d8",
-                "reference": "e4636a4f23f157278a19e5db160c63de0da297d8",
+                "url": "https://api.github.com/repos/symfony/class-loader/zipball/04a7e4c1bf7f156f3d9df930401eb2c6fe51fc72",
+                "reference": "04a7e4c1bf7f156f3d9df930401eb2c6fe51fc72",
                 "shasum": ""
             },
             "require": {
@@ -7469,7 +7469,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-03-15T09:38:08+00:00"
+            "time": "2020-08-09T11:28:08+00:00"
         },
         {
             "name": "symfony/config",
