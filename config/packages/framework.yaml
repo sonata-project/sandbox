@@ -1,7 +1,8 @@
 framework:
-    secret: '%env(APP_SECRET)%'
     #csrf_protection: true
+    fragments: true
     #http_method_override: true
+    secret: '%env(APP_SECRET)%'
 
     # Enables session support. Note that the session will ONLY be started if you read or write from it.
     # Remove or comment this section to explicitly disable session support.
@@ -11,7 +12,6 @@ framework:
         cookie_samesite: lax
 
     #esi: true
-    #fragments: true
     php_errors:
         log: true
 
