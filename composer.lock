@@ -6303,23 +6303,23 @@
         },
         {
             "name": "sonata-project/seo-bundle",
-            "version": "2.11.0",
+            "version": "2.12.0",
             "source": {
                 "type": "git",
-                "url": "git@github.com:sonata-project/SonataSeoBundle.git",
-                "reference": "08ac379a9b98e6d1bc3e611246251433f1d1c745"
+                "url": "https://github.com/sonata-project/SonataSeoBundle.git",
+                "reference": "ffbe1a4f1619d9ea4ee45e7576f1602df16a899f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataSeoBundle/zipball/08ac379a9b98e6d1bc3e611246251433f1d1c745",
-                "reference": "08ac379a9b98e6d1bc3e611246251433f1d1c745",
+                "url": "https://api.github.com/repos/sonata-project/SonataSeoBundle/zipball/ffbe1a4f1619d9ea4ee45e7576f1602df16a899f",
+                "reference": "ffbe1a4f1619d9ea4ee45e7576f1602df16a899f",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.1",
+                "php": "^7.2",
                 "psr/http-client": "^1.0",
                 "psr/http-message": "^1.0",
-                "sonata-project/exporter": "^1.11 || ^2.0",
+                "sonata-project/exporter": "^2.0",
                 "symfony/config": "^4.4 || ^5.0",
                 "symfony/dependency-injection": "^4.4 || ^5.0",
                 "symfony/form": "^4.4 || ^5.0",
@@ -6383,7 +6383,7 @@
                 "seo",
                 "sonata"
             ],
-            "time": "2020-06-26T20:32:08+00:00"
+            "time": "2020-09-07T19:38:01+00:00"
         },
         {
             "name": "sonata-project/timeline-bundle",
@@ -8424,7 +8424,7 @@
         },
         {
             "name": "symfony/finder",
-            "version": "v4.4.12",
+            "version": "v4.4.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/finder.git",
@@ -8649,7 +8649,7 @@
         },
         {
             "name": "symfony/framework-bundle",
-            "version": "v4.4.12",
+            "version": "v4.4.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/framework-bundle.git",
