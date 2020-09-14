@@ -53,8 +53,9 @@ sonata_block:
         sonata.product.block.variations_form:
         sonata.customer.block.recent_customers:
         sonata.basket.block.nb_items:
-            cache: sonata.page.cache.js_async
-            contexts: [user]
+        # TODO: fix cache
+        #    cache: sonata.page.cache.js_async
+        #    contexts: [user]
         sonata.customer.block.profile_menu:
             contexts: [profile]
 

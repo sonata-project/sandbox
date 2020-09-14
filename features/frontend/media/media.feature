@@ -7,29 +7,29 @@ Feature: Check the Media / Gallery frontend
     @200
     Scenario: Check gallery list status code
         Given I am on the homepage
-        When I go to "media/gallery"
+        When I go to "/media/gallery"
         Then I should see "Gallery List"
         And the response status code should be 200
 
     @200
     Scenario: Check Media & SEO page status code
         Given I am on the homepage
-        When I go to "media"
+        When I go to "/media"
         Then I should see "Form Media Type & SEO"
         And the response status code should be 200
 
     Scenario: Watch medias from a selected gallery
-        When I go to "media/gallery/view/1"
+        When I go to "/media/gallery/view/1"
         Then the response should contain "sonata-media-gallery-media-list"
 #        Then I should see an "sonata-media-gallery-media-list" element
 
     Scenario: Watch a selected media non authenticated
-        When I go to "media/gallery/view/1"
+        When I go to "/media/gallery/view/1"
         And I follow the first link of section "media sonata-media-gallery-media-item"
         Then I should see "Authentication"
 
     Scenario: Watch a selected media authenticated
-        When I go to "media/gallery/view/1"
+        When I go to "/media/gallery/view/1"
         And I follow the first link of section "media sonata-media-gallery-media-item"
         And I fill in "username" with "admin"
         And I fill in "password" with "admin"

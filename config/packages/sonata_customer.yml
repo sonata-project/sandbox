@@ -1,7 +1,7 @@
 # Enable Doctrine to map the provided entities
 sonata_customer:
     profile:
-        #template:     '@SonataCustomer/Profile/action.html.twig'
+        template: '@SonataCustomer/Profile/action.html.twig'
         #menu_builder: 'sonata.customer.profile.menu_builder.default'
         menu:
             -

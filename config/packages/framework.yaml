@@ -1,6 +1,6 @@
 framework:
     #csrf_protection: true
-    fragments: true
+    fragments: { path: /_fragment }
     #http_method_override: true
     secret: '%env(APP_SECRET)%'
 
@@ -17,3 +17,4 @@ framework:
 
     templating:
         engines: ['twig', 'php']
+        hinclude_default_template: ':default:hinclude.html.twig'

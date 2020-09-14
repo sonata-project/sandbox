@@ -2,6 +2,18 @@ sonata_twig:
   form_type: standard
   flashmessage:
     success:
-      css_class: 'custom_css_class_success'
+      css_class: 'success'
       types:
         - { type: 'success' }
+        - { type: 'sonata_customer_success' }
+        - { type: 'sonata_flash_success' }
+        - { type: 'sonata_product_success' }
+        - { type: 'sonata_user_success' }
+    error:
+      css_class: 'error'
+      types:
+        - { type: 'error' }
+        - { type: 'sonata_customer_error' }
+        - { type: 'sonata_flash_error' }
+        - { type: 'sonata_product_error' }
+        - { type: 'sonata_user_error' }
