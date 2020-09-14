@@ -6543,16 +6543,16 @@
         },
         {
             "name": "sonata-project/user-bundle",
-            "version": "4.7.0",
+            "version": "4.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataUserBundle.git",
-                "reference": "782cdcd7b9e73270784ff00e34df85fa18c463d3"
+                "reference": "6e01b2d6e37c942726754544fa3ccd5555905ebe"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataUserBundle/zipball/782cdcd7b9e73270784ff00e34df85fa18c463d3",
-                "reference": "782cdcd7b9e73270784ff00e34df85fa18c463d3",
+                "url": "https://api.github.com/repos/sonata-project/SonataUserBundle/zipball/6e01b2d6e37c942726754544fa3ccd5555905ebe",
+                "reference": "6e01b2d6e37c942726754544fa3ccd5555905ebe",
                 "shasum": ""
             },
             "require": {
@@ -6570,7 +6570,7 @@
                 "symfony/framework-bundle": "^4.4",
                 "symfony/http-foundation": "^4.4",
                 "symfony/http-kernel": "^4.4",
-                "symfony/options-resolver": "^4.4",
+                "symfony/options-resolver": "^4.4 || ^5.1",
                 "symfony/security-acl": "^3.0",
                 "symfony/security-core": "^4.4",
                 "symfony/translation": "^4.4",
@@ -6637,7 +6637,7 @@
                 "sonata",
                 "user"
             ],
-            "time": "2020-07-30T16:41:36+00:00"
+            "time": "2020-09-07T13:42:29+00:00"
         },
         {
             "name": "stephpy/timeline",
