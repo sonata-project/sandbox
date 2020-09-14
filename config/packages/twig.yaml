@@ -10,4 +10,4 @@ twig:
         - '@SonataMedia/Form/media_widgets.html.twig'
         - '@SonataForm/Form/datepicker.html.twig'
 
-    exception_controller: 'FOS\RestBundle\Controller\ExceptionController::showAction'
+    exception_controller: null

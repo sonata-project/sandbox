@@ -18,3 +18,5 @@ framework:
     templating:
         engines: ['twig', 'php']
         hinclude_default_template: ':default:hinclude.html.twig'
+
+    error_controller: 'FOS\RestBundle\Controller\ExceptionController::showAction'
