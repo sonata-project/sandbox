@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "557f50ec6804e1c79ce75847b5ee938a",
+    "content-hash": "4bed6d565989b0510ad54cb604d0127a",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -4945,51 +4945,56 @@
         },
         {
             "name": "sonata-project/classification-bundle",
-            "version": "3.12.1",
+            "version": "3.13.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataClassificationBundle.git",
-                "reference": "934a3cff40f20b433969b1b41f879a4c8cd4f290"
+                "reference": "3fc030b8b0e8efc5bbd37e8e5884da7c1aed5f2a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataClassificationBundle/zipball/934a3cff40f20b433969b1b41f879a4c8cd4f290",
-                "reference": "934a3cff40f20b433969b1b41f879a4c8cd4f290",
+                "url": "https://api.github.com/repos/sonata-project/SonataClassificationBundle/zipball/3fc030b8b0e8efc5bbd37e8e5884da7c1aed5f2a",
+                "reference": "3fc030b8b0e8efc5bbd37e8e5884da7c1aed5f2a",
                 "shasum": ""
             },
             "require": {
-                "cocur/slugify": "^2.0 || ^3.0 || ^4.0",
+                "cocur/slugify": "^3.0 || ^4.0",
                 "php": "^7.2",
                 "sonata-project/datagrid-bundle": "^2.3 || ^3.0",
-                "sonata-project/doctrine-extensions": "^1.6.0",
-                "sonata-project/easy-extends-bundle": "^2.5",
+                "sonata-project/doctrine-extensions": "^1.8",
                 "sonata-project/form-extensions": "^0.1.1 || ^1.4",
-                "symfony/config": "^4.3",
-                "symfony/console": "^4.3",
-                "symfony/dependency-injection": "^4.3",
-                "symfony/form": "^4.3",
-                "symfony/http-foundation": "^4.3",
-                "symfony/http-kernel": "^4.3",
-                "symfony/options-resolver": "^4.3",
+                "symfony/config": "^4.4",
+                "symfony/console": "^4.4",
+                "symfony/dependency-injection": "^4.4",
+                "symfony/form": "^4.4",
+                "symfony/http-foundation": "^4.4",
+                "symfony/http-kernel": "^4.4",
+                "symfony/options-resolver": "^4.4",
                 "twig/twig": "^2.12.1"
             },
             "conflict": {
-                "friendsofsymfony/rest-bundle": "<2.1 || >=3.0",
+                "friendsofsymfony/rest-bundle": "<2.3",
                 "jms/serializer": "<0.13",
-                "sonata-project/admin-bundle": "<3.59",
-                "sonata-project/block-bundle": "<3.14 || >=4.0",
+                "sonata-project/admin-bundle": "<3.68",
+                "sonata-project/block-bundle": "<3.19 || >=4.0",
                 "sonata-project/core-bundle": "<3.20",
-                "sonata-project/doctrine-orm-admin-bundle": "<3.4",
-                "sonata-project/media-bundle": "<3.17 || >=4.0"
+                "sonata-project/doctrine-orm-admin-bundle": "<3.16",
+                "sonata-project/media-bundle": "<3.20 || >=4.0"
             },
             "require-dev": {
-                "friendsofsymfony/rest-bundle": "^2.3",
+                "doctrine/annotations": "^1.7",
+                "friendsofsymfony/rest-bundle": "^2.3 || ^3.0",
                 "jms/serializer-bundle": "^2.0 || ^3.0",
-                "sonata-project/admin-bundle": "^3.59",
-                "sonata-project/block-bundle": "^3.18",
-                "sonata-project/doctrine-orm-admin-bundle": "^3.4",
+                "matthiasnoback/symfony-config-test": "^4.0",
+                "matthiasnoback/symfony-dependency-injection-test": "^4.0",
+                "nelmio/api-doc-bundle": "^2.13.4",
+                "sonata-project/admin-bundle": "^3.68",
+                "sonata-project/block-bundle": "^3.19",
+                "sonata-project/doctrine-orm-admin-bundle": "^3.16",
                 "sonata-project/media-bundle": "^3.20",
-                "symfony/phpunit-bridge": "^5.0"
+                "symfony/browser-kit": "^4.4 || ^5.1",
+                "symfony/phpunit-bridge": "^5.1",
+                "symfony/yaml": "^4.4"
             },
             "suggest": {
                 "sonata-project/block-bundle": "For rendering dynamic list blocks on a page.",
@@ -5028,7 +5033,7 @@
                 "tag",
                 "taxonomy"
             ],
-            "time": "2020-06-21T14:29:02+00:00"
+            "time": "2020-09-05T08:40:59+00:00"
         },
         {
             "name": "sonata-project/comment-bundle",
