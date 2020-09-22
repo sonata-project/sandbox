@@ -13,10 +13,10 @@ spy_timeline:
             object_manager: doctrine.orm.entity_manager
             classes:
                 query_builder: ~ # Spy\TimelineBundle\Driver\ORM\QueryBuilder\QueryBuilder
-                timeline:         AppBundle\Entity\Timeline\Timeline
-                action:           AppBundle\Entity\Timeline\Action
-                component:        AppBundle\Entity\Timeline\Component
-                action_component: AppBundle\Entity\Timeline\ActionComponent
+                timeline:         App\Entity\Timeline\Timeline
+                action:           App\Entity\Timeline\Action
+                component:        App\Entity\Timeline\Component
+                action_component: App\Entity\Timeline\ActionComponent
 
     filters:
         data_hydrator:

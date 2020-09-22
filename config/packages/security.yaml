@@ -6,7 +6,7 @@ parameters:
 
 security:
     encoders:
-        AppBundle\Entity\User\User:
+        App\Entity\User\User:
             algorithm: sha512
             encode_as_base64: false
             iterations: 1

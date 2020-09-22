@@ -1,14 +1,14 @@
 sonata_product:
     class:
-        product:            AppBundle\Entity\Commerce\Product
-        package:            AppBundle\Entity\Commerce\Package
-        product_category:   AppBundle\Entity\Commerce\ProductCategory
-        product_collection: AppBundle\Entity\Commerce\ProductCollection
-        delivery:           AppBundle\Entity\Commerce\Delivery
-        category:           AppBundle\Entity\Classification\Category
-        collection:         AppBundle\Entity\Classification\Collection
-        media:              AppBundle\Entity\Media\Media
-        gallery:            AppBundle\Entity\Media\Gallery
+        product:            App\Entity\Commerce\Product
+        package:            App\Entity\Commerce\Package
+        product_category:   App\Entity\Commerce\ProductCategory
+        product_collection: App\Entity\Commerce\ProductCollection
+        delivery:           App\Entity\Commerce\Delivery
+        category:           App\Entity\Classification\Category
+        collection:         App\Entity\Classification\Collection
+        media:              App\Entity\Media\Media
+        gallery:            App\Entity\Media\Gallery
 
     products:
         # Goodies

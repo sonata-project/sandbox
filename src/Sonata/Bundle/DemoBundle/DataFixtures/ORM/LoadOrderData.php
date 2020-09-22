@@ -13,13 +13,13 @@ declare(strict_types=1);
 
 namespace Sonata\Bundle\DemoBundle\DataFixtures\ORM;
 
-use AppBundle\Entity\Commerce\Address;
-use AppBundle\Entity\Commerce\Customer;
-use AppBundle\Entity\Commerce\Delivery;
-use AppBundle\Entity\Commerce\Invoice;
-use AppBundle\Entity\Commerce\Order;
-use AppBundle\Entity\Commerce\Transaction;
-use AppBundle\Entity\User\User;
+use App\Entity\Commerce\Address;
+use App\Entity\Commerce\Customer;
+use App\Entity\Commerce\Delivery;
+use App\Entity\Commerce\Invoice;
+use App\Entity\Commerce\Order;
+use App\Entity\Commerce\Transaction;
+use App\Entity\User\User;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;

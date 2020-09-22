@@ -107,7 +107,6 @@
     "autoload": {
         "psr-4": {
             "App\\": "src/",
-            "AppBundle\\": "src/AppBundle",
             "Sonata\\Bundle\\": "src/Sonata/Bundle"
         }
     },

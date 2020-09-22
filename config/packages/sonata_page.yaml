@@ -13,10 +13,10 @@ cmf_routing:
 sonata_page:
     slugify_service: 'sonata.page.slugify.cocur'
     class:
-        site:     AppBundle\Entity\Page\Site
-        snapshot: AppBundle\Entity\Page\Snapshot
-        page:     AppBundle\Entity\Page\Page
-        block:    AppBundle\Entity\Page\Block
+        site:     App\Entity\Page\Site
+        snapshot: App\Entity\Page\Snapshot
+        page:     App\Entity\Page\Page
+        block:    App\Entity\Page\Block
 
     multisite:             host_with_path # host
     use_streamed_response: false # set the value to false in debug mode or if the reverse proxy does not handle streamed response
@@ -73,7 +73,7 @@ sonata_page:
     default_template: default
     templates:
         default:
-            path: '@App/demo_layout.html.twig'
+            path: 'demo_layout.html.twig'
             name: 'default'
             containers:
                  header:
@@ -104,7 +104,7 @@ sonata_page:
                      F: footer
 
         2columns:
-            path: '@App/demo_2columns_layout.html.twig'
+            path: 'demo_2columns_layout.html.twig'
             name: '2 columns layout'
             containers:
                  header:

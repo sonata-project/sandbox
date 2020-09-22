@@ -53,10 +53,10 @@ sonata_customer:
                     number: 5
                     mode: public
     class:
-        customer: AppBundle\Entity\Commerce\Customer
-        address:  AppBundle\Entity\Commerce\Address
-        order:    AppBundle\Entity\Commerce\Order
-        user:     AppBundle\Entity\User\User
+        customer: App\Entity\Commerce\Customer
+        address:  App\Entity\Commerce\Address
+        order:    App\Entity\Commerce\Order
+        user:     App\Entity\User\User
 
 doctrine:
     orm:

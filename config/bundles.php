@@ -65,7 +65,6 @@ return [
     Symfony\Bundle\DebugBundle\DebugBundle::class => ['dev' => true, 'test' => true],
     Bazinga\Bundle\FakerBundle\BazingaFakerBundle::class => ['all' => true],
     Symfony\Bundle\WebProfilerBundle\WebProfilerBundle::class => ['dev' => true, 'test' => true],
-    AppBundle\AppBundle::class => ['all' => true],
     Mopa\Bundle\BootstrapBundle\MopaBootstrapBundle::class => ['all' => true],
     Sonata\Doctrine\Bridge\Symfony\SonataDoctrineBundle::class => ['all' => true],
     Sonata\Form\Bridge\Symfony\SonataFormBundle::class => ['all' => true],
