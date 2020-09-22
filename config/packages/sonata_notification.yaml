@@ -1,6 +1,6 @@
 sonata_notification:
     class:
-        message: AppBundle\Entity\Notification\Message
+        message: App\Entity\Notification\Message
 
     # backend: sonata.notification.backend.postpone
     backend: sonata.notification.backend.doctrine

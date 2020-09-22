@@ -77,8 +77,8 @@ abstract class Car
     protected $inspections;
 
     /**
-     * @var \AppBundle\Entity\Media\Media
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Media\Media", cascade={"persist"}, fetch="LAZY")
+     * @var \App\Entity\Media\Media
+     * @ORM\ManyToOne(targetEntity="App\Entity\Media\Media", cascade={"persist"}, fetch="LAZY")
      */
     protected $media;
 
@@ -210,7 +210,7 @@ abstract class Car
     }
 
     /**
-     * @return \AppBundle\Entity\Media\Media
+     * @return \App\Entity\Media\Media
      */
     public function getMedia()
     {
@@ -218,7 +218,7 @@ abstract class Car
     }
 
     /**
-     * @param \AppBundle\Entity\Media\Media $media
+     * @param \App\Entity\Media\Media $media
      */
     public function setMedia(MediaInterface $media = null)
     {

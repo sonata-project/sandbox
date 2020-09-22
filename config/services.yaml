@@ -23,7 +23,7 @@ services:
 
     App\:
         resource: '../src/*'
-        exclude: '../src/{AppBundle,DependencyInjection,Entity,Migrations,Sonata,Tests,Kernel.php}'
+        exclude: '../src/{App,DependencyInjection,Entity,Migrations,Sonata,Tests,Kernel.php}'
 
     App\Controller\:
         resource: '../src/Controller'

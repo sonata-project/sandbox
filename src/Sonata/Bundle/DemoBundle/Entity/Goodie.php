@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Sonata\Bundle\DemoBundle\Entity;
 
-use AppBundle\Entity\Commerce\Product;
+use App\Entity\Commerce\Product;
 use Doctrine\ORM\Mapping as ORM;
 
 /**

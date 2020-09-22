@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Sonata\Bundle\DemoBundle\DataFixtures\ORM;
 
-use AppBundle\Entity\Media\GalleryHasMedia;
+use App\Entity\Media\GalleryHasMedia;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Persistence\ObjectManager;

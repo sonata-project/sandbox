@@ -2,7 +2,7 @@ bazinga_faker:
     orm: doctrine
     locale: en_GB
     entities:
-        AppBundle\Entity\Commerce\Order:
+        App\Entity\Commerce\Order:
             number: 50
             custom_formatters:
                 status:
@@ -78,7 +78,7 @@ bazinga_faker:
                     method: languageCode
 
 
-        AppBundle\Entity\Commerce\Invoice:
+        App\Entity\Commerce\Invoice:
             number: 50
             custom_formatters:
                 status:

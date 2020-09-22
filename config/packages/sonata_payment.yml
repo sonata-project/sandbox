@@ -1,7 +1,7 @@
 sonata_payment:
     class:
-        transaction: AppBundle\Entity\Commerce\Transaction
-        order:       AppBundle\Entity\Commerce\Order
+        transaction: App\Entity\Commerce\Transaction
+        order:       App\Entity\Commerce\Order
 
     methods:
         pass: ~

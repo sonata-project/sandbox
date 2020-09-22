@@ -2,8 +2,8 @@ fos_comment:
     db_driver: orm
     class:
         model:
-            comment: AppBundle\Entity\Comment\Comment
-            thread:  AppBundle\Entity\Comment\Thread
+            comment: App\Entity\Comment\Comment
+            thread:  App\Entity\Comment\Thread
     form:
         comment:
             type: sonata_comment_comment

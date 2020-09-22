@@ -13,11 +13,11 @@ declare(strict_types=1);
 
 namespace Sonata\Bundle\DemoBundle\DataFixtures\ORM;
 
-use AppBundle\Entity\Commerce\Delivery;
-use AppBundle\Entity\Commerce\Package;
-use AppBundle\Entity\Commerce\ProductCategory;
-use AppBundle\Entity\Commerce\ProductCollection;
-use AppBundle\Entity\Media\GalleryHasMedia;
+use App\Entity\Commerce\Delivery;
+use App\Entity\Commerce\Package;
+use App\Entity\Commerce\ProductCategory;
+use App\Entity\Commerce\ProductCollection;
+use App\Entity\Media\GalleryHasMedia;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Persistence\ObjectManager;

@@ -1,8 +1,8 @@
 sonata_basket:
     class:
-        basket:         AppBundle\Entity\Commerce\Basket
-        basket_element: AppBundle\Entity\Commerce\BasketElement
-        customer:       AppBundle\Entity\Commerce\Customer
+        basket:         App\Entity\Commerce\Basket
+        basket_element: App\Entity\Commerce\BasketElement
+        customer:       App\Entity\Commerce\Customer
 
     builder:            sonata.basket.builder.standard
     factory:            sonata.basket.entity.factory
