@@ -3628,34 +3628,33 @@
         },
         {
             "name": "mopa/bootstrap-bundle",
-            "version": "v3.3.0",
-            "target-dir": "Mopa/Bundle/BootstrapBundle",
+            "version": "v3.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phiamo/MopaBootstrapBundle.git",
-                "reference": "419bb11abd5940e0957ca6ed254aec0ae402e382"
+                "reference": "48be4a8f7122c7a5c01cced5def4cd422d025e16"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phiamo/MopaBootstrapBundle/zipball/419bb11abd5940e0957ca6ed254aec0ae402e382",
-                "reference": "419bb11abd5940e0957ca6ed254aec0ae402e382",
+                "url": "https://api.github.com/repos/phiamo/MopaBootstrapBundle/zipball/48be4a8f7122c7a5c01cced5def4cd422d025e16",
+                "reference": "48be4a8f7122c7a5c01cced5def4cd422d025e16",
                 "shasum": ""
             },
             "require": {
-                "mopa/composer-bridge": "~1.3",
-                "symfony/console": "~2.3|~3.0|^4.0",
-                "symfony/form": "~2.3|~3.0|^4.0",
-                "symfony/framework-bundle": "~2.3|~3.0|^4.0",
-                "symfony/twig-bundle": "~2.3|~3.0|^4.0",
-                "twig/twig": "^1.14.2|^2.0"
+                "mopa/composer-bridge": "^1.3",
+                "symfony/console": "^2.3 || ^3.0 || ^4.0",
+                "symfony/form": "^2.3 || ^3.0 || ^4.0",
+                "symfony/framework-bundle": "^2.3 || ^3.0 || ^4.0",
+                "symfony/twig-bundle": "^2.3 || ^3.0 || ^4.0",
+                "twig/twig": "^1.40 || ^2.9"
             },
             "conflict": {
                 "symfony/twig-bridge": "<2.3"
             },
             "require-dev": {
-                "phpunit/phpunit": "~6.0",
-                "symfony/security-bundle": "~2.3|~3.0|^4.0",
-                "symfony/translation": "~2.3|~3.0|^4.0"
+                "phpunit/phpunit": "^6.0",
+                "symfony/security-bundle": "^2.3 || ^3.0 || ^4.0",
+                "symfony/translation": "^2.3 || ^3.0 || ^4.0"
             },
             "suggest": {
                 "craue/formflow-bundle": "~2.0",
@@ -3672,9 +3671,12 @@
                 }
             },
             "autoload": {
-                "psr-0": {
+                "psr-4": {
                     "Mopa\\Bundle\\BootstrapBundle\\": ""
-                }
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -3682,12 +3684,12 @@
             ],
             "authors": [
                 {
-                    "name": "Community contributions",
-                    "homepage": "https://github.com/phiamo/MopaBootstrapBundle/contributors"
-                },
-                {
                     "name": "Philipp A. Mohrenweiser",
                     "email": "phiamo@googlemail.com"
+                },
+                {
+                    "name": "Community contributions",
+                    "homepage": "https://github.com/phiamo/MopaBootstrapBundle/contributors"
                 }
             ],
             "description": "Easy integration of twitters bootstrap into symfony2",
@@ -3698,7 +3700,7 @@
                 "form",
                 "template"
             ],
-            "time": "2019-01-24T07:28:44+00:00"
+            "time": "2020-10-06T10:21:53+00:00"
         },
         {
             "name": "mopa/composer-bridge",
@@ -7573,7 +7575,7 @@
         },
         {
             "name": "symfony/console",
-            "version": "v4.4.14",
+            "version": "v4.4.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
