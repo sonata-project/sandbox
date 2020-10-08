@@ -4,7 +4,3 @@ sonata_demo:
 
 sonata_qa:
   resource: "@SonataQABundle/Resources/config/routing/qa.xml"
-
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
