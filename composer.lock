@@ -13810,7 +13810,7 @@
         },
         {
             "name": "symfony/web-profiler-bundle",
-            "version": "v4.4.14",
+            "version": "v4.4.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/web-profiler-bundle.git",
