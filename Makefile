@@ -6,7 +6,6 @@ help:
 	@echo "  test-all   to run all tests"
 	@echo "  install    to make a Composer install"
 	@echo "  update     to make a Composer update then a Bower update"
-#	@echo "  doc        to generate documentation for a bundle"
 	@echo "  clean      to remove and warmup cache"
 	@echo "  dev        to start Built-in web server of PHP"
 	@echo "  bower      to make a Bower install"
@@ -38,9 +37,6 @@ install:
 update:
 	composer update
 	bower update
-
-#doc:
-#	cd docs && sphinx-build -nW -b html -d _build/doctrees . _build/html
 
 clean:
 	rm -rf app/cache/*
