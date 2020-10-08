@@ -158,12 +158,19 @@ class LoadProductData extends AbstractFixture implements OrderedFixtureInterface
         $manager->persist($bluePhpPlush);
         $this->setReference('php_plush_blue_goodie_product', $bluePhpPlush);
 
-        $this->addMediaToProduct(__DIR__.'/../data/files/elephpant_blue.jpg', 'Blue PHP elePHPant',
+        $this->addMediaToProduct(
+            __DIR__.'/../data/files/elephpant_blue.jpg',
+            'Blue PHP elePHPant',
             <<<'EOF'
 Original PHP plush based on Vincent Pontier PHP logo.
 Reference - http://www.flickr.com/photos/fullo/4703273699/in/pool-35237093722@N01/
 EOF
-            , $bluePhpPlush, 'Francesco Fullone', 'CC BY-NC-SA 2.0', 'plushes_goodies_category');
+            ,
+            $bluePhpPlush,
+            'Francesco Fullone',
+            'CC BY-NC-SA 2.0',
+            'plushes_goodies_category'
+        );
         $this->addProductToCategory($bluePhpPlush, $plushesCategory, $manager);
         $this->addProductToCategory($bluePhpPlush, $goodiesCategory, $manager);
         $this->addProductDeliveries($bluePhpPlush, $manager);
@@ -189,12 +196,19 @@ EOF
         $manager->persist($greenPhpPlush);
         $this->setReference('php_plush_green_goodie_product', $greenPhpPlush);
 
-        $this->addMediaToProduct(__DIR__.'/../data/files/elephpant_green.jpg', 'Green PHP elePHPant',
+        $this->addMediaToProduct(
+            __DIR__.'/../data/files/elephpant_green.jpg',
+            'Green PHP elePHPant',
             <<<'EOF'
 Green PHP plush based on Vincent Pontier PHP logo.
 Reference - http://www.flickr.com/photos/ztec/9204770134/in/photostream/
 EOF
-            , $greenPhpPlush, 'Loïc Doubinine', 'CC BY-NC-SA 2.0', 'plushes_goodies_category');
+            ,
+            $greenPhpPlush,
+            'Loïc Doubinine',
+            'CC BY-NC-SA 2.0',
+            'plushes_goodies_category'
+        );
         $this->addProductToCategory($greenPhpPlush, $plushesCategory, $manager);
         $this->addProductToCategory($greenPhpPlush, $goodiesCategory, $manager);
         $this->addProductDeliveries($greenPhpPlush, $manager);
@@ -220,12 +234,19 @@ EOF
         $manager->persist($orangePhpPlush);
         $this->setReference('php_plush_orange_goodie_product', $orangePhpPlush);
 
-        $this->addMediaToProduct(__DIR__.'/../data/files/elephpant_orange.jpg', 'Orange PHP elePHPant',
+        $this->addMediaToProduct(
+            __DIR__.'/../data/files/elephpant_orange.jpg',
+            'Orange PHP elePHPant',
             <<<'EOF'
 Orange PHP Plush based on Vincent Pontier PHP logo.
 Reference - http://www.kickstarter.com/projects/eliw/php-architect-orange-elephpant
 EOF
-            , $orangePhpPlush, 'http://www.phparch.com/', '/', 'plushes_goodies_category');
+            ,
+            $orangePhpPlush,
+            'http://www.phparch.com/',
+            '/',
+            'plushes_goodies_category'
+        );
         $this->addProductToCategory($orangePhpPlush, $plushesCategory, $manager);
         $this->addProductToCategory($orangePhpPlush, $goodiesCategory, $manager);
         $this->addProductDeliveries($orangePhpPlush, $manager);
@@ -355,7 +376,6 @@ Tokyo hosted the Summer Olympic Games in 1964, and is scheduled to host the game
 
 <p>References <a href="http://en.wikipedia.org/wiki/Tokyo" target="_blank">Wikipedia.org [en]</a></p>
 EOF
-
         );
         $japanTravel->setRawDescription(
             <<<'EOF'
@@ -369,7 +389,6 @@ Tokyo hosted the Summer Olympic Games in 1964, and is scheduled to host the game
 
 <p>References <a href="http://en.wikipedia.org/wiki/Tokyo" target="_blank">Wikipedia.org [en]</a></p>
 EOF
-
         );
         $japanTravel->setPriceIncludingVat(false);
         $japanTravel->setShortDescription(
@@ -378,7 +397,6 @@ EOF
 
 <p>References <a href="http://en.wikipedia.org/wiki/Tokyo" target="_blank">Wikipedia.org [en]</a></p>
 EOF
-
         );
         $japanTravel->setRawShortDescription(
             <<<'EOF'
@@ -386,7 +404,6 @@ EOF
 
 <p>References <a href="http://en.wikipedia.org/wiki/Tokyo" target="_blank">Wikipedia.org [en]</a></p>
 EOF
-
         );
         $japanTravel->setDescriptionFormatter('richhtml');
         $japanTravel->setShortDescriptionFormatter('richhtml');
@@ -487,7 +504,6 @@ EOF
 
 <p>References <a href="http://en.wikipedia.org/wiki/Quebec" target="_blank">Wikipedia.org [en]</a></p>
 EOF
-
         );
         $quebecTravel->setRawDescription(
             <<<'EOF'
@@ -501,7 +517,6 @@ EOF
 
 <p>References <a href="http://en.wikipedia.org/wiki/Quebec" target="_blank">Wikipedia.org [en]</a></p>
 EOF
-
         );
         $quebecTravel->setPriceIncludingVat(false);
         $quebecTravel->setShortDescription(
@@ -510,7 +525,6 @@ EOF
 
 <p>References <a href="http://en.wikipedia.org/wiki/Quebec" target="_blank">Wikipedia.org [en]</a></p>
 EOF
-
         );
         $quebecTravel->setRawShortDescription(
             <<<'EOF'
@@ -518,7 +532,6 @@ EOF
 
 <p>References <a href="http://en.wikipedia.org/wiki/Quebec" target="_blank">Wikipedia.org [en]</a></p>
 EOF
-
         );
         $quebecTravel->setDescriptionFormatter('richhtml');
         $quebecTravel->setShortDescriptionFormatter('richhtml');
@@ -633,7 +646,6 @@ EOF
 
 <p>References <a href="http://en.wikipedia.org/wiki/Paris" target="_blank">Wikipedia.org [en]</a></p>
 EOF
-
         );
         $parisTravel->setRawDescription(
             <<<'EOF'
@@ -645,7 +657,6 @@ EOF
 
 <p>References <a href="http://en.wikipedia.org/wiki/Paris" target="_blank">Wikipedia.org [en]</a></p>
 EOF
-
         );
         $parisTravel->setPriceIncludingVat(false);
         $parisTravel->setShortDescription(
@@ -654,7 +665,6 @@ EOF
 
 <p>References <a href="http://en.wikipedia.org/wiki/Paris" target="_blank">Wikipedia.org [en]</a></p>
 EOF
-
         );
         $parisTravel->setRawShortDescription(
             <<<'EOF'
@@ -662,7 +672,6 @@ EOF
 
 <p>References <a href="http://en.wikipedia.org/wiki/Paris" target="_blank">Wikipedia.org [en]</a></p>
 EOF
-
         );
         $parisTravel->setDescriptionFormatter('richhtml');
         $parisTravel->setShortDescriptionFormatter('richhtml');
@@ -764,7 +773,6 @@ London contains four World Heritage Sites: the Tower of London; Kew Gardens; the
 
 References - http://en.wikipedia.org/wiki/London
 EOF
-
         );
         $londonTravel->setRawDescription(
             <<<EOF
@@ -778,7 +786,6 @@ London contains four World Heritage Sites: the Tower of London; Kew Gardens; the
 
 References - http://en.wikipedia.org/wiki/London
 EOF
-
         );
         $londonTravel->setPriceIncludingVat(false);
         $londonTravel->setShortDescription(
@@ -787,7 +794,6 @@ London Listeni/ˈlʌndən/ is the capital city of England and of the United King
 
 References - http://en.wikipedia.org/wiki/London
 EOF
-
         );
         $londonTravel->setRawShortDescription(
             <<<EOF
@@ -797,7 +803,6 @@ London Listeni/ˈlʌndən/ is the capital city of England and of the United King
 References - <a href="http://en.wikipedia.org/wiki/London" target="_blank">http://en.wikipedia.org/wiki/London</a>
 </p>
 EOF
-
         );
         $londonTravel->setDescriptionFormatter('richhtml');
         $londonTravel->setShortDescriptionFormatter('richhtml');
@@ -896,7 +901,6 @@ EOF
 
 <p>References <a href="http://en.wikipedia.org/wiki/Switzerland" target="_blank">Wikipedia.org [en]</a></p>
 EOF
-
         );
         $switzerlandTravel->setRawDescription(
             <<<'EOF'
@@ -908,7 +912,6 @@ EOF
 
 <p>References <a href="http://en.wikipedia.org/wiki/Switzerland" target="_blank">Wikipedia.org [en]</a></p>
 EOF
-
         );
         $switzerlandTravel->setPriceIncludingVat(false);
         $switzerlandTravel->setShortDescription(
@@ -918,7 +921,6 @@ Switzerland (German: Schweiz[note 3] [ˈʃvaɪts]; French: Suisse [sɥis]; Itali
 
 <p>References <a href="http://en.wikipedia.org/wiki/Switzerland" target="_blank">Wikipedia.org [en]</a></p>
 EOF
-
         );
         $switzerlandTravel->setRawShortDescription(
             <<<'EOF'
@@ -927,7 +929,6 @@ Switzerland (German: Schweiz[note 3] [ˈʃvaɪts]; French: Suisse [sɥis]; Itali
 
 <p>References <a href="http://en.wikipedia.org/wiki/Switzerland" target="_blank">Wikipedia.org [en]</a></p>
 EOF
-
         );
         $switzerlandTravel->setDescriptionFormatter('richhtml');
         $switzerlandTravel->setShortDescriptionFormatter('richhtml');
@@ -1110,8 +1111,8 @@ EOF
         ProductInterface $product,
         $author = null,
         $copyright = null,
-        string $categoryReference = 'root_products_category'): void
-    {
+        string $categoryReference = 'root_products_category'
+    ): void {
         $product->setImage($this->createMedia($mediaFilename, $name, $description, $author, $copyright, $categoryReference));
     }
 
@@ -1126,8 +1127,8 @@ EOF
         string $description,
         ?string $author = null,
         ?string $copyright = null,
-        string $categoryReference = 'root_products_category'): MediaInterface
-    {
+        string $categoryReference = 'root_products_category'
+    ): MediaInterface {
         $media = $this->mediaManager->create();
         $media->setBinaryContent($file);
         $media->setEnabled(true);

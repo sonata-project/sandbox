@@ -204,7 +204,7 @@ abstract class Car
     /**
      * @param Inspection $inspection
      */
-    public function removeInspection(Inspection $inspection = null)
+    public function removeInspection(?Inspection $inspection = null)
     {
         $this->inspections->removeElement($inspection);
     }
@@ -220,7 +220,7 @@ abstract class Car
     /**
      * @param \App\Entity\Media\Media $media
      */
-    public function setMedia(MediaInterface $media = null)
+    public function setMedia(?MediaInterface $media = null)
     {
         $this->media = $media;
     }

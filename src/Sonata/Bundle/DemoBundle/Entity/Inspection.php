@@ -148,7 +148,7 @@ class Inspection
     /**
      * @param mixed $inspector
      */
-    public function setInspector(User $inspector = null)
+    public function setInspector(?User $inspector = null)
     {
         $this->inspector = $inspector;
     }

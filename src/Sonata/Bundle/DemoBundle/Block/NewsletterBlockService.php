@@ -58,7 +58,7 @@ final class NewsletterBlockService extends BaseBlockService
         $this->formFactory = $formFactory;
     }
 
-    public function execute(BlockContextInterface $blockContext, Response $response = null): Response
+    public function execute(BlockContextInterface $blockContext, ?Response $response = null): Response
     {
         $this->form = $this->formFactory->create($blockContext->getSetting('form_type'));
 

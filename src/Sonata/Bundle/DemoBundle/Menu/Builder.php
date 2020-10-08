@@ -69,7 +69,9 @@ class Builder implements ContainerAwareInterface
         $menu->addChild('News', ['route' => 'sonata_news_home']);
 
         foreach ($shopCategories->getChildren() as $category) {
-            $shop->addChild($category->getName(), [
+            $shop->addChild(
+                $category->getName(),
+                [
                 'route' => 'sonata_catalog_category',
                 'routeParameters' => [
                     'category_id' => $category->getId(),

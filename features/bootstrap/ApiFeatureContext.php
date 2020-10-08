@@ -389,10 +389,11 @@ class ApiFeatureContext implements Context
     /**
      * @Given /^I have a Post identified by "(.*)"$/
      */
-    public function iHaveAPostIdentifiedBy($identifier, TableNode $values = null)
+    public function iHaveAPostIdentifiedBy($identifier, ?TableNode $values = null)
     {
         if (null === $values) {
-            $values = new TableNode(<<<TABLE
+            $values = new TableNode(
+                <<<TABLE
       | title                 | My post title       |
       | slug                  | my-post-slug        |
       | abstract              | My abstract content |
@@ -426,10 +427,11 @@ TABLE
     /**
      * @Given /^I have a Comment identified by "(.*)" on Post "(.*)"$/
      */
-    public function iHaveCommentIdentifiedBy($identifier, $postIdentifier, TableNode $values = null)
+    public function iHaveCommentIdentifiedBy($identifier, $postIdentifier, ?TableNode $values = null)
     {
         if (null === $values) {
-            $values = new TableNode(<<<TABLE
+            $values = new TableNode(
+                <<<TABLE
       | name    | New comment name       |
       | email   | new@email.org          |
       | url     | http://www.new-url.com |
@@ -541,7 +543,7 @@ TABLE
      * @param string    $url    relative url
      * @param TableNode $post   table of post values
      */
-    protected function sendRequestUsingLastIdentifier($method, $url, TableNode $post = null)
+    protected function sendRequestUsingLastIdentifier($method, $url, ?TableNode $post = null)
     {
         $url = $this->baseUrl.'/'.ltrim($this->replaceIdentifiers($url), '/');
         $fields = [];
