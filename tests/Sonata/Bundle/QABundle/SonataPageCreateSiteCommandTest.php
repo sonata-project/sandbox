@@ -19,7 +19,9 @@ class SonataPageCreateSiteCommandTest extends CommandTestCase
     {
         $client = self::createClient();
 
-        $output = $this->runCommand($client, 'sonata:page:create-site '.
+        $output = $this->runCommand(
+            $client,
+            'sonata:page:create-site '.
             ' --no-confirmation=true'.
             ' --enabled=true'.
             ' --name=Test'.

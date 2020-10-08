@@ -203,7 +203,9 @@ class LoadPageData extends AbstractFixture implements OrderedFixtureInterface
         // add a block text
         $content->addChildren($text = $this->blockManager->create());
         $text->setType('sonata.block.service.text');
-        $text->setSetting('content', $this->twig->render('@SonataDemo/fixtures/block_gallery.html.twig')
+        $text->setSetting(
+            'content',
+            $this->twig->render('@SonataDemo/fixtures/block_gallery.html.twig')
         );
         $text->setPosition(1);
         $text->setEnabled(true);

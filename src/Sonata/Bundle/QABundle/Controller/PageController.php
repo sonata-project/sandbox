@@ -35,7 +35,8 @@ class PageController extends AbstractController
     {
         $site = $this->get('sonata.page.site.selector')->retrieve();
 
-        return new Response(sprintf('<pre>The sub request current site name is: %s (url: %s)</pre> <br /><pre>%s</pre>',
+        return new Response(sprintf(
+            '<pre>The sub request current site name is: %s (url: %s)</pre> <br /><pre>%s</pre>',
             $site->getName(),
             $this->generateUrl('sonata_page_bundle_inner_controller'),
             $request

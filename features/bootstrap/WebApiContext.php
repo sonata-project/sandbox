@@ -37,7 +37,7 @@ class WebApiContext implements Context
      * @param string  $baseUrl base API url
      * @param Browser $browser browser instance (optional)
      */
-    public function __construct($baseUrl, Browser $browser = null)
+    public function __construct($baseUrl, ?Browser $browser = null)
     {
         $this->baseUrl = rtrim($baseUrl, '/');
         if (null === $browser) {
@@ -207,7 +207,8 @@ class WebApiContext implements Context
     {
         $request = $this->browser->getLastRequest();
         $response = $this->browser->getLastResponse();
-        $this->printDebug(sprintf("%s %s => %d:\n%s",
+        $this->printDebug(sprintf(
+            "%s %s => %d:\n%s",
             $request->getMethod(),
             $request->getUrl(),
             $response->getStatusCode(),

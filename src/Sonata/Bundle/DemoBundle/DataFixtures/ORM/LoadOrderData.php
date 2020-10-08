@@ -145,7 +145,8 @@ class LoadOrderData extends AbstractFixture implements OrderedFixtureInterface
         $order->setCustomer($customer);
         $order->setLocale($customer->getLocale());
         $order->setUsername($customer->getFullname());
-        $order->setReference(sprintf('%02d%02d%02d%06d',
+        $order->setReference(sprintf(
+            '%02d%02d%02d%06d',
             2013, // @todo: need to improve the date generation
             7,
             1,

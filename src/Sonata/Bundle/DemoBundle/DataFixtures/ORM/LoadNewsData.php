@@ -123,7 +123,8 @@ class LoadNewsData extends AbstractFixture implements OrderedFixtureInterface
 
             $raw = $this->twig->render('@SonataDemo/fixtures/news_gist_formatter.md.twig', ['id' => $id]);
 
-            $raw .= sprintf("### %s\n\n%s\n\n### %s\n\n%s",
+            $raw .= sprintf(
+                "### %s\n\n%s\n\n### %s\n\n%s",
                 $this->faker->sentence(random_int(3, 6)),
                 $this->faker->text(1000),
                 $this->faker->sentence(random_int(3, 6)),

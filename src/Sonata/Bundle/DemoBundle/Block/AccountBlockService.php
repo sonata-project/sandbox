@@ -40,7 +40,7 @@ final class AccountBlockService extends AbstractAdminBlockService
         $this->tokenStorage = $tokenStorage;
     }
 
-    public function execute(BlockContextInterface $blockContext, Response $response = null): Response
+    public function execute(BlockContextInterface $blockContext, ?Response $response = null): Response
     {
         $user = false;
         if ($this->tokenStorage->getToken()) {

@@ -28,7 +28,8 @@ class SonataMediaAddCommandTest extends CommandTestCase
         $client = self::createClient();
         $baseFolder = $client->getContainer()->getParameter('kernel.root_dir');
 
-        $output = $this->runCommand($client, sprintf('sonata:media:add %s %s %s',
+        $output = $this->runCommand($client, sprintf(
+            'sonata:media:add %s %s %s',
             'sonata.media.provider.image',
             'product_catalog',
             sprintf('%s/../src/Sonata/Bundle/DemoBundle/DataFixtures/data/files/IMG_0003.JPG', $baseFolder)

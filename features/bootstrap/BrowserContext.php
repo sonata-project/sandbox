@@ -72,7 +72,8 @@ class BrowserContext extends MinkContext
     public function iFollowLinkWithClass($text, $class)
     {
         $link = $this->getSession()->getPage()->find(
-            'xpath', sprintf("//*[@class='%s' and contains(., '%s')]", $class, $text)
+            'xpath',
+            sprintf("//*[@class='%s' and contains(., '%s')]", $class, $text)
         );
 
         if (!$link) {
@@ -90,7 +91,8 @@ class BrowserContext extends MinkContext
     public function iFollowFirstLinkOfClass($class)
     {
         $link = $this->getSession()->getPage()->find(
-            'xpath', sprintf("//*[@class='%s']", $class)
+            'xpath',
+            sprintf("//*[@class='%s']", $class)
         );
 
         if (!$link) {
@@ -110,7 +112,8 @@ class BrowserContext extends MinkContext
     public function iFollowTheFirstLinkOfSection($class)
     {
         $link = $this->getSession()->getPage()->find(
-            'xpath', sprintf("//*[@class='%s']/a", $class)
+            'xpath',
+            sprintf("//*[@class='%s']/a", $class)
         );
 
         if (!$link) {
@@ -130,7 +133,8 @@ class BrowserContext extends MinkContext
     public function iFollowTheFirstListedLinkOfSection($class)
     {
         $link = $this->getSession()->getPage()->find(
-            'xpath', sprintf("//*[@class='%s']/ul/li[1]/a", $class)
+            'xpath',
+            sprintf("//*[@class='%s']/ul/li[1]/a", $class)
         );
 
         if (!$link) {
@@ -150,7 +154,8 @@ class BrowserContext extends MinkContext
     public function iFollowTheLastListedLinkOfSection($class)
     {
         $link = $this->getSession()->getPage()->find(
-            'xpath', sprintf("//*[@class='%s']/tr[last()]/td/a", $class)
+            'xpath',
+            sprintf("//*[@class='%s']/tr[last()]/td/a", $class)
         );
 
         if (!$link) {
@@ -175,7 +180,8 @@ class BrowserContext extends MinkContext
     public function firstOrderStatuses($orderTableClass, $orderStatus, $paymentStatus, $deliveryStatus)
     {
         $tableRow = $this->getSession()->getPage()->find(
-            'xpath', sprintf("//table[@id='%s']/tr[2]", $orderTableClass)
+            'xpath',
+            sprintf("//table[@id='%s']/tr[2]", $orderTableClass)
         );
 
         if (false === strpos($tableRow->getText(), sprintf('%s %s %s', $orderStatus, $paymentStatus, $deliveryStatus))) {
@@ -195,7 +201,8 @@ class BrowserContext extends MinkContext
     public function firstOrderLink($orderTableClass)
     {
         $firstOrderLink = $this->getSession()->getPage()->find(
-            'xpath', sprintf("//table[@id='%s']/tr[2]/td/a", $orderTableClass)
+            'xpath',
+            sprintf("//table[@id='%s']/tr[2]/td/a", $orderTableClass)
         );
 
         if (!$firstOrderLink) {

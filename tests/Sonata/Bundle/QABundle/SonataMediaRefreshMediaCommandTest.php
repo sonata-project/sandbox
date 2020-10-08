@@ -22,7 +22,8 @@ class SonataMediaRefreshMediaCommandTest extends CommandTestCase
     {
         $client = self::createClient();
 
-        $output = $this->runCommand($client, sprintf('sonata:media:refresh-metadata %s %s',
+        $output = $this->runCommand($client, sprintf(
+            'sonata:media:refresh-metadata %s %s',
             $id,
             'default'
         ));
