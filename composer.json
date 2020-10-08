@@ -3,7 +3,7 @@
     "description": "Sonata Project's sandbox (with ecommerce bundles)",
     "license": "MIT",
     "require": {
-        "php": "^7.2",
+        "php": "^7.4",
         "ext-bcmath": "*",
         "ext-json": "*",
         "ext-simplexml": "*",
