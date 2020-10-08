@@ -49,6 +49,10 @@ $rules = [
     'strict_comparison' => true,
     'strict_param' => true,
     'php_unit_strict' => true,
+    'php_unit_set_up_tear_down_visibility' => true,
+    'nullable_type_declaration_for_default_null_value' => ['use_nullable_type_declaration' => true],
+    'logical_operators' => true,
+    'method_argument_space' => ['on_multiline' => 'ensure_fully_multiline'],
 ];
 
 
