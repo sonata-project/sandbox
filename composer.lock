@@ -3687,33 +3687,31 @@
         },
         {
             "name": "mopa/bootstrap-bundle",
-            "version": "v3.3.1",
+            "version": "v3.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phiamo/MopaBootstrapBundle.git",
-                "reference": "48be4a8f7122c7a5c01cced5def4cd422d025e16"
+                "reference": "7df89019daed24008d4117217c8cb4df972d2751"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phiamo/MopaBootstrapBundle/zipball/48be4a8f7122c7a5c01cced5def4cd422d025e16",
-                "reference": "48be4a8f7122c7a5c01cced5def4cd422d025e16",
+                "url": "https://api.github.com/repos/phiamo/MopaBootstrapBundle/zipball/7df89019daed24008d4117217c8cb4df972d2751",
+                "reference": "7df89019daed24008d4117217c8cb4df972d2751",
                 "shasum": ""
             },
             "require": {
                 "mopa/composer-bridge": "^1.3",
-                "symfony/console": "^2.3 || ^3.0 || ^4.0",
-                "symfony/form": "^2.3 || ^3.0 || ^4.0",
-                "symfony/framework-bundle": "^2.3 || ^3.0 || ^4.0",
-                "symfony/twig-bundle": "^2.3 || ^3.0 || ^4.0",
-                "twig/twig": "^1.40 || ^2.9"
-            },
-            "conflict": {
-                "symfony/twig-bridge": "<2.3"
+                "php": "^7.2 || ^8.0",
+                "symfony/console": "^4.4 || ^5.1",
+                "symfony/form": "^4.4 || ^5.1",
+                "symfony/framework-bundle": "^4.4 || ^5.1",
+                "symfony/twig-bundle": "^4.4 || ^5.1",
+                "twig/twig": "^2.9 || ^3.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "^6.0",
-                "symfony/security-bundle": "^2.3 || ^3.0 || ^4.0",
-                "symfony/translation": "^2.3 || ^3.0 || ^4.0"
+                "phpunit/phpunit": "^8.5 || ^9.4",
+                "symfony/security-bundle": "^4.4 || ^5.1",
+                "symfony/translation-contracts": "^2.0"
             },
             "suggest": {
                 "craue/formflow-bundle": "~2.0",
@@ -3759,7 +3757,7 @@
                 "form",
                 "template"
             ],
-            "time": "2020-10-06T10:21:53+00:00"
+            "time": "2020-10-08T14:21:52+00:00"
         },
         {
             "name": "mopa/composer-bridge",
