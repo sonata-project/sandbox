@@ -23,7 +23,7 @@ class SonataAdminListCommandTest extends CommandTestCase
         $this->assertNotNull($output);
 
         foreach (self::getAdminList() as $def) {
-            list($id, $class) = $def;
+            [$id, $class] = $def;
 
             $this->assertStringContainsString($id, $output);
             $this->assertStringContainsString($class, $output);
