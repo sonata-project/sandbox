@@ -24,7 +24,7 @@ class SonataNotificationHandlerListCommandTest extends CommandTestCase
         $this->assertStringContainsString('done!', $output);
 
         foreach (self::getConsumerList() as $def) {
-            list($name, $id) = $def;
+            [$name, $id] = $def;
 
             $this->assertStringContainsString($name, $output);
             $this->assertStringContainsString($id, $output);
