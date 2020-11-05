@@ -1758,6 +1758,7 @@
                 "reflection",
                 "static"
             ],
+            "abandoned": "roave/better-reflection",
             "time": "2020-03-27T11:06:43+00:00"
         },
         {
@@ -2506,24 +2507,24 @@
         },
         {
             "name": "imagine/imagine",
-            "version": "1.2.3",
+            "version": "1.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/avalanche123/Imagine.git",
-                "reference": "cb2361e5bb4410b681462d8e4f912bc5dabf84ab"
+                "reference": "d2e18be6e930ca169e4f921ef73ebfc061bf55d8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/avalanche123/Imagine/zipball/cb2361e5bb4410b681462d8e4f912bc5dabf84ab",
-                "reference": "cb2361e5bb4410b681462d8e4f912bc5dabf84ab",
+                "url": "https://api.github.com/repos/avalanche123/Imagine/zipball/d2e18be6e930ca169e4f921ef73ebfc061bf55d8",
+                "reference": "d2e18be6e930ca169e4f921ef73ebfc061bf55d8",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.2"
             },
             "require-dev": {
-                "friendsofphp/php-cs-fixer": "2.2.*",
-                "phpunit/phpunit": "^4.8 || ^5.7 || ^6.5 || ^7.5 || ^8.4"
+                "friendsofphp/php-cs-fixer": "^2.2",
+                "phpunit/phpunit": "^4.8 || ^5.7 || ^6.5 || ^7.5 || ^8.4 || ^9.3"
             },
             "suggest": {
                 "ext-gd": "to use the GD implementation",
@@ -2560,7 +2561,7 @@
                 "image manipulation",
                 "image processing"
             ],
-            "time": "2019-12-04T09:55:33+00:00"
+            "time": "2020-11-03T22:35:03+00:00"
         },
         {
             "name": "jdorn/sql-formatter",
@@ -4387,6 +4388,58 @@
             "time": "2020-06-29T06:28:15+00:00"
         },
         {
+            "name": "psr/http-factory",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-fig/http-factory.git",
+                "reference": "12ac7fcd07e5b077433f5f2bee95b3a771bf61be"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-fig/http-factory/zipball/12ac7fcd07e5b077433f5f2bee95b3a771bf61be",
+                "reference": "12ac7fcd07e5b077433f5f2bee95b3a771bf61be",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0.0",
+                "psr/http-message": "^1.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Psr\\Http\\Message\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "PHP-FIG",
+                    "homepage": "http://www.php-fig.org/"
+                }
+            ],
+            "description": "Common interfaces for PSR-7 HTTP message factories",
+            "keywords": [
+                "factory",
+                "http",
+                "message",
+                "psr",
+                "psr-17",
+                "psr-7",
+                "request",
+                "response"
+            ],
+            "time": "2019-04-30T12:38:16+00:00"
+        },
+        {
             "name": "psr/http-message",
             "version": "1.0.1",
             "source": {
@@ -5947,16 +6000,16 @@
         },
         {
             "name": "sonata-project/media-bundle",
-            "version": "3.27.0",
+            "version": "3.28.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataMediaBundle.git",
-                "reference": "36287cbca6fe3dc06f76e99cce3cb0d74ec2aae1"
+                "reference": "99dcae1bd84e20ba35b70ceb0c19697246c55081"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataMediaBundle/zipball/36287cbca6fe3dc06f76e99cce3cb0d74ec2aae1",
-                "reference": "36287cbca6fe3dc06f76e99cce3cb0d74ec2aae1",
+                "url": "https://api.github.com/repos/sonata-project/SonataMediaBundle/zipball/99dcae1bd84e20ba35b70ceb0c19697246c55081",
+                "reference": "99dcae1bd84e20ba35b70ceb0c19697246c55081",
                 "shasum": ""
             },
             "require": {
@@ -5966,6 +6019,9 @@
                 "knplabs/gaufrette": "^0.8 || ^0.9",
                 "kriswallsmith/buzz": "^0.15 || ^0.16",
                 "php": "^7.2",
+                "psr/http-client": "^1.0",
+                "psr/http-factory": "^1.0",
+                "psr/http-message": "^1.0",
                 "psr/log": "^1.0",
                 "sonata-project/doctrine-extensions": "^1.8",
                 "sonata-project/form-extensions": "^0.1.2 || ^1.4",
@@ -5975,7 +6031,7 @@
                 "symfony/dependency-injection": "^4.4",
                 "symfony/event-dispatcher": "^4.4",
                 "symfony/filesystem": "^4.4 || ^5.1",
-                "symfony/finder": "^4.4",
+                "symfony/finder": "^4.4 || ^5.1",
                 "symfony/form": "^4.4",
                 "symfony/framework-bundle": "^4.4",
                 "symfony/http-foundation": "^4.4",
@@ -5989,12 +6045,13 @@
                 "symfony/translation": "^4.4",
                 "symfony/twig-bridge": "^4.4",
                 "symfony/twig-bundle": "^4.4",
-                "symfony/validator": "^4.4",
+                "symfony/validator": "^4.4 || ^5.1",
                 "twig/string-extra": "^3.0",
                 "twig/twig": "^2.12.1"
             },
             "conflict": {
                 "doctrine/dbal": "<2.6.0",
+                "doctrine/mongodb-odm": "<2.0",
                 "friendsofsymfony/rest-bundle": "<2.6",
                 "jms/serializer": "<0.13",
                 "liip/imagine-bundle": "<1.9",
@@ -6007,21 +6064,21 @@
                 "symfony/monolog-bundle": "<2.4"
             },
             "require-dev": {
-                "aws/aws-sdk-php": "^2.8",
+                "aws/aws-sdk-php": "^2.8 || ^3.0",
                 "friendsofsymfony/rest-bundle": "^2.6 || ^3.0",
                 "jackalope/jackalope-doctrine-dbal": "^1.1",
                 "liip/imagine-bundle": "^1.9 || ^2.0",
                 "matthiasnoback/symfony-dependency-injection-test": "^4.0",
                 "nelmio/api-doc-bundle": "^2.13.4",
-                "sonata-project/admin-bundle": "^3.18.3",
+                "sonata-project/admin-bundle": "^3.41",
                 "sonata-project/block-bundle": "^3.17",
                 "sonata-project/datagrid-bundle": "^2.5",
                 "sonata-project/doctrine-orm-admin-bundle": "^3.14",
-                "sonata-project/formatter-bundle": "^3.4 || ^4.0",
                 "sonata-project/notification-bundle": "^3.3",
                 "sonata-project/seo-bundle": "^2.5",
                 "symfony/browser-kit": "^4.4 || ^5.1",
-                "symfony/phpunit-bridge": "^5.1.1",
+                "symfony/http-client": "^4.4 || ^5.1",
+                "symfony/phpunit-bridge": "^5.1.4",
                 "symfony/security-csrf": "^4.4"
             },
             "suggest": {
@@ -6031,6 +6088,7 @@
                 "sonata-project/doctrine-orm-admin-bundle": "^3.0",
                 "sonata-project/notification-bundle": "If you want to generate thumbnails asynchronously.",
                 "sonata-project/seo-bundle": "^2.1",
+                "symfony/http-client": "If you want to load external content",
                 "symfony/monolog-bundle": "If you want to log exceptions produced when dealing with images.",
                 "tilleuls/ckeditor-sonata-media-bundle": "^1.0",
                 "twig/extra-bundle": "Auto configures the Twig Intl extension"
@@ -6073,7 +6131,25 @@
                 "vimeo",
                 "youtube"
             ],
-            "time": "2020-09-02T20:21:14+00:00"
+            "funding": [
+                {
+                    "url": "https://github.com/OskarStark",
+                    "type": "github"
+                },
+                {
+                    "url": "https://github.com/VincentLanglet",
+                    "type": "github"
+                },
+                {
+                    "url": "https://github.com/core23",
+                    "type": "github"
+                },
+                {
+                    "url": "https://github.com/wbloszyk",
+                    "type": "github"
+                }
+            ],
+            "time": "2020-10-30T17:27:18+00:00"
         },
         {
             "name": "sonata-project/news-bundle",
@@ -10720,16 +10796,16 @@
         },
         {
             "name": "symfony/security-bundle",
-            "version": "v4.4.13",
+            "version": "v4.4.16",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/security-bundle.git",
-                "reference": "ad026271cc5d1b2f57e8f5fbe9f3acc75bd2181e"
+                "reference": "fedaba9b8c1be0555831f009ec54f5e3ed34d8aa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/security-bundle/zipball/ad026271cc5d1b2f57e8f5fbe9f3acc75bd2181e",
-                "reference": "ad026271cc5d1b2f57e8f5fbe9f3acc75bd2181e",
+                "url": "https://api.github.com/repos/symfony/security-bundle/zipball/fedaba9b8c1be0555831f009ec54f5e3ed34d8aa",
+                "reference": "fedaba9b8c1be0555831f009ec54f5e3ed34d8aa",
                 "shasum": ""
             },
             "require": {
@@ -10770,11 +10846,6 @@
                 "twig/twig": "^1.41|^2.10|^3.0"
             },
             "type": "symfony-bundle",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "4.4-dev"
-                }
-            },
             "autoload": {
                 "psr-4": {
                     "Symfony\\Bundle\\SecurityBundle\\": ""
@@ -10813,7 +10884,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-08-18T08:04:43+00:00"
+            "time": "2020-10-24T11:50:19+00:00"
         },
         {
             "name": "symfony/security-core",
@@ -10967,16 +11038,16 @@
         },
         {
             "name": "symfony/security-guard",
-            "version": "v4.4.14",
+            "version": "v4.4.16",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/security-guard.git",
-                "reference": "95b7f702c4f07c44504a81c69ef07036e68b96b9"
+                "reference": "872a648d28fc06bc34ba7b1e4236065e03aae5b7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/security-guard/zipball/95b7f702c4f07c44504a81c69ef07036e68b96b9",
-                "reference": "95b7f702c4f07c44504a81c69ef07036e68b96b9",
+                "url": "https://api.github.com/repos/symfony/security-guard/zipball/872a648d28fc06bc34ba7b1e4236065e03aae5b7",
+                "reference": "872a648d28fc06bc34ba7b1e4236065e03aae5b7",
                 "shasum": ""
             },
             "require": {
@@ -10988,11 +11059,6 @@
                 "psr/log": "~1.0"
             },
             "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "4.4-dev"
-                }
-            },
             "autoload": {
                 "psr-4": {
                     "Symfony\\Component\\Security\\Guard\\": ""
@@ -11031,20 +11097,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-09-02T16:08:58+00:00"
+            "time": "2020-10-24T11:50:19+00:00"
         },
         {
             "name": "symfony/security-http",
-            "version": "v4.4.15",
+            "version": "v4.4.16",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/security-http.git",
-                "reference": "eddcd6b7372d430a47091fa5e5d733785b5a582b"
+                "reference": "8a3077e266fb8bf7cc5567a67749b8937ca4d90a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/security-http/zipball/eddcd6b7372d430a47091fa5e5d733785b5a582b",
-                "reference": "eddcd6b7372d430a47091fa5e5d733785b5a582b",
+                "url": "https://api.github.com/repos/symfony/security-http/zipball/8a3077e266fb8bf7cc5567a67749b8937ca4d90a",
+                "reference": "8a3077e266fb8bf7cc5567a67749b8937ca4d90a",
                 "shasum": ""
             },
             "require": {
@@ -11068,11 +11134,6 @@
                 "symfony/security-csrf": "For using tokens to protect authentication/logout attempts"
             },
             "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "4.4-dev"
-                }
-            },
             "autoload": {
                 "psr-4": {
                     "Symfony\\Component\\Security\\Http\\": ""
@@ -11111,7 +11172,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-09-02T16:08:58+00:00"
+            "time": "2020-10-24T11:50:19+00:00"
         },
         {
             "name": "symfony/serializer",
@@ -11502,16 +11563,16 @@
         },
         {
             "name": "symfony/templating",
-            "version": "v4.4.15",
+            "version": "v4.4.16",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/templating.git",
-                "reference": "7c5e32de7cf3efe9a11def8eaedc7901ec7b22b6"
+                "reference": "fcb67846db4de1bbb8cc970394b8d2bea15b704b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/templating/zipball/7c5e32de7cf3efe9a11def8eaedc7901ec7b22b6",
-                "reference": "7c5e32de7cf3efe9a11def8eaedc7901ec7b22b6",
+                "url": "https://api.github.com/repos/symfony/templating/zipball/fcb67846db4de1bbb8cc970394b8d2bea15b704b",
+                "reference": "fcb67846db4de1bbb8cc970394b8d2bea15b704b",
                 "shasum": ""
             },
             "require": {
@@ -11525,11 +11586,6 @@
                 "psr/log-implementation": "For using debug logging in loaders"
             },
             "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "4.4-dev"
-                }
-            },
             "autoload": {
                 "psr-4": {
                     "Symfony\\Component\\Templating\\": ""
@@ -11568,7 +11624,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-09-02T16:08:58+00:00"
+            "time": "2020-10-24T11:50:19+00:00"
         },
         {
             "name": "symfony/translation",
@@ -12385,7 +12441,7 @@
         },
         {
             "name": "twig/string-extra",
-            "version": "v3.0.5",
+            "version": "v3.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/string-extra.git",
@@ -12437,18 +12493,6 @@
                 "unicode"
             ],
             "funding": [
-                {
-                    "url": "https://certification.symfony.com/",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://live.symfony.com/",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://symfony.com/cloud/",
-                    "type": "custom"
-                },
                 {
                     "url": "https://github.com/fabpot",
                     "type": "github"
