@@ -12831,16 +12831,16 @@
     "packages-dev": [
         {
             "name": "behat/behat",
-            "version": "v3.8.0",
+            "version": "v3.8.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Behat/Behat.git",
-                "reference": "304661d4bc00934314c835c79fe36c0ce38da268"
+                "reference": "fbb065457d523d9856d4b50775b4151a7598b510"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Behat/Behat/zipball/304661d4bc00934314c835c79fe36c0ce38da268",
-                "reference": "304661d4bc00934314c835c79fe36c0ce38da268",
+                "url": "https://api.github.com/repos/Behat/Behat/zipball/fbb065457d523d9856d4b50775b4151a7598b510",
+                "reference": "fbb065457d523d9856d4b50775b4151a7598b510",
                 "shasum": ""
             },
             "require": {
@@ -12907,7 +12907,7 @@
                 "symfony",
                 "testing"
             ],
-            "time": "2020-11-01T16:09:28+00:00"
+            "time": "2020-11-07T15:55:18+00:00"
         },
         {
             "name": "behat/gherkin",
