@@ -222,8 +222,8 @@ class ApiFeatureContext implements Context
             throw new Exception(sprintf('The response content should be json or xml to count number or elements'));
         }
 
-        $responsePerPage = isset($data->per_page) ? $data->per_page : 0;
-        $responsePage = isset($data->page) ? $data->page : 0;
+        $responsePerPage = $data->per_page ?? 0;
+        $responsePage = $data->page ?? 0;
 
         if ($responsePage !== $page) {
             throw new Exception(sprintf('The response should display page %s, page %s displayed', $page, $responsePage));
@@ -552,7 +552,7 @@ TABLE
             foreach ($post->getRowsHash() as $key => $val) {
                 if (preg_match('/^<(.*)>$/', $val)) {
                     $alias = str_replace(['<', '>'], null, $val);
-                    $val = isset($this->identifiers[$alias]) ? $this->identifiers[$alias] : $val;
+                    $val = $this->identifiers[$alias] ?? $val;
                 }
 
                 $fields[$key] = $val;
