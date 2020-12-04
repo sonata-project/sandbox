@@ -1,6 +1,6 @@
 twig:
     default_path: '%kernel.project_dir%/templates'
-    debug:            '%kernel.debug%'
+    debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
 
     base_template_class: Sonata\CacheBundle\Twig\TwigTemplate14

@@ -1,6 +1,26 @@
-#
+# yamllint disable rule:braces
 # more information can be found here https://sonata-project.org/bundles/user
 #
+# if you change the class configuration, please also alter the fos_user.yml file
+sonata_user:
+    class:
+        user: App\Entity\User\User
+        group: App\Entity\User\Group
+
+    security_acl: false
+    table:
+        user_group: fos_user_user_group
+
+    impersonating:
+        route: page_slug
+        parameters: { path: / }
+
+    google_authenticator:
+        server: '%sonata_user.google_authenticator.server%'
+        enabled: true
+
+    manager_type: orm
+
 # Enable Doctrine to map the provided entities
 doctrine:
     orm:
@@ -9,23 +29,3 @@ doctrine:
                 mappings:
                     FOSUserBundle: ~
                     SonataUserBundle: ~
-
-# if you change the class configuration, please also alter the fos_user.yml file
-sonata_user:
-    class:
-        user:  App\Entity\User\User
-        group: App\Entity\User\Group
-
-    security_acl:             false
-    table:
-        user_group:           fos_user_user_group
-
-    impersonating:
-        route:                page_slug
-        parameters:           { path: / }
-
-    google_authenticator:
-        server:               '%sonata_user.google_authenticator.server%'
-        enabled:              true
-
-    manager_type:             orm

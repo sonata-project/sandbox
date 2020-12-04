@@ -25,8 +25,8 @@ sonata_customer:
                 domain: 'SonataCustomerBundle'
                 route_parameters: {}
             -
-                route:  'sonata_order_index'
-                label:  'order_list'
+                route: 'sonata_order_index'
+                label: 'order_list'
                 domain: 'SonataOrderBundle'
                 route_parameters: {}
 
@@ -54,9 +54,9 @@ sonata_customer:
                     mode: public
     class:
         customer: App\Entity\Commerce\Customer
-        address:  App\Entity\Commerce\Address
-        order:    App\Entity\Commerce\Order
-        user:     App\Entity\User\User
+        address: App\Entity\Commerce\Address
+        order: App\Entity\Commerce\Order
+        user: App\Entity\User\User
 
 doctrine:
     orm:

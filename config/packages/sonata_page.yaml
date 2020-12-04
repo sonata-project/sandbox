@@ -1,6 +1,5 @@
-#
+# yamllint disable rule:braces
 # more information can be found here https://sonata-project.org/bundles/page
-#
 cmf_routing:
     chain:
         routers_by_id:
@@ -13,12 +12,12 @@ cmf_routing:
 sonata_page:
     slugify_service: 'sonata.page.slugify.cocur'
     class:
-        site:     App\Entity\Page\Site
+        site: App\Entity\Page\Site
         snapshot: App\Entity\Page\Snapshot
-        page:     App\Entity\Page\Page
-        block:    App\Entity\Page\Block
+        page: App\Entity\Page\Page
+        block: App\Entity\Page\Block
 
-    multisite:             host_with_path # host
+    multisite: host_with_path # host
     use_streamed_response: false # set the value to false in debug mode or if the reverse proxy does not handle streamed response
 
     ignore_uri_patterns:
@@ -41,7 +40,7 @@ sonata_page:
         - sonata_cache_apc
 
     cache_invalidation:
-        service:  sonata.page.cache.invalidation.simple
+        service: sonata.page.cache.invalidation.simple
         recorder: sonata.page.cache.recorder
         classes:
             Application\Sonata\PageBundle\Entity\Block: getId
@@ -76,81 +75,81 @@ sonata_page:
             path: 'demo_layout.html.twig'
             name: 'default'
             containers:
-                 header:
-                     name: Header
-                     blocks:
+                header:
+                    name: Header
+                    blocks:
                         - sonata.block.service.text
-                 content_top:
-                     name: Top content
-                 content:
-                     name: Main content
-                 content_bottom:
-                     name: Bottom content
-                 footer:
-                     name: Footer
+                content_top:
+                    name: Top content
+                content:
+                    name: Main content
+                content_bottom:
+                    name: Bottom content
+                footer:
+                    name: Footer
             matrix:
-                 layout: |
-                     HHHHHHHH
-                     TTTTTTTT
-                     CCCCCCCC
-                     BBBBBBBB
-                     FFFFFFFF
+                layout: |
+                    HHHHHHHH
+                    TTTTTTTT
+                    CCCCCCCC
+                    BBBBBBBB
+                    FFFFFFFF
 
-                 mapping:
-                     H: header
-                     T: content_top
-                     C: content
-                     B: content_bottom
-                     F: footer
+                mapping:
+                    H: header
+                    T: content_top
+                    C: content
+                    B: content_bottom
+                    F: footer
 
         2columns:
             path: 'demo_2columns_layout.html.twig'
             name: '2 columns layout'
             containers:
-                 header:
-                     name: Header
-                 content_top:
-                     name: Top content
-                 left_col:
-                     name: Left content
-                 right_col:
-                     name: Right content
-                 content_bottom:
-                     name: Bottom content
-                 footer:
-                     name: Footer
+                header:
+                    name: Header
+                content_top:
+                    name: Top content
+                left_col:
+                    name: Left content
+                right_col:
+                    name: Right content
+                content_bottom:
+                    name: Bottom content
+                footer:
+                    name: Footer
             matrix:
-                 layout: |
-                     HHHHHHHH
-                     TTTTTTTT
-                     LLLLRRRR
-                     BBBBBBBB
-                     FFFFFFFF
+                layout: |
+                    HHHHHHHH
+                    TTTTTTTT
+                    LLLLRRRR
+                    BBBBBBBB
+                    FFFFFFFF
 
-                 mapping:
-                     H: header
-                     T: content_top
-                     L: left_col
-                     R: right_col
-                     B: content_bottom
-                     F: footer
+                mapping:
+                    H: header
+                    T: content_top
+                    L: left_col
+                    R: right_col
+                    B: content_bottom
+                    F: footer
 
     page_defaults:
         homepage: { decorate: false, enabled: true }
 
     caches:
         esi:
-            token:    add an unique token here # default is a random value
-            version:  3                        # version 3 is the default on debian wheezy ...
+            token: add an unique token here # default is a random value
+            version: 3                        # version 3 is the default on debian wheezy ...
             servers:
                 # you need to ajust this configuration to match your varnish configuration
                 - '%sonata_page.varnish.command%'
         ssi:
-            token:    add an unique token here # default is a random value
+            token: add an unique token here # default is a random value
 
     catch_exceptions:
         not_found: [404]    # render 404 page with "not_found" key (name generated: _page_internal_error_{key})
-        fatal:     [500]    # so you can use the same page for different http errors or specify specific page for each error
+        fatal: [500]    # so you can use the same page for different http errors or specify specific page for each error
 
 
 # Enable Doctrine to map the provided entities

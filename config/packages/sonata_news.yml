@@ -1,19 +1,17 @@
-#
 # more information can be found here https://sonata-project.org/bundles/news
-#
 sonata_news:
     class:
-        post:       App\Entity\News\Post
-        comment:    App\Entity\News\Comment
-        tag:        App\Entity\Classification\Tag
+        post: App\Entity\News\Post
+        comment: App\Entity\News\Comment
+        tag: App\Entity\Classification\Tag
         collection: App\Entity\Classification\Collection
-        user:       App\Entity\User\User
-        media:      App\Entity\Media\Media
+        user: App\Entity\User\User
+        media: App\Entity\Media\Media
 
-    title:        '%sonata_news.blog_title%'
-    link:         '%sonata_news.blog_link%'
-    description:  '%sonata_news.blog_description%'
-    salt:         '%sonata_news.salt%'
+    title: '%sonata_news.blog_title%'
+    link: '%sonata_news.blog_link%'
+    description: '%sonata_news.blog_description%'
+    salt: '%sonata_news.salt%'
 
     # permalink_generator: sonata.news.permalink.category # /party/new-year
     permalink_generator: sonata.news.permalink.date # /2011/12/31/new-year
@@ -21,8 +19,8 @@ sonata_news:
     # comment options
     comment:
         notification:
-            emails:   '%sonata_news.comment.emails%'
-            from:     '%sonata_news.comment.email_from%'
+            emails: '%sonata_news.comment.emails%'
+            from: '%sonata_news.comment.email_from%'
             template: 'SonataNewsBundle:Mail:comment_notification.txt.twig'
 
 
