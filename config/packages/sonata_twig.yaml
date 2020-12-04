@@ -1,3 +1,4 @@
+# yamllint disable rule:braces
 sonata_twig:
   form_type: standard
   flashmessage:

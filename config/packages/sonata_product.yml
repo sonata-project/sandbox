@@ -1,27 +1,37 @@
 sonata_product:
     class:
-        product:            App\Entity\Commerce\Product
-        package:            App\Entity\Commerce\Package
-        product_category:   App\Entity\Commerce\ProductCategory
+        product: App\Entity\Commerce\Product
+        package: App\Entity\Commerce\Package
+        product_category: App\Entity\Commerce\ProductCategory
         product_collection: App\Entity\Commerce\ProductCollection
-        delivery:           App\Entity\Commerce\Delivery
-        category:           App\Entity\Classification\Category
-        collection:         App\Entity\Classification\Collection
-        media:              App\Entity\Media\Media
-        gallery:            App\Entity\Media\Gallery
+        delivery: App\Entity\Commerce\Delivery
+        category: App\Entity\Classification\Category
+        collection: App\Entity\Classification\Collection
+        media: App\Entity\Media\Media
+        gallery: App\Entity\Media\Gallery
 
     products:
         # Goodies
         sonata.ecommerce_demo.product.goodie:
             provider: sonata.ecommerce_demo.product.goodie.type
-            manager:  sonata.ecommerce_demo.product.goodie.manager
+            manager: sonata.ecommerce_demo.product.goodie.manager
 
         # Travel
         sonata.ecommerce_demo.product.travel:
-            provider:   sonata.ecommerce_demo.product.travel.type
-            manager:    sonata.ecommerce_demo.product.travel.manager
+            provider: sonata.ecommerce_demo.product.travel.type
+            manager: sonata.ecommerce_demo.product.travel.manager
             variations:
-                fields: [travellers, travelDays, sku, slug, name, price, stock, vatRate, priceIncludingVat, enabled]
+                fields:
+                    - travellers
+                    - travelDays
+                    - sku
+                    - slug
+                    - name
+                    - price
+                    - stock
+                    - vatRate
+                    - priceIncludingVat
+                    - enabled
 
     seo:
         product:
@@ -30,8 +40,6 @@ sonata_product:
             domain: 'http://demo.sonata-project.org'
             media_prefix: 'http://demo.sonata-project.org'
             media_format: 'reference'
-
-
 
 # Enable Doctrine to map the provided entities
 doctrine:

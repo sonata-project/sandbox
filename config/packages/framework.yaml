@@ -1,6 +1,7 @@
 framework:
     #csrf_protection: true
-    fragments: { path: /_fragment }
+    fragments:
+        path: /_fragment
     #http_method_override: true
     secret: '%env(APP_SECRET)%'
 

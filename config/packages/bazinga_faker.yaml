@@ -17,7 +17,8 @@ bazinga_faker:
                         - 5
                 paymentStatus:
                     method: randomElement
-                    parameters: [ [ '0', '1', '2', '3', '4', '9', '10', '11', '12' ] ]
+                    parameters:
+                        - ['0', '1', '2', '3', '4', '9', '10', '11', '12']
                 billingAddress1:
                     method: streetAddress
                 billingAddress2:
@@ -29,7 +30,7 @@ bazinga_faker:
                 billingCountryCode:
                     method: randomElement
                     parameters:
-                        - [ 'EN', 'FR' ]
+                        - ['EN', 'FR']
                 billingName:
                     method: word
                 billingPhone:
@@ -54,7 +55,7 @@ bazinga_faker:
                 shippingCountryCode:
                     method: randomElement
                     parameters:
-                        - [ 'EN', 'FR' ]
+                        - ['EN', 'FR']
                 shippingName:
                     method: word
                 shippingPhone:
@@ -97,7 +98,7 @@ bazinga_faker:
                 country:
                     method: randomElement
                     parameters:
-                        - [ 'EN', 'FR' ]
+                        - ['EN', 'FR']
                 name:
                     method: word
                 phone:

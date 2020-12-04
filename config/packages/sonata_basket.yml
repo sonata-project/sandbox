@@ -1,12 +1,12 @@
 sonata_basket:
     class:
-        basket:         App\Entity\Commerce\Basket
+        basket: App\Entity\Commerce\Basket
         basket_element: App\Entity\Commerce\BasketElement
-        customer:       App\Entity\Commerce\Customer
+        customer: App\Entity\Commerce\Customer
 
-    builder:            sonata.basket.builder.standard
-    factory:            sonata.basket.entity.factory
-    loader:             sonata.basket.loader.standard
+    builder: sonata.basket.builder.standard
+    factory: sonata.basket.entity.factory
+    loader: sonata.basket.loader.standard
 
 # Enable Doctrine to map the provided entities
 doctrine:

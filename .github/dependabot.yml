@@ -1,14 +1,14 @@
 version: 2
 
 updates:
-    -   allow:
-            -   dependency-type: "direct"
-        target-branch: master
-        directory: "/"
-        labels:
-            - "dependencies"
-        open-pull-requests-limit: 99
-        package-ecosystem: composer
-        schedule:
-            interval: daily
-        versioning-strategy: "lockfile-only"
+    - allow:
+          - dependency-type: "direct"
+            target-branch: master
+            directory: "/"
+            labels:
+                - "dependencies"
+            open-pull-requests-limit: 99
+            package-ecosystem: composer
+            schedule:
+                interval: daily
+            versioning-strategy: "lockfile-only"

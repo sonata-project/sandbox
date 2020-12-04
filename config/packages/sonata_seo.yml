@@ -1,33 +1,32 @@
-#
+# yamllint disable rule:braces
 # more information can be found here https://sonata-project.org/bundles/page
-#
 sonata_seo:
-    encoding:             UTF-8
+    encoding: UTF-8
     page:
-        default:          sonata.seo.page.default
-        title:            Sonata Project
+        default: sonata.seo.page.default
+        title: Sonata Project
         metas:
             name:
-                keywords:             foo bar
-                description:          The description
-                robots:               index, follow
+                keywords: foo bar
+                description: The description
+                robots: index, follow
 
             property:
                 # Facebook application settings
-                #'fb:app_id':          XXXXXX
-                #'fb:admins':          admin1, admin2
+                #'fb:app_id': XXXXXX
+                #'fb:admins': admin1, admin2
 
                 # Open Graph information
                 # see http://developers.facebook.com/docs/opengraphprotocol/#types or http://ogp.me/
-                'og:site_name':       Sonata Project Sandbox
-                'og:description':     A demo of the some rich bundles for your Symfony2 projects
+                'og:site_name': Sonata Project Sandbox
+                'og:description': A demo of the some rich bundles for your Symfony2 projects
 
             http-equiv:
-                'Content-Type':         text/html; charset=utf-8
-                #'X-Ua-Compatible':      IE=EmulateIE7
+                'Content-Type': text/html; charset=utf-8
+                #'X-Ua-Compatible': IE=EmulateIE7
 
         head:
-            'xmlns':              http://www.w3.org/1999/xhtml
+            'xmlns': http://www.w3.org/1999/xhtml
 
     sitemap:
         services:
