@@ -5927,20 +5927,20 @@
         },
         {
             "name": "sonata-project/intl-bundle",
-            "version": "2.9.0",
+            "version": "2.10.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataIntlBundle.git",
-                "reference": "86881b54996e3a5bdacfa92c6a0deedb7fd830eb"
+                "reference": "a8f11f66344dd17db159ebdb92f6b9e38900131e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataIntlBundle/zipball/86881b54996e3a5bdacfa92c6a0deedb7fd830eb",
-                "reference": "86881b54996e3a5bdacfa92c6a0deedb7fd830eb",
+                "url": "https://api.github.com/repos/sonata-project/SonataIntlBundle/zipball/a8f11f66344dd17db159ebdb92f6b9e38900131e",
+                "reference": "a8f11f66344dd17db159ebdb92f6b9e38900131e",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.2",
+                "php": "^7.3 || ^8.0",
                 "symfony/config": "^4.4 || ^5.1",
                 "symfony/dependency-injection": "^4.4 || ^5.1",
                 "symfony/http-foundation": "^4.4 || ^5.1",
@@ -5953,8 +5953,9 @@
                 "sonata-project/user-bundle": "<3.6"
             },
             "require-dev": {
+                "matthiasnoback/symfony-config-test": "^4.2",
                 "matthiasnoback/symfony-dependency-injection-test": "^4.0",
-                "symfony/phpunit-bridge": "^5.1",
+                "symfony/phpunit-bridge": "^5.1.8",
                 "symfony/security-core": "^4.4 || ^5.1"
             },
             "type": "symfony-bundle",
@@ -5991,7 +5992,25 @@
                 "sonata",
                 "time"
             ],
-            "time": "2020-08-09T21:46:43+00:00"
+            "funding": [
+                {
+                    "url": "https://github.com/OskarStark",
+                    "type": "github"
+                },
+                {
+                    "url": "https://github.com/VincentLanglet",
+                    "type": "github"
+                },
+                {
+                    "url": "https://github.com/core23",
+                    "type": "github"
+                },
+                {
+                    "url": "https://github.com/wbloszyk",
+                    "type": "github"
+                }
+            ],
+            "time": "2020-12-04T19:56:04+00:00"
         },
         {
             "name": "sonata-project/media-bundle",
@@ -11579,7 +11598,7 @@
         },
         {
             "name": "symfony/templating",
-            "version": "v4.4.16",
+            "version": "v4.4.17",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/templating.git",
