@@ -195,7 +195,7 @@ class ApiFeatureContext implements Context
             $data = json_decode($responseContent);
             $found = isset($data->entries) ? count($data->entries) : 0;
         } else {
-            throw new Exception(sprintf('The response content should be json or xml to count number or elements'));
+            throw new Exception('The response content should be json or xml to count number or elements');
         }
 
         if ($found !== $count) {
@@ -219,7 +219,7 @@ class ApiFeatureContext implements Context
         } elseif (strstr($responseContentType, 'application/json')) {
             $data = json_decode($responseContent);
         } else {
-            throw new Exception(sprintf('The response content should be json or xml to count number or elements'));
+            throw new Exception('The response content should be json or xml to count number or elements');
         }
 
         $responsePerPage = $data->per_page ?? 0;
@@ -251,7 +251,7 @@ class ApiFeatureContext implements Context
             $data = json_decode($responseContent);
             $count = isset($data->entries) ? count($data->entries) : 0;
         } else {
-            throw new Exception(sprintf('The response content should be json or xml to count number or elements'));
+            throw new Exception('The response content should be json or xml to count number or elements');
         }
 
         $perPage = isset($data->per_page) ? (int) $data->per_page : 0;
@@ -260,7 +260,7 @@ class ApiFeatureContext implements Context
         $currentPage = isset($data->page) ? (int) $data->page : 0;
 
         if ($totalElement > 0 && $lastPage !== ceil($totalElement / $perPage)) {
-            throw new Exception(sprintf('The pager per_page value is inconsistent'));
+            throw new Exception('The pager per_page value is inconsistent');
         }
 
         if ($totalElement < ($currentPage * $perPage)) {
@@ -300,7 +300,7 @@ class ApiFeatureContext implements Context
             $data = json_decode($responseContent);
             $firstElement = isset($data->entries) ? $data->entries[0] : [];
         } else {
-            throw new Exception(sprintf('The response content should be json or xml to count number or elements'));
+            throw new Exception('The response content should be json or xml to count number or elements');
         }
 
         $found = false;
