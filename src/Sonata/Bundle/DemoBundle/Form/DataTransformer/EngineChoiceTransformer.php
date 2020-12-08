@@ -17,7 +17,7 @@ use Symfony\Component\Form\DataTransformerInterface;
 
 final class EngineChoiceTransformer implements DataTransformerInterface
 {
-    protected $choices;
+    private $choices;
 
     public function __construct(array $choices)
     {
