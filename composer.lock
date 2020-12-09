@@ -705,16 +705,16 @@
         },
         {
             "name": "doctrine/doctrine-bundle",
-            "version": "1.12.12",
+            "version": "1.12.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/DoctrineBundle.git",
-                "reference": "5a94ec5c9081ddf10061b95e0c140dc260d6b6d3"
+                "reference": "85460b85edd8f61a16ad311e7ffc5d255d3c937c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/DoctrineBundle/zipball/5a94ec5c9081ddf10061b95e0c140dc260d6b6d3",
-                "reference": "5a94ec5c9081ddf10061b95e0c140dc260d6b6d3",
+                "url": "https://api.github.com/repos/doctrine/DoctrineBundle/zipball/85460b85edd8f61a16ad311e7ffc5d255d3c937c",
+                "reference": "85460b85edd8f61a16ad311e7ffc5d255d3c937c",
                 "shasum": ""
             },
             "require": {
@@ -809,7 +809,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-11-10T20:24:48+00:00"
+            "time": "2020-11-14T13:38:44+00:00"
         },
         {
             "name": "doctrine/doctrine-cache-bundle",
@@ -8098,16 +8098,16 @@
         },
         {
             "name": "symfony/doctrine-bridge",
-            "version": "v4.4.16",
+            "version": "v4.4.17",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/doctrine-bridge.git",
-                "reference": "12ce8950c685afb954026c2d0c975dfed3fc32f3"
+                "reference": "cc9cc380f51c3ab7ad396fad8b30fc184894e6c1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/doctrine-bridge/zipball/12ce8950c685afb954026c2d0c975dfed3fc32f3",
-                "reference": "12ce8950c685afb954026c2d0c975dfed3fc32f3",
+                "url": "https://api.github.com/repos/symfony/doctrine-bridge/zipball/cc9cc380f51c3ab7ad396fad8b30fc184894e6c1",
+                "reference": "cc9cc380f51c3ab7ad396fad8b30fc184894e6c1",
                 "shasum": ""
             },
             "require": {
@@ -8135,7 +8135,6 @@
                 "doctrine/data-fixtures": "^1.1",
                 "doctrine/dbal": "~2.4|^3.0",
                 "doctrine/orm": "^2.6.3",
-                "doctrine/reflection": "~1.0",
                 "symfony/config": "^4.2|^5.0",
                 "symfony/dependency-injection": "^3.4|^4.0|^5.0",
                 "symfony/expression-language": "^3.4|^4.0|^5.0",
@@ -8198,7 +8197,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-10-24T11:50:19+00:00"
+            "time": "2020-11-09T19:21:10+00:00"
         },
         {
             "name": "symfony/dom-crawler",
