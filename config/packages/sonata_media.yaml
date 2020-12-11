@@ -97,7 +97,7 @@ sonata_media:
     resizer:
         simple:
 #            mode: outbound
-            mode:inset
+            mode: inset
 
 #
 # The LiipImagineBundle can be used if you want to convert on demand an image
