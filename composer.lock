@@ -5590,20 +5590,20 @@
         },
         {
             "name": "sonata-project/exporter",
-            "version": "2.4.1",
+            "version": "2.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/exporter.git",
-                "reference": "cbf1d4b9dd4d0b43edd63c650435aeee09accea4"
+                "reference": "e5f56efe2b3d6e22b495a5c8cba3f8fe5c3293fd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/exporter/zipball/cbf1d4b9dd4d0b43edd63c650435aeee09accea4",
-                "reference": "cbf1d4b9dd4d0b43edd63c650435aeee09accea4",
+                "url": "https://api.github.com/repos/sonata-project/exporter/zipball/e5f56efe2b3d6e22b495a5c8cba3f8fe5c3293fd",
+                "reference": "e5f56efe2b3d6e22b495a5c8cba3f8fe5c3293fd",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.2"
+                "php": ">=7.3"
             },
             "conflict": {
                 "doctrine/mongodb-odm": "<2.0"
@@ -5612,14 +5612,14 @@
                 "doctrine/dbal": "^2.5",
                 "doctrine/mongodb-odm": "^2.0",
                 "doctrine/orm": "^2.4.5",
-                "matthiasnoback/symfony-config-test": "^4.0",
+                "matthiasnoback/symfony-config-test": "^4.2",
                 "matthiasnoback/symfony-dependency-injection-test": "^4.0",
                 "propel/propel1": "^1.6",
                 "symfony/config": "^4.4 || ^5.1",
                 "symfony/dependency-injection": "^4.4 || ^5.1",
                 "symfony/http-foundation": "^4.4 || ^5.1",
                 "symfony/http-kernel": "^4.4 || ^5.1",
-                "symfony/phpunit-bridge": "^5.1.1",
+                "symfony/phpunit-bridge": "^5.1.8",
                 "symfony/property-access": "^4.4 || ^5.1",
                 "symfony/routing": "^4.4 || ^5.1"
             },
@@ -5674,9 +5674,13 @@
                 {
                     "url": "https://github.com/core23",
                     "type": "github"
+                },
+                {
+                    "url": "https://github.com/wbloszyk",
+                    "type": "github"
                 }
             ],
-            "time": "2020-10-09T18:47:32+00:00"
+            "time": "2021-01-04T21:36:57+00:00"
         },
         {
             "name": "sonata-project/form-extensions",
