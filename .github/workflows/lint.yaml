@@ -17,7 +17,7 @@ jobs:
     php-cs-fixer:
         name: PHP-CS-Fixer
 
-        runs-on: ubuntu-18.04
+        runs-on: ubuntu-latest
 
         steps:
             - name: Checkout
@@ -31,7 +31,7 @@ jobs:
     composer-normalize:
         name: composer-normalize
 
-        runs-on: ubuntu-18.04
+        runs-on: ubuntu-latest
 
         steps:
             - name: Checkout
@@ -45,7 +45,7 @@ jobs:
     yaml-files:
         name: YAML files
 
-        runs-on: ubuntu-18.04
+        runs-on: ubuntu-latest
 
         steps:
             - name: Checkout
@@ -65,7 +65,7 @@ jobs:
     xml-files:
         name: XML files
 
-        runs-on: ubuntu-18.04
+        runs-on: ubuntu-latest
 
         steps:
             - name: Checkout
