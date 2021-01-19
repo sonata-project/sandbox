@@ -366,7 +366,7 @@ class ApiFeatureContext implements Context
         }
 
         if (null !== $message && (0 === count($messages) || !in_array($message, $messages, true))) {
-            throw new Exception(sprintf('Field %s should have "%s" validation error, but only got following errors: %s.', $field, $message, implode(PHP_EOL, $messages)));
+            throw new Exception(sprintf('Field %s should have "%s" validation error, but only got following errors: %s.', $field, $message, implode(\PHP_EOL, $messages)));
         }
     }
 
@@ -503,7 +503,7 @@ TABLE
     public function iSendARequestWithTheBinary($method, $url, $path)
     {
         if ($this->filesPath) {
-            $fullPath = rtrim(realpath($this->filesPath), DIRECTORY_SEPARATOR).DIRECTORY_SEPARATOR.$path;
+            $fullPath = rtrim(realpath($this->filesPath), \DIRECTORY_SEPARATOR).\DIRECTORY_SEPARATOR.$path;
             if (is_file($fullPath)) {
                 $path = $fullPath;
             }
