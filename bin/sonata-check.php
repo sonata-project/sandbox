@@ -47,7 +47,7 @@ if (is_file('app/check.php')) {
     $bin = 'php';
 
     if (defined('PHP_BINARY')) {
-        $bin = PHP_BINARY;
+        $bin = \PHP_BINARY;
     }
 
     exec(sprintf('%s app/check.php', $bin), $output, $exit);
