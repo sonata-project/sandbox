@@ -13670,16 +13670,16 @@
         },
         {
             "name": "symfony/dotenv",
-            "version": "v4.4.18",
+            "version": "v4.4.19",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/dotenv.git",
-                "reference": "2befc49ec50b4d6ffd100b332389260c9069ba1c"
+                "reference": "4952e5ce9e6df3d737b9e9c337bddf781180a213"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/dotenv/zipball/2befc49ec50b4d6ffd100b332389260c9069ba1c",
-                "reference": "2befc49ec50b4d6ffd100b332389260c9069ba1c",
+                "url": "https://api.github.com/repos/symfony/dotenv/zipball/4952e5ce9e6df3d737b9e9c337bddf781180a213",
+                "reference": "4952e5ce9e6df3d737b9e9c337bddf781180a213",
                 "shasum": ""
             },
             "require": {
@@ -13732,7 +13732,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-12-08T16:59:59+00:00"
+            "time": "2021-01-27T09:09:26+00:00"
         },
         {
             "name": "symfony/phpunit-bridge",
