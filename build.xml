@@ -3,7 +3,6 @@
     <target name="initialize-project">
         <!-- TODO: check for existence of app/config/parameters.yml -->
         <property name="app.uploadsDir" value="./public/uploads/media"/>
-        <property name="app.console" value="bin/console"/>
         <if>
             <os family="windows"/>
             <then>
