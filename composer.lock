@@ -12447,16 +12447,16 @@
         },
         {
             "name": "twig/extra-bundle",
-            "version": "v3.2.0",
+            "version": "v3.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/twig-extra-bundle.git",
-                "reference": "2155c7526a94dde076545c1ba423e2b153e000ff"
+                "reference": "e2d27a86c3f47859eb07808fa7c8679d30fcbdde"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/twig-extra-bundle/zipball/2155c7526a94dde076545c1ba423e2b153e000ff",
-                "reference": "2155c7526a94dde076545c1ba423e2b153e000ff",
+                "url": "https://api.github.com/repos/twigphp/twig-extra-bundle/zipball/e2d27a86c3f47859eb07808fa7c8679d30fcbdde",
+                "reference": "e2d27a86c3f47859eb07808fa7c8679d30fcbdde",
                 "shasum": ""
             },
             "require": {
@@ -12518,7 +12518,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-01-05T09:59:10+00:00"
+            "time": "2021-02-06T21:13:17+00:00"
         },
         {
             "name": "twig/intl-extra",
