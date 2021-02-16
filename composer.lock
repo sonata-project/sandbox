@@ -6149,22 +6149,22 @@
         },
         {
             "name": "sonata-project/formatter-bundle",
-            "version": "4.3.0",
+            "version": "4.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataFormatterBundle.git",
-                "reference": "679dc398d47eb9f1e8292a3d5c8c42a71a074c51"
+                "reference": "ea874a7214972c7cd71af2bef4ddb04728497876"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataFormatterBundle/zipball/679dc398d47eb9f1e8292a3d5c8c42a71a074c51",
-                "reference": "679dc398d47eb9f1e8292a3d5c8c42a71a074c51",
+                "url": "https://api.github.com/repos/sonata-project/SonataFormatterBundle/zipball/ea874a7214972c7cd71af2bef4ddb04728497876",
+                "reference": "ea874a7214972c7cd71af2bef4ddb04728497876",
                 "shasum": ""
             },
             "require": {
                 "friendsofsymfony/ckeditor-bundle": "^1.0 || ^2.0",
                 "knplabs/knp-markdown-bundle": "^1.7",
-                "php": "^7.2",
+                "php": "^7.3",
                 "psr/log": "^1.0",
                 "sonata-project/block-bundle": "^3.16.1",
                 "sonata-project/form-extensions": "^0.1 || ^1.4",
@@ -6179,19 +6179,20 @@
                 "symfony/property-access": "^4.4 || ^5.1",
                 "symfony/translation": "^4.4",
                 "symfony/twig-bridge": "^4.4",
-                "symfony/validator": "^4.4",
+                "symfony/validator": "^4.4 || ^5.1",
                 "twig/twig": "^2.12.1"
             },
             "conflict": {
-                "sonata-project/admin-bundle": "<3.27",
+                "sonata-project/admin-bundle": "<3.34",
                 "sonata-project/core-bundle": "<3.20",
                 "sonata-project/media-bundle": "<3.20"
             },
             "require-dev": {
+                "matthiasnoback/symfony-config-test": "^4.2",
                 "matthiasnoback/symfony-dependency-injection-test": "^4.1",
-                "sonata-project/admin-bundle": "^3.31",
+                "sonata-project/admin-bundle": "^3.34",
                 "sonata-project/media-bundle": "^3.10",
-                "symfony/phpunit-bridge": "^5.1.1"
+                "symfony/phpunit-bridge": "^5.1.8"
             },
             "suggest": {
                 "sonata-project/admin-bundle": "For using the admin media browser.",
@@ -6234,7 +6235,7 @@
             ],
             "support": {
                 "issues": "https://github.com/sonata-project/SonataFormatterBundle/issues",
-                "source": "https://github.com/sonata-project/SonataFormatterBundle/tree/4.3.0"
+                "source": "https://github.com/sonata-project/SonataFormatterBundle/tree/4.4.0"
             },
             "funding": [
                 {
@@ -6248,9 +6249,13 @@
                 {
                     "url": "https://github.com/core23",
                     "type": "github"
+                },
+                {
+                    "url": "https://github.com/wbloszyk",
+                    "type": "github"
                 }
             ],
-            "time": "2020-09-25T15:33:50+00:00"
+            "time": "2021-02-15T20:57:31+00:00"
         },
         {
             "name": "sonata-project/google-authenticator",
