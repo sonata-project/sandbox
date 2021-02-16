@@ -7110,21 +7110,21 @@
         },
         {
             "name": "sonata-project/twig-extensions",
-            "version": "1.4.1",
+            "version": "1.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/twig-extensions.git",
-                "reference": "8da644925839610128c74ce9c8f5c23b7c4b5efd"
+                "reference": "05a4b2c082e4c45bf5504ac5a5cc04f93adb9d82"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/twig-extensions/zipball/8da644925839610128c74ce9c8f5c23b7c4b5efd",
-                "reference": "8da644925839610128c74ce9c8f5c23b7c4b5efd",
+                "url": "https://api.github.com/repos/sonata-project/twig-extensions/zipball/05a4b2c082e4c45bf5504ac5a5cc04f93adb9d82",
+                "reference": "05a4b2c082e4c45bf5504ac5a5cc04f93adb9d82",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.2",
-                "sonata-project/doctrine-extensions": "^1.9",
+                "php": "^7.3 || ^8.0",
+                "sonata-project/doctrine-extensions": "^1.9.1",
                 "symfony/config": "^4.4 || ^5.1",
                 "symfony/translation": "^4.4 || ^5.1",
                 "symfony/twig-bridge": "^4.4 || ^5.1",
@@ -7134,15 +7134,14 @@
                 "sonata-project/core-bundle": ">=3.13"
             },
             "require-dev": {
-                "jms/serializer-bundle": "^3.3",
-                "matthiasnoback/symfony-config-test": "^4.0",
+                "matthiasnoback/symfony-config-test": "^4.2",
                 "matthiasnoback/symfony-dependency-injection-test": "^4.0",
                 "symfony/browser-kit": "^4.4 || ^5.1",
                 "symfony/dependency-injection": "^4.4 || ^5.1",
-                "symfony/framework-bundle": "^4.4 || ^5.0",
+                "symfony/framework-bundle": "^4.4 || ^5.1",
                 "symfony/http-foundation": "^4.4 || ^5.1",
                 "symfony/http-kernel": "^4.4 || ^5.1",
-                "symfony/phpunit-bridge": "^5.1",
+                "symfony/phpunit-bridge": "^5.1.8",
                 "symfony/twig-bundle": "^4.4 || ^5.1"
             },
             "type": "library",
@@ -7181,9 +7180,27 @@
             ],
             "support": {
                 "issues": "https://github.com/sonata-project/twig-extensions/issues",
-                "source": "https://github.com/sonata-project/twig-extensions/tree/1.4.1"
+                "source": "https://github.com/sonata-project/twig-extensions/tree/1.5.1"
             },
-            "time": "2020-08-09T21:35:09+00:00"
+            "funding": [
+                {
+                    "url": "https://github.com/OskarStark",
+                    "type": "github"
+                },
+                {
+                    "url": "https://github.com/VincentLanglet",
+                    "type": "github"
+                },
+                {
+                    "url": "https://github.com/core23",
+                    "type": "github"
+                },
+                {
+                    "url": "https://github.com/wbloszyk",
+                    "type": "github"
+                }
+            ],
+            "time": "2021-02-15T20:56:45+00:00"
         },
         {
             "name": "sonata-project/user-bundle",
