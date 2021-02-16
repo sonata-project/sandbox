@@ -5859,16 +5859,16 @@
         },
         {
             "name": "sonata-project/ecommerce",
-            "version": "3.5.0",
+            "version": "3.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/ecommerce.git",
-                "reference": "f7a35a0aebbe7a4eaf6305b886e6cee55c811bc0"
+                "reference": "69710c49823a7937c899f34f90545617b8448706"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/ecommerce/zipball/f7a35a0aebbe7a4eaf6305b886e6cee55c811bc0",
-                "reference": "f7a35a0aebbe7a4eaf6305b886e6cee55c811bc0",
+                "url": "https://api.github.com/repos/sonata-project/ecommerce/zipball/69710c49823a7937c899f34f90545617b8448706",
+                "reference": "69710c49823a7937c899f34f90545617b8448706",
                 "shasum": ""
             },
             "require": {
@@ -5978,7 +5978,7 @@
             "description": "E-Commerce solution provided by Sonata",
             "support": {
                 "issues": "https://github.com/sonata-project/ecommerce/issues",
-                "source": "https://github.com/sonata-project/ecommerce/tree/3.5.0"
+                "source": "https://github.com/sonata-project/ecommerce/tree/3.5.1"
             },
             "funding": [
                 {
@@ -5998,7 +5998,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-02-06T11:43:53+00:00"
+            "time": "2021-02-16T21:12:21+00:00"
         },
         {
             "name": "sonata-project/exporter",
