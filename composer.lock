@@ -5967,20 +5967,20 @@
         },
         {
             "name": "sonata-project/exporter",
-            "version": "2.5.0",
+            "version": "2.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/exporter.git",
-                "reference": "e5f56efe2b3d6e22b495a5c8cba3f8fe5c3293fd"
+                "reference": "71501806a1c39945ec6a61fc19370d345ed3b7fa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/exporter/zipball/e5f56efe2b3d6e22b495a5c8cba3f8fe5c3293fd",
-                "reference": "e5f56efe2b3d6e22b495a5c8cba3f8fe5c3293fd",
+                "url": "https://api.github.com/repos/sonata-project/exporter/zipball/71501806a1c39945ec6a61fc19370d345ed3b7fa",
+                "reference": "71501806a1c39945ec6a61fc19370d345ed3b7fa",
                 "shasum": ""
             },
             "require": {
-                "php": ">=7.3"
+                "php": "^7.3 || ^8.0"
             },
             "conflict": {
                 "doctrine/mongodb-odm": "<2.0"
@@ -6041,7 +6041,7 @@
             ],
             "support": {
                 "issues": "https://github.com/sonata-project/exporter/issues",
-                "source": "https://github.com/sonata-project/exporter/tree/2.5.0"
+                "source": "https://github.com/sonata-project/exporter/tree/2.5.1"
             },
             "funding": [
                 {
@@ -6061,7 +6061,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-01-04T21:36:57+00:00"
+            "time": "2021-02-15T19:22:33+00:00"
         },
         {
             "name": "sonata-project/form-extensions",
