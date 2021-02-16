@@ -5389,16 +5389,16 @@
         },
         {
             "name": "sonata-project/comment-bundle",
-            "version": "3.3.0",
+            "version": "3.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataCommentBundle.git",
-                "reference": "55d0784bc7325d1a644fa5f2a1cfe39c0fdb3d5f"
+                "reference": "0d727a708a08d7e9ac436c6093166e952154f501"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataCommentBundle/zipball/55d0784bc7325d1a644fa5f2a1cfe39c0fdb3d5f",
-                "reference": "55d0784bc7325d1a644fa5f2a1cfe39c0fdb3d5f",
+                "url": "https://api.github.com/repos/sonata-project/SonataCommentBundle/zipball/0d727a708a08d7e9ac436c6093166e952154f501",
+                "reference": "0d727a708a08d7e9ac436c6093166e952154f501",
                 "shasum": ""
             },
             "require": {
@@ -5465,7 +5465,7 @@
             ],
             "support": {
                 "issues": "https://github.com/sonata-project/SonataCommentBundle/issues",
-                "source": "https://github.com/sonata-project/SonataCommentBundle/tree/3.3.0"
+                "source": "https://github.com/sonata-project/SonataCommentBundle/tree/3.3.1"
             },
             "funding": [
                 {
@@ -5485,7 +5485,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-02-15T20:56:20+00:00"
+            "time": "2021-02-16T20:44:31+00:00"
         },
         {
             "name": "sonata-project/datagrid-bundle",
