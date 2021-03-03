@@ -4389,16 +4389,16 @@
         },
         {
             "name": "phpstan/phpdoc-parser",
-            "version": "0.4.11",
+            "version": "0.4.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpdoc-parser.git",
-                "reference": "2ce4c6623376d2613cf02e055ea1a926d906cef7"
+                "reference": "2e17e4a90702d8b7ead58f4e08478a8e819ba6b8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpdoc-parser/zipball/2ce4c6623376d2613cf02e055ea1a926d906cef7",
-                "reference": "2ce4c6623376d2613cf02e055ea1a926d906cef7",
+                "url": "https://api.github.com/repos/phpstan/phpdoc-parser/zipball/2e17e4a90702d8b7ead58f4e08478a8e819ba6b8",
+                "reference": "2e17e4a90702d8b7ead58f4e08478a8e819ba6b8",
                 "shasum": ""
             },
             "require": {
@@ -4433,9 +4433,9 @@
             "description": "PHPDoc parser with support for nullable, intersection and generic types",
             "support": {
                 "issues": "https://github.com/phpstan/phpdoc-parser/issues",
-                "source": "https://github.com/phpstan/phpdoc-parser/tree/0.4.11"
+                "source": "https://github.com/phpstan/phpdoc-parser/tree/0.4.12"
             },
-            "time": "2021-02-19T11:57:27+00:00"
+            "time": "2021-02-28T14:30:10+00:00"
         },
         {
             "name": "psr/cache",
@@ -4875,16 +4875,16 @@
         },
         {
             "name": "sonata-project/admin-bundle",
-            "version": "3.90.0",
+            "version": "3.91.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataAdminBundle.git",
-                "reference": "6caae26d4682500d52ed6fbd955a3c09d925142b"
+                "reference": "26a406184053286bdc03027eb880c7e4dd57435e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataAdminBundle/zipball/6caae26d4682500d52ed6fbd955a3c09d925142b",
-                "reference": "6caae26d4682500d52ed6fbd955a3c09d925142b",
+                "url": "https://api.github.com/repos/sonata-project/SonataAdminBundle/zipball/26a406184053286bdc03027eb880c7e4dd57435e",
+                "reference": "26a406184053286bdc03027eb880c7e4dd57435e",
                 "shasum": ""
             },
             "require": {
@@ -4996,7 +4996,7 @@
             ],
             "support": {
                 "issues": "https://github.com/sonata-project/SonataAdminBundle/issues",
-                "source": "https://github.com/sonata-project/SonataAdminBundle/tree/3.90.0"
+                "source": "https://github.com/sonata-project/SonataAdminBundle/tree/3.91.0"
             },
             "funding": [
                 {
@@ -5016,7 +5016,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-02-25T14:41:43+00:00"
+            "time": "2021-03-02T09:56:35+00:00"
         },
         {
             "name": "sonata-project/block-bundle",
