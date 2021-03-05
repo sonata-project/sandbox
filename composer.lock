@@ -8493,7 +8493,7 @@
         },
         {
             "name": "symfony/debug-bundle",
-            "version": "v4.4.19",
+            "version": "v4.4.20",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/debug-bundle.git",
@@ -8551,7 +8551,7 @@
             "description": "Provides a tight integration of the Symfony Debug component into the Symfony full-stack framework",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/debug-bundle/tree/v4.4.19"
+                "source": "https://github.com/symfony/debug-bundle/tree/v4.4.20"
             },
             "funding": [
                 {
