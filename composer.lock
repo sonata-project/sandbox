@@ -11383,16 +11383,16 @@
         },
         {
             "name": "symfony/property-info",
-            "version": "v4.4.19",
+            "version": "v4.4.20",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/property-info.git",
-                "reference": "3314c9f854b8693b12c81114556c1fb51b6d2bf7"
+                "reference": "67845c335482cea0dd52497ae1314ce7a4978c74"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/property-info/zipball/3314c9f854b8693b12c81114556c1fb51b6d2bf7",
-                "reference": "3314c9f854b8693b12c81114556c1fb51b6d2bf7",
+                "url": "https://api.github.com/repos/symfony/property-info/zipball/67845c335482cea0dd52497ae1314ce7a4978c74",
+                "reference": "67845c335482cea0dd52497ae1314ce7a4978c74",
                 "shasum": ""
             },
             "require": {
@@ -11451,7 +11451,7 @@
                 "validator"
             ],
             "support": {
-                "source": "https://github.com/symfony/property-info/tree/v4.4.19"
+                "source": "https://github.com/symfony/property-info/tree/v4.4.20"
             },
             "funding": [
                 {
@@ -11467,7 +11467,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-01-27T09:09:26+00:00"
+            "time": "2021-02-16T12:45:26+00:00"
         },
         {
             "name": "symfony/routing",
