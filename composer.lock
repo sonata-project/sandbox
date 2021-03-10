@@ -7716,23 +7716,22 @@
         },
         {
             "name": "symfony-cmf/routing-bundle",
-            "version": "2.4.2",
+            "version": "2.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony-cmf/routing-bundle.git",
-                "reference": "0d5d4e96db39f0e625d95a2b77503c59cd1ad6f9"
+                "reference": "fb2284caa0bab2ffebe673e68e9c995da6ee4bdf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony-cmf/routing-bundle/zipball/0d5d4e96db39f0e625d95a2b77503c59cd1ad6f9",
-                "reference": "0d5d4e96db39f0e625d95a2b77503c59cd1ad6f9",
+                "url": "https://api.github.com/repos/symfony-cmf/routing-bundle/zipball/fb2284caa0bab2ffebe673e68e9c995da6ee4bdf",
+                "reference": "fb2284caa0bab2ffebe673e68e9c995da6ee4bdf",
                 "shasum": ""
             },
             "require": {
                 "php": "^7.2 || ^8.0",
                 "symfony-cmf/routing": "^2.3.0",
-                "symfony/framework-bundle": "^4.4 || ^5.0",
-                "twig/twig": "^2.4.4 || ^3.0"
+                "symfony/framework-bundle": "^4.4 || ^5.0"
             },
             "conflict": {
                 "doctrine/common": "<2.10.0",
@@ -7757,7 +7756,8 @@
                 "symfony/serializer": "^4.4 || ^5.0",
                 "symfony/translation": "^4.4 || ^5.0",
                 "symfony/twig-bundle": "^4.4 || ^5.0",
-                "symfony/validator": "^4.4 || ^5.0"
+                "symfony/validator": "^4.4 || ^5.0",
+                "twig/twig": "^2.4.4 || ^3.0"
             },
             "suggest": {
                 "doctrine/orm": "To enable support for the ORM entities (^2.5)",
@@ -7793,9 +7793,9 @@
             ],
             "support": {
                 "issues": "https://github.com/symfony-cmf/routing-bundle/issues",
-                "source": "https://github.com/symfony-cmf/routing-bundle/tree/2.4.2"
+                "source": "https://github.com/symfony-cmf/routing-bundle/tree/2.5.0"
             },
-            "time": "2020-12-03T07:37:36+00:00"
+            "time": "2021-03-09T10:42:09+00:00"
         },
         {
             "name": "symfony/acl-bundle",
