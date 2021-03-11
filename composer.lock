@@ -5666,16 +5666,16 @@
         },
         {
             "name": "sonata-project/doctrine-orm-admin-bundle",
-            "version": "3.30.0",
+            "version": "3.31.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataDoctrineORMAdminBundle.git",
-                "reference": "71ea5138cfc443a42aa0b8c692b98bee11001743"
+                "reference": "1bc9c2da4abfd2d83c5af434895c282f2396711c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataDoctrineORMAdminBundle/zipball/71ea5138cfc443a42aa0b8c692b98bee11001743",
-                "reference": "71ea5138cfc443a42aa0b8c692b98bee11001743",
+                "url": "https://api.github.com/repos/sonata-project/SonataDoctrineORMAdminBundle/zipball/1bc9c2da4abfd2d83c5af434895c282f2396711c",
+                "reference": "1bc9c2da4abfd2d83c5af434895c282f2396711c",
                 "shasum": ""
             },
             "require": {
@@ -5683,19 +5683,19 @@
                 "doctrine/orm": "^2.5",
                 "doctrine/persistence": "^1.3.4 || ^2.0",
                 "php": "^7.3 || ^8.0",
-                "sonata-project/admin-bundle": "^3.88",
+                "sonata-project/admin-bundle": "^3.89.1",
                 "sonata-project/exporter": "^1.11.0 || ^2.0",
                 "sonata-project/form-extensions": "^0.1 || ^1.4",
-                "symfony/config": "^4.4",
+                "symfony/config": "^4.4 || ^5.2",
                 "symfony/console": "^4.4",
-                "symfony/dependency-injection": "^4.4",
+                "symfony/dependency-injection": "^4.4 || ^5.2",
                 "symfony/doctrine-bridge": "^4.4",
                 "symfony/form": "^4.4",
                 "symfony/framework-bundle": "^4.4",
-                "symfony/http-foundation": "^4.4",
+                "symfony/http-foundation": "^4.4 || ^5.2",
                 "symfony/http-kernel": "^4.4",
-                "symfony/options-resolver": "^4.4 || ^5.1",
-                "symfony/property-access": "^4.4 || ^5.1",
+                "symfony/options-resolver": "^4.4 || ^5.2",
+                "symfony/property-access": "^4.4 || ^5.2",
                 "symfony/security-acl": "^3.0",
                 "twig/twig": "^2.10 || ^3.0"
             },
@@ -5716,9 +5716,9 @@
                 "simplethings/entity-audit-bundle": "^0.9 || ^1.0",
                 "sonata-project/block-bundle": "^3.17 || ^4.0",
                 "symfony/panther": "^0.9.0",
-                "symfony/phpunit-bridge": "^5.1.8",
-                "symfony/templating": "^4.4 || ^5.1",
-                "symfony/yaml": "^4.4 || ^5.1",
+                "symfony/phpunit-bridge": "^5.2",
+                "symfony/templating": "^4.4 || ^5.2",
+                "symfony/yaml": "^4.4 || ^5.2",
                 "vimeo/psalm": "^4.1.1"
             },
             "suggest": {
@@ -5763,7 +5763,7 @@
             ],
             "support": {
                 "issues": "https://github.com/sonata-project/SonataDoctrineORMAdminBundle/issues",
-                "source": "https://github.com/sonata-project/SonataDoctrineORMAdminBundle/tree/3.30.0"
+                "source": "https://github.com/sonata-project/SonataDoctrineORMAdminBundle/tree/3.31.0"
             },
             "funding": [
                 {
@@ -5783,7 +5783,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-02-24T12:41:43+00:00"
+            "time": "2021-03-10T22:24:29+00:00"
         },
         {
             "name": "sonata-project/easy-extends-bundle",
@@ -10201,16 +10201,16 @@
         },
         {
             "name": "symfony/mime",
-            "version": "v5.2.4",
+            "version": "v5.2.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/mime.git",
-                "reference": "5155d2fe14ef1eb150e3bdbbc1ec1455df95e9cd"
+                "reference": "554ba128f1955038b45db5e1fa7e93bfc683b139"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/mime/zipball/5155d2fe14ef1eb150e3bdbbc1ec1455df95e9cd",
-                "reference": "5155d2fe14ef1eb150e3bdbbc1ec1455df95e9cd",
+                "url": "https://api.github.com/repos/symfony/mime/zipball/554ba128f1955038b45db5e1fa7e93bfc683b139",
+                "reference": "554ba128f1955038b45db5e1fa7e93bfc683b139",
                 "shasum": ""
             },
             "require": {
@@ -10221,12 +10221,13 @@
                 "symfony/polyfill-php80": "^1.15"
             },
             "conflict": {
+                "egulias/email-validator": "~3.0.0",
                 "phpdocumentor/reflection-docblock": "<3.2.2",
                 "phpdocumentor/type-resolver": "<1.4.0",
                 "symfony/mailer": "<4.4"
             },
             "require-dev": {
-                "egulias/email-validator": "^2.1.10",
+                "egulias/email-validator": "^2.1.10|^3.1",
                 "phpdocumentor/reflection-docblock": "^3.0|^4.0|^5.0",
                 "symfony/dependency-injection": "^4.4|^5.0",
                 "symfony/property-access": "^4.4|^5.1",
@@ -10263,7 +10264,7 @@
                 "mime-type"
             ],
             "support": {
-                "source": "https://github.com/symfony/mime/tree/v5.2.4"
+                "source": "https://github.com/symfony/mime/tree/v5.2.5"
             },
             "funding": [
                 {
@@ -10279,7 +10280,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-02-15T18:55:04+00:00"
+            "time": "2021-03-07T16:08:20+00:00"
         },
         {
             "name": "symfony/monolog-bridge",
@@ -12893,16 +12894,16 @@
         },
         {
             "name": "symfony/var-dumper",
-            "version": "v5.2.4",
+            "version": "v5.2.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/var-dumper.git",
-                "reference": "6a81fec0628c468cf6d5c87a4d003725e040e223"
+                "reference": "002ab5a36702adf0c9a11e6d8836623253e9045e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/6a81fec0628c468cf6d5c87a4d003725e040e223",
-                "reference": "6a81fec0628c468cf6d5c87a4d003725e040e223",
+                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/002ab5a36702adf0c9a11e6d8836623253e9045e",
+                "reference": "002ab5a36702adf0c9a11e6d8836623253e9045e",
                 "shasum": ""
             },
             "require": {
@@ -12961,7 +12962,7 @@
                 "dump"
             ],
             "support": {
-                "source": "https://github.com/symfony/var-dumper/tree/v5.2.4"
+                "source": "https://github.com/symfony/var-dumper/tree/v5.2.5"
             },
             "funding": [
                 {
@@ -12977,7 +12978,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-02-18T23:11:19+00:00"
+            "time": "2021-03-06T07:59:01+00:00"
         },
         {
             "name": "symfony/var-exporter",
@@ -13344,16 +13345,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "v2.14.3",
+            "version": "v2.14.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "8bc568d460d88b25c00c046256ec14a787ea60d9"
+                "reference": "0b4ba691fb99ec7952d25deb36c0a83061b93bbf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/8bc568d460d88b25c00c046256ec14a787ea60d9",
-                "reference": "8bc568d460d88b25c00c046256ec14a787ea60d9",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/0b4ba691fb99ec7952d25deb36c0a83061b93bbf",
+                "reference": "0b4ba691fb99ec7952d25deb36c0a83061b93bbf",
                 "shasum": ""
             },
             "require": {
@@ -13407,7 +13408,7 @@
             ],
             "support": {
                 "issues": "https://github.com/twigphp/Twig/issues",
-                "source": "https://github.com/twigphp/Twig/tree/v2.14.3"
+                "source": "https://github.com/twigphp/Twig/tree/v2.14.4"
             },
             "funding": [
                 {
@@ -13419,7 +13420,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-01-05T15:34:33+00:00"
+            "time": "2021-03-10T10:05:55+00:00"
         },
         {
             "name": "webmozart/assert",
