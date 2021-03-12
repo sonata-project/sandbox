@@ -5562,22 +5562,22 @@
         },
         {
             "name": "sonata-project/doctrine-extensions",
-            "version": "1.11.0",
+            "version": "1.12.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/sonata-doctrine-extensions.git",
-                "reference": "be9d0529639f7d6bd70efe0cf498209b7de4f4a1"
+                "reference": "ba5ddbef84f8b432554453393fcfdad7560a926c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/sonata-doctrine-extensions/zipball/be9d0529639f7d6bd70efe0cf498209b7de4f4a1",
-                "reference": "be9d0529639f7d6bd70efe0cf498209b7de4f4a1",
+                "url": "https://api.github.com/repos/sonata-project/sonata-doctrine-extensions/zipball/ba5ddbef84f8b432554453393fcfdad7560a926c",
+                "reference": "ba5ddbef84f8b432554453393fcfdad7560a926c",
                 "shasum": ""
             },
             "require": {
                 "doctrine/dbal": "^2.6",
                 "doctrine/persistence": "^1.3.6 || ^2.0",
-                "php": ">=7.3"
+                "php": "^7.3 || ^8.0"
             },
             "conflict": {
                 "doctrine/doctrine-bundle": "<2.0",
@@ -5642,7 +5642,7 @@
             ],
             "support": {
                 "issues": "https://github.com/sonata-project/sonata-doctrine-extensions/issues",
-                "source": "https://github.com/sonata-project/sonata-doctrine-extensions/tree/1.11.0"
+                "source": "https://github.com/sonata-project/sonata-doctrine-extensions/tree/1.12.0"
             },
             "funding": [
                 {
@@ -5662,7 +5662,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-01-04T20:44:57+00:00"
+            "time": "2021-03-11T20:34:37+00:00"
         },
         {
             "name": "sonata-project/doctrine-orm-admin-bundle",
