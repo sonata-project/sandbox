@@ -4,15 +4,6 @@
 <!-- Describe your Pull Request content here -->
 
 <!--
-    Show us you choose the right branch.
-    Different branches are used for different things :
-    - master is for everything backwards compatible, like patches, features and deprecation notices
-    - master is for deprecation removals and other changes that cannot be done without a BC-break
-    More details here: https://github.com/sonata-project/sandbox/blob/master/CONTRIBUTING.md#base-branch
--->
-I am targeting this branch, because {reason}.
-
-<!--
     Specify which issues will be fixed/closed.
     Remove it if this is not related.
 -->
