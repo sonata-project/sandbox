@@ -6773,43 +6773,45 @@
         },
         {
             "name": "sonata-project/notification-bundle",
-            "version": "3.11.0",
+            "version": "3.12.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataNotificationBundle.git",
-                "reference": "6598a5ce5d94ebac40efe4db76d966d3f5312eef"
+                "reference": "d7b3c33845fee3536ed64d67e120cfeff19e9ae3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataNotificationBundle/zipball/6598a5ce5d94ebac40efe4db76d966d3f5312eef",
-                "reference": "6598a5ce5d94ebac40efe4db76d966d3f5312eef",
+                "url": "https://api.github.com/repos/sonata-project/SonataNotificationBundle/zipball/d7b3c33845fee3536ed64d67e120cfeff19e9ae3",
+                "reference": "d7b3c33845fee3536ed64d67e120cfeff19e9ae3",
                 "shasum": ""
             },
             "require": {
                 "doctrine/doctrine-bundle": "^1.12 || ^2.0",
                 "doctrine/persistence": "^1.3 || ^2.0",
                 "laminas/laminas-diagnostics": "^1.6",
-                "php": "^7.3",
+                "php": "^7.3 || ^8.0",
                 "sonata-project/datagrid-bundle": "^3.0",
                 "sonata-project/doctrine-extensions": "^1.10.1",
                 "sonata-project/form-extensions": "^0.1 || ^1.4",
-                "symfony/config": "^4.4",
+                "symfony/config": "^4.4 || ^5.2",
                 "symfony/console": "^4.4",
-                "symfony/dependency-injection": "^4.4",
+                "symfony/dependency-injection": "^4.4 || ^5.2",
                 "symfony/doctrine-bridge": "^4.4",
                 "symfony/event-dispatcher": "^4.4",
                 "symfony/event-dispatcher-contracts": "^1.1",
                 "symfony/form": "^4.4",
-                "symfony/http-foundation": "^4.4",
+                "symfony/http-foundation": "^4.4 || ^5.2",
                 "symfony/http-kernel": "^4.4",
                 "symfony/security-core": "^4.4"
             },
             "conflict": {
                 "friendsofsymfony/rest-bundle": "<2.3",
                 "jms/serializer": "<0.13",
-                "nelmio/api-doc-bundle": "<2.13 || >=4.0",
+                "liip/monitor-bundle": "<1.0",
+                "nelmio/api-doc-bundle": "<2.13.5 || >=4.0",
                 "sonata-project/admin-bundle": "<3.1",
-                "sonata-project/core-bundle": "<3.20"
+                "sonata-project/core-bundle": "<3.20",
+                "sonata-project/doctrine-orm-admin-bundle": "<3.0"
             },
             "require-dev": {
                 "enqueue/amqp-lib": "^0.8",
@@ -6819,21 +6821,23 @@
                 "liip/monitor-bundle": "^2.6",
                 "matthiasnoback/symfony-config-test": "^4.2",
                 "matthiasnoback/symfony-dependency-injection-test": "^4.1",
-                "nelmio/api-doc-bundle": "^2.13.4 || ^3.6",
+                "nelmio/api-doc-bundle": "^2.13.5 || ^3.6",
                 "sonata-project/doctrine-orm-admin-bundle": "^3.19",
                 "swiftmailer/swiftmailer": "^5.0 || ^6.0",
-                "symfony/browser-kit": "^4.4 || ^5.1",
-                "symfony/phpunit-bridge": "^5.1.8",
+                "symfony/browser-kit": "^4.4 || ^5.2",
+                "symfony/phpunit-bridge": "^5.2",
                 "symfony/swiftmailer-bundle": "^3.4",
-                "symfony/templating": "^4.4",
-                "symfony/yaml": "^4.4"
+                "symfony/templating": "^4.4 || ^5.2",
+                "symfony/yaml": "^4.4 || ^5.2"
             },
             "suggest": {
+                "friendsofsymfony/rest-bundle": "If you want to expose a ReST API.",
                 "guzzlehttp/guzzle": "If you want to get a status report when using the rabbitMQ backend.",
-                "liip/monitor-bundle": "^1.0",
+                "liip/monitor-bundle": "Integrates the LiipMonitor library into Symfony",
+                "nelmio/api-doc-bundle": "If you want to provide OAS documentation for the ReST API.",
                 "queue-interop/amqp-interop": "Install any amqp-interop compatible transport if you want use RabbitMQ. For example enqueue/amqp-lib:^0.8",
                 "sonata-project/admin-bundle": "To be able to use MessageAdmin.",
-                "sonata-project/doctrine-orm-admin-bundle": "^3.0"
+                "sonata-project/doctrine-orm-admin-bundle": "If you want to persist entities"
             },
             "type": "symfony-bundle",
             "extra": {
@@ -6870,7 +6874,7 @@
             ],
             "support": {
                 "issues": "https://github.com/sonata-project/SonataNotificationBundle/issues",
-                "source": "https://github.com/sonata-project/SonataNotificationBundle/tree/3.11.0"
+                "source": "https://github.com/sonata-project/SonataNotificationBundle/tree/3.12.0"
             },
             "funding": [
                 {
@@ -6890,7 +6894,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-01-27T17:57:23+00:00"
+            "time": "2021-03-24T15:19:28+00:00"
         },
         {
             "name": "sonata-project/page-bundle",
