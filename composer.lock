@@ -5997,16 +5997,16 @@
         },
         {
             "name": "sonata-project/exporter",
-            "version": "2.5.2",
+            "version": "2.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/exporter.git",
-                "reference": "1eb43c310cc30b72073cd099992fdd061dbd69b5"
+                "reference": "33e9f0c991dcec6225312a0e4055d03dc2216eb4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/exporter/zipball/1eb43c310cc30b72073cd099992fdd061dbd69b5",
-                "reference": "1eb43c310cc30b72073cd099992fdd061dbd69b5",
+                "url": "https://api.github.com/repos/sonata-project/exporter/zipball/33e9f0c991dcec6225312a0e4055d03dc2216eb4",
+                "reference": "33e9f0c991dcec6225312a0e4055d03dc2216eb4",
                 "shasum": ""
             },
             "require": {
@@ -6071,7 +6071,7 @@
             ],
             "support": {
                 "issues": "https://github.com/sonata-project/exporter/issues",
-                "source": "https://github.com/sonata-project/exporter/tree/2.5.2"
+                "source": "https://github.com/sonata-project/exporter/tree/2.6.0"
             },
             "funding": [
                 {
@@ -6091,7 +6091,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-03-21T20:17:45+00:00"
+            "time": "2021-03-24T13:36:11+00:00"
         },
         {
             "name": "sonata-project/form-extensions",
