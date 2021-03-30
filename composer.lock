@@ -4875,16 +4875,16 @@
         },
         {
             "name": "sonata-project/admin-bundle",
-            "version": "3.94.0",
+            "version": "3.95.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataAdminBundle.git",
-                "reference": "3f8e07bc0a50cc68fd13da0e4295469ff4982730"
+                "reference": "a3044b7d3a3107eb89a377c75000fb3ed354347f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataAdminBundle/zipball/3f8e07bc0a50cc68fd13da0e4295469ff4982730",
-                "reference": "3f8e07bc0a50cc68fd13da0e4295469ff4982730",
+                "url": "https://api.github.com/repos/sonata-project/SonataAdminBundle/zipball/a3044b7d3a3107eb89a377c75000fb3ed354347f",
+                "reference": "a3044b7d3a3107eb89a377c75000fb3ed354347f",
                 "shasum": ""
             },
             "require": {
@@ -4910,7 +4910,7 @@
                 "symfony/event-dispatcher-contracts": "^1.1 || ^2.0",
                 "symfony/expression-language": "^4.4 || ^5.1",
                 "symfony/form": "^4.4.12",
-                "symfony/framework-bundle": "^4.4",
+                "symfony/framework-bundle": "^4.4.6",
                 "symfony/http-foundation": "^4.4 || ^5.1",
                 "symfony/http-kernel": "^4.4",
                 "symfony/options-resolver": "^4.4 || ^5.1",
@@ -4996,7 +4996,7 @@
             ],
             "support": {
                 "issues": "https://github.com/sonata-project/SonataAdminBundle/issues",
-                "source": "https://github.com/sonata-project/SonataAdminBundle/tree/3.94.0"
+                "source": "https://github.com/sonata-project/SonataAdminBundle/tree/3.95.0"
             },
             "funding": [
                 {
@@ -5016,7 +5016,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-03-28T10:38:23+00:00"
+            "time": "2021-03-29T16:30:51+00:00"
         },
         {
             "name": "sonata-project/block-bundle",
