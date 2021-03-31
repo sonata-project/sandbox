@@ -56,8 +56,7 @@ final class CarAdmin extends AbstractAdmin
             ->add('name')
             ->add('engine')
             ->add('rescueEngine')
-            ->add('createdAt')
-        ;
+            ->add('createdAt');
     }
 
     protected function configureListFields(ListMapper $listMapper): void
@@ -67,8 +66,7 @@ final class CarAdmin extends AbstractAdmin
             ->add('engine')
             ->add('rescueEngine')
             ->add('createdAt')
-            ->add('color')
-        ;
+            ->add('color');
     }
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper): void
@@ -78,8 +76,7 @@ final class CarAdmin extends AbstractAdmin
             ->add('engine')
             ->add('rescueEngine')
             ->add('createdAt')
-            ->add('color')
-        ;
+            ->add('color');
     }
 
     protected function configureFormFields(FormMapper $formMapper): void
@@ -106,7 +103,6 @@ final class CarAdmin extends AbstractAdmin
                     'edit' => 'inline',
                     'inline' => 'table',
                 ])
-            ->end()
-        ;
+            ->end();
     }
 }

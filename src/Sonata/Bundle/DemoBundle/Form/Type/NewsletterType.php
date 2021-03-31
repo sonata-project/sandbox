@@ -33,8 +33,7 @@ final class NewsletterType extends AbstractType
                 'attr' => [
                     'placeholder' => 'Email',
                 ],
-            ])
-        ;
+            ]);
     }
 
     public function getName(): string
