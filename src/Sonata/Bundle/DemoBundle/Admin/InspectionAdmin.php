@@ -31,8 +31,7 @@ final class InspectionAdmin extends AbstractAdmin
     {
         $filter
             ->add('date')
-            ->add('car')
-        ;
+            ->add('car');
     }
 
     protected function configureListFields(ListMapper $list): void
@@ -40,8 +39,7 @@ final class InspectionAdmin extends AbstractAdmin
         $list
             ->addIdentifier('date')
             ->add('comment')
-            ->add('car')
-        ;
+            ->add('car');
     }
 
     protected function configureFormFields(FormMapper $formMapper): void

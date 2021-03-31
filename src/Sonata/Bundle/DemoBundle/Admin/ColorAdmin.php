@@ -32,8 +32,7 @@ final class ColorAdmin extends AbstractAdmin
             ->add('g')
             ->add('b')
             ->add('material')
-            ->add('enabled')
-        ;
+            ->add('enabled');
     }
 
     protected function configureListFields(ListMapper $listMapper): void
@@ -43,8 +42,7 @@ final class ColorAdmin extends AbstractAdmin
             ->addIdentifier('g')
             ->addIdentifier('b')
             ->add('material')
-            ->add('enabled')
-        ;
+            ->add('enabled');
     }
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper): void
@@ -54,8 +52,7 @@ final class ColorAdmin extends AbstractAdmin
             ->add('g')
             ->add('b')
             ->add('material')
-            ->add('enabled')
-        ;
+            ->add('enabled');
     }
 
     protected function configureFormFields(FormMapper $formMapper): void
@@ -65,7 +62,6 @@ final class ColorAdmin extends AbstractAdmin
             ->add('g')
             ->add('b')
             ->add('material', AdminType::class)
-            ->add('enabled')
-        ;
+            ->add('enabled');
     }
 }
