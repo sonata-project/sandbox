@@ -28,30 +28,26 @@ final class MaterialAdmin extends AbstractAdmin
     {
         $showMapper
             ->add('id')
-            ->add('name')
-        ;
+            ->add('name');
     }
 
     protected function configureListFields(ListMapper $listMapper): void
     {
         $listMapper
             ->addIdentifier('id')
-            ->addIdentifier('name')
-        ;
+            ->addIdentifier('name');
     }
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper): void
     {
         $datagridMapper
             ->add('id')
-            ->add('name')
-        ;
+            ->add('name');
     }
 
     protected function configureFormFields(FormMapper $formMapper): void
     {
         $formMapper
-            ->add('name')
-        ;
+            ->add('name');
     }
 }

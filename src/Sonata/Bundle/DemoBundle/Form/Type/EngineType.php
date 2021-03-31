@@ -24,8 +24,7 @@ final class EngineType extends AbstractType
     {
         $formBuilder
             ->add('name', TextType::class)
-            ->add('power', IntegerType::class)
-        ;
+            ->add('power', IntegerType::class);
     }
 
     public function getName(): string

@@ -30,8 +30,7 @@ final class EngineAdmin extends AbstractAdmin
         $showMapper
             ->add('name')
             ->add('power')
-            ->add('media')
-        ;
+            ->add('media');
     }
 
     protected function configureListFields(ListMapper $listMapper): void
@@ -39,16 +38,14 @@ final class EngineAdmin extends AbstractAdmin
         $listMapper
             ->addIdentifier('name')
             ->add('power')
-            ->add('media')
-        ;
+            ->add('media');
     }
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper): void
     {
         $datagridMapper
             ->add('name')
-            ->add('power')
-        ;
+            ->add('power');
     }
 
     protected function configureFormFields(FormMapper $formMapper): void

@@ -29,8 +29,7 @@ final class CarType extends AbstractType
             ->add('name')
             ->add('engine', EngineType::class, [
                 'data_class' => Engine::class,
-            ])
-        ;
+            ]);
     }
 
     public function getName(): string
