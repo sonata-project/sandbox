@@ -11618,33 +11618,37 @@
         },
         {
             "name": "symfony/security-acl",
-            "version": "v3.1.1",
+            "version": "v3.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/security-acl.git",
-                "reference": "2c1b1b68d8ff410f925697bc689ec6340b3e5d2b"
+                "reference": "3090d19879577c2993314c68a2cf6c5723744049"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/security-acl/zipball/2c1b1b68d8ff410f925697bc689ec6340b3e5d2b",
-                "reference": "2c1b1b68d8ff410f925697bc689ec6340b3e5d2b",
+                "url": "https://api.github.com/repos/symfony/security-acl/zipball/3090d19879577c2993314c68a2cf6c5723744049",
+                "reference": "3090d19879577c2993314c68a2cf6c5723744049",
                 "shasum": ""
             },
             "require": {
                 "php": ">=7.1.3",
                 "symfony/security-core": "^3.4|^4.4|^5.0"
             },
+            "conflict": {
+                "doctrine/dbal": "<2.13.1|~3.0.0"
+            },
             "require-dev": {
-                "doctrine/common": "~2.2",
-                "doctrine/dbal": "~2.2",
-                "doctrine/persistence": "^1.3.3",
+                "doctrine/common": "^2.2|^3",
+                "doctrine/dbal": "^2.13.1|^3.1",
+                "doctrine/persistence": "^1.3.3|^2",
                 "psr/log": "~1.0",
-                "symfony/phpunit-bridge": "^3.4|^4.4|^5.0"
+                "symfony/finder": "^3.4|^4.4|^5.0",
+                "symfony/phpunit-bridge": "^5.2"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "3.0-dev"
+                    "dev-main": "3.x-dev"
                 }
             },
             "autoload": {
@@ -11673,7 +11677,7 @@
             "homepage": "https://symfony.com",
             "support": {
                 "issues": "https://github.com/symfony/security-acl/issues",
-                "source": "https://github.com/symfony/security-acl/tree/v3.1.1"
+                "source": "https://github.com/symfony/security-acl/tree/v3.1.2"
             },
             "funding": [
                 {
@@ -11689,7 +11693,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-01-12T09:10:27+00:00"
+            "time": "2021-04-28T18:28:16+00:00"
         },
         {
             "name": "symfony/security-bundle",
