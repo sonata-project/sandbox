@@ -11446,16 +11446,16 @@
         },
         {
             "name": "symfony/property-info",
-            "version": "v4.4.22",
+            "version": "v4.4.23",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/property-info.git",
-                "reference": "a910e1a728b90797d9e549737c8fc640b99a2873"
+                "reference": "3b6d316b1e007dc637962573e2599eb0b82176f6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/property-info/zipball/a910e1a728b90797d9e549737c8fc640b99a2873",
-                "reference": "a910e1a728b90797d9e549737c8fc640b99a2873",
+                "url": "https://api.github.com/repos/symfony/property-info/zipball/3b6d316b1e007dc637962573e2599eb0b82176f6",
+                "reference": "3b6d316b1e007dc637962573e2599eb0b82176f6",
                 "shasum": ""
             },
             "require": {
@@ -11514,7 +11514,7 @@
                 "validator"
             ],
             "support": {
-                "source": "https://github.com/symfony/property-info/tree/v4.4.22"
+                "source": "https://github.com/symfony/property-info/tree/v4.4.23"
             },
             "funding": [
                 {
@@ -11530,7 +11530,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-04-13T22:23:01+00:00"
+            "time": "2021-05-07T13:22:49+00:00"
         },
         {
             "name": "symfony/routing",
