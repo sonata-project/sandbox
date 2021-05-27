@@ -2627,16 +2627,16 @@
         },
         {
             "name": "guzzlehttp/psr7",
-            "version": "1.8.1",
+            "version": "1.8.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/psr7.git",
-                "reference": "35ea11d335fd638b5882ff1725228b3d35496ab1"
+                "reference": "dc960a912984efb74d0a90222870c72c87f10c91"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/psr7/zipball/35ea11d335fd638b5882ff1725228b3d35496ab1",
-                "reference": "35ea11d335fd638b5882ff1725228b3d35496ab1",
+                "url": "https://api.github.com/repos/guzzle/psr7/zipball/dc960a912984efb74d0a90222870c72c87f10c91",
+                "reference": "dc960a912984efb74d0a90222870c72c87f10c91",
                 "shasum": ""
             },
             "require": {
@@ -2696,9 +2696,9 @@
             ],
             "support": {
                 "issues": "https://github.com/guzzle/psr7/issues",
-                "source": "https://github.com/guzzle/psr7/tree/1.8.1"
+                "source": "https://github.com/guzzle/psr7/tree/1.8.2"
             },
-            "time": "2021-03-21T16:25:00+00:00"
+            "time": "2021-04-26T09:17:50+00:00"
         },
         {
             "name": "imagine/imagine",
@@ -6522,16 +6522,16 @@
         },
         {
             "name": "sonata-project/media-bundle",
-            "version": "3.31.1",
+            "version": "3.31.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataMediaBundle.git",
-                "reference": "0d34dbf20688cf8c7ff6a37d28c7463bd75349ad"
+                "reference": "c00856a91d43ee05147551ac1a80a97ea40df668"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataMediaBundle/zipball/0d34dbf20688cf8c7ff6a37d28c7463bd75349ad",
-                "reference": "0d34dbf20688cf8c7ff6a37d28c7463bd75349ad",
+                "url": "https://api.github.com/repos/sonata-project/SonataMediaBundle/zipball/c00856a91d43ee05147551ac1a80a97ea40df668",
+                "reference": "c00856a91d43ee05147551ac1a80a97ea40df668",
                 "shasum": ""
             },
             "require": {
@@ -6600,7 +6600,7 @@
                 "matthiasnoback/symfony-config-test": "^4.2",
                 "matthiasnoback/symfony-dependency-injection-test": "^4.0",
                 "nelmio/api-doc-bundle": "^2.13.5",
-                "sonata-project/admin-bundle": "^3.41",
+                "sonata-project/admin-bundle": "^3.98.2",
                 "sonata-project/block-bundle": "^3.17",
                 "sonata-project/datagrid-bundle": "^3.0.1",
                 "sonata-project/doctrine-orm-admin-bundle": "^3.14",
@@ -6665,7 +6665,7 @@
             ],
             "support": {
                 "issues": "https://github.com/sonata-project/SonataMediaBundle/issues",
-                "source": "https://github.com/sonata-project/SonataMediaBundle/tree/3.31.1"
+                "source": "https://github.com/sonata-project/SonataMediaBundle/tree/3.31.2"
             },
             "funding": [
                 {
@@ -6685,7 +6685,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-04-19T12:56:27+00:00"
+            "time": "2021-05-19T07:07:45+00:00"
         },
         {
             "name": "sonata-project/news-bundle",
