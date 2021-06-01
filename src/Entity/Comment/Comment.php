@@ -29,6 +29,11 @@ class Comment extends BaseComment
     /**
      * @var int
      */
+    protected $category;
+    
+    /**
+     * @var int
+     */
     protected $id;
 
     /**
@@ -44,5 +49,21 @@ class Comment extends BaseComment
     public function getId()
     {
         return $this->id;
+    }
+    
+    /**
+     * @return int
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+    
+    /**
+     * @param int $category
+     */
+    public function setCategory($category): void
+    {
+        $this->category = $category;
     }
 }
