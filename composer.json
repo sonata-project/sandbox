@@ -50,7 +50,7 @@
         "symfony/debug": "^4.4",
         "symfony/debug-bundle": "^4.4",
         "symfony/dependency-injection": "^4.4",
-        "symfony/flex": "^1.6",
+        "symfony/flex": "^1.13",
         "symfony/form": "^4.4",
         "symfony/http-client": "^4.4",
         "symfony/http-kernel": "^4.4",
