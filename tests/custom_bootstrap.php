@@ -35,3 +35,8 @@ $input = new ArrayInput([
     'command' => 'doctrine:schema:create',
 ]);
 $application->run($input, new NullOutput());
+$input = new ArrayInput([
+    'command' => 'doctrine:fixtures:load',
+    '--no-interaction' => false,
+]);
+$application->run($input, new NullOutput());
