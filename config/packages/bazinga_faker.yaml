@@ -78,7 +78,6 @@ bazinga_faker:
                 locale:
                     method: languageCode
 
-
         App\Entity\Commerce\Invoice:
             number: 50
             custom_formatters:

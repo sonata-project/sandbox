@@ -50,7 +50,6 @@ sonata_payment:
                 url_return_ko: sonata_payment_error
                 url_return_ok: sonata_payment_confirmation
 
-
     # service which find the correct payment methods for a basket
     selector: sonata.payment.selector.simple
 

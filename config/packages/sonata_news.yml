@@ -23,7 +23,6 @@ sonata_news:
             from: '%sonata_news.comment.email_from%'
             template: 'SonataNewsBundle:Mail:comment_notification.txt.twig'
 
-
 # Enable Doctrine to map the provided entities
 doctrine:
     orm:
