@@ -53,6 +53,9 @@
     "doctrine/dbal": {
         "version": "2.10.2"
     },
+    "doctrine/deprecations": {
+        "version": "v0.5.3"
+    },
     "doctrine/doctrine-bundle": {
         "version": "1.12",
         "recipe": {
@@ -125,6 +128,9 @@
     },
     "fabpot/goutte": {
         "version": "v3.3.0"
+    },
+    "friendsofphp/proxy-manager-lts": {
+        "version": "v1.0.3"
     },
     "friendsofsymfony/ckeditor-bundle": {
         "version": "1.2.0"
@@ -517,6 +523,9 @@
     },
     "symfony/dependency-injection": {
         "version": "v4.4.10"
+    },
+    "symfony/deprecation-contracts": {
+        "version": "v2.4.0"
     },
     "symfony/doctrine-bridge": {
         "version": "v4.4.10"
