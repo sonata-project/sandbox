@@ -26,6 +26,8 @@ class SonataUserTwoStepVerificationCommandTest extends CommandTestCase
 
     public function testReset()
     {
+        $this->markTestSkipped();
+
         $client = self::createClient();
 
         $output = $this->runCommand($client, 'sonata:user:two-step-verification --reset secure');
