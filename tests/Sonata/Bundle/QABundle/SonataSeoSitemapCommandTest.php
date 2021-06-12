@@ -26,7 +26,7 @@ class SonataSeoSitemapCommandTest extends CommandTestCase
 
     public function testGenerate()
     {
-        $this->markTestSkipped('CONCAT_WS doesn\'t exist in sqlite');
+        $this->markTestSkipped('CONCAT_WS doesn\'t exist in sqlite.');
 
         $client = self::createClient();
 

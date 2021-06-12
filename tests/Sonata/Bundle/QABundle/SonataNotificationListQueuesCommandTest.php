@@ -17,7 +17,7 @@ class SonataNotificationListQueuesCommandTest extends CommandTestCase
 {
     public function testCommand()
     {
-        $this->markTestSkipped('');
+        $this->markTestSkipped('Failed asserting that "List of queues available queue: message - routing_key:" contains "The backend class Sonata\NotificationBundle\Backend\PostponeRuntimeBackend does not provide multiple queues.".');
 
         $client = self::createClient();
 
