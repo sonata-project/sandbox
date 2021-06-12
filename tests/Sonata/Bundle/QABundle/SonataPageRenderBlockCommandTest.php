@@ -44,7 +44,7 @@ class SonataPageRenderBlockCommandTest extends CommandTestCase
 
     public function testDump()
     {
-        $this->markTestSkipped('The "sonata.block.context_manager" service or alias has been removed or inlined when the container was compiled');
+        $this->markTestSkipped('The "sonata.block.context_manager" service or alias has been removed or inlined when the container was compiled.');
 
         $client = self::createClient();
 
