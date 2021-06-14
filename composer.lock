@@ -5720,16 +5720,16 @@
         },
         {
             "name": "sonata-project/doctrine-orm-admin-bundle",
-            "version": "3.34.2",
+            "version": "3.34.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataDoctrineORMAdminBundle.git",
-                "reference": "940792cbf35b56479faad219ea90f9fc3e40d4e7"
+                "reference": "31d9b23561ef9bfd877ae6c42b740ff4d0bde9da"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataDoctrineORMAdminBundle/zipball/940792cbf35b56479faad219ea90f9fc3e40d4e7",
-                "reference": "940792cbf35b56479faad219ea90f9fc3e40d4e7",
+                "url": "https://api.github.com/repos/sonata-project/SonataDoctrineORMAdminBundle/zipball/31d9b23561ef9bfd877ae6c42b740ff4d0bde9da",
+                "reference": "31d9b23561ef9bfd877ae6c42b740ff4d0bde9da",
                 "shasum": ""
             },
             "require": {
@@ -5818,7 +5818,7 @@
             ],
             "support": {
                 "issues": "https://github.com/sonata-project/SonataDoctrineORMAdminBundle/issues",
-                "source": "https://github.com/sonata-project/SonataDoctrineORMAdminBundle/tree/3.34.2"
+                "source": "https://github.com/sonata-project/SonataDoctrineORMAdminBundle/tree/3.34.3"
             },
             "funding": [
                 {
@@ -5838,7 +5838,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-05-31T20:43:58+00:00"
+            "time": "2021-06-13T17:25:23+00:00"
         },
         {
             "name": "sonata-project/easy-extends-bundle",
