@@ -14777,16 +14777,16 @@
         },
         {
             "name": "symfony/web-profiler-bundle",
-            "version": "v4.4.25",
+            "version": "v4.4.26",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/web-profiler-bundle.git",
-                "reference": "befd3aaef9fe453d87da59fc68773631406ad447"
+                "reference": "686ce278ef5f37358e829bd6d9ab12a67352d363"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/web-profiler-bundle/zipball/befd3aaef9fe453d87da59fc68773631406ad447",
-                "reference": "befd3aaef9fe453d87da59fc68773631406ad447",
+                "url": "https://api.github.com/repos/symfony/web-profiler-bundle/zipball/686ce278ef5f37358e829bd6d9ab12a67352d363",
+                "reference": "686ce278ef5f37358e829bd6d9ab12a67352d363",
                 "shasum": ""
             },
             "require": {
@@ -14835,7 +14835,7 @@
             "description": "Provides a development tool that gives detailed information about the execution of any request",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/web-profiler-bundle/tree/v4.4.25"
+                "source": "https://github.com/symfony/web-profiler-bundle/tree/v4.4.26"
             },
             "funding": [
                 {
@@ -14851,7 +14851,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-05-26T17:39:37+00:00"
+            "time": "2021-06-06T12:37:28+00:00"
         }
     ],
     "aliases": [],
