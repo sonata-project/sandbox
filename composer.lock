@@ -276,24 +276,23 @@
         },
         {
             "name": "doctrine/cache",
-            "version": "1.11.3",
+            "version": "1.12.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/cache.git",
-                "reference": "3bb5588cec00a0268829cc4a518490df6741af9d"
+                "reference": "4cf401d14df219fa6f38b671f5493449151c9ad8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/cache/zipball/3bb5588cec00a0268829cc4a518490df6741af9d",
-                "reference": "3bb5588cec00a0268829cc4a518490df6741af9d",
+                "url": "https://api.github.com/repos/doctrine/cache/zipball/4cf401d14df219fa6f38b671f5493449151c9ad8",
+                "reference": "4cf401d14df219fa6f38b671f5493449151c9ad8",
                 "shasum": ""
             },
             "require": {
                 "php": "~7.1 || ^8.0"
             },
             "conflict": {
-                "doctrine/common": ">2.2,<2.4",
-                "psr/cache": ">=3"
+                "doctrine/common": ">2.2,<2.4"
             },
             "require-dev": {
                 "alcaeus/mongo-php-adapter": "^1.1",
@@ -302,8 +301,9 @@
                 "mongodb/mongodb": "^1.1",
                 "phpunit/phpunit": "^7.0 || ^8.0 || ^9.0",
                 "predis/predis": "~1.0",
-                "psr/cache": "^1.0 || ^2.0",
-                "symfony/cache": "^4.4 || ^5.2"
+                "psr/cache": "^1.0 || ^2.0 || ^3.0",
+                "symfony/cache": "^4.4 || ^5.2 || ^6.0@dev",
+                "symfony/var-exporter": "^4.4 || ^5.2 || ^6.0@dev"
             },
             "suggest": {
                 "alcaeus/mongo-php-adapter": "Required to use legacy MongoDB driver"
@@ -355,7 +355,7 @@
             ],
             "support": {
                 "issues": "https://github.com/doctrine/cache/issues",
-                "source": "https://github.com/doctrine/cache/tree/1.11.3"
+                "source": "https://github.com/doctrine/cache/tree/1.12.1"
             },
             "funding": [
                 {
@@ -371,7 +371,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-05-25T09:01:55+00:00"
+            "time": "2021-07-17T14:39:21+00:00"
         },
         {
             "name": "doctrine/collections",
@@ -3564,16 +3564,16 @@
         },
         {
             "name": "laminas/laminas-diagnostics",
-            "version": "1.8.0",
+            "version": "1.10.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laminas/laminas-diagnostics.git",
-                "reference": "9a634ebdc6af7e92ae3b13712b22c88121709ca9"
+                "reference": "cda82d226bcc9e2008b0ddf0199c24c465bc36c7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laminas/laminas-diagnostics/zipball/9a634ebdc6af7e92ae3b13712b22c88121709ca9",
-                "reference": "9a634ebdc6af7e92ae3b13712b22c88121709ca9",
+                "url": "https://api.github.com/repos/laminas/laminas-diagnostics/zipball/cda82d226bcc9e2008b0ddf0199c24c465bc36c7",
+                "reference": "cda82d226bcc9e2008b0ddf0199c24c465bc36c7",
                 "shasum": ""
             },
             "require": {
@@ -3588,25 +3588,27 @@
             },
             "require-dev": {
                 "doctrine/migrations": "^2.0 || ^3.0",
+                "enlightn/security-checker": "^1.2",
                 "guzzlehttp/guzzle": "^5.3.3 || ^6.3.3",
                 "laminas/laminas-coding-standard": "~1.0.0",
                 "laminas/laminas-loader": "^2.0",
                 "mikey179/vfsstream": "dev-master#08a798577d677436f4f4ea3d0b3c949f64655548 as 1.6.9",
-                "php-amqplib/php-amqplib": "^2.0",
+                "php-amqplib/php-amqplib": "^2.0 || ^3.0",
                 "phpspec/prophecy-phpunit": "^2.0",
-                "phpunit/phpunit": "^9.4.1",
+                "phpunit/phpunit": "^9.5",
                 "predis/predis": "^1.0",
-                "sensiolabs/security-checker": "^5.0 || ^6.0.3",
-                "symfony/yaml": "^2.7 || ^3.0 || ^4.0 || ^5.0"
+                "psalm/plugin-phpunit": "^0.15.1",
+                "symfony/yaml": "^2.7 || ^3.0 || ^4.0 || ^5.0",
+                "vimeo/psalm": "^4.7"
             },
             "suggest": {
                 "doctrine/migrations": "Required by Check\\DoctrineMigration",
+                "enlightn/security-checker": "Required by Check\\SecurityAdvisory",
                 "ext-bcmath": "Required by Check\\CpuPerformance",
                 "guzzlehttp/guzzle": "Required by Check\\GuzzleHttpService",
+                "php-amqplib/php-amqplib": "Required by Check\\RabbitMQ",
                 "predis/predis": "Required by Check\\Redis",
-                "sensiolabs/security-checker": "Required by Check\\SecurityAdvisory",
-                "symfony/yaml": "Required by Check\\YamlFile",
-                "videlalvaro/php-amqplib": "Required by Check\\RabbitMQ"
+                "symfony/yaml": "Required by Check\\YamlFile"
             },
             "type": "library",
             "extra": {
@@ -3649,7 +3651,7 @@
                     "type": "community_bridge"
                 }
             ],
-            "time": "2021-01-26T12:53:05+00:00"
+            "time": "2021-07-10T15:59:13+00:00"
         },
         {
             "name": "laminas/laminas-eventmanager",
@@ -6972,16 +6974,16 @@
         },
         {
             "name": "sonata-project/page-bundle",
-            "version": "3.22.2",
+            "version": "3.22.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataPageBundle.git",
-                "reference": "3468f6309f69f8b971921a77865660bf1136f79c"
+                "reference": "dee6497c6fbf3bee516068538a8b35c7901baa09"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataPageBundle/zipball/3468f6309f69f8b971921a77865660bf1136f79c",
-                "reference": "3468f6309f69f8b971921a77865660bf1136f79c",
+                "url": "https://api.github.com/repos/sonata-project/SonataPageBundle/zipball/dee6497c6fbf3bee516068538a8b35c7901baa09",
+                "reference": "dee6497c6fbf3bee516068538a8b35c7901baa09",
                 "shasum": ""
             },
             "require": {
@@ -7071,7 +7073,7 @@
             ],
             "support": {
                 "issues": "https://github.com/sonata-project/SonataPageBundle/issues",
-                "source": "https://github.com/sonata-project/SonataPageBundle/tree/3.22.2"
+                "source": "https://github.com/sonata-project/SonataPageBundle/tree/3.22.3"
             },
             "funding": [
                 {
@@ -7091,7 +7093,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-05-26T16:27:52+00:00"
+            "time": "2021-07-16T14:31:36+00:00"
         },
         {
             "name": "sonata-project/seo-bundle",
@@ -11405,16 +11407,16 @@
         },
         {
             "name": "symfony/process",
-            "version": "v4.4.25",
+            "version": "v4.4.26",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/process.git",
-                "reference": "cd61e6dd273975c6625316de9d141ebd197f93c9"
+                "reference": "7e812c84c3f2dba173d311de6e510edf701685a8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/process/zipball/cd61e6dd273975c6625316de9d141ebd197f93c9",
-                "reference": "cd61e6dd273975c6625316de9d141ebd197f93c9",
+                "url": "https://api.github.com/repos/symfony/process/zipball/7e812c84c3f2dba173d311de6e510edf701685a8",
+                "reference": "7e812c84c3f2dba173d311de6e510edf701685a8",
                 "shasum": ""
             },
             "require": {
@@ -11446,7 +11448,7 @@
             "description": "Executes commands in sub-processes",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/process/tree/v4.4.25"
+                "source": "https://github.com/symfony/process/tree/v4.4.26"
             },
             "funding": [
                 {
@@ -11462,7 +11464,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-05-26T11:20:16+00:00"
+            "time": "2021-06-09T14:57:04+00:00"
         },
         {
             "name": "symfony/property-access",
