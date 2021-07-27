@@ -14634,20 +14634,21 @@
         },
         {
             "name": "symfony/dotenv",
-            "version": "v4.4.25",
+            "version": "v4.4.27",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/dotenv.git",
-                "reference": "744c09920fbf1850860f399112e82ced4d19aed0"
+                "reference": "51791c28e2fb56ff5b508fd8d5d5e3c0514c6b7a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/dotenv/zipball/744c09920fbf1850860f399112e82ced4d19aed0",
-                "reference": "744c09920fbf1850860f399112e82ced4d19aed0",
+                "url": "https://api.github.com/repos/symfony/dotenv/zipball/51791c28e2fb56ff5b508fd8d5d5e3c0514c6b7a",
+                "reference": "51791c28e2fb56ff5b508fd8d5d5e3c0514c6b7a",
                 "shasum": ""
             },
             "require": {
-                "php": ">=7.1.3"
+                "php": ">=7.1.3",
+                "symfony/polyfill-php80": "^1.16"
             },
             "require-dev": {
                 "symfony/process": "^3.4.2|^4.0|^5.0"
@@ -14683,7 +14684,7 @@
                 "environment"
             ],
             "support": {
-                "source": "https://github.com/symfony/dotenv/tree/v4.4.25"
+                "source": "https://github.com/symfony/dotenv/tree/v4.4.27"
             },
             "funding": [
                 {
@@ -14699,7 +14700,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-05-26T11:20:16+00:00"
+            "time": "2021-07-21T12:19:41+00:00"
         },
         {
             "name": "symfony/phpunit-bridge",
