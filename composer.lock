@@ -6442,26 +6442,26 @@
         },
         {
             "name": "sonata-project/intl-bundle",
-            "version": "2.10.1",
+            "version": "2.10.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataIntlBundle.git",
-                "reference": "d058c42e852099813431775713dc68223fed88a0"
+                "reference": "57830f18ddca317f5e68a71c7a17df7925cee1d5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataIntlBundle/zipball/d058c42e852099813431775713dc68223fed88a0",
-                "reference": "d058c42e852099813431775713dc68223fed88a0",
+                "url": "https://api.github.com/repos/sonata-project/SonataIntlBundle/zipball/57830f18ddca317f5e68a71c7a17df7925cee1d5",
+                "reference": "57830f18ddca317f5e68a71c7a17df7925cee1d5",
                 "shasum": ""
             },
             "require": {
                 "php": "^7.3 || ^8.0",
-                "symfony/config": "^4.4 || ^5.1",
-                "symfony/dependency-injection": "^4.4 || ^5.1",
-                "symfony/http-foundation": "^4.4 || ^5.1",
-                "symfony/http-kernel": "^4.4 || ^5.1",
-                "symfony/intl": "^4.4 || ^5.1",
-                "symfony/templating": "^4.4 || ^5.1",
+                "symfony/config": "^4.4 || ^5.3",
+                "symfony/dependency-injection": "^4.4 || ^5.3",
+                "symfony/http-foundation": "^4.4 || ^5.3",
+                "symfony/http-kernel": "^4.4.13 || ^5.3",
+                "symfony/intl": "^4.4 || ^5.3",
+                "symfony/templating": "^4.4 || ^5.3",
                 "twig/twig": "^2.9 || ^3.0"
             },
             "conflict": {
@@ -6470,8 +6470,8 @@
             "require-dev": {
                 "matthiasnoback/symfony-config-test": "^4.2",
                 "matthiasnoback/symfony-dependency-injection-test": "^4.0",
-                "symfony/phpunit-bridge": "^5.1.8",
-                "symfony/security-core": "^4.4 || ^5.1"
+                "symfony/phpunit-bridge": "^5.3",
+                "symfony/security-core": "^4.4.23 || ^5.3"
             },
             "type": "symfony-bundle",
             "extra": {
@@ -6509,7 +6509,7 @@
             ],
             "support": {
                 "issues": "https://github.com/sonata-project/SonataIntlBundle/issues",
-                "source": "https://github.com/sonata-project/SonataIntlBundle/tree/2.10.1"
+                "source": "https://github.com/sonata-project/SonataIntlBundle/tree/2.10.2"
             },
             "funding": [
                 {
@@ -6529,7 +6529,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-02-15T15:42:12+00:00"
+            "time": "2021-08-05T08:35:53+00:00"
         },
         {
             "name": "sonata-project/media-bundle",
