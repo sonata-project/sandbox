@@ -78,7 +78,7 @@ all:
 	@echo "Please choose a task."
 .PHONY: all
 
-lint: lint-composer lint-yaml lint-xml lint-php
+lint: lint-composer lint-yaml lint-xml lint-xliff lint-php
 .PHONY: lint
 
 lint-composer:
@@ -91,10 +91,10 @@ lint-yaml:
 .PHONY: lint-yaml
 
 lint-xml:
-	find . \( -name '*.xml' -or -name '*.xliff' \) \
+	find . -name '*.xml' \
 		-not -path './vendor/*' \
 		-not -path './src/Resources/public/vendor/*' \
-        -not -path './public/*' \
+		-not -path './public/*' \
 		| while read xmlFile; \
 	do \
 		XMLLINT_INDENT='    ' xmllint --encode UTF-8 --format "$$xmlFile"|diff - "$$xmlFile"; \
@@ -102,6 +102,19 @@ lint-xml:
 	done
 
 .PHONY: lint-xml
+
+lint-xliff:
+	find . -name '*.xliff' \
+		-not -path './vendor/*' \
+		-not -path './src/Resources/public/vendor/*' \
+		-not -path './public/*' \
+		| while read xmlFile; \
+	do \
+		XMLLINT_INDENT='  ' xmllint --encode UTF-8 --format "$$xmlFile"|diff - "$$xmlFile"; \
+		if [ $$? -ne 0 ] ;then exit 1; fi; \
+	done
+
+.PHONY: lint-xliff
 
 lint-php:
 	php-cs-fixer fix --ansi --verbose --diff --dry-run
@@ -118,7 +131,7 @@ cs-fix-xml:
 	find . \( -name '*.xml' -or -name '*.xliff' \) \
 		-not -path './vendor/*' \
 		-not -path './src/Resources/public/vendor/*' \
-        -not -path './public/*' \
+		-not -path './public/*' \
 		| while read xmlFile; \
 	do \
 		XMLLINT_INDENT='    ' xmllint --encode UTF-8 --format "$$xmlFile" --output "$$xmlFile"; \
