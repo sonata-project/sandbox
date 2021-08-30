@@ -11567,16 +11567,16 @@
         },
         {
             "name": "symfony/property-info",
-            "version": "v4.4.27",
+            "version": "v4.4.30",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/property-info.git",
-                "reference": "dac7c1e2b211f7ee7caf42b68d7c61f8d6f3e03e"
+                "reference": "9471a7202a30fe682614b19043e30795a7a9e7c0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/property-info/zipball/dac7c1e2b211f7ee7caf42b68d7c61f8d6f3e03e",
-                "reference": "dac7c1e2b211f7ee7caf42b68d7c61f8d6f3e03e",
+                "url": "https://api.github.com/repos/symfony/property-info/zipball/9471a7202a30fe682614b19043e30795a7a9e7c0",
+                "reference": "9471a7202a30fe682614b19043e30795a7a9e7c0",
                 "shasum": ""
             },
             "require": {
@@ -11636,7 +11636,7 @@
                 "validator"
             ],
             "support": {
-                "source": "https://github.com/symfony/property-info/tree/v4.4.27"
+                "source": "https://github.com/symfony/property-info/tree/v4.4.30"
             },
             "funding": [
                 {
@@ -11652,7 +11652,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-07-21T11:57:04+00:00"
+            "time": "2021-08-18T18:17:39+00:00"
         },
         {
             "name": "symfony/routing",
@@ -12462,16 +12462,16 @@
         },
         {
             "name": "symfony/string",
-            "version": "v5.3.3",
+            "version": "v5.3.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/string.git",
-                "reference": "bd53358e3eccec6a670b5f33ab680d8dbe1d4ae1"
+                "reference": "8d224396e28d30f81969f083a58763b8b9ceb0a5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/string/zipball/bd53358e3eccec6a670b5f33ab680d8dbe1d4ae1",
-                "reference": "bd53358e3eccec6a670b5f33ab680d8dbe1d4ae1",
+                "url": "https://api.github.com/repos/symfony/string/zipball/8d224396e28d30f81969f083a58763b8b9ceb0a5",
+                "reference": "8d224396e28d30f81969f083a58763b8b9ceb0a5",
                 "shasum": ""
             },
             "require": {
@@ -12525,7 +12525,7 @@
                 "utf8"
             ],
             "support": {
-                "source": "https://github.com/symfony/string/tree/v5.3.3"
+                "source": "https://github.com/symfony/string/tree/v5.3.7"
             },
             "funding": [
                 {
@@ -12541,7 +12541,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-06-27T11:44:38+00:00"
+            "time": "2021-08-26T08:00:08+00:00"
         },
         {
             "name": "symfony/templating",
