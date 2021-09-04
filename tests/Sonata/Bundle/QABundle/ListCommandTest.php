@@ -20,6 +20,6 @@ class ListCommandTest extends CommandTestCase
         $client = self::createClient();
         $output = $this->runCommand($client, '');
 
-        $this->assertNotNull($output);
+        static::assertNotNull($output);
     }
 }

@@ -21,13 +21,13 @@ class SonataNotificationHandlerListCommandTest extends CommandTestCase
 
         $output = $this->runCommand($client, 'sonata:notification:list-handler');
 
-        $this->assertStringContainsString('done!', $output);
+        static::assertStringContainsString('done!', $output);
 
         foreach (self::getConsumerList() as $def) {
             [$name, $id] = $def;
 
-            $this->assertStringContainsString($name, $output);
-            $this->assertStringContainsString($id, $output);
+            static::assertStringContainsString($name, $output);
+            static::assertStringContainsString($id, $output);
         }
     }
 }

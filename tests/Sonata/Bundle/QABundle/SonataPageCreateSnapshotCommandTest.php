@@ -21,6 +21,6 @@ class SonataPageCreateSnapshotCommandTest extends CommandTestCase
 
         $output = $this->runCommand($client, 'sonata:page:create-snapshots --site=all');
 
-        $this->assertStringContainsString('done!', $output);
+        static::assertStringContainsString('done!', $output);
     }
 }

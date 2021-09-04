@@ -50,7 +50,7 @@ class SonataPageDumpCommandTest extends CommandTestCase
 
         $output = $this->runCommand($client, sprintf('sonata:page:dump-page sonata.page.cms.page %d', $page->getId()));
 
-        $this->assertStringContainsString('Kind', $output);
-        $this->assertStringContainsString('Blocks', $output);
+        static::assertStringContainsString('Kind', $output);
+        static::assertStringContainsString('Blocks', $output);
     }
 }

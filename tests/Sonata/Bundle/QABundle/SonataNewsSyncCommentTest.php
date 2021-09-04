@@ -21,6 +21,6 @@ class SonataNewsSyncCommentTest extends CommandTestCase
 
         $output = $this->runCommand($client, 'sonata:news:sync-comments-count');
 
-        $this->assertStringContainsString('done!', $output);
+        static::assertStringContainsString('done!', $output);
     }
 }

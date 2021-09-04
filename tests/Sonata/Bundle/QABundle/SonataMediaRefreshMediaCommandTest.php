@@ -28,6 +28,6 @@ class SonataMediaRefreshMediaCommandTest extends CommandTestCase
             'default'
         ));
 
-        $this->assertStringContainsString('Done!', $output);
+        static::assertStringContainsString('Done!', $output);
     }
 }
