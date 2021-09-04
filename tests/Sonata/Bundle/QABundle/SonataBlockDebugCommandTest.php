@@ -20,12 +20,12 @@ class SonataBlockDebugCommandTest extends CommandTestCase
         $client = self::createClient();
         $output = $this->runCommand($client, 'sonata:block:debug');
 
-        $this->assertNotNull($output);
+        static::assertNotNull($output);
 
         foreach (self::getBlockList() as $def) {
             [$id] = $def;
 
-            $this->assertStringContainsString($id, $output);
+            static::assertStringContainsString($id, $output);
         }
     }
 }

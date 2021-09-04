@@ -32,6 +32,6 @@ class SonataAdminExplainCommandTest extends CommandTestCase
 
         $output = $this->runCommand($client, sprintf('sonata:admin:explain %s', $id));
 
-        $this->assertNotNull($output, sprintf('Fail to assert admin id: %s with class: %s', $id, $class));
+        static::assertNotNull($output, sprintf('Fail to assert admin id: %s with class: %s', $id, $class));
     }
 }

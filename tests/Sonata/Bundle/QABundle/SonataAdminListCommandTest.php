@@ -20,13 +20,13 @@ class SonataAdminListCommandTest extends CommandTestCase
         $client = self::createClient();
         $output = $this->runCommand($client, 'sonata:admin:list');
 
-        $this->assertNotNull($output);
+        static::assertNotNull($output);
 
         foreach (self::getAdminList() as $def) {
             [$id, $class] = $def;
 
-            $this->assertStringContainsString($id, $output);
-            $this->assertStringContainsString($class, $output);
+            static::assertStringContainsString($id, $output);
+            static::assertStringContainsString($class, $output);
         }
     }
 }

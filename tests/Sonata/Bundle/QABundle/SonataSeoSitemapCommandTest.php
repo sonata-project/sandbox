@@ -26,20 +26,20 @@ class SonataSeoSitemapCommandTest extends CommandTestCase
 
     public function testGenerate()
     {
-        $this->markTestSkipped('CONCAT_WS doesn\'t exist in sqlite.');
+        static::markTestSkipped('CONCAT_WS doesn\'t exist in sqlite.');
 
         $client = self::createClient();
 
         $output = $this->runCommand($client, sprintf('sonata:seo:sitemap --baseurl=/fr %s/../web sonata.local', $client->getContainer()->getParameter('kernel.root_dir')));
 
-        $this->assertStringContainsString('done!', $output);
-        $this->assertStringContainsString('Generating sitemap - this can take a while', $output);
-        $this->assertStringContainsString('Moving temporary file to', $output);
+        static::assertStringContainsString('done!', $output);
+        static::assertStringContainsString('Generating sitemap - this can take a while', $output);
+        static::assertStringContainsString('Moving temporary file to', $output);
 
         $baseFolder = $client->getContainer()->getParameter('kernel.root_dir');
 
-        $this->assertFileExists(sprintf('%s/../web/sitemap.xml', $baseFolder));
-        $this->assertFileExists(sprintf('%s/../web/sitemap_00001.xml', $baseFolder));
+        static::assertFileExists(sprintf('%s/../web/sitemap.xml', $baseFolder));
+        static::assertFileExists(sprintf('%s/../web/sitemap_00001.xml', $baseFolder));
 
         new \SimpleXMLElement(file_get_contents(sprintf('%s/../web/sitemap.xml', $baseFolder)));
         new \SimpleXMLElement(file_get_contents(sprintf('%s/../web/sitemap_00001.xml', $baseFolder)));

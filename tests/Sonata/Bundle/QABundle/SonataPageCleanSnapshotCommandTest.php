@@ -17,12 +17,12 @@ class SonataPageCleanSnapshotCommandTest extends CommandTestCase
 {
     public function testRefresh()
     {
-        $this->markTestSkipped('The sqlite database platform has not been tested yet.');
+        static::markTestSkipped('The sqlite database platform has not been tested yet.');
 
         $client = self::createClient();
 
         $output = $this->runCommand($client, sprintf('sonata:page:cleanup-snapshots --site=all --base-console=%s', $this->getConsoleLocation($client)));
 
-        $this->assertStringContainsString('done!', $output);
+        static::assertStringContainsString('done!', $output);
     }
 }

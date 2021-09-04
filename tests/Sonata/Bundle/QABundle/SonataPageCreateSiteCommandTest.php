@@ -34,7 +34,7 @@ class SonataPageCreateSiteCommandTest extends CommandTestCase
             ' --no-interaction'
         );
 
-        $this->assertStringContainsString('Creating website with the following information :', $output);
-        $this->assertStringContainsString('Site created !', $output);
+        static::assertStringContainsString('Creating website with the following information :', $output);
+        static::assertStringContainsString('Site created !', $output);
     }
 }

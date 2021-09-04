@@ -35,7 +35,7 @@ class SonataMediaAddCommandTest extends CommandTestCase
             sprintf('%s/../src/Sonata/Bundle/DemoBundle/DataFixtures/data/files/IMG_0003.JPG', $baseFolder)
         ));
 
-        $this->assertStringContainsString('Add a new media - context: product_catalog, provider: sonata.media.provider.image, content: ', $output);
-        $this->assertStringContainsString('done!', $output);
+        static::assertStringContainsString('Add a new media - context: product_catalog, provider: sonata.media.provider.image, content: ', $output);
+        static::assertStringContainsString('done!', $output);
     }
 }
