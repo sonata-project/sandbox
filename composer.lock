@@ -6534,16 +6534,16 @@
         },
         {
             "name": "sonata-project/media-bundle",
-            "version": "3.33.0",
+            "version": "3.33.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataMediaBundle.git",
-                "reference": "9c79e8466dc38fc50c36fc8ef743f491a37bc7a1"
+                "reference": "9dd4e66a9621f707c5a7ff3617b347ee1fdf64e7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataMediaBundle/zipball/9c79e8466dc38fc50c36fc8ef743f491a37bc7a1",
-                "reference": "9c79e8466dc38fc50c36fc8ef743f491a37bc7a1",
+                "url": "https://api.github.com/repos/sonata-project/SonataMediaBundle/zipball/9dd4e66a9621f707c5a7ff3617b347ee1fdf64e7",
+                "reference": "9dd4e66a9621f707c5a7ff3617b347ee1fdf64e7",
                 "shasum": ""
             },
             "require": {
@@ -6689,7 +6689,7 @@
             ],
             "support": {
                 "issues": "https://github.com/sonata-project/SonataMediaBundle/issues",
-                "source": "https://github.com/sonata-project/SonataMediaBundle/tree/3.33.0"
+                "source": "https://github.com/sonata-project/SonataMediaBundle/tree/3.33.1"
             },
             "funding": [
                 {
@@ -6709,7 +6709,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2021-09-08T07:46:29+00:00"
+            "time": "2021-09-10T12:09:54+00:00"
         },
         {
             "name": "sonata-project/news-bundle",
