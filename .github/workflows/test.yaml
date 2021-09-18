@@ -7,7 +7,7 @@ name: Test
 on:
     push:
         branches:
-            - master
+            - 0.x
     pull_request:
 
 jobs:

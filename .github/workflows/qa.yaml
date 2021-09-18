@@ -7,7 +7,7 @@ name: Quality assurance
 on:
     push:
         branches:
-            - master
+            - 0.x
     pull_request:
 
 jobs:
