@@ -98,7 +98,6 @@
         "sort-packages": true
     },
     "extra": {
-        "branch-alias": "3.0",
         "symfony": {
             "allow-contrib": true,
             "require": "4.4.*"
