@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0a9c10870f44a870321f167c81bdccff",
+    "content-hash": "1d8574b7c7dd508d0352cace41e8aa0f",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -2710,12 +2710,12 @@
             "version": "1.2.4",
             "source": {
                 "type": "git",
-                "url": "https://github.com/avalanche123/Imagine.git",
+                "url": "https://github.com/php-imagine/Imagine.git",
                 "reference": "d2e18be6e930ca169e4f921ef73ebfc061bf55d8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/avalanche123/Imagine/zipball/d2e18be6e930ca169e4f921ef73ebfc061bf55d8",
+                "url": "https://api.github.com/repos/php-imagine/Imagine/zipball/d2e18be6e930ca169e4f921ef73ebfc061bf55d8",
                 "reference": "d2e18be6e930ca169e4f921ef73ebfc061bf55d8",
                 "shasum": ""
             },
@@ -2762,8 +2762,8 @@
                 "image processing"
             ],
             "support": {
-                "issues": "https://github.com/avalanche123/Imagine/issues",
-                "source": "https://github.com/avalanche123/Imagine/tree/1.2.4"
+                "issues": "https://github.com/php-imagine/Imagine/issues",
+                "source": "https://github.com/php-imagine/Imagine/tree/1.2.4"
             },
             "time": "2020-11-03T22:35:03+00:00"
         },
@@ -5536,6 +5536,7 @@
                     "type": "github"
                 }
             ],
+            "abandoned": true,
             "time": "2021-02-16T20:44:31+00:00"
         },
         {
@@ -5907,6 +5908,7 @@
                 "issues": "https://github.com/sonata-project/SonataEasyExtendsBundle/issues",
                 "source": "https://github.com/sonata-project/SonataEasyExtendsBundle/tree/2.x"
             },
+            "abandoned": true,
             "time": "2018-02-11T12:21:41+00:00"
         },
         {
@@ -6050,6 +6052,7 @@
                     "type": "github"
                 }
             ],
+            "abandoned": true,
             "time": "2021-03-21T21:45:40+00:00"
         },
         {
@@ -6849,6 +6852,7 @@
                     "type": "github"
                 }
             ],
+            "abandoned": true,
             "time": "2021-02-12T22:27:37+00:00"
         },
         {
@@ -7308,6 +7312,7 @@
                     "type": "github"
                 }
             ],
+            "abandoned": true,
             "time": "2021-02-15T21:36:16+00:00"
         },
         {
@@ -14912,5 +14917,5 @@
         "ext-simplexml": "*"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.1.0"
+    "plugin-api-version": "2.0.0"
 }
