@@ -2,6 +2,7 @@
     "name": "sonata-project/sandbox",
     "description": "Sonata Project's sandbox (with ecommerce bundles)",
     "license": "MIT",
+    "abandoned": true,
     "require": {
         "php": "^7.4",
         "ext-bcmath": "*",
