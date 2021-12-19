@@ -1,10 +1,14 @@
-Sonata Standard Edition
-=======================
+# Sonata Sandbox
 
-What's inside?
---------------
+## WARNING: This repository is abandoned
 
-Sonata Standard Edition comes pre-configured with the following bundles:
+There is no active support on it.
+
+Feel free to ask if you want to help to keep this project up to date.
+
+## What's inside?
+
+Sonata Sandbox comes pre-configured with the following bundles:
 
 * Bundles from Symfony Standard distribution
 * Sonata Admin Bundles: Admin and Doctrine ORM Admin
@@ -13,8 +17,7 @@ Sonata Standard Edition comes pre-configured with the following bundles:
 * Sonata Feature Bundles: Page, Media, News, User, Block, Timeline
 * Api Bundles: FOSRestBundle, BazingaHateoasBundle, NelmioApiDocBundle and JMSSerializerBundle
 
-Installation
-------------
+## Installation
 
 ### Download sandbox files by one of possible examples
 
@@ -40,16 +43,14 @@ Git:
     
 * You should be ready to go ...
 
-Vagrant Installation
---------------------
+## Vagrant Installation
 
 * vagrant up --provision --provider=virtualbox (Vagrant is going to get the environnement, install it for you and load sonata sample data)
 * Configure your host ``sudo nano /etc/hosts`` and add this line ``192.168.33.99   sonata.local``
 * Open your browser [here][link_sonata]
 
 
-Run
----
+## Run
 
 If you are running PHP 7.2 or above, you can use symfony to start the demo:
 
@@ -57,8 +58,7 @@ If you are running PHP 7.2 or above, you can use symfony to start the demo:
 
 Now open your browser and go to http://localhost:9090/
 
-Tests
------
+## Tests
 
 ### Functional testing
 
