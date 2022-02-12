@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace App\Entity\Comment;
 
-use Sonata\CommentBundle\Entity\BaseComment as BaseComment;
+use Sonata\CommentBundle\Entity\BaseComment;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
